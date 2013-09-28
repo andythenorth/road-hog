@@ -1,0 +1,50 @@
+# Use glob syntax:
+syntax: glob
+
+# The local makefile should be ignored:
+Makefile.local
+
+# And the description file and the grfs and tars which are generated automatically
+road-hog*.grf
+road-hog*.tar
+road-hog*.tar.zip
+
+# Ignore files and dirs generated automatically:
+road-hog.nml
+*.nfo
+*.cnfo
+*.cpnfo
+*.md5
+docs/*
+road-hog/*
+custom_tags.txt
+.version
+chameleon_cache
+lang
+
+# Dependency files:
+Makefile.dep
+*.dep
+*.REV
+parsetab.py
+road-hog.grf.cache
+road-hog.grf.cacheindex
+
+# Ignore directories from bundle creation / install:
+road-hog-*
+
+# Ignore frequent development left-overs like
+# editor backups, patches, rejects etc. pp
+*.orig
+*.bak
+*.log
+*.rej
+*.diff
+
+# Files created by Mac image preview and file browser:
+.DS_Store
+Thumbs.db
+
+# Don't add python .pyc and .pyo files
+*.pyc
+*.pyo
