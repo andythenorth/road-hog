@@ -4,7 +4,7 @@ from time import time
 
 print "[BUILD] build_road_hog.py"
 
-import iron_horse
+import road_hog
 import utils
 
 import os.path
