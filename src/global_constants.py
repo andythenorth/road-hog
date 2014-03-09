@@ -96,8 +96,7 @@ cargo_labels = ['PASS', # pax first
                 'OLSD',
                 'SUGR']
 
-# meaning of grfid should be obvious :)
-grfid = r"CA\12\1E"
+grfid = r"\97\87\EA\FE"
 
 # chameleon templating goes faster if a cache dir is used; this specifies which dir is cache dir
 chameleon_cache_dir = 'chameleon_cache'
