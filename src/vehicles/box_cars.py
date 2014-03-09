@@ -1,11 +1,11 @@
 import global_constants
-from train import TypeConfig, WagonConsist, Wagon, GraphicsProcessorFactory
+from road_vehicle import TypeConfig, WagonConsist, Wagon, GraphicsProcessorFactory
 
-options = {'template': 'box_car_brit_gen_1_template.png', 
+options = {'template': 'box_car_brit_gen_1_template.png',
            'recolour_map': {198: 40, 199: 41, 200: 42, 201: 43, 202: 44, 203: 45, 204: 46, 205: 47}}
 graphics_processor_1 = GraphicsProcessorFactory('simple_recolour_pipeline', options)
-                                               
-options = {'template': 'box_car_brit_gen_1_template.png', 
+
+options = {'template': 'box_car_brit_gen_1_template.png',
            'recolour_map': {198: 88, 199: 89, 200: 90, 201: 91, 202: 92, 203: 93, 204: 94, 205: 96}}
 graphics_processor_2 = GraphicsProcessorFactory('simple_recolour_pipeline', options)
 
@@ -32,11 +32,11 @@ consist = WagonConsist(type_config = type_config,
                     use_legacy_spritesheet = True)
 
 consist.add_unit(Wagon(type_config = type_config,
-                        consist = consist,  
+                        consist = consist,
                         capacity_freight = 20,
                         weight = 12,
                         vehicle_length = 5,
-                        loading_speed = 20))              
+                        loading_speed = 20))
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,
@@ -65,7 +65,7 @@ consist.add_unit(Wagon(type_config = type_config,
                         capacity_freight = 35,
                         weight = 18,
                         vehicle_length = 6,
-                        loading_speed = 20))              
+                        loading_speed = 20))
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,
@@ -101,7 +101,7 @@ consist.add_unit(Wagon(type_config = type_config,
                         capacity_mail = 12,
                         weight = 6,
                         vehicle_length = 5,
-                        loading_speed = 20))              
+                        loading_speed = 20))
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,

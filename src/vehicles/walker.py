@@ -1,5 +1,5 @@
 import global_constants
-from train import EngineConsist, DieselLoco
+from road_vehicle import EngineConsist, DieselLoco
 
 consist = EngineConsist(id = 'walker',
               base_numeric_id = 1570,
@@ -16,11 +16,11 @@ consist = EngineConsist(id = 'walker',
               intro_date = 1959,
               graphics_status = '',
               use_legacy_spritesheet = True)
-              
+
 consist.add_unit(DieselLoco(consist = consist,
                         weight = 50,
                         vehicle_length = 7,
-                        spriterow_num = 0))              
+                        spriterow_num = 0))
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,
