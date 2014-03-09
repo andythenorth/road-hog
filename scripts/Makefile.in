@@ -4,13 +4,14 @@ GENERATE_NML := road-hog-nml
 GENERATE_LNG := road-hog-nml
 GENERATE_DOC := road-hog-nml
 
-GENERATE=src/build_road-hog.py
+GENERATE=src/build_road_hog.py
 
 iron-horse-nml:
 	$(_E) [GENERATE]
-	$(_V) python src/build_road-hog.py '${REPO_TITLE}' '${REPO_REVISION}'
+	$(_V) python src/build_road_hog.py '${REPO_TITLE}' '${REPO_REVISION}'
 
 clean::
-	$(_V)-rm road-hog.nml
-	$(_V)-rm -r lang
+	$(_V)-rm iron-horse.nml
+	$(_V)-rm -r docs
 	$(_V)-rm -r chameleon_cache
+	$(_V)-rm -r generated

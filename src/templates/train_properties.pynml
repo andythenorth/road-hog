@@ -1,0 +1,52 @@
+// -- print some of the vehicle non-nml properties to aid debugging -- //
+// [no properties printed]
+
+item(FEAT_TRAINS, ${vehicle.id}, ${vehicle.numeric_id}) {
+    property {
+        name:                           ${consist.get_name()};
+        climates_available:             ${vehicle.availability};
+        engine_class:                   ${vehicle.engine_class};
+        visual_effect_and_powered:      visual_effect(${vehicle.visual_effect}, ${vehicle.visual_effect_offset});
+        introduction_date:              date(${consist.intro_date},01,01); // consist just supplies intro year - openttd randomises intro dates a bit anyway
+        cargo_capacity:                 ${vehicle.default_cargo_capacities[0]};
+        sprite_id:                      SPRITE_ID_NEW_TRAIN; //enable new graphics - nml constant
+        power:                          ${consist.power}hp;
+        <tal:speed_is_optional condition="consist.speed is not None">
+            speed:                          ${consist.speed}mph;
+        </tal:speed_is_optional>
+        weight:                         ${consist.weight}ton;
+        tractive_effort_coefficient:    ${consist.tractive_effort_coefficient};
+        cost_factor:                    ${consist.buy_cost};
+        running_cost_factor:            ${consist.running_cost};
+        refit_cost:                     0; // btw this needs to be 0 if we want autorefit without using cb
+        refittable_cargo_classes:       bitmask(${vehicle.refittable_classes});
+        non_refittable_cargo_classes:   bitmask(); // don't set non-refittable classes, increases likelihood of breaking cargo support
+        cargo_allow_refit:              [${vehicle.get_label_refits_allowed()}];
+        cargo_disallow_refit:           [${vehicle.get_label_refits_disallowed()}];
+        default_cargo_type:             ${vehicle.default_cargo};
+        loading_speed:                  ${vehicle.loading_speed};
+        misc_flags:                     bitmask(${vehicle.special_flags}); // nml constants
+        model_life:                     ${consist.adjusted_model_life};
+        retire_early:                   ${consist.vehicle_life - 4}; // magic from Eddi
+        reliability_decay:              20; // default value
+        vehicle_life:                   ${consist.vehicle_life};
+        length:                         ${vehicle.slice_length};
+        track_type:                     ${consist.track_type};
+    }
+    graphics {
+        cargo_capacity:                 ${vehicle.id}_switch_cargo_capacity;
+        purchase_cargo_capacity:        ${vehicle.id}_switch_cargo_capacity;
+        additional_text:                ${consist.get_buy_menu_string()};
+        default:                        ${vehicle.id}_switch_graphics;
+        purchase:                       ${vehicle.id}_sg_purchase;
+        <tal:variable_power condition="consist.slice_requires_variable_power(vehicle)">
+            power:                          ${vehicle.id}_switch_power;
+        </tal:variable_power>
+        <tal:add_articulated_parts condition="vehicle.is_lead_slice_of_consist">
+            articulated_part: ${consist.id}_articulated_cb_switch;
+        </tal:add_articulated_parts>
+    }
+}
+
+// -- end ${vehicle.numeric_id} -- <!--! another comment to aid reading the final nml  -->
+

@@ -1,0 +1,30 @@
+<tal:main_template define="main_template load: main_template.pt" metal:use-macro="main_template">
+<div metal:fill-slot='body'>
+
+    <div class="span12">
+        <h2>${len(consists)} trains for OpenTTD</h2>
+        <hr />
+        <table class="table table-striped tablesorter">
+            <thead>
+                <tr>
+                    <th>Vehicle Name</th>
+                    <th class="number">Intro Date</th>
+                    <th>Extra Info</th>
+                    <th>Speed</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tal:consists_list repeat="consist consists">
+                    <tr>
+                        <td>${consist.get_name_substr()} ${base_lang_strings[consist.get_str_name_suffix()]}</td>
+                        <td class="number">${consist.intro_date}</td>
+                        <td>${base_lang_strings[consist.get_str_type_info()]}</td>
+                        <!--!<td>${int(consist.speed)} mph</td>-->
+                    </tr>
+                </tal:consists_list>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+</tal:main_template>

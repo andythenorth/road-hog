@@ -1,0 +1,30 @@
+// define the newgrf
+grf {
+	grfid: "${global_constants.grfid}";
+	name: string(STR_GRF_NAME);
+	desc: string(STR_GRF_DESCRIPTION);
+	version: ${repo_vars.repo_version};
+	min_compatible_version: 195;
+	param 0 {
+        param_adjust_vehicle_capacity {
+            type:    int;
+            name:    string(STR_PARAM_ADJUST_VEHICLE_CAPACITY);
+            min_value: 0;
+            max_value: 2;
+            def_value: 1;
+            names: {
+                0: string(STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_0);
+                1: string(STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_1);
+                2: string(STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2);
+            };
+        }
+    }
+}
+
+basecost {
+ 	PR_BUILD_VEHICLE_TRAIN: -1;
+}
+
+// sort order
+sort(FEAT_TRAINS, ${[consist.base_numeric_id for consist in consists]});
+
