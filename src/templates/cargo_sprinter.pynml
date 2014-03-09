@@ -36,7 +36,7 @@ ${vehicle.render_debug_info()}
                     ${vehicle.id}_ss_${variation_num}_${cargo_variant_num}_${cab_variant}_liquids,
                 ];
             }
-            switch (FEAT_TRAINS, SELF, ${vehicle.id}_switch_graphics_${variation_num}_${cargo_variant_num}_${cab_variant}, ${vehicle.get_nml_expression_for_cargo_type_unit_refitted_to()}) {
+            switch (FEAT_ROADVEHS, SELF, ${vehicle.id}_switch_graphics_${variation_num}_${cargo_variant_num}_${cab_variant}, ${vehicle.get_nml_expression_for_cargo_type_unit_refitted_to()}) {
                 BEER: return ${vehicle.id}_sg_${variation_num}_${cargo_variant_num}_${cab_variant}_liquids;
                 MILK: return ${vehicle.id}_sg_${variation_num}_${cargo_variant_num}_${cab_variant}_liquids;
                 WATR: return ${vehicle.id}_sg_${variation_num}_${cargo_variant_num}_${cab_variant}_liquids;
@@ -44,25 +44,25 @@ ${vehicle.render_debug_info()}
             }
         </tal:cab_variants>
 
-        switch (FEAT_TRAINS, SELF, ${vehicle.id}_switch_graphics_${variation_num}_${cargo_variant_num}_check_preceding_vehicle_same_id, 
+        switch (FEAT_ROADVEHS, SELF, ${vehicle.id}_switch_graphics_${variation_num}_${cargo_variant_num}_check_preceding_vehicle_same_id, 
                                     ${vehicle.get_nml_expression_for_id_of_neighbouring_unit(unit_offset=-1)}) {
             ${vehicle.id}: return ${vehicle.id}_switch_graphics_${variation_num}_${cargo_variant_num}_1; // same vehicle, show no cab
             return ${vehicle.id}_switch_graphics_${variation_num}_${cargo_variant_num}_0; // different IH vehicle, show front cab
         }
 
-        switch (FEAT_TRAINS, SELF, ${vehicle.id}_switch_graphics_${variation_num}_${cargo_variant_num}_check_preceding_vehicle_same_grf, 
+        switch (FEAT_ROADVEHS, SELF, ${vehicle.id}_switch_graphics_${variation_num}_${cargo_variant_num}_check_preceding_vehicle_same_grf, 
                                     ${vehicle.get_nml_expression_for_grfid_of_neighbouring_unit(unit_offset=-1)}) {
             str2number("${global_constants.grfid}"): ${vehicle.id}_switch_graphics_${variation_num}_${cargo_variant_num}_check_preceding_vehicle_same_id;
             return ${vehicle.id}_switch_graphics_${variation_num}_${cargo_variant_num}_0; // different grf, show front cab
         }
 
-        switch (FEAT_TRAINS, SELF, ${vehicle.id}_switch_graphics_${variation_num}_${cargo_variant_num}_check_following_vehicle_same_id, 
+        switch (FEAT_ROADVEHS, SELF, ${vehicle.id}_switch_graphics_${variation_num}_${cargo_variant_num}_check_following_vehicle_same_id, 
                                     ${vehicle.get_nml_expression_for_id_of_neighbouring_unit(unit_offset=1)}) {
             ${vehicle.id}: ${vehicle.id}_switch_graphics_${variation_num}_${cargo_variant_num}_check_preceding_vehicle_same_grf;
             return ${vehicle.id}_switch_graphics_${variation_num}_${cargo_variant_num}_2; // different IH vehicle, show rear cab
         }
 
-        switch (FEAT_TRAINS, SELF, ${vehicle.id}_switch_graphics_${variation_num}_${cargo_variant_num}, 
+        switch (FEAT_ROADVEHS, SELF, ${vehicle.id}_switch_graphics_${variation_num}_${cargo_variant_num}, 
                                     ${vehicle.get_nml_expression_for_grfid_of_neighbouring_unit(unit_offset=1)}) {
             str2number("${global_constants.grfid}"): ${vehicle.id}_switch_graphics_${variation_num}_${cargo_variant_num}_check_following_vehicle_same_id;
             return ${vehicle.id}_switch_graphics_${variation_num}_${cargo_variant_num}_2; // different grf, show rear cab
@@ -70,7 +70,7 @@ ${vehicle.render_debug_info()}
 
     </tal:cargo_colour_variant>
 
-    random_switch (FEAT_TRAINS, SELF, ${vehicle.id}_switch_graphics_${variation_num}, bitmask(TRIGGER_VEHICLE_NEW_LOAD)) {
+    random_switch (FEAT_ROADVEHS, SELF, ${vehicle.id}_switch_graphics_${variation_num}, bitmask(TRIGGER_VEHICLE_NEW_LOAD)) {
         <tal:random_graphics_variations repeat="cargo_variant_num range(3)">
             1: return ${vehicle.id}_switch_graphics_${variation_num}_${cargo_variant_num};
         </tal:random_graphics_variations>

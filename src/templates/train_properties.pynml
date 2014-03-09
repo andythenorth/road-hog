@@ -1,12 +1,10 @@
 // -- print some of the vehicle non-nml properties to aid debugging -- //
 // [no properties printed]
 
-item(FEAT_TRAINS, ${vehicle.id}, ${vehicle.numeric_id}) {
+item(FEAT_ROADVEHS, ${vehicle.id}, ${vehicle.numeric_id}) {
     property {
         name:                           ${consist.get_name()};
         climates_available:             ${vehicle.availability};
-        engine_class:                   ${vehicle.engine_class};
-        visual_effect_and_powered:      visual_effect(${vehicle.visual_effect}, ${vehicle.visual_effect_offset});
         introduction_date:              date(${consist.intro_date},01,01); // consist just supplies intro year - openttd randomises intro dates a bit anyway
         cargo_capacity:                 ${vehicle.default_cargo_capacities[0]};
         sprite_id:                      SPRITE_ID_NEW_TRAIN; //enable new graphics - nml constant
@@ -31,7 +29,6 @@ item(FEAT_TRAINS, ${vehicle.id}, ${vehicle.numeric_id}) {
         reliability_decay:              20; // default value
         vehicle_life:                   ${consist.vehicle_life};
         length:                         ${vehicle.slice_length};
-        track_type:                     ${consist.track_type};
     }
     graphics {
         cargo_capacity:                 ${vehicle.id}_switch_cargo_capacity;

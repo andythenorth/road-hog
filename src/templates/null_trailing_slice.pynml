@@ -13,7 +13,7 @@ spritegroup ${vehicle.id}_sg {
     ];
 }
 
-item(FEAT_TRAINS, ${vehicle.id}, ${vehicle.numeric_id}) {
+item(FEAT_ROADVEHS, ${vehicle.id}, ${vehicle.numeric_id}) {
     property {
         climates_available:             NO_CLIMATE;
         introduction_date:              date(01,01,01);

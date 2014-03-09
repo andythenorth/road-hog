@@ -14,7 +14,7 @@ spritegroup ${vehicle.id}_sg_hidden {
 }
 
 <tal:graphics_variation_random_switches repeat="year consist.get_reduced_set_of_variant_dates()[:-1]">
-    random_switch (FEAT_TRAINS, SELF, ${vehicle.id}_switch_graphics_random_${year}) {
+    random_switch (FEAT_ROADVEHS, SELF, ${vehicle.id}_switch_graphics_random_${year}) {
         <tal:random_graphics_variations repeat="variation_num consist.get_variants_available_for_specific_year(year)">
             1: return ${vehicle.id}_switch_graphics_${variation_num};
         </tal:random_graphics_variations>
@@ -22,7 +22,7 @@ spritegroup ${vehicle.id}_sg_hidden {
 </tal:graphics_variation_random_switches>
 
 
-switch (FEAT_TRAINS, SELF, ${vehicle.id}_switch_graphics_by_year, build_year) {
+switch (FEAT_ROADVEHS, SELF, ${vehicle.id}_switch_graphics_by_year, build_year) {
     <tal:choose_random_switch_by_date repeat="nml_fragment consist.get_nml_random_switch_fragments_for_model_variants(vehicle)">
         ${nml_fragment};
     </tal:choose_random_switch_by_date>
@@ -30,7 +30,7 @@ switch (FEAT_TRAINS, SELF, ${vehicle.id}_switch_graphics_by_year, build_year) {
 }
 
 // show default graphics, or special cases like depot? (purchase is handled separately using purchase cb)
-switch (FEAT_TRAINS, SELF, ${vehicle.id}_switch_graphics, extra_callback_info1) {
+switch (FEAT_ROADVEHS, SELF, ${vehicle.id}_switch_graphics, extra_callback_info1) {
     0x10: return ${vehicle.sg_depot};
     return ${vehicle.sg_default};
 }
