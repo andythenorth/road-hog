@@ -3,7 +3,7 @@ grf {
 	grfid: "CA\12\1E";
 	name: string(STR_GRF_NAME);
 	desc: string(STR_GRF_DESCRIPTION);
-	version: 1;
+	version: 3;
 	min_compatible_version: 195;
 	param 0 {
         param_adjust_vehicle_capacity {

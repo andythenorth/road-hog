@@ -34,7 +34,7 @@ def render_consist_nml(consist):
 def main():
     consists = road_hog.get_consists_in_buy_menu_order(show_warnings=True)
 
-    grf_nml = codecs.open(os.path.join('iron-horse.nml'),'w','utf8')
+    grf_nml = codecs.open(os.path.join('road-hog.nml'),'w','utf8')
     header_items = ['header', 'cargo_table', 'railtype_table', 'disable_default_vehicles']
     for header_item in header_items:
         template = templates[header_item + '.pynml']
