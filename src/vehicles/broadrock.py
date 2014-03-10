@@ -1,9 +1,9 @@
 import global_constants
 from road_vehicle import EngineConsist, DieselLoco
 
-consist = EngineConsist(id = 'walker',
-              base_numeric_id = 1570,
-              title = 'Walker [Diesel]',
+consist = EngineConsist(id = 'broadrock',
+              base_numeric_id = 230,
+              title = 'Broadrock Mining Truck [Diesel]',
               str_type_info = 'COASTER',
               replacement_id = '-none',
               power = 950,

@@ -1,11 +1,13 @@
 
-buy_menu_sort_order_locos = [# brit locos
-                           'walker',
+buy_menu_sort_order_locos = [# brit vehicles
+                           'broadrock',
+                           'mcdowell',
+                           'witch_hill',
                            ]
 
 # wagon ids are generic and are composed to specific vehicle ids elsewhere
 # order is significant
-buy_menu_sort_order_wagons = ['box_car']
+buy_menu_sort_order_wagons = []
 
 # set (roster) <-> numeric id mapping
 # vehicle IDs are in format nxxx where n is set numeric id
