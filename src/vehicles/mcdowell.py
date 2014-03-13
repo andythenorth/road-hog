@@ -1,5 +1,5 @@
 import global_constants
-from road_vehicle import EngineConsist, DieselLoco
+from road_vehicle import EngineConsist, Truck
 
 consist = EngineConsist(id = 'mcdowell',
               base_numeric_id = 240,
@@ -17,7 +17,7 @@ consist = EngineConsist(id = 'mcdowell',
               graphics_status = '',
               use_legacy_spritesheet = True)
 
-consist.add_unit(DieselLoco(consist = consist,
+consist.add_unit(Truck(consist = consist,
                         weight = 50,
                         vehicle_length = 7,
                         spriterow_num = 0))

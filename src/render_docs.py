@@ -45,7 +45,7 @@ from chameleon import PageTemplateLoader # chameleon used in most template cases
 # setup the places we look for templates
 docs_templates = PageTemplateLoader(os.path.join(currentdir, 'docs_src'), format='text')
 
-from road_vehicle import Train
+from road_vehicle import RoadVehicle
 
 # get args passed by makefile
 repo_vars = utils.get_repo_vars(sys)

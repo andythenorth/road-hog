@@ -62,29 +62,19 @@ class Consist(object):
         self.model_variants.append(ModelVariant(intro_date, end_date, spritesheet_suffix, graphics_processor))
 
     def add_unit(self, vehicle, repeat=1):
-        # vehicle ids increment by 3 because each vehicle is composed of 3 intermediate slices
+        # this is a little overly complex, as it is lifted from Iron Horse, which has more complex vehicles
         count = len(set(self.slices))
-        first_slice = LeadSlice(parent_vehicle=vehicle)
-        second_slice = vehicle
-        third_slice = NullTrailingSlice(parent_vehicle=vehicle)
+        first_slice = vehicle
         if count == 0:
             first_slice.id = self.id # first vehicle gets no numeric id suffix - for compatibility with buy menu list ids etc
         else:
             first_slice.id = self.id + '_' + str(count)
-        second_slice.id = self.id + '_' + str(count + 1)
-        third_slice.id = self.id + '_' + str(count + 2)
         first_slice.numeric_id = self.get_and_verify_numeric_id(count)
-        second_slice.numeric_id = self.get_and_verify_numeric_id(count + 1)
-        third_slice.numeric_id = self.get_and_verify_numeric_id(count + 2)
         first_slice.slice_length = global_constants.slice_lengths[vehicle.vehicle_length][0]
-        second_slice.slice_length = global_constants.slice_lengths[vehicle.vehicle_length][1]
-        third_slice.slice_length = global_constants.slice_lengths[vehicle.vehicle_length][2]
         first_slice.spriterow_num = vehicle.spriterow_num
 
         for repeat_num in range(repeat):
             self.slices.append(first_slice)
-            self.slices.append(second_slice)
-            self.slices.append(third_slice)
 
     def get_and_verify_numeric_id(self, offset):
         numeric_id = self.base_numeric_id + offset
@@ -233,14 +223,14 @@ class Consist(object):
         return nml_result
 
 
-class Train(object):
-    """Base class for all types of trains"""
+class RoadVehicle(object):
+    """Base class for all types of road vehicles"""
     def __init__(self, **kwargs):
         self.consist = kwargs.get('consist')
 
-        # setup properties for this train
+        # setup properties for this road vehicle
         self.numeric_id = kwargs.get('numeric_id', None)
-        self.loading_speed = kwargs.get('loading_speed', 5) # 5 is default train loading speed
+        self.loading_speed = kwargs.get('loading_speed', 5) # 5 is default vehicle loading speed
         self.vehicle_length = kwargs.get('vehicle_length', None)
         self.speed = kwargs.get('speed', 0)
         self.weight = kwargs.get('weight', None)
@@ -411,7 +401,7 @@ class TypeConfig(object):
 class ModelVariant(object):
     # simple class to hold model variants
     # variants are mostly randomised or date-sensitive graphics
-    # must be a minimum of one variant per train
+    # must be a minimum of one variant per vehicle
     # at least one variant must have intro date 0 (for nml switch defaults to work)
     def __init__(self, intro_date, end_date, spritesheet_suffix, graphics_processor):
         self.intro_date = intro_date
@@ -434,7 +424,7 @@ class GraphicsProcessorFactory(object):
         self.pipeline = graphics_processor.registered_pipelines[pipeline_name]
 
 
-class LeadSlice(Train):
+class LeadSlice(RoadVehicle):
     """
     Lead slice for a unit (invisible, minimal props).
     """
@@ -448,10 +438,6 @@ class LeadSlice(Train):
         self.vehicle_length = parent_vehicle.vehicle_length
         self.engine_class = parent_vehicle.engine_class
         self.default_cargo_capacities = [0]
-        if isinstance(parent_vehicle, CombineCar):
-            self.capacities_pax = parent_vehicle.capacities_pax
-            self.default_cargo_capacities = self.capacities_pax
-            self.default_cargo = 'PASS'
 
 
 class NullTrailingSlice(object):
@@ -509,11 +495,11 @@ class WagonConsist(Consist):
         base_type_list.sort()
 
 
-class Wagon(Train):
+class Wagon(RoadVehicle):
     """
     Intermediate class for actual cars (wagons) to subclass from, provides some common properties.
     This class should be sparse - only declare the most limited set of properties common to wagons.
-    Most props should be declared by Train with useful defaults.
+    Most props should be declared by RoadVehicle with useful defaults.
     """
     def __init__(self, type_config, **kwargs):
         super(Wagon, self).__init__(**kwargs)
@@ -527,145 +513,15 @@ class Wagon(Train):
         self.default_cargo_capacities = self.get_capacity_variations(kwargs.get(type_config.default_capacity_type, 0))
 
 
-class SteamLoco(Train):
+class Truck(RoadVehicle):
     """
-    Steam Locomotive.
+    Basic Cargo Truck.
     """
     def __init__(self, **kwargs):
-        super(SteamLoco, self).__init__(**kwargs)
+        super(Truck, self).__init__(**kwargs)
         self.template = 'train.pynml'
         self.default_cargo_capacities = [0]
         self.engine_class = 'ENGINE_CLASS_STEAM' #nml constant
         self.visual_effect = 'VISUAL_EFFECT_STEAM' # nml constant
 
-
-class SteamLocoTender(Train):
-    """
-    Steam Locomotive Tender.
-    """
-    def __init__(self, **kwargs):
-        super(SteamLocoTender, self).__init__(**kwargs)
-        self.template = 'train.pynml'
-        self.default_cargo_capacities = [0]
-
-
-class DieselLoco(Train):
-    """
-    Diesel Locomotive.
-    """
-    def __init__(self, **kwargs):
-        super(DieselLoco, self).__init__(**kwargs)
-        self.template = 'train.pynml'
-        self.default_cargo_capacities = [0]
-        self.engine_class = 'ENGINE_CLASS_DIESEL' #nml constant
-        self.visual_effect = 'VISUAL_EFFECT_DIESEL' # nml constant
-
-
-class DieselRailcar(Train):
-    """
-    Diesel Railcar (Single Unit).
-    """
-    def __init__(self, **kwargs):
-        super(DieselRailcar, self).__init__(**kwargs)
-        self.template = 'railcar.pynml'
-        self.default_cargo_capacities = [0]
-        self.class_refit_groups = ['pax', 'mail', 'express_freight']
-        self.label_refits_allowed = [] # no specific labels needed
-        self.label_refits_disallowed = []
-        self.autorefit = True
-        self.capacities_freight = [int(0.5 * capacity) for capacity in self.capacities_mail]
-        self.default_cargo_capacities = self.capacities_pax
-        self.default_cargo = 'PASS'
-        self.engine_class = 'ENGINE_CLASS_DIESEL' #nml constant
-        self.visual_effect = 'VISUAL_EFFECT_DIESEL' # nml constant
-
-
-class ElectricLoco(Train):
-    """
-    Diesel Locomotive.
-    """
-    def __init__(self, **kwargs):
-        super(ElectricLoco, self).__init__(**kwargs)
-        self.template = 'train.pynml'
-        self.default_cargo_capacities = [0]
-        kwargs['consist'].track_type = "ELRL"
-        self.engine_class = 'ENGINE_CLASS_ELECTRIC' #nml constant
-        self.visual_effect = 'VISUAL_EFFECT_ELECTRIC' # nml constant
-
-
-class ElectroDieselLoco(Train):
-    """
-    Bi-mode Locomotive - operates on electrical power or diesel.
-    """
-    def __init__(self, **kwargs):
-        super(ElectroDieselLoco, self).__init__(**kwargs)
-        self.template = 'train.pynml'
-        self.default_cargo_capacities = [0]
-        self.engine_class = 'ENGINE_CLASS_DIESEL' #nml constant
-        self.visual_effect = 'VISUAL_EFFECT_DIESEL' # nml constant
-
-
-class CargoSprinter(Train):
-    """
-    Freight Multiple Unit.
-    """
-    def __init__(self, **kwargs):
-        super(CargoSprinter, self).__init__(**kwargs)
-        self.template = 'cargo_sprinter.pynml'
-        self.default_cargo_capacities = [0]
-        self.class_refit_groups = ['express_freight']
-        self.label_refits_allowed = [] # no specific labels needed
-        self.label_refits_disallowed = []
-        self.autorefit = True
-        self.default_cargo_capacities = self.capacities_freight
-        self.default_cargo = 'PASS'
-        self.engine_class = 'ENGINE_CLASS_DIESEL' #nml constant
-        self.num_random_cargo_variants = kwargs.get('num_random_cargo_variants')
-        self.visual_effect = 'VISUAL_EFFECT_DISABLE' # nml constant
-
-
-class MailCar(Wagon):
-    """
-    Mail Carriage.
-    """
-    def __init__(self, **kwargs):
-        super(MailCar, self).__init__(**kwargs)
-        self.capacities_freight = [int(0.5 * capacity) for capacity in self.capacities_mail]
-
-
-class CombineCar(Wagon):
-    """
-    Carriage that offers capacity for both passengers (fixed) and mail / express cargo (refittable)
-    """
-    # this class is sparse - it exists to make special case handling easy by checking class type
-    # combine car needs to set capacity_mail, capacity_freight, and capacity_pax
-    # pax capacity is non-refittable and applied to lead slice of the unit
-    def __init__(self, **kwargs):
-        super(CombineCar, self).__init__(**kwargs)
-
-
-class MetroMultipleUnit(Train):
-    """
-    Metro Unit
-    """
-    def __init__(self, **kwargs):
-        super(MetroMultipleUnit, self).__init__(**kwargs)
-        self.template = 'metro_mu.pynml'
-        self.default_cargo_capacities = self.capacities_pax
-        self.default_cargo = "PASS"
-        self.engine_class = 'ENGINE_CLASS_ELECTRIC' #nml constant
-        self.visual_effect = 'VISUAL_EFFECT_ELECTRIC' # nml constant
-        self.loading_speed = 40
-
-
-class MetroLoco(Train):
-    """
-    Metro Unit
-    """
-    def __init__(self, **kwargs):
-        super(MetroLoco, self).__init__(**kwargs)
-        self.template = 'train.pynml'
-        self.default_cargo_capacities = [0]
-        self.engine_class = 'ENGINE_CLASS_ELECTRIC' #nml constant
-        self.visual_effect = 'VISUAL_EFFECT_ELECTRIC' # nml constant
 
