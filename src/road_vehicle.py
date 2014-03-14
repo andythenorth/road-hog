@@ -305,27 +305,15 @@ class RoadVehicle(object):
 
     @property
     def sg_depot(self):
-        if isinstance(self, LeadSlice):
-            suffix = "_switch_graphics_by_year"
-        else:
-            suffix = "_sg_hidden"
+        # legacy - copied from IH, allows special handling of depot sprites
+        suffix = "_switch_graphics_by_year"
         return self.id + suffix
 
     @property
     def sg_default(self):
-        if isinstance(self, LeadSlice):
-            suffix = "_sg_hidden"
-        else:
-            suffix = "_switch_graphics_by_year"
+        # legacy - copied from IH, related to special handling of depot sprites
+        suffix = "_switch_graphics_by_year"
         return self.id + suffix
-
-    def get_nml_expression_for_cargo_type_unit_refitted_to(self):
-        expression_template = Template("[STORE_TEMP(${offset}, 0x10F), var[0x61, 0, 0x000000FF, 0x47]]")
-        # cargo capacity is on the second slice of each 3-slice unit
-        if isinstance(self, LeadSlice):
-            return expression_template.substitute(offset=1)
-        else:
-            return expression_template.substitute(offset=0)
 
     def get_nml_expression_for_grfid_of_neighbouring_unit(self, unit_offset):
         # offset is number of units, not number of slices
@@ -422,22 +410,6 @@ class GraphicsProcessorFactory(object):
         self.pipeline_name = pipeline_name
         self.options = options
         self.pipeline = graphics_processor.registered_pipelines[pipeline_name]
-
-
-class LeadSlice(RoadVehicle):
-    """
-    Lead slice for a unit (invisible, minimal props).
-    """
-    def __init__(self, parent_vehicle):
-        super(LeadSlice, self).__init__(consist=parent_vehicle.consist,
-                                       loading_speed=parent_vehicle.loading_speed)
-        self.parent_vehicle = parent_vehicle
-        self.template = parent_vehicle.template
-        self.speed = 0
-        self.weight = 0
-        self.vehicle_length = parent_vehicle.vehicle_length
-        self.engine_class = parent_vehicle.engine_class
-        self.default_cargo_capacities = [0]
 
 
 class EngineConsist(Consist):
