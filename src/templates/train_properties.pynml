@@ -9,9 +9,7 @@ item(FEAT_ROADVEHS, ${vehicle.id}, ${vehicle.numeric_id}) {
         cargo_capacity:                 ${vehicle.default_cargo_capacities[0]};
         sprite_id:                      SPRITE_ID_NEW_TRAIN; //enable new graphics - nml constant
         power:                          ${consist.power}hp;
-        <tal:speed_is_optional condition="consist.speed is not None">
-            speed:                          ${consist.speed}mph;
-        </tal:speed_is_optional>
+        speed:                          ${consist.speed}mph;
         weight:                         ${consist.weight}ton;
         tractive_effort_coefficient:    ${consist.tractive_effort_coefficient};
         cost_factor:                    ${consist.buy_cost};
@@ -29,6 +27,7 @@ item(FEAT_ROADVEHS, ${vehicle.id}, ${vehicle.numeric_id}) {
         reliability_decay:              20; // default value
         vehicle_life:                   ${consist.vehicle_life};
         length:                         ${vehicle.slice_length};
+        visual_effect:                  ${vehicle.visual_effect};
     }
     graphics {
         cargo_capacity:                 ${vehicle.id}_switch_cargo_capacity;

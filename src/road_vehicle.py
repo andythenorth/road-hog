@@ -25,8 +25,7 @@ class Consist(object):
     """
        'Vehicles' (appearing in buy menu) are composed as articulated consists.
        Each consist comprises one or more 'units' (visible).
-       Each unit assembled from 3 'slices' (invisible-visible-invisible), which are newgrf vehicles with uids.
-   """
+    """
     def __init__(self, **kwargs):
         self.id = kwargs.get('id', None)
 
@@ -43,7 +42,6 @@ class Consist(object):
         self.buy_cost = kwargs.get('buy_cost', None)
         self.fixed_run_cost_factor = kwargs.get('fixed_run_cost_factor', None)
         self.fuel_run_cost_factor = kwargs.get('fuel_run_cost_factor', None)
-        self.use_legacy_spritesheet = kwargs.get('use_legacy_spritesheet', False) # hangover from switching to 10/8 spritesheet and not wanting to fix existing spritesheets
         # create a structure to hold model variants
         self.model_variants = []
         # create structure to hold the slices
@@ -85,17 +83,6 @@ class Consist(object):
                 if numeric_id == slice.numeric_id:
                     utils.echo_message("Error: numeric_id collision (" + str(numeric_id) + ") for slices in consist " + self.id + " and " + consist.id)
         return numeric_id
-
-    def get_wagon_id(self, id_base, **kwargs):
-        # auto id creator, used for wagons not locos
-        return '_'.join((id_base, kwargs['vehicle_set'], 'gen', str(kwargs['wagon_generation'])))
-
-    def get_wagon_numeric_id(self, base_id, **kwargs):
-        # auto numeric_id creator, used for wagons not locos
-        vehicle_set_base_number = global_constants.vehicle_set_id_mapping[kwargs['vehicle_set']]
-        type_base_number = global_constants.wagon_type_numeric_ids[base_id]
-        result = (1000 * vehicle_set_base_number) + type_base_number + (3 * (kwargs['wagon_generation'] - 1))
-        return result
 
     def get_reduced_set_of_variant_dates(self):
         # find all the unique dates that will need a switch constructing
@@ -238,7 +225,6 @@ class RoadVehicle(object):
         self.label_refits_allowed = [] # no specific labels needed
         self.label_refits_disallowed = []
         self.autorefit = False
-        self.engine_class = 'ENGINE_CLASS_STEAM' # nml constant (STEAM is sane default)
         self.visual_effect = 'VISUAL_EFFECT_DISABLE' # nml constant
         self.visual_effect_offset = 0
 
@@ -395,5 +381,4 @@ class MiningTruck(RoadVehicle):
         self.label_refits_disallowed = []
         self.default_cargo = 'PASS'
         self.default_cargo_capacities = self.capacities_freight
-        self.engine_class = 'ENGINE_CLASS_STEAM' #nml constant
-        self.visual_effect = 'VISUAL_EFFECT_STEAM' # nml constant
+        self.visual_effect = 'VISUAL_EFFECT_DIESEL' # nml constant

@@ -13,8 +13,7 @@ consist = EngineConsist(id = 'witch_hill',
               fuel_run_cost_factor = 1.0,
               vehicle_life = 40,
               intro_date = 1959,
-              graphics_status = '',
-              use_legacy_spritesheet = True)
+              graphics_status = '')
 
 consist.add_unit(MiningTruck(consist = consist,
                         weight = 50,
