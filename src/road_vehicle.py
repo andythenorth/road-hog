@@ -524,4 +524,18 @@ class Truck(RoadVehicle):
         self.engine_class = 'ENGINE_CLASS_STEAM' #nml constant
         self.visual_effect = 'VISUAL_EFFECT_STEAM' # nml constant
 
-
+class MiningTruck(RoadVehicle):
+    """
+    Mining Truck.
+    """
+    def __init__(self, **kwargs):
+        super(MiningTruck, self).__init__(**kwargs)
+        self.template = 'train.pynml'
+        self.autorefit = True
+        self.class_refit_groups = ['express_freight']
+        self.label_refits_allowed = [] # no specific labels needed
+        self.label_refits_disallowed = []
+        self.default_cargo = 'PASS'
+        self.default_cargo_capacities = self.capacities_freight
+        self.engine_class = 'ENGINE_CLASS_STEAM' #nml constant
+        self.visual_effect = 'VISUAL_EFFECT_STEAM' # nml constant
