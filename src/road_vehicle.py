@@ -315,16 +315,6 @@ class RoadVehicle(object):
         suffix = "_switch_graphics_by_year"
         return self.id + suffix
 
-    def get_nml_expression_for_grfid_of_neighbouring_unit(self, unit_offset):
-        # offset is number of units, not number of slices
-        expression_template = Template("[STORE_TEMP(${offset}, 0x10F), var[0x61, 0, 0xFFFFFFFF, 0x25]]")
-        return expression_template.substitute(offset=(3 * unit_offset))
-
-    def get_nml_expression_for_id_of_neighbouring_unit(self, unit_offset):
-        # offset is number of units, not number of slices
-        expression_template = Template("[STORE_TEMP(${offset}, 0x10F), var[0x61, 0, 0x0000FFFF, 0xC6]]")
-        return expression_template.substitute(offset=(3 * unit_offset))
-
     def get_label_refits_allowed(self):
         # allowed labels, for fine-grained control in addition to classes
         return ','.join(self.label_refits_allowed)
