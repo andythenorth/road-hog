@@ -440,19 +440,6 @@ class LeadSlice(RoadVehicle):
         self.default_cargo_capacities = [0]
 
 
-class NullTrailingSlice(object):
-    """
-    Trailing slice for a unit (invisible, minimal props).
-    """
-    def __init__(self, parent_vehicle):
-        self.id = global_constants.null_trailing_slice_id
-        self.numeric_id = global_constants.null_trailing_slice_numeric_id
-
-    def render(self):
-        template = templates['null_trailing_slice.pynml']
-        return template(vehicle=self, global_constants=global_constants)
-
-
 class EngineConsist(Consist):
     """
     Intermediate class for engine consists to subclass from, provides some common properties.
@@ -462,67 +449,6 @@ class EngineConsist(Consist):
         id = kwargs.get('id', None)
         super(EngineConsist, self).__init__(**kwargs)
 
-
-class WagonConsist(Consist):
-    """
-    Intermediate class for wagon consists to subclass from, provides some common properties.
-    This class should be sparse - only declare the most limited set of properties common to wagon consists.
-    """
-    def __init__(self, type_config, speedy=False, **kwargs):
-        id = self.get_wagon_id(type_config.base_id, **kwargs)
-        kwargs['id'] = id
-        kwargs['base_numeric_id'] = self.get_wagon_numeric_id(type_config.base_id, **kwargs)
-        kwargs['track_type'] = type_config.track_type
-        self.wagon_generation = kwargs.get('wagon_generation', None)
-        super(WagonConsist, self).__init__(**kwargs)
-
-        if self.wagon_generation == 1:
-            self.speed = global_constants.gen_1_wagon_speeds[speedy]
-        if self.wagon_generation == 2:
-            self.speed = global_constants.gen_2_wagon_speeds[speedy]
-        self.fuel_run_cost_factor = 1.0
-        self.fixed_run_cost_factor = type_config.fixed_run_cost_factor
-
-        self.num_cargo_rows = type_config.num_cargo_rows
-        self.cargo_graphics_mappings = type_config.cargo_graphics_mappings
-        self.generic_cargo_rows = type_config.generic_cargo_rows
-        # register the consist so that buy menu order can later be built programatically
-        vehicle_set = kwargs.get('vehicle_set')
-        base_type = type_config.base_id
-        vehicle_set_dict = registered_wagon_generations.setdefault(vehicle_set, {})
-        base_type_list = vehicle_set_dict.setdefault(base_type, [])
-        base_type_list.append(self.wagon_generation)
-        base_type_list.sort()
-
-
-class Wagon(RoadVehicle):
-    """
-    Intermediate class for actual cars (wagons) to subclass from, provides some common properties.
-    This class should be sparse - only declare the most limited set of properties common to wagons.
-    Most props should be declared by RoadVehicle with useful defaults.
-    """
-    def __init__(self, type_config, **kwargs):
-        super(Wagon, self).__init__(**kwargs)
-        self.type_config = type_config
-        self.template = type_config.template
-        self.class_refit_groups = type_config.class_refit_groups
-        self.label_refits_allowed = type_config.label_refits_allowed
-        self.label_refits_disallowed = type_config.label_refits_disallowed
-        self.autorefit = type_config.autorefit
-        self.default_cargo = type_config.default_cargo
-        self.default_cargo_capacities = self.get_capacity_variations(kwargs.get(type_config.default_capacity_type, 0))
-
-
-class Truck(RoadVehicle):
-    """
-    Basic Cargo Truck.
-    """
-    def __init__(self, **kwargs):
-        super(Truck, self).__init__(**kwargs)
-        self.template = 'train.pynml'
-        self.default_cargo_capacities = [0]
-        self.engine_class = 'ENGINE_CLASS_STEAM' #nml constant
-        self.visual_effect = 'VISUAL_EFFECT_STEAM' # nml constant
 
 class MiningTruck(RoadVehicle):
     """
