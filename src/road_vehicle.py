@@ -38,8 +38,6 @@ class Consist(object):
         self.replacement_id = kwargs.get('replacement_id', None)
         self.vehicle_life = kwargs.get('vehicle_life', None)
         self.power = kwargs.get('power', 0)
-        self.track_type = kwargs.get('track_type', 'RAIL')
-        self.power_by_tracktype = kwargs.get('power_by_tracktype', None) # used by multi-mode engines such as electro-diesel, otherwise ignored
         self.tractive_effort_coefficient = kwargs.get('tractive_effort_coefficient', 0.3) # 0.3 is recommended default value
         self.speed = kwargs.get('speed', None)
         self.buy_cost = kwargs.get('buy_cost', None)
@@ -166,12 +164,6 @@ class Consist(object):
             if getattr(slice, 'autorefit', False):
                 offers_autorefit = True
         return offers_autorefit
-
-    def slice_requires_variable_power(self, vehicle):
-        if self.power_by_tracktype is not None and vehicle.is_lead_slice_of_consist:
-            return True
-        else:
-            return False
 
     @property
     def running_cost(self):
