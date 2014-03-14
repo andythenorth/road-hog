@@ -251,9 +251,9 @@ class RoadVehicle(object):
 
     @property
     def special_flags(self):
-        special_flags = ['TRAIN_FLAG_2CC']
+        special_flags = ['ROADVEH_FLAG_2CC']
         if self.autorefit == True:
-            special_flags.append('TRAIN_FLAG_AUTOREFIT')
+            special_flags.append('ROADVEH_FLAG_AUTOREFIT')
         return ','.join(special_flags)
 
     @property
@@ -279,7 +279,7 @@ class RoadVehicle(object):
     @property
     def offsets(self):
         # offsets can also be over-ridden on a per-model basis by providing this property in the model class
-        return global_constants.default_train_offsets[str(self.vehicle_length)]
+        return global_constants.default_road_vehicle_offsets[str(self.vehicle_length)]
 
     @property
     def sg_depot(self):
@@ -314,7 +314,7 @@ class RoadVehicle(object):
         return template(vehicle=self)
 
     def render_properties(self):
-        template = templates["train_properties.pynml"]
+        template = templates["road_vehicle_properties.pynml"]
         return template(vehicle=self, consist=self.consist, global_constants=global_constants)
 
     def render_cargo_capacity(self):
@@ -374,7 +374,7 @@ class MiningTruck(RoadVehicle):
     """
     def __init__(self, **kwargs):
         super(MiningTruck, self).__init__(**kwargs)
-        self.template = 'train.pynml'
+        self.template = 'road_vehicle.pynml'
         self.autorefit = True
         self.class_refit_groups = ['express_freight']
         self.label_refits_allowed = [] # no specific labels needed
