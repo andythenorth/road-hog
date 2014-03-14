@@ -354,28 +354,6 @@ class RoadVehicle(object):
         return nml_result
 
 
-class TypeConfig(object):
-    # simple class to hold properties common to all instances of a type of vehicle
-    # examples of types: Box Car, Steam Engine, Passenger Car etc.
-    # declared once per type
-    # passed to the type's consists and units
-    def __init__(self, base_id, template, **kwargs):
-        self.base_id = base_id
-        self.template = template
-        self.track_type = kwargs.get('track_type', 'RAIL')
-        self.fixed_run_cost_factor = kwargs.get('fixed_run_cost_factor', None)
-        self.num_cargo_rows = kwargs.get('num_cargo_rows', None)
-        self.generic_cargo_rows = kwargs.get('generic_cargo_rows', [0]) # optional, the rows to use if no cargo label is matched
-        self.cargo_graphics_mappings = kwargs.get('cargo_graphics_mappings', None)
-        self.class_refit_groups = kwargs.get('class_refit_groups', None)
-        self.label_refits_allowed = kwargs.get('label_refits_allowed', None)
-        self.label_refits_disallowed = kwargs.get('label_refits_disallowed', None)
-        self.autorefit = kwargs.get('autorefit', None)
-        self.default_cargo = kwargs.get('default_cargo', 'PASS')
-        self.default_capacity_type = kwargs.get('default_capacity_type', None)
-        self.str_type_info = kwargs.get('str_type_info', None)
-
-
 class ModelVariant(object):
     # simple class to hold model variants
     # variants are mostly randomised or date-sensitive graphics
