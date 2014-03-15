@@ -382,3 +382,19 @@ class MiningTruck(RoadVehicle):
         self.default_cargo = 'PASS'
         self.default_cargo_capacities = self.capacities_freight
         self.visual_effect = 'VISUAL_EFFECT_DIESEL' # nml constant
+
+
+class LivestockTruck(RoadVehicle):
+    """
+    Livestock Truck.
+    """
+    def __init__(self, **kwargs):
+        super(LivestockTruck, self).__init__(**kwargs)
+        self.template = 'road_vehicle.pynml'
+        self.autorefit = True
+        self.class_refit_groups = []
+        self.label_refits_allowed = ['LVST']
+        self.label_refits_disallowed = []
+        self.default_cargo = 'LVST'
+        self.default_cargo_capacities = self.capacities_freight
+        self.visual_effect = 'VISUAL_EFFECT_DIESEL' # nml constant

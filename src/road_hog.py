@@ -33,6 +33,7 @@ from road_vehicle import RoadVehicle
 from vehicles import registered_consists, registered_wagon_generations
 
 from vehicles import broadrock
+from vehicles import huntsman
 from vehicles import mcdowell
 from vehicles import witch_hill
 

@@ -3,6 +3,7 @@ buy_menu_sort_order_locos = [# brit vehicles
                            'broadrock',
                            'mcdowell',
                            'witch_hill',
+                           'huntsman',
                            ]
 
 # wagon ids are generic and are composed to specific vehicle ids elsewhere
