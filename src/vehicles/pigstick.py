@@ -1,8 +1,6 @@
 import global_constants
 from road_vehicle import EngineConsist, LivestockHauler
 
-print __name__
-
 consist = EngineConsist(id = 'pigstick',
               base_numeric_id = 200,
               title = 'Pigstick [Livestock Truck]',
