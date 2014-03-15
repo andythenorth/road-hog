@@ -1,18 +1,3 @@
-
-buy_menu_sort_order = [# brit vehicles
-                           'broadrock',
-                           'mcdowell',
-                           'witch_hill',
-                           'greenscoe',
-                           'meriden',
-                           'cloud_hill',
-                           'pigstick',
-                           'huntsman',
-                           'stungun',
-                           'silvertop',
-                           'california',
-                           ]
-
 # set (roster) <-> numeric id mapping
 # vehicle IDs are in format nxxx where n is set numeric id
 # first 1k IDs reserved, IDs must be < 16383, with 500 IDs allocated per set for main roster, and 500 per set for extras, so max 15 sets
