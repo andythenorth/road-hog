@@ -1,5 +1,5 @@
 
-buy_menu_sort_order_locos = [# brit vehicles
+buy_menu_sort_order = [# brit vehicles
                            'broadrock',
                            'mcdowell',
                            'witch_hill',
