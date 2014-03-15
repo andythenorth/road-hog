@@ -6,6 +6,8 @@ buy_menu_sort_order_locos = [# brit vehicles
                            'pigstick',
                            'huntsman',
                            'stungun',
+                           'silvertop',
+                           'california',
                            ]
 
 # wagon ids are generic and are composed to specific vehicle ids elsewhere
