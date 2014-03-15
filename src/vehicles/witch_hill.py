@@ -1,5 +1,5 @@
 import global_constants
-from road_vehicle import EngineConsist, MiningTruck
+from road_vehicle import EngineConsist, MiningHauler
 
 consist = EngineConsist(id = 'witch_hill',
               base_numeric_id = 250,
@@ -15,7 +15,7 @@ consist = EngineConsist(id = 'witch_hill',
               intro_date = 1959,
               graphics_status = '')
 
-consist.add_unit(MiningTruck(consist = consist,
+consist.add_unit(MiningHauler(consist = consist,
                         weight = 50,
                         capacity_freight = 50,
                         vehicle_length = 7,

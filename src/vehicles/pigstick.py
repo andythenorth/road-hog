@@ -1,5 +1,5 @@
 import global_constants
-from road_vehicle import EngineConsist, LivestockTruck
+from road_vehicle import EngineConsist, LivestockHauler
 
 print __name__
 
@@ -17,7 +17,7 @@ consist = EngineConsist(id = 'pigstick',
               intro_date = 1959,
               graphics_status = '')
 
-consist.add_unit(LivestockTruck(consist = consist,
+consist.add_unit(LivestockHauler(consist = consist,
                         weight = 50,
                         capacity_freight = 50,
                         vehicle_length = 7,

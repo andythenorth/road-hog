@@ -368,12 +368,12 @@ class EngineConsist(Consist):
         super(EngineConsist, self).__init__(**kwargs)
 
 
-class MiningTruck(RoadVehicle):
+class MiningHauler(RoadVehicle):
     """
     Mining Truck.
     """
     def __init__(self, **kwargs):
-        super(MiningTruck, self).__init__(**kwargs)
+        super(MiningHauler, self).__init__(**kwargs)
         self.template = 'road_vehicle.pynml'
         self.autorefit = True
         self.class_refit_groups = ['express_freight']
@@ -384,12 +384,12 @@ class MiningTruck(RoadVehicle):
         self.visual_effect = 'VISUAL_EFFECT_DIESEL' # nml constant
 
 
-class LivestockTruck(RoadVehicle):
+class LivestockHauler(RoadVehicle):
     """
     Livestock Truck.
     """
     def __init__(self, **kwargs):
-        super(LivestockTruck, self).__init__(**kwargs)
+        super(LivestockHauler, self).__init__(**kwargs)
         self.template = 'road_vehicle.pynml'
         self.autorefit = True
         self.class_refit_groups = []
@@ -400,12 +400,12 @@ class LivestockTruck(RoadVehicle):
         self.visual_effect = 'VISUAL_EFFECT_DIESEL' # nml constant
 
 
-class ReeferTruck(RoadVehicle):
+class RefrigeratedHauler(RoadVehicle):
     """
     Refrigerated Truck.
     """
     def __init__(self, **kwargs):
-        super(ReeferTruck, self).__init__(**kwargs)
+        super(RefrigeratedHauler, self).__init__(**kwargs)
         self.template = 'road_vehicle.pynml'
         self.autorefit = True
         self.class_refit_groups = []
