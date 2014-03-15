@@ -66,7 +66,7 @@ class Consist(object):
         else:
             first_slice.id = self.id + '_' + str(count)
         first_slice.numeric_id = self.get_and_verify_numeric_id(count)
-        first_slice.slice_length = global_constants.slice_lengths[vehicle.vehicle_length][0]
+        first_slice.slice_length = vehicle.vehicle_length
         first_slice.spriterow_num = vehicle.spriterow_num
 
         for repeat_num in range(repeat):

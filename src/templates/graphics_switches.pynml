@@ -1,18 +1,3 @@
-/*Empty sprites for slices that are invisible - same for all vehicles */
-
-spriteset(${vehicle.id}_ss_hidden, "${global_constants.graphics_path}null_trailing_part.png") {
-    [0, 0, 10, 10, 0, 0]   
-}
-
-spritegroup ${vehicle.id}_sg_hidden {
-    loaded:  [
-        ${vehicle.id}_ss_hidden,
-    ];
-    loading: [
-        ${vehicle.id}_ss_hidden,
-    ];
-}
-
 <tal:graphics_variation_random_switches repeat="year consist.get_reduced_set_of_variant_dates()[:-1]">
     random_switch (FEAT_ROADVEHS, SELF, ${vehicle.id}_switch_graphics_random_${year}) {
         <tal:random_graphics_variations repeat="variation_num consist.get_variants_available_for_specific_year(year)">
