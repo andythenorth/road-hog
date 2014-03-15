@@ -3,7 +3,7 @@ from road_vehicle import EngineConsist, MiningTruck
 
 consist = EngineConsist(id = 'broadrock',
               base_numeric_id = 230,
-              title = 'Broadrock Mining Truck [Diesel]',
+              title = 'Broadrock [Mining Truck]',
               str_type_info = 'COASTER',
               replacement_id = '-none',
               power = 950,
