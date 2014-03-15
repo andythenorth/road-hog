@@ -60,17 +60,17 @@ class Consist(object):
     def add_unit(self, vehicle, repeat=1):
         # this is a little overly complex, as it is lifted from Iron Horse, which has more complex vehicles
         count = len(set(self.slices))
-        first_slice = vehicle
+        slice = vehicle
         if count == 0:
-            first_slice.id = self.id # first vehicle gets no numeric id suffix - for compatibility with buy menu list ids etc
+            slice.id = self.id # first vehicle gets no numeric id suffix - for compatibility with buy menu list ids etc
         else:
-            first_slice.id = self.id + '_' + str(count)
-        first_slice.numeric_id = self.get_and_verify_numeric_id(count)
-        first_slice.slice_length = vehicle.vehicle_length
-        first_slice.spriterow_num = vehicle.spriterow_num
+            slice.id = self.id + '_' + str(count)
+        slice.numeric_id = self.get_and_verify_numeric_id(count)
+        slice.slice_length = vehicle.vehicle_length
+        slice.spriterow_num = vehicle.spriterow_num
 
         for repeat_num in range(repeat):
-            self.slices.append(first_slice)
+            self.slices.append(slice)
 
     def get_and_verify_numeric_id(self, offset):
         numeric_id = self.base_numeric_id + offset
