@@ -5,7 +5,7 @@ print __name__
 
 consist = EngineConsist(id = 'pigstick',
               base_numeric_id = 200,
-              title = 'Huntsman [Livestock Truck]',
+              title = 'Pigstick [Livestock Truck]',
               str_type_info = 'COASTER',
               replacement_id = '-none',
               power = 950,
@@ -18,7 +18,13 @@ consist = EngineConsist(id = 'pigstick',
               graphics_status = '')
 
 consist.add_unit(LivestockHauler(consist = consist,
-                        weight = 50,
+                        weight = 20,
+                        capacity_freight = 50,
+                        vehicle_length = 7,
+                        spriterow_num = 0))
+
+consist.add_unit(LivestockHauler(consist = consist,
+                        weight = 20,
                         capacity_freight = 50,
                         vehicle_length = 7,
                         spriterow_num = 0))
