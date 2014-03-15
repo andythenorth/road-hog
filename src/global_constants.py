@@ -1,9 +1,11 @@
 
 buy_menu_sort_order_locos = [# brit vehicles
                            'broadrock',
-                           'cloud_hill',
                            'mcdowell',
                            'witch_hill',
+                           'greenscoe',
+                           'meriden',
+                           'cloud_hill',
                            'pigstick',
                            'huntsman',
                            'stungun',
