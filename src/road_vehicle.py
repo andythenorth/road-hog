@@ -370,7 +370,7 @@ class EngineConsist(Consist):
 
 class MiningHauler(RoadVehicle):
     """
-    Mining Truck.
+    Mining Truck or Trailer.
     """
     def __init__(self, **kwargs):
         super(MiningHauler, self).__init__(**kwargs)
@@ -386,7 +386,7 @@ class MiningHauler(RoadVehicle):
 
 class LivestockHauler(RoadVehicle):
     """
-    Livestock Truck.
+    Livestock Truck or Trailer.
     """
     def __init__(self, **kwargs):
         super(LivestockHauler, self).__init__(**kwargs)
@@ -402,7 +402,8 @@ class LivestockHauler(RoadVehicle):
 
 class RefrigeratedHauler(RoadVehicle):
     """
-    Refrigerated Truck.
+    Refrigerated Truck or Trailer.
+    Refits to limited range of refrigerated cargos, with 'improved' cargo decay rate.
     """
     def __init__(self, **kwargs):
         super(RefrigeratedHauler, self).__init__(**kwargs)
