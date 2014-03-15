@@ -1,11 +1,9 @@
 import global_constants
 from road_vehicle import EngineConsist, RefrigeratedHauler
 
-print __name__
-
 consist = EngineConsist(id = 'silvertop',
               base_numeric_id = 260,
-              title = 'Huntsman [Reefer Truck]',
+              title = 'Silvertop [Reefer Truck]',
               str_type_info = 'COASTER',
               replacement_id = '-none',
               power = 950,
@@ -18,7 +16,13 @@ consist = EngineConsist(id = 'silvertop',
               graphics_status = '')
 
 consist.add_unit(RefrigeratedHauler(consist = consist,
-                        weight = 50,
+                        weight = 10,
+                        capacity_freight = 50,
+                        vehicle_length = 7,
+                        spriterow_num = 0))
+
+consist.add_unit(RefrigeratedHauler(consist = consist,
+                        weight = 10,
                         capacity_freight = 50,
                         vehicle_length = 7,
                         spriterow_num = 0))
