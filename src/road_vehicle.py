@@ -162,7 +162,10 @@ class Consist(object):
 
     @property
     def weight(self):
-        return sum([getattr(slice, 'weight', 0) for slice in self.slices])
+        consist_weight = sum([getattr(slice, 'weight', 0) for slice in self.slices])
+        if consist_weight > 63:
+            utils.echo_message("Error: consist weight is " + str(consist_weight) + "t for " + self.id + "; must be < 63t")
+        return consist_weight
 
     @property
     def adjusted_model_life(self):
