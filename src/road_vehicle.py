@@ -415,3 +415,20 @@ class RefrigeratedHauler(RoadVehicle):
         self.default_cargo = 'LVST'
         self.default_cargo_capacities = self.capacities_freight
         self.visual_effect = 'VISUAL_EFFECT_DIESEL' # nml constant
+
+
+class Tanker(RoadVehicle):
+    """
+    Ronseal ("does what it says on the tin", for those without extensive knowledge of UK advertising).
+    """
+    def __init__(self, **kwargs):
+        super(Tanker, self).__init__(**kwargs)
+        self.template = 'road_vehicle.pynml'
+        self.autorefit = True
+        self.class_refit_groups = ['liquids']
+        self.label_refits_allowed = ['MILK']
+        self.label_refits_allowed = [] # no specific labels needed, tanker refits most cargos that have liquid class
+        self.default_cargo = 'OIL_'
+        self.default_cargo_capacities = self.capacities_freight
+        self.visual_effect = 'VISUAL_EFFECT_DIESEL' # nml constant
+
