@@ -1,8 +1,10 @@
 import global_constants
 from road_vehicle import EngineConsist, LivestockTruck
 
-consist = EngineConsist(id = 'huntsman',
-              base_numeric_id = 210,
+print __name__
+
+consist = EngineConsist(id = 'pigstick',
+              base_numeric_id = 200,
               title = 'Huntsman [Livestock Truck]',
               str_type_info = 'COASTER',
               replacement_id = '-none',
