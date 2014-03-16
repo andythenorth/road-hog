@@ -13,6 +13,7 @@ from vehicles import knockdown
 from vehicles import meriden
 from vehicles import pigstick
 from vehicles import silvertop
+from vehicles import steeraway
 from vehicles import stungun
 from vehicles import witch_hill
 
@@ -31,4 +32,5 @@ roster = Roster(id = 'brit',
                                        'pigstick',
                                        'stungun',
                                        'silvertop',
-                                       'california'])
+                                       'california',
+                                       'steeraway'])

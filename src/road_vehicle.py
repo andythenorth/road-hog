@@ -451,3 +451,19 @@ class LogHauler(RoadVehicle):
         self.default_cargo_capacities = self.capacities_freight
         self.visual_effect = 'VISUAL_EFFECT_DIESEL' # nml constant
 
+
+class HeavyHauler(RoadVehicle):
+    """
+    Specialist heavy haul truck, e.g. multiwheel platform, steel mill hauler etc.
+    High capacity, not very fast, refits to subset of industrial cargos.
+    """
+    def __init__(self, **kwargs):
+        super(HeavyHauler, self).__init__(**kwargs)
+        self.template = 'road_vehicle.pynml'
+        self.autorefit = True
+        self.class_refit_groups = []
+        self.label_refits_allowed = ['LVST']
+        self.label_refits_disallowed = []
+        self.default_cargo = 'LVST'
+        self.default_cargo_capacities = self.capacities_freight
+        self.visual_effect = 'VISUAL_EFFECT_DIESEL' # nml constant
