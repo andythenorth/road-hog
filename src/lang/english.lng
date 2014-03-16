@@ -10,6 +10,7 @@ STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2                      :Excessive
 STR_NAME_SUFFIX_TANKER_TRUCK                                    :Tanker Truck
 STR_NAME_SUFFIX_MINING_TRAM                                     :Mining Tram
 STR_NAME_SUFFIX_MINING_TRUCK                                    :Mining Hauler
+STR_NAME_SUFFIX_INDUSTRIAL_HAULER                               :Industrial Hauler
 STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :Livestock Truck
 STR_NAME_SUFFIX_REEFER_TRUCK                                    :Reefer Truck
 STR_NAME_SUFFIX_LOGGING_TRUCK                                   :Logging Truck
