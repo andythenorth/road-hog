@@ -39,7 +39,7 @@ from rosters import brit
 def get_consists_in_buy_menu_order(show_warnings=False):
     sorted_consists = []
     # first compose the buy menu order list
-    buy_menu_sort_order = list(registered_rosters['brit']) # copy the list in global_constants to avoid unwanted modifications to it
+    buy_menu_sort_order = list(registered_rosters['brit'].buy_menu_sort_order) # copy the list to avoid unwanted modifications to it
 
     # now check registered vehicles against the buy menu order, and add them to the sorted list
     for id in buy_menu_sort_order:
