@@ -180,12 +180,12 @@ class Consist(object):
 
     @property
     def buy_menu_width (self):
-        # max sensible width in buy menu is 64px
+        # max sensible width in buy menu is 64px, but RH templates currently drawn at 36px - legacy stuff
         consist_length = 4 * sum([slice.slice_length for slice in self.slices])
-        if consist_length < 64:
+        if consist_length < 36:
             return consist_length
         else:
-            return 64
+            return 36
 
     def render_debug_info(self):
         template = templates["debug_info_consist.pynml"]
