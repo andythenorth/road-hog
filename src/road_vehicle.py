@@ -430,8 +430,24 @@ class Tanker(RoadVehicle):
         self.autorefit = True
         self.class_refit_groups = ['liquids']
         self.label_refits_allowed = ['MILK']
-        self.label_refits_allowed = [] # no specific labels needed, tanker refits most cargos that have liquid class
+        self.label_refits_disallowed = []
         self.default_cargo = 'OIL_'
+        self.default_cargo_capacities = self.capacities_freight
+        self.visual_effect = 'VISUAL_EFFECT_DIESEL' # nml constant
+
+
+class LogHauler(RoadVehicle):
+    """
+    Gets wood.
+    """
+    def __init__(self, **kwargs):
+        super(LogHauler, self).__init__(**kwargs)
+        self.template = 'road_vehicle.pynml'
+        self.autorefit = True
+        self.class_refit_groups = []
+        self.label_refits_allowed = ['WOOD']
+        self.label_refits_disallowed = []
+        self.default_cargo = 'WOOD'
         self.default_cargo_capacities = self.capacities_freight
         self.visual_effect = 'VISUAL_EFFECT_DIESEL' # nml constant
 
