@@ -7,7 +7,6 @@ from vehicles import california
 from vehicles import crime_rigg
 from vehicles import greenscoe
 from vehicles import griff
-from vehicles import huntsman
 from vehicles import knockdown
 from vehicles import meriden
 from vehicles import pigstick
@@ -26,7 +25,6 @@ roster = Roster(id = 'brit',
                                        'meriden',
                                        'cloud_hill',
                                        'pigstick',
-                                       'huntsman',
                                        'stungun',
                                        'silvertop',
                                        'california'])
