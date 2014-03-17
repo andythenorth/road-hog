@@ -405,10 +405,26 @@ class ExpressHauler(RoadVehicle):
 
 class MiningHauler(RoadVehicle):
     """
-    Mining truck or trailer.
+    Off-highway mining truck or trailer.  Limited set of bulk (mineral) cargos.
     """
     def __init__(self, **kwargs):
         super(MiningHauler, self).__init__(**kwargs)
+        self.template = 'road_vehicle.pynml'
+        self.autorefit = True
+        self.class_refit_groups = ['express_freight']
+        self.label_refits_allowed = [] # no specific labels needed
+        self.label_refits_disallowed = []
+        self.default_cargo = 'PASS'
+        self.default_cargo_capacities = self.capacities_freight
+        self.visual_effect = 'VISUAL_EFFECT_DIESEL' # nml constant
+
+
+class BulkHauler(RoadVehicle):
+    """
+    On-highway dump truck or trailer.  All non-sheltered bulk cargos.
+    """
+    def __init__(self, **kwargs):
+        super(BulkHauler, self).__init__(**kwargs)
         self.template = 'road_vehicle.pynml'
         self.autorefit = True
         self.class_refit_groups = ['express_freight']
