@@ -12,6 +12,7 @@ from vehicles import limebreach
 from vehicles import knockdown
 from vehicles import meriden
 from vehicles import pigstick
+from vehicles import shotover
 from vehicles import silvertop
 from vehicles import steeraway
 from vehicles import stungun
@@ -29,6 +30,7 @@ roster = Roster(id = 'brit',
                                        'greenscoe',
                                        'meriden',
                                        'cloud_hill',
+                                       'shotover',
                                        'pigstick',
                                        'stungun',
                                        'silvertop',
