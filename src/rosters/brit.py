@@ -6,6 +6,7 @@ from vehicles import buff
 from vehicles import cloud_hill
 from vehicles import california
 from vehicles import crime_rigg
+from vehicles import foreshore
 from vehicles import greenscoe
 from vehicles import griff
 from vehicles import limebreach
@@ -39,4 +40,5 @@ roster = Roster(id = 'brit',
                                        'california',
                                        'steeraway',
                                        'ribble',
-                                       'mcdowell'])
+                                       'mcdowell',
+                                       'foreshore'])

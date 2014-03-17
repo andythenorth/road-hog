@@ -499,3 +499,19 @@ class HeavyHauler(RoadVehicle):
         self.default_cargo_capacities = self.capacities_freight
         self.visual_effect = 'VISUAL_EFFECT_DIESEL' # nml constant
 
+
+class IntermodalHauler(RoadVehicle):
+    """
+    Specialist intermodal (container) truck, limited range of cargos.
+    """
+    def __init__(self, **kwargs):
+        super(IntermodalHauler, self).__init__(**kwargs)
+        self.template = 'road_vehicle.pynml'
+        self.autorefit = True
+        self.class_refit_groups = []
+        self.label_refits_allowed = ['LVST']
+        self.label_refits_disallowed = []
+        self.default_cargo = 'LVST'
+        self.default_cargo_capacities = self.capacities_freight
+        self.visual_effect = 'VISUAL_EFFECT_DIESEL' # nml constant
+
