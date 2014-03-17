@@ -389,7 +389,7 @@ class FarmTram(RoadVehicle):
 
 class MiningHauler(RoadVehicle):
     """
-    Mining Truck or Trailer.
+    Mining truck or trailer.
     """
     def __init__(self, **kwargs):
         super(MiningHauler, self).__init__(**kwargs)
@@ -403,9 +403,24 @@ class MiningHauler(RoadVehicle):
         self.visual_effect = 'VISUAL_EFFECT_DIESEL' # nml constant
 
 
+class BulkPowderHauler(RoadVehicle):
+    """
+    Covered hopper truck or trailer for bulk powder cargos.
+    """
+    def __init__(self, **kwargs):
+        super(BulkPowderHauler, self).__init__(**kwargs)
+        self.template = 'road_vehicle.pynml'
+        self.autorefit = True
+        self.class_refit_groups = ['express_freight']
+        self.label_refits_allowed = [] # no specific labels needed
+        self.label_refits_disallowed = []
+        self.default_cargo = 'PASS'
+        self.default_cargo_capacities = self.capacities_freight
+        self.visual_effect = 'VISUAL_EFFECT_DIESEL' # nml constant
+
 class LivestockHauler(RoadVehicle):
     """
-    Livestock Truck or Trailer.
+    Livestock truck or trailer.
     """
     def __init__(self, **kwargs):
         super(LivestockHauler, self).__init__(**kwargs)
@@ -421,7 +436,7 @@ class LivestockHauler(RoadVehicle):
 
 class RefrigeratedHauler(RoadVehicle):
     """
-    Refrigerated Truck or Trailer.
+    Refrigerated truck or trailer.
     Refits to limited range of refrigerated cargos, with 'improved' cargo decay rate.
     """
     def __init__(self, **kwargs):

@@ -10,8 +10,10 @@ from vehicles import greenscoe
 from vehicles import griff
 from vehicles import limebreach
 from vehicles import knockdown
+from vehicles import mcdowell
 from vehicles import meriden
 from vehicles import pigstick
+from vehicles import ribble
 from vehicles import shotover
 from vehicles import silvertop
 from vehicles import steeraway
@@ -35,4 +37,6 @@ roster = Roster(id = 'brit',
                                        'stungun',
                                        'silvertop',
                                        'california',
-                                       'steeraway'])
+                                       'steeraway',
+                                       'ribble',
+                                       'mcdowell'])

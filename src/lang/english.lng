@@ -8,6 +8,7 @@ STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_1                      :Marvellous
 STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2                      :Excessive
 
 STR_NAME_SUFFIX_TANKER_TRUCK                                    :Tanker Truck
+STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :Covered Hopper Truck
 STR_NAME_SUFFIX_MINING_TRAM                                     :Mining Tram
 STR_NAME_SUFFIX_MINING_TRUCK                                    :Mining Hauler
 STR_NAME_SUFFIX_INDUSTRIAL_HAULER                               :Industrial Hauler
