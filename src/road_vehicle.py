@@ -387,6 +387,21 @@ class FarmTram(RoadVehicle):
         self.visual_effect = 'VISUAL_EFFECT_DIESEL' # nml constant
 
 
+class GeneralCargoHauler(RoadVehicle):
+    """
+    General cargo truck - refits most things.
+    """
+    def __init__(self, **kwargs):
+        super(GeneralCargoHauler, self).__init__(**kwargs)
+        self.template = 'road_vehicle.pynml'
+        self.autorefit = True
+        self.class_refit_groups = ['express_freight']
+        self.label_refits_allowed = [] # no specific labels needed
+        self.label_refits_disallowed = []
+        self.default_cargo = 'PASS'
+        self.default_cargo_capacities = self.capacities_freight
+        self.visual_effect = 'VISUAL_EFFECT_DIESEL' # nml constant
+
 class ExpressHauler(RoadVehicle):
     """
     Express truck for mail, valuables etc.
