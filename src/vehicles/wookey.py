@@ -4,6 +4,7 @@ from road_vehicle import EngineConsist, GeneralCargoHauler
 consist = EngineConsist(id = 'wookey',
               base_numeric_id = 140,
               title = 'Wookey [General Cargo Tram]',
+              roadveh_flag_tram = True,
               str_type_info = 'COASTER',
               replacement_id = '-none',
               power = 950,

@@ -32,6 +32,7 @@ class Consist(object):
         # setup properties for this consist (props either shared for all vehicles, or placed on lead vehicle of consist)
         self.title = kwargs.get('title', None)
         self.base_numeric_id = kwargs.get('base_numeric_id', None)
+        self.roadveh_flag_tram = kwargs.get('roadveh_flag_tram', None)
         self.str_type_info = kwargs.get('str_type_info', 'COASTER')
         self.intro_date = kwargs.get('intro_date', None)
         self.replacement_id = kwargs.get('replacement_id', None)
@@ -257,6 +258,8 @@ class RoadVehicle(object):
         special_flags = ['ROADVEH_FLAG_2CC']
         if self.autorefit == True:
             special_flags.append('ROADVEH_FLAG_AUTOREFIT')
+        if self.consist.roadveh_flag_tram == True:
+            special_flags.append('ROADVEH_FLAG_TRAM')
         return ','.join(special_flags)
 
     @property

@@ -4,6 +4,7 @@ from road_vehicle import EngineConsist, FarmTram
 consist = EngineConsist(id = 'shotover',
               base_numeric_id = 160,
               title = 'Shotover [Farm Tram]',
+              roadveh_flag_tram = True,
               str_type_info = 'COASTER',
               replacement_id = '-none',
               power = 950,

@@ -4,6 +4,7 @@ from road_vehicle import EngineConsist, MiningHauler
 consist = EngineConsist(id = 'buildwas',
               base_numeric_id = 190,
               title = 'Buildwas [Mining Tram]',
+              roadveh_flag_tram = True,
               str_type_info = 'COASTER',
               replacement_id = '-none',
               power = 950,
