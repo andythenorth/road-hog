@@ -1,5 +1,7 @@
 from roster import Roster
 
+from vehicles import amblecote
+from vehicles import brightling
 from vehicles import broadrock
 from vehicles import buildwas
 from vehicles import buff
@@ -28,12 +30,16 @@ from vehicles import steeraway
 from vehicles import stungun
 from vehicles import tallyho
 from vehicles import witch_hill
+from vehicles import wookey
 
 roster = Roster(id = 'brit',
-                buy_menu_sort_order = ['jinglepot',
+                buy_menu_sort_order = ['brightling',
+                                       'amblecote',
+                                       'jinglepot',
                                        'easywheal',
                                        'quickset',
                                        'speedwell',
+                                       'wookey',
                                        'tallyho',
                                        'goldmire',
                                        'buildwas',
