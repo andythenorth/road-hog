@@ -33,8 +33,8 @@ from vehicles import witch_hill
 from vehicles import wookey
 
 roster = Roster(id = 'brit',
-                buy_menu_sort_order = ['brightling',
-                                       'amblecote',
+                buy_menu_sort_order = ['amblecote',
+                                       'brightling',
                                        'jinglepot',
                                        'easywheal',
                                        'quickset',
