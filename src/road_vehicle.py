@@ -398,7 +398,7 @@ class CourierTruck(RoadVehicle):
         super(CourierTruck, self).__init__(**kwargs)
         self.template = 'road_vehicle.pynml'
         self.autorefit = True
-        self.class_refit_groups = ['express_freight']
+        self.class_refit_groups = ['courier_freight']
         self.label_refits_allowed = [] # no specific labels needed
         self.label_refits_disallowed = []
         self.default_cargo = 'MAIL'
@@ -414,7 +414,7 @@ class GeneralCargoHauler(RoadVehicle):
         super(GeneralCargoHauler, self).__init__(**kwargs)
         self.template = 'road_vehicle.pynml'
         self.autorefit = True
-        self.class_refit_groups = ['express_freight']
+        self.class_refit_groups = ['packaged_freight']
         self.label_refits_allowed = [] # no specific labels needed
         self.label_refits_disallowed = []
         self.default_cargo = 'PASS'
@@ -430,7 +430,7 @@ class MiningHauler(RoadVehicle):
         super(MiningHauler, self).__init__(**kwargs)
         self.template = 'road_vehicle.pynml'
         self.autorefit = True
-        self.class_refit_groups = ['express_freight']
+        self.class_refit_groups = ['hopper_freight']
         self.label_refits_allowed = [] # no specific labels needed
         self.label_refits_disallowed = []
         self.default_cargo = 'PASS'
@@ -446,7 +446,7 @@ class BulkHauler(RoadVehicle):
         super(BulkHauler, self).__init__(**kwargs)
         self.template = 'road_vehicle.pynml'
         self.autorefit = True
-        self.class_refit_groups = ['express_freight']
+        self.class_refit_groups = ['hopper_freight']
         self.label_refits_allowed = [] # no specific labels needed
         self.label_refits_disallowed = []
         self.default_cargo = 'PASS'
@@ -462,7 +462,7 @@ class BulkPowderHauler(RoadVehicle):
         super(BulkPowderHauler, self).__init__(**kwargs)
         self.template = 'road_vehicle.pynml'
         self.autorefit = True
-        self.class_refit_groups = ['express_freight']
+        self.class_refit_groups = ['hopper_freight']
         self.label_refits_allowed = [] # no specific labels needed
         self.label_refits_disallowed = []
         self.default_cargo = 'PASS'
