@@ -493,10 +493,10 @@ class RefrigeratedHauler(RoadVehicle):
         super(RefrigeratedHauler, self).__init__(**kwargs)
         self.template = 'road_vehicle.pynml'
         self.autorefit = True
-        self.class_refit_groups = []
-        self.label_refits_allowed = ['LVST']
+        self.class_refit_groups = ['refrigerated_freight']
+        self.label_refits_allowed = [] # no specific labels needed, refits all cargos that have refrigerated class
         self.label_refits_disallowed = []
-        self.default_cargo = 'LVST'
+        self.default_cargo = 'FOOD'
         self.default_cargo_capacities = self.capacities_freight
         self.visual_effect = 'VISUAL_EFFECT_DIESEL' # nml constant
 
