@@ -1,9 +1,9 @@
 import global_constants
-from road_vehicle import EngineConsist, ExpressHauler
+from road_vehicle import EngineConsist, CourierTruck
 
 consist = EngineConsist(id = 'goldmire',
               base_numeric_id = 390,
-              title = 'Goldmire [Express Truck]',
+              title = 'Goldmire [Courier Truck]',
               str_type_info = 'COASTER',
               replacement_id = '-none',
               power = 950,
@@ -15,7 +15,7 @@ consist = EngineConsist(id = 'goldmire',
               intro_date = 1959,
               graphics_status = '')
 
-consist.add_unit(ExpressHauler(consist = consist,
+consist.add_unit(CourierTruck(consist = consist,
                         weight = 10,
                         capacity_freight = 50,
                         vehicle_length = 7,

@@ -9,7 +9,7 @@ STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2                      :Excessive
 
 STR_NAME_SUFFIX_GENERAL_CARGO_TRAM                              :General Cargo Tram
 STR_NAME_SUFFIX_GENERAL_CARGO_TRUCK                             :General Cargo Truck
-STR_NAME_SUFFIX_EXPRESS_TRUCK                                   :Courier Truck
+STR_NAME_SUFFIX_COURIER_TRUCK                                   :Courier Truck
 STR_NAME_SUFFIX_TANKER_TRUCK                                    :Tanker Truck
 STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :Covered Hopper Truck
 STR_NAME_SUFFIX_MINING_TRAM                                     :Mining Tram
