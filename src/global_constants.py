@@ -11,13 +11,17 @@ base_refits_by_class = {'empty': [],
                         'pax': ['CC_PASSENGERS'],
                         'mail': ['CC_MAIL'],
                         'liquids': ['CC_LIQUID'],
-                        'packaged_freight': ['CC_PIECE_GOODS', 'CC_EXPRESS', 'CC_ARMOURED', 'CC_LIQUID', 'CC_NON_POURABLE'],
+                        'packaged_freight': ['CC_PIECE_GOODS', 'CC_EXPRESS', 'CC_ARMOURED', 'CC_LIQUID'],
                         'flatcar_freight': ['CC_PIECE_GOODS', 'CC_EXPRESS'],
                         'hopper_freight': ['CC_BULK'],
                         'covered_hopper_freight': [],
                         'refrigerated_freight': ['CC_REFRIGERATED'],
                         'courier_freight': ['CC_MAIL', 'CC_ARMOURED']}
 
+# rather than using disallowed classes (can cause breakage), specific labels are disallowed
+# this is done per vehicle type, or added to global_constants for ease of reuse and updating
+# these lists are similar but not identical across Iron Horse, Squid, Road Hog etc
+disallowed_refits_by_label = {'non_hopper_freight': ['WOOD', 'SGCN', 'FICR', 'BDMT', 'WDPR', 'GRAI', 'WHEA', 'MAIZ'],}
 
 # capacity multipliers for capacity parameter
 capacity_multipliers = [0.67, 1, 1.33]

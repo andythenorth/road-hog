@@ -408,13 +408,13 @@ class CourierTruck(RoadVehicle):
 
 class GeneralCargoHauler(RoadVehicle):
     """
-    General cargo truck - refits most things.
+    General cargo truck - refits everything except mail, pax.
     """
     def __init__(self, **kwargs):
         super(GeneralCargoHauler, self).__init__(**kwargs)
         self.template = 'road_vehicle.pynml'
         self.autorefit = True
-        self.class_refit_groups = ['packaged_freight']
+        self.class_refit_groups = ['all_freight']
         self.label_refits_allowed = ['GRAI', 'WHEA', 'MAIZ'] # Iron Horse compatibility
         self.label_refits_disallowed = []
         self.default_cargo = 'PASS'
@@ -432,7 +432,7 @@ class MiningHauler(RoadVehicle):
         self.autorefit = True
         self.class_refit_groups = ['hopper_freight']
         self.label_refits_allowed = [] # no specific labels needed
-        self.label_refits_disallowed = []
+        self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_hopper_freight']
         self.default_cargo = 'PASS'
         self.default_cargo_capacities = self.capacities_freight
         self.visual_effect = 'VISUAL_EFFECT_DIESEL' # nml constant
