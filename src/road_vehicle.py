@@ -415,7 +415,7 @@ class GeneralCargoHauler(RoadVehicle):
         self.template = 'road_vehicle.pynml'
         self.autorefit = True
         self.class_refit_groups = ['packaged_freight']
-        self.label_refits_allowed = [] # no specific labels needed
+        self.label_refits_allowed = ['GRAI', 'WHEA', 'MAIZ'] # Iron Horse compatibility
         self.label_refits_disallowed = []
         self.default_cargo = 'PASS'
         self.default_cargo_capacities = self.capacities_freight
