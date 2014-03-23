@@ -21,6 +21,7 @@ base_refits_by_class = {'empty': [],
 # rather than using disallowed classes (can cause breakage), specific labels are disallowed
 # this is done per vehicle type, or added to global_constants for ease of reuse and updating
 # these lists are similar but not identical across Iron Horse, Squid, Road Hog etc
+# !! might be better done in fact by using disallowed classes, and ensuring a universal (all_freight) vehicle is always available
 disallowed_refits_by_label = {'non_hopper_freight': ['WOOD', 'SGCN', 'FICR', 'BDMT', 'WDPR', 'GRAI', 'WHEA', 'MAIZ'],}
 
 # capacity multipliers for capacity parameter
