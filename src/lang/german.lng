@@ -1,0 +1,21 @@
+##grflangid 0x02
+##plural 0
+##gender m w n p
+STR_GRF_DESCRIPTION                                             :Lizenz: {SILVER}GPL v2{}{BLACK}
+
+STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_1                      :Großartig
+STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2                      :Übermäßig
+
+STR_NAME_SUFFIX_GENERAL_CARGO_TRAM                              :Feldbahn für Stückgut
+STR_NAME_SUFFIX_GENERAL_CARGO_TRUCK                             :Lastkraftwagen für Stückgut
+STR_NAME_SUFFIX_COURIER_TRUCK                                   :Courier-Transporter
+STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :Gedeckter Schüttgut-LKW
+STR_NAME_SUFFIX_DUMP_TRUCK                                      :Kipplaster
+STR_NAME_SUFFIX_FARM_TRAM                                       :Feldbahn
+STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :Viehtransporter
+STR_NAME_SUFFIX_REEFER_TRUCK                                    :Kühltransporter
+
+STR_BUY_MENU_TEXT                                               :Type: {GOLD}{STRING}{}{STRING}{STRING}
+STR_BUY_MENU_OFFERS_AUTOREFIT                                   :{BLACK}Automatisches Umrüsten möglich
+
+STR_DOGTRACK                                                    :Hunde sind braun. Manchmal.

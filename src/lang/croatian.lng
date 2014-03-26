@@ -1,0 +1,31 @@
+##grflangid 0x38
+##plural 6
+##gender male female middle
+##case aku dat gen ins lok nom vok
+STR_GRF_DESCRIPTION                                             :Licenca: {SILVER}GPL v2{}{BLACK}
+
+STR_PARAM_ADJUST_VEHICLE_CAPACITY                               :Kapacitet vlaka
+STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_0                      :Slabašan
+STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_1                      :Izvrstan
+STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2                      :Pretjeran
+
+STR_NAME_SUFFIX_GENERAL_CARGO_TRAM                              :Tramvaj za opći teret
+STR_NAME_SUFFIX_GENERAL_CARGO_TRUCK                             :Kamion za opći teret
+STR_NAME_SUFFIX_COURIER_TRUCK                                   :Dostavni kamion
+STR_NAME_SUFFIX_TANKER_TRUCK                                    :Kamion-cisterna
+STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :Kamion za rasuti teret (pokriveni)
+STR_NAME_SUFFIX_MINING_TRAM                                     :Rudarski tramvaj
+STR_NAME_SUFFIX_MINING_TRUCK                                    :Rudarski kamion
+STR_NAME_SUFFIX_DUMP_TRUCK                                      :Kiper
+STR_NAME_SUFFIX_INDUSTRIAL_HAULER                               :Industrijski kamion
+STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Kamion za intermodalni prijevoz
+STR_NAME_SUFFIX_FARM_TRAM                                       :Tramvaj za farme
+STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :Kamion za stoku
+STR_NAME_SUFFIX_REEFER_TRUCK                                    :Kamion-hladnjača
+STR_NAME_SUFFIX_LOGGING_TRUCK                                   :Kamion za trupce
+
+STR_BUY_MENU_TEXT                                               :Tip: {GOLD}{STRING}{}{STRING}{STRING}
+STR_BUY_MENU_OFFERS_AUTOREFIT                                   :{BLACK}Moguć automatski remont
+
+STR_COASTER                                                     :Krava je preskočila mjesec (ovo nije gotov podsjetnik)
+STR_DOGTRACK                                                    :Psi su smeđi, ponekad
