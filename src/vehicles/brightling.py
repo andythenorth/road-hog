@@ -2,7 +2,7 @@ import global_constants
 from road_vehicle import EngineConsist, GeneralCargoHauler
 
 consist = EngineConsist(id = 'brightling',
-              base_numeric_id = 90,
+              base_numeric_id = 110,
               title = 'Brightling [General Cargo Tram]',
               roadveh_flag_tram = True,
               str_type_info = 'COASTER',

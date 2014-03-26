@@ -2,7 +2,7 @@ import global_constants
 from road_vehicle import EngineConsist, Tanker
 
 consist = EngineConsist(id = 'cloud_hill',
-              base_numeric_id = 300,
+              base_numeric_id = 410,
               title = 'Cloud Hill [Tanker Truck]',
               str_type_info = 'COASTER',
               replacement_id = '-none',

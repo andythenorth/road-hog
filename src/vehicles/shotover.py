@@ -1,9 +1,9 @@
 import global_constants
-from road_vehicle import EngineConsist, FarmTram
+from road_vehicle import EngineConsist, LivestockHauler
 
 consist = EngineConsist(id = 'shotover',
-              base_numeric_id = 160,
-              title = 'Shotover [Farm Tram]',
+              base_numeric_id = 300,
+              title = 'Shotover [Livestock Tram]',
               roadveh_flag_tram = True,
               str_type_info = 'COASTER',
               replacement_id = '-none',
@@ -16,13 +16,7 @@ consist = EngineConsist(id = 'shotover',
               intro_date = 1959,
               graphics_status = '')
 
-consist.add_unit(FarmTram(consist = consist,
-                        weight = 20,
-                        capacity_freight = 50,
-                        vehicle_length = 7,
-                        spriterow_num = 0))
-
-consist.add_unit(FarmTram(consist = consist,
+consist.add_unit(LivestockHauler(consist = consist,
                         weight = 20,
                         capacity_freight = 50,
                         vehicle_length = 7,

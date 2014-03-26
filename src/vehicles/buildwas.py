@@ -1,9 +1,9 @@
 import global_constants
-from road_vehicle import EngineConsist, MiningHauler
+from road_vehicle import EngineConsist, GeneralCargoHauler
 
 consist = EngineConsist(id = 'buildwas',
-              base_numeric_id = 190,
-              title = 'Buildwas [Mining Tram]',
+              base_numeric_id = 100,
+              title = 'Buildwas [General Cargo Tram]',
               roadveh_flag_tram = True,
               str_type_info = 'COASTER',
               replacement_id = '-none',
@@ -16,7 +16,19 @@ consist = EngineConsist(id = 'buildwas',
               intro_date = 1959,
               graphics_status = '')
 
-consist.add_unit(MiningHauler(consist = consist,
+consist.add_unit(GeneralCargoHauler(consist = consist,
+                        weight = 10,
+                        capacity_freight = 50,
+                        vehicle_length = 7,
+                        spriterow_num = 0))
+
+consist.add_unit(GeneralCargoHauler(consist = consist,
+                        weight = 10,
+                        capacity_freight = 50,
+                        vehicle_length = 7,
+                        spriterow_num = 0))
+
+consist.add_unit(GeneralCargoHauler(consist = consist,
                         weight = 10,
                         capacity_freight = 50,
                         vehicle_length = 7,

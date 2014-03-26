@@ -17,7 +17,7 @@ STR_NAME_SUFFIX_MINING_TRUCK                                    :Mining Hauler
 STR_NAME_SUFFIX_DUMP_TRUCK                                      :Dump Truck
 STR_NAME_SUFFIX_INDUSTRIAL_HAULER                               :Industrial Hauler
 STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Intermodal Hauler
-STR_NAME_SUFFIX_FARM_TRAM                                       :Farm Tram
+STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :Livestock Tram
 STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :Livestock Truck
 STR_NAME_SUFFIX_REEFER_TRUCK                                    :Reefer Truck
 STR_NAME_SUFFIX_LOGGING_TRUCK                                   :Logging Truck

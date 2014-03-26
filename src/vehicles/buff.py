@@ -2,7 +2,7 @@ import global_constants
 from road_vehicle import EngineConsist, LogHauler
 
 consist = EngineConsist(id = 'buff',
-              base_numeric_id = 340,
+              base_numeric_id = 440,
               title = 'Buff [Logging Truck]',
               str_type_info = 'COASTER',
               replacement_id = '-none',

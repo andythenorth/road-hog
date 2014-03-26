@@ -374,22 +374,6 @@ class EngineConsist(Consist):
         super(EngineConsist, self).__init__(**kwargs)
 
 
-class FarmTram(RoadVehicle):
-    """
-    Tram for farm cargos
-    """
-    def __init__(self, **kwargs):
-        super(FarmTram, self).__init__(**kwargs)
-        self.template = 'road_vehicle.pynml'
-        self.autorefit = True
-        self.class_refit_groups = []
-        self.label_refits_allowed = ['LVST']
-        self.label_refits_disallowed = []
-        self.default_cargo = 'LVST'
-        self.default_cargo_capacities = self.capacities_freight
-        self.visual_effect = 'VISUAL_EFFECT_DIESEL' # nml constant
-
-
 class CourierTruck(RoadVehicle):
     """
     Truck for mail, valuables etc.

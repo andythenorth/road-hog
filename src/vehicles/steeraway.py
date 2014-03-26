@@ -2,7 +2,7 @@ import global_constants
 from road_vehicle import EngineConsist, HeavyHauler
 
 consist = EngineConsist(id = 'steeraway',
-              base_numeric_id = 250,
+              base_numeric_id = 360,
               title = 'Steeraway [Industrial Hauler]',
               str_type_info = 'COASTER',
               replacement_id = '-none',

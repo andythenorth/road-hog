@@ -1,10 +1,9 @@
 import global_constants
-from road_vehicle import EngineConsist, GeneralCargoHauler
+from road_vehicle import EngineConsist, BulkHauler
 
 consist = EngineConsist(id = 'wookey',
-              base_numeric_id = 140,
-              title = 'Wookey [General Cargo Tram]',
-              roadveh_flag_tram = True,
+              base_numeric_id = 210,
+              title = 'Wookey [Dump Truck]',
               str_type_info = 'COASTER',
               replacement_id = '-none',
               power = 950,
@@ -16,7 +15,7 @@ consist = EngineConsist(id = 'wookey',
               intro_date = 1959,
               graphics_status = '')
 
-consist.add_unit(GeneralCargoHauler(consist = consist,
+consist.add_unit(BulkHauler(consist = consist,
                         weight = 10,
                         capacity_freight = 50,
                         vehicle_length = 7,
