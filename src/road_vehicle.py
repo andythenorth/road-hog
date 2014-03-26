@@ -518,13 +518,13 @@ class LogHauler(RoadVehicle):
         self.visual_effect = 'VISUAL_EFFECT_DIESEL' # nml constant
 
 
-class HeavyHauler(RoadVehicle):
+class FoundryHauler(RoadVehicle):
     """
     Specialist heavy haul truck, e.g. multiwheel platform, steel mill hauler etc.
-    High capacity, not very fast, refits to subset of industrial cargos.
+    High capacity, not very fast, refits to small subset of industrial cargos.
     """
     def __init__(self, **kwargs):
-        super(HeavyHauler, self).__init__(**kwargs)
+        super(FoundryHauler, self).__init__(**kwargs)
         self.template = 'road_vehicle.pynml'
         self.autorefit = True
         self.class_refit_groups = []

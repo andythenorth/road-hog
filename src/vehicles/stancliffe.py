@@ -1,9 +1,9 @@
 import global_constants
 from road_vehicle import EngineConsist, FoundryHauler
 
-consist = EngineConsist(id = 'steeraway',
-              base_numeric_id = 360,
-              title = 'Steeraway [Foundry Hauler]',
+consist = EngineConsist(id = 'stancliffe',
+              base_numeric_id = 350,
+              title = 'Stancliffe [Foundry Hauler]',
               str_type_info = 'COASTER',
               replacement_id = '-none',
               power = 950,

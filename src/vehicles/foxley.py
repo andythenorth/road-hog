@@ -1,9 +1,10 @@
 import global_constants
-from road_vehicle import EngineConsist, FoundryHauler
+from road_vehicle import EngineConsist, CourierTruck
 
-consist = EngineConsist(id = 'steeraway',
-              base_numeric_id = 360,
-              title = 'Steeraway [Foundry Hauler]',
+consist = EngineConsist(id = 'foxley',
+              base_numeric_id = 470,
+              title = 'Foxley [Courier Tram]',
+              roadveh_flag_tram = True,
               str_type_info = 'COASTER',
               replacement_id = '-none',
               power = 950,
@@ -15,9 +16,10 @@ consist = EngineConsist(id = 'steeraway',
               intro_date = 1959,
               graphics_status = '')
 
-consist.add_unit(FoundryHauler(consist = consist,
-                        weight = 50,
+consist.add_unit(CourierTruck(consist = consist,
+                        weight = 10,
                         capacity_freight = 50,
+                        capacity_mail = 50,
                         vehicle_length = 7,
                         spriterow_num = 0))
 

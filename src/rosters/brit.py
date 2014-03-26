@@ -8,6 +8,7 @@ from vehicles import cloud_hill
 from vehicles import california
 from vehicles import easywheal
 from vehicles import foreshore
+from vehicles import foxley
 from vehicles import goldmire
 from vehicles import greenscoe
 from vehicles import griff
@@ -23,6 +24,7 @@ from vehicles import ribble
 from vehicles import shotover
 from vehicles import silvertop
 from vehicles import speedwell
+from vehicles import stancliffe
 from vehicles import steeraway
 from vehicles import stungun
 from vehicles import tallyho
@@ -35,6 +37,7 @@ roster = Roster(id = 'brit',
                                        'easywheal',
                                        'quickset',
                                        'speedwell',
+                                       'foxley',
                                        'tallyho',
                                        'goldmire',
                                        'buildwas',
@@ -54,6 +57,7 @@ roster = Roster(id = 'brit',
                                        'stungun',
                                        'silvertop',
                                        'california',
+                                       'stancliffe',
                                        'steeraway',
                                        'ribble',
                                        'mcdowell',
