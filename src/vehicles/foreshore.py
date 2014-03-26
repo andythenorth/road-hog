@@ -2,7 +2,7 @@ import global_constants
 from road_vehicle import EngineConsist, IntermodalHauler
 
 consist = EngineConsist(id = 'foreshore',
-              base_numeric_id = 190,
+              base_numeric_id = 200,
               title = 'Foreshore [Intermodal Hauler]',
               str_type_info = 'COASTER',
               replacement_id = '-none',
