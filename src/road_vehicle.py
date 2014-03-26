@@ -390,6 +390,22 @@ class CourierTruck(RoadVehicle):
         self.visual_effect = 'VISUAL_EFFECT_DIESEL' # nml constant
 
 
+class PaxHauler(RoadVehicle):
+    """
+    Bus or tram for pax.
+    """
+    def __init__(self, **kwargs):
+        super(PaxHauler, self).__init__(**kwargs)
+        self.template = 'road_vehicle.pynml'
+        self.autorefit = True
+        self.class_refit_groups = ['pax']
+        self.label_refits_allowed = []
+        self.label_refits_disallowed = []
+        self.default_cargo = 'PASS'
+        self.default_cargo_capacities = self.capacities_freight
+        self.visual_effect = 'VISUAL_EFFECT_DIESEL' # nml constant
+
+
 class GeneralCargoHauler(RoadVehicle):
     """
     General cargo truck - refits everything except mail, pax.
