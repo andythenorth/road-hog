@@ -402,7 +402,7 @@ class PaxHauler(RoadVehicle):
         self.label_refits_allowed = []
         self.label_refits_disallowed = []
         self.default_cargo = 'PASS'
-        self.default_cargo_capacities = self.capacities_freight
+        self.default_cargo_capacities = self.capacities_pax
         self.visual_effect = 'VISUAL_EFFECT_DIESEL' # nml constant
 
 
