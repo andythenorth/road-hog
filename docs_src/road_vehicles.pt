@@ -2,7 +2,7 @@
 <div metal:fill-slot='body'>
 
     <div class="span12">
-        <h2>${len(consists)} trains for OpenTTD</h2>
+        <h2>${len(consists)} road vehicles for OpenTTD</h2>
         <hr />
         <table class="table table-striped tablesorter">
             <thead>

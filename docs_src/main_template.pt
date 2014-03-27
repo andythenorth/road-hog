@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head>
-    <title >Iron Horse</title>
+    <title >Road Hog</title>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,8 +37,8 @@
                     <li class="${doc_helper.get_active_nav(doc_name, 'get_started')}">
                         <a href="get_started.html">Get Started</a>
                     </li>
-                    <li class="${doc_helper.get_active_nav(doc_name, 'trains')}">
-                        <a href="trains.html">Trains</a>
+                    <li class="${doc_helper.get_active_nav(doc_name, 'road_vehicles')}">
+                        <a href="road_vehicles.html">Road Vehicles</a>
                     </li>
                     <li class="${doc_helper.get_active_nav(doc_name, 'code_reference')}">
                         <a href="code_reference.html">Code Reference</a>
@@ -46,7 +46,7 @@
                 </ul>
                 <ul class="nav pull-right">
                     <li class="${doc_helper.get_active_nav(doc_name, 'translations')}">
-                        <a href="translations.html"><i class="icon-globe icon-white"></i> Help Translate Iron Horse</a>
+                        <a href="translations.html"><i class="icon-globe icon-white"></i> Help Translate Road Hog</a>
                     </li>
                     <li>
                         <a href="${metadata['dev_thread_url']}"><i class="icon-comment icon-white"></i> Discuss at TT-Forums.net</a>
@@ -62,13 +62,13 @@
                                  "");
 
             var random_image=images[Math.floor(Math.random()*images.length)];
-            document.write('<a href="trains.html#' + random_image + '"><img class="pull-right" style="margin-top:-30px; margin-bottom:0;" src="static/img/industries/'+ random_image +'.png"></a>')
+            document.write('<a href="road_vehicles.html#' + random_image + '"><img class="pull-right" style="margin-top:-30px; margin-bottom:0;" src="static/img/industries/'+ random_image +'.png"></a>')
         }
         random_img()
         </script>
         <div class="container">
-            <h1 style="font-size:48px; padding-top:30px;">Iron Horse</h1>
-            <p class="lead">My Lovely <strike>Horse</strike> Train Set</p>
+            <h1 style="font-size:48px; padding-top:30px;">Road Hog</h1>
+            <p class="lead">A Big Fat Road Vehicle Set</p>
         </div>
     </div>
     <metal:block define-slot="opt_page_header">
@@ -80,7 +80,7 @@
         </metal:block>
     </div>
     <div style="margin-top:30px; text-align:center; color:#999; padding:5px; background-color:#eee; border-top:solid 1px #ddd; box-shadow: inset 0px 1px 1px #ddd">
-        Iron Horse, with thanks to all who helped
+        Road Hog, with thanks to all who helped
     </div>
 </body>
 </html>
