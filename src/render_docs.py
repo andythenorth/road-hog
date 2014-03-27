@@ -53,9 +53,10 @@ repo_vars = utils.get_repo_vars(sys)
 # get the strings from base lang file so they can be used in docs
 base_lang_strings = utils.parse_base_lang()
 metadata = {}
-metadata['dev_thread_url'] = 'http://www.tt-forums.net/viewtopic.php?f=26&t=44613'
-metadata['repo_url'] = 'http://dev.openttdcoop.org/projects/iron-horse/repository'
-metadata['issue_tracker'] = 'http://dev.openttdcoop.org/projects/iron-horse/issues'
+metadata['dev_thread_url'] = 'http://www.tt-forums.net/viewtopic.php?f=26&t=70241'
+metadata['repo_url'] = 'http://dev.openttdcoop.org/projects/road-hog/repository'
+metadata['issue_tracker'] = 'http://dev.openttdcoop.org/projects/road-hog/issues'
+metadata['eints_url'] = 'https://translator.openttdcoop.org/project/road-hog'
 
 consists = road_hog.get_consists_in_buy_menu_order()
 # default sort for docs is by intro date
