@@ -17,9 +17,9 @@ consist = EngineConsist(id = 'thunder',
 
 consist.add_unit(PaxHauler(consist = consist,
                         weight = 10,
-                        capacity_freight = 50,
+                        capacity_pax = 30,
                         vehicle_length = 7,
-                        spriterow_num = 0), repeat=2)
+                        spriterow_num = 0))
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,
