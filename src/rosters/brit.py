@@ -1,5 +1,6 @@
 from roster import Roster
 
+from vehicles import amblecote
 from vehicles import brightling
 from vehicles import broadrock
 from vehicles import buildwas
@@ -48,6 +49,7 @@ roster = Roster(id = 'brit',
                                        'thunder',
                                        'topley',
                                        'twinhills',
+                                       'amblecote',
                                        'buildwas',
                                        'brightling',
                                        'jinglepot',
