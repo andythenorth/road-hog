@@ -462,12 +462,13 @@ class BulkPowderHauler(RoadVehicle):
         super(BulkPowderHauler, self).__init__(**kwargs)
         self.template = 'road_vehicle.pynml'
         self.autorefit = True
-        self.class_refit_groups = ['hopper_freight']
-        self.label_refits_allowed = [] # no specific labels needed
+        self.class_refit_groups = ['covered_hopper_freight']
+        self.label_refits_allowed = ['GRAI', 'WHEA', 'MAIZ', 'FOOD', 'SUGR', 'FMSP', 'RFPR', 'CLAY']
         self.label_refits_disallowed = []
         self.default_cargo = 'PASS'
         self.default_cargo_capacities = self.capacities_freight
         self.visual_effect = 'VISUAL_EFFECT_DIESEL' # nml constant
+
 
 class LivestockHauler(RoadVehicle):
     """
