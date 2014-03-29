@@ -544,9 +544,9 @@ class FoundryHauler(RoadVehicle):
         self.template = 'road_vehicle.pynml'
         self.autorefit = True
         self.class_refit_groups = []
-        self.label_refits_allowed = ['LVST']
+        self.label_refits_allowed = ['STEL', 'SCMT', 'ENSP', 'MNSP']
         self.label_refits_disallowed = []
-        self.default_cargo = 'LVST'
+        self.default_cargo = 'STEL'
         self.default_cargo_capacities = self.capacities_freight
         self.visual_effect = 'VISUAL_EFFECT_DIESEL' # nml constant
 
