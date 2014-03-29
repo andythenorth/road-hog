@@ -7,7 +7,7 @@ consist = EngineConsist(id = 'steeraway',
               str_type_info = 'COASTER',
               replacement_id = '-none',
               power = 950,
-              speed = 55,
+              speed = 37,
               buy_cost = 69,
               fixed_run_cost_factor = 3.5,
               fuel_run_cost_factor = 1.0,
@@ -17,7 +17,7 @@ consist = EngineConsist(id = 'steeraway',
 
 consist.add_unit(FoundryHauler(consist = consist,
                         weight = 50,
-                        capacity_freight = 50,
+                        capacity_freight = 100,
                         vehicle_length = 7,
                         spriterow_num = 0))
 

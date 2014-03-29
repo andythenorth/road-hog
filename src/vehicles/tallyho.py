@@ -7,18 +7,18 @@ consist = EngineConsist(id = 'tallyho',
               str_type_info = 'COASTER',
               replacement_id = '-none',
               power = 950,
-              speed = 55,
+              speed = 60,
               buy_cost = 69,
               fixed_run_cost_factor = 3.5,
               fuel_run_cost_factor = 1.0,
               vehicle_life = 40,
-              intro_date = 1959,
+              intro_date = 1938,
               graphics_status = '')
 
 consist.add_unit(CourierTruck(consist = consist,
                         weight = 10,
-                        capacity_freight = 50,
-                        capacity_mail = 50,
+                        capacity_freight = 22,
+                        capacity_mail = 45,
                         vehicle_length = 7,
                         spriterow_num = 0))
 
