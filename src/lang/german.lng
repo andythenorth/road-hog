@@ -3,18 +3,29 @@
 ##gender m w n p
 STR_GRF_DESCRIPTION                                             :Lizenz: {SILVER}GPL v2{}{BLACK}
 
+STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_0                      :Mickrig
 STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_1                      :Großartig
 STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2                      :Übermäßig
 
+STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Straßenbahn (Passagiere)
+STR_NAME_SUFFIX_BUS                                             :Bus
 STR_NAME_SUFFIX_GENERAL_CARGO_TRAM                              :Feldbahn für Stückgut
 STR_NAME_SUFFIX_GENERAL_CARGO_TRUCK                             :Lastkraftwagen für Stückgut
+STR_NAME_SUFFIX_COURIER_TRAM                                    :Straßenbahn (Post)
 STR_NAME_SUFFIX_COURIER_TRUCK                                   :Courier-Transporter
+STR_NAME_SUFFIX_TANKER_TRUCK                                    :Tanklaster
 STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :Gedeckter Schüttgut-LKW
+STR_NAME_SUFFIX_MINING_TRAM                                     :Grubenbahn
 STR_NAME_SUFFIX_DUMP_TRUCK                                      :Kipplaster
+STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :Schwerlast-Transporter
+STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Container-Laster
+STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :Viehtransporter
 STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :Viehtransporter
 STR_NAME_SUFFIX_REEFER_TRUCK                                    :Kühltransporter
+STR_NAME_SUFFIX_LOGGING_TRUCK                                   :Langholzlaster
 
 STR_BUY_MENU_TEXT                                               :Type: {GOLD}{STRING}{}{STRING}{STRING}
 STR_BUY_MENU_OFFERS_AUTOREFIT                                   :{BLACK}Automatisches Umrüsten möglich
 
+STR_COASTER                                                     :Lalelu, nur der Mann im Mond schaut zu... (Erinnerung, dass dies noch nicht fertig ist)
 STR_DOGTRACK                                                    :Hunde sind braun. Manchmal.
