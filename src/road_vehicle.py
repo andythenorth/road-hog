@@ -559,10 +559,12 @@ class IntermodalHauler(RoadVehicle):
         super(IntermodalHauler, self).__init__(**kwargs)
         self.template = 'road_vehicle.pynml'
         self.autorefit = True
-        self.class_refit_groups = []
-        self.label_refits_allowed = ['LVST']
-        self.label_refits_disallowed = []
-        self.default_cargo = 'LVST'
+        # maintain other sets (e.g. IH etc) when changing container refits
+        self.class_refit_groups = ['courier_freight','packaged_freight']
+        self.label_refits_allowed = ['FRUT','WATR']
+        self.label_refits_disallowed = ['FISH','LVST','OIL_','TOUR','WOOD']
+        self.default_cargo = 'GOOD'
         self.default_cargo_capacities = self.capacities_freight
         self.visual_effect = 'VISUAL_EFFECT_DIESEL' # nml constant
+
 
