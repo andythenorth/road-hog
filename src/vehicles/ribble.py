@@ -6,7 +6,7 @@ consist = EngineConsist(id = 'ribble',
               title = 'Ribble [Covered Hopper Truck]',
               str_type_info = 'COASTER',
               replacement_id = '-none',
-              power = 950,
+              power = 250,
               speed = 60,
               buy_cost = 69,
               fixed_run_cost_factor = 3.5,
@@ -16,7 +16,7 @@ consist = EngineConsist(id = 'ribble',
               graphics_status = '')
 
 consist.add_unit(BulkPowderHauler(consist = consist,
-                        weight = 50,
+                        weight = 10,
                         capacity_freight = 40,
                         vehicle_length = 7,
                         spriterow_num = 0))

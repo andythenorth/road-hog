@@ -6,7 +6,7 @@ consist = EngineConsist(id = 'stancliffe',
               title = 'Stancliffe [Foundry Hauler]',
               str_type_info = 'COASTER',
               replacement_id = '-none',
-              power = 950,
+              power = 200,
               speed = 27,
               buy_cost = 69,
               fixed_run_cost_factor = 3.5,
@@ -16,7 +16,7 @@ consist = EngineConsist(id = 'stancliffe',
               graphics_status = '')
 
 consist.add_unit(FoundryHauler(consist = consist,
-                        weight = 50,
+                        weight = 20,
                         capacity_freight = 100,
                         vehicle_length = 7,
                         spriterow_num = 0))
