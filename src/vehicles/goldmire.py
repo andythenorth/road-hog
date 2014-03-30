@@ -16,7 +16,7 @@ consist = EngineConsist(id = 'goldmire',
               graphics_status = '')
 
 consist.add_unit(CourierTruck(consist = consist,
-                        weight = 10,
+                        weight = 14,
                         capacity_freight = 25,
                         capacity_mail = 50,
                         vehicle_length = 7,

@@ -17,9 +17,15 @@ consist = EngineConsist(id = 'stancliffe',
 
 consist.add_unit(FoundryHauler(consist = consist,
                         weight = 20,
-                        capacity_freight = 100,
+                        capacity_freight = 0,
                         vehicle_length = 7,
                         spriterow_num = 0))
+
+consist.add_unit(FoundryHauler(consist = consist,
+                        weight = 5,
+                        capacity_freight = 20,
+                        vehicle_length = 7,
+                        spriterow_num = 0), repeat = 5)
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,

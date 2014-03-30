@@ -17,7 +17,7 @@ consist = EngineConsist(id = 'shotover',
               graphics_status = '')
 
 consist.add_unit(LivestockHauler(consist = consist,
-                        weight = 10,
+                        weight = 12,
                         capacity_freight = 20,
                         vehicle_length = 7,
                         spriterow_num = 0), repeat = 2)

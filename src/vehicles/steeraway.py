@@ -16,7 +16,7 @@ consist = EngineConsist(id = 'steeraway',
               graphics_status = '')
 
 consist.add_unit(FoundryHauler(consist = consist,
-                        weight = 50,
+                        weight = 35,
                         capacity_freight = 100,
                         vehicle_length = 7,
                         spriterow_num = 0))

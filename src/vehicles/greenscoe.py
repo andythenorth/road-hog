@@ -16,13 +16,13 @@ consist = EngineConsist(id = 'greenscoe',
               graphics_status = '')
 
 consist.add_unit(Tanker(consist = consist,
-                        weight = 20,
+                        weight = 7,
                         capacity_freight = 0,
                         vehicle_length = 7,
                         spriterow_num = 0))
 
 consist.add_unit(Tanker(consist = consist,
-                        weight = 20,
+                        weight = 7,
                         capacity_freight = 35,
                         vehicle_length = 7,
                         spriterow_num = 0))

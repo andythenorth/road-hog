@@ -16,7 +16,13 @@ consist = EngineConsist(id = 'ribble',
               graphics_status = '')
 
 consist.add_unit(BulkPowderHauler(consist = consist,
-                        weight = 10,
+                        weight = 7,
+                        capacity_freight = 0,
+                        vehicle_length = 7,
+                        spriterow_num = 0))
+
+consist.add_unit(BulkPowderHauler(consist = consist,
+                        weight = 8,
                         capacity_freight = 40,
                         vehicle_length = 7,
                         spriterow_num = 0))

@@ -16,7 +16,7 @@ consist = EngineConsist(id = 'moota',
               graphics_status = '')
 
 consist.add_unit(PaxHauler(consist = consist,
-                        weight = 10,
+                        weight = 20,
                         capacity_pax = 50,
                         vehicle_length = 7,
                         spriterow_num = 0))

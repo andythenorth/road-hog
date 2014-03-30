@@ -7,7 +7,7 @@ consist = EngineConsist(id = 'brightling',
               roadveh_flag_tram = True,
               str_type_info = 'COASTER',
               replacement_id = '-none',
-              power = 200,
+              power = 220,
               speed = 35,
               buy_cost = 69,
               fixed_run_cost_factor = 3.5,
@@ -17,13 +17,13 @@ consist = EngineConsist(id = 'brightling',
               graphics_status = '')
 
 consist.add_unit(GeneralCargoHauler(consist = consist,
-                        weight = 10,
+                        weight = 12,
                         capacity_freight = 12,
                         vehicle_length = 7,
                         spriterow_num = 0), repeat=2)
 
 consist.add_unit(GeneralCargoHauler(consist = consist,
-                        weight = 10,
+                        weight = 4,
                         capacity_freight = 12,
                         vehicle_length = 7,
                         spriterow_num = 0), repeat=3)

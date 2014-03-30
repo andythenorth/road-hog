@@ -16,7 +16,7 @@ consist = EngineConsist(id = 'california',
               graphics_status = '')
 
 consist.add_unit(RefrigeratedHauler(consist = consist,
-                        weight = 10,
+                        weight = 8,
                         capacity_freight = 0,
                         vehicle_length = 7,
                         spriterow_num = 0))

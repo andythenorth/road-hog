@@ -16,7 +16,7 @@ consist = EngineConsist(id = 'broadrock',
               graphics_status = '')
 
 consist.add_unit(MiningHauler(consist = consist,
-                        weight = 10,
+                        weight = 35,
                         capacity_freight = 50,
                         vehicle_length = 7,
                         spriterow_num = 0))

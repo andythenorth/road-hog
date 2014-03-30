@@ -17,7 +17,7 @@ consist = EngineConsist(id = 'buildwas',
               graphics_status = '')
 
 consist.add_unit(GeneralCargoHauler(consist = consist,
-                        weight = 10,
+                        weight = 30,
                         capacity_freight = 0,
                         vehicle_length = 7,
                         spriterow_num = 0))
@@ -29,7 +29,7 @@ consist.add_unit(GeneralCargoHauler(consist = consist,
                         spriterow_num = 0), repeat=8)
 
 consist.add_unit(GeneralCargoHauler(consist = consist,
-                        weight = 10,
+                        weight = 4,
                         capacity_freight = 0,
                         vehicle_length = 7,
                         spriterow_num = 0))

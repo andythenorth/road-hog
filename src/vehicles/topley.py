@@ -16,7 +16,7 @@ consist = EngineConsist(id = 'topley',
               graphics_status = '')
 
 consist.add_unit(PaxHauler(consist = consist,
-                        weight = 10,
+                        weight = 25,
                         capacity_pax = 90,
                         vehicle_length = 7,
                         spriterow_num = 0))

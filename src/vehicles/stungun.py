@@ -16,13 +16,13 @@ consist = EngineConsist(id = 'stungun',
               graphics_status = '')
 
 consist.add_unit(LivestockHauler(consist = consist,
-                        weight = 20,
+                        weight = 8,
                         capacity_freight = 0,
                         vehicle_length = 7,
                         spriterow_num = 0))
 
 consist.add_unit(LivestockHauler(consist = consist,
-                        weight = 20,
+                        weight = 14,
                         capacity_freight = 28,
                         vehicle_length = 7,
                         spriterow_num = 0))

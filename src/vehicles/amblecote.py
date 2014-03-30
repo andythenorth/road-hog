@@ -17,19 +17,19 @@ consist = EngineConsist(id = 'amblecote',
               graphics_status = '')
 
 consist.add_unit(GeneralCargoHauler(consist = consist,
-                        weight = 10,
+                        weight = 12,
                         capacity_freight = 0,
                         vehicle_length = 7,
                         spriterow_num = 0))
 
 consist.add_unit(GeneralCargoHauler(consist = consist,
-                        weight = 10,
+                        weight = 2,
                         capacity_freight = 10,
                         vehicle_length = 7,
                         spriterow_num = 0), repeat = 2)
 
 consist.add_unit(GeneralCargoHauler(consist = consist,
-                        weight = 10,
+                        weight = 4,
                         capacity_freight = 10,
                         vehicle_length = 7,
                         spriterow_num = 0))
