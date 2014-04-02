@@ -6,7 +6,7 @@ from vehicles import broadrock
 from vehicles import buildwas
 from vehicles import buff
 from vehicles import cloud_hill
-from vehicles import california
+from vehicles import coldfall
 from vehicles import easywheal
 from vehicles import fairlop
 from vehicles import foreshore
@@ -74,7 +74,7 @@ roster = Roster(id = 'brit',
                                        'pigstick',
                                        'stungun',
                                        'silvertop',
-                                       'california',
+                                       'coldfall',
                                        'stancliffe',
                                        'steeraway',
                                        'ribble',

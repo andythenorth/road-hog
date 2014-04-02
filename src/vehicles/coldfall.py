@@ -1,9 +1,9 @@
 import global_constants
 from road_vehicle import EngineConsist, RefrigeratedHauler
 
-consist = EngineConsist(id = 'california',
+consist = EngineConsist(id = 'coldfall',
               base_numeric_id = 380,
-              title = 'California [Reefer Truck]',
+              title = 'Coldfall [Reefer Truck]',
               str_type_info = 'COASTER',
               replacement_id = '-none',
               power = 450,
