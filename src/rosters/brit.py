@@ -7,6 +7,7 @@ from vehicles import buildwas
 from vehicles import buff
 from vehicles import cloud_hill
 from vehicles import coldfall
+from vehicles import dinkey
 from vehicles import easywheal
 from vehicles import fairlop
 from vehicles import foreshore
@@ -19,6 +20,7 @@ from vehicles import jinglepot
 from vehicles import knockdown
 from vehicles import ladycross
 from vehicles import leyburn
+from vehicles import littleduke
 from vehicles import mcdowell
 from vehicles import meriden
 from vehicles import moota
@@ -56,6 +58,8 @@ roster = Roster(id = 'brit',
                                        'easywheal',
                                        'quickset',
                                        'speedwell',
+                                       'dinkey',
+                                       'littleduke',
                                        'foxley',
                                        'tallyho',
                                        'goldmire',
