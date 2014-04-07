@@ -4,7 +4,6 @@ from road_vehicle import EngineConsist, BulkHauler
 consist = EngineConsist(id = 'powerstock',
               base_numeric_id = 240,
               title = 'Powerstock [Dump Truck]',
-              str_type_info = 'COASTER',
               replacement_id = '-none',
               power = 650,
               speed = 65,

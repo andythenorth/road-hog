@@ -4,7 +4,6 @@ from road_vehicle import EngineConsist, PaxHauler
 consist = EngineConsist(id = 'moota',
               base_numeric_id = 50,
               title = 'Moota [Bus]',
-              str_type_info = 'COASTER',
               replacement_id = '-none',
               power = 220,
               speed = 75,

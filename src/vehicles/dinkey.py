@@ -4,7 +4,6 @@ from road_vehicle import EngineConsist, GeneralCargoHauler
 consist = EngineConsist(id = 'dinkey',
               base_numeric_id = 170,
               title = 'Dinkey [General Cargo Truck]',
-              str_type_info = 'COASTER',
               replacement_id = '-none',
               power = 220,
               speed = 65,

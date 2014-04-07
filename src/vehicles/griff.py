@@ -4,7 +4,6 @@ from road_vehicle import EngineConsist, LogHauler
 consist = EngineConsist(id = 'griff',
               base_numeric_id = 420,
               title = 'Griff [Logging Truck]',
-              str_type_info = 'COASTER',
               replacement_id = '-none',
               power = 150,
               speed = 35,

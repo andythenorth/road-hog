@@ -4,7 +4,6 @@ from road_vehicle import EngineConsist, RefrigeratedHauler
 consist = EngineConsist(id = 'coldfall',
               base_numeric_id = 380,
               title = 'Coldfall [Reefer Truck]',
-              str_type_info = 'COASTER',
               replacement_id = '-none',
               power = 450,
               speed = 65,

@@ -4,7 +4,6 @@ from road_vehicle import EngineConsist, IntermodalHauler
 consist = EngineConsist(id = 'foreshore',
               base_numeric_id = 200,
               title = 'Foreshore [Intermodal Hauler]',
-              str_type_info = 'COASTER',
               replacement_id = '-none',
               power = 950,
               speed = 55,

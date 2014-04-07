@@ -4,7 +4,6 @@ from road_vehicle import EngineConsist, LivestockHauler
 consist = EngineConsist(id = 'stungun',
               base_numeric_id = 320,
               title = 'Stungun [Livestock Truck]',
-              str_type_info = 'COASTER',
               replacement_id = '-none',
               power = 400,
               speed = 65,

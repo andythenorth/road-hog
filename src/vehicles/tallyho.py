@@ -4,7 +4,6 @@ from road_vehicle import EngineConsist, CourierTruck
 consist = EngineConsist(id = 'tallyho',
               base_numeric_id = 480,
               title = 'Tallyho [Courier Truck]',
-              str_type_info = 'COASTER',
               replacement_id = '-none',
               power = 120,
               speed = 60,

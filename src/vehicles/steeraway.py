@@ -4,7 +4,6 @@ from road_vehicle import EngineConsist, FoundryHauler
 consist = EngineConsist(id = 'steeraway',
               base_numeric_id = 360,
               title = 'Steeraway [Foundry Hauler]',
-              str_type_info = 'COASTER',
               replacement_id = '-none',
               power = 500,
               speed = 37,

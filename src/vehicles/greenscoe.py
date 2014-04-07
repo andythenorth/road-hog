@@ -4,7 +4,6 @@ from road_vehicle import EngineConsist, Tanker
 consist = EngineConsist(id = 'greenscoe',
               base_numeric_id = 390,
               title = 'Greenscoe [Tanker Truck]',
-              str_type_info = 'COASTER',
               replacement_id = '-none',
               power = 150,
               speed = 35,
