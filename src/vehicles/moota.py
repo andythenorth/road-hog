@@ -11,7 +11,7 @@ consist = EngineConsist(id = 'moota',
               fixed_run_cost_factor = 3.5,
               fuel_run_cost_factor = 1.0,
               vehicle_life = 40,
-              intro_date = 1972,
+              intro_date = 1968,
               graphics_status = '')
 
 consist.add_unit(PaxHauler(consist = consist,

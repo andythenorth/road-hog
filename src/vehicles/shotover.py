@@ -12,7 +12,7 @@ consist = EngineConsist(id = 'shotover',
               fixed_run_cost_factor = 3.5,
               fuel_run_cost_factor = 1.0,
               vehicle_life = 40,
-              intro_date = 1959,
+              intro_date = 1903,
               graphics_status = '')
 
 consist.add_unit(LivestockHauler(consist = consist,
