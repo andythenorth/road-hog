@@ -7,12 +7,13 @@ item(FEAT_ROADVEHS, ${vehicle.id}, ${vehicle.numeric_id}) {
         climates_available:             ${vehicle.availability};
         introduction_date:              date(${consist.intro_date},01,01); // consist just supplies intro year - openttd randomises intro dates a bit anyway
         cargo_capacity:                 ${vehicle.default_cargo_capacities[0]};
-        sprite_id:                      SPRITE_ID_NEW_TRAIN; //enable new graphics - nml constant
+        sprite_id:                      SPRITE_ID_NEW_ROADVEH; //enable new graphics - nml constant
         power:                          ${consist.power}hp;
         speed:                          ${consist.speed}mph;
         weight:                         ${consist.weight}ton;
         tractive_effort_coefficient:    ${consist.tractive_effort_coefficient};
         cost_factor:                    ${consist.buy_cost};
+        running_cost_base:              RUNNING_COST_ROADVEH;
         running_cost_factor:            ${consist.running_cost};
         refit_cost:                     0; // btw this needs to be 0 if we want autorefit without using cb
         refittable_cargo_classes:       bitmask(${vehicle.refittable_classes});

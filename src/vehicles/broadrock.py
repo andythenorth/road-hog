@@ -7,9 +7,7 @@ consist = EngineConsist(id = 'broadrock',
               replacement_id = '-none',
               power = 375,
               speed = 35,
-              buy_cost = 69,
-              fixed_run_cost_factor = 3.5,
-              fuel_run_cost_factor = 1.0,
+              type_base_running_cost_points = 20, # dibble running costs for game balance
               vehicle_life = 40,
               intro_date = 1951,
               graphics_status = '')

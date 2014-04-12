@@ -5,11 +5,9 @@ consist = EngineConsist(id = 'witch_hill',
               base_numeric_id = 340,
               title = 'Witch Hill [Mining Truck]',
               replacement_id = '-none',
-              power = 1200,
+              power = 1000,
               speed = 50,
-              buy_cost = 69,
-              fixed_run_cost_factor = 3.5,
-              fuel_run_cost_factor = 1.0,
+              type_base_running_cost_points = 30, # dibble running costs for game balance
               vehicle_life = 40,
               intro_date = 1989,
               graphics_status = '')

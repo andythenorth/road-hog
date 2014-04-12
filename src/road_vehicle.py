@@ -169,16 +169,16 @@ class Consist(object):
             utils.echo_message("Consist " + self.id + " has power > 2000hp, which is too much")
         power_cost_points = self.power / 50
 
-        # Up to 40 points for speed above up to 120mph. 1 point per 3mph
-        if self.speed > 100:
-            utils.echo_message("Consist " + self.id + " has speed > 120, which is too much")
-        speed_cost_points = min(self.speed, 120) / 3
+        # Up to 30 points for speed above up to 90mph. 1 point per 3mph
+        if self.speed > 90:
+            utils.echo_message("Consist " + self.id + " has speed > 90, which is too much")
+        speed_cost_points = min(self.speed, 90) / 3
 
-        # Up to 40 points for intro date after 1870. 1 point per 4 years.
+        # Up to 20 points for intro date after 1870. 1 point per 8 years.
         # Intro dates capped at 2030, this isn't a hard limit, but raise a warning
         if self.intro_date > 2030:
             utils.echo_message("Consist " + self.id + " has intro_date > 2030, which is too much")
-        date_cost_points = max((self.intro_date - 1870), 0) / 4
+        date_cost_points = max((self.intro_date - 1870), 0) / 8
 
         return power_cost_points + speed_cost_points + date_cost_points
 
@@ -189,8 +189,10 @@ class Consist(object):
 
     @property
     def running_cost(self):
+        consist_capacity_points = min(self.capacity, 160)
+        print self.id, consist_capacity_points
         # type_base_running_cost_points is an arbitrary adjustment that can be applied on a type-by-type basis,
-        return self.get_engine_cost_points() + self.type_base_running_cost_points
+        return self.get_engine_cost_points() + consist_capacity_points + self.type_base_running_cost_points
 
     @property
     def weight(self):
@@ -198,6 +200,19 @@ class Consist(object):
         if consist_weight > 63:
             utils.echo_message("Error: consist weight is " + str(consist_weight) + "t for " + self.id + "; must be < 63t")
         return consist_weight
+
+    @property
+    def capacity(self):
+        # total capacity of consist, summed from vehicles
+        consist_capacity = 0
+        for slice in self.slices:
+            if slice.default_cargo == 'PASS':
+                consist_capacity = consist_capacity + slice.capacity_pax
+            elif slice.default_cargo == 'MAIL':
+                consist_capacity = consist_capacity + slice.capacity_mail
+            else:
+                consist_capacity = consist_capacity + slice.capacity_freight
+        return consist_capacity
 
     @property
     def adjusted_model_life(self):
@@ -448,7 +463,7 @@ class GeneralCargoHauler(RoadVehicle):
         self.class_refit_groups = ['all_freight']
         self.label_refits_allowed = ['GRAI', 'WHEA', 'MAIZ'] # Iron Horse compatibility
         self.label_refits_disallowed = []
-        self.default_cargo = 'PASS'
+        self.default_cargo = 'GOOD'
         self.default_cargo_capacities = self.capacities_freight
         self.visual_effect = 'VISUAL_EFFECT_DIESEL' # nml constant
 
@@ -464,7 +479,7 @@ class MiningHauler(RoadVehicle):
         self.class_refit_groups = ['hopper_freight']
         self.label_refits_allowed = [] # no specific labels needed
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_hopper_freight']
-        self.default_cargo = 'PASS'
+        self.default_cargo = 'COAL'
         self.default_cargo_capacities = self.capacities_freight
         self.visual_effect = 'VISUAL_EFFECT_DIESEL' # nml constant
 
@@ -480,7 +495,7 @@ class BulkHauler(RoadVehicle):
         self.class_refit_groups = ['hopper_freight']
         self.label_refits_allowed = [] # no specific labels needed
         self.label_refits_disallowed = []
-        self.default_cargo = 'PASS'
+        self.default_cargo = 'COAL'
         self.default_cargo_capacities = self.capacities_freight
         self.visual_effect = 'VISUAL_EFFECT_DIESEL' # nml constant
 
@@ -496,7 +511,7 @@ class BulkPowderHauler(RoadVehicle):
         self.class_refit_groups = ['covered_hopper_freight']
         self.label_refits_allowed = ['GRAI', 'WHEA', 'MAIZ', 'FOOD', 'SUGR', 'FMSP', 'RFPR', 'CLAY']
         self.label_refits_disallowed = []
-        self.default_cargo = 'PASS'
+        self.default_cargo = 'GRAI'
         self.default_cargo_capacities = self.capacities_freight
         self.visual_effect = 'VISUAL_EFFECT_DIESEL' # nml constant
 
