@@ -22,7 +22,8 @@ grf {
 }
 
 basecost {
- 	PR_BUILD_VEHICLE_TRAIN: -1;
+ 	PR_BUILD_VEHICLE_ROAD: 3;
+ 	PR_RUNNING_ROADVEH: 2;
 }
 
 // sort order

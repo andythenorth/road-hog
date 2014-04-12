@@ -40,9 +40,10 @@ class Consist(object):
         self.power = kwargs.get('power', 0)
         self.tractive_effort_coefficient = kwargs.get('tractive_effort_coefficient', 0.3) # 0.3 is recommended default value
         self.speed = kwargs.get('speed', None)
-        self.buy_cost = kwargs.get('buy_cost', None)
-        self.fixed_run_cost_factor = kwargs.get('fixed_run_cost_factor', None)
-        self.fuel_run_cost_factor = kwargs.get('fuel_run_cost_factor', None)
+        # arbitrary adjustments of points that can be applied to adjust buy cost and running cost, over-ride in consist as needed
+        # values can be -ve or +ve to dibble specific vehicles (but total calculated points cannot exceed 255)
+        self.type_base_buy_cost_points = kwargs.get('type_base_buy_cost_points', 0)
+        self.type_base_running_cost_points = kwargs.get('type_base_running_cost_points', 0)
         # create a structure to hold model variants
         self.model_variants = []
         # create structure to hold the slices
@@ -161,13 +162,35 @@ class Consist(object):
                 offers_autorefit = True
         return offers_autorefit
 
+    def get_engine_cost_points(self):
+        # Up to 40 points for power. 1 point per 50hp
+        # Power is therefore capped at 2000hp by design, this isn't a hard limit, but raise a warning
+        if self.power > 2000:
+            utils.echo_message("Consist " + self.id + " has power > 2000hp, which is too much")
+        power_cost_points = self.power / 50
+
+        # Up to 40 points for speed above up to 120mph. 1 point per 3mph
+        if self.speed > 100:
+            utils.echo_message("Consist " + self.id + " has speed > 120, which is too much")
+        speed_cost_points = min(self.speed, 120) / 3
+
+        # Up to 40 points for intro date after 1870. 1 point per 4 years.
+        # Intro dates capped at 2030, this isn't a hard limit, but raise a warning
+        if self.intro_date > 2030:
+            utils.echo_message("Consist " + self.id + " has intro_date > 2030, which is too much")
+        date_cost_points = max((self.intro_date - 1870), 0) / 4
+
+        return power_cost_points + speed_cost_points + date_cost_points
+
+    @property
+    def buy_cost(self):
+        # type_base_buy_cost_points is an arbitrary adjustment that can be applied on a type-by-type basis,
+        return self.get_engine_cost_points() + self.type_base_buy_cost_points
+
     @property
     def running_cost(self):
-        # calculate a running cost
-        fixed_run_cost = self.fixed_run_cost_factor * global_constants.FIXED_RUN_COST
-        fuel_run_cost =  self.fuel_run_cost_factor * global_constants.FUEL_RUN_COST
-        calculated_run_cost = int((fixed_run_cost + fuel_run_cost) / 98) # divide by magic constant to get costs as factor in 0-255 range
-        return min(calculated_run_cost, 255) # cost factor is a byte, can't exceed 255
+        # type_base_running_cost_points is an arbitrary adjustment that can be applied on a type-by-type basis,
+        return self.get_engine_cost_points() + self.type_base_running_cost_points
 
     @property
     def weight(self):

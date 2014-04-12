@@ -41,10 +41,14 @@ def main():
         grf_nml.write(utils.unescape_chameleon_output(template(consists=consists, global_constants=global_constants,
                                                         utils=utils, sys=sys, repo_vars=repo_vars)))
 
-    pool = Pool(processes=16) # 16 is an arbitrary amount that appears to be fast without blocking the system
-    pool.map(render_consist_nml, consists)
-    pool.close()
-    pool.join()
+    if repo_vars['no_mp'] == 'True':
+        for consist in consists:
+            render_consist_nml(consist)
+    else:
+        pool = Pool(processes=16) # 16 is an arbitrary amount that appears to be fast without blocking the system
+        pool.map(render_consist_nml, consists)
+        pool.close()
+        pool.join()
 
     for consist in consists:
         consist_nml = codecs.open(os.path.join('generated', 'nml', consist.id + '.nml'),'r','utf8').read()
