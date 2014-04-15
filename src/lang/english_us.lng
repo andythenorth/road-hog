@@ -1,0 +1,30 @@
+##grflangid 0x00
+##plural 0
+STR_GRF_DESCRIPTION                                             :License: {SILVER}GPL v2{}{BLACK}
+
+STR_PARAM_ADJUST_VEHICLE_CAPACITY                               :Train capacity
+STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_0                      :Puny
+STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_1                      :Marvellous
+STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2                      :Excessive
+
+STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Passenger Tram
+STR_NAME_SUFFIX_BUS                                             :Bus
+STR_NAME_SUFFIX_GENERAL_CARGO_TRAM                              :General Cargo Tram
+STR_NAME_SUFFIX_GENERAL_CARGO_TRUCK                             :General Cargo Truck
+STR_NAME_SUFFIX_COURIER_TRAM                                    :Courier Tram
+STR_NAME_SUFFIX_COURIER_TRUCK                                   :Courier Truck
+STR_NAME_SUFFIX_TANKER_TRUCK                                    :Tanker Truck
+STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :Covered Hopper Truck
+STR_NAME_SUFFIX_MINING_TRAM                                     :Mining Tram
+STR_NAME_SUFFIX_MINING_TRUCK                                    :Mining Hauler
+STR_NAME_SUFFIX_DUMP_TRUCK                                      :Dump Truck
+STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :Foundry Hauler
+STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Intermodal Hauler
+STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :Livestock Tram
+STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :Livestock Truck
+STR_NAME_SUFFIX_REEFER_TRUCK                                    :Reefer Truck
+STR_NAME_SUFFIX_LOGGING_TRUCK                                   :Logging Truck
+
+STR_BUY_MENU_TEXT                                               :Type: {GOLD}{STRING}{}{STRING}{STRING}
+STR_BUY_MENU_OFFERS_AUTOREFIT                                   :{BLACK}Offers auto-refit
+
