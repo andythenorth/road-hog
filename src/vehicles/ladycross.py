@@ -13,10 +13,16 @@ consist = EngineConsist(id = 'ladycross',
               graphics_status = '')
 
 consist.add_unit(PaxHauler(consist = consist,
-                        weight = 8,
-                        capacity_pax = 30,
-                        vehicle_length = 7,
+                        weight = 6,
+                        capacity_pax = 0,
+                        vehicle_length = 3,
                         spriterow_num = 0))
+
+consist.add_unit(PaxHauler(consist = consist,
+                        weight = 4,
+                        capacity_pax = 30,
+                        vehicle_length = 5,
+                        spriterow_num = 1))
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,
