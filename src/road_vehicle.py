@@ -263,6 +263,7 @@ class RoadVehicle(object):
         self.vehicle_length = kwargs.get('vehicle_length', None)
         self.speed = kwargs.get('speed', 0)
         self.weight = kwargs.get('weight', None)
+        self.visual_effect = kwargs.get('visual_effect', 'VISUAL_EFFECT_DISABLE') # nml constant
         # declare capacities for pax, mail and freight, as they are needed later for nml switches
         self.capacities_pax = self.get_capacity_variations(kwargs.get('capacity_pax', 0))
         self.capacities_mail = self.get_capacity_variations(kwargs.get('capacity_mail', 0))
@@ -275,7 +276,6 @@ class RoadVehicle(object):
         self.label_refits_allowed = [] # no specific labels needed
         self.label_refits_disallowed = []
         self.autorefit = False
-        self.visual_effect = 'VISUAL_EFFECT_DISABLE' # nml constant
         self.visual_effect_offset = 0
 
     def get_capacity_variations(self, capacity):
@@ -465,7 +465,6 @@ class GeneralCargoHauler(RoadVehicle):
         self.label_refits_disallowed = []
         self.default_cargo = 'GOOD'
         self.default_cargo_capacities = self.capacities_freight
-        self.visual_effect = 'VISUAL_EFFECT_DIESEL' # nml constant
 
 
 class MiningHauler(RoadVehicle):
