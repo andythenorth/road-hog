@@ -4,6 +4,7 @@ from road_vehicle import EngineConsist, FoundryHauler
 consist = EngineConsist(id = 'stancliffe',
               base_numeric_id = 350,
               title = 'Stancliffe [Foundry Hauler]',
+              roadveh_flag_tram = True,
               replacement_id = '-none',
               power = 200,
               speed = 27,
@@ -15,6 +16,7 @@ consist.add_unit(FoundryHauler(consist = consist,
                         weight = 20,
                         capacity_freight = 0,
                         vehicle_length = 7,
+                        visual_effect = 'VISUAL_EFFECT_ELECTRIC',
                         spriterow_num = 0))
 
 consist.add_unit(FoundryHauler(consist = consist,
