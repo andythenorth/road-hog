@@ -17,6 +17,7 @@ consist.add_unit(CourierTruck(consist = consist,
                         capacity_freight = 20,
                         capacity_mail = 40,
                         vehicle_length = 7,
+                        visual_effect = 'VISUAL_EFFECT_ELECTRIC',
                         spriterow_num = 0))
 
 consist.add_model_variant(intro_date=0,

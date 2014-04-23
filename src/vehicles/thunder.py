@@ -15,6 +15,7 @@ consist.add_unit(PaxHauler(consist = consist,
                         weight = 20,
                         capacity_pax = 75,
                         vehicle_length = 7,
+                        visual_effect = 'VISUAL_EFFECT_DIESEL',
                         spriterow_num = 0))
 
 consist.add_model_variant(intro_date=0,

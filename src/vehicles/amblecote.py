@@ -16,6 +16,7 @@ consist.add_unit(GeneralCargoHauler(consist = consist,
                         weight = 12,
                         capacity_freight = 0,
                         vehicle_length = 4,
+                        visual_effect = 'VISUAL_EFFECT_STEAM',
                         spriterow_num = 0))
 
 consist.add_unit(GeneralCargoHauler(consist = consist,

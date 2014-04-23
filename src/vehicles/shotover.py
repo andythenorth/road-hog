@@ -16,6 +16,7 @@ consist.add_unit(LivestockHauler(consist = consist,
                         weight = 12,
                         capacity_freight = 20,
                         vehicle_length = 7,
+                        visual_effect = 'VISUAL_EFFECT_ELECTRIC',
                         spriterow_num = 0), repeat = 2)
 
 consist.add_model_variant(intro_date=0,

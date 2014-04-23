@@ -16,6 +16,7 @@ consist.add_unit(PaxHauler(consist = consist,
                         weight = 6,
                         capacity_pax = 0,
                         vehicle_length = 3,
+                        visual_effect = 'VISUAL_EFFECT_STEAM',
                         spriterow_num = 0))
 
 consist.add_unit(PaxHauler(consist = consist,

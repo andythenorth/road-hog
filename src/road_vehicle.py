@@ -433,7 +433,6 @@ class CourierTruck(RoadVehicle):
         self.label_refits_disallowed = []
         self.default_cargo = 'MAIL'
         self.default_cargo_capacities = self.capacities_freight
-        self.visual_effect = 'VISUAL_EFFECT_DIESEL' # nml constant
 
 
 class PaxHauler(RoadVehicle):
@@ -449,7 +448,6 @@ class PaxHauler(RoadVehicle):
         self.label_refits_disallowed = []
         self.default_cargo = 'PASS'
         self.default_cargo_capacities = self.capacities_pax
-        self.visual_effect = 'VISUAL_EFFECT_DIESEL' # nml constant
 
 
 class GeneralCargoHauler(RoadVehicle):
@@ -480,7 +478,6 @@ class MiningHauler(RoadVehicle):
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_hopper_freight']
         self.default_cargo = 'COAL'
         self.default_cargo_capacities = self.capacities_freight
-        self.visual_effect = 'VISUAL_EFFECT_DIESEL' # nml constant
 
 
 class BulkHauler(RoadVehicle):
@@ -496,7 +493,6 @@ class BulkHauler(RoadVehicle):
         self.label_refits_disallowed = []
         self.default_cargo = 'COAL'
         self.default_cargo_capacities = self.capacities_freight
-        self.visual_effect = 'VISUAL_EFFECT_DIESEL' # nml constant
 
 
 class BulkPowderHauler(RoadVehicle):
@@ -512,7 +508,6 @@ class BulkPowderHauler(RoadVehicle):
         self.label_refits_disallowed = []
         self.default_cargo = 'GRAI'
         self.default_cargo_capacities = self.capacities_freight
-        self.visual_effect = 'VISUAL_EFFECT_DIESEL' # nml constant
 
 
 class LivestockHauler(RoadVehicle):
@@ -528,7 +523,6 @@ class LivestockHauler(RoadVehicle):
         self.label_refits_disallowed = []
         self.default_cargo = 'LVST'
         self.default_cargo_capacities = self.capacities_freight
-        self.visual_effect = 'VISUAL_EFFECT_DIESEL' # nml constant
 
 
 class RefrigeratedHauler(RoadVehicle):
@@ -545,7 +539,6 @@ class RefrigeratedHauler(RoadVehicle):
         self.label_refits_disallowed = []
         self.default_cargo = 'FOOD'
         self.default_cargo_capacities = self.capacities_freight
-        self.visual_effect = 'VISUAL_EFFECT_DIESEL' # nml constant
 
 
 class Tanker(RoadVehicle):
@@ -561,7 +554,6 @@ class Tanker(RoadVehicle):
         self.label_refits_disallowed = []
         self.default_cargo = 'OIL_'
         self.default_cargo_capacities = self.capacities_freight
-        self.visual_effect = 'VISUAL_EFFECT_DIESEL' # nml constant
 
 
 class LogHauler(RoadVehicle):
@@ -577,7 +569,6 @@ class LogHauler(RoadVehicle):
         self.label_refits_disallowed = []
         self.default_cargo = 'WOOD'
         self.default_cargo_capacities = self.capacities_freight
-        self.visual_effect = 'VISUAL_EFFECT_DIESEL' # nml constant
 
 
 class FoundryHauler(RoadVehicle):
@@ -594,7 +585,6 @@ class FoundryHauler(RoadVehicle):
         self.label_refits_disallowed = []
         self.default_cargo = 'STEL'
         self.default_cargo_capacities = self.capacities_freight
-        self.visual_effect = 'VISUAL_EFFECT_DIESEL' # nml constant
 
 
 class IntermodalHauler(RoadVehicle):
@@ -611,6 +601,5 @@ class IntermodalHauler(RoadVehicle):
         self.label_refits_disallowed = ['FISH','LVST','OIL_','TOUR','WOOD']
         self.default_cargo = 'GOOD'
         self.default_cargo_capacities = self.capacities_freight
-        self.visual_effect = 'VISUAL_EFFECT_DIESEL' # nml constant
 
 
