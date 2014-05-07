@@ -1,0 +1,33 @@
+##grflangid 0x3a
+##plural 11
+##gender m f
+STR_GRF_DESCRIPTION                                             :라이선스: {SILVER}GPL v2{}{BLACK}
+
+STR_PARAM_ADJUST_VEHICLE_CAPACITY                               :열차 수송량
+STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_0                      :매우 작은
+STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_1                      :놀라운
+STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2                      :과도한
+
+STR_NAME_SUFFIX_PASSENGER_TRAM                                  :승객 전차
+STR_NAME_SUFFIX_BUS                                             :버스
+STR_NAME_SUFFIX_GENERAL_CARGO_TRAM                              :일반 화물 전차
+STR_NAME_SUFFIX_GENERAL_CARGO_TRUCK                             :다중 화물 트럭
+STR_NAME_SUFFIX_COURIER_TRAM                                    :안내원 전차
+STR_NAME_SUFFIX_COURIER_TRUCK                                   :안내 트럭
+STR_NAME_SUFFIX_TANKER_TRUCK                                    :탱크로리
+STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :유개(덮개가 있는) 트럭
+STR_NAME_SUFFIX_MINING_TRAM                                     :광석 수송 전차
+STR_NAME_SUFFIX_MINING_TRUCK                                    :광석 운송 차량
+STR_NAME_SUFFIX_DUMP_TRUCK                                      :덤프 트럭
+STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :철 수송 트럭
+STR_NAME_SUFFIX_INTERMODAL_HAULER                               :다중 수송 트럭
+STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :가축 수송 트럭
+STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :가축 트럭
+STR_NAME_SUFFIX_REEFER_TRUCK                                    :가축 수송 트럭
+STR_NAME_SUFFIX_LOGGING_TRUCK                                   :목재 수송 트럭
+
+STR_BUY_MENU_TEXT                                               :종류: {GOLD}{STRING}{}{STRING}{STRING}
+STR_BUY_MENU_OFFERS_AUTOREFIT                                   :{BLACK}자동 차량 교체 지원
+
+STR_COASTER                                                     :소가 달을 뛰어 넘었디.(아직 끝나지 않은 상기문)
+STR_DOGTRACK                                                    :어떤 때는, 개들은 갈색입니다.
