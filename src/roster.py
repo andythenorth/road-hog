@@ -10,5 +10,6 @@ class Roster(object):
     """
     def __init__(self, **kwargs):
         self.id = kwargs.get('id')
+        self.title = kwargs.get('title')
         self.buy_menu_sort_order = kwargs.get('buy_menu_sort_order')
         register(self)

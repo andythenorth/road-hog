@@ -19,6 +19,14 @@ grf {
             };
         }
     }
+    <tal:rosters repeat="roster ['brit', 'wasteland']">
+        param ${global_constants.vehicle_set_id_mapping[roster]} {
+            param_${roster} {
+                type:    bool;
+                name:    string(STR_ROSTER_NAME_${roster});
+            }
+        }
+    </tal:rosters>
 }
 
 basecost {
