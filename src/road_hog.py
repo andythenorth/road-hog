@@ -35,27 +35,28 @@ from vehicles import registered_consists, registered_wagon_generations
 from rosters import registered_rosters
 
 from rosters import brit
+from rosters import wasteland
 
 def get_consists_in_buy_menu_order(show_warnings=False):
     sorted_consists = []
     # first compose the buy menu order list
-    buy_menu_sort_order = list(registered_rosters['brit'].buy_menu_sort_order) # copy the list to avoid unwanted modifications to it
+    for roster in registered_rosters.values():
+        buy_menu_sort_order = list(roster.buy_menu_sort_order) # copy the list to avoid unwanted modifications to it
 
-    # now check registered vehicles against the buy menu order, and add them to the sorted list
-    for id in buy_menu_sort_order:
-        found = False
-        for consist in registered_consists:
-            if consist.id == id:
-                sorted_consists.append(consist)
-                found = True
-        if show_warnings and not found:
-            utils.echo_message("Warning: consist " + id + " in buy_menu_sort_order, but not found in registered_consists")
+        # now check registered vehicles against the buy menu order, and add them to the sorted list
+        for id in buy_menu_sort_order:
+            found = False
+            for consist in registered_consists:
+                if consist.id == id:
+                    sorted_consists.append(consist)
+                    found = True
+            if show_warnings and not found:
+                utils.echo_message("Warning: consist " + id + " in buy_menu_sort_order, but not found in registered_consists")
 
     # now guard against any consists missing from buy menu order, as that wastes time asking 'wtf?' when they don't appear in game
     for consist in registered_consists:
-        id = consist.id
-        if show_warnings and id not in buy_menu_sort_order:
-            utils.echo_message("Warning: consist " + id + " in registered_consists, but not in buy_menu_sort_order - won't show in game")
+        if show_warnings and consist not in sorted_consists:
+            utils.echo_message("Warning: consist " + consist.id + " in registered_consists, but not in buy_menu_sort_order - won't show in game")
     return sorted_consists
 
 
