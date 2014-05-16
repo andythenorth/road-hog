@@ -20,6 +20,8 @@ import graphics_processor
 
 from vehicles import registered_consists, registered_wagon_generations
 
+import inspect
+
 
 class Consist(object):
     """
@@ -28,7 +30,7 @@ class Consist(object):
     """
     def __init__(self, **kwargs):
         self.id = kwargs.get('id', None)
-
+        self.vehicle_module_path = inspect.stack()[2][1]
         # setup properties for this consist (props either shared for all vehicles, or placed on lead vehicle of consist)
         self.title = kwargs.get('title', None)
         self.base_numeric_id = kwargs.get('base_numeric_id', None)
