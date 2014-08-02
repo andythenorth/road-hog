@@ -1,0 +1,33 @@
+##grflangid 0x1b
+##plural 0
+##gender male
+STR_GRF_DESCRIPTION                                             :Lisensie: {SILVER}GPL v2{}{BLACK}
+
+STR_PARAM_ADJUST_VEHICLE_CAPACITY                               :Trein Kapasiteit
+STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_0                      :Bietjie
+STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_1                      :Wonderlik
+STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2                      :Uitermatig
+
+STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Passasier Trem
+STR_NAME_SUFFIX_BUS                                             :Bus
+STR_NAME_SUFFIX_GENERAL_CARGO_TRAM                              :Algemene Vrag Trem
+STR_NAME_SUFFIX_GENERAL_CARGO_TRUCK                             :Algemene Vrag Vragmotor
+STR_NAME_SUFFIX_COURIER_TRAM                                    :Koerier Trem
+STR_NAME_SUFFIX_COURIER_TRUCK                                   :Koerier Vragmotor
+STR_NAME_SUFFIX_TANKER_TRUCK                                    :Tenkwa
+STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :Bedekte Laai Vragmotor
+STR_NAME_SUFFIX_MINING_TRAM                                     :Myn Trem
+STR_NAME_SUFFIX_MINING_TRUCK                                    :Myn Trok
+STR_NAME_SUFFIX_DUMP_TRUCK                                      :Stortings Trok
+STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :Staal Trok
+STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Intermodale Trok
+STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :Lewendehawe Trem
+STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :Lewendehawe Vragmotor
+STR_NAME_SUFFIX_REEFER_TRUCK                                    :'Reefer' Vragmotor
+STR_NAME_SUFFIX_LOGGING_TRUCK                                   :Hout Vragmotor
+
+STR_BUY_MENU_TEXT                                               :Tipe: {GOLD}{STRING}{}{STRING}{STRING}
+STR_BUY_MENU_OFFERS_AUTOREFIT                                   :{BLACK}Verskap auto-herbou
+
+STR_COASTER                                                     :Die Koei het oor die maan gespring (Die is 'n herrinering)
+STR_DOGTRACK                                                    :Honde is bruin, somtyds
