@@ -4,7 +4,9 @@
 
 STR_PARAM_ADJUST_VEHICLE_CAPACITY                               :Capacidad del tren
 STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_0                      :Insignificante
+STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_1                      :Maravillosa
 
 
+STR_BUY_MENU_TEXT                                               :Tipo: {GOLD}{STRING}{}{STRING}{STRING}
 STR_BUY_MENU_OFFERS_AUTOREFIT                                   :{BLACK}Ofrece auto-reforma
 
