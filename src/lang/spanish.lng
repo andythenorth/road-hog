@@ -1,6 +1,7 @@
 ##grflangid 0x04
 ##plural 0
 ##gender m f
+STR_GRF_DESCRIPTION                                             :Licencia: {SILVER}GPL v2{}{BLACK}
 
 STR_PARAM_ADJUST_VEHICLE_CAPACITY                               :Capacidad del tren
 STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_0                      :Insignificante
@@ -10,6 +11,7 @@ STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2                      :Excesiva
 STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Tranvía de pasajeros
 STR_NAME_SUFFIX_GENERAL_CARGO_TRAM                              :Tranvía de carga
 STR_NAME_SUFFIX_GENERAL_CARGO_TRUCK                             :Camión de carga
+STR_NAME_SUFFIX_TANKER_TRUCK                                    :Camión cisterna
 
 STR_BUY_MENU_TEXT                                               :Tipo: {GOLD}{STRING}{}{STRING}{STRING}
 STR_BUY_MENU_OFFERS_AUTOREFIT                                   :{BLACK}Ofrece auto-reforma
