@@ -14,8 +14,10 @@ STR_NAME_SUFFIX_GENERAL_CARGO_TRUCK                             :Camión de carg
 STR_NAME_SUFFIX_COURIER_TRAM                                    :Tranvía de mensajería-correo urgente
 STR_NAME_SUFFIX_COURIER_TRUCK                                   :Camión de mensajería-correo urgente
 STR_NAME_SUFFIX_TANKER_TRUCK                                    :Camión cisterna
+STR_NAME_SUFFIX_DUMP_TRUCK                                      :Camión volquete
 STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :Tranvía de ganado
 STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :Camión de ganado
+STR_NAME_SUFFIX_REEFER_TRUCK                                    :Camión frigorífico
 
 STR_BUY_MENU_TEXT                                               :Tipo: {GOLD}{STRING}{}{STRING}{STRING}
 STR_BUY_MENU_OFFERS_AUTOREFIT                                   :{BLACK}Ofrece auto-reforma
