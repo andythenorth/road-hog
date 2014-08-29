@@ -2,7 +2,7 @@
 ##plural 0
 STR_GRF_DESCRIPTION                                             :License: {SILVER}GPL v2{}{BLACK}
 
-STR_PARAM_ADJUST_VEHICLE_CAPACITY                               :Train capacity
+STR_PARAM_ADJUST_VEHICLE_CAPACITY                               :Road Vehicle capacity
 STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_0                      :Puny
 STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_1                      :Marvellous
 STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2                      :Excessive
