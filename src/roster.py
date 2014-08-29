@@ -1,7 +1,7 @@
 from rosters import registered_rosters
 
 def register(roster):
-    registered_rosters[roster.id] = roster
+    registered_rosters.append(roster)
 
 
 class Roster(object):
@@ -10,6 +10,5 @@ class Roster(object):
     """
     def __init__(self, **kwargs):
         self.id = kwargs.get('id')
-        self.title = kwargs.get('title')
         self.buy_menu_sort_order = kwargs.get('buy_menu_sort_order')
         register(self)

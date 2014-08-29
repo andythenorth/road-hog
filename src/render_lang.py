@@ -31,9 +31,8 @@ hint_file.close()
 
 def main():
     consists = road_hog.get_consists_in_buy_menu_order()
-    rosters = road_hog.registered_rosters.values()
-
     languages_with_generation = ('english',)
+
     for i in languages_with_generation:
         #compile strings to single lang file - english
         lang_template = lang_templates[i + '.pylng']
@@ -41,7 +40,7 @@ def main():
         src_file = codecs.open(os.path.join(lang_src, i + '.lng'), 'r','utf8')
         dst_file = codecs.open(os.path.join(lang_dst, i + '.lng'), 'w','utf8')
         lang_content = src_file.read()
-        lang_content = lang_content + lang_template(consists=consists, rosters=rosters, repo_vars=repo_vars)
+        lang_content = lang_content + lang_template(consists=consists, repo_vars=repo_vars)
         dst_file.write(lang_content)
         dst_file.close()
 

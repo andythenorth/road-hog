@@ -20,8 +20,9 @@ import graphics_processor
 
 from vehicles import registered_consists, registered_wagon_generations
 
-import inspect
+from rosters import registered_rosters
 
+import inspect
 
 class Consist(object):
     """
@@ -192,7 +193,6 @@ class Consist(object):
     @property
     def running_cost(self):
         consist_capacity_points = min(self.capacity, 160)
-        print self.id, consist_capacity_points
         # type_base_running_cost_points is an arbitrary adjustment that can be applied on a type-by-type basis,
         return self.get_engine_cost_points() + consist_capacity_points + self.type_base_running_cost_points
 
@@ -362,6 +362,19 @@ class RoadVehicle(object):
         for i in cargo_labels:
             if i not in global_constants.cargo_labels:
                 utils.echo_message("Warning: vehicle " + self.id + " references cargo label " + i + " which is not defined in the cargo table")
+
+    def get_rosters_for_vehicle(self):
+        result = []
+        for roster in registered_rosters:
+            if self.consist.id in roster.buy_menu_sort_order:
+                result.append(roster)
+        return result
+
+    def get_expression_for_rosters(self):
+        result = []
+        for roster in self.get_rosters_for_vehicle():
+            result.append('param_roster=='+str(registered_rosters.index(roster)))
+        return ' || '.join(result)
 
     def render_debug_info(self):
         template = templates["debug_info_vehicle.pynml"]

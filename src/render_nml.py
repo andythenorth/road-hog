@@ -13,6 +13,7 @@ from multiprocessing import Pool
 import road_hog
 import utils
 import global_constants
+from rosters import registered_rosters
 
 from chameleon import PageTemplateLoader # chameleon used in most template cases
 # setup the places we look for templates
@@ -52,7 +53,8 @@ def main():
     for header_item in header_items:
         template = templates[header_item + '.pynml']
         grf_nml.write(utils.unescape_chameleon_output(template(consists=consists, global_constants=global_constants,
-                                                        utils=utils, sys=sys, repo_vars=repo_vars)))
+                                                      registered_rosters=registered_rosters,
+                                                      utils=utils, sys=sys, repo_vars=repo_vars)))
 
     if repo_vars.get('compile_faster', None) == 'True':
         utils.echo_message('Only rendering changed nml files: (COMPILE_FASTER=True)')

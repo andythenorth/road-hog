@@ -2,11 +2,6 @@ STR_GRF_NAME                                                    :Road Hog ${repo
 <!--! empty string is not translated :) -->
 STR_EMPTY                                                       :
 
-<!--! roster names -->
-<tal:build_roster_names repeat="roster rosters">
-STR_ROSTER_NAME_${roster.id}                                    :${roster.title} Roster
-</tal:build_roster_names>
-
 <!--! consist names -->
 <tal:build_consist_names repeat="consist consists">
 STR_NAME_${consist.id}                                          :${consist.get_name_substr()} {STRING}

@@ -34,16 +34,19 @@ from vehicles import registered_consists, registered_wagon_generations
 
 from rosters import registered_rosters
 
+# changing the order of rosters breaks savegames (parameter values change), don't do it.
 from rosters import brit
-from rosters import wasteland
+#from rosters import wasteland
 
 def get_consists_in_buy_menu_order(show_warnings=False):
     sorted_consists = []
+    buy_menu_sort_order = []
     # first compose the buy menu order list
-    for roster in registered_rosters.values():
-        buy_menu_sort_order = list(roster.buy_menu_sort_order) # copy the list to avoid unwanted modifications to it
+    for roster in registered_rosters:
+        buy_menu_sort_order.extend(roster.buy_menu_sort_order)
 
-        # now check registered vehicles against the buy menu order, and add them to the sorted list
+    # gotcha: but menu order will be wrong if a vehicle appears in more than one roster with same numeric ID
+    # there is no other limitation on re-using a vehicle in multiple rosters, and the buy menu could be fixed if needed (declare buy menu order multiple times, wrapped in param check)
         for id in buy_menu_sort_order:
             found = False
             for consist in registered_consists:
@@ -55,8 +58,7 @@ def get_consists_in_buy_menu_order(show_warnings=False):
 
     # now guard against any consists missing from buy menu order, as that wastes time asking 'wtf?' when they don't appear in game
     for consist in registered_consists:
-        if show_warnings and consist not in sorted_consists:
-            utils.echo_message("Warning: consist " + consist.id + " in registered_consists, but not in buy_menu_sort_order - won't show in game")
+        id = consist.id
+        if show_warnings and id not in buy_menu_sort_order:
+            utils.echo_message("Warning: consist " + id + " in registered_consists, but not in buy_menu_sort_order - won't show in game")
     return sorted_consists
-
-
