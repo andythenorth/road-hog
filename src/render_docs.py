@@ -43,7 +43,7 @@ shutil.copytree(static_dir_src, static_dir_dst)
 import markdown
 from chameleon import PageTemplateLoader # chameleon used in most template cases
 # setup the places we look for templates
-docs_templates = PageTemplateLoader(os.path.join(docs_src), format='text')
+docs_templates = PageTemplateLoader(docs_src, format='text')
 
 from road_vehicle import RoadVehicle
 
