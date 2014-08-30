@@ -3,7 +3,7 @@
 ##gender m f
 STR_GRF_DESCRIPTION                                             :Licencia: {SILVER}GPL v2{}{BLACK}
 
-STR_PARAM_ADJUST_VEHICLE_CAPACITY                               :Capacidad del tren
+STR_PARAM_ADJUST_VEHICLE_CAPACITY                               :Capacidad de los vehículos de carretera
 STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_0                      :Insignificante
 STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_1                      :Maravillosa
 STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2                      :Excesiva
@@ -14,6 +14,7 @@ STR_NAME_SUFFIX_GENERAL_CARGO_TRUCK                             :Camión de carg
 STR_NAME_SUFFIX_COURIER_TRAM                                    :Tranvía de mensajería-correo urgente
 STR_NAME_SUFFIX_COURIER_TRUCK                                   :Camión de mensajería-correo urgente
 STR_NAME_SUFFIX_TANKER_TRUCK                                    :Camión cisterna
+STR_NAME_SUFFIX_MINING_TRAM                                     :Tranvía minero
 STR_NAME_SUFFIX_DUMP_TRUCK                                      :Camión volquete
 STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :Tranvía de ganado
 STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :Camión de ganado
