@@ -3,10 +3,12 @@
 ##gender male
 STR_GRF_DESCRIPTION                                             :Lisensie: {SILVER}GPL v2{}{BLACK}
 
-STR_PARAM_ADJUST_VEHICLE_CAPACITY                               :Trein Kapasiteit
+STR_PARAM_ADJUST_VEHICLE_CAPACITY                               :Pad Voertuig kapasiteit
 STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_0                      :Bietjie
 STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_1                      :Wonderlik
 STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2                      :Uitermatig
+STR_PARAM_ROSTER_DESC                                           :Kies watter stel voertue om te gebruik
+STR_PARAM_ROSTER_OPTION_0                                       :Brit
 
 STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Passasier Trem
 STR_NAME_SUFFIX_BUS                                             :Bus
