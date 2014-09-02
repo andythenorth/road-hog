@@ -7,6 +7,7 @@ STR_PARAM_ADJUST_VEHICLE_CAPACITY                               :Pad Voertuig ka
 STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_0                      :Bietjie
 STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_1                      :Wonderlik
 STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2                      :Uitermatig
+STR_PARAM_ROSTER                                                :Rooster
 STR_PARAM_ROSTER_DESC                                           :Kies watter stel voertue om te gebruik
 STR_PARAM_ROSTER_OPTION_0                                       :Brit
 
