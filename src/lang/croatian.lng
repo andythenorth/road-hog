@@ -4,10 +4,13 @@
 ##case aku dat gen ins lok nom vok
 STR_GRF_DESCRIPTION                                             :Licenca: {SILVER}GPL v2{}{BLACK}
 
-STR_PARAM_ADJUST_VEHICLE_CAPACITY                               :Kapacitet vlaka
+STR_PARAM_ADJUST_VEHICLE_CAPACITY                               :Kapacitet cestovnog vozila
 STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_0                      :Slabašan
 STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_1                      :Izvrstan
 STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2                      :Pretjeran
+STR_PARAM_ROSTER                                                :Raspored
+STR_PARAM_ROSTER_DESC                                           :Odaberite koji set vozila želite koristiti.
+STR_PARAM_ROSTER_OPTION_0                                       :Brit
 
 STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Putnički tramvaj
 STR_NAME_SUFFIX_BUS                                             :Autobus

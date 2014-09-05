@@ -2,10 +2,13 @@
 ##plural 0
 STR_GRF_DESCRIPTION                                             :Lisenssi: {SILVER}GPL v2{}{BLACK}
 
-STR_PARAM_ADJUST_VEHICLE_CAPACITY                               :Junakapasiteetti
+STR_PARAM_ADJUST_VEHICLE_CAPACITY                               :Ajoneuvokapasiteetti
 STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_0                      :Mitätön
 STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_1                      :Uskomaton
 STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2                      :Yletön
+STR_PARAM_ROSTER                                                :Valikoimat
+STR_PARAM_ROSTER_DESC                                           :Valitse, mitä ajoneuvovalikoimaa käytetään.
+STR_PARAM_ROSTER_OPTION_0                                       :Britti
 
 STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Matkustajaraitiovaunu
 STR_NAME_SUFFIX_BUS                                             :Linja-auto
