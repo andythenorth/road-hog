@@ -8,8 +8,7 @@ consist = EngineConsist(id = 'greenscoe',
               power = 150,
               speed = 35,
               vehicle_life = 40,
-              intro_date = 1931,
-              graphics_status = '')
+              intro_date = 1931)
 
 consist.add_unit(Tanker(consist = consist,
                         weight = 7,

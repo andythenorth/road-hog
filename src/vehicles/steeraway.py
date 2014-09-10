@@ -8,8 +8,7 @@ consist = EngineConsist(id = 'steeraway',
               power = 500,
               speed = 37,
               vehicle_life = 40,
-              intro_date = 1985,
-              graphics_status = '')
+              intro_date = 1985)
 
 consist.add_unit(FoundryHauler(consist = consist,
                         weight = 35,

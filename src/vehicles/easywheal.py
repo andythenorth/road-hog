@@ -8,8 +8,7 @@ consist = EngineConsist(id = 'easywheal',
               power = 170,
               speed = 50,
               vehicle_life = 40,
-              intro_date = 1944,
-              graphics_status = '')
+              intro_date = 1944)
 
 consist.add_unit(GeneralCargoHauler(consist = consist,
                         weight = 12,

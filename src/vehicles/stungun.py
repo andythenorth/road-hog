@@ -8,8 +8,7 @@ consist = EngineConsist(id = 'stungun',
               power = 400,
               speed = 65,
               vehicle_life = 40,
-              intro_date = 1983,
-              graphics_status = '')
+              intro_date = 1983)
 
 consist.add_unit(LivestockHauler(consist = consist,
                         weight = 8,

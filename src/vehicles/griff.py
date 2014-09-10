@@ -8,8 +8,7 @@ consist = EngineConsist(id = 'griff',
               power = 150,
               speed = 35,
               vehicle_life = 40,
-              intro_date = 1929,
-              graphics_status = '')
+              intro_date = 1929)
 
 consist.add_unit(LogHauler(consist = consist,
                         weight = 7,

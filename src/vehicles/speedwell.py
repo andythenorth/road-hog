@@ -8,8 +8,7 @@ consist = EngineConsist(id = 'speedwell',
               power = 450,
               speed = 65,
               vehicle_life = 40,
-              intro_date = 1994,
-              graphics_status = '')
+              intro_date = 1994)
 
 consist.add_unit(GeneralCargoHauler(consist = consist,
                         weight = 7,

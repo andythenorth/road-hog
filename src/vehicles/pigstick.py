@@ -8,8 +8,7 @@ consist = EngineConsist(id = 'pigstick',
               power = 180,
               speed = 50,
               vehicle_life = 40,
-              intro_date = 1943,
-              graphics_status = '')
+              intro_date = 1943)
 
 consist.add_unit(LivestockHauler(consist = consist,
                         weight = 10,

@@ -9,8 +9,7 @@ consist = EngineConsist(id = 'foxley',
               power = 100,
               speed = 35,
               vehicle_life = 40,
-              intro_date = 1905,
-              graphics_status = '')
+              intro_date = 1905)
 
 consist.add_unit(CourierTruck(consist = consist,
                         weight = 10,

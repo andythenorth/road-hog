@@ -8,8 +8,7 @@ consist = EngineConsist(id = 'tallyho',
               power = 120,
               speed = 60,
               vehicle_life = 40,
-              intro_date = 1938,
-              graphics_status = '')
+              intro_date = 1938)
 
 consist.add_unit(CourierTruck(consist = consist,
                         weight = 12,

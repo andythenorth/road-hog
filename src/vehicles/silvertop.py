@@ -8,8 +8,7 @@ consist = EngineConsist(id = 'silvertop',
               power = 250,
               speed = 55,
               vehicle_life = 40,
-              intro_date = 1952,
-              graphics_status = '')
+              intro_date = 1952)
 
 consist.add_unit(RefrigeratedHauler(consist = consist,
                         weight = 7,

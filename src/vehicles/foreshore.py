@@ -8,8 +8,7 @@ consist = EngineConsist(id = 'foreshore',
               power = 950,
               speed = 55,
               vehicle_life = 40,
-              intro_date = 1959,
-              graphics_status = '')
+              intro_date = 1959)
 
 consist.add_unit(IntermodalHauler(consist = consist,
                         weight = 50,

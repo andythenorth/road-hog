@@ -51,8 +51,6 @@ class Consist(object):
         self.model_variants = []
         # create structure to hold the slices
         self.slices = []
-        # some project management stuff
-        self.graphics_status = kwargs.get('graphics_status', None)
         # register consist with this module so other modules can use it, with a non-blocking guard on duplicate IDs
         for consist in registered_consists:
             if consist.base_numeric_id == self.base_numeric_id:

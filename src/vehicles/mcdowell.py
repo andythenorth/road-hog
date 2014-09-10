@@ -8,8 +8,7 @@ consist = EngineConsist(id = 'mcdowell',
               power = 400,
               speed = 65,
               vehicle_life = 40,
-              intro_date = 1984,
-              graphics_status = '')
+              intro_date = 1984)
 
 consist.add_unit(BulkPowderHauler(consist = consist,
                         weight = 8,

@@ -8,8 +8,7 @@ consist = EngineConsist(id = 'goldmire',
               power = 180,
               speed = 75,
               vehicle_life = 40,
-              intro_date = 1971,
-              graphics_status = '')
+              intro_date = 1971)
 
 consist.add_unit(CourierTruck(consist = consist,
                         weight = 14,
