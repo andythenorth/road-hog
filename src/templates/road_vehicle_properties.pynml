@@ -1,7 +1,6 @@
 item(FEAT_ROADVEHS, ${vehicle.id}, ${vehicle.numeric_id}) {
     property {
         name:                           ${consist.get_name()};
-        climates_available:             ${vehicle.availability};
         introduction_date:              date(${consist.intro_date},01,01); // consist just supplies intro year - openttd randomises intro dates a bit anyway
         cargo_capacity:                 ${vehicle.default_cargo_capacities[0]};
         sprite_id:                      SPRITE_ID_NEW_ROADVEH; //enable new graphics - nml constant
@@ -42,7 +41,7 @@ item(FEAT_ROADVEHS, ${vehicle.id}, ${vehicle.numeric_id}) {
 if (${vehicle.get_expression_for_rosters()}) {
     item(FEAT_ROADVEHS, ${vehicle.id}, ${vehicle.numeric_id}) {
         property {
-            climates_available:             ALL_CLIMATES;
+            climates_available:             ${vehicle.availability};
         }
     }
 }
