@@ -29,8 +29,5 @@ STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :Lewendehawe Vra
 STR_NAME_SUFFIX_REEFER_TRUCK                                    :'Reefer' Vragmotor
 STR_NAME_SUFFIX_LOGGING_TRUCK                                   :Hout Vragmotor
 
-STR_BUY_MENU_TEXT                                               :Tipe: {GOLD}{STRING}{}{STRING}{STRING}
-STR_BUY_MENU_OFFERS_AUTOREFIT                                   :{BLACK}Verskap auto-herbou
-
 STR_COASTER                                                     :Die Koei het oor die maan gespring (Die is 'n herrinering)
 STR_DOGTRACK                                                    :Honde is bruin, somtyds

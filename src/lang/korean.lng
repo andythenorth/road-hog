@@ -26,8 +26,5 @@ STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :가축 트럭
 STR_NAME_SUFFIX_REEFER_TRUCK                                    :가축 수송 트럭
 STR_NAME_SUFFIX_LOGGING_TRUCK                                   :목재 수송 트럭
 
-STR_BUY_MENU_TEXT                                               :종류: {GOLD}{STRING}{}{STRING}{STRING}
-STR_BUY_MENU_OFFERS_AUTOREFIT                                   :{BLACK}자동 차량 교체 지원
-
 STR_COASTER                                                     :소가 달을 뛰어 넘었디.(아직 끝나지 않은 상기문)
 STR_DOGTRACK                                                    :어떤 때는, 개들은 갈색입니다.

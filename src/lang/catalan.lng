@@ -29,8 +29,5 @@ STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :Camió per a be
 STR_NAME_SUFFIX_REEFER_TRUCK                                    :Camió refrigerat
 STR_NAME_SUFFIX_LOGGING_TRUCK                                   :Camió de troncs
 
-STR_BUY_MENU_TEXT                                               :Tipus: {GOLD}{STRING}{}{STRING}{STRING}
-STR_BUY_MENU_OFFERS_AUTOREFIT                                   :{BLACK}Permet autoremodelació
-
 STR_COASTER                                                     :La vaca saltà per damunt de la Lluna (recodatori de que encara no està acabat)
 STR_DOGTRACK                                                    :Els gossos són de color marró, a vegades

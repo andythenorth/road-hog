@@ -30,8 +30,5 @@ STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :Kamion za stoku
 STR_NAME_SUFFIX_REEFER_TRUCK                                    :Kamion-hladnjača
 STR_NAME_SUFFIX_LOGGING_TRUCK                                   :Kamion za trupce
 
-STR_BUY_MENU_TEXT                                               :Tip: {GOLD}{STRING}{}{STRING}{STRING}
-STR_BUY_MENU_OFFERS_AUTOREFIT                                   :{BLACK}Moguć automatski remont
-
 STR_COASTER                                                     :Krava je preskočila mjesec (ovo nije gotov podsjetnik)
 STR_DOGTRACK                                                    :Psi su smeđi, ponekad

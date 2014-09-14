@@ -28,8 +28,5 @@ STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :Karjarekka
 STR_NAME_SUFFIX_REEFER_TRUCK                                    :Kylmäauto
 STR_NAME_SUFFIX_LOGGING_TRUCK                                   :Tukkiauto
 
-STR_BUY_MENU_TEXT                                               :Tyyppi: {GOLD}{STRING}{}{STRING}{STRING}
-STR_BUY_MENU_OFFERS_AUTOREFIT                                   :{BLACK}Voi sovittaa uudelleen automaattisesti
-
 STR_COASTER                                                     :Lehmä Hyppäsi Yli Kuun (tämä ei ole valmis -muistutus)
 STR_DOGTRACK                                                    :Koirat ovat ruskeita, joskus
