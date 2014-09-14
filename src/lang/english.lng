@@ -28,8 +28,5 @@ STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :Livestock Truck
 STR_NAME_SUFFIX_REEFER_TRUCK                                    :Reefer Truck
 STR_NAME_SUFFIX_LOGGING_TRUCK                                   :Logging Truck
 
-STR_BUY_MENU_TEXT                                               :Type: {GOLD}{STRING}{}{STRING}{STRING}
-STR_BUY_MENU_OFFERS_AUTOREFIT                                   :{BLACK}Offers auto-refit
-
 STR_COASTER                                                     :The Cow Jumped Over the Moon (this is not finished reminder)
 STR_DOGTRACK                                                    :Dogs are brown, sometime

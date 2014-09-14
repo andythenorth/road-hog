@@ -36,7 +36,6 @@ class Consist(object):
         self.title = kwargs.get('title', None)
         self.base_numeric_id = kwargs.get('base_numeric_id', None)
         self.roadveh_flag_tram = kwargs.get('roadveh_flag_tram', None)
-        self.str_type_info = kwargs.get('str_type_info', None)
         self.intro_date = kwargs.get('intro_date', None)
         self.replacement_id = kwargs.get('replacement_id', None)
         self.vehicle_life = kwargs.get('vehicle_life', None)
@@ -128,33 +127,8 @@ class Consist(object):
         type_suffix = '_'.join(type_suffix.split(' '))
         return 'STR_NAME_SUFFIX_' + type_suffix
 
-    def get_str_type_info(self):
-        # makes a string id for nml
-        if self.str_type_info is not None:
-            return 'STR_' + self.str_type_info
-        else:
-            return 'STR_EMPTY'
-
-    def get_str_autorefit(self):
-        if self.any_slice_offers_autorefit():
-            return 'STR_BUY_MENU_OFFERS_AUTOREFIT'
-        else:
-            return 'STR_EMPTY'
-
     def get_name(self):
         return "string(STR_NAME_" + self.id +", string(" + self.get_str_name_suffix() + "))"
-
-    def get_buy_menu_string(self):
-        # will need to handle bi-mode locos here, have a look at consist.slice_requires_variable_power(vehicle)
-        if self.str_type_info is not None:
-            buy_menu_template = Template(
-                "string(STR_BUY_MENU_TEXT, string(${str_type_info}), string(${str_autorefit}), string(STR_EMPTY))"
-            )
-        else:
-            buy_menu_template = Template(
-                "string(${str_autorefit})"
-            )
-        return buy_menu_template.substitute(str_type_info=self.get_str_type_info(), str_autorefit=self.get_str_autorefit())
 
     def any_slice_offers_autorefit(self):
         offers_autorefit = False

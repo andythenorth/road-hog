@@ -29,7 +29,6 @@ item(FEAT_ROADVEHS, ${vehicle.id}, ${vehicle.numeric_id}) {
     graphics {
         cargo_capacity:                 ${vehicle.id}_switch_cargo_capacity;
         purchase_cargo_capacity:        ${vehicle.id}_switch_cargo_capacity;
-        additional_text:                ${consist.get_buy_menu_string()};
         default:                        ${vehicle.id}_switch_graphics;
         purchase:                       ${vehicle.id}_sg_purchase;
         <tal:add_articulated_parts condition="vehicle.is_lead_slice_of_consist">
