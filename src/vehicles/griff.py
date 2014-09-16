@@ -13,15 +13,15 @@ consist = EngineConsist(id = 'griff',
 consist.add_unit(LogHauler(consist = consist,
                         weight = 7,
                         capacity_freight = 0,
-                        vehicle_length = 7,
+                        vehicle_length = 4,
                         visual_effect = 'VISUAL_EFFECT_DIESEL',
                         spriterow_num = 0))
 
 consist.add_unit(LogHauler(consist = consist,
                         weight = 3,
                         capacity_freight = 40,
-                        vehicle_length = 7,
-                        spriterow_num = 0))
+                        vehicle_length = 6,
+                        spriterow_num = 1))
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,
