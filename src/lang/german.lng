@@ -24,8 +24,5 @@ STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :Viehtransporter
 STR_NAME_SUFFIX_REEFER_TRUCK                                    :Kühltransporter
 STR_NAME_SUFFIX_LOGGING_TRUCK                                   :Langholzlaster
 
-STR_BUY_MENU_TEXT                                               :Type: {GOLD}{STRING}{}{STRING}{STRING}
-STR_BUY_MENU_OFFERS_AUTOREFIT                                   :{BLACK}Automatisches Umrüsten möglich
-
 STR_COASTER                                                     :Lalelu, nur der Mann im Mond schaut zu... (Erinnerung, dass dies noch nicht fertig ist)
 STR_DOGTRACK                                                    :Hunde sind braun. Manchmal.
