@@ -8,6 +8,7 @@ STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_0                      :Insignificante
 STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_1                      :Maravillosa
 STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2                      :Excesiva
 STR_PARAM_ROSTER                                                :Lista a usar
+STR_PARAM_ROSTER_DESC                                           :Selecciona el grupo de vehículos que se usarán.
 
 STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Tranvía de pasajeros
 STR_NAME_SUFFIX_BUS                                             :Bus
@@ -25,5 +26,6 @@ STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Camión Intermo
 STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :Tranvía de ganado
 STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :Camión de ganado
 STR_NAME_SUFFIX_REEFER_TRUCK                                    :Camión frigorífico
+STR_NAME_SUFFIX_LOGGING_TRUCK                                   :Camión de troncos
 
 STR_DOGTRACK                                                    :Los perros son marrones, alguna vez
