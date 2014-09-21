@@ -8,7 +8,7 @@ consist = EngineConsist(id = 'dinkey',
               power = 220,
               speed = 65,
               vehicle_life = 40,
-              intro_date = 1972)
+              intro_date = 1970)
 
 consist.add_unit(GeneralCargoHauler(consist = consist,
                         weight = 7,

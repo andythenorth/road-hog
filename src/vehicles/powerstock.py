@@ -6,7 +6,7 @@ consist = EngineConsist(id = 'powerstock',
               title = 'Powerstock [Dump Truck]',
               replacement_id = '-none',
               power = 650,
-              speed = 65,
+              speed = 80,
               vehicle_life = 40,
               intro_date = 2002)
 
