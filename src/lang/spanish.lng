@@ -9,6 +9,7 @@ STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_1                      :Maravillosa
 STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2                      :Excesiva
 STR_PARAM_ROSTER                                                :Lista a usar
 STR_PARAM_ROSTER_DESC                                           :Selecciona el grupo de vehículos que se usarán.
+STR_PARAM_ROSTER_OPTION_0                                       :Gran Bretaña
 
 STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Tranvía de pasajeros
 STR_NAME_SUFFIX_BUS                                             :Bus
@@ -28,4 +29,5 @@ STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :Camión de gana
 STR_NAME_SUFFIX_REEFER_TRUCK                                    :Camión frigorífico
 STR_NAME_SUFFIX_LOGGING_TRUCK                                   :Camión de troncos
 
+STR_COASTER                                                     :La vaca salta sobre la luna (esto no es sino un recordatorio de que este NewGRF está sin acabar)
 STR_DOGTRACK                                                    :Los perros son marrones, alguna vez
