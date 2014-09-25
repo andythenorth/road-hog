@@ -1,5 +1,5 @@
 import global_constants
-from road_vehicle import EngineConsist, CourierTruck
+from road_vehicle import EngineConsist, CourierCar
 
 consist = EngineConsist(id = 'foxley',
               base_numeric_id = 470,
@@ -11,7 +11,7 @@ consist = EngineConsist(id = 'foxley',
               vehicle_life = 40,
               intro_date = 1905)
 
-consist.add_unit(CourierTruck(consist = consist,
+consist.add_unit(CourierCar(consist = consist,
                         weight = 10,
                         capacity_freight = 20,
                         capacity_mail = 40,

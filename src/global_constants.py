@@ -17,7 +17,7 @@ base_refits_by_class = {'empty': [],
                         'hopper_freight': ['CC_BULK'],
                         'covered_hopper_freight': [],
                         'refrigerated_freight': ['CC_REFRIGERATED'],
-                        'courier_freight': ['CC_MAIL', 'CC_ARMOURED']}
+                        'express_freight': ['CC_EXPRESS','CC_ARMOURED']}
 
 # rather than using disallowed classes (can cause breakage), specific labels are disallowed
 # this is done per vehicle type, or added to global_constants for ease of reuse and updating

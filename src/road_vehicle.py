@@ -407,15 +407,15 @@ class EngineConsist(Consist):
         super(EngineConsist, self).__init__(**kwargs)
 
 
-class CourierTruck(RoadVehicle):
+class CourierCar(RoadVehicle):
     """
     Truck for mail, valuables etc.
     """
     def __init__(self, **kwargs):
-        super(CourierTruck, self).__init__(**kwargs)
+        super(CourierCar, self).__init__(**kwargs)
         self.template = 'road_vehicle.pynml'
         self.autorefit = True
-        self.class_refit_groups = ['courier_freight']
+        self.class_refit_groups = ['mail', 'express_freight']
         self.label_refits_allowed = [] # no specific labels needed
         self.label_refits_disallowed = []
         self.default_cargo = 'MAIL'
@@ -583,7 +583,7 @@ class IntermodalHauler(RoadVehicle):
         self.template = 'road_vehicle.pynml'
         self.autorefit = True
         # maintain other sets (e.g. IH etc) when changing container refits
-        self.class_refit_groups = ['courier_freight','packaged_freight']
+        self.class_refit_groups = ['express_freight','packaged_freight']
         self.label_refits_allowed = ['FRUT','WATR']
         self.label_refits_disallowed = ['FISH','LVST','OIL_','TOUR','WOOD']
         self.default_cargo = 'GOOD'
