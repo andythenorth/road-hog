@@ -1,16 +1,16 @@
 import global_constants
-from road_vehicle import EngineConsist, GeneralCargoHauler
+from road_vehicle import EngineConsist, CourierCar
 
 consist = EngineConsist(id = 'littleduke',
               base_numeric_id = 180,
-              title = 'Littleduke [General Cargo Truck]',
+              title = 'Littleduke [Courier Truck]',
               replacement_id = '-none',
               power = 380,
               speed = 85,
               vehicle_life = 40,
               intro_date = 1998)
 
-consist.add_unit(GeneralCargoHauler(consist = consist,
+consist.add_unit(CourierCar(consist = consist,
                         weight = 7,
                         capacity_freight = 25,
                         vehicle_length = 7,
