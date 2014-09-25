@@ -15,14 +15,15 @@ base_refits_by_class = {'empty': [],
                         'packaged_freight': ['CC_PIECE_GOODS', 'CC_EXPRESS', 'CC_ARMOURED', 'CC_LIQUID'],
                         'flatcar_freight': ['CC_PIECE_GOODS', 'CC_EXPRESS'],
                         'hopper_freight': ['CC_BULK'],
-                        'covered_hopper_freight': [],
+                        'bulk_farm_freight': [], # explicit allowal by label instead
+                        'covered_hopper_freight': [], # explicit allowal by label instead
                         'refrigerated_freight': ['CC_REFRIGERATED'],
                         'express_freight': ['CC_EXPRESS','CC_ARMOURED']}
 
 # rather than using disallowed classes (can cause breakage), specific labels are disallowed
 # this is done per vehicle type, or added to global_constants for ease of reuse and updating
 # these lists are similar but not identical across Iron Horse, Squid, Road Hog etc
-disallowed_refits_by_label = {'non_hopper_freight': ['WOOD', 'SGCN', 'FICR', 'BDMT', 'WDPR', 'GRAI', 'WHEA', 'MAIZ', 'SGBT'],
+disallowed_refits_by_label = {'non_hopper_bulk_freight': ['WOOD', 'SGCN', 'FICR', 'BDMT', 'WDPR', 'GRAI', 'WHEA', 'MAIZ', 'SGBT'],
                               'edible_liquids': ['MILK', 'WATR', 'BEER', 'FOOD'],
                               'non_edible_liquids': ['RFPR', 'OIL_', 'FMSP', 'PETR', 'RUBR']}
 

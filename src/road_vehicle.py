@@ -462,23 +462,23 @@ class MiningHauler(RoadVehicle):
         self.autorefit = True
         self.class_refit_groups = ['hopper_freight']
         self.label_refits_allowed = [] # no specific labels needed
-        self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_hopper_freight']
+        self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_hopper_bulk_freight']
         self.default_cargo = 'COAL'
         self.default_cargo_capacities = self.capacities_freight
 
 
-class BulkHauler(RoadVehicle):
+class BulkFarmHauler(RoadVehicle):
     """
-    On-highway dump truck or trailer.  All non-sheltered bulk cargos.
+    Tram, truck or trailer for bulk farm cargos (pourable uncountable crops).
     """
     def __init__(self, **kwargs):
-        super(BulkHauler, self).__init__(**kwargs)
+        super(BulkFarmHauler, self).__init__(**kwargs)
         self.template = 'road_vehicle.pynml'
         self.autorefit = True
-        self.class_refit_groups = ['hopper_freight']
-        self.label_refits_allowed = [] # no specific labels needed
+        self.class_refit_groups = ['bulk_farm_freight']
+        self.label_refits_allowed = ['FICR', 'GRAI', 'WHEA', 'MAIZ', 'SGBT', 'SGCN', 'SUGR', 'FRUT', 'FMSP']
         self.label_refits_disallowed = []
-        self.default_cargo = 'COAL'
+        self.default_cargo = 'GRAI'
         self.default_cargo_capacities = self.capacities_freight
 
 

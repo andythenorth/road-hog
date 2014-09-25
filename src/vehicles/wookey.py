@@ -1,23 +1,23 @@
 import global_constants
-from road_vehicle import EngineConsist, BulkHauler
+from road_vehicle import EngineConsist, BulkFarmHauler
 
 consist = EngineConsist(id = 'wookey',
               base_numeric_id = 230,
-              title = 'Wookey [Dump Truck]',
+              title = 'Wookey [Farm Bulk Truck]',
               replacement_id = '-none',
               power = 250,
               speed = 65,
               vehicle_life = 40,
               intro_date = 1974)
 
-consist.add_unit(BulkHauler(consist = consist,
+consist.add_unit(BulkFarmHauler(consist = consist,
                         weight = 7,
                         capacity_freight = 0,
                         vehicle_length = 7,
                         visual_effect = 'VISUAL_EFFECT_DIESEL',
                         spriterow_num = 0))
 
-consist.add_unit(BulkHauler(consist = consist,
+consist.add_unit(BulkFarmHauler(consist = consist,
                         weight = 8,
                         capacity_freight = 40,
                         vehicle_length = 7,
