@@ -20,7 +20,6 @@ STR_NAME_SUFFIX_TANKER_TRUCK                                    :Säiliöauto
 STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :Katoksellinen Suppiloauto
 STR_NAME_SUFFIX_MINING_TRAM                                     :Mineraaliraitiovaunu
 STR_NAME_SUFFIX_MINING_TRUCK                                    :Mineraalirekka
-STR_NAME_SUFFIX_DUMP_TRUCK                                      :Kippiauto
 STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :Sulattamorekka
 STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Konttirekka
 STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :Karjaraitiovaunu

@@ -18,7 +18,6 @@ STR_NAME_SUFFIX_TANKER_TRUCK                                    :탱크로리
 STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :유개(덮개가 있는) 트럭
 STR_NAME_SUFFIX_MINING_TRAM                                     :광석 수송 전차
 STR_NAME_SUFFIX_MINING_TRUCK                                    :광석 운송 차량
-STR_NAME_SUFFIX_DUMP_TRUCK                                      :덤프 트럭
 STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :철 수송 트럭
 STR_NAME_SUFFIX_INTERMODAL_HAULER                               :다중 수송 트럭
 STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :가축 수송 트럭

@@ -16,7 +16,6 @@ STR_NAME_SUFFIX_COURIER_TRUCK                                   :Courier-Transpo
 STR_NAME_SUFFIX_TANKER_TRUCK                                    :Tanklaster
 STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :Gedeckter Schüttgut-LKW
 STR_NAME_SUFFIX_MINING_TRAM                                     :Grubenbahn
-STR_NAME_SUFFIX_DUMP_TRUCK                                      :Kipplaster
 STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :Schwerlast-Transporter
 STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Container-Laster
 STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :Viehtransporter
