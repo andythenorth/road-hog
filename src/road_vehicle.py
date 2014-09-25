@@ -409,7 +409,7 @@ class EngineConsist(Consist):
 
 class CourierCar(RoadVehicle):
     """
-    Truck for mail, valuables etc.
+    Truck or tram for mail, valuables etc.
     """
     def __init__(self, **kwargs):
         super(CourierCar, self).__init__(**kwargs)
