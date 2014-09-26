@@ -23,6 +23,7 @@ from vehicles import jinglepot
 from vehicles import knockdown
 from vehicles import ladycross
 from vehicles import leyburn
+from vehicles import limebreach
 from vehicles import littleduke
 from vehicles import mcdowell
 from vehicles import meriden
@@ -44,6 +45,7 @@ from vehicles import stungun
 from vehicles import swineshead
 from vehicles import tallyho
 from vehicles import thunder
+from vehicles import thurlbear
 from vehicles import topley
 from vehicles import twinhills
 from vehicles import waterperry
@@ -88,6 +90,8 @@ roster = Roster(id = 'brit',
                                        'honister',
                                        'wookey',
                                        'powerstock',
+                                       'thurlbear',
+                                       'limebreach',
                                        'ribble',
                                        'mcdowell',
                                        'beerwoods',
