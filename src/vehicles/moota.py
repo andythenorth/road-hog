@@ -6,7 +6,6 @@ consist = EngineConsist(id = 'moota',
               title = 'Moota [Bus]',
               replacement_id = '-none',
               power = 220,
-              speed = 85,
               vehicle_life = 40,
               intro_date = 1968)
 

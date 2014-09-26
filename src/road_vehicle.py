@@ -41,7 +41,7 @@ class Consist(object):
         self.vehicle_life = kwargs.get('vehicle_life', None)
         self.power = kwargs.get('power', 0)
         self.tractive_effort_coefficient = kwargs.get('tractive_effort_coefficient', 0.3) # 0.3 is recommended default value
-        self.speed = kwargs.get('speed', None)
+        self._speed = kwargs.get('speed', None)
         # arbitrary adjustments of points that can be applied to adjust buy cost and running cost, over-ride in consist as needed
         # values can be -ve or +ve to dibble specific vehicles (but total calculated points cannot exceed 255)
         self.type_base_buy_cost_points = kwargs.get('type_base_buy_cost_points', 0)
@@ -187,6 +187,13 @@ class Consist(object):
             else:
                 consist_capacity = consist_capacity + slice.capacity_freight
         return consist_capacity
+
+    @property
+    def speed(self):
+        if self._speed is None:
+            return 35
+        else:
+            return self._speed
 
     @property
     def adjusted_model_life(self):

@@ -7,7 +7,6 @@ consist = EngineConsist(id = 'amblecote',
               roadveh_flag_tram = True,
               replacement_id = '-none',
               power = 90,
-              speed = 20,
               vehicle_life = 40,
               intro_date = 1870)
 

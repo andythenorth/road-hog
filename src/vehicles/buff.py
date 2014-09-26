@@ -6,7 +6,6 @@ consist = EngineConsist(id = 'buff',
               title = 'Buff [Logging Truck]',
               replacement_id = '-none',
               power = 550,
-              speed = 55,
               vehicle_life = 40,
               intro_date = 1994)
 

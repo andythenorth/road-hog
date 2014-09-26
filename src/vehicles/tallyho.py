@@ -6,7 +6,6 @@ consist = EngineConsist(id = 'tallyho',
               title = 'Tallyho [Courier Truck]',
               replacement_id = '-none',
               power = 120,
-              speed = 60,
               vehicle_life = 40,
               intro_date = 1938)
 

@@ -6,7 +6,6 @@ consist = EngineConsist(id = 'thurlbear',
               title = 'Thurlbear [Covered Hopper Tram]',
               replacement_id = '-none',
               power = 250,
-              speed = 60,
               vehicle_life = 40,
               intro_date = 1958)
 

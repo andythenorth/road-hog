@@ -6,7 +6,6 @@ consist = EngineConsist(id = 'broadrock',
               title = 'Broadrock [Mining Truck]',
               replacement_id = '-none',
               power = 375,
-              speed = 35,
               type_base_running_cost_points = 20, # dibble running costs for game balance
               vehicle_life = 40,
               intro_date = 1951)

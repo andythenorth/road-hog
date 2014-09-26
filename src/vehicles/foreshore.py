@@ -6,7 +6,6 @@ consist = EngineConsist(id = 'foreshore',
               title = 'Foreshore [Intermodal Hauler]',
               replacement_id = '-none',
               power = 950,
-              speed = 55,
               vehicle_life = 40,
               intro_date = 1959)
 
