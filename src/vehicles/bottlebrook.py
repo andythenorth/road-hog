@@ -1,9 +1,9 @@
 import global_constants
 from road_vehicle import EngineConsist, EdiblesTanker
 
-consist = EngineConsist(id = 'silvertop',
-              base_numeric_id = 960,
-              title = 'Silvertop [Edibles Tanker Truck]',
+consist = EngineConsist(id = 'bottlebrook',
+              base_numeric_id = 970,
+              title = 'Bottlebrook [Edibles Tanker Truck]',
               replacement_id = '-none',
               power = 200,
               speed = 60,

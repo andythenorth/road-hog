@@ -1,25 +1,25 @@
 import global_constants
-from road_vehicle import EngineConsist, EdiblesTanker
+from road_vehicle import EngineConsist, RefrigeratedHauler
 
-consist = EngineConsist(id = 'silvertop',
-              base_numeric_id = 960,
-              title = 'Silvertop [Edibles Tanker Truck]',
+consist = EngineConsist(id = 'merrivale',
+              base_numeric_id = 370,
+              title = 'Merrivale [Reefer Truck]',
               replacement_id = '-none',
-              power = 200,
-              speed = 60,
+              power = 250,
+              speed = 55,
               vehicle_life = 40,
-              intro_date = 1962)
+              intro_date = 1952)
 
-consist.add_unit(EdiblesTanker(consist = consist,
+consist.add_unit(RefrigeratedHauler(consist = consist,
                         weight = 7,
                         capacity_freight = 0,
                         vehicle_length = 7,
                         visual_effect = 'VISUAL_EFFECT_DIESEL',
                         spriterow_num = 0))
 
-consist.add_unit(EdiblesTanker(consist = consist,
+consist.add_unit(RefrigeratedHauler(consist = consist,
                         weight = 8,
-                        capacity_freight = 40,
+                        capacity_freight = 28,
                         vehicle_length = 7,
                         spriterow_num = 0))
 

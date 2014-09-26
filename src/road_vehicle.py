@@ -548,7 +548,7 @@ class EdiblesTanker(RoadVehicle):
     Wine, milk, water etc.
     """
     def __init__(self, **kwargs):
-        super(Tanker, self).__init__(**kwargs)
+        super(EdiblesTanker, self).__init__(**kwargs)
         self.template = 'road_vehicle.pynml'
         self.autorefit = True
         self.class_refit_groups = ['liquids']
