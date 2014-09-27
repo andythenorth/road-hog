@@ -4,6 +4,7 @@ from road_vehicle import EngineConsist, BulkPowderHauler
 consist = EngineConsist(id = 'thurlbear',
               base_numeric_id = 980,
               title = 'Thurlbear [Covered Hopper Tram]',
+              roadveh_flag_tram = True,
               replacement_id = '-none',
               power = 250,
               vehicle_life = 40,

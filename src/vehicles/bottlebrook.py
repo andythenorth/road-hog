@@ -3,7 +3,8 @@ from road_vehicle import EngineConsist, EdiblesTanker
 
 consist = EngineConsist(id = 'bottlebrook',
               base_numeric_id = 970,
-              title = 'Bottlebrook [Edibles Tanker Truck]',
+              title = 'Bottlebrook [Edibles Tanker Tram]',
+              roadveh_flag_tram = True,
               replacement_id = '-none',
               power = 200,
               vehicle_life = 40,

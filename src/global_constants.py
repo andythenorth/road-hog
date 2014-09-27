@@ -31,6 +31,7 @@ disallowed_refits_by_label = {'non_hopper_bulk_freight': ['WOOD', 'SGCN', 'FICR'
 capacity_multipliers = [0.67, 1, 1.33]
 
 # speeds by year
+# no support for speeds-per-roster here, deal with that later if needed
 truck_speeds = {0: 25, 1920: 40, 1940: 55, 1960: 70, 1980: 80}
 
 # used to construct the cargo table automatically

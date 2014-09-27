@@ -4,6 +4,7 @@ from road_vehicle import EngineConsist, RefrigeratedHauler
 consist = EngineConsist(id = 'sparkford',
               base_numeric_id = 940,
               title = 'Sparkford [Reefer Tram]',
+              roadveh_flag_tram = True,
               replacement_id = '-none',
               power = 450,
               vehicle_life = 40,

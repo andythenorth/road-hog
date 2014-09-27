@@ -27,6 +27,7 @@ STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :Foundry Hauler
 STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Intermodal Hauler
 STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :Livestock Tram
 STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :Livestock Truck
+STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM                             :Edibles Tanker Tram
 STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK                            :Edibles Tanker Truck
 STR_NAME_SUFFIX_REEFER_TRAM                                     :Reefer Tram
 STR_NAME_SUFFIX_REEFER_TRUCK                                    :Reefer Truck
