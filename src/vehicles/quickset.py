@@ -7,7 +7,7 @@ consist = EngineConsist(id = 'quickset',
               replacement_id = '-none',
               power = 220,
               vehicle_life = 40,
-              intro_date = 1970)
+              intro_date = 1960)
 
 consist.add_unit(GeneralCargoHauler(consist = consist,
                         weight = 7,
@@ -18,7 +18,7 @@ consist.add_unit(GeneralCargoHauler(consist = consist,
 
 consist.add_unit(GeneralCargoHauler(consist = consist,
                         weight = 8,
-                        capacity_freight = 40,
+                        capacity_freight = 45,
                         vehicle_length = 7,
                         spriterow_num = 0))
 

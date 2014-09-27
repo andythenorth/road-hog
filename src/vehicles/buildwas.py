@@ -1,23 +1,23 @@
 import global_constants
-from road_vehicle import EngineConsist, GeneralCargoHauler
+from road_vehicle import EngineConsist, MiningHauler
 
 consist = EngineConsist(id = 'buildwas',
               base_numeric_id = 100,
-              title = 'Buildwas [General Cargo Tram]',
+              title = 'Buildwas [Mining Tram]',
               roadveh_flag_tram = True,
               replacement_id = '-none',
               power = 150,
               vehicle_life = 40,
               intro_date = 1870)
 
-consist.add_unit(GeneralCargoHauler(consist = consist,
+consist.add_unit(MiningHauler(consist = consist,
                         weight = 30,
                         capacity_freight = 0,
                         vehicle_length = 6,
                         visual_effect = 'VISUAL_EFFECT_STEAM',
                         spriterow_num = 0))
 
-consist.add_unit(GeneralCargoHauler(consist = consist,
+consist.add_unit(MiningHauler(consist = consist,
                         weight = 2,
                         capacity_freight = 9,
                         vehicle_length = 4,
