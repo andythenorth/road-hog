@@ -191,7 +191,7 @@ class Consist(object):
     @property
     def speed(self):
         if self._speed is None:
-            return 35
+            return global_constants.truck_speeds[max([year for year in global_constants.truck_speeds if self.intro_date >= year])]
         else:
             return self._speed
 
