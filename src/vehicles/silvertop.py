@@ -7,7 +7,7 @@ consist = EngineConsist(id = 'silvertop',
               replacement_id = '-none',
               power = 200,
               vehicle_life = 40,
-              intro_date = 1962)
+              intro_date = 1985)
 
 consist.add_unit(EdiblesTanker(consist = consist,
                         weight = 7,
@@ -18,7 +18,7 @@ consist.add_unit(EdiblesTanker(consist = consist,
 
 consist.add_unit(EdiblesTanker(consist = consist,
                         weight = 8,
-                        capacity_freight = 40,
+                        capacity_freight = 56,
                         vehicle_length = 7,
                         spriterow_num = 0))
 
