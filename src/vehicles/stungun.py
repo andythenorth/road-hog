@@ -18,7 +18,7 @@ consist.add_unit(LivestockHauler(consist = consist,
 
 consist.add_unit(LivestockHauler(consist = consist,
                         weight = 14,
-                        capacity_freight = 28,
+                        capacity_freight = 56,
                         vehicle_length = 7,
                         spriterow_num = 0))
 

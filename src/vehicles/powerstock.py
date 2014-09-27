@@ -7,7 +7,7 @@ consist = EngineConsist(id = 'powerstock',
               replacement_id = '-none',
               power = 650,
               vehicle_life = 40,
-              intro_date = 2002)
+              intro_date = 1983)
 
 consist.add_unit(BulkFarmHauler(consist = consist,
                         weight = 8,
@@ -18,7 +18,7 @@ consist.add_unit(BulkFarmHauler(consist = consist,
 
 consist.add_unit(BulkFarmHauler(consist = consist,
                         weight = 8,
-                        capacity_freight = 45,
+                        capacity_freight = 56,
                         vehicle_length = 7,
                         spriterow_num = 0))
 

@@ -15,7 +15,7 @@ consist.add_unit(BulkFarmHauler(consist = consist,
                         capacity_freight = 20,
                         vehicle_length = 7,
                         visual_effect = 'VISUAL_EFFECT_ELECTRIC',
-                        spriterow_num = 0))
+                        spriterow_num = 0), repeat = 2)
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,
