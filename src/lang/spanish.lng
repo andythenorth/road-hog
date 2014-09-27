@@ -18,9 +18,11 @@ STR_NAME_SUFFIX_GENERAL_CARGO_TRUCK                             :Camión de carg
 STR_NAME_SUFFIX_COURIER_TRAM                                    :Tranvía de mensajería-correo urgente
 STR_NAME_SUFFIX_COURIER_TRUCK                                   :Camión de mensajería-correo urgente
 STR_NAME_SUFFIX_TANKER_TRUCK                                    :Camión cisterna
+STR_NAME_SUFFIX_COVERED_HOPPER_TRAM                             :Tranvía Tolva cubierto
 STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :Camión Tolva cubierto
 STR_NAME_SUFFIX_MINING_TRAM                                     :Tranvía minero
 STR_NAME_SUFFIX_MINING_TRUCK                                    :Camión minero
+STR_NAME_SUFFIX_FARM_BULK_TRAM                                  :Tranvía de carga a granel agrícola
 STR_NAME_SUFFIX_FARM_BULK_TRUCK                                 :Camión de carga a granel agrícola
 STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :Camión para/de la fundición
 STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Camión Intermodal
