@@ -93,14 +93,12 @@ class DocHelper(object):
             result = self.fetch_prop(result, 'TE coefficient', vehicle.tractive_effort_coefficient)
             result = self.fetch_prop(result, 'Intro Date', vehicle.intro_date)
             result = self.fetch_prop(result, 'Vehicle Life', vehicle.vehicle_life)
-            result = self.fetch_prop(result, 'Replacement ID', vehicle.replacement_id)
-            #result = self.fetch_prop(result, 'Capacity Pax', vehicle.capacity_pax)
-            #result = self.fetch_prop(result, 'Capacity Mail', vehicle.capacity_mail)
-            #result = self.fetch_prop(result, 'Capacity Freight', vehicle.capacity_freight)
+            result = self.fetch_prop(result, 'Capacity', vehicle.default_capacities[1])
             result = self.fetch_prop(result, 'Buy Cost', vehicle.buy_cost)
             result = self.fetch_prop(result, 'Running Cost', vehicle.running_cost)
             #result = self.fetch_prop(result, 'Loading Speed', vehicle.loading_speed)
             #result = self.fetch_prop(result, 'Model Variants', len(vehicle.model_variants))
+            result = self.fetch_prop(result, 'Replacement ID', vehicle.replacement_id)
 
             props_to_print[vehicle] = result['vehicle']
             props_to_print[subclass] = result['subclass_props']

@@ -164,7 +164,7 @@ class Consist(object):
 
     @property
     def running_cost(self):
-        consist_capacity_points = min(self.capacity, 160)
+        consist_capacity_points = min(self.default_capacities[1], 160)
         # type_base_running_cost_points is an arbitrary adjustment that can be applied on a type-by-type basis,
         return self.get_engine_cost_points() + consist_capacity_points + self.type_base_running_cost_points
 
@@ -176,17 +176,20 @@ class Consist(object):
         return consist_weight
 
     @property
-    def capacity(self):
+    def default_capacities(self):
         # total capacity of consist, summed from vehicles
-        consist_capacity = 0
-        for slice in self.slices:
-            if slice.default_cargo == 'PASS':
-                consist_capacity = consist_capacity + slice.capacity_pax
-            elif slice.default_cargo == 'MAIL':
-                consist_capacity = consist_capacity + slice.capacity_mail
-            else:
-                consist_capacity = consist_capacity + slice.capacity_freight
-        return consist_capacity
+        result = []
+        for i in range(3):
+            consist_capacity = 0
+            for slice in self.slices:
+                if slice.default_cargo == 'PASS':
+                    consist_capacity = consist_capacity + slice.capacities_pax[i]
+                elif slice.default_cargo == 'MAIL':
+                    consist_capacity = consist_capacity + slice.capacities_mail[i]
+                else:
+                    consist_capacity = consist_capacity + slice.capacities_freight[i]
+            result.append(consist_capacity)
+        return result
 
     @property
     def speed(self):
@@ -292,18 +295,6 @@ class RoadVehicle(object):
         if self.consist.roadveh_flag_tram == True:
             special_flags.append('ROADVEH_FLAG_TRAM')
         return ','.join(special_flags)
-
-    @property
-    def capacity_pax(self):
-        return self.capacities_pax[0]
-    @property
-
-    def capacity_mail(self):
-        return self.capacities_mail[0]
-
-    @property
-    def capacity_freight(self):
-        return self.capacities_freight[0]
 
     @property
     def refittable_classes(self):
