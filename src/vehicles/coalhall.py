@@ -1,28 +1,29 @@
 import global_constants
 from road_vehicle import EngineConsist, MiningHauler
 
-consist = EngineConsist(id = 'broadrock',
-              base_numeric_id = 330,
-              title = 'Broadrock [Mining Truck]',
+consist = EngineConsist(id = 'coalhall',
+              base_numeric_id = 1000,
+              title = 'Coalhall [Mining Tram]',
+              roadveh_flag_tram = True,
               replacement_id = '-none',
-              power = 600,
-              speed = 45,
+              power = 300,
+              speed = 35,
               type_base_running_cost_points = 20, # dibble running costs for game balance
               vehicle_life = 40,
-              intro_date = 1951)
+              intro_date = 1910)
 
 consist.add_unit(MiningHauler(consist = consist,
-                        weight = 20,
+                        weight = 30,
                         capacity = 0,
-                        vehicle_length = 7,
-                        visual_effect = 'VISUAL_EFFECT_DIESEL',
+                        vehicle_length = 6,
+                        visual_effect = 'VISUAL_EFFECT_ELECTRIC',
                         spriterow_num = 0))
 
 consist.add_unit(MiningHauler(consist = consist,
-                        weight = 15,
-                        capacity = 75,
-                        vehicle_length = 7,
-                        spriterow_num = 0))
+                        weight = 2,
+                        capacity = 10,
+                        vehicle_length = 5,
+                        spriterow_num = 2), repeat=5)
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,

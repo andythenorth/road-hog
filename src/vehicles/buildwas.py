@@ -19,9 +19,9 @@ consist.add_unit(MiningHauler(consist = consist,
 
 consist.add_unit(MiningHauler(consist = consist,
                         weight = 2,
-                        capacity = 9,
-                        vehicle_length = 4,
-                        spriterow_num = 2), repeat=8)
+                        capacity = 10,
+                        vehicle_length = 5,
+                        spriterow_num = 2), repeat=5)
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,
