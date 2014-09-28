@@ -1,13 +1,14 @@
 import global_constants
 from road_vehicle import EngineConsist, LogHauler
 
-consist = EngineConsist(id = 'griff',
-              base_numeric_id = 420,
-              title = 'Griff [Logging Truck]',
+consist = EngineConsist(id = 'trefell',
+              base_numeric_id = 1010,
+              title = 'Trefell [Logging Truck]',
               replacement_id = '-none',
               power = 100,
+              speed = 35,
               vehicle_life = 40,
-              intro_date = 1870)
+              intro_date = 1910)
 
 consist.add_unit(LogHauler(consist = consist,
                         weight = 7,

@@ -4,7 +4,7 @@ from vehicles import (amblecote, beerwoods, bottlebrook, brightling, broadrock, 
                       easywheal, fairlop, foreshore, fortiscue, foxley, goldmire, greenscoe, griff, honister, jinglepot, knockdown,
                       ladycross, leyburn, limebreach, littleduke, mcdowell, meriden, merrivale, moota, nettlebridge, newbold,
                       pigstick, powerstock, quickset, ribble, shotover, silvertop, sparkford, speedwell, stancliffe, steeraway,
-                      stungun, swineshead, tallyho, thunder, thurlbear, topley, twinhills, waterperry, witch_hill, wookey)
+                      stungun, swineshead, tallyho, thunder, thurlbear, topley, trefell, twinhills, waterperry, witch_hill, wookey)
 
 roster = Roster(id = 'brit',
                 title = 'Brit',
@@ -33,6 +33,7 @@ roster = Roster(id = 'brit',
                                        'meriden',
                                        'cloud_hill',
                                        'griff',
+                                       'trefell',
                                        'knockdown',
                                        'buff',
                                        'buildwas',
