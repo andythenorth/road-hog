@@ -164,7 +164,7 @@ class Consist(object):
 
     @property
     def running_cost(self):
-        consist_capacity_points = min(self.default_capacities[1], 160)
+        consist_capacity_points = min(self.total_capacities[1], 160)
         # type_base_running_cost_points is an arbitrary adjustment that can be applied on a type-by-type basis,
         return self.get_engine_cost_points() + consist_capacity_points + self.type_base_running_cost_points
 
@@ -176,8 +176,9 @@ class Consist(object):
         return consist_weight
 
     @property
-    def default_capacities(self):
-        # total capacity of consist, summed from vehicles
+    def total_capacities(self):
+        # total capacity of consist, summed from vehicles (with variants for capacity multipler param)
+        # convenience function used only when the total consist capacity is needed rather than per-slice
         result = []
         for i in range(3):
             consist_capacity = 0
