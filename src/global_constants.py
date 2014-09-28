@@ -30,11 +30,6 @@ disallowed_refits_by_label = {'non_hopper_bulk_freight': ['WOOD', 'SGCN', 'FICR'
 # capacity multipliers for capacity parameter
 capacity_multipliers = [0.67, 1, 1.33]
 
-# speeds by year
-# no support for speeds-per-roster here, deal with that later if needed
-truck_speeds = {0: 20, 1900: 25, 1920: 40, 1940: 55, 1960: 70, 1980: 80}
-tram_speeds = {0: 20, 1900: 35, 1940: 50, 1980: 65}
-
 # used to construct the cargo table automatically
 # ! order is significant ! - openttd will cascade through default cargos in the order specified by the cargo table
 cargo_labels = ['PASS', # pax first

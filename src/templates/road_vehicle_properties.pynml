@@ -38,7 +38,7 @@ item(FEAT_ROADVEHS, ${vehicle.id}, ${vehicle.numeric_id}) {
     }
 }
 
-if (${vehicle.get_expression_for_rosters()}) {
+if (${vehicle.get_expression_for_roster()}) {
     item(FEAT_ROADVEHS, ${vehicle.id}, ${vehicle.numeric_id}) {
         property {
             climates_available:             ${vehicle.availability};

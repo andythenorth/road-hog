@@ -195,9 +195,9 @@ class Consist(object):
     def speed(self):
         if self._speed is None:
             if self.roadveh_flag_tram is True:
-                speeds = global_constants.tram_speeds
+                speeds = self.roster.default_tram_speeds
             else:
-                speeds = global_constants.truck_speeds
+                speeds = self.roster.default_truck_speeds
             return speeds[max([year for year in speeds if self.intro_date >= year])]
         else:
             return self._speed
@@ -221,6 +221,18 @@ class Consist(object):
             return consist_length
         else:
             return 36
+
+    @property
+    def roster(self):
+        # vehicles can be in one roster by design; to repeat a vehicle in another roster, copy it
+        # this makes it simple for rosters to handle things like common speeds and capacity at compile time
+        result = []
+        for roster in registered_rosters:
+            if self.id in roster.buy_menu_sort_order:
+                result.append(roster)
+        if len(result) > 1:
+            utils.echo_message("Warning: vehicle " + self.id + " appears in more than one roster " + str(result))
+        return result[0]
 
     def render_debug_info(self):
         template = templates["debug_info_consist.pynml"]
@@ -337,18 +349,8 @@ class RoadVehicle(object):
             if i not in global_constants.cargo_labels:
                 utils.echo_message("Warning: vehicle " + self.id + " references cargo label " + i + " which is not defined in the cargo table")
 
-    def get_rosters_for_vehicle(self):
-        result = []
-        for roster in registered_rosters:
-            if self.consist.id in roster.buy_menu_sort_order:
-                result.append(roster)
-        return result
-
-    def get_expression_for_rosters(self):
-        result = []
-        for roster in self.get_rosters_for_vehicle():
-            result.append('param_roster=='+str(registered_rosters.index(roster)))
-        return ' || '.join(result)
+    def get_expression_for_roster(self):
+        return 'param_roster=='+str(registered_rosters.index(self.consist.roster))
 
     def render_debug_info(self):
         template = templates["debug_info_vehicle.pynml"]
