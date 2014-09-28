@@ -11,14 +11,14 @@ consist = EngineConsist(id = 'cloud_hill',
 
 consist.add_unit(Tanker(consist = consist,
                         weight = 8,
-                        capacity_freight = 0,
+                        capacity = 0,
                         vehicle_length = 7,
                         visual_effect = 'VISUAL_EFFECT_DIESEL',
                         spriterow_num = 0))
 
 consist.add_unit(Tanker(consist = consist,
                         weight = 10,
-                        capacity_freight = 45,
+                        capacity = 45,
                         vehicle_length = 7,
                         spriterow_num = 0))
 

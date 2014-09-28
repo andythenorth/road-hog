@@ -12,7 +12,7 @@ consist = EngineConsist(id = 'witch_hill',
 
 consist.add_unit(MiningHauler(consist = consist,
                         weight = 60,
-                        capacity_freight = 100,
+                        capacity = 100,
                         vehicle_length = 7,
                         visual_effect = 'VISUAL_EFFECT_DIESEL',
                         spriterow_num = 0))

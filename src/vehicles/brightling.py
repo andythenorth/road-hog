@@ -12,20 +12,20 @@ consist = EngineConsist(id = 'brightling',
 
 consist.add_unit(GeneralCargoHauler(consist = consist,
                         weight = 12,
-                        capacity_freight = 10,
+                        capacity = 10,
                         vehicle_length = 6,
                         visual_effect = 'VISUAL_EFFECT_ELECTRIC',
                         spriterow_num = 0), repeat=1)
 
 consist.add_unit(GeneralCargoHauler(consist = consist,
                         weight = 4,
-                        capacity_freight = 10,
+                        capacity = 10,
                         vehicle_length = 4,
                         spriterow_num = 2), repeat=1)
 
 consist.add_unit(GeneralCargoHauler(consist = consist,
                         weight = 4,
-                        capacity_freight = 10,
+                        capacity = 10,
                         vehicle_length = 4,
                         spriterow_num = 1), repeat=1)
 

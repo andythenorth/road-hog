@@ -11,14 +11,14 @@ consist = EngineConsist(id = 'knockdown',
 
 consist.add_unit(LogHauler(consist = consist,
                         weight = 12,
-                        capacity_freight = 20,
+                        capacity = 20,
                         vehicle_length = 7,
                         visual_effect = 'VISUAL_EFFECT_DIESEL',
                         spriterow_num = 0))
 
 consist.add_unit(LogHauler(consist = consist,
                         weight = 7,
-                        capacity_freight = 25,
+                        capacity = 25,
                         vehicle_length = 7,
                         spriterow_num = 0))
 

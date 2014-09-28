@@ -182,12 +182,10 @@ class Consist(object):
         for i in range(3):
             consist_capacity = 0
             for slice in self.slices:
-                if slice.default_cargo == 'PASS':
-                    consist_capacity = consist_capacity + slice.capacities_pax[i]
-                elif slice.default_cargo == 'MAIL':
-                    consist_capacity = consist_capacity + slice.capacities_mail[i]
+                if slice.default_cargo == 'MAIL':
+                    consist_capacity += int(global_constants.mail_multiplier * slice.capacities[i])
                 else:
-                    consist_capacity = consist_capacity + slice.capacities_freight[i]
+                    consist_capacity += slice.capacities[i]
             result.append(consist_capacity)
         return result
 
@@ -264,10 +262,8 @@ class RoadVehicle(object):
         self.speed = kwargs.get('speed', 0)
         self.weight = kwargs.get('weight', None)
         self.visual_effect = kwargs.get('visual_effect', 'VISUAL_EFFECT_DISABLE') # nml constant
-        # declare capacities for pax, mail and freight, as they are needed later for nml switches
-        self.capacities_pax = self.get_capacity_variations(kwargs.get('capacity', 0))
-        self.capacities_mail = self.get_capacity_variations(kwargs.get('capacity_mail', 0))
-        self.capacities_freight = self.get_capacity_variations(kwargs.get('capacity_freight', 0))
+        # capacities variable by parameter
+        self.capacities = self.get_capacity_variations(kwargs.get('capacity', 0))
         # spriterow_num, first row = 0
         self.spriterow_num = kwargs.get('spriterow_num', 0)
         # set defaults for props otherwise set by subclass as needed (not set by kwargs as specific models do not over-ride them)
@@ -362,7 +358,7 @@ class RoadVehicle(object):
 
     def render_cargo_capacity(self):
         template = templates["capacity_switches.pynml"]
-        return template(vehicle=self)
+        return template(vehicle=self, global_constants=global_constants)
 
     def render(self):
         # integrity tests
@@ -423,7 +419,7 @@ class CourierCar(RoadVehicle):
         self.label_refits_allowed = [] # no specific labels needed
         self.label_refits_disallowed = []
         self.default_cargo = 'MAIL'
-        self.default_cargo_capacities = self.capacities_freight
+        self.default_cargo_capacities = self.capacities
 
 
 class PaxHauler(RoadVehicle):
@@ -438,7 +434,7 @@ class PaxHauler(RoadVehicle):
         self.label_refits_allowed = []
         self.label_refits_disallowed = []
         self.default_cargo = 'PASS'
-        self.default_cargo_capacities = self.capacities_pax
+        self.default_cargo_capacities = self.capacities
 
 
 class GeneralCargoHauler(RoadVehicle):
@@ -453,7 +449,7 @@ class GeneralCargoHauler(RoadVehicle):
         self.label_refits_allowed = ['GRAI', 'WHEA', 'MAIZ'] # Iron Horse compatibility
         self.label_refits_disallowed = []
         self.default_cargo = 'GOOD'
-        self.default_cargo_capacities = self.capacities_freight
+        self.default_cargo_capacities = self.capacities
 
 
 class MiningHauler(RoadVehicle):
@@ -468,7 +464,7 @@ class MiningHauler(RoadVehicle):
         self.label_refits_allowed = [] # no specific labels needed
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_hopper_bulk_freight']
         self.default_cargo = 'COAL'
-        self.default_cargo_capacities = self.capacities_freight
+        self.default_cargo_capacities = self.capacities
 
 
 class BulkFarmHauler(RoadVehicle):
@@ -483,7 +479,7 @@ class BulkFarmHauler(RoadVehicle):
         self.label_refits_allowed = ['FICR', 'GRAI', 'WHEA', 'MAIZ', 'SGBT', 'SGCN', 'SUGR', 'FRUT', 'FMSP']
         self.label_refits_disallowed = []
         self.default_cargo = 'GRAI'
-        self.default_cargo_capacities = self.capacities_freight
+        self.default_cargo_capacities = self.capacities
 
 
 class BulkPowderHauler(RoadVehicle):
@@ -498,7 +494,7 @@ class BulkPowderHauler(RoadVehicle):
         self.label_refits_allowed = ['GRAI', 'WHEA', 'MAIZ', 'FOOD', 'SUGR', 'FMSP', 'RFPR', 'CLAY', 'BDMT']
         self.label_refits_disallowed = []
         self.default_cargo = 'GRAI'
-        self.default_cargo_capacities = self.capacities_freight
+        self.default_cargo_capacities = self.capacities
 
 
 class LivestockHauler(RoadVehicle):
@@ -513,7 +509,7 @@ class LivestockHauler(RoadVehicle):
         self.label_refits_allowed = ['LVST']
         self.label_refits_disallowed = []
         self.default_cargo = 'LVST'
-        self.default_cargo_capacities = self.capacities_freight
+        self.default_cargo_capacities = self.capacities
 
 
 class RefrigeratedHauler(RoadVehicle):
@@ -529,7 +525,7 @@ class RefrigeratedHauler(RoadVehicle):
         self.label_refits_allowed = [] # no specific labels needed, refits all cargos that have refrigerated class
         self.label_refits_disallowed = []
         self.default_cargo = 'FOOD'
-        self.default_cargo_capacities = self.capacities_freight
+        self.default_cargo_capacities = self.capacities
 
 
 class Tanker(RoadVehicle):
@@ -544,7 +540,7 @@ class Tanker(RoadVehicle):
         self.label_refits_allowed = []
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['edible_liquids']
         self.default_cargo = 'OIL_'
-        self.default_cargo_capacities = self.capacities_freight
+        self.default_cargo_capacities = self.capacities
 
 
 class EdiblesTanker(RoadVehicle):
@@ -559,7 +555,7 @@ class EdiblesTanker(RoadVehicle):
         self.label_refits_allowed = ['MILK']
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_edible_liquids']
         self.default_cargo = 'WATR'
-        self.default_cargo_capacities = self.capacities_freight
+        self.default_cargo_capacities = self.capacities
 
 
 class LogHauler(RoadVehicle):
@@ -574,7 +570,7 @@ class LogHauler(RoadVehicle):
         self.label_refits_allowed = ['WOOD']
         self.label_refits_disallowed = []
         self.default_cargo = 'WOOD'
-        self.default_cargo_capacities = self.capacities_freight
+        self.default_cargo_capacities = self.capacities
 
 
 class FoundryHauler(RoadVehicle):
@@ -590,7 +586,7 @@ class FoundryHauler(RoadVehicle):
         self.label_refits_allowed = ['STEL', 'SCMT', 'ENSP', 'MNSP']
         self.label_refits_disallowed = []
         self.default_cargo = 'STEL'
-        self.default_cargo_capacities = self.capacities_freight
+        self.default_cargo_capacities = self.capacities
 
 
 class IntermodalHauler(RoadVehicle):
@@ -606,6 +602,6 @@ class IntermodalHauler(RoadVehicle):
         self.label_refits_allowed = ['FRUT','WATR']
         self.label_refits_disallowed = ['FISH','LVST','OIL_','TOUR','WOOD']
         self.default_cargo = 'GOOD'
-        self.default_cargo_capacities = self.capacities_freight
+        self.default_cargo_capacities = self.capacities
 
 

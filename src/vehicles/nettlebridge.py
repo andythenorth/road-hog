@@ -12,7 +12,7 @@ consist = EngineConsist(id = 'nettlebridge',
 
 consist.add_unit(BulkFarmHauler(consist = consist,
                         weight = 12,
-                        capacity_freight = 15,
+                        capacity = 15,
                         vehicle_length = 7,
                         visual_effect = 'VISUAL_EFFECT_ELECTRIC',
                         spriterow_num = 0), repeat = 2)

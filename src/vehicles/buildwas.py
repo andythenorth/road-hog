@@ -12,14 +12,14 @@ consist = EngineConsist(id = 'buildwas',
 
 consist.add_unit(MiningHauler(consist = consist,
                         weight = 30,
-                        capacity_freight = 0,
+                        capacity = 0,
                         vehicle_length = 6,
                         visual_effect = 'VISUAL_EFFECT_STEAM',
                         spriterow_num = 0))
 
 consist.add_unit(MiningHauler(consist = consist,
                         weight = 2,
-                        capacity_freight = 9,
+                        capacity = 9,
                         vehicle_length = 4,
                         spriterow_num = 2), repeat=8)
 

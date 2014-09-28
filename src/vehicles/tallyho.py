@@ -11,7 +11,7 @@ consist = EngineConsist(id = 'tallyho',
 
 consist.add_unit(CourierCar(consist = consist,
                         weight = 12,
-                        capacity_freight = 22,
+                        capacity = 22,
                         capacity_mail = 45,
                         vehicle_length = 6,
                         visual_effect = 'VISUAL_EFFECT_DIESEL',

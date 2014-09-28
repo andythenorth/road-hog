@@ -1,8 +1,8 @@
 // -- capacity determined according to specific labels that might need to be handled, and otherwise cargo class -- //
 <tal:capacity repeat="param_value python:range(3)">
     switch (FEAT_ROADVEHS, SELF, ${vehicle.id}_switch_cargo_capacity_by_cargo_${param_value}, cargo_classes) {
-        bitmask(CC_MAIL): return ${int(2 * vehicle.capacities_freight[param_value])};
-        return ${vehicle.capacities_freight[param_value]};
+        bitmask(CC_MAIL): return ${int(global_constants.mail_multiplier * vehicle.capacities[param_value])};
+        return ${vehicle.capacities[param_value]};
     }
 </tal:capacity>
 

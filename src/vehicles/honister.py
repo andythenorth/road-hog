@@ -11,14 +11,14 @@ consist = EngineConsist(id = 'honister',
 
 consist.add_unit(BulkFarmHauler(consist = consist,
                         weight = 6,
-                        capacity_freight = 0,
+                        capacity = 0,
                         vehicle_length = 7,
                         visual_effect = 'VISUAL_EFFECT_DIESEL',
                         spriterow_num = 0))
 
 consist.add_unit(BulkFarmHauler(consist = consist,
                         weight = 6,
-                        capacity_freight = 35,
+                        capacity = 35,
                         vehicle_length = 7,
                         spriterow_num = 1))
 

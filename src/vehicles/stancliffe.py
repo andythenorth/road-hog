@@ -13,14 +13,14 @@ consist = EngineConsist(id = 'stancliffe',
 
 consist.add_unit(FoundryHauler(consist = consist,
                         weight = 20,
-                        capacity_freight = 0,
+                        capacity = 0,
                         vehicle_length = 3,
                         visual_effect = 'VISUAL_EFFECT_ELECTRIC',
                         spriterow_num = 0))
 
 consist.add_unit(FoundryHauler(consist = consist,
                         weight = 5,
-                        capacity_freight = 20,
+                        capacity = 20,
                         vehicle_length = 4,
                         spriterow_num = 1), repeat = 5)
 

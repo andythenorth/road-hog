@@ -12,7 +12,7 @@ consist = EngineConsist(id = 'foxley',
 
 consist.add_unit(CourierCar(consist = consist,
                         weight = 10,
-                        capacity_freight = 20,
+                        capacity = 20,
                         capacity_mail = 40,
                         vehicle_length = 6,
                         visual_effect = 'VISUAL_EFFECT_ELECTRIC',

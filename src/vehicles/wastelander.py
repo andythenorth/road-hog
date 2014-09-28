@@ -12,20 +12,20 @@ consist = EngineConsist(id = 'wastelander',
 
 consist.add_unit(GeneralCargoHauler(consist = consist,
                         weight = 12,
-                        capacity_freight = 0,
+                        capacity = 0,
                         vehicle_length = 4,
                         visual_effect = 'VISUAL_EFFECT_STEAM',
                         spriterow_num = 0))
 
 consist.add_unit(GeneralCargoHauler(consist = consist,
                         weight = 2,
-                        capacity_freight = 10,
+                        capacity = 10,
                         vehicle_length = 3,
                         spriterow_num = 2), repeat = 2)
 
 consist.add_unit(GeneralCargoHauler(consist = consist,
                         weight = 4,
-                        capacity_freight = 10,
+                        capacity = 10,
                         vehicle_length = 3,
                         spriterow_num = 1))
 

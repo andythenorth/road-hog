@@ -29,6 +29,8 @@ disallowed_refits_by_label = {'non_hopper_bulk_freight': ['WOOD', 'SGCN', 'FICR'
 
 # capacity multipliers for capacity parameter
 capacity_multipliers = [0.67, 1, 1.33]
+# mailbags are < 1t, multiply capacity appropriately
+mail_multiplier = 2
 
 # used to construct the cargo table automatically
 # ! order is significant ! - openttd will cascade through default cargos in the order specified by the cargo table
