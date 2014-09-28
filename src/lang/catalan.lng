@@ -18,6 +18,7 @@ STR_NAME_SUFFIX_GENERAL_CARGO_TRUCK                             :Camió per a c�
 STR_NAME_SUFFIX_COURIER_TRAM                                    :Tramvia per a missatgeria
 STR_NAME_SUFFIX_COURIER_TRUCK                                   :Camió per a missatgeria
 STR_NAME_SUFFIX_TANKER_TRUCK                                    :Camió cisterna
+STR_NAME_SUFFIX_COVERED_HOPPER_TRAM                             :Tramvia cobert amb tremuja
 STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :Camió cobert amb tremuja
 STR_NAME_SUFFIX_MINING_TRAM                                     :Tramvia per a mineria
 STR_NAME_SUFFIX_MINING_TRUCK                                    :Camió per a mineria
@@ -27,6 +28,7 @@ STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :Camió per a fu
 STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Camió intermodal
 STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :Tramvia per a bestiar
 STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :Camió per a bestiar
+STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM                             :Tramvia cisterna per a comestibles
 STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK                            :Camió cisterna per a comestibles
 STR_NAME_SUFFIX_REEFER_TRAM                                     :Tramvia refrigerat
 STR_NAME_SUFFIX_REEFER_TRUCK                                    :Camió refrigerat
