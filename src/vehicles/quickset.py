@@ -18,7 +18,7 @@ consist.add_unit(GeneralCargoHauler(consist = consist,
 
 consist.add_unit(GeneralCargoHauler(consist = consist,
                         weight = 8,
-                        capacity_freight = 45,
+                        capacity_freight = 35,
                         vehicle_length = 7,
                         spriterow_num = 0))
 

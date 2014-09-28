@@ -19,13 +19,13 @@ consist.add_unit(GeneralCargoHauler(consist = consist,
 
 consist.add_unit(GeneralCargoHauler(consist = consist,
                         weight = 2,
-                        capacity_freight = 10,
+                        capacity_freight = 9,
                         vehicle_length = 3,
                         spriterow_num = 2), repeat = 2)
 
 consist.add_unit(GeneralCargoHauler(consist = consist,
                         weight = 4,
-                        capacity_freight = 10,
+                        capacity_freight = 7,
                         vehicle_length = 3,
                         spriterow_num = 1))
 

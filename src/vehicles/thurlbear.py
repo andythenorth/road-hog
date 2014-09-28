@@ -8,7 +8,7 @@ consist = EngineConsist(id = 'thurlbear',
               replacement_id = '-none',
               power = 250,
               vehicle_life = 40,
-              intro_date = 1958)
+              intro_date = 1922)
 
 consist.add_unit(BulkPowderHauler(consist = consist,
                         weight = 7,
@@ -19,7 +19,7 @@ consist.add_unit(BulkPowderHauler(consist = consist,
 
 consist.add_unit(BulkPowderHauler(consist = consist,
                         weight = 8,
-                        capacity_freight = 40,
+                        capacity_freight = 30,
                         vehicle_length = 7,
                         spriterow_num = 0))
 
