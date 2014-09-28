@@ -265,7 +265,7 @@ class RoadVehicle(object):
         self.weight = kwargs.get('weight', None)
         self.visual_effect = kwargs.get('visual_effect', 'VISUAL_EFFECT_DISABLE') # nml constant
         # declare capacities for pax, mail and freight, as they are needed later for nml switches
-        self.capacities_pax = self.get_capacity_variations(kwargs.get('capacity_pax', 0))
+        self.capacities_pax = self.get_capacity_variations(kwargs.get('capacity', 0))
         self.capacities_mail = self.get_capacity_variations(kwargs.get('capacity_mail', 0))
         self.capacities_freight = self.get_capacity_variations(kwargs.get('capacity_freight', 0))
         # spriterow_num, first row = 0
