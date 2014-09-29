@@ -3,7 +3,7 @@ from road_vehicle import EngineConsist, FoundryHauler
 
 consist = EngineConsist(id = 'stancliffe',
               base_numeric_id = 350,
-              title = 'Stancliffe [Foundry Hauler]',
+              title = 'Stancliffe [Foundry Tram]',
               roadveh_flag_tram = True,
               replacement_id = '-none',
               power = 250,
