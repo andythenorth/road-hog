@@ -17,6 +17,7 @@ STR_NAME_SUFFIX_GENERAL_CARGO_TRAM                              :Tranvía de car
 STR_NAME_SUFFIX_GENERAL_CARGO_TRUCK                             :Camión de carga
 STR_NAME_SUFFIX_COURIER_TRAM                                    :Tranvía de mensajería-correo urgente
 STR_NAME_SUFFIX_COURIER_TRUCK                                   :Camión de mensajería-correo urgente
+STR_NAME_SUFFIX_TANKER_TRAM                                     :Tranvía cisterna
 STR_NAME_SUFFIX_TANKER_TRUCK                                    :Camión cisterna
 STR_NAME_SUFFIX_COVERED_HOPPER_TRAM                             :Tranvía Tolva cubierto
 STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :Camión Tolva cubierto
@@ -29,6 +30,7 @@ STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Camión Intermo
 STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :Tranvía de ganado
 STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :Camión de ganado
 STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM                             :Tranvía cisterna de/para comestibles
+STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK                            :Camión cisterna de/para comestibles
 STR_NAME_SUFFIX_REEFER_TRUCK                                    :Camión frigorífico
 STR_NAME_SUFFIX_LOGGING_TRUCK                                   :Camión de troncos
 
