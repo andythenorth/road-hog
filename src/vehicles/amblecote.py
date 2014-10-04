@@ -20,13 +20,13 @@ consist.add_unit(GeneralCargoHauler(consist = consist,
 consist.add_unit(GeneralCargoHauler(consist = consist,
                         weight = 2,
                         capacity = 9,
-                        vehicle_length = 3,
+                        vehicle_length = 4,
                         spriterow_num = 2), repeat = 2)
 
 consist.add_unit(GeneralCargoHauler(consist = consist,
                         weight = 4,
                         capacity = 7,
-                        vehicle_length = 3,
+                        vehicle_length = 4,
                         spriterow_num = 1))
 
 consist.add_model_variant(intro_date=0,
