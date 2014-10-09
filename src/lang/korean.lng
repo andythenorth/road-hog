@@ -3,10 +3,13 @@
 ##gender m f
 STR_GRF_DESCRIPTION                                             :라이선스: {SILVER}GPL v2{}{BLACK}
 
-STR_PARAM_ADJUST_VEHICLE_CAPACITY                               :열차 수송량
+STR_PARAM_ADJUST_VEHICLE_CAPACITY                               :도로 차량(버스,전차) 수송량
 STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_0                      :매우 작은
 STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_1                      :놀라운
 STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2                      :과도한
+STR_PARAM_ROSTER                                                :명부
+STR_PARAM_ROSTER_DESC                                           :어떤 종류의 차량 세트를 쓸 것인지 고르십시오.
+STR_PARAM_ROSTER_OPTION_0                                       :정어리
 
 STR_NAME_SUFFIX_PASSENGER_TRAM                                  :승객 전차
 STR_NAME_SUFFIX_BUS                                             :버스
@@ -14,14 +17,22 @@ STR_NAME_SUFFIX_GENERAL_CARGO_TRAM                              :일반 화물 �
 STR_NAME_SUFFIX_GENERAL_CARGO_TRUCK                             :다중 화물 트럭
 STR_NAME_SUFFIX_COURIER_TRAM                                    :안내원 전차
 STR_NAME_SUFFIX_COURIER_TRUCK                                   :안내 트럭
+STR_NAME_SUFFIX_TANKER_TRAM                                     :유조 전차
 STR_NAME_SUFFIX_TANKER_TRUCK                                    :탱크로리
+STR_NAME_SUFFIX_COVERED_HOPPER_TRAM                             :유개 전차
 STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :유개(덮개가 있는) 트럭
 STR_NAME_SUFFIX_MINING_TRAM                                     :광석 수송 전차
 STR_NAME_SUFFIX_MINING_TRUCK                                    :광석 운송 차량
+STR_NAME_SUFFIX_FARM_BULK_TRAM                                  :가축 수송 전차
+STR_NAME_SUFFIX_FARM_BULK_TRUCK                                 :가축 수송 트럭
+STR_NAME_SUFFIX_FOUNDRY_TRAM                                    :철 수송 전차
 STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :철 수송 트럭
 STR_NAME_SUFFIX_INTERMODAL_HAULER                               :다중 수송 트럭
 STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :가축 수송 트럭
 STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :가축 트럭
+STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM                             :식품 수송 전차
+STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK                            :식품 수송 트럭
+STR_NAME_SUFFIX_REEFER_TRAM                                     :냉장(곡물) 전차
 STR_NAME_SUFFIX_REEFER_TRUCK                                    :가축 수송 트럭
 STR_NAME_SUFFIX_LOGGING_TRUCK                                   :목재 수송 트럭
 

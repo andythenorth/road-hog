@@ -16,14 +16,22 @@ STR_NAME_SUFFIX_GENERAL_CARGO_TRAM                              :Yleistavararait
 STR_NAME_SUFFIX_GENERAL_CARGO_TRUCK                             :Yleistavarakuorma-auto
 STR_NAME_SUFFIX_COURIER_TRAM                                    :Lähettiraitiovaunu
 STR_NAME_SUFFIX_COURIER_TRUCK                                   :Lähettikuorma-auto
+STR_NAME_SUFFIX_TANKER_TRAM                                     :Säiliöraitiovaunu
 STR_NAME_SUFFIX_TANKER_TRUCK                                    :Säiliöauto
-STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :Katoksellinen Suppiloauto
+STR_NAME_SUFFIX_COVERED_HOPPER_TRAM                             :Katettu Suppiloraitiovaunu
+STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :Katettu Suppiloauto
 STR_NAME_SUFFIX_MINING_TRAM                                     :Mineraaliraitiovaunu
 STR_NAME_SUFFIX_MINING_TRUCK                                    :Mineraalirekka
+STR_NAME_SUFFIX_FARM_BULK_TRAM                                  :Maatilan Kappaletavararaitiovaunu
+STR_NAME_SUFFIX_FARM_BULK_TRUCK                                 :Maatilan Kappaletavara-auto
+STR_NAME_SUFFIX_FOUNDRY_TRAM                                    :Sulattamoraitiovaunu
 STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :Sulattamorekka
 STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Konttirekka
 STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :Karjaraitiovaunu
 STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :Karjarekka
+STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM                             :Syömäkelpoisten Nesteiden Säiliöraitiovaunu
+STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK                            :Syömäkelpoisten Nesteiden Säiliöauto
+STR_NAME_SUFFIX_REEFER_TRAM                                     :Kylmäraitiovaunu
 STR_NAME_SUFFIX_REEFER_TRUCK                                    :Kylmäauto
 STR_NAME_SUFFIX_LOGGING_TRUCK                                   :Tukkiauto
 
