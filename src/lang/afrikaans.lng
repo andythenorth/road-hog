@@ -17,15 +17,23 @@ STR_NAME_SUFFIX_GENERAL_CARGO_TRAM                              :Algemene Vrag T
 STR_NAME_SUFFIX_GENERAL_CARGO_TRUCK                             :Algemene Vrag Vragmotor
 STR_NAME_SUFFIX_COURIER_TRAM                                    :Koerier Trem
 STR_NAME_SUFFIX_COURIER_TRUCK                                   :Koerier Vragmotor
+STR_NAME_SUFFIX_TANKER_TRAM                                     :Tenkwa Trem
 STR_NAME_SUFFIX_TANKER_TRUCK                                    :Tenkwa
+STR_NAME_SUFFIX_COVERED_HOPPER_TRAM                             :Bedekte Laai Trem
 STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :Bedekte Laai Vragmotor
 STR_NAME_SUFFIX_MINING_TRAM                                     :Myn Trem
-STR_NAME_SUFFIX_MINING_TRUCK                                    :Myn Trok
-STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :Staal Trok
-STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Intermodale Trok
+STR_NAME_SUFFIX_MINING_TRUCK                                    :Myn Vragmotor
+STR_NAME_SUFFIX_FARM_BULK_TRAM                                  :Plaas Bulk  Trem
+STR_NAME_SUFFIX_FARM_BULK_TRUCK                                 :Plaas Bulk Vragmotor
+STR_NAME_SUFFIX_FOUNDRY_TRAM                                    :Staal Trem
+STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :Staal Vragmotor
+STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Intermodale Vragmotor
 STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :Lewendehawe Trem
 STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :Lewendehawe Vragmotor
-STR_NAME_SUFFIX_REEFER_TRUCK                                    :'Reefer' Vragmotor
+STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM                             :Eetbare Tenkwa Trem
+STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK                            :Eetbare Tenkwa Vragmotor
+STR_NAME_SUFFIX_REEFER_TRAM                                     :Verkoelde Trem
+STR_NAME_SUFFIX_REEFER_TRUCK                                    :Verkoelde Vragmotor
 STR_NAME_SUFFIX_LOGGING_TRUCK                                   :Hout Vragmotor
 
 STR_COASTER                                                     :Die Koei het oor die maan gespring (Die is 'n herrinering)
