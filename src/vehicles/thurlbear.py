@@ -6,21 +6,15 @@ consist = EngineConsist(id = 'thurlbear',
               title = 'Thurlbear [Covered Hopper Tram]',
               roadveh_flag_tram = True,
               replacement_id = '-none',
-              power = 250,
+              power = 200,
               vehicle_life = 40,
-              intro_date = 1922)
+              intro_date = 1903)
 
 consist.add_unit(BulkPowderHauler(consist = consist,
-                        weight = 7,
-                        capacity = 0,
-                        vehicle_length = 7,
-                        visual_effect = 'VISUAL_EFFECT_DIESEL',
-                        spriterow_num = 0))
-
-consist.add_unit(BulkPowderHauler(consist = consist,
-                        weight = 8,
+                        weight = 12,
                         capacity = 30,
                         vehicle_length = 7,
+                        visual_effect = 'VISUAL_EFFECT_DIESEL',
                         spriterow_num = 0))
 
 consist.add_model_variant(intro_date=0,
