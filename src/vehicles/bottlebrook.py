@@ -11,7 +11,7 @@ consist = EngineConsist(id = 'bottlebrook',
               intro_date = 1905)
 
 consist.add_unit(EdiblesTanker(consist = consist,
-                        weight = 7,
+                        weight = 12,
                         capacity = 30,
                         vehicle_length = 7,
                         visual_effect = 'VISUAL_EFFECT_DIESEL',
