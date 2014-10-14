@@ -20,15 +20,9 @@ consist.add_unit(MiningHauler(consist = consist,
 # dibble wagons to get 50t total capacity
 consist.add_unit(MiningHauler(consist = consist,
                         weight = 2,
-                        capacity = 13,
-                        vehicle_length = 4,
-                        spriterow_num = 2), repeat=2)
-
-consist.add_unit(MiningHauler(consist = consist,
-                        weight = 2,
-                        capacity = 12,
-                        vehicle_length = 4,
-                        spriterow_num = 2), repeat=2)
+                        capacity = 10,
+                        vehicle_length = 3,
+                        spriterow_num = 1), repeat=5)
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,
