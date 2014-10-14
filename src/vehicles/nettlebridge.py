@@ -6,7 +6,7 @@ consist = EngineConsist(id = 'nettlebridge',
               title = 'Nettlebridge [Farm Bulk Tram]',
               roadveh_flag_tram = True,
               replacement_id = '-none',
-              power = 120,
+              power = 200,
               vehicle_life = 40,
               intro_date = 1903)
 

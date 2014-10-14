@@ -6,7 +6,7 @@ consist = EngineConsist(id = 'oylbarral',
               title = 'Oylbarral [Tanker Tram]',
               roadveh_flag_tram = True,
               replacement_id = '-none',
-              power = 300,
+              power = 200,
               vehicle_life = 40,
               intro_date = 1905)
 
