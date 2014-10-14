@@ -17,11 +17,18 @@ consist.add_unit(MiningHauler(consist = consist,
                         visual_effect = 'VISUAL_EFFECT_STEAM',
                         spriterow_num = 0))
 
+# dibble wagons to get 50t total capacity
 consist.add_unit(MiningHauler(consist = consist,
                         weight = 2,
-                        capacity = 10,
-                        vehicle_length = 5,
-                        spriterow_num = 2), repeat=5)
+                        capacity = 13,
+                        vehicle_length = 4,
+                        spriterow_num = 2), repeat=2)
+
+consist.add_unit(MiningHauler(consist = consist,
+                        weight = 2,
+                        capacity = 12,
+                        vehicle_length = 4,
+                        spriterow_num = 2), repeat=2)
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,
