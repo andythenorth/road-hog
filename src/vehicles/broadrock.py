@@ -14,14 +14,14 @@ consist = EngineConsist(id = 'broadrock',
 consist.add_unit(MiningHauler(consist = consist,
                         weight = 20,
                         capacity = 0,
-                        vehicle_length = 7,
+                        vehicle_length = 4,
                         visual_effect = 'VISUAL_EFFECT_DIESEL',
                         spriterow_num = 0))
 
 consist.add_unit(MiningHauler(consist = consist,
                         weight = 15,
                         capacity = 75,
-                        vehicle_length = 7,
+                        vehicle_length = 4,
                         spriterow_num = 1))
 
 consist.add_model_variant(intro_date=0,
