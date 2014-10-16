@@ -12,7 +12,8 @@ consist = EngineConsist(id = 'greenscoe',
 consist.add_unit(Tanker(consist = consist,
                         weight = 7,
                         capacity = 0,
-                        vehicle_length = 3,
+                        vehicle_length = 2,
+                        semi_truck_shift_offset_jank = 2,
                         visual_effect = 'VISUAL_EFFECT_DIESEL',
                         spriterow_num = 0))
 
