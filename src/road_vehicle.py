@@ -233,10 +233,6 @@ class Consist(object):
             utils.echo_message("Warning: vehicle " + self.id + " appears in more than one roster " + str(result))
         return result[0]
 
-    def render_debug_info(self):
-        template = templates["debug_info_consist.pynml"]
-        return template(consist=self)
-
     def render_articulated_switch(self):
         template = templates["add_articulated_parts.pynml"]
         nml_result = template(consist=self, global_constants=global_constants)
@@ -273,7 +269,9 @@ class RoadVehicle(object):
         self.label_refits_allowed = [] # no specific labels needed
         self.label_refits_disallowed = []
         self.autorefit = False
-        self.visual_effect_offset = 0
+        # diesel set as default effect_spawn_model (most common type of vehicle), over-ride as needed
+        self.effect_spawn_model = kwargs.get('effect_spawn_model', 'EFFECT_SPAWN_MODEL_DIESEL')
+        self.effects = kwargs.get('effects', [])
 
     def get_capacity_variations(self, capacity):
         # capacity is variable, controlled by a newgrf parameter
@@ -356,9 +354,15 @@ class RoadVehicle(object):
     def get_expression_for_roster(self):
         return 'param_roster=='+str(registered_rosters.index(self.consist.roster))
 
-    def render_debug_info(self):
-        template = templates["debug_info_vehicle.pynml"]
-        return template(vehicle=self)
+    def get_expression_for_effects(self):
+        # provides part of nml switch for effects (smoke), or none if no effects defined
+        if len(self.effects) > 0:
+            result = []
+            for index, effect in enumerate(self.effects):
+                 result.append('STORE_TEMP(create_effect(' + effect + '), 0x10' + str(index) + ')')
+            return '[' + ','.join(result) + ']'
+        else:
+            return 0
 
     def render_properties(self):
         template = templates["road_vehicle_properties.pynml"]
