@@ -262,6 +262,7 @@ class RoadVehicle(object):
         self.vehicle_length = kwargs.get('vehicle_length', None)
         self.weight = kwargs.get('weight', None)
         self.visual_effect = kwargs.get('visual_effect', 'VISUAL_EFFECT_DISABLE') # nml constant
+        self.semi_truck_shift_offset_jank = kwargs.get('semi_truck_shift_offset_jank', None)
         # capacities variable by parameter
         self.capacities = self.get_capacity_variations(kwargs.get('capacity', 0))
         # spriterow_num, first row = 0
@@ -314,8 +315,15 @@ class RoadVehicle(object):
 
     @property
     def offsets(self):
-        # offsets can also be over-ridden on a per-model basis by providing this property in the model class
-        return global_constants.default_road_vehicle_offsets[str(self.vehicle_length)]
+        if self.semi_truck_shift_offset_jank:
+            result = []
+            for i in range (0, 8):
+                base_offsets = global_constants.default_road_vehicle_offsets[str(self.vehicle_length)][i]
+                offset_deltas = [self.semi_truck_shift_offset_jank * offset for offset in global_constants.semi_truck_offset_jank[i]]
+                result.append([base_offsets[0] + offset_deltas[0], base_offsets[1] + offset_deltas[1]])
+            return result
+        else:
+            return global_constants.default_road_vehicle_offsets[str(self.vehicle_length)]
 
     @property
     def sg_depot(self):
