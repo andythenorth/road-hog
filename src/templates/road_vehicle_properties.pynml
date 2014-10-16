@@ -33,7 +33,7 @@ item(FEAT_ROADVEHS, ${vehicle.id}, ${vehicle.numeric_id}) {
         reliability_decay:              20; // default value
         vehicle_life:                   ${consist.vehicle_life};
         length:                         ${vehicle.slice_length};
-        sound_effect:                   ${('SOUND_SHIP_HORN','SOUND_FERRY_HORN')[vehicle.default_cargo=='PASS']};
+        sound_effect:                   SOUND_TRUCK_START;
         effect_spawn_model:             ${vehicle.effect_spawn_model};
     }
     graphics {
