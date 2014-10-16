@@ -12,7 +12,7 @@ consist = EngineConsist(id = 'broadrock',
               intro_date = 1951)
 
 consist.add_unit(MiningHauler(consist = consist,
-                        weight = 20,
+                        weight = 35,
                         capacity = 0,
                         vehicle_length = 2,
                         semi_truck_shift_offset_jank = 3,
@@ -20,7 +20,7 @@ consist.add_unit(MiningHauler(consist = consist,
                         spriterow_num = 0))
 
 consist.add_unit(MiningHauler(consist = consist,
-                        weight = 15,
+                        weight = 0, # put the weight on the truck to compensate for lack of TE when loaded
                         capacity = 75,
                         vehicle_length = 6,
                         spriterow_num = 1))
