@@ -257,7 +257,6 @@ class RoadVehicle(object):
         self.loading_speed = kwargs.get('loading_speed', 5) # 5 is default vehicle loading speed
         self.vehicle_length = kwargs.get('vehicle_length', None)
         self.weight = kwargs.get('weight', None)
-        self.visual_effect = kwargs.get('visual_effect', 'VISUAL_EFFECT_DISABLE') # nml constant
         self.semi_truck_shift_offset_jank = kwargs.get('semi_truck_shift_offset_jank', None)
         # capacities variable by parameter
         self.capacities = self.get_capacity_variations(kwargs.get('capacity', 0))
