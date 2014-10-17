@@ -15,7 +15,7 @@ consist.add_unit(MiningHauler(consist = consist,
                         weight = 60,
                         capacity = 100,
                         vehicle_length = 7,
-                        visual_effect = 'VISUAL_EFFECT_DIESEL',
+                        effects = ['EFFECT_SPRITE_DIESEL, -2, 0, 12'],
                         spriterow_num = 0))
 
 consist.add_model_variant(intro_date=0,
