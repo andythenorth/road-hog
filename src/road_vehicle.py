@@ -268,9 +268,8 @@ class RoadVehicle(object):
         self.label_refits_allowed = [] # no specific labels needed
         self.label_refits_disallowed = []
         self.autorefit = False
-        # diesel set as default effect_spawn_model (most common type of vehicle), over-ride as needed
-        self.effect_spawn_model = kwargs.get('effect_spawn_model', 'EFFECT_SPAWN_MODEL_DIESEL')
-        self.effects = kwargs.get('effects', [])
+        self._effect_spawn_model = kwargs.get('effect_spawn_model', None)
+        self._effects = kwargs.get('effects', None)
 
     def get_capacity_variations(self, capacity):
         # capacity is variable, controlled by a newgrf parameter
@@ -285,6 +284,25 @@ class RoadVehicle(object):
             return "ALL_CLIMATES"
         else:
             return "NO_CLIMATE"
+
+    @property
+    def effect_spawn_model(self):
+        if self._effect_spawn_model:
+            return self._effect_spawn_model
+        else:
+            if self.consist.roadveh_flag_tram == True:
+                # trams electric by default, over-ride in vehicle as needed
+                return 'EFFECT_SPAWN_MODEL_ELECTRIC'
+            else:
+                # other vehicles diesel by default, over-ride in vehicle as needed
+                return 'EFFECT_SPAWN_MODEL_DIESEL'
+
+    @property
+    def effects(self):
+        if self._effects:
+            return self._effects
+        else:
+            return []
 
     @property
     def is_lead_slice_of_consist(self):
