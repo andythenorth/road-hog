@@ -14,7 +14,7 @@ consist.add_unit(LogHauler(consist = consist,
                         capacity = 0,
                         vehicle_length = 4,
                         effect_spawn_model = 'EFFECT_SPAWN_MODEL_STEAM',
-                        effects = ['EFFECT_SPRITE_STEAM, -5, 0, 12'],
+                        effects = ['EFFECT_SPRITE_AIRCRAFT_BREAKDOWN_SMOKE, -5, 0, 12'],
                         spriterow_num = 0))
 
 consist.add_unit(LogHauler(consist = consist,
