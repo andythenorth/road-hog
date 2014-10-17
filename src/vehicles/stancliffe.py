@@ -14,7 +14,7 @@ consist.add_unit(FoundryHauler(consist = consist,
                         weight = 20,
                         capacity = 2,
                         vehicle_length = 3,
-                        visual_effect = 'VISUAL_EFFECT_ELECTRIC',
+                        effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 10'],
                         spriterow_num = 0))
 
 consist.add_unit(FoundryHauler(consist = consist,

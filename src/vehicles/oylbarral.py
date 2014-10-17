@@ -14,7 +14,7 @@ consist.add_unit(Tanker(consist = consist,
                         weight = 10,
                         capacity = 15,
                         vehicle_length = 6,
-                        visual_effect = 'VISUAL_EFFECT_DIESEL',
+                        effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 10'],
                         spriterow_num = 0))
 
 consist.add_unit(Tanker(consist = consist,

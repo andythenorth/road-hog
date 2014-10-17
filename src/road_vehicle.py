@@ -269,7 +269,7 @@ class RoadVehicle(object):
         self.label_refits_disallowed = []
         self.autorefit = False
         self._effect_spawn_model = kwargs.get('effect_spawn_model', None)
-        self._effects = kwargs.get('effects', None)
+        self.effects = kwargs.get('effects', []) # default for effects is an empty list
 
     def get_capacity_variations(self, capacity):
         # capacity is variable, controlled by a newgrf parameter
@@ -296,13 +296,6 @@ class RoadVehicle(object):
             else:
                 # other vehicles diesel by default, over-ride in vehicle as needed
                 return 'EFFECT_SPAWN_MODEL_DIESEL'
-
-    @property
-    def effects(self):
-        if self._effects:
-            return self._effects
-        else:
-            return []
 
     @property
     def is_lead_slice_of_consist(self):

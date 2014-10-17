@@ -16,7 +16,7 @@ consist.add_unit(MiningHauler(consist = consist,
                         weight = 30,
                         capacity = 10,
                         vehicle_length = 6,
-                        visual_effect = 'VISUAL_EFFECT_ELECTRIC',
+                        effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 10'],
                         spriterow_num = 0))
 
 consist.add_unit(MiningHauler(consist = consist,
