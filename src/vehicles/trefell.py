@@ -14,7 +14,8 @@ consist.add_unit(LogHauler(consist = consist,
                         weight = 7,
                         capacity = 0,
                         vehicle_length = 4,
-                        visual_effect = 'VISUAL_EFFECT_DIESEL',
+                        effect_spawn_model = 'EFFECT_SPAWN_MODEL_STEAM',
+                        effects = ['EFFECT_SPRITE_STEAM, -5, 0, 12'],
                         spriterow_num = 0))
 
 consist.add_unit(LogHauler(consist = consist,
