@@ -2,7 +2,7 @@ import global_constants
 from road_vehicle import EngineConsist, BulkPowderHauler
 
 consist = EngineConsist(id = 'limebreach',
-              base_numeric_id = 990,
+              base_numeric_id = 260,
               title = 'Limebreach [Covered Hopper Truck]',
               replacement_id = '-none',
               power = 250,

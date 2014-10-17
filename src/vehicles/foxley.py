@@ -2,7 +2,7 @@ import global_constants
 from road_vehicle import EngineConsist, CourierCar
 
 consist = EngineConsist(id = 'foxley',
-              base_numeric_id = 470,
+              base_numeric_id = 190,
               title = 'Foxley [Courier Tram]',
               roadveh_flag_tram = True,
               replacement_id = '-none',

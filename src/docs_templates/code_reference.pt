@@ -32,6 +32,10 @@
         <hr />
         <h3>Numeric IDs</h3>
         <p class="muted">Trailing parts of articulated vehicles are not listed here.</p>
+        <p class="muted">
+            Setting IDs for new vehicles?  The order and grouping doesn't matter.  Just fill any gaps, then add IDs to the
+            current end of the range for the roster. Trying to organise IDs by vehicle type or whatever is work with no benefit.
+        </p>
         <table class="table table-striped table-condensed table-bordered tablesorter">
             <thead>
                 <th>Numeric ID</th>

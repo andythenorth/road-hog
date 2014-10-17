@@ -2,7 +2,7 @@ import global_constants
 from road_vehicle import EngineConsist, FoundryHauler
 
 consist = EngineConsist(id = 'stancliffe',
-              base_numeric_id = 350,
+              base_numeric_id = 410,
               title = 'Stancliffe [Foundry Tram]',
               roadveh_flag_tram = True,
               replacement_id = '-none',

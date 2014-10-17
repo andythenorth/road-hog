@@ -2,7 +2,7 @@ import global_constants
 from road_vehicle import EngineConsist, BulkFarmHauler
 
 consist = EngineConsist(id = 'powerstock',
-              base_numeric_id = 240,
+              base_numeric_id = 340,
               title = 'Powerstock [Farm Bulk Truck]',
               replacement_id = '-none',
               power = 650,

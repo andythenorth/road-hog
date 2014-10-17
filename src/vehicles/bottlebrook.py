@@ -2,7 +2,7 @@ import global_constants
 from road_vehicle import EngineConsist, EdiblesTanker
 
 consist = EngineConsist(id = 'bottlebrook',
-              base_numeric_id = 970,
+              base_numeric_id = 510,
               title = 'Bottlebrook [Edibles Tanker Tram]',
               roadveh_flag_tram = True,
               replacement_id = '-none',

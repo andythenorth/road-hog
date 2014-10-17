@@ -2,7 +2,7 @@ import global_constants
 from road_vehicle import EngineConsist, RefrigeratedHauler
 
 consist = EngineConsist(id = 'merrivale',
-              base_numeric_id = 370,
+              base_numeric_id = 300,
               title = 'Merrivale [Reefer Truck]',
               replacement_id = '-none',
               power = 250,

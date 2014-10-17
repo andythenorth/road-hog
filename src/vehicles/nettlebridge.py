@@ -2,7 +2,7 @@ import global_constants
 from road_vehicle import EngineConsist, BulkFarmHauler
 
 consist = EngineConsist(id = 'nettlebridge',
-              base_numeric_id = 900,
+              base_numeric_id = 310,
               title = 'Nettlebridge [Farm Bulk Tram]',
               roadveh_flag_tram = True,
               replacement_id = '-none',

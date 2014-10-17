@@ -2,7 +2,7 @@ import global_constants
 from road_vehicle import EngineConsist, MiningHauler
 
 consist = EngineConsist(id = 'witch_hill',
-              base_numeric_id = 340,
+              base_numeric_id = 500,
               title = 'Witch Hill [Mining Truck]',
               replacement_id = '-none',
               power = 1000,

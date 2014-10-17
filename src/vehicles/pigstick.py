@@ -2,7 +2,7 @@ import global_constants
 from road_vehicle import EngineConsist, LivestockHauler
 
 consist = EngineConsist(id = 'pigstick',
-              base_numeric_id = 310,
+              base_numeric_id = 330,
               title = 'Pigstick [Livestock Truck]',
               replacement_id = '-none',
               power = 180,

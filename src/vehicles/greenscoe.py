@@ -2,7 +2,7 @@ import global_constants
 from road_vehicle import EngineConsist, Tanker
 
 consist = EngineConsist(id = 'greenscoe',
-              base_numeric_id = 390,
+              base_numeric_id = 210,
               title = 'Greenscoe [Tanker Truck]',
               replacement_id = '-none',
               power = 150,
