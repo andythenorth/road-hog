@@ -3,9 +3,13 @@
 ##gender m w n p
 STR_GRF_DESCRIPTION                                             :Lizenz: {SILVER}GPL v2{}{BLACK}
 
+STR_PARAM_ADJUST_VEHICLE_CAPACITY                               :Fahrzeugkapazität
 STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_0                      :Mickrig
 STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_1                      :Großartig
 STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2                      :Übermäßig
+STR_PARAM_ROSTER                                                :Liste
+STR_PARAM_ROSTER_DESC                                           :Suche aus welche Fahrzeuge verwendet werden sollen.
+STR_PARAM_ROSTER_OPTION_0                                       :Brit
 
 STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Straßenbahn (Passagiere)
 STR_NAME_SUFFIX_BUS                                             :Bus
@@ -13,13 +17,22 @@ STR_NAME_SUFFIX_GENERAL_CARGO_TRAM                              :Feldbahn für S
 STR_NAME_SUFFIX_GENERAL_CARGO_TRUCK                             :Lastkraftwagen für Stückgut
 STR_NAME_SUFFIX_COURIER_TRAM                                    :Straßenbahn (Post)
 STR_NAME_SUFFIX_COURIER_TRUCK                                   :Courier-Transporter
+STR_NAME_SUFFIX_TANKER_TRAM                                     :Tankwagen-Tram
 STR_NAME_SUFFIX_TANKER_TRUCK                                    :Tanklaster
+STR_NAME_SUFFIX_COVERED_HOPPER_TRAM                             :Gedeckte Schüttgut-Tram
 STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :Gedeckter Schüttgut-LKW
 STR_NAME_SUFFIX_MINING_TRAM                                     :Grubenbahn
+STR_NAME_SUFFIX_MINING_TRUCK                                    :Gruben-Laster
+STR_NAME_SUFFIX_FARM_BULK_TRAM                                  :Schüttgut-Tram
+STR_NAME_SUFFIX_FARM_BULK_TRUCK                                 :Schüttgutlaster
+STR_NAME_SUFFIX_FOUNDRY_TRAM                                    :Schwerlast-Tram
 STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :Schwerlast-Transporter
 STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Container-Laster
 STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :Viehtransporter
 STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :Viehtransporter
+STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM                             :Nahrungsmittel-Tram
+STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK                            :Nahrungsmittel-Laster
+STR_NAME_SUFFIX_REEFER_TRAM                                     :Kühlwagen-Tram
 STR_NAME_SUFFIX_REEFER_TRUCK                                    :Kühltransporter
 STR_NAME_SUFFIX_LOGGING_TRUCK                                   :Langholzlaster
 
