@@ -26,6 +26,8 @@ STR_NAME_SUFFIX_FARM_BULK_TRAM                                  :Farm Bulk Tram
 STR_NAME_SUFFIX_FARM_BULK_TRUCK                                 :Farm Bulk Truck
 STR_NAME_SUFFIX_FOUNDRY_TRAM                                    :Foundry Tram
 STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :Foundry Hauler
+STR_NAME_SUFFIX_CRANE_TRAM                                      :Crane Tram
+STR_NAME_SUFFIX_CRANE_TRUCK                                     :Crane Truck
 STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Intermodal Hauler
 STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :Livestock Tram
 STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :Livestock Truck

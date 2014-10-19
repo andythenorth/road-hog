@@ -611,6 +611,21 @@ class FoundryHauler(RoadVehicle):
         self.default_cargo_capacities = self.capacities
 
 
+class CraneEquippedHauler(RoadVehicle):
+    """
+    Specialist tram / truck with flatbed + crane, supplies and building materials.
+    """
+    def __init__(self, **kwargs):
+        super(CraneEquippedHauler, self).__init__(**kwargs)
+        self.template = 'road_vehicle.pynml'
+        self.autorefit = True
+        self.class_refit_groups = []
+        self.label_refits_allowed = ['ENSP', 'FMSP', 'BDMT']
+        self.label_refits_disallowed = []
+        self.default_cargo = 'ENSP'
+        self.default_cargo_capacities = self.capacities
+
+
 class IntermodalHauler(RoadVehicle):
     """
     Specialist intermodal (container) truck, limited range of cargos.
