@@ -28,6 +28,8 @@ STR_NAME_SUFFIX_FARM_BULK_TRAM                                  :Tramvaj za rasu
 STR_NAME_SUFFIX_FARM_BULK_TRUCK                                 :Kamion za rasuti teret za farme
 STR_NAME_SUFFIX_FOUNDRY_TRAM                                    :Tramvaj za ljevaonicu
 STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :Kamion za talionicu
+STR_NAME_SUFFIX_CRANE_TRAM                                      :Tramvaj sa dizalicom
+STR_NAME_SUFFIX_CRANE_TRUCK                                     :Kamion sa dizalicom
 STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Kamion za intermodalni prijevoz
 STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :Tramvaj za stoku
 STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :Kamion za stoku
