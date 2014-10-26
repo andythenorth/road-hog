@@ -10,7 +10,7 @@ consist = EngineConsist(id = 'coalhall',
               speed = 35,
               type_base_running_cost_points = 20, # dibble running costs for game balance
               vehicle_life = 40,
-              intro_date = 1910)
+              intro_date = 1900)
 
 consist.add_unit(MiningHauler(consist = consist,
                         weight = 30,
