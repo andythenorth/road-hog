@@ -27,6 +27,8 @@ STR_NAME_SUFFIX_FARM_BULK_TRAM                                  :Plaas Bulk  Tre
 STR_NAME_SUFFIX_FARM_BULK_TRUCK                                 :Plaas Bulk Vragmotor
 STR_NAME_SUFFIX_FOUNDRY_TRAM                                    :Staal Trem
 STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :Staal Vragmotor
+STR_NAME_SUFFIX_CRANE_TRAM                                      :Hyskraan Trem
+STR_NAME_SUFFIX_CRANE_TRUCK                                     :Hyskraan Trok
 STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Intermodale Vragmotor
 STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :Lewendehawe Trem
 STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :Lewendehawe Vragmotor
