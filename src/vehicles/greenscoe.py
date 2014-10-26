@@ -7,7 +7,7 @@ consist = EngineConsist(id = 'greenscoe',
               replacement_id = '-none',
               power = 150,
               vehicle_life = 40,
-              intro_date = 1931)
+              intro_date = 1943)
 
 consist.add_unit(Tanker(consist = consist,
                         weight = 7,
@@ -19,7 +19,7 @@ consist.add_unit(Tanker(consist = consist,
 
 consist.add_unit(Tanker(consist = consist,
                         weight = 7,
-                        capacity = 35,
+                        capacity = 30,
                         vehicle_length = 5,
                         spriterow_num = 1))
 

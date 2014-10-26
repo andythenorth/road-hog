@@ -8,18 +8,18 @@ consist = EngineConsist(id = 'oylbarral',
               replacement_id = '-none',
               power = 200,
               vehicle_life = 40,
-              intro_date = 1905)
+              intro_date = 1903)
 
 consist.add_unit(Tanker(consist = consist,
                         weight = 10,
-                        capacity = 15,
+                        capacity = 20,
                         vehicle_length = 6,
                         effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 10'],
                         spriterow_num = 0))
 
 consist.add_unit(Tanker(consist = consist,
                         weight = 5,
-                        capacity = 15,
+                        capacity = 20,
                         vehicle_length = 5,
                         spriterow_num = 1), repeat=1)
 
