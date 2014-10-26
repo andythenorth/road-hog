@@ -1,24 +1,24 @@
 import global_constants
-from road_vehicle import EngineConsist, CraneEquippedHauler
+from road_vehicle import EngineConsist, SuppliesHauler
 
 consist = EngineConsist(id = 'reaver',
               base_numeric_id = 550,
-              title = 'Reaver [Crane Truck]',
+              title = 'Reaver [Supplies Truck]',
               replacement_id = '-none',
               power = 170,
               vehicle_life = 40,
               intro_date = 1875)
 
-consist.add_unit(CraneEquippedHauler(consist = consist,
+consist.add_unit(SuppliesHauler(consist = consist,
                         weight = 20,
                         capacity = 0,
                         vehicle_length = 7,
                         visual_effect = 'VISUAL_EFFECT_DIESEL',
                         spriterow_num = 0))
 
-consist.add_unit(CraneEquippedHauler(consist = consist,
+consist.add_unit(SuppliesHauler(consist = consist,
                         weight = 20,
-                        capacity = 42,
+                        capacity = 45,
                         vehicle_length = 7,
                         spriterow_num = 0))
 

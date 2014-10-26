@@ -7,7 +7,7 @@ consist = EngineConsist(id = 'tallyho',
               replacement_id = '-none',
               power = 120,
               vehicle_life = 40,
-              intro_date = 1938)
+              intro_date = 1920)
 
 consist.add_unit(CourierCar(consist = consist,
                         weight = 12,

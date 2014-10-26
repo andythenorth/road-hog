@@ -611,12 +611,12 @@ class FoundryHauler(RoadVehicle):
         self.default_cargo_capacities = self.capacities
 
 
-class CraneEquippedHauler(RoadVehicle):
+class SuppliesHauler(RoadVehicle):
     """
     Specialist tram / truck with flatbed + crane, supplies and building materials.
     """
     def __init__(self, **kwargs):
-        super(CraneEquippedHauler, self).__init__(**kwargs)
+        super(SuppliesHauler, self).__init__(**kwargs)
         self.template = 'road_vehicle.pynml'
         self.autorefit = True
         self.class_refit_groups = []
