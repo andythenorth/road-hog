@@ -27,8 +27,8 @@ STR_NAME_SUFFIX_FARM_BULK_TRAM                                  :Tramvia per a v
 STR_NAME_SUFFIX_FARM_BULK_TRUCK                                 :Camió per a voluminosos agrícoles
 STR_NAME_SUFFIX_FOUNDRY_TRAM                                    :Tramvia per a fosa
 STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :Camió per a fundició
-STR_NAME_SUFFIX_CRANE_TRAM                                      :Tramvia grua
-STR_NAME_SUFFIX_CRANE_TRUCK                                     :Camió grua
+STR_NAME_SUFFIX_SUPPLIES_TRAM                                   :Tramvia de subministraments
+STR_NAME_SUFFIX_SUPPLIES_TRUCK                                  :Camió de subministraments
 STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Camió intermodal
 STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :Tramvia per a bestiar
 STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :Camió per a bestiar
