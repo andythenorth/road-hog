@@ -19,8 +19,8 @@ consist.add_unit(GeneralCargoHauler(consist = consist,
 consist.add_unit(GeneralCargoHauler(consist = consist,
                         weight = 5,
                         capacity = 15,
-                        vehicle_length = 7,
-                        spriterow_num = 0))
+                        vehicle_length = 4,
+                        spriterow_num = 1))
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,
