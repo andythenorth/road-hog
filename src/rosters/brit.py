@@ -2,13 +2,13 @@ from roster import Roster
 
 from vehicles import (amblecote, beerwoods, bottlebrook, brass_monkey, brigand, brightling,
                       broadrock, buildwas, buff, coalhall, cloud_hill, coldfall, crime_rigg,
-                      easywheal, fairlop, foreshore, fortiscue, foxley, goldmire, greenscoe,
-                      griff, honister, jinglepot, knockdown, ladycross, leyburn, limebreach,
-                      littleduke, mcdowell, meriden, merrivale, moota, nettlebridge, newbold,
-                      oylbarral, pigstick, powerstock, quickset, reaver, ribble, road_thief,
-                      shotover, silvertop, sparkford, speedwell, stancliffe, steeraway,
-                      stungun, swineshead, tallyho, thunder, thurlbear, topley, trefell,
-                      twinhills, waterperry, witch_hill, wookey)
+                      easywheal, fairlop, foreshore, fortiscue, foxley, goldmire, gravelhead,
+                      greenscoe, griff, honister, jinglepot, knockdown, ladycross, leyburn,
+                      limebreach, littleduke, mcdowell, meriden, merrivale, moota,
+                      nettlebridge, newbold, oylbarral, pigstick, powerstock, quickset,
+                      reaver, ribble, road_thief, shotover, silvertop, sparkford, speedwell,
+                      stancliffe, steeraway, stungun, swineshead, tallyho, thunder,
+                      thurlbear, topley, trefell, twinhills, waterperry, witch_hill, wookey)
 
 roster = Roster(id = 'brit',
                 title = 'Brit',
@@ -43,6 +43,7 @@ roster = Roster(id = 'brit',
                                        'buff',
                                        'buildwas',
                                        'coalhall',
+                                       'gravelhead',
                                        'broadrock',
                                        'witch_hill',
                                        'shotover',
