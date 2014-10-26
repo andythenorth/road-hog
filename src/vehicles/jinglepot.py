@@ -5,10 +5,9 @@ consist = EngineConsist(id = 'jinglepot',
               base_numeric_id = 240,
               title = 'Jinglepot [General Cargo Truck]',
               replacement_id = '-none',
-              power = 100,
+              power = 120,
               vehicle_life = 40,
-              intro_date = 1920,
-              vehicle_generation=3)
+              intro_date = 1920)
 
 consist.add_unit(GeneralCargoHauler(consist = consist,
                         weight = 10,
