@@ -6,13 +6,14 @@ consist = EngineConsist(id = 'brass_monkey',
               title = 'Brass Monkey [Courier Truck]',
               replacement_id = '-none',
               power = 140,
+              speed = 60,
               vehicle_life = 40,
               intro_date = 1940)
 
 consist.add_unit(CourierCar(consist = consist,
                         weight = 12,
-                        capacity = 22,
-                        capacity_mail = 45,
+                        capacity = 15,
+                        capacity_mail = 30,
                         vehicle_length = 6,
                         visual_effect = 'VISUAL_EFFECT_DIESEL',
                         spriterow_num = 0))
