@@ -27,6 +27,8 @@ STR_NAME_SUFFIX_FARM_BULK_TRAM                                  :가축 수송 �
 STR_NAME_SUFFIX_FARM_BULK_TRUCK                                 :가축 수송 트럭
 STR_NAME_SUFFIX_FOUNDRY_TRAM                                    :철 수송 전차
 STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :철 수송 트럭
+STR_NAME_SUFFIX_SUPPLIES_TRAM                                   :공급품 수송 전차
+STR_NAME_SUFFIX_SUPPLIES_TRUCK                                  :공급품 수송 차량
 STR_NAME_SUFFIX_INTERMODAL_HAULER                               :다중 수송 트럭
 STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :가축 수송 트럭
 STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :가축 트럭
