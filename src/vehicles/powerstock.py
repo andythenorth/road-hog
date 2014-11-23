@@ -12,15 +12,16 @@ consist = EngineConsist(id = 'powerstock',
 consist.add_unit(BulkFarmHauler(consist = consist,
                         weight = 8,
                         capacity = 0,
-                        vehicle_length = 7,
-                        visual_effect = 'VISUAL_EFFECT_DIESEL',
+                        vehicle_length = 2,
+                        semi_truck_shift_offset_jank = 2,
+                        effects = ['EFFECT_SPRITE_DIESEL, -2, 1, 10'],
                         spriterow_num = 0))
 
 consist.add_unit(BulkFarmHauler(consist = consist,
                         weight = 8,
                         capacity = 40,
-                        vehicle_length = 7,
-                        spriterow_num = 0))
+                        vehicle_length = 5,
+                        spriterow_num = 1))
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,
