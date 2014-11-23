@@ -26,6 +26,8 @@ STR_NAME_SUFFIX_FARM_BULK_TRAM                                  :Bulktram
 STR_NAME_SUFFIX_FARM_BULK_TRUCK                                 :Bulkwagen
 STR_NAME_SUFFIX_FOUNDRY_TRAM                                    :Hoogoventram
 STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :Platte truck
+STR_NAME_SUFFIX_SUPPLIES_TRAM                                   :Materialentram
+STR_NAME_SUFFIX_SUPPLIES_TRUCK                                  :Materialentruck
 STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Containertruck
 STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :Veetram
 STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :Veetruck

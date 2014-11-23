@@ -15,22 +15,24 @@ STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Straßenbahn (P
 STR_NAME_SUFFIX_BUS                                             :Bus
 STR_NAME_SUFFIX_GENERAL_CARGO_TRAM                              :Feldbahn für Stückgut
 STR_NAME_SUFFIX_GENERAL_CARGO_TRUCK                             :Lastkraftwagen für Stückgut
-STR_NAME_SUFFIX_COURIER_TRAM                                    :Straßenbahn (Post)
-STR_NAME_SUFFIX_COURIER_TRUCK                                   :Courier-Transporter
+STR_NAME_SUFFIX_COURIER_TRAM                                    :Straßenbahn für Post
+STR_NAME_SUFFIX_COURIER_TRUCK                                   :Lieferwagen
 STR_NAME_SUFFIX_TANKER_TRAM                                     :Tankwagen-Tram
 STR_NAME_SUFFIX_TANKER_TRUCK                                    :Tanklaster
 STR_NAME_SUFFIX_COVERED_HOPPER_TRAM                             :Gedeckte Schüttgut-Tram
 STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :Gedeckter Schüttgut-LKW
 STR_NAME_SUFFIX_MINING_TRAM                                     :Grubenbahn
 STR_NAME_SUFFIX_MINING_TRUCK                                    :Gruben-Laster
-STR_NAME_SUFFIX_FARM_BULK_TRAM                                  :Schüttgut-Tram
+STR_NAME_SUFFIX_FARM_BULK_TRAM                                  :Straßenbahn für landwirtschaftliches Schüttgut
 STR_NAME_SUFFIX_FARM_BULK_TRUCK                                 :Schüttgutlaster
 STR_NAME_SUFFIX_FOUNDRY_TRAM                                    :Schwerlast-Tram
 STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :Schwerlast-Transporter
+STR_NAME_SUFFIX_SUPPLIES_TRAM                                   :Straßenbahn für Bedarfsgüter
+STR_NAME_SUFFIX_SUPPLIES_TRUCK                                  :Lastkraftwagen für Bedarfsgüter
 STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Container-Laster
 STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :Viehtransporter
 STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :Viehtransporter
-STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM                             :Nahrungsmittel-Tram
+STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM                             :Straßenbahn für flüssige Nahrungsmittel
 STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK                            :Nahrungsmittel-Laster
 STR_NAME_SUFFIX_REEFER_TRAM                                     :Kühlwagen-Tram
 STR_NAME_SUFFIX_REEFER_TRUCK                                    :Kühltransporter
