@@ -439,7 +439,7 @@ class CourierCar(RoadVehicle):
         self.autorefit = True
         self.class_refit_groups = ['mail', 'express_freight']
         self.label_refits_allowed = [] # no specific labels needed
-        self.label_refits_disallowed = []
+        self.label_refits_disallowed = ['TOUR']
         self.default_cargo = 'MAIL'
         self.default_cargo_capacities = self.capacities
 
@@ -469,7 +469,7 @@ class GeneralCargoHauler(RoadVehicle):
         self.autorefit = True
         self.class_refit_groups = ['all_freight']
         self.label_refits_allowed = ['GRAI', 'WHEA', 'MAIZ'] # Iron Horse compatibility
-        self.label_refits_disallowed = []
+        self.label_refits_disallowed = ['TOUR']
         self.default_cargo = 'GOOD'
         self.default_cargo_capacities = self.capacities
 
