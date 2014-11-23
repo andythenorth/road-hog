@@ -7,20 +7,20 @@ consist = EngineConsist(id = 'merrivale',
               replacement_id = '-none',
               power = 250,
               vehicle_life = 40,
-              intro_date = 1952)
+              intro_date = 1950)
 
 consist.add_unit(RefrigeratedHauler(consist = consist,
-                        weight = 7,
-                        capacity = 0,
+                        weight = 15,
+                        capacity = 15,
                         vehicle_length = 7,
                         visual_effect = 'VISUAL_EFFECT_DIESEL',
                         spriterow_num = 0))
 
 consist.add_unit(RefrigeratedHauler(consist = consist,
                         weight = 8,
-                        capacity = 28,
-                        vehicle_length = 7,
-                        spriterow_num = 0))
+                        capacity = 15,
+                        vehicle_length = 4,
+                        spriterow_num = 1))
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,
