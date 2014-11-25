@@ -22,9 +22,9 @@ consist.add_unit(Tanker(consist = consist,
 
 consist.add_unit(Tanker(consist = consist,
                         weight = 5,
-                        capacity = 51,
+                        capacity = 15,
                         vehicle_length = 5,
-                        spriterow_num = 1), repeat=1)
+                        spriterow_num = 1))
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,
