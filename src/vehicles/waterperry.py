@@ -11,16 +11,17 @@ consist = EngineConsist(id = 'waterperry',
 
 consist.add_unit(EdiblesTanker(consist = consist,
                         weight = 7,
-                        capacity = 0,
-                        vehicle_length = 7,
-                        visual_effect = 'VISUAL_EFFECT_DIESEL',
+                        capacity = 20,
+                        vehicle_length = 2,
+                        semi_truck_shift_offset_jank = 2,
+                        effects = ['EFFECT_SPRITE_DIESEL, -3, 1, 10'],
                         spriterow_num = 0))
 
 consist.add_unit(EdiblesTanker(consist = consist,
-                        weight = 8,
-                        capacity = 40,
-                        vehicle_length = 7,
-                        spriterow_num = 0))
+                        weight = 7,
+                        capacity = 15,
+                        vehicle_length = 5,
+                        spriterow_num = 1))
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,
