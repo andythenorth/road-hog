@@ -217,7 +217,7 @@ class Consist(object):
         # max sensible width in buy menu is 64px, but RH templates currently drawn at 36px - legacy stuff
         consist_length = 4 * sum([slice.slice_length for slice in self.slices])
         if consist_length < 36:
-            return consist_length
+            return consist_length + 1 # +1 is pure jank to handle clipped Greenscoe sprite, cba to fix it properly
         else:
             return 36
 
