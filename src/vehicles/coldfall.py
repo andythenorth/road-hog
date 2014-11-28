@@ -12,7 +12,7 @@ consist = EngineConsist(id = 'coldfall',
 consist.add_unit(RefrigeratedHauler(consist = consist,
                         weight = 17,
                         capacity = 20,
-                        vehicle_length = 7,
+                        vehicle_length = 6,
                         visual_effect = 'VISUAL_EFFECT_DIESEL',
                         spriterow_num = 0))
 
