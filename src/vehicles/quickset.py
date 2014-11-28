@@ -12,7 +12,7 @@ consist = EngineConsist(id = 'quickset',
 consist.add_unit(GeneralCargoHauler(consist = consist,
                         weight = 7,
                         capacity = 0,
-                        vehicle_length = 7,
+                        vehicle_length = 6,
                         visual_effect = 'VISUAL_EFFECT_DIESEL',
                         spriterow_num = 0))
 

@@ -12,7 +12,7 @@ consist = EngineConsist(id = 'easywheal',
 consist.add_unit(GeneralCargoHauler(consist = consist,
                         weight = 12,
                         capacity = 15,
-                        vehicle_length = 7,
+                        vehicle_length = 6,
                         visual_effect = 'VISUAL_EFFECT_DIESEL',
                         spriterow_num = 0))
 
