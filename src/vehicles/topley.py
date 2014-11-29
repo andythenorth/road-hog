@@ -5,7 +5,7 @@ consist = EngineConsist(id = 'topley',
               base_numeric_id = 60,
               title = 'Topley [Bus]',
               replacement_id = '-none',
-              power = 200,
+              power = 300,
               vehicle_life = 40,
               intro_date = 1982)
 
