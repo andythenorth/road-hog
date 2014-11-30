@@ -22,7 +22,7 @@
     }
 </tal:sprites_random_variations>
 
-<tal:include define="graphics_switches load: graphics_switches.pynml" metal:use-macro="graphics_switches" />
+<tal:include metal:use-macro="load: graphics_switches.pynml" />
 
 // buy menu graphics
 <tal:include define="vehicle_offsets_buy_menu load: vehicle_offsets_buy_menu.pynml" metal:use-macro="vehicle_offsets_buy_menu" />
