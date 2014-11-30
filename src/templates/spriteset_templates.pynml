@@ -1,4 +1,5 @@
-// graphics
+// STANDARD GRAPHICS
+// -----------------
 
 template spriteset_template_${vehicle.id}(y) {
     //[left_x,  upper_y,    width,      height,     offset_x,      offset_y]
@@ -11,3 +12,33 @@ template spriteset_template_${vehicle.id}(y) {
     [268,       y,          36,        16,          ${vehicle.offsets[6][0]}, ${vehicle.offsets[6][1]}]
     [316,       y,          26,        20,          ${vehicle.offsets[7][0]}, ${vehicle.offsets[7][1]}]
 }
+
+// PURCHASE MENU
+// -------------
+
+template spriteset_template_purchase_${vehicle.id}() {
+    //[left_x,  upper_y,    width,      height,     offset_x,      offset_y]
+    [60,    10, 1, 1, 0, 0]
+    [60,    10, 1, 1, 0, 0]
+    [60,    10, 1, 1, 0, 0]
+    [60,    10, 1, 1, 0, 0]
+    [60,    10, 1, 1, 0, 0]
+    [60,    10, 1, 1, 0, 0]
+    [370,   10, ${consist.buy_menu_width}, 16, -${consist.buy_menu_width / 2}, -9]
+    [60,    10, 1, 1, 0, 0]
+}
+
+// DEPOT VIEW
+// ----------
+
+<!--!template spriteset_template_depot_${vehicle.id}(y) {
+    //[left_x,  upper_y,    width,      height,     offset_x,      offset_y]
+    [60,    10, 1, 1, 0, 0]
+    [60,    10, 1, 1, 0, 0]
+    [107,   10, 1, 1, 0, 0]
+    [60,    10, 1, 1, 0, 0]
+    [60,    10, 1, 1, 0, 0]
+    [60,    10, 1, 1, 0, 0]
+    [235,   y, ${consist.depot_width}, 15, -${consist.depot_width / 2}, -6]
+    [60,    10, 1, 1, 0, 0]
+}-->
