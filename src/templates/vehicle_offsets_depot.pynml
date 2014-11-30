@@ -6,6 +6,6 @@ template spriteset_template_depot_${vehicle.id}(y) {
     [60,    10, 1, 1, 0, 0]
     [60,    10, 1, 1, 0, 0]
     [60,    10, 1, 1, 0, 0]
-    [235,   y, ${consist.buy_menu_width}, 15, -${consist.buy_menu_width / 2}, -6]
+    [235,   y, ${consist.depot_width}, 15, -${consist.depot_width / 2}, -6]
     [60,    10, 1, 1, 0, 0]
 }

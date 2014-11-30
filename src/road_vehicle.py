@@ -335,13 +335,11 @@ class RoadVehicle(object):
 
     @property
     def sg_depot(self):
-        # legacy - copied from IH, allows special handling of depot sprites
         suffix = "_switch_graphics_by_year"
         return self.id + suffix
 
     @property
     def sg_default(self):
-        # legacy - copied from IH, related to special handling of depot sprites
         suffix = "_switch_graphics_by_year"
         return self.id + suffix
 
