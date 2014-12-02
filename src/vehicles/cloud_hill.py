@@ -7,7 +7,7 @@ consist = EngineConsist(id = 'cloud_hill',
               replacement_id = '-none',
               power = 550,
               vehicle_life = 40,
-              intro_date = 1993)
+              intro_date = 1983)
 
 consist.add_unit(Tanker(consist = consist,
                         weight = 8,
