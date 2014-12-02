@@ -19,7 +19,7 @@ consist.add_unit(EdiblesTanker(consist = consist,
 
 consist.add_unit(EdiblesTanker(consist = consist,
                         weight = 7,
-                        capacity = 15,
+                        capacity = 20,
                         vehicle_length = 5,
                         spriterow_num = 1))
 

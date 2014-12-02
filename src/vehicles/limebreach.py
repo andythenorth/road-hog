@@ -19,7 +19,7 @@ consist.add_unit(BulkPowderHauler(consist = consist,
 
 consist.add_unit(BulkPowderHauler(consist = consist,
                         weight = 8,
-                        capacity = 35,
+                        capacity = 30,
                         vehicle_length = 5,
                         spriterow_num = 1))
 

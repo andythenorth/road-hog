@@ -19,7 +19,7 @@ consist.add_unit(Tanker(consist = consist,
 
 consist.add_unit(Tanker(consist = consist,
                         weight = 10,
-                        capacity = 45,
+                        capacity = 40,
                         vehicle_length = 5,
                         spriterow_num = 1))
 
