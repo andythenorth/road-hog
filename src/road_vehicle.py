@@ -596,14 +596,14 @@ class LogHauler(RoadVehicle):
 class FoundryHauler(RoadVehicle):
     """
     Specialist heavy haul tram / truck, e.g. multiwheel platform, steel mill hauler etc.
-    High capacity, not very fast, refits to small subset of metal chain cargos.
+    High capacity, not very fast, refits to small subset of finished metal cargos.
     """
     def __init__(self, **kwargs):
         super(FoundryHauler, self).__init__(**kwargs)
         self.template = 'road_vehicle.pynml'
         self.autorefit = True
         self.class_refit_groups = []
-        self.label_refits_allowed = ['STEL', 'SCMT']
+        self.label_refits_allowed = ['STEL', 'COPR']
         self.label_refits_disallowed = []
         self.default_cargo = 'STEL'
         self.default_cargo_capacities = self.capacities
