@@ -6,6 +6,7 @@ consist = EngineConsist(id = 'meriden',
               title = 'Meriden [Tanker Truck]',
               replacement_id = '-none',
               power = 200,
+              speed_dibble = 'plodding', # tankers are hazardous, apply speed penalty
               vehicle_life = 40,
               intro_date = 1962)
 

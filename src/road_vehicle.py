@@ -42,6 +42,7 @@ class Consist(object):
         self.power = kwargs.get('power', 0)
         self.tractive_effort_coefficient = kwargs.get('tractive_effort_coefficient', 0.3) # 0.3 is recommended default value
         self._speed = kwargs.get('speed', None)
+        self.speed_dibble = kwargs.get('speed_dibble', None)
         # arbitrary adjustments of points that can be applied to adjust buy cost and running cost, over-ride in consist as needed
         # values can be -ve or +ve to dibble specific vehicles (but total calculated points cannot exceed 255)
         self.type_base_buy_cost_points = kwargs.get('type_base_buy_cost_points', 0)
@@ -197,7 +198,12 @@ class Consist(object):
                 speeds = self.roster.default_tram_speeds
             else:
                 speeds = self.roster.default_truck_speeds
-            return speeds[max([year for year in speeds if self.intro_date >= year])]
+            speed = speeds[max([year for year in speeds if self.intro_date >= year])]
+            if self.speed_dibble == 'plodding':
+                speed = speed - 10
+            if self.speed_dibble == 'speedy':
+                speed = speed + 10
+            return speed
         else:
             return self._speed
 

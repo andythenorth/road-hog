@@ -5,6 +5,7 @@ consist = EngineConsist(id = 'thunder_2',
               base_numeric_id = 590,
               title = 'Thunder2 [Bus]',
               replacement_id = '-none',
+              speed_dibble = 'plodding',
               power = 180,
               vehicle_life = 40,
               intro_date = 1962)

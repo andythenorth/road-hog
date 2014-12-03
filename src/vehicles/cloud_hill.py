@@ -6,6 +6,7 @@ consist = EngineConsist(id = 'cloud_hill',
               title = 'Cloud Hill [Tanker Truck]',
               replacement_id = '-none',
               power = 550,
+              speed_dibble = 'plodding', # tankers are hazardous, apply speed penalty
               vehicle_life = 40,
               intro_date = 1983)
 
