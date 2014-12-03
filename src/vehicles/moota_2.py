@@ -1,18 +1,18 @@
 import global_constants
 from road_vehicle import EngineConsist, PaxHauler
 
-consist = EngineConsist(id = 'thunder_2',
-              base_numeric_id = 590,
-              title = 'Thunder2 [Bus]',
+consist = EngineConsist(id = 'moota_3',
+              base_numeric_id = 600,
+              title = 'Moota 3 [Coach]',
               replacement_id = '-none',
-              speed_dibble = 'plodding',
-              power = 210,
+              power = 220,
+              speed_dibble = 'speedy',
               vehicle_life = 40,
-              intro_date = 1962)
+              intro_date = 1995)
 
 consist.add_unit(PaxHauler(consist = consist,
                         weight = 20,
-                        capacity = 70,
+                        capacity = 50,
                         vehicle_length = 7,
                         visual_effect = 'VISUAL_EFFECT_DIESEL',
                         spriterow_num = 0))
