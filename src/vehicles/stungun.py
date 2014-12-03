@@ -20,7 +20,7 @@ consist.add_unit(LivestockHauler(consist = consist,
                         weight = 14,
                         capacity = 40,
                         vehicle_length = 7,
-                        spriterow_num = 0))
+                        spriterow_num = 1))
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,
