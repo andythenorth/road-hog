@@ -1,0 +1,43 @@
+##grflangid 0x03
+##plural 2
+##gender m m2 f
+STR_GRF_DESCRIPTION                                             :Licence{NBSP}: {SILVER}GPL v2{}{BLACK}
+
+STR_PARAM_ADJUST_VEHICLE_CAPACITY                               :Capacité des véhicules routiers
+STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_0                      :Dérisoire
+STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_1                      :Merveilleuse
+STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2                      :Excessive
+STR_PARAM_ROSTER                                                :Catalogue
+STR_PARAM_ROSTER_DESC                                           :Choix des véhicules à utiliser.
+STR_PARAM_ROSTER_OPTION_0                                       :Outre-Manche
+
+STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Tram pour passagers
+STR_NAME_SUFFIX_BUS                                             :Bus
+STR_NAME_SUFFIX_COACH                                           :Car
+STR_NAME_SUFFIX_GENERAL_CARGO_TRAM                              :Tram de fret
+STR_NAME_SUFFIX_GENERAL_CARGO_TRUCK                             :Camion de fret
+STR_NAME_SUFFIX_COURIER_TRAM                                    :Tram postal
+STR_NAME_SUFFIX_COURIER_TRUCK                                   :Camion postal
+STR_NAME_SUFFIX_TANKER_TRAM                                     :Tram-citerne
+STR_NAME_SUFFIX_TANKER_TRUCK                                    :Camion-citerne
+STR_NAME_SUFFIX_COVERED_HOPPER_TRAM                             :Tram-tombereau couvert
+STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :Camion-tombereau couvert
+STR_NAME_SUFFIX_MINING_TRAM                                     :Tram minier
+STR_NAME_SUFFIX_MINING_TRUCK                                    :Camion de mine
+STR_NAME_SUFFIX_FARM_BULK_TRAM                                  :Tram de vrac agricole
+STR_NAME_SUFFIX_FARM_BULK_TRUCK                                 :Camion de vrac agricole
+STR_NAME_SUFFIX_FOUNDRY_TRAM                                    :Tram de fonderie
+STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :Camion de fonderie
+STR_NAME_SUFFIX_SUPPLIES_TRAM                                   :Tram de ravitaillement
+STR_NAME_SUFFIX_SUPPLIES_TRUCK                                  :Camion de ravitallement
+STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Camion intermodal
+STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :Tram-bétaillère
+STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :Bétaillère
+STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM                             :Tram citerne à denrées
+STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK                            :Camion citerne à denrées
+STR_NAME_SUFFIX_REEFER_TRAM                                     :Tram frigorifique
+STR_NAME_SUFFIX_REEFER_TRUCK                                    :Camion frigorifique
+STR_NAME_SUFFIX_LOGGING_TRUCK                                   :Grumier
+
+STR_COASTER                                                     :Une alumette prend feu. Pscht. (pas encore fini)
+STR_DOGTRACK                                                    :Ça le fait, des fois

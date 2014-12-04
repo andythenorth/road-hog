@@ -14,6 +14,7 @@ STR_PARAM_ROSTER_OPTION_0                                       :Brit
 
 STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Putnički tramvaj
 STR_NAME_SUFFIX_BUS                                             :Autobus
+STR_NAME_SUFFIX_COACH                                           :Autobus
 STR_NAME_SUFFIX_GENERAL_CARGO_TRAM                              :Tramvaj za opći teret
 STR_NAME_SUFFIX_GENERAL_CARGO_TRUCK                             :Kamion za opći teret
 STR_NAME_SUFFIX_COURIER_TRAM                                    :Dostavni tramvaj
