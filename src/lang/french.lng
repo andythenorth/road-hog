@@ -33,8 +33,8 @@ STR_NAME_SUFFIX_SUPPLIES_TRUCK                                  :Camion de ravit
 STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Camion intermodal
 STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :Tram-bétaillère
 STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :Bétaillère
-STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM                             :Tram citerne à denrées
-STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK                            :Camion citerne à denrées
+STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM                             :Tram citerne alimentaire
+STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK                            :Camion citerne alimentaire
 STR_NAME_SUFFIX_REEFER_TRAM                                     :Tram frigorifique
 STR_NAME_SUFFIX_REEFER_TRUCK                                    :Camion frigorifique
 STR_NAME_SUFFIX_LOGGING_TRUCK                                   :Grumier
