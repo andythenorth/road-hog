@@ -11,14 +11,14 @@ consist = EngineConsist(id = 'pigstick',
 
 consist.add_unit(LivestockHauler(consist = consist,
                         weight = 10,
-                        capacity = 17,
+                        capacity = 15,
                         vehicle_length = 6,
                         visual_effect = 'VISUAL_EFFECT_DIESEL',
                         spriterow_num = 0))
 
 consist.add_unit(LivestockHauler(consist = consist,
                         weight = 10,
-                        capacity = 18,
+                        capacity = 15,
                         vehicle_length = 5,
                         spriterow_num = 1))
 
