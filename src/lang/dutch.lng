@@ -12,6 +12,7 @@ STR_PARAM_ROSTER_OPTION_0                                       :Brits
 
 STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Passagierstram
 STR_NAME_SUFFIX_BUS                                             :Bus
+STR_NAME_SUFFIX_COACH                                           :Wagon
 STR_NAME_SUFFIX_GENERAL_CARGO_TRAM                              :Goederentram
 STR_NAME_SUFFIX_GENERAL_CARGO_TRUCK                             :Goederentruck
 STR_NAME_SUFFIX_COURIER_TRAM                                    :Koerierstram

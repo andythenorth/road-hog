@@ -1,0 +1,44 @@
+##grflangid 0x07
+##plural 6
+##gender m f n p
+##case abl acc dat f gen m n nom p pre
+STR_GRF_DESCRIPTION                                             :Лицензия: {SILVER}GPL v2{}{BLACK}
+
+STR_PARAM_ADJUST_VEHICLE_CAPACITY                               :Размер вместимости транспортных средств
+STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_0                      :Крошечный
+STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_1                      :Огромный
+STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2                      :Чрезмерный
+STR_PARAM_ROSTER                                                :Реестр
+STR_PARAM_ROSTER_DESC                                           :Выберите набор транспортных средств для использования.
+STR_PARAM_ROSTER_OPTION_0                                       :Британский
+
+STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Пассажирский Трамвай
+STR_NAME_SUFFIX_BUS                                             :Автобус
+STR_NAME_SUFFIX_COACH                                           :Пассажирский
+STR_NAME_SUFFIX_GENERAL_CARGO_TRAM                              :Обычный Грузовой Трамвай
+STR_NAME_SUFFIX_GENERAL_CARGO_TRUCK                             :Обычный Грузовик
+STR_NAME_SUFFIX_COURIER_TRAM                                    :Почтовый Трамвай
+STR_NAME_SUFFIX_COURIER_TRUCK                                   :Почтовый Грузовик
+STR_NAME_SUFFIX_TANKER_TRAM                                     :Трамвай Цистерна
+STR_NAME_SUFFIX_TANKER_TRUCK                                    :Грузовик Цистерна
+STR_NAME_SUFFIX_COVERED_HOPPER_TRAM                             :Крытый Трамвай Хоппер
+STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :Крытый Грузовик Хоппер
+STR_NAME_SUFFIX_MINING_TRAM                                     :Шахтовый Трамвай
+STR_NAME_SUFFIX_MINING_TRUCK                                    :Шахтовый Погрузчик
+STR_NAME_SUFFIX_FARM_BULK_TRAM                                  :Фермерский Грузовой Трамвай
+STR_NAME_SUFFIX_FARM_BULK_TRUCK                                 :Фермерский Грузовик
+STR_NAME_SUFFIX_FOUNDRY_TRAM                                    :Литейно-Заводской Трамвай
+STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :Литейно-Заводской Погрузчик
+STR_NAME_SUFFIX_SUPPLIES_TRAM                                   :Трамвай доставки материалов производства
+STR_NAME_SUFFIX_SUPPLIES_TRUCK                                  :Грузовик доставки производственных материалов
+STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Интермодальный Погрузчик
+STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :Животноводческий Трамвай
+STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :Животноводческий Грузовик
+STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM                             :Пищевой Трамвай Цистерна
+STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK                            :Пищевой Грузовик Цистерна
+STR_NAME_SUFFIX_REEFER_TRAM                                     :Трамвай Рефрижератор
+STR_NAME_SUFFIX_REEFER_TRUCK                                    :Грузовик Рефрижератор
+STR_NAME_SUFFIX_LOGGING_TRUCK                                   :Лесовоз
+
+STR_COASTER                                                     :Корова Перепрыгнула Луну (это не последнее напоминание)
+STR_DOGTRACK                                                    :Коричневый Псы, иногда
