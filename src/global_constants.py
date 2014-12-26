@@ -95,6 +95,9 @@ generated_files_dir = 'generated'
 # this is for nml, don't need to use python path module here
 graphics_path = generated_files_dir + '/graphics/'
 
+# cargo aging constant - OTTD default is 185
+CARGO_AGE_PERIOD = 185
+
 # cost constants
 FIXED_RUN_COST = 500.0
 FUEL_RUN_COST = 10.0

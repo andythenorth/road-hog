@@ -266,6 +266,7 @@ class RoadVehicle(object):
         # capacities variable by parameter
         self.capacities = self.get_capacity_variations(kwargs.get('capacity', 0))
         self.loading_speed_multiplier = kwargs.get('loading_speed_multiplier', 1)
+        self.cargo_age_period = kwargs.get('cargo_age_period', global_constants.CARGO_AGE_PERIOD)
         # spriterow_num, first row = 0
         self.spriterow_num = kwargs.get('spriterow_num', 0)
         # set defaults for props otherwise set by subclass as needed (not set by kwargs as specific models do not over-ride them)
@@ -486,6 +487,7 @@ class PaxExpressHauler(RoadVehicle):
         self.label_refits_disallowed = []
         self.default_cargo = 'PASS'
         self.default_cargo_capacities = self.capacities
+        self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
 
 
 class GeneralCargoHauler(RoadVehicle):
@@ -564,6 +566,7 @@ class LivestockHauler(RoadVehicle):
         self.label_refits_disallowed = []
         self.default_cargo = 'LVST'
         self.default_cargo_capacities = self.capacities
+        self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
 
 
 class RefrigeratedHauler(RoadVehicle):
@@ -580,6 +583,7 @@ class RefrigeratedHauler(RoadVehicle):
         self.label_refits_disallowed = []
         self.default_cargo = 'FOOD'
         self.default_cargo_capacities = self.capacities
+        self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
 
 
 class Tanker(RoadVehicle):
@@ -612,6 +616,7 @@ class EdiblesTanker(RoadVehicle):
         self.default_cargo = 'WATR'
         self.default_cargo_capacities = self.capacities
         self.loading_speed_multiplier = 2
+        self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
 
 
 class LogHauler(RoadVehicle):

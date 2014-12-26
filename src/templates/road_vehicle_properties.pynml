@@ -26,6 +26,7 @@ item(FEAT_ROADVEHS, ${vehicle.id}, ${vehicle.numeric_id}) {
         cargo_allow_refit:              [${vehicle.get_label_refits_allowed()}];
         cargo_disallow_refit:           [${vehicle.get_label_refits_disallowed()}];
         default_cargo_type:             ${vehicle.default_cargo};
+        cargo_age_period:               ${vehicle.cargo_age_period};
         misc_flags:                     bitmask(${vehicle.special_flags}); // nml constants
         model_life:                     ${consist.adjusted_model_life};
         retire_early:                   ${consist.vehicle_life - 4}; // magic from Eddi
