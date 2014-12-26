@@ -11,3 +11,17 @@ switch (FEAT_ROADVEHS, SELF, ${vehicle.id}_switch_cargo_capacity, param_adjust_v
     1: ${vehicle.id}_switch_cargo_capacity_by_cargo_1;
     2: ${vehicle.id}_switch_cargo_capacity_by_cargo_2;
 }
+
+// -- loading speed also determined by capacity, which varies by cargo -- //
+<tal:capacity repeat="param_value python:range(3)">
+    switch (FEAT_ROADVEHS, SELF, ${vehicle.id}_switch_loading_speed_by_cargo_${param_value}, cargo_classes & bitmask(CC_MAIL)) {
+        bitmask(CC_MAIL): return ${vehicle.get_loading_speed('mail', param_value)};
+        return ${vehicle.get_loading_speed(None, param_value)};
+    }
+</tal:capacity>
+
+switch (FEAT_ROADVEHS, SELF, ${vehicle.id}_switch_loading_speed, param_adjust_vehicle_capacity) {
+    0: ${vehicle.id}_switch_loading_speed_by_cargo_0;
+    1: ${vehicle.id}_switch_loading_speed_by_cargo_1;
+    2: ${vehicle.id}_switch_loading_speed_by_cargo_2;
+}

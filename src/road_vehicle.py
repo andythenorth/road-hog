@@ -260,12 +260,12 @@ class RoadVehicle(object):
 
         # setup properties for this road vehicle
         self.numeric_id = kwargs.get('numeric_id', None)
-        self.loading_speed = kwargs.get('loading_speed', 5) # 5 is default vehicle loading speed
         self.vehicle_length = kwargs.get('vehicle_length', None)
         self.weight = kwargs.get('weight', None)
         self.semi_truck_shift_offset_jank = kwargs.get('semi_truck_shift_offset_jank', None)
         # capacities variable by parameter
         self.capacities = self.get_capacity_variations(kwargs.get('capacity', 0))
+        self.loading_speed_multiplier = kwargs.get('loading_speed_multiplier', 1)
         # spriterow_num, first row = 0
         self.spriterow_num = kwargs.get('spriterow_num', 0)
         # set defaults for props otherwise set by subclass as needed (not set by kwargs as specific models do not over-ride them)
@@ -282,6 +282,15 @@ class RoadVehicle(object):
         # we cache the available variations on the vehicle instead of working them out every time - easier
         # allow that integer maths is needed for newgrf cb results; round up for safety
         return [int(math.ceil(capacity * multiplier)) for multiplier in global_constants.capacity_multipliers]
+
+    def get_loading_speed(self, cargo_type, capacity_param):
+        # ottd vehicles load at different rates depending on type,
+        # normalise default loading time for this set to 240 ticks, regardless of capacity
+        transport_type_rate = 12 # openttd loading rates vary by transport type, look them up in wiki to find value to use here to normalise loading time to 240 ticks
+        capacity = self.capacities[capacity_param]
+        if cargo_type == 'mail':
+            capacity = int(global_constants.mail_multiplier * capacity)
+        return int(self.loading_speed_multiplier * math.ceil(capacity / transport_type_rate))
 
     @property
     def availability(self):
@@ -461,6 +470,7 @@ class PaxHauler(RoadVehicle):
         self.label_refits_disallowed = []
         self.default_cargo = 'PASS'
         self.default_cargo_capacities = self.capacities
+        self.loading_speed_multiplier = 2
 
 
 class GeneralCargoHauler(RoadVehicle):
@@ -491,6 +501,7 @@ class MiningHauler(RoadVehicle):
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_hopper_bulk_freight']
         self.default_cargo = 'COAL'
         self.default_cargo_capacities = self.capacities
+        self.loading_speed_multiplier = 2
 
 
 class BulkFarmHauler(RoadVehicle):
@@ -506,6 +517,7 @@ class BulkFarmHauler(RoadVehicle):
         self.label_refits_disallowed = []
         self.default_cargo = 'GRAI'
         self.default_cargo_capacities = self.capacities
+        self.loading_speed_multiplier = 2
 
 
 class BulkPowderHauler(RoadVehicle):
@@ -521,6 +533,7 @@ class BulkPowderHauler(RoadVehicle):
         self.label_refits_disallowed = []
         self.default_cargo = 'GRAI'
         self.default_cargo_capacities = self.capacities
+        self.loading_speed_multiplier = 2
 
 
 class LivestockHauler(RoadVehicle):
@@ -567,6 +580,7 @@ class Tanker(RoadVehicle):
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['edible_liquids']
         self.default_cargo = 'OIL_'
         self.default_cargo_capacities = self.capacities
+        self.loading_speed_multiplier = 2
 
 
 class EdiblesTanker(RoadVehicle):
@@ -582,6 +596,7 @@ class EdiblesTanker(RoadVehicle):
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_edible_liquids']
         self.default_cargo = 'WATR'
         self.default_cargo_capacities = self.capacities
+        self.loading_speed_multiplier = 2
 
 
 class LogHauler(RoadVehicle):
@@ -597,6 +612,7 @@ class LogHauler(RoadVehicle):
         self.label_refits_disallowed = []
         self.default_cargo = 'WOOD'
         self.default_cargo_capacities = self.capacities
+        self.loading_speed_multiplier = 2
 
 
 class FoundryHauler(RoadVehicle):
@@ -613,6 +629,7 @@ class FoundryHauler(RoadVehicle):
         self.label_refits_disallowed = []
         self.default_cargo = 'STEL'
         self.default_cargo_capacities = self.capacities
+        self.loading_speed_multiplier = 2
 
 
 class SuppliesHauler(RoadVehicle):
@@ -644,5 +661,6 @@ class IntermodalHauler(RoadVehicle):
         self.label_refits_disallowed = ['FISH','LVST','OIL_','TOUR','WOOD']
         self.default_cargo = 'GOOD'
         self.default_cargo_capacities = self.capacities
+        self.loading_speed_multiplier = 2
 
 
