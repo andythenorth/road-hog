@@ -470,7 +470,22 @@ class PaxHauler(RoadVehicle):
         self.label_refits_disallowed = []
         self.default_cargo = 'PASS'
         self.default_cargo_capacities = self.capacities
-        self.loading_speed_multiplier = 2
+        self.loading_speed_multiplier = 3
+
+
+class PaxExpressHauler(RoadVehicle):
+    """
+    Coach or express tram for pax.
+    """
+    def __init__(self, **kwargs):
+        super(PaxExpressHauler, self).__init__(**kwargs)
+        self.template = 'road_vehicle.pynml'
+        self.autorefit = True
+        self.class_refit_groups = ['pax']
+        self.label_refits_allowed = []
+        self.label_refits_disallowed = []
+        self.default_cargo = 'PASS'
+        self.default_cargo_capacities = self.capacities
 
 
 class GeneralCargoHauler(RoadVehicle):

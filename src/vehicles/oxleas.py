@@ -1,5 +1,5 @@
 import global_constants
-from road_vehicle import EngineConsist, PaxHauler
+from road_vehicle import EngineConsist, PaxExpressHauler
 
 consist = EngineConsist(id = 'oxleas',
               base_numeric_id = 610,
@@ -10,7 +10,7 @@ consist = EngineConsist(id = 'oxleas',
               vehicle_life = 40,
               intro_date = 1952)
 
-consist.add_unit(PaxHauler(consist = consist,
+consist.add_unit(PaxExpressHauler(consist = consist,
                         weight = 20,
                         capacity = 40,
                         vehicle_length = 7,
