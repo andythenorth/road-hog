@@ -12,7 +12,8 @@ STR_PARAM_ROSTER_DESC                                           :Selecciona el g
 STR_PARAM_ROSTER_OPTION_0                                       :Gran Bretaña
 
 STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Tranvía de pasajeros
-STR_NAME_SUFFIX_BUS                                             :Bus
+STR_NAME_SUFFIX_BUS                                             :Autobús
+STR_NAME_SUFFIX_COACH                                           :Autobús
 STR_NAME_SUFFIX_GENERAL_CARGO_TRAM                              :Tranvía de carga
 STR_NAME_SUFFIX_GENERAL_CARGO_TRUCK                             :Camión de carga
 STR_NAME_SUFFIX_COURIER_TRAM                                    :Tranvía de mensajería-correo urgente
