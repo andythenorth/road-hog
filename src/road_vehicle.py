@@ -291,7 +291,8 @@ class RoadVehicle(object):
         capacity = self.capacities[capacity_param]
         if cargo_type == 'mail':
             capacity = int(global_constants.mail_multiplier * capacity)
-        return int(self.loading_speed_multiplier * math.ceil(capacity / transport_type_rate))
+        result = int(self.loading_speed_multiplier * math.ceil(capacity / transport_type_rate))
+        return max(result, 1)
 
     @property
     def availability(self):
