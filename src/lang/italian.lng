@@ -1,0 +1,44 @@
+##grflangid 0x27
+##plural 0
+##gender m ma f
+##case fp fs mp ms
+STR_GRF_DESCRIPTION                                             :Licenza: {SILVER}GPL v2{}{BLACK}
+
+STR_PARAM_ADJUST_VEHICLE_CAPACITY                               :Capacitá del veicolo stradale
+STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_0                      :Piccolina
+STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_1                      :Meravigliosa
+STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2                      :Eccessiva
+STR_PARAM_ROSTER                                                :Lista
+STR_PARAM_ROSTER_DESC                                           :Selezionate quale pachetto di veicoli volete usare.
+STR_PARAM_ROSTER_OPTION_0                                       :Brit
+
+STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Tram passeggeri
+STR_NAME_SUFFIX_BUS                                             :Autobus
+STR_NAME_SUFFIX_COACH                                           :Corriera
+STR_NAME_SUFFIX_GENERAL_CARGO_TRAM                              :Tram per merce generale
+STR_NAME_SUFFIX_GENERAL_CARGO_TRUCK                             :Camion per merce generale
+STR_NAME_SUFFIX_COURIER_TRAM                                    :Tram corriere
+STR_NAME_SUFFIX_COURIER_TRUCK                                   :Camion corriere
+STR_NAME_SUFFIX_TANKER_TRAM                                     :Tram cisterna
+STR_NAME_SUFFIX_TANKER_TRUCK                                    :Camion cisterna
+STR_NAME_SUFFIX_COVERED_HOPPER_TRAM                             :Tram portarinfuse coperto
+STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :Camion portarinfuse coperto
+STR_NAME_SUFFIX_MINING_TRAM                                     :Tram di miniera
+STR_NAME_SUFFIX_MINING_TRUCK                                    :Autotrasportatore di miniera
+STR_NAME_SUFFIX_FARM_BULK_TRAM                                  :Tram portarinfuse di fattoria
+STR_NAME_SUFFIX_FARM_BULK_TRUCK                                 :Camion portarinfuse di fattoria
+STR_NAME_SUFFIX_FOUNDRY_TRAM                                    :Tram di fonderia
+STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :Autotrasportatore di fonderia
+STR_NAME_SUFFIX_SUPPLIES_TRAM                                   :Tram per fornitura
+STR_NAME_SUFFIX_SUPPLIES_TRUCK                                  :Camion per fornitura
+STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Autotrasportatore intermodale
+STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :Tram per bestiame
+STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :Camion per bestiame
+STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM                             :Tram cisterna per alimentari
+STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK                            :Camion cisterna per alimentari
+STR_NAME_SUFFIX_REEFER_TRAM                                     :Tram frigo
+STR_NAME_SUFFIX_REEFER_TRUCK                                    :Camion frigo
+STR_NAME_SUFFIX_LOGGING_TRUCK                                   :Camion per legname
+
+STR_COASTER                                                     :La mucca ha saltato sopra la luna (questo é un promemoria non finito)
+STR_DOGTRACK                                                    :I cani sono marroni, a volte
