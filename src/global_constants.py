@@ -82,7 +82,9 @@ cargo_labels = ['PASS', # pax first
                 'WHEA',
                 'WOOL',
                 'OLSD',
-                'SUGR']
+                'SUGR',
+                'BEAN',
+                'NITR']
 
 grfid = r"\97\87\EA\FE"
 
