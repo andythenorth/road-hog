@@ -531,7 +531,7 @@ class BulkFarmHauler(RoadVehicle):
         self.template = 'road_vehicle.pynml'
         self.autorefit = True
         self.class_refit_groups = ['bulk_farm_freight']
-        self.label_refits_allowed = ['FICR', 'GRAI', 'WHEA', 'MAIZ', 'SGBT', 'SGCN', 'SUGR', 'FRUT', 'FMSP']
+        self.label_refits_allowed = ['FICR', 'GRAI', 'WHEA', 'MAIZ', 'SGBT', 'SGCN', 'SUGR', 'FRUT', 'FMSP', 'BEAN']
         self.label_refits_disallowed = []
         self.default_cargo = 'GRAI'
         self.default_cargo_capacities = self.capacities
@@ -547,7 +547,7 @@ class BulkPowderHauler(RoadVehicle):
         self.template = 'road_vehicle.pynml'
         self.autorefit = True
         self.class_refit_groups = ['covered_hopper_freight']
-        self.label_refits_allowed = ['GRAI', 'WHEA', 'MAIZ', 'FOOD', 'SUGR', 'FMSP', 'RFPR', 'CLAY', 'BDMT']
+        self.label_refits_allowed = ['GRAI', 'WHEA', 'MAIZ', 'FOOD', 'SUGR', 'FMSP', 'RFPR', 'CLAY', 'BDMT', 'BEAN', 'NITR']
         self.label_refits_disallowed = []
         self.default_cargo = 'GRAI'
         self.default_cargo_capacities = self.capacities
