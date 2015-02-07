@@ -13,6 +13,7 @@ STR_PARAM_ROSTER_OPTION_0                                       :정어리
 
 STR_NAME_SUFFIX_PASSENGER_TRAM                                  :승객 전차
 STR_NAME_SUFFIX_BUS                                             :버스
+STR_NAME_SUFFIX_COACH                                           :객차
 STR_NAME_SUFFIX_GENERAL_CARGO_TRAM                              :일반 화물 전차
 STR_NAME_SUFFIX_GENERAL_CARGO_TRUCK                             :다중 화물 트럭
 STR_NAME_SUFFIX_COURIER_TRAM                                    :안내원 전차
