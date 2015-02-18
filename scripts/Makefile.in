@@ -6,9 +6,14 @@ GENERATE_DOC := road-hog-nml
 
 GENERATE=src/build_road_hog.py
 
+ # default num. pool workers for python compile, default is 1 to avoid accidental DoS of people's system
+pw = 1
+ic = False
+roster = *
+
 road-hog-nml:
 	$(_E) [GENERATE]
-	$(_V) PYTHONPATH=${PYTHONPATH2} ${PYTHON2} src/build_road_hog.py '${REPO_TITLE}' '${REPO_REVISION}' '${COMPILE_FASTER}' '${NO_MP}'
+	$(_V) PYTHONPATH=${PYTHONPATH2} ${PYTHON2} src/build_road_hog.py '${REPO_TITLE}' '${REPO_REVISION}'  '${ic}' '${pw}' '${roster}'
 
 clean::
 	$(_V)-rm road-hog.nml
