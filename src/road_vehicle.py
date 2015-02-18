@@ -7,10 +7,7 @@ currentdir = os.curdir
 import sys
 sys.path.append(os.path.join('src')) # add to the module search path
 
-import codecs
-
 import math
-from string import Template # python builtin templater might be used in some utility cases
 
 from chameleon import PageTemplateLoader # chameleon used in most template cases
 # setup the places we look for templates
@@ -442,7 +439,6 @@ class EngineConsist(Consist):
     This class should be sparse - only declare the most limited set of properties common to engine consists.
     """
     def __init__(self, **kwargs):
-        id = kwargs.get('id', None)
         super(EngineConsist, self).__init__(**kwargs)
 
 
