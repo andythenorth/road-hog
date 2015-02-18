@@ -1,10 +1,3 @@
-# set (roster) <-> numeric id mapping
-# vehicle IDs are in format nxxx where n is set numeric id
-# first 1k IDs reserved, IDs must be < 16383, with 500 IDs allocated per set for main roster, and 500 per set for extras, so max 15 sets
-# also serves as the parameter number for action 14
-vehicle_set_id_mapping = {'brit': 1, 'wasteland': 2}
-
-
 # shared lists of allowed classes, shared across multiple vehicle types
 # these lists are similar but not identical across Iron Horse, Squid, Road Hog etc
 base_refits_by_class = {'empty': [],

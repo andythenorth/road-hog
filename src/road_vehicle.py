@@ -192,9 +192,9 @@ class Consist(object):
     def speed(self):
         if self._speed is None:
             if self.roadveh_flag_tram is True:
-                speeds = self.get_roster().default_tram_speeds
+                speeds = self.get_roster(self.roster_id).default_tram_speeds
             else:
-                speeds = self.get_roster().default_truck_speeds
+                speeds = self.get_roster(self.roster_id).default_truck_speeds
             speed = speeds[max([year for year in speeds if self.intro_date >= year])]
             if self.speed_dibble == 'plodding':
                 speed = speed - 10
@@ -224,16 +224,15 @@ class Consist(object):
         else:
             return 36
 
-    def get_roster(self):
-         # although the working definition is one and only one roster per vehicle...
-        # ...this code is extensible, for hysterical reasons (should probably refactor it)
-        result = []
+    def get_roster(self, roster_id):
         for roster in registered_rosters:
-            if self.roster_id == roster.id:
-                result.append(roster)
-        if len(result) > 1:
-            utils.echo_message("Warning: vehicle " + self.id + " appears in more than one roster " + str(result))
-        return result[0]
+            if roster_id == roster.id:
+                return roster
+
+    def get_expression_for_roster(self):
+        # the working definition is one and only one roster per vehicle
+        roster = self.get_roster(self.roster_id)
+        return 'param[1]==' + str(roster.numeric_id - 1)
 
     def render_articulated_switch(self):
         template = templates["add_articulated_parts.pynml"]
@@ -371,9 +370,6 @@ class RoadVehicle(object):
         for i in cargo_labels:
             if i not in global_constants.cargo_labels:
                 utils.echo_message("Warning: vehicle " + self.id + " references cargo label " + i + " which is not defined in the cargo table")
-
-    def get_expression_for_roster(self):
-        return 'param_roster=='+str(registered_rosters.index(self.consist.get_roster()))
 
     def get_expression_for_effects(self):
         # provides part of nml switch for effects (smoke), or none if no effects defined
