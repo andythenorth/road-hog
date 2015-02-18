@@ -192,9 +192,9 @@ class Consist(object):
     def speed(self):
         if self._speed is None:
             if self.roadveh_flag_tram is True:
-                speeds = self.roster.default_tram_speeds
+                speeds = self.get_roster().default_tram_speeds
             else:
-                speeds = self.roster.default_truck_speeds
+                speeds = self.get_roster().default_truck_speeds
             speed = speeds[max([year for year in speeds if self.intro_date >= year])]
             if self.speed_dibble == 'plodding':
                 speed = speed - 10
@@ -224,9 +224,7 @@ class Consist(object):
         else:
             return 36
 
-
-    @property
-    def roster(self):
+    def get_roster(self):
          # although the working definition is one and only one roster per vehicle...
         # ...this code is extensible, for hysterical reasons (should probably refactor it)
         result = []
@@ -375,7 +373,7 @@ class RoadVehicle(object):
                 utils.echo_message("Warning: vehicle " + self.id + " references cargo label " + i + " which is not defined in the cargo table")
 
     def get_expression_for_roster(self):
-        return 'param_roster=='+str(registered_rosters.index(self.consist.roster))
+        return 'param_roster=='+str(registered_rosters.index(self.consist.get_roster()))
 
     def get_expression_for_effects(self):
         # provides part of nml switch for effects (smoke), or none if no effects defined
