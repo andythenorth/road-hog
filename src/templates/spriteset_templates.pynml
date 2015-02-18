@@ -24,7 +24,7 @@ template spriteset_template_purchase_${vehicle.id}() {
     [60,    10, 1, 1, 0, 0, ANIM]
     [60,    10, 1, 1, 0, 0, ANIM]
     [60,    10, 1, 1, 0, 0, ANIM]
-    [370,   10, ${consist.buy_menu_width}, 16, -${consist.buy_menu_width / 2}, -9, ANIM]
+    [370,   10, ${consist.buy_menu_width}, 16, -${int(consist.buy_menu_width / 2)}, -9, ANIM]
     [60,    10, 1, 1, 0, 0, ANIM]
 }
 
@@ -39,6 +39,6 @@ template spriteset_template_purchase_${vehicle.id}() {
     [60,    10, 1, 1, 0, 0, ANIM]
     [60,    10, 1, 1, 0, 0, ANIM]
     [60,    10, 1, 1, 0, 0, ANIM]
-    [235,   y, ${consist.depot_width}, 15, -${consist.depot_width / 2}, -6, ANIM]
+    [235,   y, ${consist.depot_width}, 15, -${int(consist.depot_width / 2)}, -6, ANIM]
     [60,    10, 1, 1, 0, 0, ANIM]
 }-->
