@@ -26,7 +26,7 @@ if len(sys.argv) > 1:
 else: # provide some defaults so templates don't explode when testing python script without command line args
     repo_vars = {'repo_title' : 'FISH - compiled without makefile', 'repo_version' : 1}
 
-print "[IMPORT VEHICLES] iron_horse.py"
+print("[IMPORT VEHICLES] iron_horse.py")
 
 import road_vehicle
 from road_vehicle import RoadVehicle

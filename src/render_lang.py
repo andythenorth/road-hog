@@ -1,4 +1,4 @@
-print "[RENDER LANG] render_lang.py"
+print("[RENDER LANG] render_lang.py")
 
 import road_hog
 import utils

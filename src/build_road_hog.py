@@ -2,7 +2,7 @@
 
 from time import time
 
-print "[BUILD] build_road_hog.py"
+print("[BUILD] build_road_hog.py")
 
 import road_hog
 import utils
@@ -18,7 +18,7 @@ start = time()
 import render_nml
 render_nml.main()
 elapsed_time = (time() - start)
-print format(elapsed_time, '.2f')+'s'
+print(format(elapsed_time, '.2f')+'s')
 if elapsed_time > 2:
     utils.echo_message("<!--! lies, road hog incremental compiles don't work yet --> Slow nml rendering?  Try the incremental_compile=True make flag if you're only changing vehicle properties ")
 
@@ -26,16 +26,16 @@ if elapsed_time > 2:
 start = time()
 import render_graphics
 render_graphics.main()
-print format((time() - start), '.2f')+'s'
+print(format((time() - start), '.2f')+'s')
 
 # render the lang files
 start = time()
 import render_lang
 render_lang.main()
-print format((time() - start), '.2f')+'s'
+print(format((time() - start), '.2f')+'s')
 
 # render the docs
 start = time()
 import render_docs
 render_docs.main()
-print format((time() - start), '.2f')+'s'
+print(format((time() - start), '.2f')+'s')
