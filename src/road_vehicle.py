@@ -224,13 +224,14 @@ class Consist(object):
         else:
             return 36
 
+
     @property
     def roster(self):
-        # vehicles can be in one roster by design; to repeat a vehicle in another roster, copy it
-        # this makes it simple for rosters to handle things like common speeds and capacity at compile time
+         # although the working definition is one and only one roster per vehicle...
+        # ...this code is extensible, for hysterical reasons (should probably refactor it)
         result = []
         for roster in registered_rosters:
-            if self.id in roster.buy_menu_sort_order:
+            if self.roster_id == roster.id:
                 result.append(roster)
         if len(result) > 1:
             utils.echo_message("Warning: vehicle " + self.id + " appears in more than one roster " + str(result))
