@@ -24,7 +24,6 @@ print("[IMPORT VEHICLES] iron_horse.py")
 
 from rosters import registered_rosters
 
-# changing the order of rosters breaks savegames (parameter values change), don't do it.
 from rosters import brit
 brit.roster.register()
 
