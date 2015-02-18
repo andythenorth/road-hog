@@ -75,6 +75,7 @@ def main():
     nml_cache = codecs.open(nml_metadata_cache_path, 'w', 'utf8')
 
     for consist in consists:
+        # makefile passes 'roster' arg, but there is no python compile support for compiling a single roster yet
         metadata = consist.vehicle_module_path + '||' + str(os.stat(consist.vehicle_module_path).st_mtime) + '\n'
         nml_cache.write(metadata)
         consist_nml = codecs.open(os.path.join('generated', 'nml', consist.id + '.nml'),'r','utf8').read()
