@@ -15,9 +15,6 @@ import sys
 import os
 currentdir = os.curdir
 
-import time
-from multiprocessing import Process, active_children
-
 import road_hog
 import utils
 import global_constants
@@ -44,8 +41,6 @@ import markdown
 from chameleon import PageTemplateLoader # chameleon used in most template cases
 # setup the places we look for templates
 docs_templates = PageTemplateLoader(docs_src, format='text')
-
-from road_vehicle import RoadVehicle
 
 # get args passed by makefile
 repo_vars = utils.get_repo_vars(sys)
