@@ -15,7 +15,7 @@ templates = PageTemplateLoader(os.path.join(currentdir, 'src', 'templates'))
 
 import graphics_processor
 
-from vehicles import registered_consists
+from vehicles import numeric_id_defender
 
 from rosters import registered_rosters
 
@@ -50,11 +50,6 @@ class Consist(object):
         self.slices = []
         # roster is set when the vehicle is registered to a roster, only one roster per vehicle
         self.roster_id = None
-        # register consist with this module so other modules can use it, with a non-blocking guard on duplicate IDs
-        for consist in registered_consists:
-            if consist.base_numeric_id == self.base_numeric_id:
-                utils.echo_message("Error: consist " + self.id + " shares duplicate id (" + str(self.base_numeric_id) + ") with consist " + consist.id)
-        registered_consists.append(self)
 
     def add_model_variant(self, intro_date, end_date, spritesheet_suffix, graphics_processor=None):
         self.model_variants.append(ModelVariant(intro_date, end_date, spritesheet_suffix, graphics_processor))
@@ -79,11 +74,11 @@ class Consist(object):
         # guard against the ID being too large to build in an articulated consist
         if numeric_id > 16383:
             utils.echo_message("Error: numeric_id " + str(numeric_id) + " for " + self.id + " can't be used (16383 is max ID for articulated vehicles)")
-        # guard against ID collisions with other vehicles
-        for consist in registered_consists:
-            for slice in consist.slices:
-                if numeric_id == slice.numeric_id:
-                    utils.echo_message("Error: numeric_id collision (" + str(numeric_id) + ") for slices in consist " + self.id + " and " + consist.id)
+        # non-blocking guard on duplicate IDs
+        for id in numeric_id_defender:
+            if id == numeric_id:
+                utils.echo_message("Error: consist " + self.id + " slice id collides (" + str(numeric_id) + ") with slices in another consist")
+        numeric_id_defender.append(numeric_id)
         return numeric_id
 
     def get_reduced_set_of_variant_dates(self):

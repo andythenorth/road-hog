@@ -27,35 +27,33 @@ else: # provide some defaults so templates don't explode when testing python scr
 
 print("[IMPORT VEHICLES] iron_horse.py")
 
-from vehicles import registered_consists
-
 from rosters import registered_rosters
 
 # changing the order of rosters breaks savegames (parameter values change), don't do it.
 from rosters import brit
 brit.roster.register()
 
-#from rosters import wasteland
+from rosters import wasteland
+#wasteland.roster.register()
 
 def get_consists_in_buy_menu_order(show_warnings=False):
-    sorted_consists = []
-    buy_menu_sort_order = []
+    consists = []
     # first compose the buy menu order list
+    buy_menu_sort_order = []
+    if repo_vars.get('roster', '*') is '*':
+        active_rosters = [roster.id for roster in registered_rosters]
+    else:
+        active_rosters = [repo_vars['roster']] # make sure it's iterable
     for roster in registered_rosters:
-        buy_menu_sort_order.extend(roster.buy_menu_sort_order)
+        if roster.id in active_rosters:
+            buy_menu_sort_order.extend(roster.buy_menu_sort_order)
+            consists.extend(roster.consists_in_buy_menu_order)
 
-        for id in buy_menu_sort_order:
-            found = False
-            for consist in registered_consists:
-                if consist.id == id:
-                    sorted_consists.append(consist)
-                    found = True
-            if show_warnings and not found:
-                utils.echo_message("Warning: consist " + id + " in buy_menu_sort_order, but not found in registered_consists")
-
-    # now guard against any consists missing from buy menu order, as that wastes time asking 'wtf?' when they don't appear in game
-    for consist in registered_consists:
-        id = consist.id
-        if show_warnings and id not in buy_menu_sort_order:
-            utils.echo_message("Warning: consist " + id + " in registered_consists, but not in buy_menu_sort_order - won't show in game")
-    return sorted_consists
+    # now guard against any consists missing from buy menu order or vice versa, as that wastes time asking 'wtf?' when they don't appear in game
+    consist_id_defender = set([consist.id for consist in consists])
+    buy_menu_defender = set(buy_menu_sort_order)
+    for id in buy_menu_defender.difference(consist_id_defender):
+        utils.echo_message("Warning: consist " + id + " in buy_menu_sort_order, but not found in registered_consists")
+    for id in consist_id_defender.difference(buy_menu_defender):
+        utils.echo_message("Warning: consist " + id + " in consists, but not in buy_menu_sort_order - won't show in game")
+    return consists
