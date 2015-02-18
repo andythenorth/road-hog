@@ -29,7 +29,7 @@ from rosters import brit
 brit.roster.register()
 
 from rosters import wasteland
-wasteland.roster.register()
+#wasteland.roster.register()
 
 def get_consists_in_buy_menu_order(show_warnings=False):
     consists = []
