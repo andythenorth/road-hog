@@ -33,6 +33,8 @@ from rosters import registered_rosters
 
 # changing the order of rosters breaks savegames (parameter values change), don't do it.
 from rosters import brit
+brit.roster.register()
+
 #from rosters import wasteland
 
 def get_consists_in_buy_menu_order(show_warnings=False):

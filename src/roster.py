@@ -1,9 +1,5 @@
 from rosters import registered_rosters
 
-def register(roster):
-    registered_rosters.append(roster)
-
-
 class Roster(object):
     """
     Rosters compose a set of vehicles which is complete for gameplay.
@@ -17,10 +13,12 @@ class Roster(object):
         for vehicle in kwargs.get('vehicles'):
             self.vehicles.append(vehicle.consist)
             vehicle.consist.roster_id = self.id
-        register(self)
 
     @property
     def buy_menu_sort_order(self):
         result = []
         result.extend([consist.id for consist in self.vehicles])
         return result
+
+    def register(roster):
+        registered_rosters.append(roster)
