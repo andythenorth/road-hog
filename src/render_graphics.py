@@ -11,17 +11,11 @@ print("[RENDER GRAPHICS] render_graphics.py")
 import codecs # used for writing files - more unicode friendly than standard open() module
 
 import shutil
-import sys
 import os
 currentdir = os.curdir
 from multiprocessing import Pool
-import multiprocessing, logging
-logger = multiprocessing.log_to_stderr()
-logger.setLevel(25)
 
 import road_hog
-import utils
-import global_constants
 
 graphics_input = os.path.join(currentdir, 'src', 'graphics')
 graphics_output_path = os.path.join(road_hog.generated_files_path, 'graphics')

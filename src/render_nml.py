@@ -4,7 +4,6 @@ print("[RENDER NML] render_nml.py")
 
 import codecs # used for writing files - more unicode friendly than standard open() module
 
-import shutil
 import sys
 import os
 currentdir = os.curdir
