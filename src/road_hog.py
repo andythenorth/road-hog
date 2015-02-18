@@ -8,6 +8,7 @@ sys.path.append(os.path.join('src')) # add to the module search path
 
 import global_constants
 import utils
+repo_vars = utils.get_repo_vars(sys)
 
 # setting up a cache for compiled chameleon templates can significantly speed up template rendering
 chameleon_cache_path = os.path.join(currentdir, global_constants.chameleon_cache_dir)
@@ -19,12 +20,6 @@ generated_files_path = os.path.join(currentdir, global_constants.generated_files
 if not os.path.exists(generated_files_path):
     os.mkdir(generated_files_path)
 
-# get args passed by makefile
-if len(sys.argv) > 1:
-    repo_vars = {'repo_title' : sys.argv[1], 'repo_version' : sys.argv[2]}
-else: # provide some defaults so templates don't explode when testing python script without command line args
-    repo_vars = {'repo_title' : 'FISH - compiled without makefile', 'repo_version' : 1}
-
 print("[IMPORT VEHICLES] iron_horse.py")
 
 from rosters import registered_rosters
@@ -34,7 +29,7 @@ from rosters import brit
 brit.roster.register()
 
 from rosters import wasteland
-#wasteland.roster.register()
+wasteland.roster.register()
 
 def get_consists_in_buy_menu_order(show_warnings=False):
     consists = []
