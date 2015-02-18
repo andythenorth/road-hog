@@ -15,7 +15,7 @@ templates = PageTemplateLoader(os.path.join(currentdir, 'src', 'templates'))
 
 import graphics_processor
 
-from vehicles import registered_consists, registered_wagon_generations
+from vehicles import registered_consists
 
 from rosters import registered_rosters
 
