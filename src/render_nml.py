@@ -50,7 +50,7 @@ def render_consist_nml(consist):
         consist_nml.close()
 
 def main():
-    consists = road_hog.get_consists_in_buy_menu_order(show_warnings=True)
+    consists = road_hog.get_consists_in_buy_menu_order()
 
     grf_nml = codecs.open(os.path.join('road-hog.nml'),'w','utf8')
     header_items = ['header', 'cargo_table', 'disable_default_vehicles']

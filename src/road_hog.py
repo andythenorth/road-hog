@@ -30,7 +30,7 @@ brit.roster.register()
 from rosters import wasteland
 #wasteland.roster.register()
 
-def get_consists_in_buy_menu_order(show_warnings=False):
+def get_consists_in_buy_menu_order():
     consists = []
     # first compose the buy menu order list
     buy_menu_sort_order = []
