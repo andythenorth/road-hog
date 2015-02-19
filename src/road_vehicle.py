@@ -206,14 +206,7 @@ class Consist(object):
 
     @property
     def adjusted_model_life(self):
-        # handles keeping the buy menu tidy, relies on magic from Eddi
-        if self.replacement_id != None and self.replacement_id != '-none' and self.replacement_id != '':
-            for i in registered_consists:
-                if i.id == self.replacement_id:
-                    model_life = i.intro_date - self.intro_date
-                    return model_life + self.vehicle_life
-        else:
-            return 'VEHICLE_NEVER_EXPIRES'
+        return 'VEHICLE_NEVER_EXPIRES'
 
     @property
     def buy_menu_width (self):
