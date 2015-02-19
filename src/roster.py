@@ -18,9 +18,7 @@ class Roster(object):
 
     @property
     def buy_menu_sort_order(self):
-        result = []
-        result.extend([consist.id for consist in self.vehicles])
-        return result
+        return [consist.id for consist in self.vehicles]
 
     @property
     def consists_in_buy_menu_order(self):
