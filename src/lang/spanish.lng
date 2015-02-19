@@ -10,6 +10,7 @@ STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2                      :Excesiva
 STR_PARAM_ROSTER                                                :Lista a usar
 STR_PARAM_ROSTER_DESC                                           :Selecciona el grupo de vehículos que se usarán.
 STR_PARAM_ROSTER_OPTION_0                                       :Gran Bretaña
+STR_PARAM_ROSTER_OPTION_1                                       :Tierras baldías
 
 STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Tranvía de pasajeros
 STR_NAME_SUFFIX_BUS                                             :Autobús
