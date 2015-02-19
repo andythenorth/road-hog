@@ -33,6 +33,5 @@ class Roster(object):
                 raise
         return result
 
-
     def register(roster):
         registered_rosters.append(roster)
