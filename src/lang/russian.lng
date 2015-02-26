@@ -11,6 +11,7 @@ STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2                      :Чрезмер�
 STR_PARAM_ROSTER                                                :Реестр
 STR_PARAM_ROSTER_DESC                                           :Выберите набор транспортных средств для использования.
 STR_PARAM_ROSTER_OPTION_0                                       :Британский
+STR_PARAM_ROSTER_OPTION_1                                       :Пустыня
 
 STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Пассажирский Трамвай
 STR_NAME_SUFFIX_BUS                                             :Автобус
