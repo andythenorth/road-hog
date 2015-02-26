@@ -11,7 +11,7 @@ consist = EngineConsist(id = 'brass_monkey',
               intro_date = 1940)
 
 consist.add_unit(CourierCar(consist = consist,
-                        weight = 12,
+                        weight = 4,
                         capacity = 15,
                         capacity_mail = 30,
                         vehicle_length = 6,
