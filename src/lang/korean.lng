@@ -10,6 +10,7 @@ STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2                      :과도한
 STR_PARAM_ROSTER                                                :명부
 STR_PARAM_ROSTER_DESC                                           :어떤 종류의 차량 세트를 쓸 것인지 고르십시오.
 STR_PARAM_ROSTER_OPTION_0                                       :정어리
+STR_PARAM_ROSTER_OPTION_1                                       :황무지
 
 STR_NAME_SUFFIX_PASSENGER_TRAM                                  :승객 전차
 STR_NAME_SUFFIX_BUS                                             :버스
