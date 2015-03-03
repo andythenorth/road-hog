@@ -10,6 +10,7 @@ STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2                      :Excessiva
 STR_PARAM_ROSTER                                                :Llistat a emprar
 STR_PARAM_ROSTER_DESC                                           :Selecciona quin conjunt de vehicles de carretera emprar.
 STR_PARAM_ROSTER_OPTION_0                                       :Gran Bretanya
+STR_PARAM_ROSTER_OPTION_1                                       :Terres ermes
 
 STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Tramvia de passatgers
 STR_NAME_SUFFIX_BUS                                             :Autobús
