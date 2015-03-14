@@ -10,6 +10,7 @@ STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2                      :Excessive
 STR_PARAM_ROSTER                                                :Catalogue
 STR_PARAM_ROSTER_DESC                                           :Choix des véhicules à utiliser.
 STR_PARAM_ROSTER_OPTION_0                                       :Outre-Manche
+STR_PARAM_ROSTER_OPTION_1                                       :Wasteland
 
 STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Tram pour passagers
 STR_NAME_SUFFIX_BUS                                             :Bus
