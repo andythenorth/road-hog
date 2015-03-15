@@ -596,7 +596,7 @@ class EdiblesTanker(RoadVehicle):
         self.template = 'road_vehicle.pynml'
         self.autorefit = True
         self.class_refit_groups = ['liquids']
-        self.label_refits_allowed = ['MILK']
+        self.label_refits_allowed = ['MILK', 'FOOD']
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_edible_liquids']
         self.default_cargo = 'WATR'
         self.default_cargo_capacities = self.capacities
