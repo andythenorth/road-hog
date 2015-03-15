@@ -13,7 +13,7 @@ consist = EngineConsist(id = 'littleduke',
 consist.add_unit(CourierCar(consist = consist,
                         weight = 7,
                         capacity = 25,
-                        vehicle_length = 5,
+                        vehicle_length = 6,
                         visual_effect = 'VISUAL_EFFECT_DIESEL',
                         spriterow_num = 0))
 
