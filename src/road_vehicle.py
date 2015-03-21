@@ -650,6 +650,7 @@ class SuppliesHauler(RoadVehicle):
         self.label_refits_disallowed = []
         self.default_cargo = 'ENSP'
         self.default_cargo_capacities = self.capacities
+        self.loading_speed_multiplier = 2
 
 
 class IntermodalHauler(RoadVehicle):
