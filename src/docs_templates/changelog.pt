@@ -1,2 +1,30 @@
 Changelog
 =========
+
+Alpha 11
+--------
+
+Changes since Alpha 9.  No changes were listed before Alpha 9, because eh, not valuable.
+
+- new sprites for:
+- Big Sky, Glenmore and Oxleas coaches
+- Highgate and Topley buses
+- Littleduke and Tallyho courier trucks
+- Gravelhead mining truck
+- Powerstock farm truck
+- Cloud Hill and Meriden tanker trucks
+
+- add support for Beans and Nitrates cargos
+- edibles tankers refit to food
+- fixes and tweaks to some vehicle properties
+
+- translations updated (non-comprehensive list includes): French, Hungarian, Russian,
+Italian, Spanish, Afrikaans (sorry if I missed any, doing this after sedation).
+
+- rebuilt the compile
+- now uses Python 3 and nmlc 0.4.x
+- now placated pyflakes
+- removed dubious magic when importing modules
+
+Fin
+---
