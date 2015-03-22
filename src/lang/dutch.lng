@@ -9,6 +9,7 @@ STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2                      :Buitensporig
 STR_PARAM_ROSTER                                                :Schema
 STR_PARAM_ROSTER_DESC                                           :Kies de te gebruiken set voertuigen
 STR_PARAM_ROSTER_OPTION_0                                       :Brits
+STR_PARAM_ROSTER_OPTION_1                                       :Wasteland
 
 STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Passagierstram
 STR_NAME_SUFFIX_BUS                                             :Bus
