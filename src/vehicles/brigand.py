@@ -6,7 +6,7 @@ consist = EngineConsist(id = 'brigand',
               base_numeric_id = 540,
               title = 'Brigand [Supplies Truck]',
               replacement_id = '-none',
-              power = 170,
+              power = 360,
               speed = 50,
               vehicle_life = 40,
               intro_date = 1953)
@@ -14,15 +14,22 @@ consist = EngineConsist(id = 'brigand',
 consist.add_unit(SuppliesHauler(consist = consist,
                         weight = 20,
                         capacity = 0,
-                        vehicle_length = 7,
+                        vehicle_length = 6,
                         visual_effect = 'VISUAL_EFFECT_DIESEL',
                         spriterow_num = 0))
 
 consist.add_unit(SuppliesHauler(consist = consist,
-                        weight = 20,
+                        weight = 12,
                         capacity = 45,
-                        vehicle_length = 7,
+                        vehicle_length = 8,
                         spriterow_num = 1))
+
+consist.add_unit(SuppliesHauler(consist = consist,
+                        weight = 20,
+                        capacity = 0,
+                        vehicle_length = 6,
+                        visual_effect = 'VISUAL_EFFECT_DIESEL',
+                        spriterow_num = 0))
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,
