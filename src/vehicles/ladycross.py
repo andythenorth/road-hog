@@ -21,7 +21,7 @@ consist.add_unit(PaxHauler(consist = consist,
 consist.add_unit(PaxHauler(consist = consist,
                         weight = 4,
                         capacity = 30,
-                        vehicle_length = 5,
+                        vehicle_length = 7,
                         spriterow_num = 1))
 
 consist.add_model_variant(intro_date=0,
