@@ -4,7 +4,7 @@
 ##case fp fs mp ms
 STR_GRF_DESCRIPTION                                             :Licenza: {SILVER}GPL v2{}{BLACK}
 
-STR_PARAM_ADJUST_VEHICLE_CAPACITY                               :Capacità del veicolo
+STR_PARAM_ADJUST_VEHICLE_CAPACITY                               :Capacità dei veicoli
 STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_0                      :Orrenda
 STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_1                      :Meravigliosa
 STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2                      :Eccessiva
