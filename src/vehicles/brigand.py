@@ -21,7 +21,7 @@ consist.add_unit(SuppliesHauler(consist = consist,
 consist.add_unit(SuppliesHauler(consist = consist,
                         weight = 12,
                         capacity = 45,
-                        vehicle_length = 8,
+                        vehicle_length = 7,
                         spriterow_num = 1))
 
 consist.add_unit(SuppliesHauler(consist = consist,
