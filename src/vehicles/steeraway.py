@@ -13,7 +13,7 @@ consist = EngineConsist(id = 'steeraway',
 consist.add_unit(FoundryHauler(consist = consist,
                         weight = 33,
                         capacity = 0,
-                        vehicle_length = 7,
+                        vehicle_length = 6,
                         visual_effect = 'VISUAL_EFFECT_DIESEL',
                         spriterow_num = 0))
 
@@ -21,7 +21,7 @@ consist.add_unit(FoundryHauler(consist = consist,
                         weight = 15,
                         capacity = 50,
                         vehicle_length = 7,
-                        spriterow_num = 0), repeat=2)
+                        spriterow_num = 1), repeat=2)
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,
