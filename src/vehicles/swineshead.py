@@ -12,7 +12,7 @@ consist = EngineConsist(id = 'swineshead',
 consist.add_unit(LivestockHauler(consist = consist,
                         weight = 10,
                         capacity = 20,
-                        vehicle_length = 6,
+                        vehicle_length = 7,
                         visual_effect = 'VISUAL_EFFECT_DIESEL',
                         spriterow_num = 0))
 
