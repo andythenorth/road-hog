@@ -12,14 +12,15 @@ consist = EngineConsist(id = 'coldfall',
 consist.add_unit(RefrigeratedHauler(consist = consist,
                         weight = 17,
                         capacity = 20,
-                        vehicle_length = 6,
-                        visual_effect = 'VISUAL_EFFECT_DIESEL',
+                        vehicle_length = 2,
+                        semi_truck_shift_offset_jank = 3,
+                        effects = ['EFFECT_SPRITE_DIESEL, -2, 1, 10'],
                         spriterow_num = 0))
 
 consist.add_unit(RefrigeratedHauler(consist = consist,
                         weight = 10,
                         capacity = 20,
-                        vehicle_length = 4,
+                        vehicle_length = 6,
                         spriterow_num = 1))
 
 consist.add_model_variant(intro_date=0,
