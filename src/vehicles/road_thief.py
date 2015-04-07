@@ -6,7 +6,7 @@ consist = EngineConsist(id = 'road_thief',
               base_numeric_id = 560,
               title = 'Road Thief [Supplies Truck]',
               replacement_id = '-none',
-              power = 170,
+              power = 450,
               speed = 65,
               vehicle_life = 40,
               intro_date = 1985)
