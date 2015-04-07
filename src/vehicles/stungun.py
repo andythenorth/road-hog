@@ -12,8 +12,9 @@ consist = EngineConsist(id = 'stungun',
 consist.add_unit(LivestockHauler(consist = consist,
                         weight = 8,
                         capacity = 0,
-                        vehicle_length = 7,
-                        visual_effect = 'VISUAL_EFFECT_DIESEL',
+                        vehicle_length = 2,
+                        semi_truck_shift_offset_jank = 2,
+                        effects = ['EFFECT_SPRITE_DIESEL, -2, 1, 10'],
                         spriterow_num = 0))
 
 consist.add_unit(LivestockHauler(consist = consist,
