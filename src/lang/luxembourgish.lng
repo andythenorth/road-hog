@@ -1,0 +1,43 @@
+##grflangid 0x23
+##plural 0
+STR_GRF_DESCRIPTION                                             :Lizenz: {SILVER}GPL v2{}{BLACK}
+
+STR_PARAM_ADJUST_VEHICLE_CAPACITY                               :Stroossegefierkapazitéit
+STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_0                      :Mickreg
+STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_1                      :Fantastesch
+STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2                      :Exzessiv
+STR_PARAM_ROSTER                                                :Lëscht
+STR_PARAM_ROSTER_DESC                                           :Wiel wellechen Set vu Gefierer benotzt soll ginn.
+STR_PARAM_ROSTER_OPTION_0                                       :Brit
+STR_PARAM_ROSTER_OPTION_1                                       :Ödland
+
+STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Passagéier-Tram
+STR_NAME_SUFFIX_BUS                                             :Bus
+STR_NAME_SUFFIX_COACH                                           :Passagéierwon
+STR_NAME_SUFFIX_GENERAL_CARGO_TRAM                              :Wueren-Tram
+STR_NAME_SUFFIX_GENERAL_CARGO_TRUCK                             :Wuerecamion
+STR_NAME_SUFFIX_COURIER_TRAM                                    :Post-Tram
+STR_NAME_SUFFIX_COURIER_TRUCK                                   :Postcamion
+STR_NAME_SUFFIX_TANKER_TRAM                                     :Tanker-Tram
+STR_NAME_SUFFIX_TANKER_TRUCK                                    :Tankcamion
+STR_NAME_SUFFIX_COVERED_HOPPER_TRAM                             :Iwwerdeckte Kipp-Tram
+STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :Iwwerdeckte Kippcamion
+STR_NAME_SUFFIX_MINING_TRAM                                     :Minnen-Tram
+STR_NAME_SUFFIX_MINING_TRUCK                                    :Minnecamion
+STR_NAME_SUFFIX_FARM_BULK_TRAM                                  :Akerbau-Tram
+STR_NAME_SUFFIX_FARM_BULK_TRUCK                                 :Akerbaucamion
+STR_NAME_SUFFIX_FOUNDRY_TRAM                                    :Schmelz-Tram
+STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :Schmelzwuerecamion
+STR_NAME_SUFFIX_SUPPLIES_TRAM                                   :Ersatzdeeler-Tram
+STR_NAME_SUFFIX_SUPPLIES_TRUCK                                  :Ersatzdeelercamion
+STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Containercamion
+STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :Véitransport-Tram
+STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :Véitransport-Camion
+STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM                             :Liewensmëttel-Tanker-Tram
+STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK                            :Liewensmëttel-Tankcamion
+STR_NAME_SUFFIX_REEFER_TRAM                                     :Killwueren-Tram
+STR_NAME_SUFFIX_REEFER_TRUCK                                    :Killcamion
+STR_NAME_SUFFIX_LOGGING_TRUCK                                   :Fieschterei Camion
+
+STR_COASTER                                                     :Bliblablubb (e Reminder vum Andy...)
+STR_DOGTRACK                                                    :Hënn si brong, munchmol.
