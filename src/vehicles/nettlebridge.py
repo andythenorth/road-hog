@@ -1,16 +1,16 @@
 import global_constants
-from road_vehicle import EngineConsist, BulkFarmHauler
+from road_vehicle import EngineConsist, DumpHauler
 
 consist = EngineConsist(id = 'nettlebridge',
               base_numeric_id = 310,
-              title = 'Nettlebridge [Farm Bulk Tram]',
+              title = 'Nettlebridge [Dump Tram]',
               roadveh_flag_tram = True,
               replacement_id = '-none',
               power = 200,
               vehicle_life = 40,
               intro_date = 1903)
 
-consist.add_unit(BulkFarmHauler(consist = consist,
+consist.add_unit(DumpHauler(consist = consist,
                         weight = 12,
                         capacity = 30,
                         vehicle_length = 7,

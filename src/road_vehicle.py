@@ -485,9 +485,25 @@ class GeneralCargoHauler(RoadVehicle):
         self.autorefit = True
         self.class_refit_groups = ['all_freight']
         self.label_refits_allowed = ['GRAI', 'WHEA', 'MAIZ'] # Iron Horse compatibility
-        self.label_refits_disallowed = ['TOUR']
+        self.label_refits_disallowed = ['TOUR', 'MAIL']
         self.default_cargo = 'GOOD'
         self.default_cargo_capacities = self.capacities
+
+
+class DumpHauler(RoadVehicle):
+    """
+    Tram, truck or trailer for any bulk cargos.  The refits on this are quite permissive by design.
+    """
+    def __init__(self, **kwargs):
+        super(DumpHauler, self).__init__(**kwargs)
+        self.template = 'road_vehicle.pynml'
+        self.autorefit = True
+        self.class_refit_groups = ['dump_freight']
+        self.label_refits_allowed = ['FMSP']
+        self.label_refits_disallowed = []
+        self.default_cargo = 'COAL'
+        self.default_cargo_capacities = self.capacities
+        self.loading_speed_multiplier = 2
 
 
 class MiningHauler(RoadVehicle):
@@ -498,9 +514,9 @@ class MiningHauler(RoadVehicle):
         super(MiningHauler, self).__init__(**kwargs)
         self.template = 'road_vehicle.pynml'
         self.autorefit = True
-        self.class_refit_groups = ['hopper_freight']
+        self.class_refit_groups = ['dump_freight']
         self.label_refits_allowed = [] # no specific labels needed
-        self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_hopper_bulk_freight']
+        self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_mining_bulk']
         self.default_cargo = 'COAL'
         self.default_cargo_capacities = self.capacities
         self.loading_speed_multiplier = 2
@@ -508,7 +524,7 @@ class MiningHauler(RoadVehicle):
 
 class BulkFarmHauler(RoadVehicle):
     """
-    Tram, truck or trailer for bulk farm cargos (pourable uncountable crops).
+    Tram, truck, tractor or trailer for bulk farm cargos (pourable uncountable crops).
     """
     def __init__(self, **kwargs):
         super(BulkFarmHauler, self).__init__(**kwargs)

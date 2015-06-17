@@ -6,7 +6,7 @@ consist = EngineConsist(id = 'broadrock',
               title = 'Broadrock [Mining Truck]',
               replacement_id = '-none',
               power = 600,
-              speed = 45,
+              speed = 50,
               type_base_running_cost_points = 20, # dibble running costs for game balance
               vehicle_life = 40,
               intro_date = 1951)
@@ -21,7 +21,7 @@ consist.add_unit(MiningHauler(consist = consist,
 
 consist.add_unit(MiningHauler(consist = consist,
                         weight = 0, # put the weight on the truck to compensate for lack of TE when loaded
-                        capacity = 75,
+                        capacity = 85,
                         vehicle_length = 6,
                         spriterow_num = 1))
 

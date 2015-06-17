@@ -22,8 +22,10 @@ STR_NAME_SUFFIX_TANKER_TRAM                                     :Tanker Tram
 STR_NAME_SUFFIX_TANKER_TRUCK                                    :Tanker Truck
 STR_NAME_SUFFIX_COVERED_HOPPER_TRAM                             :Covered Hopper Tram
 STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :Covered Hopper Truck
+STR_NAME_SUFFIX_DUMP_TRAM                                       :Dump Tram
+STR_NAME_SUFFIX_DUMP_TRUCK                                      :Dump Truck
 STR_NAME_SUFFIX_MINING_TRAM                                     :Mining Tram
-STR_NAME_SUFFIX_MINING_TRUCK                                    :Mining Hauler
+STR_NAME_SUFFIX_MINING_TRUCK                                    :Mining Truck
 STR_NAME_SUFFIX_FARM_BULK_TRAM                                  :Farm Bulk Tram
 STR_NAME_SUFFIX_FARM_BULK_TRUCK                                 :Farm Bulk Truck
 STR_NAME_SUFFIX_FOUNDRY_TRAM                                    :Foundry Tram

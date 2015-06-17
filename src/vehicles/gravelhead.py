@@ -11,7 +11,7 @@ consist = EngineConsist(id = 'gravelhead',
 
 consist.add_unit(MiningHauler(consist = consist,
                         weight = 10,
-                        capacity = 20,
+                        capacity = 25,
                         vehicle_length = 6,
                         effect_spawn_model = 'EFFECT_SPAWN_MODEL_STEAM',
                         effects = ['EFFECT_SPRITE_STEAM, -3, 0, 12'],
@@ -19,7 +19,7 @@ consist.add_unit(MiningHauler(consist = consist,
 
 consist.add_unit(MiningHauler(consist = consist,
                         weight = 5,
-                        capacity = 15,
+                        capacity = 25,
                         vehicle_length = 5,
                         spriterow_num = 1))
 

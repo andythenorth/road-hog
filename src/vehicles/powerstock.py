@@ -1,15 +1,15 @@
 import global_constants
-from road_vehicle import EngineConsist, BulkFarmHauler
+from road_vehicle import EngineConsist, DumpHauler
 
 consist = EngineConsist(id = 'powerstock',
               base_numeric_id = 340,
-              title = 'Powerstock [Farm Bulk Truck]',
+              title = 'Powerstock [Dump Truck]',
               replacement_id = '-none',
               power = 650,
               vehicle_life = 40,
               intro_date = 1983)
 
-consist.add_unit(BulkFarmHauler(consist = consist,
+consist.add_unit(DumpHauler(consist = consist,
                         weight = 8,
                         capacity = 0,
                         vehicle_length = 2,
@@ -17,7 +17,7 @@ consist.add_unit(BulkFarmHauler(consist = consist,
                         effects = ['EFFECT_SPRITE_DIESEL, -2, 1, 10'],
                         spriterow_num = 0))
 
-consist.add_unit(BulkFarmHauler(consist = consist,
+consist.add_unit(DumpHauler(consist = consist,
                         weight = 8,
                         capacity = 40,
                         vehicle_length = 6,
