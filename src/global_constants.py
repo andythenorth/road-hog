@@ -6,7 +6,7 @@ base_refits_by_class = {'empty': [],
                         'mail': ['CC_MAIL'],
                         'liquids': ['CC_LIQUID'],
                         'packaged_freight': ['CC_PIECE_GOODS', 'CC_EXPRESS', 'CC_ARMOURED', 'CC_LIQUID'],
-                        'flatcar_freight': ['CC_PIECE_GOODS', 'CC_EXPRESS'],
+                        'flatbed_freight': ['CC_PIECE_GOODS'],
                         'dump_freight': ['CC_BULK'],
                         'bulk_farm_freight': [], # explicit allowal by label instead
                         'covered_hopper_freight': [], # explicit allowal by label instead
@@ -18,6 +18,7 @@ base_refits_by_class = {'empty': [],
 # these lists are similar but not identical across Iron Horse, Squid, Road Hog etc
 disallowed_refits_by_label = {'non_mining_bulk': ['WOOD', 'SGCN', 'FICR', 'BDMT', 'WDPR', 'GRAI', 'WHEA', 'MAIZ', 'SGBT', 'BEAN'],
                               'edible_liquids': ['MILK', 'WATR', 'BEER', 'FOOD'],
+                              'non_flatbed_freight': ['FOOD', 'FISH', 'LVST', 'FRUT', 'BEER', 'MILK', 'JAVA', 'SUGR'],
                               'non_edible_liquids': ['RFPR', 'OIL_', 'FMSP', 'PETR', 'RUBR']}
 
 # capacity multipliers for capacity parameter
@@ -77,7 +78,8 @@ cargo_labels = ['PASS', # pax first
                 'OLSD',
                 'SUGR',
                 'BEAN',
-                'NITR']
+                'NITR',
+                'JAVA']
 
 grfid = r"\97\87\EA\FE"
 

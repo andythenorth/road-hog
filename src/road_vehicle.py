@@ -542,12 +542,12 @@ class FlatBedHauler(RoadVehicle):
     Flatbed tram or truck - refits most cargos, not bulk.
     """
     def __init__(self, **kwargs):
-        super(GeneralCargoHauler, self).__init__(**kwargs)
+        super(FlatBedHauler, self).__init__(**kwargs)
         self.template = 'road_vehicle.pynml'
         self.autorefit = True
-        self.class_refit_groups = ['all_freight']
-        self.label_refits_allowed = ['GRAI', 'WHEA', 'MAIZ'] # Iron Horse compatibility
-        self.label_refits_disallowed = ['TOUR', 'MAIL']
+        self.class_refit_groups = ['flatbed_freight']
+        self.label_refits_allowed = ['GOOD']
+        self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_flatbed_freight']
         self.default_cargo = 'GOOD'
         self.default_cargo_capacities = self.capacities
 

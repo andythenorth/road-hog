@@ -26,8 +26,8 @@ STR_NAME_SUFFIX_DUMP_TRAM                                       :Dump Tram
 STR_NAME_SUFFIX_DUMP_TRUCK                                      :Dump Truck
 STR_NAME_SUFFIX_MINING_TRAM                                     :Mining Tram
 STR_NAME_SUFFIX_MINING_TRUCK                                    :Mining Truck
-STR_NAME_SUFFIX_FARM_BULK_TRAM                                  :Farm Bulk Tram
-STR_NAME_SUFFIX_FARM_BULK_TRUCK                                 :Farm Bulk Truck
+STR_NAME_SUFFIX_FLATBED_TRAM                                    :Flatbed Tram
+STR_NAME_SUFFIX_FLATBED_TRUCK                                   :Flatbed Truck
 STR_NAME_SUFFIX_FOUNDRY_TRAM                                    :Foundry Tram
 STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :Foundry Hauler
 STR_NAME_SUFFIX_SUPPLIES_TRAM                                   :Supplies Tram
