@@ -506,6 +506,21 @@ class DumpHauler(RoadVehicle):
         self.loading_speed_multiplier = 2
 
 
+class GeneralCargoHauler(RoadVehicle):
+    """
+    General cargo truck - refits everything except mail, pax.
+    """
+    def __init__(self, **kwargs):
+        super(GeneralCargoHauler, self).__init__(**kwargs)
+        self.template = 'road_vehicle.pynml'
+        self.autorefit = True
+        self.class_refit_groups = ['all_freight']
+        self.label_refits_allowed = ['GRAI', 'WHEA', 'MAIZ'] # Iron Horse compatibility
+        self.label_refits_disallowed = ['TOUR', 'MAIL']
+        self.default_cargo = 'GOOD'
+        self.default_cargo_capacities = self.capacities
+
+
 class MiningHauler(RoadVehicle):
     """
     Off-highway mining truck or trailer.  Limited set of bulk (mineral) cargos.
@@ -522,20 +537,19 @@ class MiningHauler(RoadVehicle):
         self.loading_speed_multiplier = 2
 
 
-class BulkFarmHauler(RoadVehicle):
+class FlatBedHauler(RoadVehicle):
     """
-    Tram, truck, tractor or trailer for bulk farm cargos (pourable uncountable crops).
+    Flatbed tram or truck - refits most cargos, not bulk.
     """
     def __init__(self, **kwargs):
-        super(BulkFarmHauler, self).__init__(**kwargs)
+        super(GeneralCargoHauler, self).__init__(**kwargs)
         self.template = 'road_vehicle.pynml'
         self.autorefit = True
-        self.class_refit_groups = ['bulk_farm_freight']
-        self.label_refits_allowed = ['FICR', 'GRAI', 'WHEA', 'MAIZ', 'SGBT', 'SGCN', 'SUGR', 'FRUT', 'FMSP', 'BEAN']
-        self.label_refits_disallowed = []
-        self.default_cargo = 'GRAI'
+        self.class_refit_groups = ['all_freight']
+        self.label_refits_allowed = ['GRAI', 'WHEA', 'MAIZ'] # Iron Horse compatibility
+        self.label_refits_disallowed = ['TOUR', 'MAIL']
+        self.default_cargo = 'GOOD'
         self.default_cargo_capacities = self.capacities
-        self.loading_speed_multiplier = 2
 
 
 class BulkPowderHauler(RoadVehicle):
