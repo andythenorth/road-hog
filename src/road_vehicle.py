@@ -548,7 +548,7 @@ class FlatBedHauler(RoadVehicle):
         self.class_refit_groups = ['flatbed_freight']
         self.label_refits_allowed = ['GOOD']
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_flatbed_freight']
-        self.default_cargo = 'GOOD'
+        self.default_cargo = 'STEL'
         self.default_cargo_capacities = self.capacities
 
 
