@@ -22,8 +22,6 @@ STR_NAME_SUFFIX_COVERED_HOPPER_TRAM                             :Katettu Suppilo
 STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :Katettu Suppiloauto
 STR_NAME_SUFFIX_MINING_TRAM                                     :Mineraaliraitiovaunu
 STR_NAME_SUFFIX_MINING_TRUCK                                    :Mineraalirekka
-STR_NAME_SUFFIX_FARM_BULK_TRAM                                  :Maatilan Kappaletavararaitiovaunu
-STR_NAME_SUFFIX_FARM_BULK_TRUCK                                 :Maatilan Kappaletavara-auto
 STR_NAME_SUFFIX_FOUNDRY_TRAM                                    :Sulattamoraitiovaunu
 STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :Sulattamorekka
 STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Konttirekka

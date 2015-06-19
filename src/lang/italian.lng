@@ -26,8 +26,6 @@ STR_NAME_SUFFIX_COVERED_HOPPER_TRAM                             :Tram a tramoggi
 STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :Camion a tramoggia coperto
 STR_NAME_SUFFIX_MINING_TRAM                                     :Tram di miniera
 STR_NAME_SUFFIX_MINING_TRUCK                                    :Automezzo di miniera
-STR_NAME_SUFFIX_FARM_BULK_TRAM                                  :Tram per merci agricole
-STR_NAME_SUFFIX_FARM_BULK_TRUCK                                 :Camion per merci agricole
 STR_NAME_SUFFIX_FOUNDRY_TRAM                                    :Tram di fonderia
 STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :Automezzo di fonderia
 STR_NAME_SUFFIX_SUPPLIES_TRAM                                   :Tram per forniture

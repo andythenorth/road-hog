@@ -26,8 +26,6 @@ STR_NAME_SUFFIX_COVERED_HOPPER_TRAM                             :Tramvaj za rasu
 STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :Kamion za rasuti teret (pokriveni)
 STR_NAME_SUFFIX_MINING_TRAM                                     :Rudarski tramvaj
 STR_NAME_SUFFIX_MINING_TRUCK                                    :Rudarski kamion
-STR_NAME_SUFFIX_FARM_BULK_TRAM                                  :Tramvaj za rasuti teret za farme
-STR_NAME_SUFFIX_FARM_BULK_TRUCK                                 :Kamion za rasuti teret za farme
 STR_NAME_SUFFIX_FOUNDRY_TRAM                                    :Tramvaj za ljevaonicu
 STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :Kamion za ljevaonicu
 STR_NAME_SUFFIX_SUPPLIES_TRAM                                   :Tramvaj za opskrbu

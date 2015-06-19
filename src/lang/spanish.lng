@@ -27,8 +27,6 @@ STR_NAME_SUFFIX_DUMP_TRAM                                       :Tranvía de bas
 STR_NAME_SUFFIX_DUMP_TRUCK                                      :Camión de basura
 STR_NAME_SUFFIX_MINING_TRAM                                     :Tranvía minero
 STR_NAME_SUFFIX_MINING_TRUCK                                    :Camión Minero
-STR_NAME_SUFFIX_FARM_BULK_TRAM                                  :Tranvía de carga a granel agrícola
-STR_NAME_SUFFIX_FARM_BULK_TRUCK                                 :Camión de carga a granel agrícola
 STR_NAME_SUFFIX_FOUNDRY_TRAM                                    :Tranvía para/de la fundición
 STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :Camión para/de la fundición
 STR_NAME_SUFFIX_SUPPLIES_TRAM                                   :Tranvía de suministros

@@ -24,8 +24,6 @@ STR_NAME_SUFFIX_COVERED_HOPPER_TRAM                             :Gedeckte Schüt
 STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :Gedeckter Schüttgut-LKW
 STR_NAME_SUFFIX_MINING_TRAM                                     :Grubenbahn
 STR_NAME_SUFFIX_MINING_TRUCK                                    :Gruben-Laster
-STR_NAME_SUFFIX_FARM_BULK_TRAM                                  :Straßenbahn für landwirtschaftliches Schüttgut
-STR_NAME_SUFFIX_FARM_BULK_TRUCK                                 :Schüttgutlaster
 STR_NAME_SUFFIX_FOUNDRY_TRAM                                    :Schwerlast-Tram
 STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :Schwerlast-Transporter
 STR_NAME_SUFFIX_SUPPLIES_TRAM                                   :Straßenbahn für Bedarfsgüter

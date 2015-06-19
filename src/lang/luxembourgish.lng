@@ -24,8 +24,6 @@ STR_NAME_SUFFIX_COVERED_HOPPER_TRAM                             :Iwwerdeckte Kip
 STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :Iwwerdeckte Kippcamion
 STR_NAME_SUFFIX_MINING_TRAM                                     :Minnen-Tram
 STR_NAME_SUFFIX_MINING_TRUCK                                    :Minnecamion
-STR_NAME_SUFFIX_FARM_BULK_TRAM                                  :Akerbau-Tram
-STR_NAME_SUFFIX_FARM_BULK_TRUCK                                 :Akerbaucamion
 STR_NAME_SUFFIX_FOUNDRY_TRAM                                    :Schmelz-Tram
 STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :Schmelzwuerecamion
 STR_NAME_SUFFIX_SUPPLIES_TRAM                                   :Ersatzdeeler-Tram

@@ -26,8 +26,6 @@ STR_NAME_SUFFIX_COVERED_HOPPER_TRAM                             :Крытый Т
 STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :Крытый Грузовик Хоппер
 STR_NAME_SUFFIX_MINING_TRAM                                     :Шахтовый Трамвай
 STR_NAME_SUFFIX_MINING_TRUCK                                    :Шахтовый Погрузчик
-STR_NAME_SUFFIX_FARM_BULK_TRAM                                  :Фермерский Грузовой Трамвай
-STR_NAME_SUFFIX_FARM_BULK_TRUCK                                 :Фермерский Грузовик
 STR_NAME_SUFFIX_FOUNDRY_TRAM                                    :Литейно-Заводской Трамвай
 STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :Литейно-Заводской Погрузчик
 STR_NAME_SUFFIX_SUPPLIES_TRAM                                   :Трамвай доставки материалов производства

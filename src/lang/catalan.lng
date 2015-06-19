@@ -25,8 +25,6 @@ STR_NAME_SUFFIX_COVERED_HOPPER_TRAM                             :Tramvia cobert 
 STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :Camió cobert amb tremuja
 STR_NAME_SUFFIX_MINING_TRAM                                     :Tramvia per a mineria
 STR_NAME_SUFFIX_MINING_TRUCK                                    :Camió per a mineria
-STR_NAME_SUFFIX_FARM_BULK_TRAM                                  :Tramvia per a voluminosos agrícoles
-STR_NAME_SUFFIX_FARM_BULK_TRUCK                                 :Camió per a voluminosos agrícoles
 STR_NAME_SUFFIX_FOUNDRY_TRAM                                    :Tramvia per a fosa
 STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :Camió per a fundició
 STR_NAME_SUFFIX_SUPPLIES_TRAM                                   :Tramvia de subministraments

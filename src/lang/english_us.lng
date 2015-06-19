@@ -23,8 +23,6 @@ STR_NAME_SUFFIX_COVERED_HOPPER_TRAM                             :Covered Hopper 
 STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :Covered Hopper Truck
 STR_NAME_SUFFIX_MINING_TRAM                                     :Mining Tram
 STR_NAME_SUFFIX_MINING_TRUCK                                    :Mining Hauler
-STR_NAME_SUFFIX_FARM_BULK_TRAM                                  :Bulk Farm Tram
-STR_NAME_SUFFIX_FARM_BULK_TRUCK                                 :Bulk Farm Truck
 STR_NAME_SUFFIX_FOUNDRY_TRAM                                    :Foundry Tram
 STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :Foundry Hauler
 STR_NAME_SUFFIX_SUPPLIES_TRAM                                   :Supplies Tram

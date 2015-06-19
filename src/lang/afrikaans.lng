@@ -23,10 +23,12 @@ STR_NAME_SUFFIX_TANKER_TRAM                                     :Tenkwa Trem
 STR_NAME_SUFFIX_TANKER_TRUCK                                    :Tenkwa
 STR_NAME_SUFFIX_COVERED_HOPPER_TRAM                             :Bedekte Laai Trem
 STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :Bedekte Laai Vragmotor
+STR_NAME_SUFFIX_DUMP_TRAM                                       :Vullistram
+STR_NAME_SUFFIX_DUMP_TRUCK                                      :Vullistrok
 STR_NAME_SUFFIX_MINING_TRAM                                     :Myn Trem
 STR_NAME_SUFFIX_MINING_TRUCK                                    :Myn Vragmotor
-STR_NAME_SUFFIX_FARM_BULK_TRAM                                  :Plaas Bulk  Trem
-STR_NAME_SUFFIX_FARM_BULK_TRUCK                                 :Plaas Bulk Vragmotor
+STR_NAME_SUFFIX_FLATBED_TRAM                                    :Flatbed Trem
+STR_NAME_SUFFIX_FLATBED_TRUCK                                   :Flatbed Vragmotor
 STR_NAME_SUFFIX_FOUNDRY_TRAM                                    :Staal Trem
 STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :Staal Vragmotor
 STR_NAME_SUFFIX_SUPPLIES_TRAM                                   :Voorraad Trem
