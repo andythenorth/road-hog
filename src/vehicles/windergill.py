@@ -5,16 +5,15 @@ consist = EngineConsist(id = 'windergill',
               base_numeric_id = 640,
               title = 'Windergill [Flatbed Truck]',
               replacement_id = '-none',
-              power = 120,
+              power = 170,
               vehicle_life = 40,
-              intro_date = 1920)
+              intro_date = 1940)
 
 consist.add_unit(FlatBedHauler(consist = consist,
                         weight = 10,
-                        capacity = 10,
+                        capacity = 15,
                         vehicle_length = 5,
-                        effect_spawn_model = 'EFFECT_SPAWN_MODEL_STEAM',
-                        effects = ['EFFECT_SPRITE_STEAM, -3, 0, 12'],
+                        visual_effect = 'VISUAL_EFFECT_DIESEL',
                         spriterow_num = 0))
 
 consist.add_unit(FlatBedHauler(consist = consist,

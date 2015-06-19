@@ -5,21 +5,20 @@ consist = EngineConsist(id = 'big_rigg',
               base_numeric_id = 660,
               title = 'Big Rigg [Flatbed Truck]',
               replacement_id = '-none',
-              power = 120,
+              power = 450,
               vehicle_life = 40,
-              intro_date = 1920)
+              intro_date = 1980)
 
 consist.add_unit(FlatBedHauler(consist = consist,
                         weight = 10,
-                        capacity = 10,
+                        capacity = 20,
                         vehicle_length = 5,
-                        effect_spawn_model = 'EFFECT_SPAWN_MODEL_STEAM',
-                        effects = ['EFFECT_SPRITE_STEAM, -3, 0, 12'],
+                        visual_effect = 'VISUAL_EFFECT_DIESEL',
                         spriterow_num = 0))
 
 consist.add_unit(FlatBedHauler(consist = consist,
                         weight = 5,
-                        capacity = 15,
+                        capacity = 20,
                         vehicle_length = 5,
                         spriterow_num = 1))
 
