@@ -24,8 +24,12 @@ STR_NAME_SUFFIX_TANKER_TRAM                                     :Tramvaj-cistern
 STR_NAME_SUFFIX_TANKER_TRUCK                                    :Kamion-cisterna
 STR_NAME_SUFFIX_COVERED_HOPPER_TRAM                             :Tramvaj za rasuti teret (pokriveni)
 STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :Kamion za rasuti teret (pokriveni)
+STR_NAME_SUFFIX_DUMP_TRAM                                       :Kiper
+STR_NAME_SUFFIX_DUMP_TRUCK                                      :Kiper
 STR_NAME_SUFFIX_MINING_TRAM                                     :Rudarski tramvaj
 STR_NAME_SUFFIX_MINING_TRUCK                                    :Rudarski kamion
+STR_NAME_SUFFIX_FLATBED_TRAM                                    :Tramvaj sa ravnom površinom
+STR_NAME_SUFFIX_FLATBED_TRUCK                                   :Kamion sa ravnom površinom
 STR_NAME_SUFFIX_FOUNDRY_TRAM                                    :Tramvaj za ljevaonicu
 STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :Kamion za ljevaonicu
 STR_NAME_SUFFIX_SUPPLIES_TRAM                                   :Tramvaj za opskrbu

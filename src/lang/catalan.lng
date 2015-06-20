@@ -23,8 +23,12 @@ STR_NAME_SUFFIX_TANKER_TRAM                                     :Tramvia cistern
 STR_NAME_SUFFIX_TANKER_TRUCK                                    :Camió cisterna
 STR_NAME_SUFFIX_COVERED_HOPPER_TRAM                             :Tramvia cobert amb tremuja
 STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :Camió cobert amb tremuja
+STR_NAME_SUFFIX_DUMP_TRAM                                       :Tramvia d'escombraries
+STR_NAME_SUFFIX_DUMP_TRUCK                                      :Camió d'escombraries
 STR_NAME_SUFFIX_MINING_TRAM                                     :Tramvia per a mineria
-STR_NAME_SUFFIX_MINING_TRUCK                                    :Camió per a mineria
+STR_NAME_SUFFIX_MINING_TRUCK                                    :Tràiler per a mineria
+STR_NAME_SUFFIX_FLATBED_TRAM                                    :Tramvia plataforma
+STR_NAME_SUFFIX_FLATBED_TRUCK                                   :Camió plataforma
 STR_NAME_SUFFIX_FOUNDRY_TRAM                                    :Tramvia per a fosa
 STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :Camió per a fundició
 STR_NAME_SUFFIX_SUPPLIES_TRAM                                   :Tramvia de subministraments
