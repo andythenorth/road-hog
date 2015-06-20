@@ -434,7 +434,7 @@ class CourierCar(RoadVehicle):
     """
     def __init__(self, **kwargs):
         super(CourierCar, self).__init__(**kwargs)
-        self.template = 'road_vehicle.pynml'
+        self.template = 'vehicle_default.pynml'
         self.autorefit = True
         self.class_refit_groups = ['mail', 'express_freight']
         self.label_refits_allowed = [] # no specific labels needed
@@ -449,7 +449,7 @@ class PaxHauler(RoadVehicle):
     """
     def __init__(self, **kwargs):
         super(PaxHauler, self).__init__(**kwargs)
-        self.template = 'road_vehicle.pynml'
+        self.template = 'vehicle_default.pynml'
         self.autorefit = True
         self.class_refit_groups = ['pax']
         self.label_refits_allowed = []
@@ -465,7 +465,7 @@ class PaxExpressHauler(RoadVehicle):
     """
     def __init__(self, **kwargs):
         super(PaxExpressHauler, self).__init__(**kwargs)
-        self.template = 'road_vehicle.pynml'
+        self.template = 'vehicle_default.pynml'
         self.autorefit = True
         self.class_refit_groups = ['pax']
         self.label_refits_allowed = []
@@ -481,7 +481,7 @@ class GeneralCargoHauler(RoadVehicle):
     """
     def __init__(self, **kwargs):
         super(GeneralCargoHauler, self).__init__(**kwargs)
-        self.template = 'road_vehicle.pynml'
+        self.template = 'vehicle_default.pynml'
         self.autorefit = True
         self.class_refit_groups = ['all_freight']
         self.label_refits_allowed = ['GRAI', 'WHEA', 'MAIZ'] # Iron Horse compatibility
@@ -496,7 +496,7 @@ class DumpHauler(RoadVehicle):
     """
     def __init__(self, **kwargs):
         super(DumpHauler, self).__init__(**kwargs)
-        self.template = 'road_vehicle.pynml'
+        self.template = 'vehicle_default.pynml'
         self.autorefit = True
         self.class_refit_groups = ['dump_freight']
         self.label_refits_allowed = ['FMSP']
@@ -512,7 +512,7 @@ class GeneralCargoHauler(RoadVehicle):
     """
     def __init__(self, **kwargs):
         super(GeneralCargoHauler, self).__init__(**kwargs)
-        self.template = 'road_vehicle.pynml'
+        self.template = 'vehicle_default.pynml'
         self.autorefit = True
         self.class_refit_groups = ['all_freight']
         self.label_refits_allowed = ['GRAI', 'WHEA', 'MAIZ'] # Iron Horse compatibility
@@ -527,7 +527,7 @@ class MiningHauler(RoadVehicle):
     """
     def __init__(self, **kwargs):
         super(MiningHauler, self).__init__(**kwargs)
-        self.template = 'road_vehicle.pynml'
+        self.template = 'vehicle_default.pynml'
         self.autorefit = True
         self.class_refit_groups = ['dump_freight']
         self.label_refits_allowed = [] # no specific labels needed
@@ -543,7 +543,7 @@ class FlatBedHauler(RoadVehicle):
     """
     def __init__(self, **kwargs):
         super(FlatBedHauler, self).__init__(**kwargs)
-        self.template = 'road_vehicle.pynml'
+        self.template = 'vehicle_default.pynml'
         self.autorefit = True
         self.class_refit_groups = ['flatbed_freight']
         self.label_refits_allowed = ['GOOD']
@@ -558,7 +558,7 @@ class BulkPowderHauler(RoadVehicle):
     """
     def __init__(self, **kwargs):
         super(BulkPowderHauler, self).__init__(**kwargs)
-        self.template = 'road_vehicle.pynml'
+        self.template = 'vehicle_default.pynml'
         self.autorefit = True
         self.class_refit_groups = ['covered_hopper_freight']
         self.label_refits_allowed = ['GRAI', 'WHEA', 'MAIZ', 'FOOD', 'SUGR', 'FMSP', 'RFPR', 'CLAY', 'BDMT', 'BEAN', 'NITR']
@@ -574,7 +574,7 @@ class LivestockHauler(RoadVehicle):
     """
     def __init__(self, **kwargs):
         super(LivestockHauler, self).__init__(**kwargs)
-        self.template = 'road_vehicle.pynml'
+        self.template = 'vehicle_default.pynml'
         self.autorefit = True
         self.class_refit_groups = []
         self.label_refits_allowed = ['LVST']
@@ -591,7 +591,7 @@ class RefrigeratedHauler(RoadVehicle):
     """
     def __init__(self, **kwargs):
         super(RefrigeratedHauler, self).__init__(**kwargs)
-        self.template = 'road_vehicle.pynml'
+        self.template = 'vehicle_default.pynml'
         self.autorefit = True
         self.class_refit_groups = ['refrigerated_freight']
         self.label_refits_allowed = [] # no specific labels needed, refits all cargos that have refrigerated class
@@ -607,7 +607,7 @@ class Tanker(RoadVehicle):
     """
     def __init__(self, **kwargs):
         super(Tanker, self).__init__(**kwargs)
-        self.template = 'road_vehicle.pynml'
+        self.template = 'vehicle_with_cargo_specific_liveries.pynml'
         self.autorefit = True
         self.class_refit_groups = ['liquids']
         self.label_refits_allowed = []
@@ -623,7 +623,7 @@ class EdiblesTanker(RoadVehicle):
     """
     def __init__(self, **kwargs):
         super(EdiblesTanker, self).__init__(**kwargs)
-        self.template = 'road_vehicle.pynml'
+        self.template = 'vehicle_default.pynml'
         self.autorefit = True
         self.class_refit_groups = ['liquids']
         self.label_refits_allowed = ['MILK', 'FOOD']
@@ -640,7 +640,7 @@ class LogHauler(RoadVehicle):
     """
     def __init__(self, **kwargs):
         super(LogHauler, self).__init__(**kwargs)
-        self.template = 'road_vehicle.pynml'
+        self.template = 'vehicle_default.pynml'
         self.autorefit = True
         self.class_refit_groups = []
         self.label_refits_allowed = ['WOOD']
@@ -657,7 +657,7 @@ class FoundryHauler(RoadVehicle):
     """
     def __init__(self, **kwargs):
         super(FoundryHauler, self).__init__(**kwargs)
-        self.template = 'road_vehicle.pynml'
+        self.template = 'vehicle_default.pynml'
         self.autorefit = True
         self.class_refit_groups = []
         self.label_refits_allowed = ['STEL', 'COPR']
@@ -673,7 +673,7 @@ class SuppliesHauler(RoadVehicle):
     """
     def __init__(self, **kwargs):
         super(SuppliesHauler, self).__init__(**kwargs)
-        self.template = 'road_vehicle.pynml'
+        self.template = 'vehicle_default.pynml'
         self.autorefit = True
         self.class_refit_groups = []
         self.label_refits_allowed = ['ENSP', 'FMSP', 'BDMT']
@@ -689,7 +689,7 @@ class IntermodalHauler(RoadVehicle):
     """
     def __init__(self, **kwargs):
         super(IntermodalHauler, self).__init__(**kwargs)
-        self.template = 'road_vehicle.pynml'
+        self.template = 'vehicle_default.pynml'
         self.autorefit = True
         # maintain other sets (e.g. IH etc) when changing container refits
         self.class_refit_groups = ['express_freight','packaged_freight']
