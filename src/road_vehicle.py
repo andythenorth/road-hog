@@ -610,6 +610,11 @@ class Tanker(RoadVehicle):
         self.template = 'vehicle_with_cargo_specific_liveries.pynml'
         self.autorefit = True
         self.class_refit_groups = ['liquids']
+        # tankers are unrealistically autorefittable, and at no cost
+        # Pikka: if people complain that it's unrealistic, tell them "don't do it then"
+        # they also change livery at stations if refitted between certain cargo types <shrug>
+        self.cargo_graphics_mappings = {'OIL_': [0], 'PETR': [1], 'RFPR': [2]}
+        self.num_cargo_rows = len(self.cargo_graphics_mappings)
         self.label_refits_allowed = []
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['edible_liquids']
         self.default_cargo = 'OIL_'
