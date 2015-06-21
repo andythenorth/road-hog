@@ -475,12 +475,12 @@ class PaxExpressHauler(RoadVehicle):
         self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
 
 
-class GeneralCargoHauler(RoadVehicle):
+class OpenHauler(RoadVehicle):
     """
-    General cargo truck - refits everything except mail, pax.
+    General cargo tram or truck - refits everything except mail, pax.
     """
     def __init__(self, **kwargs):
-        super(GeneralCargoHauler, self).__init__(**kwargs)
+        super(OpenHauler, self).__init__(**kwargs)
         self.template = 'vehicle_default.pynml'
         self.autorefit = True
         self.class_refit_groups = ['all_freight']
@@ -492,7 +492,7 @@ class GeneralCargoHauler(RoadVehicle):
 
 class DumpHauler(RoadVehicle):
     """
-    Tram, truck or trailer for any bulk cargos.  The refits on this are quite permissive by design.
+    Tram or truck for any bulk cargos.  The refits on this are quite permissive by design.
     """
     def __init__(self, **kwargs):
         super(DumpHauler, self).__init__(**kwargs)
@@ -506,12 +506,12 @@ class DumpHauler(RoadVehicle):
         self.loading_speed_multiplier = 2
 
 
-class GeneralCargoHauler(RoadVehicle):
+class OpenHauler(RoadVehicle):
     """
     General cargo truck - refits everything except mail, pax.
     """
     def __init__(self, **kwargs):
-        super(GeneralCargoHauler, self).__init__(**kwargs)
+        super(OpenHauler, self).__init__(**kwargs)
         self.template = 'vehicle_default.pynml'
         self.autorefit = True
         self.class_refit_groups = ['all_freight']

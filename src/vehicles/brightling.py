@@ -1,29 +1,29 @@
 import global_constants
-from road_vehicle import EngineConsist, GeneralCargoHauler
+from road_vehicle import EngineConsist, OpenHauler
 
 consist = EngineConsist(id = 'brightling',
               base_numeric_id = 90,
-              title = 'Brightling [General Cargo Tram]',
+              title = 'Brightling [Open Tram]',
               roadveh_flag_tram = True,
               replacement_id = '-none',
               power = 160,
               vehicle_life = 40,
               intro_date = 1900,)
 
-consist.add_unit(GeneralCargoHauler(consist = consist,
+consist.add_unit(OpenHauler(consist = consist,
                         weight = 12,
                         capacity = 10,
                         vehicle_length = 6,
                         effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 10'],
                         spriterow_num = 0), repeat=1)
 
-consist.add_unit(GeneralCargoHauler(consist = consist,
+consist.add_unit(OpenHauler(consist = consist,
                         weight = 4,
                         capacity = 10,
                         vehicle_length = 4,
                         spriterow_num = 2), repeat=1)
 
-consist.add_unit(GeneralCargoHauler(consist = consist,
+consist.add_unit(OpenHauler(consist = consist,
                         weight = 4,
                         capacity = 10,
                         vehicle_length = 4,

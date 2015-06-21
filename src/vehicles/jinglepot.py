@@ -1,15 +1,15 @@
 import global_constants
-from road_vehicle import EngineConsist, GeneralCargoHauler
+from road_vehicle import EngineConsist, OpenHauler
 
 consist = EngineConsist(id = 'jinglepot',
               base_numeric_id = 240,
-              title = 'Jinglepot [General Cargo Truck]',
+              title = 'Jinglepot [Open Truck]',
               replacement_id = '-none',
               power = 120,
               vehicle_life = 40,
               intro_date = 1920)
 
-consist.add_unit(GeneralCargoHauler(consist = consist,
+consist.add_unit(OpenHauler(consist = consist,
                         weight = 10,
                         capacity = 10,
                         vehicle_length = 5,
@@ -17,7 +17,7 @@ consist.add_unit(GeneralCargoHauler(consist = consist,
                         effects = ['EFFECT_SPRITE_STEAM, -3, 0, 12'],
                         spriterow_num = 0))
 
-consist.add_unit(GeneralCargoHauler(consist = consist,
+consist.add_unit(OpenHauler(consist = consist,
                         weight = 5,
                         capacity = 15,
                         vehicle_length = 5,
