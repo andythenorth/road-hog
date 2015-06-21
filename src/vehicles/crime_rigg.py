@@ -7,7 +7,6 @@ consist = EngineConsist(id = 'crime_rigg',
               title = 'Crime Rigg [Supplies Truck]',
               replacement_id = '-none',
               power = 240,
-              speed = 35,
               vehicle_life = 40,
               intro_date = 1920)
 
