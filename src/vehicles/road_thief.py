@@ -7,6 +7,7 @@ consist = EngineConsist(id = 'road_thief',
               title = 'Road Thief [Supplies Truck]',
               replacement_id = '-none',
               power = 650,
+              speed_dibble = 'plodding', # supplies can be bulky...apply speed penalty
               vehicle_life = 40,
               intro_date = 1985)
 
