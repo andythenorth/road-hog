@@ -1,22 +1,22 @@
 import global_constants
-from road_vehicle import EngineConsist, OpenHauler
+from road_vehicle import EngineConsist, BoxHauler
 
 consist = EngineConsist(id = 'easywheal',
               base_numeric_id = 160,
-              title = 'Easywheal [Open Truck]',
+              title = 'Easywheal [Box Truck]',
               replacement_id = '-none',
               power = 170,
               vehicle_life = 40,
               intro_date = 1940)
 
-consist.add_unit(OpenHauler(consist = consist,
+consist.add_unit(BoxHauler(consist = consist,
                         weight = 12,
                         capacity = 15,
                         vehicle_length = 6,
                         visual_effect = 'VISUAL_EFFECT_DIESEL',
                         spriterow_num = 0))
 
-consist.add_unit(OpenHauler(consist = consist,
+consist.add_unit(BoxHauler(consist = consist,
                         weight = 5,
                         capacity = 15,
                         vehicle_length = 4,

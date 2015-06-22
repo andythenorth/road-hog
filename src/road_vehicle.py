@@ -508,7 +508,7 @@ class DumpHauler(RoadVehicle):
 
 class OpenHauler(RoadVehicle):
     """
-    General cargo truck - refits everything except mail, pax.
+    General cargo tram or truck - refits everything except mail, pax.
     """
     def __init__(self, **kwargs):
         super(OpenHauler, self).__init__(**kwargs)
@@ -517,6 +517,21 @@ class OpenHauler(RoadVehicle):
         self.class_refit_groups = ['all_freight']
         self.label_refits_allowed = ['GRAI', 'WHEA', 'MAIZ'] # Iron Horse compatibility
         self.label_refits_disallowed = ['TOUR', 'MAIL']
+        self.default_cargo = 'GOOD'
+        self.default_cargo_capacities = self.capacities
+
+
+class BoxHauler(RoadVehicle):
+    """
+    Box tram or truck - refits express, piece goods cargos, other selected cargos.
+    """
+    def __init__(self, **kwargs):
+        super(BoxHauler, self).__init__(**kwargs)
+        self.template = 'vehicle_default.pynml'
+        self.autorefit = True
+        self.class_refit_groups = ['packaged_freight']
+        self.label_refits_allowed = ['MAIL', 'GRAI', 'WHEA', 'MAIZ', 'FRUT', 'BEAN', 'NITR'] # Iron Horse compatibility
+        self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_freight_special_cases']
         self.default_cargo = 'GOOD'
         self.default_cargo_capacities = self.capacities
 

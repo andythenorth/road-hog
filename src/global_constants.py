@@ -19,7 +19,8 @@ base_refits_by_class = {'empty': [],
 disallowed_refits_by_label = {'non_mining_bulk': ['WOOD', 'SGCN', 'FICR', 'BDMT', 'WDPR', 'GRAI', 'WHEA', 'MAIZ', 'SGBT', 'BEAN'],
                               'edible_liquids': ['MILK', 'WATR', 'BEER', 'FOOD'],
                               'non_flatbed_freight': ['FOOD', 'FISH', 'LVST', 'FRUT', 'BEER', 'MILK', 'JAVA', 'SUGR'],
-                              'non_edible_liquids': ['RFPR', 'OIL_', 'FMSP', 'PETR', 'RUBR']}
+                              'non_edible_liquids': ['RFPR', 'OIL_', 'FMSP', 'PETR', 'RUBR'],
+                              'non_freight_special_cases': ['TOUR']}
 
 # capacity multipliers for capacity parameter
 capacity_multipliers = [0.67, 1, 1.33]
