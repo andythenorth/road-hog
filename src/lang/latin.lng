@@ -15,8 +15,6 @@ STR_PARAM_ROSTER_OPTION_0                                       :Anglica
 STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Transviaria Raeda Vectoria
 STR_NAME_SUFFIX_BUS                                             :Laophorium
 STR_NAME_SUFFIX_COACH                                           :Carruca
-STR_NAME_SUFFIX_GENERAL_CARGO_TRAM                              :Transviaria Raeda Oneraria Generale
-STR_NAME_SUFFIX_GENERAL_CARGO_TRUCK                             :Autoplaustrum Onerarium Generale
 STR_NAME_SUFFIX_COURIER_TRAM                                    :Transviaria Raeda Cursualis
 STR_NAME_SUFFIX_COURIER_TRUCK                                   :Autoplaustrum Cursualis
 STR_NAME_SUFFIX_TANKER_TRAM                                     :Transviaria Raeda Cisternina

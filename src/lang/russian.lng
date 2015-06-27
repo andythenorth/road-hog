@@ -16,8 +16,6 @@ STR_PARAM_ROSTER_OPTION_1                                       :Пустыня
 STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Пассажирский Трамвай
 STR_NAME_SUFFIX_BUS                                             :Автобус
 STR_NAME_SUFFIX_COACH                                           :Пассажирский
-STR_NAME_SUFFIX_GENERAL_CARGO_TRAM                              :Обычный Грузовой Трамвай
-STR_NAME_SUFFIX_GENERAL_CARGO_TRUCK                             :Обычный Грузовик
 STR_NAME_SUFFIX_COURIER_TRAM                                    :Почтовый Трамвай
 STR_NAME_SUFFIX_COURIER_TRUCK                                   :Почтовый Грузовик
 STR_NAME_SUFFIX_TANKER_TRAM                                     :Трамвай Цистерна

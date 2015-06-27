@@ -16,8 +16,6 @@ STR_PARAM_ROSTER_OPTION_1                                       :Deserto
 STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Tram passeggeri
 STR_NAME_SUFFIX_BUS                                             :Autobus
 STR_NAME_SUFFIX_COACH                                           :Corriera
-STR_NAME_SUFFIX_GENERAL_CARGO_TRAM                              :Tram merci generico
-STR_NAME_SUFFIX_GENERAL_CARGO_TRUCK                             :Camion generico
 STR_NAME_SUFFIX_COURIER_TRAM                                    :Tram per merci leggere
 STR_NAME_SUFFIX_COURIER_TRUCK                                   :Camion leggero
 STR_NAME_SUFFIX_TANKER_TRAM                                     :Tram cisterna

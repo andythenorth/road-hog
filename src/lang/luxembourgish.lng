@@ -14,8 +14,6 @@ STR_PARAM_ROSTER_OPTION_1                                       :Ödland
 STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Passagéier-Tram
 STR_NAME_SUFFIX_BUS                                             :Bus
 STR_NAME_SUFFIX_COACH                                           :Passagéierwon
-STR_NAME_SUFFIX_GENERAL_CARGO_TRAM                              :Wueren-Tram
-STR_NAME_SUFFIX_GENERAL_CARGO_TRUCK                             :Wuerecamion
 STR_NAME_SUFFIX_COURIER_TRAM                                    :Post-Tram
 STR_NAME_SUFFIX_COURIER_TRUCK                                   :Postcamion
 STR_NAME_SUFFIX_TANKER_TRAM                                     :Tanker-Tram

@@ -15,8 +15,6 @@ STR_PARAM_ROSTER_OPTION_1                                       :Terres ermes
 STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Tramvia de passatgers
 STR_NAME_SUFFIX_BUS                                             :Autobús
 STR_NAME_SUFFIX_COACH                                           :Autobús
-STR_NAME_SUFFIX_GENERAL_CARGO_TRAM                              :Tramvia per a càrrega general
-STR_NAME_SUFFIX_GENERAL_CARGO_TRUCK                             :Camió per a càrrega general
 STR_NAME_SUFFIX_COURIER_TRAM                                    :Tramvia per a missatgeria
 STR_NAME_SUFFIX_COURIER_TRUCK                                   :Camió per a missatgeria
 STR_NAME_SUFFIX_TANKER_TRAM                                     :Tramvia cisterna

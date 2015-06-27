@@ -14,8 +14,6 @@ STR_PARAM_ROSTER_OPTION_0                                       :Brit
 STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Straßenbahn (Passagiere)
 STR_NAME_SUFFIX_BUS                                             :Bus
 STR_NAME_SUFFIX_COACH                                           :Anhänger
-STR_NAME_SUFFIX_GENERAL_CARGO_TRAM                              :Feldbahn für Stückgut
-STR_NAME_SUFFIX_GENERAL_CARGO_TRUCK                             :Lastkraftwagen für Stückgut
 STR_NAME_SUFFIX_COURIER_TRAM                                    :Straßenbahn für Post
 STR_NAME_SUFFIX_COURIER_TRUCK                                   :Lieferwagen
 STR_NAME_SUFFIX_TANKER_TRAM                                     :Tankwagen-Tram

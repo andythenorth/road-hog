@@ -12,8 +12,6 @@ STR_PARAM_ROSTER_OPTION_0                                       :Britti
 
 STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Matkustajaraitiovaunu
 STR_NAME_SUFFIX_BUS                                             :Linja-auto
-STR_NAME_SUFFIX_GENERAL_CARGO_TRAM                              :Yleistavararaitiovaunu
-STR_NAME_SUFFIX_GENERAL_CARGO_TRUCK                             :Yleistavarakuorma-auto
 STR_NAME_SUFFIX_COURIER_TRAM                                    :Lähettiraitiovaunu
 STR_NAME_SUFFIX_COURIER_TRUCK                                   :Lähettikuorma-auto
 STR_NAME_SUFFIX_TANKER_TRAM                                     :Säiliöraitiovaunu

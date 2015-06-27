@@ -15,8 +15,6 @@ STR_PARAM_ROSTER_OPTION_1                                       :Wasteland
 STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Tram pour passagers
 STR_NAME_SUFFIX_BUS                                             :Bus
 STR_NAME_SUFFIX_COACH                                           :Car
-STR_NAME_SUFFIX_GENERAL_CARGO_TRAM                              :Tram de fret
-STR_NAME_SUFFIX_GENERAL_CARGO_TRUCK                             :Camion de fret
 STR_NAME_SUFFIX_COURIER_TRAM                                    :Tram postal
 STR_NAME_SUFFIX_COURIER_TRUCK                                   :Camion postal
 STR_NAME_SUFFIX_TANKER_TRAM                                     :Tram-citerne
