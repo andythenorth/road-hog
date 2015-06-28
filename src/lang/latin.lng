@@ -11,10 +11,15 @@ STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2                      :Nimiae
 STR_PARAM_ROSTER                                                :Vehicula Adhibenda
 STR_PARAM_ROSTER_DESC                                           :Eligere vehicula adhibenda.
 STR_PARAM_ROSTER_OPTION_0                                       :Anglica
+STR_PARAM_ROSTER_OPTION_1                                       :Erema
 
 STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Transviaria Raeda Vectoria
 STR_NAME_SUFFIX_BUS                                             :Laophorium
 STR_NAME_SUFFIX_COACH                                           :Carruca
+STR_NAME_SUFFIX_BOX_TRAM                                        :Transviaria Raeda Clausa
+STR_NAME_SUFFIX_BOX_TRUCK                                       :Autoplaustrum Cubicum
+STR_NAME_SUFFIX_OPEN_TRAM                                       :Transviaria Raeda Aperta
+STR_NAME_SUFFIX_OPEN_TRUCK                                      :Autoplaustrum Apertum
 STR_NAME_SUFFIX_COURIER_TRAM                                    :Transviaria Raeda Cursualis
 STR_NAME_SUFFIX_COURIER_TRUCK                                   :Autoplaustrum Cursualis
 STR_NAME_SUFFIX_TANKER_TRAM                                     :Transviaria Raeda Cisternina
@@ -23,6 +28,8 @@ STR_NAME_SUFFIX_COVERED_HOPPER_TRAM                             :Transviaria Rae
 STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :Autoplaustrum Infundibulare Tectum
 STR_NAME_SUFFIX_MINING_TRAM                                     :Transviaria Raeda Fodinalis
 STR_NAME_SUFFIX_MINING_TRUCK                                    :Autoplaustrum Fodinale
+STR_NAME_SUFFIX_FLATBED_TRAM                                    :Transviaria Raeda Plana
+STR_NAME_SUFFIX_FLATBED_TRUCK                                   :Autoplaustrum Planum
 STR_NAME_SUFFIX_SUPPLIES_TRAM                                   :Transviaria Raeda Apparatuum
 STR_NAME_SUFFIX_SUPPLIES_TRUCK                                  :Autoplaustrum Apparatuum
 STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Autoplaustrum Intermodale

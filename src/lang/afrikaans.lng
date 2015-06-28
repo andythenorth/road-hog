@@ -15,6 +15,10 @@ STR_PARAM_ROSTER_OPTION_1                                       :Woestyn
 STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Passasier Trem
 STR_NAME_SUFFIX_BUS                                             :Bus
 STR_NAME_SUFFIX_COACH                                           :Koets
+STR_NAME_SUFFIX_BOX_TRAM                                        :Boks Trem
+STR_NAME_SUFFIX_BOX_TRUCK                                       :Boks Vragmotor
+STR_NAME_SUFFIX_OPEN_TRAM                                       :Oop Trem
+STR_NAME_SUFFIX_OPEN_TRUCK                                      :Oop Vragmotor
 STR_NAME_SUFFIX_COURIER_TRAM                                    :Koerier Trem
 STR_NAME_SUFFIX_COURIER_TRUCK                                   :Koerier Vragmotor
 STR_NAME_SUFFIX_TANKER_TRAM                                     :Tenkwa Trem
