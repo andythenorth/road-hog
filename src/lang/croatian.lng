@@ -16,6 +16,10 @@ STR_PARAM_ROSTER_OPTION_1                                       :Pustoš
 STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Putnički tramvaj
 STR_NAME_SUFFIX_BUS                                             :Autobus
 STR_NAME_SUFFIX_COACH                                           :Autobus
+STR_NAME_SUFFIX_BOX_TRAM                                        :Zatvoreni teretni tramvaj
+STR_NAME_SUFFIX_BOX_TRUCK                                       :Zatvoreni teretni kamion
+STR_NAME_SUFFIX_OPEN_TRAM                                       :Otvoreni teretni tramvaj
+STR_NAME_SUFFIX_OPEN_TRUCK                                      :Otvoreni teretni kamion
 STR_NAME_SUFFIX_COURIER_TRAM                                    :Dostavni tramvaj
 STR_NAME_SUFFIX_COURIER_TRUCK                                   :Dostavni kamion
 STR_NAME_SUFFIX_TANKER_TRAM                                     :Tramvaj-cisterna
