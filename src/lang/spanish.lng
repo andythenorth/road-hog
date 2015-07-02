@@ -15,6 +15,10 @@ STR_PARAM_ROSTER_OPTION_1                                       :Tierras baldía
 STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Tranvía de pasajeros
 STR_NAME_SUFFIX_BUS                                             :Autobús
 STR_NAME_SUFFIX_COACH                                           :Autobús
+STR_NAME_SUFFIX_BOX_TRAM                                        :Tranvía contenedor
+STR_NAME_SUFFIX_BOX_TRUCK                                       :Camión contenedor
+STR_NAME_SUFFIX_OPEN_TRAM                                       :Tranvía con contenedor abierto
+STR_NAME_SUFFIX_OPEN_TRUCK                                      :Camión con contenedor abierto
 STR_NAME_SUFFIX_COURIER_TRAM                                    :Tranvía de mensajería-correo urgente
 STR_NAME_SUFFIX_COURIER_TRUCK                                   :Camión de mensajería-correo urgente
 STR_NAME_SUFFIX_TANKER_TRAM                                     :Tranvía cisterna
