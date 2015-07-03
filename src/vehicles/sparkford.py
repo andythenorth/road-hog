@@ -12,10 +12,10 @@ consist = EngineConsist(id = 'sparkford',
 
 consist.add_unit(RefrigeratedHauler(consist = consist,
                         weight = 14,
-                        capacity = 30,
+                        capacity = 25,
                         vehicle_length = 7,
                         effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 10'],
-                        spriterow_num = 0))
+                        spriterow_num = 0), repeat = 2)
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,
