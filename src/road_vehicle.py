@@ -492,15 +492,15 @@ class OpenHauler(RoadVehicle):
 
 class DumpHauler(RoadVehicle):
     """
-    Tram or truck for any bulk cargos.  The refits on this are quite permissive by design.
+    Tram or truck for any bulk cargos.
     """
     def __init__(self, **kwargs):
         super(DumpHauler, self).__init__(**kwargs)
         self.template = 'vehicle_default.pynml'
         self.autorefit = True
         self.class_refit_groups = ['dump_freight']
-        self.label_refits_allowed = ['FMSP']
-        self.label_refits_disallowed = []
+        self.label_refits_allowed = []
+        self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_dump_bulk']
         self.default_cargo = 'COAL'
         self.default_cargo_capacities = self.capacities
         self.loading_speed_multiplier = 2
@@ -538,6 +538,7 @@ class BoxHauler(RoadVehicle):
 
 class MiningHauler(RoadVehicle):
     """
+    Redundant, should be merged with DumpHauler, it's now the same.
     Off-highway mining truck or trailer.  Limited set of bulk (mineral) cargos.
     """
     def __init__(self, **kwargs):
@@ -546,7 +547,7 @@ class MiningHauler(RoadVehicle):
         self.autorefit = True
         self.class_refit_groups = ['dump_freight']
         self.label_refits_allowed = [] # no specific labels needed
-        self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_mining_bulk']
+        self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_dump_bulk']
         self.default_cargo = 'COAL'
         self.default_cargo_capacities = self.capacities
         self.loading_speed_multiplier = 2
