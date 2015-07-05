@@ -7,7 +7,7 @@ consist = EngineConsist(id = 'rattlebrook',
               replacement_id = '-none',
               power = 120,
               vehicle_life = 40,
-              intro_date = 1940)
+              intro_date = 1935)
 
 consist.add_unit(OpenHauler(consist = consist,
                         weight = 10,

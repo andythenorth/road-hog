@@ -7,7 +7,7 @@ consist = EngineConsist(id = 'speedwell',
               replacement_id = '-none',
               power = 450,
               vehicle_life = 40,
-              intro_date = 1980)
+              intro_date = 1985)
 
 consist.add_unit(BoxHauler(consist = consist,
                         weight = 7,
