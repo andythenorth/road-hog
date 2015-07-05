@@ -7,7 +7,7 @@ consist = EngineConsist(id = 'waterperry',
               replacement_id = '-none',
               power = 200,
               vehicle_life = 40,
-              intro_date = 1965)
+              intro_date = 1972)
 
 consist.add_unit(EdiblesTanker(consist = consist,
                         weight = 7,

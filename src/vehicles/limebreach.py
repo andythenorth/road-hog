@@ -7,7 +7,7 @@ consist = EngineConsist(id = 'limebreach',
               replacement_id = '-none',
               power = 250,
               vehicle_life = 40,
-              intro_date = 1950)
+              intro_date = 1949)
 
 consist.add_unit(BulkPowderHauler(consist = consist,
                         weight = 6,

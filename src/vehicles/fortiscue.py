@@ -7,7 +7,7 @@ consist = EngineConsist(id = 'fortiscue',
               replacement_id = '-none',
               power = 450,
               vehicle_life = 40,
-              intro_date = 1970)
+              intro_date = 1978)
 
 consist.add_unit(RefrigeratedHauler(consist = consist,
                         weight = 17,
