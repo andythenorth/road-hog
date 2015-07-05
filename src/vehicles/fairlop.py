@@ -8,11 +8,11 @@ consist = EngineConsist(id = 'fairlop',
               replacement_id = '-none',
               power = 120,
               vehicle_life = 40,
-              intro_date = 1895)
+              intro_date = 1903)
 
 consist.add_unit(PaxHauler(consist = consist,
                         weight = 12,
-                        capacity = 40,
+                        capacity = 80,
                         vehicle_length = 6,
                         effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 12'],
                         spriterow_num = 0))
