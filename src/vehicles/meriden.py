@@ -8,7 +8,7 @@ consist = EngineConsist(id = 'meriden',
               power = 200,
               speed_dibble = 'plodding', # tankers are hazardous, apply speed penalty
               vehicle_life = 40,
-              intro_date = 1962)
+              intro_date = 1972)
 
 consist.add_unit(Tanker(consist = consist,
                         weight = 7,

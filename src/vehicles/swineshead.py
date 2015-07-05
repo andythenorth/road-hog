@@ -6,8 +6,9 @@ consist = EngineConsist(id = 'swineshead',
               title = 'Swineshead [Livestock Truck]',
               replacement_id = '-none',
               power = 180,
+              speed_dibble = 'plodding', # cows don't like to go *too* fast, apply speed penalty :P
               vehicle_life = 40,
-              intro_date = 1963)
+              intro_date = 1970)
 
 consist.add_unit(LivestockHauler(consist = consist,
                         weight = 10,

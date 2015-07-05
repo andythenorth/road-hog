@@ -7,7 +7,7 @@ consist = EngineConsist(id = 'wookey',
               replacement_id = '-none',
               power = 250,
               vehicle_life = 40,
-              intro_date = 1963)
+              intro_date = 1972)
 
 consist.add_unit(DumpHauler(consist = consist,
                         weight = 7,

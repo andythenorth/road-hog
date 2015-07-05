@@ -7,7 +7,7 @@ consist = EngineConsist(id = 'easywheal',
               replacement_id = '-none',
               power = 170,
               vehicle_life = 40,
-              intro_date = 1935)
+              intro_date = 1939)
 
 consist.add_unit(BoxHauler(consist = consist,
                         weight = 12,

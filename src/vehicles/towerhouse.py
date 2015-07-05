@@ -7,7 +7,7 @@ consist = EngineConsist(id = 'towerhouse',
               replacement_id = '-none',
               power = 220,
               vehicle_life = 40,
-              intro_date = 1960)
+              intro_date = 1968)
 
 consist.add_unit(FlatBedHauler(consist = consist,
                         weight = 10,
