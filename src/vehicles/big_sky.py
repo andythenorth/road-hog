@@ -12,7 +12,7 @@ consist = EngineConsist(id = 'big_sky',
 
 consist.add_unit(PaxExpressHauler(consist = consist,
                         weight = 20,
-                        capacity = 50,
+                        capacity = 40, # coaches never need high capacity
                         vehicle_length = 7,
                         visual_effect = 'VISUAL_EFFECT_DIESEL',
                         spriterow_num = 0))
