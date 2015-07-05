@@ -8,7 +8,7 @@ consist = EngineConsist(id = 'glenmore',
               power = 220,
               speed_dibble = 'speedy',
               vehicle_life = 40,
-              intro_date = 1932)
+              intro_date = 1935)
 
 consist.add_unit(PaxExpressHauler(consist = consist,
                         weight = 20,

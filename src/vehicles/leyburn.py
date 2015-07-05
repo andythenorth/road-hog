@@ -7,7 +7,7 @@ consist = EngineConsist(id = 'leyburn',
               replacement_id = '-none',
               power = 100,
               vehicle_life = 40,
-              intro_date = 1920)
+              intro_date = 1909)
 
 consist.add_unit(PaxHauler(consist = consist,
                         weight = 10,
