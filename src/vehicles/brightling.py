@@ -12,7 +12,7 @@ consist = EngineConsist(id = 'brightling',
 
 consist.add_unit(OpenHauler(consist = consist,
                         weight = 12,
-                        capacity = 30,
+                        capacity = 50,
                         vehicle_length = 7,
                         effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 10'],
                         spriterow_num = 0))
