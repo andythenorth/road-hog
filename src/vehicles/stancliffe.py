@@ -1,25 +1,25 @@
 import global_constants
-from road_vehicle import EngineConsist, FoundryHauler
+from road_vehicle import EngineConsist, FlatBedHauler
 
 consist = EngineConsist(id = 'stancliffe',
               base_numeric_id = 410,
-              title = 'Stancliffe [Foundry Tram]',
+              title = 'Stancliffe [Flatbed Tram]',
               roadveh_flag_tram = True,
               replacement_id = '-none',
               power = 250,
               vehicle_life = 80,
               intro_date = 1900)
 
-consist.add_unit(FoundryHauler(consist = consist,
+consist.add_unit(FlatBedHauler(consist = consist,
                         weight = 20,
-                        capacity = 2,
+                        capacity = 0,
                         vehicle_length = 3,
                         effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 10'],
                         spriterow_num = 0))
 
-consist.add_unit(FoundryHauler(consist = consist,
+consist.add_unit(FlatBedHauler(consist = consist,
                         weight = 5,
-                        capacity = 12,
+                        capacity = 20,
                         vehicle_length = 4,
                         spriterow_num = 1), repeat = 4)
 
