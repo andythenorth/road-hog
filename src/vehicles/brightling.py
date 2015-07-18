@@ -6,28 +6,22 @@ consist = EngineConsist(id = 'brightling',
               title = 'Brightling [Open Tram]',
               roadveh_flag_tram = True,
               replacement_id = '-none',
-              power = 160,
+              power = 300,
               vehicle_life = 40,
               intro_date = 1900,)
 
 consist.add_unit(OpenHauler(consist = consist,
                         weight = 12,
-                        capacity = 10,
-                        vehicle_length = 6,
+                        capacity = 30,
+                        vehicle_length = 7,
                         effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 10'],
-                        spriterow_num = 0), repeat=1)
+                        spriterow_num = 0))
 
 consist.add_unit(OpenHauler(consist = consist,
                         weight = 4,
-                        capacity = 10,
-                        vehicle_length = 4,
-                        spriterow_num = 2), repeat=1)
-
-consist.add_unit(OpenHauler(consist = consist,
-                        weight = 4,
-                        capacity = 10,
-                        vehicle_length = 4,
-                        spriterow_num = 1), repeat=1)
+                        capacity = 20,
+                        vehicle_length = 3,
+                        spriterow_num = 2), repeat=3)
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,
