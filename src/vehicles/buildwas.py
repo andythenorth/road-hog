@@ -1,16 +1,16 @@
 import global_constants
-from road_vehicle import EngineConsist, MiningHauler
+from road_vehicle import EngineConsist, OpenHauler
 
 consist = EngineConsist(id = 'buildwas',
               base_numeric_id = 120,
-              title = 'Buildwas [Mining Tram]',
+              title = 'Buildwas [Open Tram]',
               roadveh_flag_tram = True,
               replacement_id = '-none',
               power = 150,
               vehicle_life = 40,
               intro_date = 1870)
 
-consist.add_unit(MiningHauler(consist = consist,
+consist.add_unit(OpenHauler(consist = consist,
                         weight = 30,
                         capacity = 0,
                         vehicle_length = 6,
@@ -18,12 +18,11 @@ consist.add_unit(MiningHauler(consist = consist,
                         effects = ['EFFECT_SPRITE_STEAM, -3, 0, 12', 'EFFECT_SPRITE_STEAM, 1, 0, 12'],
                         spriterow_num = 0))
 
-# dibble wagons to get 50t total capacity
-consist.add_unit(MiningHauler(consist = consist,
+consist.add_unit(OpenHauler(consist = consist,
                         weight = 2,
-                        capacity = 10,
+                        capacity = 20,
                         vehicle_length = 3,
-                        spriterow_num = 1), repeat=5)
+                        spriterow_num = 1), repeat=4)
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,
