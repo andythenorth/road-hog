@@ -6,22 +6,16 @@ consist = EngineConsist(id = 'shotover',
               title = 'Shotover [Livestock Tram]',
               roadveh_flag_tram = True,
               replacement_id = '-none',
-              power = 200,
+              power = 300,
               vehicle_life = 40,
               intro_date = 1903)
 
 consist.add_unit(LivestockHauler(consist = consist,
                         weight = 12,
-                        capacity = 35,
-                        vehicle_length = 7,
+                        capacity = 45,
+                        vehicle_length = 8,
                         effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 10'],
-                        spriterow_num = 0))
-
-consist.add_unit(LivestockHauler(consist = consist,
-                        weight = 4,
-                        capacity = 15,
-                        vehicle_length = 4,
-                        spriterow_num = 1), repeat=3)
+                        spriterow_num = 0), repeat=2)
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,

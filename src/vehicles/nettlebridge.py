@@ -6,14 +6,14 @@ consist = EngineConsist(id = 'nettlebridge',
               title = 'Nettlebridge [Dump Tram]',
               roadveh_flag_tram = True,
               replacement_id = '-none',
-              power = 200,
+              power = 300,
               vehicle_life = 40,
               intro_date = 1903)
 
 consist.add_unit(DumpHauler(consist = consist,
                         weight = 12,
                         capacity = 45,
-                        vehicle_length = 7,
+                        vehicle_length = 8,
                         effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 10'],
                         spriterow_num = 0), repeat=2)
 
