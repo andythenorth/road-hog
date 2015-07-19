@@ -8,7 +8,7 @@ consist = EngineConsist(id = 'brightling',
               replacement_id = '-none',
               power = 300,
               vehicle_life = 40,
-              intro_date = 1900,)
+              intro_date = 1940,)
 
 consist.add_unit(OpenHauler(consist = consist,
                         weight = 12,

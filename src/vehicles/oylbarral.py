@@ -8,7 +8,7 @@ consist = EngineConsist(id = 'oylbarral',
               replacement_id = '-none',
               power = 300,
               vehicle_life = 40,
-              intro_date = 1903)
+              intro_date = 1945)
 
 consist.add_unit(Tanker(consist = consist,
                         weight = 10,

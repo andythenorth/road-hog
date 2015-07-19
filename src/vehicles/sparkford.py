@@ -8,7 +8,7 @@ consist = EngineConsist(id = 'sparkford',
               replacement_id = '-none',
               power = 300,
               vehicle_life = 40,
-              intro_date = 1915)
+              intro_date = 1955)
 
 consist.add_unit(RefrigeratedHauler(consist = consist,
                         weight = 14,
