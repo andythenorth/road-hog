@@ -19,9 +19,9 @@ consist.add_unit(FlatBedHauler(consist = consist,
 
 consist.add_unit(FlatBedHauler(consist = consist,
                         weight = 5,
-                        capacity = 20,
+                        capacity = 10,
                         vehicle_length = 4,
-                        spriterow_num = 1), repeat = 4)
+                        spriterow_num = 1), repeat = 5)
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,
