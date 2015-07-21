@@ -8,7 +8,7 @@ consist = EngineConsist(id = 'stakebeck',
               replacement_id = '-none',
               power = 200,
               vehicle_life = 40,
-              intro_date = 1900)
+              intro_date = 1860)
 
 consist.add_unit(FlatBedHauler(consist = consist,
                         weight = 20,
