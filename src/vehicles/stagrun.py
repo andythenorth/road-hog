@@ -12,8 +12,7 @@ consist = EngineConsist(id = 'stagrun',
 
 consist.add_unit(CourierCar(consist = consist,
                         weight = 10,
-                        capacity = 20,
-                        capacity_mail = 40,
+                        capacity = 40,
                         vehicle_length = 6,
                         effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 10'],
                         spriterow_num = 0))

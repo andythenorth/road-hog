@@ -12,7 +12,7 @@ consist = EngineConsist(id = 'twinhills',
 
 consist.add_unit(PaxHauler(consist = consist,
                         weight = 18,
-                        capacity = 50,
+                        capacity = 65,
                         vehicle_length = 7,
                         effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 10'],
                         spriterow_num = 0))
@@ -25,7 +25,7 @@ consist.add_unit(PaxHauler(consist = consist,
 
 consist.add_unit(PaxHauler(consist = consist,
                         weight = 18,
-                        capacity = 50,
+                        capacity = 65,
                         vehicle_length = 7,
                         spriterow_num = 2))
 
