@@ -1,14 +1,14 @@
 import global_constants
 from road_vehicle import EngineConsist, CourierCar
 
-consist = EngineConsist(id = 'foxley',
-              base_numeric_id = 190,
-              title = 'Foxley [Courier Tram]',
+consist = EngineConsist(id = 'strongbox',
+              base_numeric_id = 830,
+              title = 'Strongbox [Courier Tram]',
               roadveh_flag_tram = True,
               replacement_id = '-none',
-              power = 200,
+              power = 450,
               vehicle_life = 40,
-              intro_date = 1903)
+              intro_date = 1961)
 
 consist.add_unit(CourierCar(consist = consist,
                         weight = 10,
