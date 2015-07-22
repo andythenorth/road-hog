@@ -20,9 +20,9 @@ consist.add_unit(DumpHauler(consist = consist,
 
 consist.add_unit(DumpHauler(consist = consist,
                         weight = 2,
-                        capacity = 10,
+                        capacity = 12,
                         vehicle_length = 3,
-                        spriterow_num = 1), repeat=5)
+                        spriterow_num = 1), repeat=4)
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,

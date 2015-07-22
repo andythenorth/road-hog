@@ -12,7 +12,7 @@ consist = EngineConsist(id = 'thurlbear',
 
 consist.add_unit(BulkPowderHauler(consist = consist,
                         weight = 12,
-                        capacity = 55,
+                        capacity = 48,
                         vehicle_length = 8,
                         effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 10'],
                         spriterow_num = 0), repeat=2)

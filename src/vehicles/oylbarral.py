@@ -12,20 +12,20 @@ consist = EngineConsist(id = 'oylbarral',
 
 consist.add_unit(Tanker(consist = consist,
                         weight = 10,
-                        capacity = 36,
+                        capacity = 32,
                         vehicle_length = 6,
                         effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 10'],
                         spriterow_num = 0))
 
 consist.add_unit(Tanker(consist = consist,
                         weight = 5,
-                        capacity = 38,
+                        capacity = 32,
                         vehicle_length = 4,
                         spriterow_num = 1))
 
 consist.add_unit(Tanker(consist = consist,
                         weight = 10,
-                        capacity = 36,
+                        capacity = 32,
                         vehicle_length = 6,
                         effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 10'],
                         spriterow_num = 2))
