@@ -14,14 +14,22 @@ STR_PARAM_ROSTER_OPTION_1                                       :Wasteland
 STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Passagierstram
 STR_NAME_SUFFIX_BUS                                             :Bus
 STR_NAME_SUFFIX_COACH                                           :Wagon
+STR_NAME_SUFFIX_BOX_TRAM                                        :Baktram
+STR_NAME_SUFFIX_BOX_TRUCK                                       :Bakwagen
+STR_NAME_SUFFIX_OPEN_TRAM                                       :Open Tram
+STR_NAME_SUFFIX_OPEN_TRUCK                                      :Open Truck
 STR_NAME_SUFFIX_COURIER_TRAM                                    :Koerierstram
 STR_NAME_SUFFIX_COURIER_TRUCK                                   :Koerierstruck
 STR_NAME_SUFFIX_TANKER_TRAM                                     :Tanktram
 STR_NAME_SUFFIX_TANKER_TRUCK                                    :Tankwagen
 STR_NAME_SUFFIX_COVERED_HOPPER_TRAM                             :Afgedekte stortgoedtram
 STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :Afgedekte stortgoedtruck
+STR_NAME_SUFFIX_DUMP_TRAM                                       :Kieptram
+STR_NAME_SUFFIX_DUMP_TRUCK                                      :Kiepwagen
 STR_NAME_SUFFIX_MINING_TRAM                                     :Mijnbouwtram
 STR_NAME_SUFFIX_MINING_TRUCK                                    :Mijnbouwtruck
+STR_NAME_SUFFIX_FLATBED_TRAM                                    :Semi-diepladertram
+STR_NAME_SUFFIX_FLATBED_TRUCK                                   :Semi-diepladertruck
 STR_NAME_SUFFIX_FOUNDRY_TRAM                                    :Hoogoventram
 STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :Platte truck
 STR_NAME_SUFFIX_SUPPLIES_TRAM                                   :Materialentram
