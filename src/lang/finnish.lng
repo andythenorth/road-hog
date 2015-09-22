@@ -2,7 +2,7 @@
 ##plural 0
 STR_GRF_DESCRIPTION                                             :Lisenssi: {SILVER}GPL v2{}{BLACK}
 
-STR_PARAM_ADJUST_VEHICLE_CAPACITY                               :Ajoneuvokapasiteetti
+STR_PARAM_ADJUST_VEHICLE_CAPACITY                               :Ajoneuvon kapasiteetti
 STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_0                      :Mitätön
 STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_1                      :Uskomaton
 STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2                      :Yletön
@@ -12,24 +12,34 @@ STR_PARAM_ROSTER_OPTION_0                                       :Britti
 
 STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Matkustajaraitiovaunu
 STR_NAME_SUFFIX_BUS                                             :Linja-auto
+STR_NAME_SUFFIX_BOX_TRAM                                        :Umpikoriraitiovaunu
+STR_NAME_SUFFIX_BOX_TRUCK                                       :Umpikoriauto
+STR_NAME_SUFFIX_OPEN_TRAM                                       :Avolavaraitiovaunu
+STR_NAME_SUFFIX_OPEN_TRUCK                                      :Avolavakuorma-auto
 STR_NAME_SUFFIX_COURIER_TRAM                                    :Lähettiraitiovaunu
-STR_NAME_SUFFIX_COURIER_TRUCK                                   :Lähettikuorma-auto
+STR_NAME_SUFFIX_COURIER_TRUCK                                   :Lähettiauto
 STR_NAME_SUFFIX_TANKER_TRAM                                     :Säiliöraitiovaunu
 STR_NAME_SUFFIX_TANKER_TRUCK                                    :Säiliöauto
 STR_NAME_SUFFIX_COVERED_HOPPER_TRAM                             :Katettu Suppiloraitiovaunu
 STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :Katettu Suppiloauto
+STR_NAME_SUFFIX_DUMP_TRAM                                       :Maansiirtoraitiovaunu
+STR_NAME_SUFFIX_DUMP_TRUCK                                      :Maansiirtokuorma-auto
 STR_NAME_SUFFIX_MINING_TRAM                                     :Mineraaliraitiovaunu
-STR_NAME_SUFFIX_MINING_TRUCK                                    :Mineraalirekka
+STR_NAME_SUFFIX_MINING_TRUCK                                    :Kaivoskuorma-auto
+STR_NAME_SUFFIX_FLATBED_TRAM                                    :Avolavaraitiovaunu
+STR_NAME_SUFFIX_FLATBED_TRUCK                                   :Avolavakuorma-auto
 STR_NAME_SUFFIX_FOUNDRY_TRAM                                    :Sulattamoraitiovaunu
 STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :Sulattamorekka
+STR_NAME_SUFFIX_SUPPLIES_TRAM                                   :Tarvikeraitiovaunu
+STR_NAME_SUFFIX_SUPPLIES_TRUCK                                  :Tarvikekuorma-auto
 STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Konttirekka
 STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :Karjaraitiovaunu
 STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :Karjarekka
 STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM                             :Syömäkelpoisten Nesteiden Säiliöraitiovaunu
 STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK                            :Syömäkelpoisten Nesteiden Säiliöauto
 STR_NAME_SUFFIX_REEFER_TRAM                                     :Kylmäraitiovaunu
-STR_NAME_SUFFIX_REEFER_TRUCK                                    :Kylmäauto
-STR_NAME_SUFFIX_LOGGING_TRUCK                                   :Tukkiauto
+STR_NAME_SUFFIX_REEFER_TRUCK                                    :Kylmäkuorma-auto
+STR_NAME_SUFFIX_LOGGING_TRUCK                                   :Tukkirekka
 
-STR_COASTER                                                     :Lehmä Hyppäsi Yli Kuun (tämä ei ole valmis -muistutus)
+STR_COASTER                                                     :Vesihiisi sihisi hississä (tämä ei ole valmis -muistutus)
 STR_DOGTRACK                                                    :Koirat ovat ruskeita, joskus
