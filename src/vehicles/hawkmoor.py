@@ -8,7 +8,7 @@ consist = EngineConsist(id = 'hawkmoor',
               replacement_id = '-none',
               power = 300,
               vehicle_life = 40,
-              intro_date = 1944)
+              intro_date = 1902)
 
 consist.add_unit(DumpHauler(consist = consist,
                         weight = 12,

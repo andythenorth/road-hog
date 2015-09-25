@@ -9,7 +9,7 @@ consist = EngineConsist(id = 'road_thief',
               power = 650,
               speed_dibble = 'plodding', # supplies can be bulky...apply speed penalty
               vehicle_life = 40,
-              intro_date = 1985)
+              intro_date = 1989)
 
 consist.add_unit(SuppliesHauler(consist = consist,
                         weight = 20,

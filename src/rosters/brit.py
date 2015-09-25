@@ -91,7 +91,7 @@ from vehicles import (acton,
 
 roster = Roster(id = 'brit',
                 numeric_id = 1,
-                truck_speeds = {0: 20, 1900: 25, 1920: 40, 1940: 55, 1960: 70, 1980: 80},
+                truck_speeds = {0: 25, 1905: 40, 1935: 55, 1965: 70, 1985: 80},
                 tram_speeds = {0: 25, 1900: 35, 1930: 45, 1960: 55, 1990: 65},
                 vehicles = [leyburn,
                             thunder,
