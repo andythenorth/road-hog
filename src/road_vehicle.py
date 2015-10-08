@@ -37,7 +37,7 @@ class Consist(object):
         self.replacement_id = kwargs.get('replacement_id', None)
         self.vehicle_life = kwargs.get('vehicle_life', None)
         self.power = kwargs.get('power', 0)
-        self.tractive_effort_coefficient = kwargs.get('tractive_effort_coefficient', 0.3) # 0.3 is recommended default value
+        self.tractive_effort_coefficient = kwargs.get('tractive_effort_coefficient', 0.7) # 0.3 is recommended default value, but I've dibbled it because RV performance sucks otherwise
         self._speed = kwargs.get('speed', None)
         self.speed_dibble = kwargs.get('speed_dibble', None)
         # arbitrary adjustments of points that can be applied to adjust buy cost and running cost, over-ride in consist as needed
