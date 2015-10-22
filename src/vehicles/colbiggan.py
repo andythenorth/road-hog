@@ -14,8 +14,7 @@ consist.add_unit(BoxHauler(consist = consist,
                         weight = 12,
                         capacity = 0,
                         vehicle_length = 3,
-                        effect_spawn_model = 'EFFECT_SPAWN_MODEL_STEAM',
-                        effects = ['EFFECT_SPRITE_STEAM, -2, 0, 14'],
+                        effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 10'],
                         spriterow_num = 0))
 
 consist.add_unit(BoxHauler(consist = consist,
