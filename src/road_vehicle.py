@@ -374,6 +374,10 @@ class RoadVehicle(object):
         else:
             return 0
 
+    def get_nml_expression_for_cargo_variant_random_switch(self, variation_num, cargo_id=None):
+        switch_id = self.id + "_switch_graphics_" + str(variation_num) + ('_' + str(cargo_id) if cargo_id is not None else '')
+        return "SELF," + switch_id + ", bitmask(TRIGGER_VEHICLE_NEW_LOAD)"
+
     def render_properties(self):
         template = templates["road_vehicle_properties.pynml"]
         return template(vehicle=self, consist=self.consist, global_constants=global_constants)
@@ -661,7 +665,7 @@ class LogHauler(RoadVehicle):
     """
     def __init__(self, **kwargs):
         super(LogHauler, self).__init__(**kwargs)
-        self.template = 'vehicle_default.pynml'
+        self.template = 'vehicle_with_visible_cargo.pynml'
         self.autorefit = True
         self.class_refit_groups = []
         self.label_refits_allowed = ['WOOD']
@@ -669,6 +673,9 @@ class LogHauler(RoadVehicle):
         self.default_cargo = 'WOOD'
         self.default_cargo_capacities = self.capacities
         self.loading_speed_multiplier = 2
+        self.num_cargo_rows = 1
+        self.cargo_graphics_mappings = {'WOOD': [0]}
+        self.generic_cargo_rows = [0]
 
 
 class FoundryHauler(RoadVehicle):
