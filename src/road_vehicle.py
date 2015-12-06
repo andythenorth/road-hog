@@ -704,7 +704,7 @@ class SuppliesHauler(RoadVehicle):
         self.template = 'vehicle_default.pynml'
         self.autorefit = True
         self.class_refit_groups = []
-        self.label_refits_allowed = ['ENSP', 'FMSP', 'BDMT']
+        self.label_refits_allowed = ['ENSP', 'FMSP', 'VEHI', 'BDMT']
         self.label_refits_disallowed = []
         self.default_cargo = 'ENSP'
         self.default_cargo_capacities = self.capacities
