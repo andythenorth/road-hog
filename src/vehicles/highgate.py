@@ -5,7 +5,6 @@ consist = EngineConsist(id = 'highgate',
               base_numeric_id = 590,
               title = 'Highgate [Bus]',
               replacement_id = '-none',
-              speed_dibble = 'plodding',
               power = 210,
               vehicle_life = 40,
               intro_date = 1964)

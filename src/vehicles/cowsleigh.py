@@ -6,7 +6,7 @@ consist = EngineConsist(id = 'cowsleigh',
               title = 'Cowsleigh [Livestock Truck]',
               replacement_id = '-none',
               power = 150,
-              speed_dibble = 'plodding', # cows don't like to go *too* fast, apply speed penalty :P
+              # cows don't like to go *too* fast, apply speed penalty :P
               vehicle_life = 40,
               intro_date = 1911)
 
