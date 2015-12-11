@@ -1,6 +1,18 @@
 Changelog
 =========
 
+Alpha 17
+--------
+
+*Changes*
+- dibble TE way up, RV performance sucks
+- fix some bugs
+- add Cowsleigh livestock truck
+- visible cargo for log trucks
+- supplies haulers now refit to vehicles cargo
+- use more appropriate sprites for some trucks
+- set correct ‘faster’ speeds for some vehicles
+
 Alpha 16
 --------
 
