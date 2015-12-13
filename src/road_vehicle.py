@@ -576,7 +576,7 @@ class BulkPowderHauler(RoadVehicle):
         self.template = 'vehicle_default.pynml'
         self.autorefit = True
         self.class_refit_groups = ['covered_hopper_freight']
-        self.label_refits_allowed = ['GRAI', 'WHEA', 'MAIZ', 'FOOD', 'SUGR', 'FMSP', 'RFPR', 'CLAY', 'BDMT', 'BEAN', 'NITR']
+        self.label_refits_allowed = ['GRAI', 'WHEA', 'MAIZ', 'FOOD', 'SUGR', 'FMSP', 'RFPR', 'CLAY', 'BDMT', 'BEAN', 'NITR', 'RUBR']
         self.label_refits_disallowed = []
         self.default_cargo = 'GRAI'
         self.default_cargo_capacities = self.capacities
