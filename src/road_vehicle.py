@@ -1,25 +1,24 @@
 import global_constants # expose all constants for easy passing to templates
 import utils
+import graphics_processor
+import graphics_processor.pipelines
+import graphics_processor.utils as graphics_utils
 
 import os.path
 currentdir = os.curdir
-
 import sys
 sys.path.append(os.path.join('src')) # add to the module search path
-
 import math
+import inspect
 
 from chameleon import PageTemplateLoader # chameleon used in most template cases
 # setup the places we look for templates
 templates = PageTemplateLoader(os.path.join(currentdir, 'src', 'templates'))
 
-import graphics_processor
 
 from vehicles import numeric_id_defender
-
 from rosters import registered_rosters
 
-import inspect
 
 class Consist(object):
     """

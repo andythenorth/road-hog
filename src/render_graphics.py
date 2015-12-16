@@ -14,6 +14,9 @@ import shutil
 import os
 currentdir = os.curdir
 from multiprocessing import Pool
+import multiprocessing
+logger = multiprocessing.log_to_stderr()
+logger.setLevel(25)
 
 import road_hog
 
@@ -50,10 +53,19 @@ def main():
                 spritesheet_suffixes_seen.append(variant.spritesheet_suffix)
             variants.append((variant, consist))
 
-    pool = Pool(processes=16)
-    pool.map(run_pipeline, variants)
-    pool.close()
-    pool.join()
+    # I disabled multiprocessing as a temporary measure when moving to python 3
+    # it can be restored if needed, it should be modified to pick up num pool workers from sysargs
+    use_multiprocessing = False
+    if use_multiprocessing == False:
+        for variant in variants:
+            run_pipeline(variant)
+    else:
+        pool = Pool(processes=16)
+        pool.map(run_pipeline, variants)
+        pool.close()
+
+    # handle special case spritesheets
+    shutil.copy(os.path.join(graphics_input, 'null_trailing_part.png'), graphics_output_path)
 
 if __name__ == '__main__':
     main()
