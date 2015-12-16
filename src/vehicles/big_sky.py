@@ -6,6 +6,7 @@ consist = RVConsist(id = 'big_sky',
               title = 'Big Sky [Coach]',
               replacement_id = '-none',
               power = 220,
+              speed = 90,
               vehicle_life = 40,
               intro_date = 1999)
 

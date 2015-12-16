@@ -6,6 +6,7 @@ consist = RVConsist(id = 'littleduke',
               title = 'Littleduke [Courier Truck]',
               replacement_id = '-none',
               power = 380,
+              speed = 90,
               vehicle_life = 40,
               intro_date = 1998)
 
