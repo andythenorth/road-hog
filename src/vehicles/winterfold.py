@@ -1,7 +1,7 @@
 import global_constants
-from road_vehicle import EngineConsist, RefrigeratedHauler
+from road_vehicle import RVConsist, RefrigeratedHauler
 
-consist = EngineConsist(id = 'winterfold',
+consist = RVConsist(id = 'winterfold',
               base_numeric_id = 770,
               title = 'Winterfold [Reefer Tram]',
               roadveh_flag_tram = True,

@@ -1,7 +1,7 @@
 import global_constants
-from road_vehicle import EngineConsist, PaxHauler
+from road_vehicle import RVConsist, PaxHauler
 
-consist = EngineConsist(id = 'twinhills',
+consist = RVConsist(id = 'twinhills',
               base_numeric_id = 70,
               title = 'Twinhills [Passenger Tram]',
               roadveh_flag_tram = True,

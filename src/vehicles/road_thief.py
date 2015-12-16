@@ -1,8 +1,8 @@
 import global_constants
-from road_vehicle import EngineConsist, SuppliesHauler
+from road_vehicle import RVConsist, SuppliesHauler
 # 4 axle machinery hauler, with 4 axle lowbed or drag trailer, (not huge)
 
-consist = EngineConsist(id = 'road_thief',
+consist = RVConsist(id = 'road_thief',
               base_numeric_id = 560,
               title = 'Road Thief [Supplies Truck]',
               replacement_id = '-none',

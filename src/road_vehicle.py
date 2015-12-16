@@ -417,13 +417,13 @@ class GraphicsProcessorFactory(object):
         self.pipeline = graphics_processor.registered_pipelines[pipeline_name]
 
 
-class EngineConsist(Consist):
+class RVConsist(Consist):
     """
     Intermediate class for engine consists to subclass from, provides some common properties.
     This class should be sparse - only declare the most limited set of properties common to engine consists.
     """
     def __init__(self, **kwargs):
-        super(EngineConsist, self).__init__(**kwargs)
+        super(RVConsist, self).__init__(**kwargs)
 
 
 class CourierCar(RoadVehicle):

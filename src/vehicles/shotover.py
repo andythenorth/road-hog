@@ -1,7 +1,7 @@
 import global_constants
-from road_vehicle import EngineConsist, LivestockHauler
+from road_vehicle import RVConsist, LivestockHauler
 
-consist = EngineConsist(id = 'shotover',
+consist = RVConsist(id = 'shotover',
               base_numeric_id = 370,
               title = 'Shotover [Livestock Tram]',
               roadveh_flag_tram = True,

@@ -1,7 +1,7 @@
 import global_constants
-from road_vehicle import EngineConsist, FlatBedHauler
+from road_vehicle import RVConsist, FlatBedHauler
 
-consist = EngineConsist(id = 'stakebeck',
+consist = RVConsist(id = 'stakebeck',
               base_numeric_id = 750,
               title = 'Stakebeck [Flatbed Tram]',
               roadveh_flag_tram = True,

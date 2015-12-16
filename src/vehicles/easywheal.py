@@ -1,7 +1,7 @@
 import global_constants
-from road_vehicle import EngineConsist, BoxHauler
+from road_vehicle import RVConsist, BoxHauler
 
-consist = EngineConsist(id = 'easywheal',
+consist = RVConsist(id = 'easywheal',
               base_numeric_id = 160,
               title = 'Easywheal [Box Truck]',
               replacement_id = '-none',

@@ -1,6 +1,6 @@
 import global_constants
 import graphics_processor.utils as graphics_utils
-from road_vehicle import EngineConsist, MiningHauler, GraphicsProcessorFactory
+from road_vehicle import RVConsist, MiningHauler, GraphicsProcessorFactory
 
 # !! experimental pixa support
 # !! should this be per consist, or per unit?  It's one spritesheet per consist, so I'm thinking per-consist is more logical, but is it easiest?
@@ -30,7 +30,7 @@ def get_graphics_processors(template):
 
 graphics_processor = get_graphics_processors('broadrock_template.png')[1]
 
-consist = EngineConsist(id = 'broadrock',
+consist = RVConsist(id = 'broadrock',
               base_numeric_id = 100,
               title = 'Broadrock [Mining Truck]',
               replacement_id = '-none',

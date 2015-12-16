@@ -1,8 +1,8 @@
 import global_constants
-from road_vehicle import EngineConsist, SuppliesHauler
+from road_vehicle import RVConsist, SuppliesHauler
 # equiv. Scammell Highwayman or Explorer with dolly low loader trailer - not huge
 
-consist = EngineConsist(id = 'brigand',
+consist = RVConsist(id = 'brigand',
               base_numeric_id = 540,
               title = 'Brigand [Supplies Truck]',
               replacement_id = '-none',

@@ -1,7 +1,7 @@
 import global_constants
-from road_vehicle import EngineConsist, LivestockHauler
+from road_vehicle import RVConsist, LivestockHauler
 
-consist = EngineConsist(id = 'pigstick',
+consist = RVConsist(id = 'pigstick',
               base_numeric_id = 330,
               title = 'Pigstick [Livestock Truck]',
               replacement_id = '-none',

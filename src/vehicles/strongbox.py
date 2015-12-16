@@ -1,7 +1,7 @@
 import global_constants
-from road_vehicle import EngineConsist, CourierCar
+from road_vehicle import RVConsist, CourierCar
 
-consist = EngineConsist(id = 'strongbox',
+consist = RVConsist(id = 'strongbox',
               base_numeric_id = 830,
               title = 'Strongbox [Courier Tram]',
               roadveh_flag_tram = True,

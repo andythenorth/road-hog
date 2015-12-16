@@ -1,7 +1,7 @@
 import global_constants
-from road_vehicle import EngineConsist, FlatBedHauler
+from road_vehicle import RVConsist, FlatBedHauler
 
-consist = EngineConsist(id = 'chainburn',
+consist = RVConsist(id = 'chainburn',
               base_numeric_id = 630,
               title = 'Chainburn [Flatbed Truck]',
               replacement_id = '-none',

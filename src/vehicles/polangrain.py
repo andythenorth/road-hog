@@ -1,7 +1,7 @@
 import global_constants
-from road_vehicle import EngineConsist, BulkPowderHauler
+from road_vehicle import RVConsist, BulkPowderHauler
 
-consist = EngineConsist(id = 'polangrain',
+consist = RVConsist(id = 'polangrain',
               base_numeric_id = 790,
               title = 'Polangrain [Covered Hopper Tram]',
               roadveh_flag_tram = True,
