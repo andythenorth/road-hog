@@ -13,8 +13,7 @@ consist.add_unit(OpenHauler(consist = consist,
                         weight = 10,
                         capacity = 10,
                         vehicle_length = 5,
-                        effect_spawn_model = 'EFFECT_SPAWN_MODEL_STEAM',
-                        effects = ['EFFECT_SPRITE_STEAM, -3, 0, 12'],
+                        effects = ['EFFECT_SPRITE_DIESEL, -2, 1, 10'],
                         spriterow_num = 0))
 
 consist.add_unit(OpenHauler(consist = consist,
