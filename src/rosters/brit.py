@@ -29,7 +29,7 @@ from vehicles import (acton,
                       foxley,
                       glenmore,
                       goldmire,
-                      #gravelhead,
+                      gravelhead,
                       greenscoe,
                       griff,
                       hawkmoor,
@@ -87,7 +87,7 @@ from vehicles import (acton,
                       waterperry,
                       windergill,
                       winterfold,
-                      #witch_hill,
+                      witch_hill,
                       wookey,
                       yeoman)
 
@@ -179,13 +179,11 @@ roster = Roster(id = 'brit',
                             winterfold,
                             sparkford,
                             # off-highway
-                            #gravelhead,
+                            gravelhead,
                             broadrock,
-                            #witch_hill,
+                            witch_hill,
                             griff,
                             trefell,
                             knockdown,
                             buff,
                             steeraway])
-
-print('Gravelhead, Witch Hill disabled in rosters/brit.py')

@@ -40,6 +40,8 @@ class Pipeline(object):
 
         for unit in units:
             spritesheet = unit.render(spritesheet)
+        # I don't normally leave commented-out code behind, but I'm bored of looking in the PIL docs for how to show the image during compile
+        #spritesheet.sprites.show()
         spritesheet.save(output_path)
 
     def render(self, variant, consist):
@@ -104,21 +106,47 @@ class ExtendSpriterowsForRecolouredCargosPipeline(Pipeline):
     def render(self, variant, consist):
         # there are various options for controlling the crop box, I haven't documented them - read example uses to figure them out
         options = variant.graphics_processor.options
-        unit_row_cluster_height = options['num_rows_per_unit'] * graphics_constants.spriterow_height * options['num_unit_types']
+        unit_row_cluster_height = options['num_rows_per_unit'] * graphics_constants.spriterow_height
         input_path = os.path.join(currentdir, 'src', 'graphics', options['template'])
-        crop_box = (0, 0, graphics_constants.spritesheet_width, graphics_constants.spritesheet_top_margin + unit_row_cluster_height + options['copy_block_top_offset'])
-        input_image = Image.open(input_path).crop(crop_box)
-        source_spritesheet = self.make_spritesheet_from_image(input_image)
-        crop_box = (0,
-                    graphics_constants.spritesheet_top_margin + options['copy_block_top_offset'],
-                    graphics_constants.spritesheet_width,
-                    graphics_constants.spritesheet_top_margin + options['copy_block_top_offset'] + unit_row_cluster_height)
-        units = [SimpleRecolour(options['recolour_maps'][0])]
-        for recolour_map_index in range(len(options['recolour_maps'])-1):
-            units.append(AppendToSpritesheet(source_spritesheet, crop_box))
-            units.append(SimpleRecolour(options['recolour_maps'][recolour_map_index+1]))
+        units = []
+        # assumes first row from copy_block_top_offset is always the empty state, copied once, remaining rows copied per cargo
+        for counter, copy_block_top_offset in enumerate(options['copy_block_top_offsets']):
+            print(counter)
+            print(copy_block_top_offset)
+            # empty state spriterow
+            # !! this will need extending for open trucks, to handle other non-recoloured cargo types
+            # !! probably do that by extending crop_box_source height for empty state to multiple rows ??
+            base_offset = copy_block_top_offset
+            crop_box_source = (0,
+                               base_offset,
+                               graphics_constants.spritesheet_width,
+                               graphics_constants.spriterow_height + base_offset)
+            input_image = Image.open(input_path).crop(crop_box_source)
+            source_spritesheet = self.make_spritesheet_from_image(input_image)
+            crop_box_dest = (0,
+                             0,
+                             graphics_constants.spritesheet_width,
+                             graphics_constants.spriterow_height)
+            units.append(AppendToSpritesheet(source_spritesheet, crop_box_dest))
+            # cargo spriterows
+            base_offset = copy_block_top_offset + graphics_constants.spriterow_height
+            crop_box_source = (0,
+                               base_offset,
+                               graphics_constants.spritesheet_width,
+                               base_offset + unit_row_cluster_height)
+            input_image = Image.open(input_path).crop(crop_box_source)
+            source_spritesheet = self.make_spritesheet_from_image(input_image)
+            crop_box_dest = (0,
+                             0,
+                             graphics_constants.spritesheet_width,
+                             unit_row_cluster_height)
+            for recolour_map in options['recolour_maps']:
+                units.append(AppendToSpritesheet(source_spritesheet, crop_box_dest))
+                units.append(SimpleRecolour(recolour_map))
+
         if options.get('swap_company_colours', False):
             units.append(SwapCompanyColours())
+        input_image = Image.open(input_path).crop((0, 0, graphics_constants.spritesheet_width, options['paste_top_offset']))
         result = self.render_common(variant, consist, input_image, units, options)
         return result
 

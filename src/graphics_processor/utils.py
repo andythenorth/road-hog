@@ -49,14 +49,14 @@ class GraphicsProcessorFactory(object):
         self.pipeline = registered_pipelines[pipeline_name]
 
 
-def get_mining_hauler_processors(template, copy_block_top_offset, num_unit_types):
+def get_mining_hauler_processors(template, copy_block_top_offsets, paste_top_offset):
     # includes option for 2CC recolor, might not be used in practice (check mining trucks to find out)
     recolour_maps = get_bulk_cargo_recolour_maps()
     graphics_options_master = {'template': '',
-                               'recolour_maps': (recolour_maps),
-                               'copy_block_top_offset': copy_block_top_offset,
-                               'num_rows_per_unit': 2,
-                               'num_unit_types': num_unit_types}
+                               'recolour_maps': recolour_maps,
+                               'copy_block_top_offsets': copy_block_top_offsets,
+                               'paste_top_offset': paste_top_offset,
+                               'num_rows_per_unit': 2}
 
     graphics_options_1 = dict((k, v) for (k, v) in graphics_options_master.items())
     graphics_options_1['template'] = template

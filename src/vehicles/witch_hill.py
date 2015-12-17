@@ -1,5 +1,10 @@
 import global_constants
+import graphics_processor.utils as graphics_utils
 from road_vehicle import RVConsist, MiningHauler
+
+graphics_processors = graphics_utils.get_mining_hauler_processors(template='witch_hill_template.png',
+                                              copy_block_top_offsets = [10],
+                                              paste_top_offset = 10)
 
 consist = RVConsist(id = 'witch_hill',
               base_numeric_id = 500,
@@ -20,4 +25,5 @@ consist.add_unit(MiningHauler(consist = consist,
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,
-                       spritesheet_suffix=0)
+                       spritesheet_suffix=0,
+                       graphics_processor=graphics_processors[0])

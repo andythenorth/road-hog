@@ -3,8 +3,8 @@ import graphics_processor.utils as graphics_utils
 from road_vehicle import RVConsist, MiningHauler
 
 graphics_processors = graphics_utils.get_mining_hauler_processors(template='broadrock_template.png',
-                                              copy_block_top_offset = 60,
-                                              num_unit_types = 1)
+                                              copy_block_top_offsets = [40],
+                                              paste_top_offset = 40)
 
 consist = RVConsist(id = 'broadrock',
               base_numeric_id = 100,

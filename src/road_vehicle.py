@@ -251,6 +251,8 @@ class RoadVehicle(object):
         self.cargo_age_period = kwargs.get('cargo_age_period', global_constants.CARGO_AGE_PERIOD)
         # spriterow_num, first row = 0
         self.spriterow_num = kwargs.get('spriterow_num', 0)
+        # used instead of spriterow_num when generating cargo sprites with pixa
+        self.spriterow_adjust = kwargs.get('spriterow_adjust', {'multiplier': 0, 'offset': 0})
         # set defaults for props otherwise set by subclass as needed (not set by kwargs as specific models do not over-ride them)
         self.default_cargo = 'PASS' # over-ride in subclass as needed (PASS is sane default)
         self.class_refit_groups = []
@@ -550,6 +552,8 @@ class MiningHauler(RoadVehicle):
             self.cargo_graphics_mappings = {'GRVL': [0], 'IORE': [1], 'CORE': [2], 'AORE': [3],
                        'SAND': [4], 'COAL': [5], 'CLAY': [6], 'SCMT': [7]}
             self.generic_cargo_rows = [0]
+            # handle different kinds of trucks (single unit, tractor-trailer, waggon+drag), which causes variations in start row per unit (bit janky) :P
+            self.spriterow_num = self.spriterow_adjust['offset'] + self.spriterow_adjust['multiplier'] * self.num_cargo_rows
 
 
 class FlatBedHauler(RoadVehicle):
