@@ -2,15 +2,15 @@
 
 <tal:sprites_random_variations repeat="variation_num python:range(consist.get_num_spritesets())">
     spriteset(${vehicle.id}_ss_empty_${variation_num}, "${global_constants.graphics_path}${consist.id}_${variation_num}.png") {
-      spriteset_template_${vehicle.id}(10 + ${vehicle.spriterow_num * vehicle.num_cargo_rows * 30})
+      spriteset_template_${vehicle.id}(${vehicle.spriterow_num * 30} + 10)
     }
 
     <tal:cargo_variants repeat="cargo_variant_num python:range(vehicle.num_cargo_rows)">
         spriteset(${vehicle.id}_ss_loading_${variation_num}_${cargo_variant_num}, "${global_constants.graphics_path}${consist.id}_${variation_num}.png") {
-          spriteset_template_${vehicle.id}(40 + ${vehicle.spriterow_num * vehicle.num_cargo_rows * 30} + ${cargo_variant_num * 60})
+          spriteset_template_${vehicle.id}(${vehicle.spriterow_num * 30} + ${cargo_variant_num * 60} + 40)
         }
         spriteset(${vehicle.id}_ss_loaded_${variation_num}_${cargo_variant_num}, "${global_constants.graphics_path}${consist.id}_${variation_num}.png") {
-          spriteset_template_${vehicle.id}(70 + ${vehicle.spriterow_num * vehicle.num_cargo_rows * 30} + ${cargo_variant_num * 60})
+          spriteset_template_${vehicle.id}(${vehicle.spriterow_num * 30} + ${cargo_variant_num * 60} + 70)
         }
 
         spritegroup ${vehicle.id}_sg_empty_${variation_num}_${cargo_variant_num} {

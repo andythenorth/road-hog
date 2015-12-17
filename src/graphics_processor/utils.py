@@ -1,4 +1,5 @@
 from graphics_processor import graphics_constants
+from graphics_processor import registered_pipelines
 
 def make_colour_map(input, output, map_size):
     result = {}
@@ -20,7 +21,6 @@ def get_container_recolour_maps():
 
     return (map_1, map_2, map_3)
 
-
 def get_bulk_cargo_recolour_maps():
     GRVL = {170: 6, 171: 4, 172: 7, 173: 8, 174: 21, 175: 11, 176: 12}
     IORE = {170: 75, 171: 76, 172: 123, 173: 122, 174: 124, 175: 74, 176: 104}
@@ -36,3 +36,32 @@ def get_bulk_cargo_recolour_maps():
     # GRVl is also reused for generic unknown cargos, and is in position 0 for this reason
     # (there is no mapping for unknown cargos, just uses first spriteset)
     return (GRVL, IORE, CORE, AORE, SAND, COAL, CLAY, SCMT)
+
+
+class GraphicsProcessorFactory(object):
+    # simple class which wraps graphics_processor, which uses pixa library
+    # pipeline_name refers to a pipeline class which defines how the processing is done
+    # may be reused across consists, so don't store consist info in the pipeline, pass it to pipeline at render time
+    # this is kind of factory-pattern-ish, but don't make too much of that, it's not important
+    def __init__(self, pipeline_name, options):
+        self.pipeline_name = pipeline_name
+        self.options = options
+        self.pipeline = registered_pipelines[pipeline_name]
+
+
+def get_mining_hauler_processors(template, copy_block_top_offset, num_unit_types):
+    # includes option for 2CC recolor, might not be used in practice (check mining trucks to find out)
+    recolour_maps = get_bulk_cargo_recolour_maps()
+    graphics_options_master = {'template': '',
+                               'recolour_maps': (recolour_maps),
+                               'copy_block_top_offset': copy_block_top_offset,
+                               'num_rows_per_unit': 2,
+                               'num_unit_types': num_unit_types}
+
+    graphics_options_1 = dict((k, v) for (k, v) in graphics_options_master.items())
+    graphics_options_1['template'] = template
+    graphics_options_2 = dict((k, v) for (k, v) in graphics_options_1.items())
+    graphics_options_2['swap_company_colours'] = True
+    graphics_processor_1 = GraphicsProcessorFactory('extend_spriterows_for_recoloured_cargos_pipeline', graphics_options_1)
+    graphics_processor_2 = GraphicsProcessorFactory('extend_spriterows_for_recoloured_cargos_pipeline', graphics_options_2)
+    return (graphics_processor_1, graphics_processor_2)

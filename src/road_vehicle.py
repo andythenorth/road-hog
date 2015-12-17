@@ -406,17 +406,6 @@ class ModelVariant(object):
         return consist.id + '_' + str(self.spritesheet_suffix) + '.png'
 
 
-class GraphicsProcessorFactory(object):
-    # simple class which wraps graphics_processor, which uses pixa library
-    # pipeline_name refers to a pipeline class which defines how the processing is done
-    # may be reused across consists, so don't store consist info in the pipeline, pass it to pipeline at render time
-    # this is kind of factory-pattern-ish, but don't make too much of that, it's not important
-    def __init__(self, pipeline_name, options):
-        self.pipeline_name = pipeline_name
-        self.options = options
-        self.pipeline = graphics_processor.registered_pipelines[pipeline_name]
-
-
 class RVConsist(Consist):
     """
     Intermediate class for engine consists to subclass from, provides some common properties.
@@ -541,7 +530,6 @@ class MiningHauler(RoadVehicle):
     """
     def __init__(self, **kwargs):
         super(MiningHauler, self).__init__(**kwargs)
-        self.template = 'vehicle_default.pynml'
         self.autorefit = True
         self.class_refit_groups = ['dump_freight']
         self.label_refits_allowed = [] # no specific labels needed
@@ -549,6 +537,19 @@ class MiningHauler(RoadVehicle):
         self.default_cargo = 'COAL'
         self.default_cargo_capacities = self.capacities
         self.loading_speed_multiplier = 2
+        # some units might not show cargo, e.g. tractor units etc
+        self.always_use_same_spriterow = kwargs.get('always_use_same_spriterow', False)
+        if self.always_use_same_spriterow:
+            self.template = 'vehicle_default.pynml'
+        else:
+            self.template = 'vehicle_with_visible_cargo.pynml'
+            self.num_cargo_rows = 8
+            # cargo rows 0 indexed - 0 = first set of loaded sprites
+            # GRVL is in first position as it is re-used for generic unknown cargos
+            # mining trucks *do* transport SCMT in this set, realism is not relevant here, went back and forth on this a few times :P
+            self.cargo_graphics_mappings = {'GRVL': [0], 'IORE': [1], 'CORE': [2], 'AORE': [3],
+                       'SAND': [4], 'COAL': [5], 'CLAY': [6], 'SCMT': [7]}
+            self.generic_cargo_rows = [0]
 
 
 class FlatBedHauler(RoadVehicle):
