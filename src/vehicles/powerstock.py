@@ -1,5 +1,10 @@
 import global_constants
+import graphics_processor.utils as graphics_utils
 from road_vehicle import RVConsist, DumpHauler
+
+graphics_processors = graphics_utils.get_mining_hauler_processors(template='powerstock_template.png',
+                                              copy_block_top_offsets = [40],
+                                              paste_top_offset = 40)
 
 consist = RVConsist(id = 'powerstock',
               base_numeric_id = 340,

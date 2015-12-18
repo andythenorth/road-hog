@@ -98,7 +98,13 @@ register(SwapCompanyColoursPipeline())
 
 
 class ExtendSpriterowsForRecolouredCargosPipeline(Pipeline):
-    """" Extends a cargo carrier spritesheet with variations on cargo colours """
+    """"
+        Extends a cargo carrier spritesheet with variations on cargo colours.
+        Became convoluted - was copied from Iron Horse where the case is simple, always just 1 wagon.
+        In Road Hog, has to handle variations on single-unit trucks, wagon+drags, and trucks where some units don't show cargo (artics).
+        There are various options that have to be set per truck to achieve the flexibility.
+        Those are as minimal as possible, but unavoidable.
+    """
     def __init__(self):
         # this should be sparse, don't store any consist or variant info in Pipelines, pass them at render time
         super(ExtendSpriterowsForRecolouredCargosPipeline, self).__init__("extend_spriterows_for_recoloured_cargos_pipeline")

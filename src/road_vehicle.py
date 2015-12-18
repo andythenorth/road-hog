@@ -249,9 +249,13 @@ class RoadVehicle(object):
         self.capacities = self.get_capacity_variations(kwargs.get('capacity', 0))
         self.loading_speed_multiplier = kwargs.get('loading_speed_multiplier', 1)
         self.cargo_age_period = kwargs.get('cargo_age_period', global_constants.CARGO_AGE_PERIOD)
+        # optional - force always using same spriterow
+        # for cases where the template handles cargo, but some units in the consist might not show cargo, e.g. tractor units etc
+        # can also be used to suppress compile failures during testing when spritesheet is unfinished (missing rows etc)
+        self.always_use_same_spriterow = kwargs.get('always_use_same_spriterow', False)
         # spriterow_num, first row = 0
         self.spriterow_num = kwargs.get('spriterow_num', 0)
-        # used instead of spriterow_num when generating cargo sprites with pixa
+        # optional - used instead of spriterow_num when generating cargo sprites with pixa
         self.spriterow_adjust = kwargs.get('spriterow_adjust', {'multiplier': 0, 'offset': 0})
         # set defaults for props otherwise set by subclass as needed (not set by kwargs as specific models do not over-ride them)
         self.default_cargo = 'PASS' # over-ride in subclass as needed (PASS is sane default)
@@ -539,8 +543,6 @@ class MiningHauler(RoadVehicle):
         self.default_cargo = 'COAL'
         self.default_cargo_capacities = self.capacities
         self.loading_speed_multiplier = 2
-        # some units might not show cargo, e.g. tractor units etc
-        self.always_use_same_spriterow = kwargs.get('always_use_same_spriterow', False)
         if self.always_use_same_spriterow:
             self.template = 'vehicle_default.pynml'
         else:
