@@ -49,8 +49,9 @@ class GraphicsProcessorFactory(object):
         self.pipeline = registered_pipelines[pipeline_name]
 
 
-def get_mining_hauler_processors(template, copy_block_top_offsets, paste_top_offset):
-    # includes option for 2CC recolor, might not be used in practice (check mining trucks to find out)
+def get_bulk_cargo_processors(template, copy_block_top_offsets, paste_top_offset):
+    # handles recolouring and spritesheet extension for bulk (mineral) cargos
+    # also provides optional 2CC recolor
     recolour_maps = get_bulk_cargo_recolour_maps()
     graphics_options_master = {'template': '',
                                'recolour_maps': recolour_maps,

@@ -2,7 +2,7 @@ import global_constants
 import graphics_processor.utils as graphics_utils
 from road_vehicle import RVConsist, DumpHauler
 
-graphics_processors = graphics_utils.get_mining_hauler_processors(template='wookey_template.png',
+graphics_processors = graphics_utils.get_bulk_cargo_processors(template='wookey_template.png',
                                               copy_block_top_offsets = [40],
                                               paste_top_offset = 40)
 
@@ -20,6 +20,7 @@ consist.add_unit(DumpHauler(consist = consist,
                         vehicle_length = 2,
                         semi_truck_shift_offset_jank = 2,
                         effects = ['EFFECT_SPRITE_DIESEL, -2, 1, 10'],
+                        always_use_same_spriterow = True,
                         spriterow_num = 0))
 
 consist.add_unit(DumpHauler(consist = consist,

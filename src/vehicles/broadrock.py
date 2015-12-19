@@ -1,8 +1,8 @@
 import global_constants
 import graphics_processor.utils as graphics_utils
-from road_vehicle import RVConsist, MiningHauler
+from road_vehicle import RVConsist, DumpHauler
 
-graphics_processors = graphics_utils.get_mining_hauler_processors(template='broadrock_template.png',
+graphics_processors = graphics_utils.get_bulk_cargo_processors(template='broadrock_template.png',
                                               copy_block_top_offsets = [40],
                                               paste_top_offset = 40)
 
@@ -16,7 +16,7 @@ consist = RVConsist(id = 'broadrock',
               vehicle_life = 40,
               intro_date = 1951)
 
-consist.add_unit(MiningHauler(consist = consist,
+consist.add_unit(DumpHauler(consist = consist,
                         weight = 35,
                         capacity = 0,
                         vehicle_length = 2,
@@ -25,7 +25,7 @@ consist.add_unit(MiningHauler(consist = consist,
                         always_use_same_spriterow = True,
                         spriterow_num = 0))
 
-consist.add_unit(MiningHauler(consist = consist,
+consist.add_unit(DumpHauler(consist = consist,
                         weight = 0, # put the weight on the truck to compensate for lack of TE when loaded
                         capacity = 85,
                         vehicle_length = 6,
