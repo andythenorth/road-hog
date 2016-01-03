@@ -1,6 +1,20 @@
 Changelog
 =========
 
+Alpha 18
+--------
+
+*Changes*
+- covered hopper trucks now refit rubber cargo
+- mining trucks were a bit too fast, reduce speed
+- replace some temporary sprites for flatbed trucks with better temporary sprites :P
+- visible cargo states working for dump trucks and mining trucks (cargo colours don't cover all cargos for these trucks yet)
+
+*Fixes*
+- wrong lengths for Towerhouse Flatbed Truck
+- reset a bunch of speeds that were wrong after refactoring some code
+- wrong trailer sprites for Buff, Trefell and Griff logging trucks
+
 Alpha 17
 --------
 
