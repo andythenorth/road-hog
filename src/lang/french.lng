@@ -15,14 +15,22 @@ STR_PARAM_ROSTER_OPTION_1                                       :Wasteland
 STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Tram pour passagers
 STR_NAME_SUFFIX_BUS                                             :Bus
 STR_NAME_SUFFIX_COACH                                           :Car
+STR_NAME_SUFFIX_BOX_TRAM                                        :Tram à caisse
+STR_NAME_SUFFIX_BOX_TRUCK                                       :Camion-caisse
+STR_NAME_SUFFIX_OPEN_TRAM                                       :Tram-tombereau
+STR_NAME_SUFFIX_OPEN_TRUCK                                      :Camion ouvert
 STR_NAME_SUFFIX_COURIER_TRAM                                    :Tram postal
 STR_NAME_SUFFIX_COURIER_TRUCK                                   :Camion postal
 STR_NAME_SUFFIX_TANKER_TRAM                                     :Tram-citerne
 STR_NAME_SUFFIX_TANKER_TRUCK                                    :Camion-citerne
 STR_NAME_SUFFIX_COVERED_HOPPER_TRAM                             :Tram-tombereau couvert
 STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :Camion-tombereau couvert
+STR_NAME_SUFFIX_DUMP_TRAM                                       :Tram-benne
+STR_NAME_SUFFIX_DUMP_TRUCK                                      :Camion-benne
 STR_NAME_SUFFIX_MINING_TRAM                                     :Tram minier
 STR_NAME_SUFFIX_MINING_TRUCK                                    :Camion de mine
+STR_NAME_SUFFIX_FLATBED_TRAM                                    :Tram-plateau
+STR_NAME_SUFFIX_FLATBED_TRUCK                                   :Camion-plateau
 STR_NAME_SUFFIX_FOUNDRY_TRAM                                    :Tram de fonderie
 STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :Camion de fonderie
 STR_NAME_SUFFIX_SUPPLIES_TRAM                                   :Tram de ravitaillement
