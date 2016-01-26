@@ -483,21 +483,6 @@ class OpenHauler(RoadVehicle):
         self.default_cargo_capacities = self.capacities
 
 
-class OpenHauler(RoadVehicle):
-    """
-    General cargo tram or truck - refits everything except mail, pax.
-    """
-    def __init__(self, **kwargs):
-        super(OpenHauler, self).__init__(**kwargs)
-        self.template = 'vehicle_default.pynml'
-        self.autorefit = True
-        self.class_refit_groups = ['all_freight']
-        self.label_refits_allowed = ['GRAI', 'WHEA', 'MAIZ'] # Iron Horse compatibility
-        self.label_refits_disallowed = ['TOUR', 'MAIL']
-        self.default_cargo = 'GOOD'
-        self.default_cargo_capacities = self.capacities
-
-
 class BoxHauler(RoadVehicle):
     """
     Box tram or truck - refits express, piece goods cargos, other selected cargos.
@@ -530,12 +515,12 @@ class DumpHauler(RoadVehicle):
             self.template = 'vehicle_default.pynml'
         else:
             self.template = 'vehicle_with_visible_cargo.pynml'
-            self.num_cargo_rows = 8
+            self.num_cargo_rows = 9
             # cargo rows 0 indexed - 0 = first set of loaded sprites
             # GRVL is in first position as it is re-used for generic unknown cargos
             # mining trucks *do* transport SCMT in this set, realism is not relevant here, went back and forth on this a few times :P
             self.cargo_graphics_mappings = {'GRVL': [0], 'IORE': [1], 'CORE': [2], 'AORE': [3],
-                       'SAND': [4], 'COAL': [5], 'CLAY': [6], 'SCMT': [7]}
+                       'SAND': [4], 'COAL': [5], 'CLAY': [6], 'SCMT': [7], 'PHOS': [8]}
             self.generic_cargo_rows = [0]
             # handle different kinds of trucks (single unit, tractor-trailer, waggon+drag), which causes variations in start row per unit (bit janky) :P
             # offset = spriterow num in template, multiplier = ~number of preceding units in consist
