@@ -6,7 +6,7 @@ consist = RVConsist(id = 'ladycross',
               title = 'Ladycross [Passenger Tram]',
               roadveh_flag_tram = True,
               replacement_id = '-none',
-              power = 100,
+              power = 120,
               vehicle_life = 40,
               intro_date = 1860)
 
@@ -19,7 +19,7 @@ consist.add_unit(PaxHauler(consist = consist,
                         spriterow_num = 0))
 
 consist.add_unit(PaxHauler(consist = consist,
-                        weight = 4,
+                        weight = 6,
                         capacity = 80,
                         vehicle_length = 7,
                         spriterow_num = 1))
