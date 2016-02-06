@@ -5,7 +5,7 @@ consist = RVConsist(id = 'rattlebrook',
               base_numeric_id = 670,
               title = 'Rattlebrook [Open Truck]',
               replacement_id = '-none',
-              power = 180,
+              power = 250,
               vehicle_life = 40,
               intro_date = 1939)
 

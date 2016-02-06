@@ -10,7 +10,7 @@ consist = RVConsist(id = 'powerstock',
               base_numeric_id = 340,
               title = 'Powerstock [Dump Truck]',
               replacement_id = '-none',
-              power = 650,
+              power = 700,
               semi_truck = True,
               vehicle_life = 40,
               intro_date = 2001)
