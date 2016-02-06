@@ -1,6 +1,9 @@
 import global_constants
 from road_vehicle import RVConsist, PaxHauler
 
+# for each generation, bus and coach variants have same power and intro date
+# coaches lower weight, faster, lower capacity than equivalent bus
+
 consist = RVConsist(id = 'leyburn',
               base_numeric_id = 20,
               title = 'Leyburn [Bus]',
@@ -11,7 +14,7 @@ consist = RVConsist(id = 'leyburn',
               intro_date = 1909)
 
 consist.add_unit(PaxHauler(consist = consist,
-                        weight = 10,
+                        weight = 8,
                         capacity = 30,
                         vehicle_length = 7,
                         visual_effect = 'VISUAL_EFFECT_DIESEL',

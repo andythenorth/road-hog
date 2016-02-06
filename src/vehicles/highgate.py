@@ -1,17 +1,20 @@
 import global_constants
 from road_vehicle import RVConsist, PaxHauler
 
+# for each generation, bus and coach variants have same power and intro date
+# coaches lower weight, faster, lower capacity than equivalent bus
+
 consist = RVConsist(id = 'highgate',
               base_numeric_id = 590,
               title = 'Highgate [Bus]',
               replacement_id = '-none',
-              power = 210,
+              power = 240,
               speed = 55,
               vehicle_life = 40,
               intro_date = 1964)
 
 consist.add_unit(PaxHauler(consist = consist,
-                        weight = 20,
+                        weight = 14,
                         capacity = 70,
                         vehicle_length = 7,
                         visual_effect = 'VISUAL_EFFECT_DIESEL',
