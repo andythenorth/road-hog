@@ -10,7 +10,7 @@ switch (FEAT_ROADVEHS, SELF, ${vehicle.id}_create_visual_effect, ${vehicle.get_e
 item(FEAT_ROADVEHS, ${vehicle.id}, ${vehicle.numeric_id}) {
     property {
         name:                           ${consist.get_name()};
-        cargo_capacity:                 ${vehicle.default_cargo_capacities[0]};
+        cargo_capacity:                 ${vehicle.capacities[0]};
         sprite_id:                      SPRITE_ID_NEW_ROADVEH; //enable new graphics - nml constant
         <tal:lead_slice_props condition="vehicle.is_lead_slice_of_consist">
             introduction_date:              date(${consist.intro_date},01,01); // consist just supplies intro year - openttd randomises intro dates a bit anyway

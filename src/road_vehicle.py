@@ -36,7 +36,7 @@ class Consist(object):
         self.replacement_id = kwargs.get('replacement_id', None)
         self.vehicle_life = kwargs.get('vehicle_life', None)
         self._power = kwargs.get('power', None)
-        # semi-trucks need some special handling (used to adjust TE, possibly other things)
+        # semi-trucks need some special handling (used to adjust capacity to get correct TE, possibly other things)
         self.semi_truck = kwargs.get('semi_truck', False)
         self._speed = kwargs.get('speed', None)
         # arbitrary adjustments of points that can be applied to adjust buy cost and running cost, over-ride in consist as needed
@@ -64,6 +64,17 @@ class Consist(object):
         slice.numeric_id = self.get_and_verify_numeric_id(count)
         slice.slice_length = vehicle.vehicle_length
         slice.spriterow_num = vehicle.spriterow_num
+
+        if self.semi_truck and count == 1:
+            # semi-trucks need some capacity moved to lead unit to gain sufficient TE
+            # this automagically does that, allowing capacities to be defined simply on the trailer in the vehicle definition
+            # sometimes a greater good requires a small evil, although this will probably go wrong eh?
+            if repeat != 1:
+                # guard against unintended application of this to anything except first trailer
+                utils.echo_message("Error: " + self.id + ".  Semi-truck cannot repeat first trailer in consist")
+            specified_capacities = slice.capacities
+            slice.capacities = [int(math.floor(0.5 * capacity)) for capacity in specified_capacities]
+            self.slices[0].capacities = [int(math.ceil(0.5 * capacity)) for capacity in specified_capacities]
 
         for repeat_num in range(repeat):
             self.slices.append(slice)
@@ -177,11 +188,8 @@ class Consist(object):
         # vehicles cannot set their own TE coefficients, shouldn't be needed
         # vehicle classes can do it by over-riding this property in their class
         # TE is dibbled up substantially higher than the default 0.3 because RV performance sucks otherwise
-        if self.semi_truck:
-            # semi-trucks need TE cheated up, to account for extra weight from trailer which OpenTTD cannot use in TE calc
-            return 1
-        else:
-            return 0.7
+        # dubious use of @property here, eh?
+        return 0.7
 
     @property
     def total_capacities(self):
@@ -458,7 +466,6 @@ class CourierCar(RoadVehicle):
         self.label_refits_allowed = [] # no specific labels needed
         self.label_refits_disallowed = ['TOUR']
         self.default_cargo = 'MAIL'
-        self.default_cargo_capacities = self.capacities
 
 
 class PaxHauler(RoadVehicle):
@@ -473,7 +480,6 @@ class PaxHauler(RoadVehicle):
         self.label_refits_allowed = []
         self.label_refits_disallowed = []
         self.default_cargo = 'PASS'
-        self.default_cargo_capacities = self.capacities
         self.loading_speed_multiplier = 3
 
 
@@ -489,7 +495,6 @@ class PaxExpressHauler(RoadVehicle):
         self.label_refits_allowed = []
         self.label_refits_disallowed = []
         self.default_cargo = 'PASS'
-        self.default_cargo_capacities = self.capacities
         self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
 
 
@@ -505,7 +510,6 @@ class OpenHauler(RoadVehicle):
         self.label_refits_allowed = ['GRAI', 'WHEA', 'MAIZ'] # Iron Horse compatibility
         self.label_refits_disallowed = ['TOUR', 'MAIL']
         self.default_cargo = 'GOOD'
-        self.default_cargo_capacities = self.capacities
 
 
 class BoxHauler(RoadVehicle):
@@ -520,7 +524,6 @@ class BoxHauler(RoadVehicle):
         self.label_refits_allowed = ['MAIL', 'GRAI', 'WHEA', 'MAIZ', 'FRUT', 'BEAN', 'NITR'] # Iron Horse compatibility
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_freight_special_cases']
         self.default_cargo = 'GOOD'
-        self.default_cargo_capacities = self.capacities
 
 
 class DumpHauler(RoadVehicle):
@@ -534,7 +537,6 @@ class DumpHauler(RoadVehicle):
         self.label_refits_allowed = [] # no specific labels needed
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_dump_bulk']
         self.default_cargo = 'COAL'
-        self.default_cargo_capacities = self.capacities
         self.loading_speed_multiplier = 2
         if self.always_use_same_spriterow:
             self.template = 'vehicle_default.pynml'
@@ -564,7 +566,6 @@ class FlatBedHauler(RoadVehicle):
         self.label_refits_allowed = ['GOOD']
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_flatbed_freight']
         self.default_cargo = 'STEL'
-        self.default_cargo_capacities = self.capacities
 
 
 class BulkPowderHauler(RoadVehicle):
@@ -579,7 +580,6 @@ class BulkPowderHauler(RoadVehicle):
         self.label_refits_allowed = ['GRAI', 'WHEA', 'MAIZ', 'FOOD', 'SUGR', 'FMSP', 'RFPR', 'CLAY', 'BDMT', 'BEAN', 'NITR', 'RUBR', 'SAND']
         self.label_refits_disallowed = []
         self.default_cargo = 'GRAI'
-        self.default_cargo_capacities = self.capacities
         self.loading_speed_multiplier = 2
 
 
@@ -595,7 +595,6 @@ class LivestockHauler(RoadVehicle):
         self.label_refits_allowed = ['LVST']
         self.label_refits_disallowed = []
         self.default_cargo = 'LVST'
-        self.default_cargo_capacities = self.capacities
         self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
 
 
@@ -612,7 +611,6 @@ class RefrigeratedHauler(RoadVehicle):
         self.label_refits_allowed = [] # no specific labels needed, refits all cargos that have refrigerated class
         self.label_refits_disallowed = []
         self.default_cargo = 'FOOD'
-        self.default_cargo_capacities = self.capacities
         self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
 
 
@@ -633,7 +631,6 @@ class Tanker(RoadVehicle):
         self.label_refits_allowed = []
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['edible_liquids']
         self.default_cargo = 'OIL_'
-        self.default_cargo_capacities = self.capacities
         self.loading_speed_multiplier = 2
 
 
@@ -649,7 +646,6 @@ class EdiblesTanker(RoadVehicle):
         self.label_refits_allowed = ['MILK', 'FOOD']
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_edible_liquids']
         self.default_cargo = 'WATR'
-        self.default_cargo_capacities = self.capacities
         self.loading_speed_multiplier = 2
         self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
 
@@ -666,7 +662,6 @@ class LogHauler(RoadVehicle):
         self.label_refits_allowed = ['WOOD']
         self.label_refits_disallowed = []
         self.default_cargo = 'WOOD'
-        self.default_cargo_capacities = self.capacities
         self.loading_speed_multiplier = 2
         self.num_cargo_rows = 1
         self.cargo_graphics_mappings = {'WOOD': [0]}
@@ -686,7 +681,6 @@ class FoundryHauler(RoadVehicle):
         self.label_refits_allowed = ['STEL', 'COPR']
         self.label_refits_disallowed = []
         self.default_cargo = 'STEL'
-        self.default_cargo_capacities = self.capacities
         self.loading_speed_multiplier = 2
 
 
@@ -702,7 +696,6 @@ class SuppliesHauler(RoadVehicle):
         self.label_refits_allowed = ['ENSP', 'FMSP', 'VEHI', 'BDMT']
         self.label_refits_disallowed = []
         self.default_cargo = 'ENSP'
-        self.default_cargo_capacities = self.capacities
         self.loading_speed_multiplier = 2
 
 
@@ -719,7 +712,6 @@ class IntermodalHauler(RoadVehicle):
         self.label_refits_allowed = ['FRUT','WATR']
         self.label_refits_disallowed = ['FISH','LVST','OIL_','TOUR','WOOD']
         self.default_cargo = 'GOOD'
-        self.default_cargo_capacities = self.capacities
         self.loading_speed_multiplier = 2
 
 
