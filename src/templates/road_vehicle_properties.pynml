@@ -10,16 +10,23 @@ switch (FEAT_ROADVEHS, SELF, ${vehicle.id}_create_visual_effect, ${vehicle.get_e
 item(FEAT_ROADVEHS, ${vehicle.id}, ${vehicle.numeric_id}) {
     property {
         name:                           ${consist.get_name()};
-        introduction_date:              date(${consist.intro_date},01,01); // consist just supplies intro year - openttd randomises intro dates a bit anyway
         cargo_capacity:                 ${vehicle.default_cargo_capacities[0]};
         sprite_id:                      SPRITE_ID_NEW_ROADVEH; //enable new graphics - nml constant
-        power:                          ${consist.power}hp;
-        speed:                          ${consist.speed}mph;
-        weight:                         ${consist.weight}ton;
-        tractive_effort_coefficient:    ${consist.tractive_effort_coefficient};
-        cost_factor:                    ${consist.buy_cost};
-        running_cost_base:              RUNNING_COST_ROADVEH;
-        running_cost_factor:            ${consist.running_cost};
+        <tal:lead_slice_props condition="vehicle.is_lead_slice_of_consist">
+            introduction_date:              date(${consist.intro_date},01,01); // consist just supplies intro year - openttd randomises intro dates a bit anyway
+            power:                          ${consist.power}hp;
+            speed:                          ${consist.speed}mph;
+            weight:                         ${consist.weight}ton;
+            tractive_effort_coefficient:    ${consist.tractive_effort_coefficient};
+            cost_factor:                    ${consist.buy_cost};
+            running_cost_base:              RUNNING_COST_ROADVEH;
+            running_cost_factor:            ${consist.running_cost};
+            model_life:                     ${consist.adjusted_model_life};
+            vehicle_life:                   ${consist.vehicle_life};
+            reliability_decay:              20; // default value
+            retire_early:                   ${consist.vehicle_life - 4}; // magic from Eddi
+            sound_effect:                   SOUND_TRUCK_START;
+        </tal:lead_slice_props>
         refit_cost:                     0; // this needs to be 0 if we want autorefit without using cb
         refittable_cargo_classes:       bitmask(${vehicle.refittable_classes});
         non_refittable_cargo_classes:   bitmask(); // don't set non-refittable classes, increases likelihood of breaking cargo support
@@ -28,12 +35,7 @@ item(FEAT_ROADVEHS, ${vehicle.id}, ${vehicle.numeric_id}) {
         default_cargo_type:             ${vehicle.default_cargo};
         cargo_age_period:               ${vehicle.cargo_age_period};
         misc_flags:                     bitmask(${vehicle.special_flags}); // nml constants
-        model_life:                     ${consist.adjusted_model_life};
-        retire_early:                   ${consist.vehicle_life - 4}; // magic from Eddi
-        reliability_decay:              20; // default value
-        vehicle_life:                   ${consist.vehicle_life};
         length:                         ${vehicle.slice_length};
-        sound_effect:                   SOUND_TRUCK_START;
         effect_spawn_model:             ${vehicle.effect_spawn_model};
     }
     graphics {
