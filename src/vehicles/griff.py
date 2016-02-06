@@ -5,7 +5,7 @@ consist = RVConsist(id = 'griff',
               base_numeric_id = 220,
               title = 'Griff [Logging Truck]',
               replacement_id = '-none',
-              power = 100,
+              power = 100, # custom power
               vehicle_life = 40,
               intro_date = 1870)
 

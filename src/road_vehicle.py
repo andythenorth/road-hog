@@ -35,7 +35,7 @@ class Consist(object):
         self.intro_date = kwargs.get('intro_date', None)
         self.replacement_id = kwargs.get('replacement_id', None)
         self.vehicle_life = kwargs.get('vehicle_life', None)
-        self.power = kwargs.get('power', 0)
+        self._power = kwargs.get('power', None)
         # semi-trucks need some special handling (used to adjust TE, possibly other things)
         self.semi_truck = kwargs.get('semi_truck', False)
         self._speed = kwargs.get('speed', None)
@@ -209,6 +209,19 @@ class Consist(object):
             return speed
         else:
             return self._speed
+
+    @property
+    def power(self):
+        # only trucks have standard power bands, trams are custom
+        if self._power is None:
+            if self.roadveh_flag_tram is True:
+                power_bands = self.get_roster(self.roster_id).default_tram_power_bands
+            else:
+                power_bands = self.get_roster(self.roster_id).default_truck_power_bands
+            power = power_bands[max([year for year in power_bands if self.intro_date >= year])]
+            return power
+        else:
+            return self._power
 
     @property
     def adjusted_model_life(self):

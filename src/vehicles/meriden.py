@@ -5,7 +5,6 @@ consist = RVConsist(id = 'meriden',
               base_numeric_id = 290,
               title = 'Meriden [Tanker Truck]',
               replacement_id = '-none',
-              power = 450,
               semi_truck = True,
               vehicle_life = 40,
               intro_date = 1972)

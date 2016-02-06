@@ -11,6 +11,9 @@ class Roster(object):
         # default speeds, determined by intro date; can be over-ridden per vehicle when needed
         self.default_truck_speeds = kwargs.get('truck_speeds')
         self.default_tram_speeds = kwargs.get('tram_speeds')
+        # default power, determined by intro date; can be over-ridden per vehicle when needed
+        self.default_truck_power_bands = kwargs.get('truck_power_bands')
+        self.default_tram_power_bands = kwargs.get('tram_power_bands')
         self.vehicles = []
         for vehicle in kwargs.get('vehicles'):
             self.vehicles.append(vehicle.consist)

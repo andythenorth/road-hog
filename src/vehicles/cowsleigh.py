@@ -5,8 +5,6 @@ consist = RVConsist(id = 'cowsleigh',
               base_numeric_id = 900,
               title = 'Cowsleigh [Livestock Truck]',
               replacement_id = '-none',
-              power = 150,
-              # cows don't like to go *too* fast, apply speed penalty :P
               vehicle_life = 40,
               intro_date = 1911)
 

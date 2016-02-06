@@ -6,7 +6,7 @@ consist = RVConsist(id = 'stagrun',
               title = 'Stagrun [Courier Tram]',
               roadveh_flag_tram = True,
               replacement_id = '-none',
-              power = 300,
+              power = 300, # custom power
               vehicle_life = 40,
               intro_date = 1932)
 

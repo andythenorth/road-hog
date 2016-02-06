@@ -6,7 +6,6 @@ consist = RVConsist(id = 'shotover',
               title = 'Shotover [Livestock Tram]',
               roadveh_flag_tram = True,
               replacement_id = '-none',
-              power = 300,
               vehicle_life = 40,
               intro_date = 1941)
 

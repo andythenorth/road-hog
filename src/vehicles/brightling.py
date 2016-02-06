@@ -6,7 +6,6 @@ consist = RVConsist(id = 'brightling',
               title = 'Brightling [Open Tram]',
               roadveh_flag_tram = True,
               replacement_id = '-none',
-              power = 300,
               vehicle_life = 40,
               intro_date = 1940,)
 

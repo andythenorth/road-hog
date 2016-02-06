@@ -11,7 +11,6 @@ consist = RVConsist(id = 'scrooby_top',
               title = 'Scrooby Top [Dump Tram]',
               roadveh_flag_tram = True,
               replacement_id = '-none',
-              power = 100,
               vehicle_life = 40,
               intro_date = 1870)
 

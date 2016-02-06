@@ -10,7 +10,6 @@ consist = RVConsist(id = 'wookey',
               base_numeric_id = 490,
               title = 'Wookey [Dump Truck]',
               replacement_id = '-none',
-              power = 450,
               semi_truck = True,
               vehicle_life = 40,
               intro_date = 1972)

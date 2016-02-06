@@ -5,7 +5,6 @@ consist = RVConsist(id = 'runwell',
               base_numeric_id = 890,
               title = 'Runwell [Open Truck]',
               replacement_id = '-none',
-              power = 150,
               vehicle_life = 40,
               intro_date = 1910)
 
