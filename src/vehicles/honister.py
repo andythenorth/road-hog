@@ -11,6 +11,7 @@ consist = RVConsist(id = 'honister',
               title = 'Honister [Dump Truck]',
               replacement_id = '-none',
               power = 180,
+              semi_truck = True,
               vehicle_life = 40,
               intro_date = 1943)
 

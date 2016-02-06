@@ -6,6 +6,7 @@ consist = RVConsist(id = 'waterperry',
               title = 'Waterperry [Edibles Tanker Truck]',
               replacement_id = '-none',
               power = 200,
+              semi_truck = True,
               vehicle_life = 40,
               intro_date = 1972)
 

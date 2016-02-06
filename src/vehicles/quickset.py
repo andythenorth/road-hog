@@ -6,6 +6,7 @@ consist = RVConsist(id = 'quickset',
               title = 'Quickset [Box Truck]',
               replacement_id = '-none',
               power = 220,
+              semi_truck = True,
               vehicle_life = 40,
               intro_date = 1968)
 

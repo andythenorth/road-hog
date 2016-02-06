@@ -6,7 +6,7 @@ consist = RVConsist(id = 'cloud_hill',
               title = 'Cloud Hill [Tanker Truck]',
               replacement_id = '-none',
               power = 550,
-              # tankers are hazardous, apply speed penalty
+              semi_truck = True,
               vehicle_life = 40,
               intro_date = 2001)
 

@@ -36,7 +36,8 @@ class Consist(object):
         self.replacement_id = kwargs.get('replacement_id', None)
         self.vehicle_life = kwargs.get('vehicle_life', None)
         self.power = kwargs.get('power', 0)
-        self.tractive_effort_coefficient = kwargs.get('tractive_effort_coefficient', 0.7) # 0.3 is recommended default value, but I've dibbled it because RV performance sucks otherwise
+        # semi-trucks need some special handling (used to adjust TE, possibly other things)
+        self.semi_truck = kwargs.get('semi_truck', False)
         self._speed = kwargs.get('speed', None)
         # arbitrary adjustments of points that can be applied to adjust buy cost and running cost, over-ride in consist as needed
         # values can be -ve or +ve to dibble specific vehicles (but total calculated points cannot exceed 255)
@@ -170,6 +171,17 @@ class Consist(object):
         if consist_weight > 63:
             utils.echo_message("Error: consist weight is " + str(consist_weight) + "t for " + self.id + "; must be < 63t")
         return consist_weight
+
+    @property
+    def tractive_effort_coefficient(self):
+        # vehicles cannot set their own TE coefficients, shouldn't be needed
+        # vehicle classes can do it by over-riding this property in their class
+        # TE is dibbled up substantially higher than the default 0.3 because RV performance sucks otherwise
+        if self.semi_truck:
+            # semi-trucks need TE cheated up, to account for extra weight from trailer which OpenTTD cannot use in TE calc
+            return 1
+        else:
+            return 0.7
 
     @property
     def total_capacities(self):

@@ -11,6 +11,7 @@ consist = RVConsist(id = 'broadrock',
               title = 'Broadrock [Mining Truck]',
               replacement_id = '-none',
               power = 600,
+              semi_truck = True,
               speed = 45,
               type_base_running_cost_points = 20, # dibble running costs for game balance
               vehicle_life = 40,
