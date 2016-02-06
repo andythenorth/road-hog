@@ -9,7 +9,7 @@ consist = RVConsist(id = 'leyburn',
               title = 'Leyburn [Bus]',
               replacement_id = '-none',
               power = 100, # custom power
-              speed = 35,
+              speed = 40,
               vehicle_life = 40,
               intro_date = 1909)
 

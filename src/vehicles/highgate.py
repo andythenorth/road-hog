@@ -9,7 +9,7 @@ consist = RVConsist(id = 'highgate',
               title = 'Highgate [Bus]',
               replacement_id = '-none',
               power = 240,
-              speed = 55,
+              speed = 50,
               vehicle_life = 40,
               intro_date = 1964)
 
