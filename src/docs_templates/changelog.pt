@@ -1,6 +1,29 @@
 Changelog
 =========
 
+Beta 1
+------
+
+*Changes*
+- add support for edible oil, nuts and phosphate cargos
+- white trailer for Ribble and McDowell covered hopper trucks, consistent with Iron Horse covered hoppers
+- covered hoppers now refit sand cargo
+- automagically split semi-truck capacity on first trailer to get correct TE on lead unit (otherwise they have gutless performance)
+- set power correctly for most of the on-highway trucks
+- rebalanced passenger tram power and weight
+- rebalance bus and coach intro dates, power and weight (each bus and coach generation now has unified intro date and power)
+- remove Big Sky coach, not needed
+
+*Fixes*
+- wrong trailer position for Ribble and McDowell covered hopper trucks
+- (codechange) don't set certain properties for trailing parts, they're not valid
+
+*Translations*
+
+- updated
+- translator credits: http://bundles.openttdcoop.org/road-hog/releases/LATEST/credits.txt
+
+
 Alpha 18
 --------
 
