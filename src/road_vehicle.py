@@ -620,7 +620,6 @@ class Tanker(RoadVehicle):
     """
     def __init__(self, **kwargs):
         super(Tanker, self).__init__(**kwargs)
-        self.template = 'vehicle_with_cargo_specific_liveries.pynml'
         self.autorefit = True
         self.class_refit_groups = ['liquids']
         # tankers are unrealistically autorefittable, and at no cost
@@ -632,6 +631,13 @@ class Tanker(RoadVehicle):
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['edible_liquids']
         self.default_cargo = 'OIL_'
         self.loading_speed_multiplier = 2
+        if self.always_use_same_spriterow:
+            self.template = 'vehicle_default.pynml'
+        else:
+            self.template = 'vehicle_with_cargo_specific_liveries.pynml'
+            # handle different kinds of trucks (single unit, tractor-trailer, waggon+drag), which causes variations in start row per unit (bit janky) :P
+            # offset = spriterow num in template, multiplier = ~number of preceding units in consist
+            self.spriterow_num = self.spriterow_adjust['offset'] + self.spriterow_adjust['multiplier'] * self.num_cargo_rows
 
 
 class EdiblesTanker(RoadVehicle):

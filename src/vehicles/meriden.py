@@ -15,13 +15,14 @@ consist.add_unit(Tanker(consist = consist,
                         vehicle_length = 2,
                         semi_truck_shift_offset_jank = 2,
                         effects = ['EFFECT_SPRITE_DIESEL, -3, 1, 10'],
+                        always_use_same_spriterow = True,
                         spriterow_num = 0))
 
 consist.add_unit(Tanker(consist = consist,
                         weight = 8,
                         capacity = 40,
                         vehicle_length = 6,
-                        spriterow_num = 1))
+                        spriterow_adjust = {'multiplier': 0, 'offset': 1}))
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,
