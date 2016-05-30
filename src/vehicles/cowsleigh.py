@@ -9,10 +9,11 @@ consist = RVConsist(id = 'cowsleigh',
               intro_date = 1911)
 
 consist.add_unit(LivestockHauler(consist = consist,
-                        weight = 15,
+                        weight = 10,
                         capacity = 0,
                         vehicle_length = 4,
-                        visual_effect = 'VISUAL_EFFECT_STEAM',
+                        effect_spawn_model = 'EFFECT_SPAWN_MODEL_STEAM',
+                        effects = ['EFFECT_SPRITE_STEAM, -5, 0, 12'],
                         spriterow_num = 0))
 
 consist.add_unit(LivestockHauler(consist = consist,

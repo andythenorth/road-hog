@@ -10,10 +10,10 @@ consist = RVConsist(id = 'trefell',
               intro_date = 1910)
 
 consist.add_unit(LogHauler(consist = consist,
-                        weight = 7,
+                        weight = 10,
                         capacity = 0,
                         vehicle_length = 4,
-                        effect_spawn_model = 'EFFECT_SPAWN_MODEL_DIESEL',
+                        effect_spawn_model = 'EFFECT_SPAWN_MODEL_STEAM',
                         effects = ['EFFECT_SPRITE_STEAM, -5, 0, 12'],
                         spriterow_num = 0))
 
