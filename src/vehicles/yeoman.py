@@ -9,16 +9,16 @@ consist = RVConsist(id = 'yeoman',
               intro_date = 1968)
 
 consist.add_unit(OpenHauler(consist = consist,
-                        weight = 10,
-                        capacity = 10,
-                        vehicle_length = 5,
-                        effects = ['EFFECT_SPRITE_DIESEL, -2, 1, 10'],
+                        weight = 7,
+                        vehicle_length = 2,
+                        semi_truck_shift_offset_jank = 2,
+                        visual_effect = 'VISUAL_EFFECT_DIESEL',
                         spriterow_num = 0))
 
 consist.add_unit(OpenHauler(consist = consist,
                         weight = 5,
-                        capacity = 15,
-                        vehicle_length = 5,
+                        capacity = 40,
+                        vehicle_length = 6,
                         spriterow_num = 1))
 
 consist.add_model_variant(intro_date=0,
