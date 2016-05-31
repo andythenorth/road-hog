@@ -1,6 +1,30 @@
 Changelog
 =========
 
+Beta 2
+------
+
+*Changes*
+- new sprites for Waterperry and Silvertop edibles tankers
+- new sprites for Capo and Yeoman open trucks
+- new sprites for Cowsleigh livestock truck
+- cargo graphics finished for dump / mining trucks and trams
+- improved appearance of flatbed trucks (deck style matches Iron Horse flat cars)
+- capacity for 'armoured' cargos nõw same as mail capacity where relevant
+- consistent colour for wheel hubs everywhere (including replacement of 2CC wheel hubs where drawn)
+- (unfinished) Witch Hill Mining Truck has a trailer
+
+*Fixes*
+- Scrooby Top mining tram showed wrong sprites when empty
+- correct visual effects for Cowsleigh and Trefell steam trucks
+- correct capacity for Capo and Rattlebrook open trucks
+
+*Translations*
+
+- updated
+- translator credits: http://bundles.openttdcoop.org/road-hog/releases/LATEST/credits.txt
+
+
 Beta 1
 ------
 
