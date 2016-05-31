@@ -5,20 +5,18 @@ consist = RVConsist(id = 'silvertop',
               base_numeric_id = 380,
               title = 'Silvertop [Edibles Tanker Truck]',
               replacement_id = '-none',
-              semi_truck = True,
               vehicle_life = 40,
               intro_date = 2001)
 
 consist.add_unit(EdiblesTanker(consist = consist,
-                        weight = 7,
+                        weight = 9,
                         capacity = 20,
-                        vehicle_length = 2,
-                        semi_truck_shift_offset_jank = 2,
+                        vehicle_length = 5,
                         effects = ['EFFECT_SPRITE_DIESEL, -3, 1, 10'],
                         spriterow_num = 0))
 
 consist.add_unit(EdiblesTanker(consist = consist,
-                        weight = 7,
+                        weight = 9,
                         capacity = 20,
                         vehicle_length = 5,
                         spriterow_num = 1))

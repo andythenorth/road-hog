@@ -11,7 +11,7 @@ consist = RVConsist(id = 'waterperry',
 
 consist.add_unit(EdiblesTanker(consist = consist,
                         weight = 7,
-                        capacity = 20,
+                        capacity = 0,
                         vehicle_length = 2,
                         semi_truck_shift_offset_jank = 2,
                         effects = ['EFFECT_SPRITE_DIESEL, -3, 1, 10'],
@@ -19,7 +19,7 @@ consist.add_unit(EdiblesTanker(consist = consist,
 
 consist.add_unit(EdiblesTanker(consist = consist,
                         weight = 7,
-                        capacity = 20,
+                        capacity = 40,
                         vehicle_length = 5,
                         spriterow_num = 1))
 
