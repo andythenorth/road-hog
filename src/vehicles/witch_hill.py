@@ -10,6 +10,7 @@ consist = RVConsist(id = 'witch_hill',
               base_numeric_id = 500,
               title = 'Witch Hill [Mining Truck]',
               replacement_id = '-none',
+              semi_truck = True,
               power = 1200,
               speed = 55, # dibbled up above RL for game balance
               type_base_running_cost_points = 30, # dibble running costs for game balance
