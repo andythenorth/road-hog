@@ -10,14 +10,14 @@ consist = RVConsist(id = 'capo',
 
 consist.add_unit(OpenHauler(consist = consist,
                         weight = 10,
-                        capacity = 10,
+                        capacity = 20,
                         vehicle_length = 5,
                         effects = ['EFFECT_SPRITE_DIESEL, -2, 1, 10'],
                         spriterow_num = 0))
 
 consist.add_unit(OpenHauler(consist = consist,
                         weight = 5,
-                        capacity = 15,
+                        capacity = 20,
                         vehicle_length = 5,
                         spriterow_num = 1))
 
