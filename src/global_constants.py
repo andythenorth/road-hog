@@ -110,6 +110,7 @@ FUEL_RUN_COST = 10.0
 max_game_date = 5000001
 
 # standard offsets for vehicle
+# for 5/8 and 4/8, Capo truck in rev 732 is tested and canonical for offset, spritesheet position and vehicle length
 default_road_vehicle_offsets = {'1': [[-3, -12], [-14, -14], [-16, -11], [-8, -15], [-3, -12], [-14, -14], [-16, -11], [-8, -15]], # needs fix
                                 '2': [[-6, -23], [-2, -16], [8, -10], [4, -11], [-6, -12], [-14, -10], [-16, -10], [-8, -14]],
                                 '3': [[-6, -22], [-4, -17], [2, -10], [2, -11], [-6, -15], [-14, -10], [-16, -10], [-8, -16]],
