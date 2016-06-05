@@ -26,7 +26,7 @@ consist.add_unit(DumpHauler(consist = consist,
 consist.add_unit(DumpHauler(consist = consist,
                         weight = 8,
                         capacity = 40,
-                        vehicle_length = 6,
+                        vehicle_length = 7,
                         spriterow_adjust = {'multiplier': 0, 'offset': 1}))
 
 consist.add_model_variant(intro_date=0,
