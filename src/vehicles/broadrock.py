@@ -28,7 +28,7 @@ consist.add_unit(DumpHauler(consist = consist,
 
 consist.add_unit(DumpHauler(consist = consist,
                         weight = 0, # put the weight on the truck to compensate for lack of TE when loaded
-                        capacity = 85,
+                        capacity = 60, # much bigger is not much better here
                         vehicle_length = 6,
                         spriterow_adjust = {'multiplier': 0, 'offset': 1}))
 
