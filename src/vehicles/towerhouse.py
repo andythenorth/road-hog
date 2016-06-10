@@ -19,7 +19,7 @@ consist.add_unit(FlatBedHauler(consist = consist,
 consist.add_unit(FlatBedHauler(consist = consist,
                         weight = 5,
                         capacity = 40,
-                        vehicle_length = 6,
+                        vehicle_length = 7,
                         spriterow_num = 1))
 
 consist.add_model_variant(intro_date=0,
