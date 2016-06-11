@@ -10,12 +10,12 @@ consist = RVConsist(id = 'broadrock',
               base_numeric_id = 100,
               title = 'Broadrock [Mining Truck]',
               replacement_id = '-none',
-              power = 600,
+              power = 400,
               semi_truck = True,
-              speed = 45,
+              speed = 40, # dibbled up above RL for game balance
               type_base_running_cost_points = 20, # dibble running costs for game balance
               vehicle_life = 40,
-              intro_date = 1951)
+              intro_date = 1947)
 
 consist.add_unit(DumpHauler(consist = consist,
                         weight = 35,
@@ -28,7 +28,7 @@ consist.add_unit(DumpHauler(consist = consist,
 
 consist.add_unit(DumpHauler(consist = consist,
                         weight = 0, # put the weight on the truck to compensate for lack of TE when loaded
-                        capacity = 60, # much bigger is not much better here
+                        capacity = 55, # much bigger is not much better here
                         vehicle_length = 6,
                         spriterow_adjust = {'multiplier': 0, 'offset': 1}))
 
