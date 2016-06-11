@@ -7,7 +7,7 @@ consist = RVConsist(id = 'meriden',
               replacement_id = '-none',
               semi_truck = True,
               vehicle_life = 40,
-              intro_date = 1972)
+              intro_date = 1974)
 
 consist.add_unit(Tanker(consist = consist,
                         weight = 7,

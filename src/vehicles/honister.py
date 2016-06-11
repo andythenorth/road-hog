@@ -12,7 +12,7 @@ consist = RVConsist(id = 'honister',
               replacement_id = '-none',
               semi_truck = True,
               vehicle_life = 40,
-              intro_date = 1943)
+              intro_date = 1947)
 
 consist.add_unit(DumpHauler(consist = consist,
                         weight = 6,

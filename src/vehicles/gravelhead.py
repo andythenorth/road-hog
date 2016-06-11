@@ -8,15 +8,15 @@ graphics_processors = graphics_utils.get_bulk_cargo_processors(template='gravelh
 
 consist = RVConsist(id = 'gravelhead',
               base_numeric_id = 580,
-              title = 'Gravelhead [Mining Truck]',
+              title = 'Gravelhead [Dump Truck]',
               replacement_id = '-none',
               power = 130,
               vehicle_life = 40,
-              intro_date = 1930)
+              intro_date = 1920)
 
 consist.add_unit(DumpHauler(consist = consist,
                         weight = 10,
-                        capacity = 20,
+                        capacity = 12,
                         vehicle_length = 6,
                         effect_spawn_model = 'EFFECT_SPAWN_MODEL_STEAM',
                         effects = ['EFFECT_SPRITE_STEAM, -3, 0, 12'],
@@ -24,7 +24,7 @@ consist.add_unit(DumpHauler(consist = consist,
 
 consist.add_unit(DumpHauler(consist = consist,
                         weight = 5,
-                        capacity = 20, # much bigger is not much better here
+                        capacity = 12,
                         vehicle_length = 5,
                         spriterow_adjust = {'multiplier': 2, 'offset': 1}))
 

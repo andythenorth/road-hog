@@ -7,7 +7,7 @@ consist = RVConsist(id = 'greenscoe',
               replacement_id = '-none',
               semi_truck = True,
               vehicle_life = 40,
-              intro_date = 1943)
+              intro_date = 1920)
 
 consist.add_unit(Tanker(consist = consist,
                         weight = 7,
@@ -20,7 +20,7 @@ consist.add_unit(Tanker(consist = consist,
 
 consist.add_unit(Tanker(consist = consist,
                         weight = 7,
-                        capacity = 30,
+                        capacity = 25,
                         vehicle_length = 5,
                         spriterow_adjust = {'multiplier': 0, 'offset': 1}))
 
