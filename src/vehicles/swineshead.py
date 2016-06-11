@@ -10,15 +10,15 @@ consist = RVConsist(id = 'swineshead',
 
 consist.add_unit(LivestockHauler(consist = consist,
                         weight = 10,
-                        capacity = 20,
-                        vehicle_length = 5,
+                        capacity = 25,
+                        vehicle_length = 6,
                         visual_effect = 'VISUAL_EFFECT_DIESEL',
                         spriterow_num = 0))
 
 consist.add_unit(LivestockHauler(consist = consist,
                         weight = 10,
-                        capacity = 20,
-                        vehicle_length = 5,
+                        capacity = 15,
+                        vehicle_length = 4,
                         spriterow_num = 1))
 
 consist.add_model_variant(intro_date=0,
