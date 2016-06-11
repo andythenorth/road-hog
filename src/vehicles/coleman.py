@@ -15,20 +15,22 @@ consist = RVConsist(id = 'coleman',
               intro_date = 1920)
 
 consist.add_unit(DumpHauler(consist = consist,
-                        weight = 10,
-                        capacity = 12,
-                        vehicle_length = 6,
+                        weight = 6,
+                        capacity = 0,
+                        vehicle_length = 2,
+                        semi_truck_shift_offset_jank = 2,
                         effect_spawn_model = 'EFFECT_SPAWN_MODEL_STEAM',
                         effects = ['EFFECT_SPRITE_STEAM, -3, 0, 12'],
+                        always_use_same_spriterow = True,
                         spriterow_num = 0))
 
 consist.add_unit(DumpHauler(consist = consist,
-                        weight = 5,
-                        capacity = 12,
+                        weight = 6,
+                        capacity = 24,
                         vehicle_length = 5,
-                        spriterow_adjust = {'multiplier': 2, 'offset': 1}))
+                        spriterow_adjust = {'multiplier': 0, 'offset': 1}))
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,
                        spritesheet_suffix=0,
-                       graphics_processor=graphics_processors[1])
+                       graphics_processor=graphics_processors[0])
