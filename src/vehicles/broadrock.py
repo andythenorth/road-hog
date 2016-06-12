@@ -6,31 +6,30 @@ graphics_processors = graphics_utils.get_composited_cargo_processors(template='b
                                               copy_block_top_offsets = [40],
                                               paste_top_offset = 40)
 
-consist = RVConsist(id = 'broadrock',
-              base_numeric_id = 100,
-              title = 'Broadrock [Mining Truck]',
-              replacement_id = '-none',
-              power = 400,
-              semi_truck = True,
-              speed = 40, # dibbled up above RL for game balance
-              type_base_running_cost_points = 20, # dibble running costs for game balance
-              vehicle_life = 40,
-              intro_date = 1947)
+consist = RVConsist(vehicle_type = DumpHauler,
+                id = 'broadrock',
+                base_numeric_id = 100,
+                title = 'Broadrock [Mining Truck]',
+                replacement_id = '-none',
+                power = 400,
+                semi_truck = True,
+                speed = 40, # dibbled up above RL for game balance
+                type_base_running_cost_points = 20, # dibble running costs for game balance
+                vehicle_life = 40,
+                intro_date = 1947)
 
-consist.add_unit(DumpHauler(consist = consist,
-                        weight = 35,
-                        capacity = 0,
-                        vehicle_length = 2,
-                        semi_truck_shift_offset_jank = 3,
-                        effects = ['EFFECT_SPRITE_AIRCRAFT_BREAKDOWN_SMOKE, -2, 1, 10', 'EFFECT_SPRITE_AIRCRAFT_BREAKDOWN_SMOKE, -2, -1, 10'],
-                        always_use_same_spriterow = True,
-                        spriterow_num = 0))
+consist.add_unit(weight = 35,
+                capacity = 0,
+                vehicle_length = 2,
+                semi_truck_shift_offset_jank = 3,
+                effects = ['EFFECT_SPRITE_AIRCRAFT_BREAKDOWN_SMOKE, -2, 1, 10', 'EFFECT_SPRITE_AIRCRAFT_BREAKDOWN_SMOKE, -2, -1, 10'],
+                always_use_same_spriterow = True,
+                spriterow_num = 0)
 
-consist.add_unit(DumpHauler(consist = consist,
-                        weight = 0, # put the weight on the truck to compensate for lack of TE when loaded
-                        capacity = 55, # much bigger is not much better here
-                        vehicle_length = 6,
-                        spriterow_adjust = {'multiplier': 0, 'offset': 1}))
+consist.add_unit(weight = 0, # put the weight on the truck to compensate for lack of TE when loaded
+                capacity = 55, # much bigger is not much better here
+                vehicle_length = 6,
+                spriterow_adjust = {'multiplier': 0, 'offset': 1})
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,

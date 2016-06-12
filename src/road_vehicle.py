@@ -26,6 +26,7 @@ class Consist(object):
        Each consist comprises one or more 'units' (visible).
     """
     def __init__(self, **kwargs):
+        self.vehicle_type = kwargs.get('vehicle_type')
         self.id = kwargs.get('id', None)
         self.vehicle_module_path = inspect.stack()[2][1]
         # setup properties for this consist (props either shared for all vehicles, or placed on lead vehicle of consist)
@@ -53,7 +54,8 @@ class Consist(object):
     def add_model_variant(self, intro_date, end_date, spritesheet_suffix, graphics_processor=None):
         self.model_variants.append(ModelVariant(intro_date, end_date, spritesheet_suffix, graphics_processor))
 
-    def add_unit(self, vehicle, repeat=1):
+    def add_unit(self, repeat=1, **kwargs):
+        vehicle = self.vehicle_type(consist=self, **kwargs)
         # this is a little overly complex, as it is lifted from Iron Horse, which has more complex vehicles
         count = len(set(self.slices))
         slice = vehicle

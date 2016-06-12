@@ -6,28 +6,27 @@ graphics_processors = graphics_utils.get_composited_cargo_processors(template='w
                                               copy_block_top_offsets = [40],
                                               paste_top_offset = 40)
 
-consist = RVConsist(id = 'wookey',
-              base_numeric_id = 490,
-              title = 'Wookey [Dump Truck]',
-              replacement_id = '-none',
-              semi_truck = True,
-              vehicle_life = 40,
-              intro_date = 1974)
+consist = RVConsist(vehicle_type = DumpHauler,
+                id = 'wookey',
+                base_numeric_id = 490,
+                title = 'Wookey [Dump Truck]',
+                replacement_id = '-none',
+                semi_truck = True,
+                vehicle_life = 40,
+                intro_date = 1974)
 
-consist.add_unit(DumpHauler(consist = consist,
-                        weight = 7,
-                        capacity = 0,
-                        vehicle_length = 2,
-                        semi_truck_shift_offset_jank = 2,
-                        effects = ['EFFECT_SPRITE_DIESEL, -2, 1, 10', 'EFFECT_SPRITE_DIESEL, -2, -1, 10'],
-                        always_use_same_spriterow = True,
-                        spriterow_num = 0))
+consist.add_unit(weight = 7,
+                capacity = 0,
+                vehicle_length = 2,
+                semi_truck_shift_offset_jank = 2,
+                effects = ['EFFECT_SPRITE_DIESEL, -2, 1, 10', 'EFFECT_SPRITE_DIESEL, -2, -1, 10'],
+                always_use_same_spriterow = True,
+                spriterow_num = 0)
 
-consist.add_unit(DumpHauler(consist = consist,
-                        weight = 8,
-                        capacity = 40,
-                        vehicle_length = 7,
-                        spriterow_adjust = {'multiplier': 0, 'offset': 1}))
+consist.add_unit(weight = 8,
+                capacity = 40,
+                vehicle_length = 7,
+                spriterow_adjust = {'multiplier': 0, 'offset': 1})
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,

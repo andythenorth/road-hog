@@ -6,20 +6,20 @@ graphics_processors = graphics_utils.get_composited_cargo_processors(template='h
                                               copy_block_top_offsets = [10],
                                               paste_top_offset = 10)
 
-consist = RVConsist(id = 'hawkmoor',
-              base_numeric_id = 760,
-              title = 'Hawkmoor [Dump Tram]',
-              roadveh_flag_tram = True,
-              replacement_id = '-none',
-              vehicle_life = 40,
-              intro_date = 1902)
+consist = RVConsist(vehicle_type = DumpHauler,
+                id = 'hawkmoor',
+                base_numeric_id = 760,
+                title = 'Hawkmoor [Dump Tram]',
+                roadveh_flag_tram = True,
+                replacement_id = '-none',
+                vehicle_life = 40,
+                intro_date = 1902)
 
-consist.add_unit(DumpHauler(consist = consist,
-                        weight = 12,
-                        capacity = 36,
-                        vehicle_length = 8,
-                        effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 10'],
-                        spriterow_num = 0), repeat=2)
+consist.add_unit(weight = 12,
+                capacity = 36,
+                vehicle_length = 8,
+                effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 10'],
+                spriterow_num = 0, repeat=2)
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,

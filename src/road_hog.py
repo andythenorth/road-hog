@@ -27,7 +27,10 @@ from rosters import registered_rosters
 from rosters import brit
 brit.roster.register()
 
-from rosters import wasteland
+#from rosters import test
+#test.roster.register()
+
+#from rosters import wasteland
 #wasteland.roster.register()
 
 def get_consists_in_buy_menu_order():
