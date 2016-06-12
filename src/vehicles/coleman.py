@@ -3,14 +3,15 @@ import graphics_processor.utils as graphics_utils
 from road_vehicle import RVConsist, DumpHauler
 
 graphics_processors = graphics_utils.get_bulk_cargo_processors(template='coleman_template.png',
-                                              copy_block_top_offsets = [10, 100],
-                                              paste_top_offset = 10)
+                                              copy_block_top_offsets = [40],
+                                              paste_top_offset = 40)
 
 consist = RVConsist(id = 'coleman',
               base_numeric_id = 910,
               title = 'Coleman [Dump Truck]',
               replacement_id = '-none',
               power = 130,
+              semi_truck = True,
               vehicle_life = 40,
               intro_date = 1920)
 

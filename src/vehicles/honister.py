@@ -15,14 +15,14 @@ consist = RVConsist(id = 'honister',
 
 consist.add_unit(DumpHauler(consist = consist,
                         weight = 6,
-                        capacity = 0,
+                        capacity = 15,
                         vehicle_length = 5,
                         effects = ['EFFECT_SPRITE_DIESEL, -2, 1, 10'],
                         spriterow_num = 0))
 
 consist.add_unit(DumpHauler(consist = consist,
                         weight = 6,
-                        capacity = 30,
+                        capacity = 15,
                         vehicle_length = 4,
                         spriterow_adjust = {'multiplier': 2, 'offset': 1}))
 
