@@ -2,10 +2,6 @@ import global_constants
 import graphics_processor.utils as graphics_utils
 from road_vehicle import RVConsist, DumpHauler
 
-graphics_processors = graphics_utils.get_composited_cargo_processors(template='broadrock_template.png',
-                                              copy_block_top_offsets = [40],
-                                              paste_top_offset = 40)
-
 consist = RVConsist(vehicle_type = DumpHauler,
                 id = 'broadrock',
                 base_numeric_id = 100,
@@ -30,6 +26,10 @@ consist.add_unit(weight = 0, # put the weight on the truck to compensate for lac
                 capacity = 55, # much bigger is not much better here
                 vehicle_length = 6,
                 spriterow_adjust = {'multiplier': 0, 'offset': 1})
+
+graphics_processors = consist.get_graphics_processors(template='broadrock_template.png',
+                                                      copy_block_top_offsets = [40],
+                                                      paste_top_offset = 40)
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,

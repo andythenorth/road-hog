@@ -140,6 +140,9 @@ class Consist(object):
     def get_name(self):
         return "string(STR_NAME_" + self.id +", string(" + self.get_str_name_suffix() + "))"
 
+    def get_graphics_processors(self, **kwargs):
+        return graphics_utils.get_composited_cargo_processors(**kwargs)
+
     def any_slice_offers_autorefit(self):
         offers_autorefit = False
         for slice in self.slices:

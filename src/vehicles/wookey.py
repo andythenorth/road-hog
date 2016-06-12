@@ -2,10 +2,6 @@ import global_constants
 import graphics_processor.utils as graphics_utils
 from road_vehicle import RVConsist, DumpHauler
 
-graphics_processors = graphics_utils.get_composited_cargo_processors(template='wookey_template.png',
-                                              copy_block_top_offsets = [40],
-                                              paste_top_offset = 40)
-
 consist = RVConsist(vehicle_type = DumpHauler,
                 id = 'wookey',
                 base_numeric_id = 490,
@@ -27,6 +23,10 @@ consist.add_unit(weight = 8,
                 capacity = 40,
                 vehicle_length = 7,
                 spriterow_adjust = {'multiplier': 0, 'offset': 1})
+
+graphics_processors = consist.get_graphics_processors(template='wookey_template.png',
+                                                      copy_block_top_offsets = [40],
+                                                      paste_top_offset = 40)
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,

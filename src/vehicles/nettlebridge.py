@@ -2,10 +2,6 @@ import global_constants
 import graphics_processor.utils as graphics_utils
 from road_vehicle import RVConsist, DumpHauler
 
-graphics_processors = graphics_utils.get_composited_cargo_processors(template='nettlebridge_template.png',
-                                              copy_block_top_offsets = [10],
-                                              paste_top_offset = 10)
-
 consist = RVConsist(vehicle_type = DumpHauler,
                 id = 'nettlebridge',
                 base_numeric_id = 310,
@@ -20,6 +16,10 @@ consist.add_unit(weight = 12,
                 vehicle_length = 8,
                 effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 10'],
                 spriterow_num = 0, repeat=2)
+
+graphics_processors = consist.get_graphics_processors(template='nettlebridge_template.png',
+                                                      copy_block_top_offsets = [10],
+                                                      paste_top_offset = 10)
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,
