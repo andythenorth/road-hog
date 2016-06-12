@@ -35,7 +35,7 @@ def get_bulk_cargo_recolour_maps():
 
     # we just return a fixed-order tuple here, don't worry about the labels...
     # ...we have to manually specify the spriterow<->cargo label mapping in the wagon definition anyway
-    # GRVl is also reused for generic unknown cargos, and is in position 0 for this reason
+    # GRVL is also reused for generic unknown cargos, and is in position 0 for this reason
     # (there is no mapping for unknown cargos, just uses first spriteset)
     return (GRVL, IORE, CORE, AORE, SAND, COAL, CLAY, SCMT, PHOS)
 
