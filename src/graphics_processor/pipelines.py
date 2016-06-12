@@ -97,7 +97,7 @@ class SwapCompanyColoursPipeline(Pipeline):
 register(SwapCompanyColoursPipeline())
 
 
-class ExtendSpriterowsForRecolouredCargosPipeline(Pipeline):
+class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
     """"
         Extends a cargo carrier spritesheet with variations on cargo colours.
         Became convoluted - was copied from Iron Horse where the case is simple, always just 1 wagon.
@@ -107,7 +107,7 @@ class ExtendSpriterowsForRecolouredCargosPipeline(Pipeline):
     """
     def __init__(self):
         # this should be sparse, don't store any consist or variant info in Pipelines, pass them at render time
-        super(ExtendSpriterowsForRecolouredCargosPipeline, self).__init__("extend_spriterows_for_recoloured_cargos_pipeline")
+        super(ExtendSpriterowsForCompositedCargosPipeline, self).__init__("extend_spriterows_for_composited_cargos_pipeline")
 
     def render(self, variant, consist):
         # there are various options for controlling the crop box, I haven't documented them - read example uses to figure them out
@@ -156,4 +156,4 @@ class ExtendSpriterowsForRecolouredCargosPipeline(Pipeline):
         result = self.render_common(variant, consist, input_image, units, options)
         return result
 
-register(ExtendSpriterowsForRecolouredCargosPipeline())
+register(ExtendSpriterowsForCompositedCargosPipeline())

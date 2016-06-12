@@ -52,7 +52,7 @@ class GraphicsProcessorFactory(object):
 
 
 def get_bulk_cargo_processors(template, copy_block_top_offsets, paste_top_offset):
-    # handles recolouring and spritesheet extension for bulk (mineral) cargos
+    # handles compositing (spritesheet extension and recoloring) for bulk (mineral) cargos
     # also provides optional 2CC recolor
     recolour_maps = get_bulk_cargo_recolour_maps()
     graphics_options_master = {'template': '',
@@ -65,6 +65,6 @@ def get_bulk_cargo_processors(template, copy_block_top_offsets, paste_top_offset
     graphics_options_1['template'] = template
     graphics_options_2 = dict((k, v) for (k, v) in graphics_options_1.items())
     graphics_options_2['swap_company_colours'] = True
-    graphics_processor_1 = GraphicsProcessorFactory('extend_spriterows_for_recoloured_cargos_pipeline', graphics_options_1)
-    graphics_processor_2 = GraphicsProcessorFactory('extend_spriterows_for_recoloured_cargos_pipeline', graphics_options_2)
+    graphics_processor_1 = GraphicsProcessorFactory('extend_spriterows_for_composited_cargos_pipeline', graphics_options_1)
+    graphics_processor_2 = GraphicsProcessorFactory('extend_spriterows_for_composited_cargos_pipeline', graphics_options_2)
     return (graphics_processor_1, graphics_processor_2)
