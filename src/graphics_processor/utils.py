@@ -1,6 +1,7 @@
 from graphics_processor import graphics_constants
 from graphics_processor import registered_pipelines
 
+
 def make_colour_map(input, output, map_size):
     result = {}
     for i in range(map_size):
@@ -58,7 +59,7 @@ def get_bulk_cargo_processors(template, copy_block_top_offsets, paste_top_offset
                                'recolour_maps': recolour_maps,
                                'copy_block_top_offsets': copy_block_top_offsets,
                                'paste_top_offset': paste_top_offset,
-                               'num_rows_per_unit': 2}
+                               'num_rows_per_unit': graphics_constants.load_states_num_rows_per_unit}
 
     graphics_options_1 = dict((k, v) for (k, v) in graphics_options_master.items())
     graphics_options_1['template'] = template

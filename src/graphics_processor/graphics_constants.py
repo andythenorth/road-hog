@@ -12,3 +12,6 @@ for i in range(8):
 spriterow_height = 30
 spritesheet_top_margin = 10
 spritesheet_width = 455
+
+# if loading sprites are shown, there's always one loading state and one loaded state (empty/default isn't counted here)
+load_states_num_rows_per_unit = 2

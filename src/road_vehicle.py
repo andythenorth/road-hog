@@ -550,8 +550,10 @@ class DumpHauler(RoadVehicle):
                        'SAND': [4], 'COAL': [5], 'CLAY': [6], 'SCMT': [7], 'PHOS': [8]}
             self.generic_cargo_rows = [0]
             # handle different kinds of trucks (single unit, tractor-trailer, waggon+drag), which causes variations in start row per unit (bit janky) :P
-            # offset = spriterow num in template, multiplier = ~number of preceding units in consist
-            self.spriterow_num = self.spriterow_adjust['offset'] + self.spriterow_adjust['multiplier'] * self.num_cargo_rows
+            # !! I failed to remember what offset + multiplier actually do, but it works :(
+            # offset = position in sequence of sprite groups in template (group = all empty / loading / loaded rows for a vehicle)
+            # multiplier = total count of loading/loading spriterows in groups preceeding this one, and could probably be done better, but eh
+            self.spriterow_num = self.spriterow_adjust['offset'] + (self.spriterow_adjust['multiplier'] * self.num_cargo_rows)
 
 
 class FlatBedHauler(RoadVehicle):
@@ -636,9 +638,10 @@ class Tanker(RoadVehicle):
         else:
             self.template = 'vehicle_with_cargo_specific_liveries.pynml'
             # handle different kinds of trucks (single unit, tractor-trailer, waggon+drag), which causes variations in start row per unit (bit janky) :P
-            # offset = spriterow num in template, multiplier = ~number of preceding units in consist
-            self.spriterow_num = self.spriterow_adjust['offset'] + self.spriterow_adjust['multiplier'] * self.num_cargo_rows
-
+            # !! I failed to remember what offset + multiplier actually do, but it works :(
+            # offset = position in sequence of sprite groups in template (group = all empty / loading / loaded rows for a vehicle)
+            # multiplier = total count of loading/loading spriterows in groups preceeding this one, and could probably be done better, but eh
+            self.spriterow_num = self.spriterow_adjust['offset'] + (self.spriterow_adjust['multiplier'] * self.num_cargo_rows)
 
 class EdiblesTanker(RoadVehicle):
     """
