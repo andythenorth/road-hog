@@ -11,14 +11,14 @@ consist = RVConsist(vehicle_type = RefrigeratedHauler,
                 intro_date = 2007)
 
 consist.add_unit(weight = 17,
-                capacity = 20,
+                capacity = 0,
                 vehicle_length = 2,
                 semi_truck_shift_offset_jank = 3,
                 effects = ['EFFECT_SPRITE_DIESEL, -2, 1, 10'],
                 spriterow_num = 0)
 
 consist.add_unit(weight = 10,
-                capacity = 20,
+                capacity = 40,
                 vehicle_length = 6,
                 spriterow_num = 1)
 

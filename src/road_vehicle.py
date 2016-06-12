@@ -67,16 +67,20 @@ class Consist(object):
         slice.slice_length = vehicle.vehicle_length
         slice.spriterow_num = vehicle.spriterow_num
 
-        if self.semi_truck and count == 1:
-            # semi-trucks need some capacity moved to lead unit to gain sufficient TE
-            # this automagically does that, allowing capacities to be defined simply on the trailer in the vehicle definition
-            # sometimes a greater good requires a small evil, although this will probably go wrong eh?
-            if repeat != 1:
-                # guard against unintended application of this to anything except first trailer
-                utils.echo_message("Error: " + self.id + ".  Semi-truck cannot repeat first trailer in consist")
-            specified_capacities = slice.capacities
-            slice.capacities = [int(math.floor(0.5 * capacity)) for capacity in specified_capacities]
-            self.slices[0].capacities = [int(math.ceil(0.5 * capacity)) for capacity in specified_capacities]
+        if self.semi_truck:
+            if count == 0 and kwargs.get('capacity', 0) != 0:
+                # guard against lead unit having capacity set in declared props (won't break, just wrong)
+                utils.echo_message("Error: " + self.id + ".  First unit of semi-truck must have capacity 0")
+            if count == 1:
+                # semi-trucks need some capacity moved to lead unit to gain sufficient TE
+                # this automagically does that, allowing capacities to be defined simply on the trailer in the vehicle definition
+                # sometimes a greater good requires a small evil, although this will probably go wrong eh?
+                if repeat != 1:
+                    # guard against unintended application of this to anything except first trailer
+                    utils.echo_message("Error: " + self.id + ".  Semi-truck cannot repeat first trailer in consist")
+                specified_capacities = slice.capacities
+                slice.capacities = [int(math.floor(0.5 * capacity)) for capacity in specified_capacities]
+                self.slices[0].capacities = [int(math.ceil(0.5 * capacity)) for capacity in specified_capacities]
 
         for repeat_num in range(repeat):
             self.slices.append(slice)
