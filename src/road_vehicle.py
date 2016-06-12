@@ -37,8 +37,8 @@ class Consist(object):
         self.replacement_id = kwargs.get('replacement_id', None)
         self.vehicle_life = kwargs.get('vehicle_life', None)
         self._power = kwargs.get('power', None)
-        # semi-trucks need some special handling (used to adjust capacity to get correct TE, possibly other things)
-        self.semi_truck = kwargs.get('semi_truck', False)
+        # semi-trucks need some redistribution of capacity to get correct TE (don't use this of other magic, bad idea)
+        self.semi_truck_so_redistribute_capacity = kwargs.get('semi_truck_so_redistribute_capacity', False)
         self._speed = kwargs.get('speed', None)
         # arbitrary adjustments of points that can be applied to adjust buy cost and running cost, over-ride in consist as needed
         # values can be -ve or +ve to dibble specific vehicles (but total calculated points cannot exceed 255)
@@ -67,7 +67,7 @@ class Consist(object):
         slice.slice_length = vehicle.vehicle_length
         slice.spriterow_num = vehicle.spriterow_num
 
-        if self.semi_truck:
+        if self.semi_truck_so_redistribute_capacity:
             if count == 0 and kwargs.get('capacity', 0) != 0:
                 # guard against lead unit having capacity set in declared props (won't break, just wrong)
                 utils.echo_message("Error: " + self.id + ".  First unit of semi-truck must have capacity 0")
@@ -145,6 +145,8 @@ class Consist(object):
         return "string(STR_NAME_" + self.id +", string(" + self.get_str_name_suffix() + "))"
 
     def get_graphics_processors(self, **kwargs):
+        # just a wrapper, the vehicle sub-class actually provides the processors
+        #print(self.id, [(slice.numeric_id, slice.always_use_same_spriterow) for slice in self.slices])
         return graphics_utils.get_composited_cargo_processors(**kwargs)
 
     def any_slice_offers_autorefit(self):

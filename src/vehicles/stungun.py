@@ -6,7 +6,7 @@ consist = RVConsist(vehicle_type = LivestockHauler,
                 base_numeric_id = 430,
                 title = 'Stungun [Livestock Truck]',
                 replacement_id = '-none',
-                semi_truck = True,
+                semi_truck_so_redistribute_capacity = True,
                 vehicle_life = 40,
                 intro_date = 1999)
 

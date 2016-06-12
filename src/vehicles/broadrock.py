@@ -8,7 +8,7 @@ consist = RVConsist(vehicle_type = DumpHauler,
                 title = 'Broadrock [Mining Truck]',
                 replacement_id = '-none',
                 power = 400,
-                semi_truck = True,
+                semi_truck_so_redistribute_capacity = True,
                 speed = 40, # dibbled up above RL for game balance
                 type_base_running_cost_points = 20, # dibble running costs for game balance
                 vehicle_life = 40,

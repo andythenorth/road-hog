@@ -8,7 +8,7 @@ consist = RVConsist(vehicle_type = DumpHauler,
                 title = 'Coleman [Dump Truck]',
                 replacement_id = '-none',
                 power = 130,
-                semi_truck = True,
+                semi_truck_so_redistribute_capacity = True,
                 vehicle_life = 40,
                 intro_date = 1920)
 

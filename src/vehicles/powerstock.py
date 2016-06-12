@@ -7,7 +7,7 @@ consist = RVConsist(vehicle_type = DumpHauler,
                 base_numeric_id = 340,
                 title = 'Powerstock [Dump Truck]',
                 replacement_id = '-none',
-                semi_truck = True,
+                semi_truck_so_redistribute_capacity = True,
                 vehicle_life = 40,
                 intro_date = 2001)
 

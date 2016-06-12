@@ -6,7 +6,7 @@ consist = RVConsist(vehicle_type = OpenHauler,
                 base_numeric_id = 170,
                 title = 'Yeoman [Open Truck]',
                 replacement_id = '-none',
-                semi_truck = True,
+                semi_truck_so_redistribute_capacity = True,
                 vehicle_life = 40,
                 intro_date = 1968)
 

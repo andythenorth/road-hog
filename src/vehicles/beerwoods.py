@@ -6,7 +6,7 @@ consist = RVConsist(vehicle_type = EdiblesTanker,
                 base_numeric_id = 420,
                 title = 'Beerwoods [Edibles Tanker Truck]',
                 replacement_id = '-none',
-                semi_truck = True,
+                semi_truck_so_redistribute_capacity = True,
                 vehicle_life = 40,
                 intro_date = 1943)
 
