@@ -2,7 +2,7 @@ import global_constants
 import graphics_processor.utils as graphics_utils
 from road_vehicle import RVConsist, DumpHauler
 
-graphics_processors = graphics_utils.get_bulk_cargo_processors(template='coleman_template.png',
+graphics_processors = graphics_utils.get_composited_cargo_processors(template='coleman_template.png',
                                               copy_block_top_offsets = [40],
                                               paste_top_offset = 40)
 

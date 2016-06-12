@@ -1,7 +1,7 @@
 import os.path
 currentdir = os.curdir
 
-from pixa import Spritesheet
+from pixa import Spritesheet, pixascan
 from PIL import Image
 
 from graphics_processor import registered_pipelines
@@ -117,39 +117,36 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
         units = []
         # assumes first row from copy_block_top_offset is always the empty state, copied once, remaining rows copied per cargo
         for counter, copy_block_top_offset in enumerate(options['copy_block_top_offsets']):
+            # complicated vehicle/cargo sprites? Look up spriterow_adjust prop on vehicle units will handle offsets to the correct spriterow
             # empty state spriterow
-            # spriterow_adjust prop on vehicle units will handle offsets to the correct spriterow
-            # !! this will need extending further for open trucks, to handle other non-recoloured cargo types
-            # !! probably do that by extending crop_box_source height for empty state to multiple rows ??
-            # !! eh, just automate the open truck cargo sprites? o_O
             base_offset = copy_block_top_offset
             crop_box_source = (0,
                                base_offset,
                                graphics_constants.spritesheet_width,
                                graphics_constants.spriterow_height + base_offset)
-            input_image = Image.open(input_path).crop(crop_box_source)
-            source_spritesheet = self.make_spritesheet_from_image(input_image)
+            vehicle_empty_state_input_image = Image.open(input_path).crop(crop_box_source)
+            # vehicle_empty_state_input_image.show() # comment in to see the image when debugging
+            vehicle_empty_state_input_as_spritesheet = self.make_spritesheet_from_image(vehicle_empty_state_input_image)
             crop_box_dest = (0,
                              0,
                              graphics_constants.spritesheet_width,
                              graphics_constants.spriterow_height)
-            units.append(AppendToSpritesheet(source_spritesheet, crop_box_dest))
-            # cargo spriterows
+            units.append(AppendToSpritesheet(vehicle_empty_state_input_as_spritesheet, crop_box_dest))
+            # bulk cargo spriterows
             base_offset = copy_block_top_offset + graphics_constants.spriterow_height
             crop_box_source = (0,
                                base_offset,
                                graphics_constants.spritesheet_width,
                                base_offset + unit_row_cluster_height)
-            input_image = Image.open(input_path).crop(crop_box_source)
-            source_spritesheet = self.make_spritesheet_from_image(input_image)
+            vehicle_bulk_cargo_state_input_image = Image.open(input_path).crop(crop_box_source)
+            vehicle_bulk_cargo_state_input_as_spritesheet = self.make_spritesheet_from_image(vehicle_bulk_cargo_state_input_image)
             crop_box_dest = (0,
                              0,
                              graphics_constants.spritesheet_width,
                              unit_row_cluster_height)
-            for recolour_map in options['recolour_maps']:
-                units.append(AppendToSpritesheet(source_spritesheet, crop_box_dest))
-                units.append(SimpleRecolour(recolour_map))
-            print(PasteAtMagicPixels([]))
+            for bulk_cargo_recolour_maps in options['bulk_cargo_recolour_maps']:
+                units.append(AppendToSpritesheet(vehicle_bulk_cargo_state_input_as_spritesheet, crop_box_dest))
+                units.append(SimpleRecolour(bulk_cargo_recolour_maps))
 
         if options.get('swap_company_colours', False):
             units.append(SwapCompanyColours())

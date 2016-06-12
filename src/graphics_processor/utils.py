@@ -51,12 +51,14 @@ class GraphicsProcessorFactory(object):
         self.pipeline = registered_pipelines[pipeline_name]
 
 
-def get_bulk_cargo_processors(template, copy_block_top_offsets, paste_top_offset):
-    # handles compositing (spritesheet extension and recoloring) for bulk (mineral) cargos
+def get_composited_cargo_processors(template, copy_block_top_offsets, paste_top_offset):
+    # handles compositing (spritesheet extension and recoloring) for bulk (mineral) cargos and piece goods cargos
     # also provides optional 2CC recolor
-    recolour_maps = get_bulk_cargo_recolour_maps()
+    bulk_cargo_recolour_maps = get_bulk_cargo_recolour_maps()
+    piece_cargo_maps = []
     graphics_options_master = {'template': '',
-                               'recolour_maps': recolour_maps,
+                               'bulk_cargo_recolour_maps': bulk_cargo_recolour_maps,
+                               'piece_cargo_maps': piece_cargo_maps,
                                'copy_block_top_offsets': copy_block_top_offsets,
                                'paste_top_offset': paste_top_offset,
                                'num_rows_per_unit': graphics_constants.load_states_num_rows_per_unit}
