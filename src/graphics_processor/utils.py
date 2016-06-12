@@ -52,7 +52,7 @@ class GraphicsProcessorFactory(object):
 
 
 def get_composited_cargo_processors(template, copy_block_top_offsets, paste_top_offset):
-    # handles compositing (spritesheet extension and recoloring) for bulk (mineral) cargos and piece goods cargos
+    # returns two cargo-compositing graphics processors, one of which flips company colours
     # also provides optional 2CC recolor
     bulk_cargo_recolour_maps = get_bulk_cargo_recolour_maps()
     piece_cargo_maps = []
