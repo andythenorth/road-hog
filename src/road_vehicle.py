@@ -147,7 +147,8 @@ class Consist(object):
     def get_graphics_processors(self, **kwargs):
         # just a wrapper, the vehicle sub-class actually provides the processors
         #print(self.id, [(slice.numeric_id, slice.always_use_same_spriterow) for slice in self.slices])
-        return graphics_utils.get_composited_cargo_processors(**kwargs)
+        template = self.id + '_template.png'
+        return graphics_utils.get_composited_cargo_processors(template = template, **kwargs)
 
     def any_slice_offers_autorefit(self):
         offers_autorefit = False

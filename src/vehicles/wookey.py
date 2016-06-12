@@ -24,8 +24,7 @@ consist.add_unit(weight = 8,
                 vehicle_length = 7,
                 spriterow_adjust = {'multiplier': 0, 'offset': 1})
 
-graphics_processors = consist.get_graphics_processors(template='wookey_template.png',
-                                                      copy_block_top_offsets = [40],
+graphics_processors = consist.get_graphics_processors(copy_block_top_offsets = [40],
                                                       paste_top_offset = 40)
 
 consist.add_model_variant(intro_date=0,

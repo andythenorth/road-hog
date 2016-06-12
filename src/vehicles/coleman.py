@@ -26,8 +26,7 @@ consist.add_unit(weight = 6,
                 vehicle_length = 5,
                 spriterow_adjust = {'multiplier': 0, 'offset': 1})
 
-graphics_processors = consist.get_graphics_processors(template='coleman_template.png',
-                                                      copy_block_top_offsets = [40],
+graphics_processors = consist.get_graphics_processors(copy_block_top_offsets = [40],
                                                       paste_top_offset = 40)
 
 consist.add_model_variant(intro_date=0,
