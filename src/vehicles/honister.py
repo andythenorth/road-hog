@@ -10,15 +10,13 @@ consist = RVConsist(id = 'honister',
               base_numeric_id = 230,
               title = 'Honister [Dump Truck]',
               replacement_id = '-none',
-              semi_truck = True,
               vehicle_life = 40,
               intro_date = 1947)
 
 consist.add_unit(DumpHauler(consist = consist,
                         weight = 6,
                         capacity = 0,
-                        vehicle_length = 2,
-                        semi_truck_shift_offset_jank = 2,
+                        vehicle_length = 5,
                         effects = ['EFFECT_SPRITE_DIESEL, -2, 1, 10'],
                         always_use_same_spriterow = True,
                         spriterow_num = 0))
@@ -26,7 +24,7 @@ consist.add_unit(DumpHauler(consist = consist,
 consist.add_unit(DumpHauler(consist = consist,
                         weight = 6,
                         capacity = 30,
-                        vehicle_length = 5,
+                        vehicle_length = 4,
                         spriterow_adjust = {'multiplier': 0, 'offset': 1}))
 
 consist.add_model_variant(intro_date=0,
