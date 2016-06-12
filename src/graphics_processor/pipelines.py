@@ -6,7 +6,7 @@ from PIL import Image
 
 from graphics_processor import registered_pipelines
 from graphics_processor import graphics_constants
-from graphics_processor.units import SimpleRecolour, SwapCompanyColours, AppendToSpritesheet
+from graphics_processor.units import SimpleRecolour, SwapCompanyColours, PasteAtMagicPixels, AppendToSpritesheet
 
 DOS_PALETTE = Image.open('palette_key.png').palette
 
@@ -149,6 +149,7 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
             for recolour_map in options['recolour_maps']:
                 units.append(AppendToSpritesheet(source_spritesheet, crop_box_dest))
                 units.append(SimpleRecolour(recolour_map))
+            print(PasteAtMagicPixels([]))
 
         if options.get('swap_company_colours', False):
             units.append(SwapCompanyColours())

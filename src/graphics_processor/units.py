@@ -55,6 +55,29 @@ class SwapCompanyColours(ProcessingUnit):
         return spritesheet
 
 
+class PasteAtMagicPixels(ProcessingUnit):
+    """ PasteAtMagicPixels """
+    def __init__(self, magic_pixels_map):
+        self.magic_pixels_map = magic_pixels_map
+        super(PasteAtMagicPixels, self).__init__()
+
+    def render(self, spritesheet):
+        """
+        image_to_paste = self.source_spritesheet.sprites.copy()
+        image_to_paste = image_to_paste.crop((self.crop_box[0], self.crop_box[1], self.crop_box[2], self.crop_box[3]))
+        previous = spritesheet.sprites
+        width = previous.size[0]
+        height = previous.size[1] + image_to_paste.size[1]
+        temp = Image.new('P', (width, height), 255)
+        temp.putpalette(DOS_PALETTE)
+        temp.paste(previous, (0, 0, previous.size[0], previous.size[1]))
+        spritesheet.sprites = temp
+        box = (0, previous.size[1], image_to_paste.size[0], previous.size[1] + image_to_paste.size[1])
+        spritesheet.sprites.paste(image_to_paste, box)
+        """
+        return spritesheet
+
+
 class AppendToSpritesheet(ProcessingUnit):
     """ AppendToSpritesheet """
     """ Always appends at the end vertically.  Insertions and horizontal appending are not supported. """
