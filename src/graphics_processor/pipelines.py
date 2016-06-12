@@ -118,8 +118,10 @@ class ExtendSpriterowsForRecolouredCargosPipeline(Pipeline):
         # assumes first row from copy_block_top_offset is always the empty state, copied once, remaining rows copied per cargo
         for counter, copy_block_top_offset in enumerate(options['copy_block_top_offsets']):
             # empty state spriterow
-            # !! this will need extending for open trucks, to handle other non-recoloured cargo types
+            # spriterow_adjust prop on vehicle units will handle offsets to the correct spriterow
+            # !! this will need extending further for open trucks, to handle other non-recoloured cargo types
             # !! probably do that by extending crop_box_source height for empty state to multiple rows ??
+            # !! eh, just automate the open truck cargo sprites? o_O
             base_offset = copy_block_top_offset
             crop_box_source = (0,
                                base_offset,

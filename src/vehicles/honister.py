@@ -3,8 +3,8 @@ import graphics_processor.utils as graphics_utils
 from road_vehicle import RVConsist, DumpHauler
 
 graphics_processors = graphics_utils.get_bulk_cargo_processors(template='honister_template.png',
-                                              copy_block_top_offsets = [40],
-                                              paste_top_offset = 40)
+                                              copy_block_top_offsets = [10, 100],
+                                              paste_top_offset = 10)
 
 consist = RVConsist(id = 'honister',
               base_numeric_id = 230,
@@ -18,14 +18,13 @@ consist.add_unit(DumpHauler(consist = consist,
                         capacity = 0,
                         vehicle_length = 5,
                         effects = ['EFFECT_SPRITE_DIESEL, -2, 1, 10'],
-                        always_use_same_spriterow = True,
                         spriterow_num = 0))
 
 consist.add_unit(DumpHauler(consist = consist,
                         weight = 6,
                         capacity = 30,
                         vehicle_length = 4,
-                        spriterow_adjust = {'multiplier': 0, 'offset': 1}))
+                        spriterow_adjust = {'multiplier': 2, 'offset': 1}))
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,
