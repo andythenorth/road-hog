@@ -1,5 +1,4 @@
 import global_constants
-import graphics_processor.utils as graphics_utils
 from road_vehicle import RVConsist, DumpHauler
 
 consist = RVConsist(vehicle_type = DumpHauler,

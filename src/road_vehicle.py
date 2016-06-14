@@ -1,6 +1,5 @@
 import global_constants # expose all constants for easy passing to templates
 import utils
-import graphics_processor
 import graphics_processor.pipelines
 import graphics_processor.utils as graphics_utils
 
