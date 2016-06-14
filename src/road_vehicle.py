@@ -22,7 +22,7 @@ from rosters import registered_rosters
 class Consist(object):
     """
        'Vehicles' (appearing in buy menu) are composed as articulated consists.
-       Each consist comprises one or more 'units' (visible).
+       Each consist comprises one or more vehicle 'units'.
     """
     def __init__(self, **kwargs):
         self.vehicle_type = kwargs.get('vehicle_type')
