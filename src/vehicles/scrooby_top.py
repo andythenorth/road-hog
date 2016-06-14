@@ -15,13 +15,13 @@ consist.add_unit(weight = 30,
                 capacity = 0,
                 vehicle_length = 6,
                 effect_spawn_model = 'EFFECT_SPAWN_MODEL_STEAM',
-                effects = ['EFFECT_SPRITE_STEAM, -3, 0, 12', 'EFFECT_SPRITE_STEAM, 1, 0, 12'])
+                effects = ['EFFECT_SPRITE_STEAM, -3, 0, 12', 'EFFECT_SPRITE_STEAM, 1, 0, 12'],
+                always_use_same_spriterow = True)
 
 consist.add_unit(weight = 2,
                 capacity = 12,
                 vehicle_length = 3,
-                spriterow_adjust = {'multiplier': 0, 'offset': 1},
-                repeat=4)
+                repeat = 4)
 
 graphics_processors = consist.get_graphics_processors(copy_block_top_offsets = [40],
                                                       paste_top_offset = 40)

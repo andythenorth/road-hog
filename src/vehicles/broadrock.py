@@ -23,8 +23,7 @@ consist.add_unit(weight = 35,
 
 consist.add_unit(weight = 0, # put the weight on the truck to compensate for lack of TE when loaded
                 capacity = 55, # much bigger is not much better here
-                vehicle_length = 6,
-                spriterow_adjust = {'multiplier': 0, 'offset': 1})
+                vehicle_length = 6)
 
 graphics_processors = consist.get_graphics_processors(template='broadrock_template.png',
                                                       copy_block_top_offsets = [40],

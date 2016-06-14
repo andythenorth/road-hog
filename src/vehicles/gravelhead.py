@@ -19,8 +19,7 @@ consist.add_unit(weight = 10,
 
 consist.add_unit(weight = 5,
                 capacity = 12,
-                vehicle_length = 5,
-                        spriterow_adjust = {'multiplier': 2, 'offset': 1})
+                vehicle_length = 5)
 
 graphics_processors = consist.get_graphics_processors(template='gravelhead_template.png',
                                                       copy_block_top_offsets = [10, 100],

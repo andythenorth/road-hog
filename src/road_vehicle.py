@@ -568,10 +568,11 @@ class DumpHauler(RoadVehicle):
                        'SAND': [4], 'COAL': [5], 'CLAY': [6], 'SCMT': [7], 'PHOS': [8]}
             self.generic_cargo_rows = [0]
             # handle different kinds of trucks (single unit, tractor-trailer, waggon+drag), which causes variations in start row per unit (bit janky) :P
-            # !! I failed to remember what offset + multiplier actually do, but it works :(
-            # offset = position in sequence of sprite groups in template (group = all empty / loading / loaded rows for a vehicle)
-            # multiplier = total count of loading/loading spriterows in groups preceeding this one, and could probably be done better, but eh
-            self.spriterow_num = self.spriterow_adjust['offset'] + (self.spriterow_adjust['multiplier'] * self.num_cargo_rows)
+            count = 0
+            for unit in set(self.consist.units):
+                if not unit.always_use_same_spriterow:
+                    count += 1
+            self.spriterow_num = kwargs['spriterow_num'] + (2 * count * self.num_cargo_rows)
 
 
 class FlatBedHauler(RoadVehicle):

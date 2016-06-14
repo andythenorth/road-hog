@@ -20,8 +20,7 @@ consist.add_unit(weight = 8,
 
 consist.add_unit(weight = 8,
                 capacity = 40,
-                vehicle_length = 7,
-                spriterow_adjust = {'multiplier': 0, 'offset': 1})
+                vehicle_length = 7)
 
 graphics_processors = consist.get_graphics_processors(copy_block_top_offsets = [40],
                                                       paste_top_offset = 40)
