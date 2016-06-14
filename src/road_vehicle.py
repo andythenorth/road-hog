@@ -55,24 +55,29 @@ class Consist(object):
         self.model_variants.append(ModelVariant(intro_date, end_date, spritesheet_suffix, graphics_processor))
 
     def add_unit(self, repeat=1, **kwargs):
-        vehicle = self.vehicle_type(consist=self, **kwargs)
         # this is a little overly complex, as it is lifted from Iron Horse, which has more complex vehicles
         count = len(set(self.slices))
-        slice = vehicle
+        vehicle = self.vehicle_type(consist=self, **kwargs)
+        slice = vehicle # !! this is silly in context of the line above eh?
         if count == 0:
             slice.id = self.id # first vehicle gets no numeric id suffix - for compatibility with buy menu list ids etc
         else:
             slice.id = self.id + '_' + str(count)
         slice.numeric_id = self.get_and_verify_numeric_id(count)
-        slice.slice_length = vehicle.vehicle_length
+        slice.slice_length = vehicle.vehicle_length  # !! this is silly, slice = vehicle, legacy from IH?
+        # automatically calculate spriterow_num unless manually over-ridden
+        # !! can't this just be done ahead of creating the object, and passed as a parameter to __init__?
         if vehicle.spriterow_num is not None:
             #print(self.id, vehicle.spriterow_num)
             slice.spriterow_num = vehicle.spriterow_num
         else:
+            # !! is this borked?  Count is a count of set(), i.e counts uniques, not total.  Is that what spriterow_num needs?  Probably is eh?
             slice.spriterow_num = count
+        # !! used during debugging only, remove later
         if count != slice.spriterow_num:
             print(self.id, count, ':', slice.spriterow_num)
 
+        # !! this does make sense to do after vehicle creation, as we need to adjust other slices
         if self.semi_truck_so_redistribute_capacity:
             if count == 0 and kwargs.get('capacity', 0) != 0:
                 # guard against lead unit having capacity set in declared props (won't break, just wrong)
@@ -304,10 +309,10 @@ class RoadVehicle(object):
         # for cases where the template handles cargo, but some units in the consist might not show cargo, e.g. tractor units etc
         # can also be used to suppress compile failures during testing when spritesheet is unfinished (missing rows etc)
         self.always_use_same_spriterow = kwargs.get('always_use_same_spriterow', False)
-        # spriterow_num, first row = 0
-        self.spriterow_num = kwargs.get('spriterow_num', None)
         # optional - used instead of spriterow_num when generating cargo sprites with pixa
         self.spriterow_adjust = kwargs.get('spriterow_adjust', {'multiplier': 0, 'offset': 0})
+        # !! refactor this - is it defined at init time, or set directly by add_unit() (should be done at init time - what is default value)??
+        self.spriterow_num = kwargs.get('spriterow_num', None)
         # set defaults for props otherwise set by subclass as needed (not set by kwargs as specific models do not over-ride them)
         self.default_cargo = 'PASS' # over-ride in subclass as needed (PASS is sane default)
         self.class_refit_groups = []
