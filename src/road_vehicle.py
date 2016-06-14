@@ -57,20 +57,16 @@ class Consist(object):
     def add_unit(self, repeat=1, **kwargs):
         # this is a little overly complex, as it is lifted from Iron Horse, which has more complex vehicles
         count = len(set(self.slices))
-        vehicle = self.vehicle_type(consist=self, **kwargs)
-        slice = vehicle # !! this is silly in context of the line above eh?
+        slice = self.vehicle_type(consist=self, **kwargs)
         if count == 0:
             slice.id = self.id # first vehicle gets no numeric id suffix - for compatibility with buy menu list ids etc
         else:
             slice.id = self.id + '_' + str(count)
         slice.numeric_id = self.get_and_verify_numeric_id(count)
-        slice.slice_length = vehicle.vehicle_length  # !! this is silly, slice = vehicle, legacy from IH?
         # automatically calculate spriterow_num unless manually over-ridden
         # !! can't this just be done ahead of creating the object, and passed as a parameter to __init__?
-        if vehicle.spriterow_num is not None:
-            #print(self.id, vehicle.spriterow_num)
-            slice.spriterow_num = vehicle.spriterow_num
-        else:
+        if slice.spriterow_num is None:
+            # automated spriterow_num handling, unless it's already specified
             # !! is this borked?  Count is a count of set(), i.e counts uniques, not total.  Is that what spriterow_num needs?  Probably is eh?
             slice.spriterow_num = count
         # !! used during debugging only, remove later
@@ -261,7 +257,7 @@ class Consist(object):
     @property
     def buy_menu_width (self):
         # max sensible width in buy menu is 64px, but RH templates currently drawn at 36px - legacy stuff
-        consist_length = 4 * sum([slice.slice_length for slice in self.slices])
+        consist_length = 4 * sum([slice.vehicle_length for slice in self.slices])
         if consist_length < 36:
             return consist_length + 1 # +1 is pure jank to handle clipped Greenscoe sprite, cba to fix it properly
         else:

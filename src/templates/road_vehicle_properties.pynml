@@ -35,7 +35,7 @@ item(FEAT_ROADVEHS, ${vehicle.id}, ${vehicle.numeric_id}) {
         default_cargo_type:             ${vehicle.default_cargo};
         cargo_age_period:               ${vehicle.cargo_age_period};
         misc_flags:                     bitmask(${vehicle.special_flags}); // nml constants
-        length:                         ${vehicle.slice_length};
+        length:                         ${vehicle.vehicle_length};
         effect_spawn_model:             ${vehicle.effect_spawn_model};
     }
     graphics {
