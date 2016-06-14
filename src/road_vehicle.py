@@ -65,7 +65,7 @@ class Consist(object):
 
         # automatically calculate spriterow_num unless manually over-ridden
         if unit.spriterow_num is None:
-            # automated spriterow_num handling, unless it's already specified
+            # automated spriterow_num handling, unless it's already specified (manually, or by rules in subtype)
             # !! is this borked?  Count is a count of set(), i.e counts uniques, not total.  Is that what spriterow_num needs?  Probably is eh?
             unit.spriterow_num = count
         # !! used during debugging only, remove later
