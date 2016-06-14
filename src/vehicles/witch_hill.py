@@ -16,8 +16,7 @@ consist = RVConsist(vehicle_type = DumpHauler,
 consist.add_unit(weight = 60,
                 capacity = 85, # much bigger is not much better here
                 vehicle_length = 7,
-                effects = ['EFFECT_SPRITE_AIRCRAFT_BREAKDOWN_SMOKE, -2, 1, 10', 'EFFECT_SPRITE_AIRCRAFT_BREAKDOWN_SMOKE, -2, -1, 10'],
-                spriterow_num = 0)
+                effects = ['EFFECT_SPRITE_AIRCRAFT_BREAKDOWN_SMOKE, -2, 1, 10', 'EFFECT_SPRITE_AIRCRAFT_BREAKDOWN_SMOKE, -2, -1, 10'])
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,

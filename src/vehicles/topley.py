@@ -17,8 +17,7 @@ consist = RVConsist(vehicle_type = PaxHauler,
 consist.add_unit(weight = 16,
                 capacity = 90,
                 vehicle_length = 7,
-                visual_effect = 'VISUAL_EFFECT_DIESEL',
-                spriterow_num = 0)
+                visual_effect = 'VISUAL_EFFECT_DIESEL')
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,

@@ -65,7 +65,13 @@ class Consist(object):
             slice.id = self.id + '_' + str(count)
         slice.numeric_id = self.get_and_verify_numeric_id(count)
         slice.slice_length = vehicle.vehicle_length
-        slice.spriterow_num = vehicle.spriterow_num
+        if vehicle.spriterow_num is not None:
+            #print(self.id, vehicle.spriterow_num)
+            slice.spriterow_num = vehicle.spriterow_num
+        else:
+            slice.spriterow_num = count
+        if count != slice.spriterow_num:
+            print(self.id, count, ':', slice.spriterow_num)
 
         if self.semi_truck_so_redistribute_capacity:
             if count == 0 and kwargs.get('capacity', 0) != 0:
@@ -299,7 +305,7 @@ class RoadVehicle(object):
         # can also be used to suppress compile failures during testing when spritesheet is unfinished (missing rows etc)
         self.always_use_same_spriterow = kwargs.get('always_use_same_spriterow', False)
         # spriterow_num, first row = 0
-        self.spriterow_num = kwargs.get('spriterow_num', 0)
+        self.spriterow_num = kwargs.get('spriterow_num', None)
         # optional - used instead of spriterow_num when generating cargo sprites with pixa
         self.spriterow_adjust = kwargs.get('spriterow_adjust', {'multiplier': 0, 'offset': 0})
         # set defaults for props otherwise set by subclass as needed (not set by kwargs as specific models do not over-ride them)

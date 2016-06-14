@@ -13,13 +13,11 @@ consist = RVConsist(vehicle_type = OpenHauler,
 consist.add_unit(weight = 7,
                 vehicle_length = 2,
                 semi_truck_shift_offset_jank = 2,
-                visual_effect = 'VISUAL_EFFECT_DIESEL',
-                spriterow_num = 0)
+                visual_effect = 'VISUAL_EFFECT_DIESEL')
 
 consist.add_unit(weight = 5,
                 capacity = 40,
-                vehicle_length = 7,
-                spriterow_num = 1)
+                vehicle_length = 7)
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,

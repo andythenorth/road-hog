@@ -18,8 +18,7 @@ consist.add_unit(weight = 6,
                 semi_truck_shift_offset_jank = 2,
                 effect_spawn_model = 'EFFECT_SPAWN_MODEL_STEAM',
                 effects = ['EFFECT_SPRITE_STEAM, -3, 0, 12'],
-                always_use_same_spriterow = True,
-                spriterow_num = 0)
+                always_use_same_spriterow = True)
 
 consist.add_unit(weight = 6,
                 capacity = 24,

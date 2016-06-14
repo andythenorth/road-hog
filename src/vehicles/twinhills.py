@@ -14,18 +14,15 @@ consist = RVConsist(vehicle_type = PaxHauler,
 consist.add_unit(weight = 18,
                 capacity = 80,
                 vehicle_length = 7,
-                effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 10'],
-                spriterow_num = 0)
+                effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 10'])
 
 consist.add_unit(weight = 18,
                 capacity = 80,
-                vehicle_length = 5,
-                spriterow_num = 1)
+                vehicle_length = 5)
 
 consist.add_unit(weight = 18,
                 capacity = 80,
-                vehicle_length = 7,
-                spriterow_num = 2)
+                vehicle_length = 7)
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,

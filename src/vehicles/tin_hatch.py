@@ -14,8 +14,7 @@ consist = RVConsist(vehicle_type = CourierCar,
 consist.add_unit(weight = 10,
                 capacity = 20,
                 vehicle_length = 6,
-                effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 10'],
-                spriterow_num = 0)
+                effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 10'])
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,

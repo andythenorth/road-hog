@@ -19,8 +19,7 @@ consist.add_unit(weight = 35,
                 vehicle_length = 2,
                 semi_truck_shift_offset_jank = 3,
                 effects = ['EFFECT_SPRITE_AIRCRAFT_BREAKDOWN_SMOKE, -2, 1, 10', 'EFFECT_SPRITE_AIRCRAFT_BREAKDOWN_SMOKE, -2, -1, 10'],
-                always_use_same_spriterow = True,
-                spriterow_num = 0)
+                always_use_same_spriterow = True)
 
 consist.add_unit(weight = 0, # put the weight on the truck to compensate for lack of TE when loaded
                 capacity = 55, # much bigger is not much better here

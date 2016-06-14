@@ -15,7 +15,6 @@ consist.add_unit(weight = 16,
                 capacity = 80,
                 vehicle_length = 7,
                 effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 12'],
-                spriterow_num = 0,
                 repeat=2)
 
 consist.add_model_variant(intro_date=0,

@@ -15,8 +15,7 @@ consist.add_unit(weight = 8,
                 capacity = 25,
                         capacity_mail = 50,
                 vehicle_length = 6,
-                visual_effect = 'VISUAL_EFFECT_DIESEL',
-                spriterow_num = 0)
+                visual_effect = 'VISUAL_EFFECT_DIESEL')
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,

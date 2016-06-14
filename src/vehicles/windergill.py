@@ -12,13 +12,11 @@ consist = RVConsist(vehicle_type = FlatBedHauler,
 consist.add_unit(weight = 10,
                 capacity = 15,
                 vehicle_length = 5,
-                visual_effect = 'VISUAL_EFFECT_DIESEL',
-                spriterow_num = 0)
+                visual_effect = 'VISUAL_EFFECT_DIESEL')
 
 consist.add_unit(weight = 5,
                 capacity = 15,
-                vehicle_length = 4,
-                spriterow_num = 1)
+                vehicle_length = 4)
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,

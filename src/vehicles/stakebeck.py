@@ -13,13 +13,11 @@ consist = RVConsist(vehicle_type = FlatBedHauler,
 consist.add_unit(weight = 20,
                 capacity = 0,
                 vehicle_length = 3,
-                effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 10'],
-                spriterow_num = 0)
+                effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 10'])
 
 consist.add_unit(weight = 5,
                 capacity = 24,
                 vehicle_length = 4,
-                spriterow_num = 1,
                 repeat = 2)
 
 consist.add_model_variant(intro_date=0,

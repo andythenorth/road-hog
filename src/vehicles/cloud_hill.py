@@ -15,8 +15,7 @@ consist.add_unit(weight = 8,
                 vehicle_length = 2,
                 semi_truck_shift_offset_jank = 2,
                 effects = ['EFFECT_SPRITE_DIESEL, -3, 1, 10'],
-                always_use_same_spriterow = True,
-                spriterow_num = 0)
+                always_use_same_spriterow = True)
 
 consist.add_unit(weight = 10,
                 capacity = 40,
