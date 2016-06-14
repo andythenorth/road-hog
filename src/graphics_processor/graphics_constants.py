@@ -14,4 +14,5 @@ spritesheet_top_margin = 10
 spritesheet_width = 455
 
 # if loading sprites are shown, there's always one loading state and one loaded state (empty/default isn't counted here)
+# this doesn't apply to some types which have cargo sprites but no loading state, e.g. tankers
 load_states_num_rows_per_unit = 2

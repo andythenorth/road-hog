@@ -14,13 +14,11 @@ consist = RVConsist(vehicle_type = LogHauler,
 consist.add_unit(weight = 12,
                 capacity = 30,
                 vehicle_length = 7,
-                visual_effect = 'VISUAL_EFFECT_DIESEL',
-                spriterow_num = 0)
+                visual_effect = 'VISUAL_EFFECT_DIESEL')
 
 consist.add_unit(weight = 7,
                 capacity = 30,
-                vehicle_length = 6,
-                spriterow_num = 3)
+                vehicle_length = 6)
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,

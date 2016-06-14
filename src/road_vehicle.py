@@ -56,10 +56,16 @@ class Consist(object):
     def add_unit(self, repeat=1, **kwargs):
         count = len(set(self.units))
 
-        # we automagically set spriterow_num, assuming it corresponds to order units are defined, with option to over-ride
-        # this might be adjusted by vehicle subclass to handle cargo states etc
-        if not 'spriterow_num' in kwargs.keys():
-            kwargs['spriterow_num'] = count
+        # we automagically set spriterow_num_base, assuming it corresponds to order units are defined, with option to over-ride
+        num_preceeding_units_using_same_spriterow = 0
+        num_preceeding_units_not_using_same_spriterow = 0
+        for unit in set(self.units):
+            if not unit.always_use_same_spriterow:
+                num_preceeding_units_not_using_same_spriterow += 1
+            else:
+                num_preceeding_units_using_same_spriterow += 1
+        kwargs['num_preceeding_units_using_same_spriterow'] = num_preceeding_units_using_same_spriterow
+        kwargs['num_preceeding_units_not_using_same_spriterow'] = num_preceeding_units_not_using_same_spriterow
 
         unit = self.vehicle_type(consist=self, **kwargs)
 
@@ -304,10 +310,12 @@ class RoadVehicle(object):
         # for cases where the template handles cargo, but some units in the consist might not show cargo, e.g. tractor units etc
         # can also be used to suppress compile failures during testing when spritesheet is unfinished (missing rows etc)
         self.always_use_same_spriterow = kwargs.get('always_use_same_spriterow', False)
-        # optional - used instead of spriterow_num when generating cargo sprites with pixa
-        self.spriterow_adjust = kwargs.get('spriterow_adjust', {'multiplier': 0, 'offset': 0})
-        self.spriterow_num = kwargs.get('spriterow_num', None)
+        self.num_preceeding_units_using_same_spriterow = kwargs.get('num_preceeding_units_using_same_spriterow', None)
+        self.num_preceeding_units_not_using_same_spriterow = kwargs.get('num_preceeding_units_not_using_same_spriterow', None)
         # set defaults for props otherwise set by subclass as needed (not set by kwargs as specific models do not over-ride them)
+        self.num_cargo_sprite_variants = 0 # over-ridden by subclass when needed
+        self.num_spriterows_per_cargo_variant = 2 # assume loading/loaded is the common case
+        self.has_empty_state_spriterow = True # assume empty state is common case
         self.default_cargo = 'PASS' # over-ride in subclass as needed (PASS is sane default)
         self.class_refit_groups = []
         self.label_refits_allowed = [] # no specific labels needed
@@ -387,6 +395,11 @@ class RoadVehicle(object):
             return result
         else:
             return global_constants.default_road_vehicle_offsets[str(self.vehicle_length)]
+
+    @property
+    def spriterow_num(self):
+        # larks!! Magic is hard!! (a lot of code was deleted to get to this single line)
+        return self.num_preceeding_units_using_same_spriterow + (self.num_preceeding_units_not_using_same_spriterow * self.num_spriterows_per_cargo_variant * self.num_cargo_sprite_variants) + (self.has_empty_state_spriterow * self.num_preceeding_units_not_using_same_spriterow)
 
     @property
     def sg_depot(self):
@@ -559,19 +572,13 @@ class DumpHauler(RoadVehicle):
             self.template = 'vehicle_default.pynml'
         else:
             self.template = 'vehicle_with_visible_cargo.pynml'
-            self.num_cargo_rows = 9
             # cargo rows 0 indexed - 0 = first set of loaded sprites
             # GRVL is in first position as it is re-used for generic unknown cargos
             # mining trucks *do* transport SCMT in this set, realism is not relevant here, went back and forth on this a few times :P
             self.cargo_graphics_mappings = {'GRVL': [0], 'IORE': [1], 'CORE': [2], 'AORE': [3],
                        'SAND': [4], 'COAL': [5], 'CLAY': [6], 'SCMT': [7], 'PHOS': [8]}
+            self.num_cargo_sprite_variants = 9
             self.generic_cargo_rows = [0]
-            # handle different kinds of trucks (single unit, tractor-trailer, waggon+drag), which causes variations in start row per unit (bit janky) :P
-            count = 0
-            for unit in set(self.consist.units):
-                if not unit.always_use_same_spriterow:
-                    count += 1
-            self.spriterow_num = kwargs['spriterow_num'] + (2 * count * self.num_cargo_rows)
 
 
 class FlatBedHauler(RoadVehicle):
@@ -646,7 +653,10 @@ class Tanker(RoadVehicle):
         # Pikka: if people complain that it's unrealistic, tell them "don't do it then"
         # they also change livery at stations if refitted between certain cargo types <shrug>
         self.cargo_graphics_mappings = {'OIL_': [0], 'PETR': [1], 'RFPR': [2]}
-        self.num_cargo_rows = len(self.cargo_graphics_mappings)
+        self.num_cargo_sprite_variants = len(self.cargo_graphics_mappings)
+        self.num_spriterows_per_cargo_variant = 1 # no loading/loaded state for tankers, just cargo-specific liveries
+        self.has_empty_state_spriterow = False
+        self.generic_cargo_rows = [0]
         self.label_refits_allowed = []
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['edible_liquids']
         self.default_cargo = 'OIL_'
@@ -655,11 +665,7 @@ class Tanker(RoadVehicle):
             self.template = 'vehicle_default.pynml'
         else:
             self.template = 'vehicle_with_cargo_specific_liveries.pynml'
-            # handle different kinds of trucks (single unit, tractor-trailer, waggon+drag), which causes variations in start row per unit (bit janky) :P
-            # !! I failed to remember what offset + multiplier actually do, but it works :(
-            # offset = position in sequence of sprite groups in template (group = all empty / loading / loaded rows for a vehicle)
-            # multiplier = total count of loading/loading spriterows in groups preceeding this one, and could probably be done better, but eh
-            self.spriterow_num = self.spriterow_adjust['offset'] + (self.spriterow_adjust['multiplier'] * self.num_cargo_rows)
+
 
 class EdiblesTanker(RoadVehicle):
     """
@@ -690,9 +696,13 @@ class LogHauler(RoadVehicle):
         self.label_refits_disallowed = []
         self.default_cargo = 'WOOD'
         self.loading_speed_multiplier = 2
-        self.num_cargo_rows = 1
+        self.num_cargo_sprite_variants = 1
         self.cargo_graphics_mappings = {'WOOD': [0]}
         self.generic_cargo_rows = [0]
+        if self.always_use_same_spriterow:
+            self.template = 'vehicle_default.pynml'
+        else:
+            self.template = 'vehicle_with_cargo_specific_liveries.pynml'
 
 
 class FoundryHauler(RoadVehicle):

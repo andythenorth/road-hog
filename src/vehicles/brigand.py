@@ -14,19 +14,17 @@ consist = RVConsist(vehicle_type = SuppliesHauler,
 consist.add_unit(weight = 20,
                 capacity = 0,
                 vehicle_length = 6,
-                visual_effect = 'VISUAL_EFFECT_DIESEL',
-                spriterow_num = 0)
+                visual_effect = 'VISUAL_EFFECT_DIESEL')
 
 consist.add_unit(weight = 12,
                 capacity = 45,
-                vehicle_length = 7,
-                spriterow_num = 1)
+                vehicle_length = 7)
 
 consist.add_unit(weight = 20,
                 capacity = 0,
                 vehicle_length = 6,
                 visual_effect = 'VISUAL_EFFECT_DIESEL',
-                spriterow_num = 0)
+                spriterow_num_base = 0)
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,

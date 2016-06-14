@@ -12,8 +12,7 @@ consist = RVConsist(vehicle_type = DumpHauler,
 consist.add_unit(weight = 6,
                 capacity = 15,
                 vehicle_length = 5,
-                effects = ['EFFECT_SPRITE_DIESEL, -2, 1, 10'],
-                spriterow_num = 0)
+                effects = ['EFFECT_SPRITE_DIESEL, -2, 1, 10'])
 
 consist.add_unit(weight = 6,
                 capacity = 15,
