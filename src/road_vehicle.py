@@ -55,7 +55,6 @@ class Consist(object):
         self.model_variants.append(ModelVariant(intro_date, end_date, spritesheet_suffix, graphics_processor))
 
     def add_unit(self, repeat=1, **kwargs):
-        # this is a little overly complex, as it is lifted from Iron Horse, which has more complex vehicles
         count = len(set(self.units))
         unit = self.vehicle_type(consist=self, **kwargs)
         if count == 0:
@@ -63,8 +62,8 @@ class Consist(object):
         else:
             unit.id = self.id + '_' + str(count)
         unit.numeric_id = self.get_and_verify_numeric_id(count)
+
         # automatically calculate spriterow_num unless manually over-ridden
-        # !! can't this just be done ahead of creating the object, and passed as a parameter to __init__?
         if unit.spriterow_num is None:
             # automated spriterow_num handling, unless it's already specified
             # !! is this borked?  Count is a count of set(), i.e counts uniques, not total.  Is that what spriterow_num needs?  Probably is eh?
@@ -73,7 +72,6 @@ class Consist(object):
         if count != unit.spriterow_num:
             print(self.id, count, ':', unit.spriterow_num)
 
-        # !! this does make sense to do after vehicle creation, as we need to adjust other units
         if self.semi_truck_so_redistribute_capacity:
             if count == 0 and kwargs.get('capacity', 0) != 0:
                 # guard against lead unit having capacity set in declared props (won't break, just wrong)
