@@ -56,18 +56,20 @@ class Consist(object):
 
     def add_unit(self, repeat=1, **kwargs):
         count = len(set(self.units))
+
+        # we automagically set spriterow_num, assuming it corresponds to order units are defined, with option to over-ride
+        # this might be adjusted by vehicle subclass to handle cargo states etc
+        if not 'spriterow_num' in kwargs.keys():
+            kwargs['spriterow_num'] = count
+
         unit = self.vehicle_type(consist=self, **kwargs)
+
         if count == 0:
             unit.id = self.id # first vehicle gets no numeric id suffix - for compatibility with buy menu list ids etc
         else:
             unit.id = self.id + '_' + str(count)
         unit.numeric_id = self.get_and_verify_numeric_id(count)
 
-        # automatically calculate spriterow_num unless manually over-ridden
-        if unit.spriterow_num is None:
-            # automated spriterow_num handling, unless it's already specified (manually, or by rules in subtype)
-            # !! is this borked?  Count is a count of set(), i.e counts uniques, not total.  Is that what spriterow_num needs?  Probably is eh?
-            unit.spriterow_num = count
         # !! used during debugging only, remove later
         if count != unit.spriterow_num:
             print(self.id, count, ':', unit.spriterow_num)
