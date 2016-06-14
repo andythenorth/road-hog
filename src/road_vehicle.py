@@ -307,7 +307,6 @@ class RoadVehicle(object):
         self.always_use_same_spriterow = kwargs.get('always_use_same_spriterow', False)
         # optional - used instead of spriterow_num when generating cargo sprites with pixa
         self.spriterow_adjust = kwargs.get('spriterow_adjust', {'multiplier': 0, 'offset': 0})
-        # !! refactor this - is it defined at init time, or set directly by add_unit() (should be done at init time - what is default value)??
         self.spriterow_num = kwargs.get('spriterow_num', None)
         # set defaults for props otherwise set by subclass as needed (not set by kwargs as specific models do not over-ride them)
         self.default_cargo = 'PASS' # over-ride in subclass as needed (PASS is sane default)

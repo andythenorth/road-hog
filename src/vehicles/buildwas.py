@@ -14,13 +14,11 @@ consist.add_unit(weight = 12,
                 capacity = 0,
                 vehicle_length = 3,
                 effect_spawn_model = 'EFFECT_SPAWN_MODEL_STEAM',
-                effects = ['EFFECT_SPRITE_STEAM, -2, 0, 14'],
-                spriterow_num = 0)
+                effects = ['EFFECT_SPRITE_STEAM, -2, 0, 14'])
 
 consist.add_unit(weight = 4,
                 capacity = 24,
                 vehicle_length = 4,
-                spriterow_num = 2,
                 repeat=2)
 
 consist.add_model_variant(intro_date=0,
