@@ -46,8 +46,8 @@ class Consist(object):
         self.type_base_running_cost_points = kwargs.get('type_base_running_cost_points', 0)
         # create a structure to hold model variants
         self.model_variants = []
-        # create structure to hold the slices
-        self.slices = []
+        # create structure to hold the units
+        self.units = []
         # roster is set when the vehicle is registered to a roster, only one roster per vehicle
         self.roster_id = None
 
@@ -56,24 +56,24 @@ class Consist(object):
 
     def add_unit(self, repeat=1, **kwargs):
         # this is a little overly complex, as it is lifted from Iron Horse, which has more complex vehicles
-        count = len(set(self.slices))
-        slice = self.vehicle_type(consist=self, **kwargs)
+        count = len(set(self.units))
+        unit = self.vehicle_type(consist=self, **kwargs)
         if count == 0:
-            slice.id = self.id # first vehicle gets no numeric id suffix - for compatibility with buy menu list ids etc
+            unit.id = self.id # first vehicle gets no numeric id suffix - for compatibility with buy menu list ids etc
         else:
-            slice.id = self.id + '_' + str(count)
-        slice.numeric_id = self.get_and_verify_numeric_id(count)
+            unit.id = self.id + '_' + str(count)
+        unit.numeric_id = self.get_and_verify_numeric_id(count)
         # automatically calculate spriterow_num unless manually over-ridden
         # !! can't this just be done ahead of creating the object, and passed as a parameter to __init__?
-        if slice.spriterow_num is None:
+        if unit.spriterow_num is None:
             # automated spriterow_num handling, unless it's already specified
             # !! is this borked?  Count is a count of set(), i.e counts uniques, not total.  Is that what spriterow_num needs?  Probably is eh?
-            slice.spriterow_num = count
+            unit.spriterow_num = count
         # !! used during debugging only, remove later
-        if count != slice.spriterow_num:
-            print(self.id, count, ':', slice.spriterow_num)
+        if count != unit.spriterow_num:
+            print(self.id, count, ':', unit.spriterow_num)
 
-        # !! this does make sense to do after vehicle creation, as we need to adjust other slices
+        # !! this does make sense to do after vehicle creation, as we need to adjust other units
         if self.semi_truck_so_redistribute_capacity:
             if count == 0 and kwargs.get('capacity', 0) != 0:
                 # guard against lead unit having capacity set in declared props (won't break, just wrong)
@@ -85,12 +85,12 @@ class Consist(object):
                 if repeat != 1:
                     # guard against unintended application of this to anything except first trailer
                     utils.echo_message("Error: " + self.id + ".  Semi-truck cannot repeat first trailer in consist")
-                specified_capacities = slice.capacities
-                slice.capacities = [int(math.floor(0.5 * capacity)) for capacity in specified_capacities]
-                self.slices[0].capacities = [int(math.ceil(0.5 * capacity)) for capacity in specified_capacities]
+                specified_capacities = unit.capacities
+                unit.capacities = [int(math.floor(0.5 * capacity)) for capacity in specified_capacities]
+                self.units[0].capacities = [int(math.ceil(0.5 * capacity)) for capacity in specified_capacities]
 
         for repeat_num in range(repeat):
-            self.slices.append(slice)
+            self.units.append(unit)
 
     def get_and_verify_numeric_id(self, offset):
         numeric_id = self.base_numeric_id + offset
@@ -100,7 +100,7 @@ class Consist(object):
         # non-blocking guard on duplicate IDs
         for id in numeric_id_defender:
             if id == numeric_id:
-                utils.echo_message("Error: consist " + self.id + " slice id collides (" + str(numeric_id) + ") with slices in another consist")
+                utils.echo_message("Error: consist " + self.id + " unit id collides (" + str(numeric_id) + ") with units in another consist")
         numeric_id_defender.append(numeric_id)
         return numeric_id
 
@@ -153,14 +153,14 @@ class Consist(object):
 
     def get_graphics_processors(self, **kwargs):
         # just a wrapper, the vehicle sub-class actually provides the processors
-        #print(self.id, [(slice.numeric_id, slice.always_use_same_spriterow) for slice in self.slices])
+        #print(self.id, [(unit.numeric_id, unit.always_use_same_spriterow) for unit in self.units])
         template = self.id + '_template.png'
         return graphics_utils.get_composited_cargo_processors(template = template, **kwargs)
 
-    def any_slice_offers_autorefit(self):
+    def any_unit_offers_autorefit(self):
         offers_autorefit = False
-        for slice in self.slices:
-            if getattr(slice, 'autorefit', False):
+        for unit in self.units:
+            if getattr(unit, 'autorefit', False):
                 offers_autorefit = True
         return offers_autorefit
 
@@ -197,7 +197,7 @@ class Consist(object):
 
     @property
     def weight(self):
-        consist_weight = sum([getattr(slice, 'weight', 0) for slice in self.slices])
+        consist_weight = sum([getattr(unit, 'weight', 0) for unit in self.units])
         if consist_weight > 63:
             utils.echo_message("Error: consist weight is " + str(consist_weight) + "t for " + self.id + "; must be < 63t")
         return consist_weight
@@ -213,15 +213,15 @@ class Consist(object):
     @property
     def total_capacities(self):
         # total capacity of consist, summed from vehicles (with variants for capacity multipler param)
-        # convenience function used only when the total consist capacity is needed rather than per-slice
+        # convenience function used only when the total consist capacity is needed rather than per-unit
         result = []
         for i in range(3):
             consist_capacity = 0
-            for slice in self.slices:
-                if slice.default_cargo == 'MAIL':
-                    consist_capacity += int(global_constants.mail_multiplier * slice.capacities[i])
+            for unit in self.units:
+                if unit.default_cargo == 'MAIL':
+                    consist_capacity += int(global_constants.mail_multiplier * unit.capacities[i])
                 else:
-                    consist_capacity += slice.capacities[i]
+                    consist_capacity += unit.capacities[i]
             result.append(consist_capacity)
         return result
 
@@ -257,7 +257,7 @@ class Consist(object):
     @property
     def buy_menu_width (self):
         # max sensible width in buy menu is 64px, but RH templates currently drawn at 36px - legacy stuff
-        consist_length = 4 * sum([slice.vehicle_length for slice in self.slices])
+        consist_length = 4 * sum([unit.vehicle_length for unit in self.units])
         if consist_length < 36:
             return consist_length + 1 # +1 is pure jank to handle clipped Greenscoe sprite, cba to fix it properly
         else:
@@ -282,8 +282,8 @@ class Consist(object):
         # templating
         nml_result = ''
         nml_result = nml_result + self.render_articulated_switch()
-        for slice in set(self.slices):
-            nml_result = nml_result + slice.render()
+        for unit in set(self.units):
+            nml_result = nml_result + unit.render()
         return nml_result
 
 
@@ -337,7 +337,7 @@ class RoadVehicle(object):
     @property
     def availability(self):
         # only show vehicle in buy menu if it is first vehicle in consist
-        if self.is_lead_slice_of_consist:
+        if self.is_lead_unit_of_consist:
             return "ALL_CLIMATES"
         else:
             return "NO_CLIMATE"
@@ -355,7 +355,7 @@ class RoadVehicle(object):
                 return 'EFFECT_SPAWN_MODEL_DIESEL'
 
     @property
-    def is_lead_slice_of_consist(self):
+    def is_lead_unit_of_consist(self):
         if self.numeric_id == self.consist.base_numeric_id:
             return True
         else:

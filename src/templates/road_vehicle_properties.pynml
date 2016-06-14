@@ -12,7 +12,7 @@ item(FEAT_ROADVEHS, ${vehicle.id}, ${vehicle.numeric_id}) {
         name:                           ${consist.get_name()};
         cargo_capacity:                 ${vehicle.capacities[0]};
         sprite_id:                      SPRITE_ID_NEW_ROADVEH; //enable new graphics - nml constant
-        <tal:lead_slice_props condition="vehicle.is_lead_slice_of_consist">
+        <tal:lead_unit_props condition="vehicle.is_lead_unit_of_consist">
             introduction_date:              date(${consist.intro_date},01,01); // consist just supplies intro year - openttd randomises intro dates a bit anyway
             power:                          ${consist.power}hp;
             speed:                          ${consist.speed}mph;
@@ -26,7 +26,7 @@ item(FEAT_ROADVEHS, ${vehicle.id}, ${vehicle.numeric_id}) {
             reliability_decay:              20; // default value
             retire_early:                   ${consist.vehicle_life - 4}; // magic from Eddi
             sound_effect:                   SOUND_TRUCK_START;
-        </tal:lead_slice_props>
+        </tal:lead_unit_props>
         refit_cost:                     0; // this needs to be 0 if we want autorefit without using cb
         refittable_cargo_classes:       bitmask(${vehicle.refittable_classes});
         non_refittable_cargo_classes:   bitmask(); // don't set non-refittable classes, increases likelihood of breaking cargo support
@@ -46,7 +46,7 @@ item(FEAT_ROADVEHS, ${vehicle.id}, ${vehicle.numeric_id}) {
         purchase:                       ${vehicle.id}_sg_purchase;
         create_effect:                  ${vehicle.id}_create_visual_effect;
         <!--! no buy menu extra text in this grf by design; extra text is associated with BAD FEATURES -->
-        <tal:add_articulated_parts condition="vehicle.is_lead_slice_of_consist">
+        <tal:add_articulated_parts condition="vehicle.is_lead_unit_of_consist">
             articulated_part: ${consist.id}_articulated_cb_switch;
         </tal:add_articulated_parts>
     }

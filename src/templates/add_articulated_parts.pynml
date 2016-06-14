@@ -1,7 +1,7 @@
-// add the trailing slices to articulated consist
+// add the trailing units to articulated consist
 switch (FEAT_ROADVEHS, SELF, ${consist.id}_articulated_cb_switch, extra_callback_info1) {
-    <tal:trailing_slices repeat="trailing_slice consist.slices">
-        ${repeat.trailing_slice.index}: return ${trailing_slice.id};
-    </tal:trailing_slices>
+    <tal:trailing_units repeat="trailing_unit consist.units">
+        ${repeat.trailing_unit.index}: return ${trailing_unit.id};
+    </tal:trailing_units>
   return CB_RESULT_NO_MORE_ARTICULATED_PARTS;
 }
