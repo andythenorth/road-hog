@@ -56,7 +56,10 @@ class Consist(object):
     def add_unit(self, repeat=1, **kwargs):
         count = len(set(self.units))
 
-        # we automagically set spriterow_num_base, assuming it corresponds to order units are defined, with option to over-ride
+        # we'll need to automagically set spriterow_num
+        # *this* currently depends on being done by add_unit because if relies on the count value when add_unit runs
+        # that could be done in the vehicle function for spriterow_num, by finding the vehicle's index in the units list
+        # not obviously better though
         num_preceding_units_with_same_spriterow_flag_set = 0
         for unit in set(self.units):
             if unit.always_use_same_spriterow:
@@ -303,6 +306,12 @@ class RoadVehicle(object):
         self.capacities = self.get_capacity_variations(kwargs.get('capacity', 0))
         self.loading_speed_multiplier = kwargs.get('loading_speed_multiplier', 1)
         self.cargo_age_period = kwargs.get('cargo_age_period', global_constants.CARGO_AGE_PERIOD)
+        # optional - some consists have sequences like A1-B-A2, where A1 and A2 look the same but have different IDs for implementation reasons
+        # avoid duplicating sprites on the spritesheet by forcing A2 to use A1's spriterow_num, fiddly eh?
+        # ugly, but eh.  Zero-indexed, based on position in units[]
+        # watch out for repeated vehicles in the consist when calculating the value for this)
+        # !! I don't really like this solution, might be better to have the graphics processor duplicate this?, with a simple map of [source:duplicate_to]
+        self.unit_num_providing_spriterow_num = kwargs.get('unit_num_providing_spriterow_num', None)
         # optional - force always using same spriterow
         # for cases where the template handles cargo, but some units in the consist might not show cargo, e.g. tractor units etc
         # can also be used to suppress compile failures during testing when spritesheet is unfinished (missing rows etc)
@@ -395,6 +404,9 @@ class RoadVehicle(object):
 
     @property
     def spriterow_num(self):
+        # ugly forcing of over-ride for out-of-sequence repeating vehicles
+        if self.unit_num_providing_spriterow_num is not None:
+            return self.unit_num_providing_spriterow_num
         # larks!! Magic is hard!! (a lot of code was deleted to get to this relatively simple calculation)
         num_preceding_units_with_cargo_sprites = self.num_preceding_units - self.num_preceding_units_with_same_spriterow_flag_set
 

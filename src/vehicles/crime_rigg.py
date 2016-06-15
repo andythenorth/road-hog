@@ -26,7 +26,7 @@ consist.add_unit(weight = 10,
                 vehicle_length = 5,
                 effect_spawn_model = 'EFFECT_SPAWN_MODEL_STEAM',
                 effects = ['EFFECT_SPRITE_STEAM, -5, 0, 12'],
-                spriterow_num_base = 0)
+                unit_num_providing_spriterow_num = 0)
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,
