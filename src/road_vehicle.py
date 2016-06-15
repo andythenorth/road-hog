@@ -75,10 +75,6 @@ class Consist(object):
             unit.id = self.id + '_' + str(count)
         unit.numeric_id = self.get_and_verify_numeric_id(count)
 
-        # !! used during debugging only, remove later
-        if count != unit.spriterow_num:
-            print(self.id, count, ':', unit.spriterow_num)
-
         if self.semi_truck_so_redistribute_capacity:
             if count == 0 and kwargs.get('capacity', 0) != 0:
                 # guard against lead unit having capacity set in declared props (won't break, just wrong)
