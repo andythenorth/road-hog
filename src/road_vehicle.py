@@ -553,7 +553,7 @@ class OpenHauler(RoadVehicle):
         self.template = 'vehicle_default.pynml'
         self.autorefit = True
         self.class_refit_groups = ['all_freight']
-        self.label_refits_allowed = ['GRAI', 'WHEA', 'MAIZ'] # Iron Horse compatibility
+        self.label_refits_allowed = [] # no specific labels needed
         self.label_refits_disallowed = ['TOUR', 'MAIL']
         self.default_cargo = 'GOOD'
 
