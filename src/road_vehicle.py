@@ -57,15 +57,12 @@ class Consist(object):
         count = len(set(self.units))
 
         # we automagically set spriterow_num_base, assuming it corresponds to order units are defined, with option to over-ride
-        num_preceeding_units_using_same_spriterow = 0
-        num_preceeding_units_not_using_same_spriterow = 0
+        num_preceding_units_with_same_spriterow_flag_set = 0
         for unit in set(self.units):
-            if not unit.always_use_same_spriterow:
-                num_preceeding_units_not_using_same_spriterow += 1
-            else:
-                num_preceeding_units_using_same_spriterow += 1
-        kwargs['num_preceeding_units_using_same_spriterow'] = num_preceeding_units_using_same_spriterow
-        kwargs['num_preceeding_units_not_using_same_spriterow'] = num_preceeding_units_not_using_same_spriterow
+            if unit.always_use_same_spriterow:
+                num_preceding_units_with_same_spriterow_flag_set += 1
+        kwargs['num_preceding_units'] = count
+        kwargs['num_preceding_units_with_same_spriterow_flag_set'] = num_preceding_units_with_same_spriterow_flag_set
 
         unit = self.vehicle_type(consist=self, **kwargs)
 
@@ -310,8 +307,8 @@ class RoadVehicle(object):
         # for cases where the template handles cargo, but some units in the consist might not show cargo, e.g. tractor units etc
         # can also be used to suppress compile failures during testing when spritesheet is unfinished (missing rows etc)
         self.always_use_same_spriterow = kwargs.get('always_use_same_spriterow', False)
-        self.num_preceeding_units_using_same_spriterow = kwargs.get('num_preceeding_units_using_same_spriterow', None)
-        self.num_preceeding_units_not_using_same_spriterow = kwargs.get('num_preceeding_units_not_using_same_spriterow', None)
+        self.num_preceding_units = kwargs.get('num_preceding_units', None)
+        self.num_preceding_units_with_same_spriterow_flag_set = kwargs.get('num_preceding_units_with_same_spriterow_flag_set', None)
         # set defaults for props otherwise set by subclass as needed (not set by kwargs as specific models do not over-ride them)
         self.num_cargo_sprite_variants = 0 # over-ridden by subclass when needed
         self.num_spriterows_per_cargo_variant = 2 # assume loading/loaded is the common case
@@ -398,8 +395,15 @@ class RoadVehicle(object):
 
     @property
     def spriterow_num(self):
-        # larks!! Magic is hard!! (a lot of code was deleted to get to this single line)
-        return self.num_preceeding_units_using_same_spriterow + (self.num_preceeding_units_not_using_same_spriterow * self.num_spriterows_per_cargo_variant * self.num_cargo_sprite_variants) + (self.has_empty_state_spriterow * self.num_preceeding_units_not_using_same_spriterow)
+        # larks!! Magic is hard!! (a lot of code was deleted to get to this relatively simple calculation)
+        num_preceding_units_with_cargo_sprites = self.num_preceding_units - self.num_preceding_units_with_same_spriterow_flag_set
+
+        # some units have multiple spriterows, which can be assumed to be cargo
+        num_preceding_cargo_rows = num_preceding_units_with_cargo_sprites * self.num_spriterows_per_cargo_variant * self.num_cargo_sprite_variants
+        # not all units with cargo have specific empty state rows, so calculate correct number of empty state rows
+        num_preceding_empty_state_rows = self.has_empty_state_spriterow * num_preceding_units_with_cargo_sprites
+
+        return self.num_preceding_units_with_same_spriterow_flag_set + num_preceding_cargo_rows + num_preceding_empty_state_rows
 
     @property
     def sg_depot(self):
