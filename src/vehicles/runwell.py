@@ -10,14 +10,14 @@ consist = RVConsist(vehicle_type = BoxHauler,
                 intro_date = 1910)
 
 consist.add_unit(weight = 12,
-                capacity = 10,
+                capacity = 12,
                 vehicle_length = 5,
                 effect_spawn_model = 'EFFECT_SPAWN_MODEL_STEAM',
                 effects = ['EFFECT_SPRITE_STEAM, -3, 0, 12'])
 
 consist.add_unit(weight = 7,
-                capacity = 15,
-                vehicle_length = 5)
+                capacity = 12,
+                vehicle_length = 4)
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,
