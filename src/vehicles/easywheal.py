@@ -6,17 +6,21 @@ consist = RVConsist(vehicle_type = BoxHauler,
                 base_numeric_id = 160,
                 title = 'Easywheal [Box Truck]',
                 replacement_id = '-none',
+                semi_truck_so_redistribute_capacity = True,
                 vehicle_life = 40,
                 intro_date = 1939)
 
-consist.add_unit(weight = 12,
-                capacity = 15,
-                vehicle_length = 5,
-                visual_effect = 'VISUAL_EFFECT_DIESEL')
-
 consist.add_unit(weight = 5,
-                capacity = 15,
-                vehicle_length = 4)
+                capacity = 0,
+                vehicle_length = 2,
+                semi_truck_shift_offset_jank = 2,
+                visual_effect = 'VISUAL_EFFECT_DIESEL',
+                always_use_same_spriterow = True)
+
+consist.add_unit(weight = 6,
+                capacity = 30,
+                vehicle_length = 5)
+
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,
