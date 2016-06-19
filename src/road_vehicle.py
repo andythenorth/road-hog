@@ -54,6 +54,7 @@ class Consist(object):
         self.model_variants.append(ModelVariant(intro_date, end_date, spritesheet_suffix, graphics_processor))
 
     def add_unit(self, repeat=1, **kwargs):
+        # how many unique units? (units can be repeated, we are using count for numerid ID, so we want uniques)
         count = len(set(self.units))
 
         # we'll need to automagically set spriterow_num
@@ -64,7 +65,7 @@ class Consist(object):
         for unit in set(self.units):
             if unit.always_use_same_spriterow:
                 num_preceding_units_with_same_spriterow_flag_set += 1
-        kwargs['num_preceding_units'] = count
+        kwargs['num_preceding_units'] = count # be aware - 'count' is length of the set of unique units, not the list of all units (units can be repeated)
         kwargs['num_preceding_units_with_same_spriterow_flag_set'] = num_preceding_units_with_same_spriterow_flag_set
 
         unit = self.vehicle_type(consist=self, **kwargs)
