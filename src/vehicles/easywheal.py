@@ -11,7 +11,7 @@ consist = RVConsist(vehicle_type = BoxHauler,
 
 consist.add_unit(weight = 12,
                 capacity = 15,
-                vehicle_length = 6,
+                vehicle_length = 5,
                 visual_effect = 'VISUAL_EFFECT_DIESEL')
 
 consist.add_unit(weight = 5,
