@@ -1,6 +1,21 @@
 Changelog
 =========
 
+Beta 3
+------
+
+*Changes*
+- added Coleman steam dump truck (
+- reworked appearance (adjusted lengths, wheels, body style)
+    - all open, flat, box and dump trucks
+    - some tanker and livestock trucks
+- removed mining trucks, they don't make gameplay / graphical sense in current form (might add them back later in revised form)
+
+*Codechanges*
+- reworked assignment of sprites to vehicles
+- prepared compile to add cargo sprite compositing
+
+
 Beta 2
 ------
 
