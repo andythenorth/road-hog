@@ -6,19 +6,17 @@ consist = RVConsist(vehicle_type = RefrigeratedHauler,
                 base_numeric_id = 180,
                 title = 'Fortiscue [Reefer Truck]',
                 replacement_id = '-none',
-                semi_truck_so_redistribute_capacity = True,
                 vehicle_life = 40,
-                intro_date = 1978)
+                intro_date = 1972)
 
-consist.add_unit(weight = 17,
-                capacity = 0,
-                vehicle_length = 2,
-                semi_truck_shift_offset_jank = 2,
-                effects = ['EFFECT_SPRITE_DIESEL, -2, 1, 10'])
+consist.add_unit(weight = 18,
+                capacity = 25,
+                vehicle_length = 6,
+                visual_effect = 'VISUAL_EFFECT_DIESEL')
 
 consist.add_unit(weight = 10,
-                capacity = 40,
-                vehicle_length = 6)
+                capacity = 15,
+                vehicle_length = 4)
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,
