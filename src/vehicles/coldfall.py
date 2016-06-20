@@ -13,12 +13,12 @@ consist = RVConsist(vehicle_type = RefrigeratedHauler,
 consist.add_unit(weight = 17,
                 capacity = 0,
                 vehicle_length = 2,
-                semi_truck_shift_offset_jank = 3,
+                semi_truck_shift_offset_jank = 2,
                 effects = ['EFFECT_SPRITE_DIESEL, -2, 1, 10'])
 
 consist.add_unit(weight = 10,
                 capacity = 40,
-                vehicle_length = 6)
+                vehicle_length = 8)
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,
