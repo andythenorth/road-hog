@@ -6,17 +6,20 @@ consist = RVConsist(vehicle_type = RefrigeratedHauler,
                 base_numeric_id = 300,
                 title = 'Merrivale [Reefer Truck]',
                 replacement_id = '-none',
+                semi_truck_so_redistribute_capacity = True,
                 vehicle_life = 40,
                 intro_date = 1949)
 
-consist.add_unit(weight = 15,
-                capacity = 15,
-                vehicle_length = 6,
-                visual_effect = 'VISUAL_EFFECT_DIESEL')
+consist.add_unit(weight = 5,
+                capacity = 0,
+                vehicle_length = 2,
+                semi_truck_shift_offset_jank = 2,
+                visual_effect = 'VISUAL_EFFECT_DIESEL',
+                always_use_same_spriterow = True)
 
-consist.add_unit(weight = 8,
-                capacity = 15,
-                vehicle_length = 4)
+consist.add_unit(weight = 14,
+                capacity = 30,
+                vehicle_length = 6)
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,
