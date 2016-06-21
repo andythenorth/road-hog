@@ -17,7 +17,7 @@ consist.add_unit(weight = 10,
 
 consist.add_unit(weight = 8,
                 capacity = 12,
-                vehicle_length = 5,
+                vehicle_length = 4,
                 repeat = 2)
 
 consist.add_model_variant(intro_date=0,
