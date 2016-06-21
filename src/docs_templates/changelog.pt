@@ -1,11 +1,25 @@
 Changelog
 =========
 
+Beta 4
+------
+
+*Changes*
+- added Boilingwell steam tanker truck
+- change trailers on Cowsleigh livestock truck (needs more work)
+- reworked Merrivale, Fortiscue and Coldfall reefer trucks
+- reworked Runwell and Easywheal box trucks
+
+*Fixes*
+- Greenscoe tanker truck cab out of position (also copy improved pixels from Honister)
+- tweak out-of-place pixels for multiple trucks
+- set correct power value for Coleman dump truck
+
 Beta 3
 ------
 
 *Changes*
-- added Coleman steam dump truck (
+- added Coleman steam dump truck
 - reworked appearance (adjusted lengths, wheels, body style)
     - all open, flat, box and dump trucks
     - some tanker and livestock trucks
