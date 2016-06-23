@@ -16,7 +16,7 @@ consist.add_unit(weight = 9,
 
 consist.add_unit(weight = 9,
                 capacity = 20,
-                vehicle_length = 5)
+                vehicle_length = 4)
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,
