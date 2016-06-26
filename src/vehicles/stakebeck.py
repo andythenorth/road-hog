@@ -13,7 +13,8 @@ consist = RVConsist(vehicle_type = FlatBedHauler,
 consist.add_unit(weight = 20,
                 capacity = 0,
                 vehicle_length = 3,
-                effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 10'])
+                effect_spawn_model = 'EFFECT_SPAWN_MODEL_STEAM',
+                effects = ['EFFECT_SPRITE_STEAM, -2, 0, 14'])
 
 consist.add_unit(weight = 5,
                 capacity = 24,
