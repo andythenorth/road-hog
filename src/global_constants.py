@@ -121,3 +121,10 @@ default_road_vehicle_offsets = {'1': [[-6, -23], [0, -17], [12, -10], [6, -11], 
                                 '8': [[-6, -13], [-14, -10], [-18, -10], [-8, -11], [-6, -13], [-14, -10], [-14, -10], [-8, -10]]}
 
 semi_truck_offset_jank = [[0, 1], [-2, 1], [-5, 0], [-2, 1], [0, 0], [-2, 1], [-1, 0], [-1, 1]]
+
+# spritesheet bounding boxes, each defined by a 3 tuple (left x, width, height);
+# upper y is determined by spritesheet row position, so isn't defined as a constant
+spritesheet_bounding_boxes = ((60, 12, 24), (92, 26, 20), (124, 36, 16), (172, 26, 20),
+                              (204, 12, 24), (236, 26, 20), (268, 36, 16), (316, 26, 20))
+
+

@@ -2,15 +2,10 @@
 // -----------------
 
 template spriteset_template_${vehicle.id}(y) {
-    //[left_x,  upper_y,    width,      height,     offset_x,      offset_y]
-    [60,        y,          12,        24,          ${vehicle.offsets[0][0]}, ${vehicle.offsets[0][1]}, ANIM]
-    [92,        y,          26,        20,          ${vehicle.offsets[1][0]}, ${vehicle.offsets[1][1]}, ANIM]
-    [124,       y,          36,        16,          ${vehicle.offsets[2][0]}, ${vehicle.offsets[2][1]}, ANIM]
-    [172,       y,          26,        20,          ${vehicle.offsets[3][0]}, ${vehicle.offsets[3][1]}, ANIM]
-    [204,       y,          12,        24,          ${vehicle.offsets[4][0]}, ${vehicle.offsets[4][1]}, ANIM]
-    [236,       y,          26,        20,          ${vehicle.offsets[5][0]}, ${vehicle.offsets[5][1]}, ANIM]
-    [268,       y,          36,        16,          ${vehicle.offsets[6][0]}, ${vehicle.offsets[6][1]}, ANIM]
-    [316,       y,          26,        20,          ${vehicle.offsets[7][0]}, ${vehicle.offsets[7][1]}, ANIM]
+    <tal:sprite repeat="bounding_box global_constants.spritesheet_bounding_boxes">
+        //[left_x,  upper_y,    width,      height,     offset_x,      offset_y]
+        [${bounding_box[0]}, y, ${bounding_box[1]}, ${bounding_box[2]}, ${vehicle.offsets[repeat.bounding_box.index][0]}, ${vehicle.offsets[repeat.bounding_box.index][1]}, ANIM]
+    </tal:sprite>
 }
 
 // PURCHASE MENU
