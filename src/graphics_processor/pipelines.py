@@ -6,6 +6,7 @@ from PIL import Image
 
 from graphics_processor import registered_pipelines
 from graphics_processor import graphics_constants
+from graphics_processor import utils as graphics_utils
 from graphics_processor.units import SimpleRecolour, SwapCompanyColours, PasteAtMagicPixels, AppendToSpritesheet
 
 DOS_PALETTE = Image.open('palette_key.png').palette
@@ -41,7 +42,7 @@ class Pipeline(object):
         for unit in units:
             spritesheet = unit.render(spritesheet)
         # I don't normally leave commented-out code behind, but I'm bored of looking in the PIL docs for how to show the image during compile
-        spritesheet.sprites.show()
+        #spritesheet.sprites.show()
         spritesheet.save(output_path)
 
     def render(self, variant, consist):
@@ -115,9 +116,7 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
         input_path = os.path.join(currentdir, 'src', 'graphics', options['template'])
         units = [] # graphics units not same as consist units ! confusing overlap of terminology :(
 
-        print(consist.id)
         cumulative_spriterow_counts_by_vehicle = 0
-
         for vehicle_counter, vehicle_rows in enumerate(consist.get_spriterows_for_consist_or_subpart(consist.unique_units)):
             preceding_row_count_this_vehicle = 0
             for spriterow_type, spriterow_count in vehicle_rows:
@@ -139,7 +138,6 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
 
                 if spriterow_type == 'empty':
                     base_offset = 10 + (30 * cumulative_spriterow_counts_by_vehicle)
-                    #print(base_offset)
                     crop_box_source = (0,
                                        base_offset,
                                        graphics_constants.spritesheet_width,
@@ -166,7 +164,7 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
                                      0,
                                      graphics_constants.spritesheet_width,
                                      unit_row_cluster_height)
-                    for bulk_cargo_recolour_map in options['bulk_cargo_recolour_maps']:
+                    for bulk_cargo_recolour_map in graphics_utils.get_bulk_cargo_recolour_maps():
                         units.append(AppendToSpritesheet(vehicle_bulk_cargo_state_input_as_spritesheet, crop_box_dest))
                         units.append(SimpleRecolour(bulk_cargo_recolour_map))
 

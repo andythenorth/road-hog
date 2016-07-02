@@ -51,25 +51,11 @@ class GraphicsProcessorFactory(object):
         self.pipeline = registered_pipelines[pipeline_name]
 
 
-def get_composited_cargo_processors(template, graphics_processor_options, copy_block_top_offsets, paste_top_offset):
+def get_composited_cargo_processors(template):
     # returns two cargo-compositing graphics processors, one of which flips company colours
     # also provides optional 2CC recolor
-
-    if 'piece' in graphics_processor_options:
-        piece_cargo_maps = ['GOOD']
-    else:
-        piece_cargo_maps = None
-    graphics_options_master = {'template': '',
-                               'bulk_cargo_recolour_maps': get_bulk_cargo_recolour_maps(),
-                               'piece_cargo_maps': piece_cargo_maps,
-                               'copy_block_top_offsets': copy_block_top_offsets,
-                               'paste_top_offset': paste_top_offset,
-                               'num_rows_per_unit': graphics_constants.load_states_num_rows_per_unit}
-
-    graphics_options_1 = dict((k, v) for (k, v) in graphics_options_master.items())
-    graphics_options_1['template'] = template
-    graphics_options_2 = dict((k, v) for (k, v) in graphics_options_1.items())
-    graphics_options_2['swap_company_colours'] = True
+    graphics_options_1 = {'template': template, 'swap_company_colours': False}
+    graphics_options_2 = {'template': template, 'swap_company_colours': True}
     graphics_processor_1 = GraphicsProcessorFactory('extend_spriterows_for_composited_cargos_pipeline', graphics_options_1)
     graphics_processor_2 = GraphicsProcessorFactory('extend_spriterows_for_composited_cargos_pipeline', graphics_options_2)
     return (graphics_processor_1, graphics_processor_2)
