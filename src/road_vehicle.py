@@ -172,6 +172,7 @@ class Consist(object):
         result = []
         for unit in units:
             # some vehicles have livery variation only, no cargo sprites (nor empty sprite)
+            # this is a bit janky and with a bit more thought, could probably remove special casing here, but eh
             if 'livery_only' in self.graphics_processor_options.keys():
                 if not unit.always_use_same_spriterow:
                     result.append(('livery_only', self.num_cargo_sprite_variants))
@@ -721,6 +722,8 @@ class Tanker(Consist):
         self.default_cargo = 'OIL_'
         self.loading_speed_multiplier = 2
         self.vehicle_nml_template = 'vehicle_with_cargo_specific_liveries.pynml'
+        # !! as of July 2016, this wasn't provided for graphics_processor, but only as a hack supporting get_spriterows_for_consist_or_subpart
+        # it overlaps imho with has_empty_state_spriterow, num_cargo_sprite_variants and num_spriterows_per_cargo_variant
         self.graphics_processor_options = {'livery_only': True}
 
 
