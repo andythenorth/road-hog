@@ -69,17 +69,6 @@ class Consist(object):
         # how many unique units? (units can be repeated, we are using count for numerid ID, so we want uniques)
         count = len(set(self.units))
 
-        # we'll need to automagically set spriterow_num
-        # *this* currently depends on being done by add_unit because if relies on the count value when add_unit runs
-        # that could be done in the vehicle function for spriterow_num, by finding the vehicle's index in the units list
-        # not obviously better though
-        num_preceding_units_with_same_spriterow_flag_set = 0
-        for unit in set(self.units):
-            if unit.always_use_same_spriterow:
-                num_preceding_units_with_same_spriterow_flag_set += 1
-        kwargs['num_preceding_units'] = count # be aware - 'count' is length of the set of unique units, not the list of all units (units can be repeated)
-        kwargs['num_preceding_units_with_same_spriterow_flag_set'] = num_preceding_units_with_same_spriterow_flag_set
-
         unit = RoadVehicle(consist=self, **kwargs)
 
         if count == 0:
@@ -208,6 +197,7 @@ class Consist(object):
         # wrapper to get the graphics processors
         template = self.id + '_template.png'
 
+        # TODO - WIP, needs graphics cargo processing pipeline updated to match
         # compose a list of instructions for the processor, per unit, num rows to take and provide
             # if always_use_same_spriterow, take one 30px block, and insert it, with optional recolour
             # if not always_use_same_spriterow,
@@ -222,32 +212,21 @@ class Consist(object):
         # !! this may be incomplete !!
         # 1. may not handle unit_num_providing_spriterow_num correctly
         # 2. may need extending to account for bulk / piece offsets, currently doesn't do anything for that
+        # !! can be mostly moved to graphics processor, just pass the list of spriterows per unit to that
         copy_block_top_offsets = []
+        num_preceding_units_with_same_spriterow_flag_set = 0
         for unit in self.unique_units:
+            preceeding_spriterows = self.get_spriterows_for_consist_or_subpart(self.unique_units[0:self.unique_units.index(unit)])
+            count = 0
+            for unit_rows in preceeding_spriterows:
+                for spriterow_type, spriterow_count in unit_rows:
+                    count += 30 * spriterow_count
             if not unit.always_use_same_spriterow:
-                num_preceding_units_with_cargo_sprites = unit.num_preceding_units - unit.num_preceding_units_with_same_spriterow_flag_set
-                cargo_template_rows_height = (1 + self.num_spriterows_per_cargo_variant) * num_preceding_units_with_cargo_sprites * 30
-                non_cargo_rows_height = unit.num_preceding_units_with_same_spriterow_flag_set * 30
-                copy_block_top_offsets.append(10 + cargo_template_rows_height + non_cargo_rows_height)
-                # !! this will only work for specific cases where vehicles with same spriterow are at front of consist
-                # !! needs rethinking - should probably gain capability to explicitly slice out and insert non-cargo rows
-                paste_top_offset = 10 + (30 * unit.num_preceding_units_with_same_spriterow_flag_set)
-        """
-        new = []
-        print(self.id)
-        for unit in self.unique_units:
-            count = []
-            spriterow_info = self.get_spriterows_for_consist_or_subpart(self.unique_units[0:self.unique_units.index(unit) + 1])
-            print(spriterow_info)
-            base = 10
-            for spriterow_type, spriterow_count in spriterow_info:
-                if spriterow_type != 'always_use_same_spriterow':
-                    new.append(base)
-                else:
-                    pass
-        print('old', copy_block_top_offsets)
-        print('new', new)
-        """
+                copy_block_top_offsets.append(10 + count)
+            if unit.always_use_same_spriterow:
+                num_preceding_units_with_same_spriterow_flag_set += 1
+
+        paste_top_offset = 10 + (30 * num_preceding_units_with_same_spriterow_flag_set)
         return graphics_utils.get_composited_cargo_processors(template = template,
                                                               graphics_processor_options = self.graphics_processor_options,
                                                               copy_block_top_offsets = copy_block_top_offsets,
@@ -414,8 +393,6 @@ class RoadVehicle(object):
         # for cases where the template handles cargo, but some units in the consist might not show cargo, e.g. tractor units etc
         # can also be used to suppress compile failures during testing when spritesheet is unfinished (missing rows etc)
         self.always_use_same_spriterow = kwargs.get('always_use_same_spriterow', False)
-        self.num_preceding_units = kwargs.get('num_preceding_units', None)
-        self.num_preceding_units_with_same_spriterow_flag_set = kwargs.get('num_preceding_units_with_same_spriterow_flag_set', None)
         self._effect_spawn_model = kwargs.get('effect_spawn_model', None)
         self.effects = kwargs.get('effects', []) # default for effects is an empty list
 
@@ -679,6 +656,8 @@ class FlatBedHauler(Consist):
         self.label_refits_allowed = ['GOOD']
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_flatbed_freight']
         self.default_cargo = 'STEL'
+
+        self.graphics_processor_options = {'piece': True}
         """
         self.vehicle_nml_template = 'vehicle_with_visible_cargo.pynml'
         # cargo rows 0 indexed - 0 = first set of loaded sprites
