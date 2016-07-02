@@ -122,33 +122,19 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
             for spriterow_type, spriterow_count in vehicle_rows:
                 unit_row_cluster_height = spriterow_count * graphics_constants.spriterow_height
                 base_offset = 10 + (graphics_constants.spriterow_height * cumulative_spriterow_count)
-                if spriterow_type == 'always_use_same_spriterow':
+                if spriterow_type == 'always_use_same_spriterow' or spriterow_type == 'empty':
                     crop_box_source = (0,
                                        base_offset,
                                        graphics_constants.spritesheet_width,
                                        graphics_constants.spriterow_height + base_offset)
-                    vehicle_always_use_same_spriterow_input_image = Image.open(input_path).crop(crop_box_source)
-                    # vehicle_always_use_same_spriterow_input_image.show() # comment in to see the image when debugging
-                    vehicle_always_use_same_spriterow_input_as_spritesheet = self.make_spritesheet_from_image(vehicle_always_use_same_spriterow_input_image)
+                    vehicle_generic_spriterow_input_image = Image.open(input_path).crop(crop_box_source)
+                    # vehicle_generic_spriterow_input_image.show() # comment in to see the image when debugging
+                    vehicle_generic_spriterow_input_as_spritesheet = self.make_spritesheet_from_image(vehicle_generic_spriterow_input_image)
                     crop_box_dest = (0,
                                      0,
                                      graphics_constants.spritesheet_width,
                                      graphics_constants.spriterow_height)
-                    units.append(AppendToSpritesheet(vehicle_always_use_same_spriterow_input_as_spritesheet, crop_box_dest))
-
-                if spriterow_type == 'empty':
-                    crop_box_source = (0,
-                                       base_offset,
-                                       graphics_constants.spritesheet_width,
-                                       graphics_constants.spriterow_height + base_offset)
-                    vehicle_empty_state_input_image = Image.open(input_path).crop(crop_box_source)
-                    #vehicle_empty_state_input_image.show() # comment in to see the image when debugging
-                    vehicle_empty_state_input_as_spritesheet = self.make_spritesheet_from_image(vehicle_empty_state_input_image)
-                    crop_box_dest = (0,
-                                     0,
-                                     graphics_constants.spritesheet_width,
-                                     graphics_constants.spriterow_height)
-                    units.append(AppendToSpritesheet(vehicle_empty_state_input_as_spritesheet, crop_box_dest))
+                    units.append(AppendToSpritesheet(vehicle_generic_spriterow_input_as_spritesheet, crop_box_dest))
 
                 if spriterow_type == 'bulk':
                     crop_box_source = (0,
