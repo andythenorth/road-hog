@@ -166,10 +166,24 @@ class Consist(object):
         return "string(STR_NAME_" + self.id +", string(" + self.get_str_name_suffix() + "))"
 
     def get_graphics_processors(self, **kwargs):
-        # simple wrapper to get the graphics processors
+        # wrapper to get the graphics processors
         template = self.id + '_template.png'
+
+        # auto-magic to figure out copy block offsets
+        # !! this may be incomplete !!
+        # 1. may not handle unit_num_providing_spriterow_num correctly
+        # 2. may need extending to account for bulk / piece offsets, currently doesn't do anything for that
+        copy_block_top_offsets = []
+        for unit in set(self.units):
+            if not unit.always_use_same_spriterow:
+                num_preceding_units_with_cargo_sprites = unit.num_preceding_units - unit.num_preceding_units_with_same_spriterow_flag_set
+                cargo_template_rows_height = (1 + self.num_spriterows_per_cargo_variant) * num_preceding_units_with_cargo_sprites * 30
+                non_cargo_rows_height = unit.num_preceding_units_with_same_spriterow_flag_set * 30
+                copy_block_top_offsets.append(10 + cargo_template_rows_height + non_cargo_rows_height)
+
         return graphics_utils.get_composited_cargo_processors(template = template,
                                                               graphics_processor_options = self.graphics_processor_options,
+                                                              copy_block_top_offsets = copy_block_top_offsets,
                                                               **kwargs)
 
     def get_engine_cost_points(self):

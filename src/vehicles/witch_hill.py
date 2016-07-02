@@ -17,7 +17,6 @@ consist.add_unit(weight = 60,
                 effects = ['EFFECT_SPRITE_AIRCRAFT_BREAKDOWN_SMOKE, -2, 1, 10', 'EFFECT_SPRITE_AIRCRAFT_BREAKDOWN_SMOKE, -2, -1, 10'])
 
 graphics_processors = consist.get_graphics_processors(template='witch_hill_template.png',
-                                                      copy_block_top_offsets = [10],
                                                       paste_top_offset = 40)
 
 consist.add_model_variant(intro_date=0,

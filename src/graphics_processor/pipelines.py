@@ -41,7 +41,7 @@ class Pipeline(object):
         for unit in units:
             spritesheet = unit.render(spritesheet)
         # I don't normally leave commented-out code behind, but I'm bored of looking in the PIL docs for how to show the image during compile
-        spritesheet.sprites.show()
+        #spritesheet.sprites.show()
         spritesheet.save(output_path)
 
     def render(self, variant, consist):

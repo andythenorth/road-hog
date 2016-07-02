@@ -13,7 +13,8 @@ consist.add_unit(weight = 10,
                 capacity = 0,
                 vehicle_length = 4,
                 effect_spawn_model = 'EFFECT_SPAWN_MODEL_STEAM',
-                effects = ['EFFECT_SPRITE_STEAM, -5, 0, 12'])
+                effects = ['EFFECT_SPRITE_STEAM, -5, 0, 12'],
+                always_use_same_spriterow = True)
 
 consist.add_unit(weight = 3,
                 capacity = 40,

@@ -1,6 +1,9 @@
 from roster import Roster
 
 from vehicles import (honister,
+                      wookey,
+                      nettlebridge,
+                      scrooby_top,
                       chainburn)
 
 roster = Roster(id = 'brit',
@@ -11,4 +14,7 @@ roster = Roster(id = 'brit',
                 truck_power_bands = {0: 100, 1905: 150, 1935: 250, 1965: 450, 1985: 700},
                 tram_power_bands = {0: 100, 1900: 200, 1930: 350, 1960: 550, 1990: 800},
                 vehicles = [honister,
+                            wookey,
+                            nettlebridge,
+                            scrooby_top,
                             chainburn])

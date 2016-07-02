@@ -21,8 +21,7 @@ consist.add_unit(weight = 2,
                 vehicle_length = 3,
                 repeat = 4)
 
-graphics_processors = consist.get_graphics_processors(copy_block_top_offsets = [40],
-                                                      paste_top_offset = 40)
+graphics_processors = consist.get_graphics_processors(paste_top_offset = 40)
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,

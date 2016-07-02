@@ -24,7 +24,6 @@ consist.add_unit(weight = 0, # put the weight on the truck to compensate for lac
                 vehicle_length = 6)
 
 graphics_processors = consist.get_graphics_processors(template='broadrock_template.png',
-                                                      copy_block_top_offsets = [40],
                                                       paste_top_offset = 40)
 
 consist.add_model_variant(intro_date=0,
