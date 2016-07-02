@@ -117,7 +117,6 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
         units = []
         # assumes first row from copy_block_top_offset is always the empty state, copied once, remaining rows copied per cargo
         for counter, copy_block_top_offset in enumerate(options['copy_block_top_offsets']):
-            # complicated vehicle/cargo sprites? Look up spriterow_adjust prop on vehicle units will handle offsets to the correct spriterow
             # empty state spriterow
             base_offset = copy_block_top_offset
             crop_box_source = (0,
@@ -132,6 +131,7 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
                              graphics_constants.spritesheet_width,
                              graphics_constants.spriterow_height)
             units.append(AppendToSpritesheet(vehicle_empty_state_input_as_spritesheet, crop_box_dest))
+
             # bulk cargo spriterows
             if options['bulk_cargo_recolour_maps'] is not None:
                 base_offset = copy_block_top_offset + graphics_constants.spriterow_height
@@ -148,6 +148,7 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
                 for bulk_cargo_recolour_map in options['bulk_cargo_recolour_maps']:
                     units.append(AppendToSpritesheet(vehicle_bulk_cargo_state_input_as_spritesheet, crop_box_dest))
                     units.append(SimpleRecolour(bulk_cargo_recolour_map))
+
             # piece cargo spriterows
             if options['piece_cargo_maps'] is not None:
                 for piece_cargo_map in options['piece_cargo_maps']:

@@ -175,6 +175,7 @@ class Consist(object):
         # 1. may not handle unit_num_providing_spriterow_num correctly
         # 2. may need extending to account for bulk / piece offsets, currently doesn't do anything for that
         copy_block_top_offsets = []
+        paste_top_offset = 0
         for unit in set(self.units):
             if not unit.always_use_same_spriterow:
                 num_preceding_units_with_cargo_sprites = unit.num_preceding_units - unit.num_preceding_units_with_same_spriterow_flag_set
@@ -600,6 +601,7 @@ class DumpHauler(Consist):
         self.num_cargo_sprite_variants = 9
         self.generic_cargo_rows = [0]
         self.graphics_processor_options = {'bulk': True}
+        print(self.graphics_processors[0])
 
 
 class FlatBedHauler(Consist):
