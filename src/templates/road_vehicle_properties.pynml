@@ -28,12 +28,12 @@ item(FEAT_ROADVEHS, ${vehicle.id}, ${vehicle.numeric_id}) {
             sound_effect:                   SOUND_TRUCK_START;
         </tal:lead_unit_props>
         refit_cost:                     0; // this needs to be 0 if we want autorefit without using cb
-        refittable_cargo_classes:       bitmask(${vehicle.refittable_classes});
+        refittable_cargo_classes:       bitmask(${consist.refittable_classes});
         non_refittable_cargo_classes:   bitmask(); // don't set non-refittable classes, increases likelihood of breaking cargo support
-        cargo_allow_refit:              [${vehicle.get_label_refits_allowed()}];
-        cargo_disallow_refit:           [${vehicle.get_label_refits_disallowed()}];
-        default_cargo_type:             ${vehicle.default_cargo};
-        cargo_age_period:               ${vehicle.cargo_age_period};
+        cargo_allow_refit:              [${consist.get_label_refits_allowed()}];
+        cargo_disallow_refit:           [${consist.get_label_refits_disallowed()}];
+        default_cargo_type:             ${consist.default_cargo};
+        cargo_age_period:               ${consist.cargo_age_period};
         misc_flags:                     bitmask(${vehicle.special_flags}); // nml constants
         length:                         ${vehicle.vehicle_length};
         effect_spawn_model:             ${vehicle.effect_spawn_model};

@@ -25,7 +25,6 @@ class Consist(object):
        Each consist comprises one or more vehicle 'units'.
     """
     def __init__(self, **kwargs):
-        self.vehicle_type = kwargs.get('vehicle_type')
         self.id = kwargs.get('id', None)
         self.vehicle_module_path = inspect.stack()[2][1]
         # setup properties for this consist (props either shared for all vehicles, or placed on lead vehicle of consist)
@@ -39,6 +38,13 @@ class Consist(object):
         # semi-trucks need some redistribution of capacity to get correct TE (don't use this of other magic, bad idea)
         self.semi_truck_so_redistribute_capacity = kwargs.get('semi_truck_so_redistribute_capacity', False)
         self._speed = kwargs.get('speed', None)
+        self.default_cargo = 'PASS' # over-ride in subclass as needed (PASS is sane default)
+        self.class_refit_groups = []
+        self.label_refits_allowed = [] # no specific labels needed
+        self.label_refits_disallowed = []
+        self.autorefit = False
+        self.loading_speed_multiplier = kwargs.get('loading_speed_multiplier', 1)
+        self.cargo_age_period = kwargs.get('cargo_age_period', global_constants.CARGO_AGE_PERIOD)
         # arbitrary adjustments of points that can be applied to adjust buy cost and running cost, over-ride in consist as needed
         # values can be -ve or +ve to dibble specific vehicles (but total calculated points cannot exceed 255)
         self.type_base_buy_cost_points = kwargs.get('type_base_buy_cost_points', 0)
@@ -49,6 +55,9 @@ class Consist(object):
         self.units = []
         # graphics processor options (optional kwargs)
         self.graphics_processor_options = {}
+        self.num_cargo_sprite_variants = 0 # over-ridden by subclass when needed
+        self.num_spriterows_per_cargo_variant = 2 # assume loading/loaded is the common case
+        self.has_empty_state_spriterow = True # assume empty state is common case
         # roster is set when the vehicle is registered to a roster, only one roster per vehicle
         self.roster_id = None
 
@@ -70,7 +79,7 @@ class Consist(object):
         kwargs['num_preceding_units'] = count # be aware - 'count' is length of the set of unique units, not the list of all units (units can be repeated)
         kwargs['num_preceding_units_with_same_spriterow_flag_set'] = num_preceding_units_with_same_spriterow_flag_set
 
-        unit = self.vehicle_type(consist=self, **kwargs)
+        unit = RoadVehicle(consist=self, **kwargs)
 
         if count == 0:
             unit.id = self.id # first vehicle gets no numeric id suffix - for compatibility with buy menu list ids etc
@@ -159,15 +168,8 @@ class Consist(object):
         # simple wrapper to get the graphics processors
         template = self.id + '_template.png'
         return graphics_utils.get_composited_cargo_processors(template = template,
-                                                              graphics_processor_options = self.vehicle_type.graphics_processor_options,
+                                                              graphics_processor_options = self.graphics_processor_options,
                                                               **kwargs)
-
-    def any_unit_offers_autorefit(self):
-        offers_autorefit = False
-        for unit in self.units:
-            if getattr(unit, 'autorefit', False):
-                offers_autorefit = True
-        return offers_autorefit
 
     def get_engine_cost_points(self):
         # Up to 40 points for power. 1 point per 50hp
@@ -223,12 +225,28 @@ class Consist(object):
         for i in range(3):
             consist_capacity = 0
             for unit in self.units:
-                if unit.default_cargo == 'MAIL':
+                if self.default_cargo == 'MAIL':
                     consist_capacity += int(global_constants.mail_multiplier * unit.capacities[i])
                 else:
                     consist_capacity += unit.capacities[i]
             result.append(consist_capacity)
         return result
+
+    @property
+    def refittable_classes(self):
+        cargo_classes = []
+        # maps lists of allowed classes.  No equivalent for disallowed classes, that's overly restrictive and damages the viability of class-based refitting
+        for i in self.class_refit_groups:
+            [cargo_classes.append(cargo_class) for cargo_class in global_constants.base_refits_by_class[i]]
+        return ','.join(set(cargo_classes)) # use set() here to dedupe
+
+    def get_label_refits_allowed(self):
+        # allowed labels, for fine-grained control in addition to classes
+        return ','.join(self.label_refits_allowed)
+
+    def get_label_refits_disallowed(self):
+        # disallowed labels, for fine-grained control, knocking out cargos that are allowed by classes, but don't fit for gameplay reasons
+        return ','.join(self.label_refits_disallowed)
 
     @property
     def speed(self):
@@ -304,8 +322,6 @@ class RoadVehicle(object):
         self.semi_truck_shift_offset_jank = kwargs.get('semi_truck_shift_offset_jank', None)
         # capacities variable by parameter
         self.capacities = self.get_capacity_variations(kwargs.get('capacity', 0))
-        self.loading_speed_multiplier = kwargs.get('loading_speed_multiplier', 1)
-        self.cargo_age_period = kwargs.get('cargo_age_period', global_constants.CARGO_AGE_PERIOD)
         # optional - some consists have sequences like A1-B-A2, where A1 and A2 look the same but have different IDs for implementation reasons
         # avoid duplicating sprites on the spritesheet by forcing A2 to use A1's spriterow_num, fiddly eh?
         # ugly, but eh.  Zero-indexed, based on position in units[]
@@ -318,15 +334,6 @@ class RoadVehicle(object):
         self.always_use_same_spriterow = kwargs.get('always_use_same_spriterow', False)
         self.num_preceding_units = kwargs.get('num_preceding_units', None)
         self.num_preceding_units_with_same_spriterow_flag_set = kwargs.get('num_preceding_units_with_same_spriterow_flag_set', None)
-        # set defaults for props otherwise set by subclass as needed (not set by kwargs as specific models do not over-ride them)
-        self.num_cargo_sprite_variants = 0 # over-ridden by subclass when needed
-        self.num_spriterows_per_cargo_variant = 2 # assume loading/loaded is the common case
-        self.has_empty_state_spriterow = True # assume empty state is common case
-        self.default_cargo = 'PASS' # over-ride in subclass as needed (PASS is sane default)
-        self.class_refit_groups = []
-        self.label_refits_allowed = [] # no specific labels needed
-        self.label_refits_disallowed = []
-        self.autorefit = False
         self._effect_spawn_model = kwargs.get('effect_spawn_model', None)
         self.effects = kwargs.get('effects', []) # default for effects is an empty list
 
@@ -343,7 +350,7 @@ class RoadVehicle(object):
         capacity = self.capacities[capacity_param]
         if cargo_type == 'mail':
             capacity = int(global_constants.mail_multiplier * capacity)
-        result = int(self.loading_speed_multiplier * math.ceil(capacity / transport_type_rate))
+        result = int(self.consist.loading_speed_multiplier * math.ceil(capacity / transport_type_rate))
         return max(result, 1)
 
     @property
@@ -376,19 +383,11 @@ class RoadVehicle(object):
     @property
     def special_flags(self):
         special_flags = ['ROADVEH_FLAG_2CC']
-        if self.autorefit == True:
+        if self.consist.autorefit == True:
             special_flags.append('ROADVEH_FLAG_AUTOREFIT')
         if self.consist.roadveh_flag_tram == True:
             special_flags.append('ROADVEH_FLAG_TRAM')
         return ','.join(special_flags)
-
-    @property
-    def refittable_classes(self):
-        cargo_classes = []
-        # maps lists of allowed classes.  No equivalent for disallowed classes, that's overly restrictive and damages the viability of class-based refitting
-        for i in self.class_refit_groups:
-            [cargo_classes.append(cargo_class) for cargo_class in global_constants.base_refits_by_class[i]]
-        return ','.join(set(cargo_classes)) # use set() here to dedupe
 
     @property
     def offsets(self):
@@ -411,11 +410,19 @@ class RoadVehicle(object):
         num_preceding_units_with_cargo_sprites = self.num_preceding_units - self.num_preceding_units_with_same_spriterow_flag_set
 
         # some units have multiple spriterows, which can be assumed to be cargo
-        num_preceding_cargo_rows = num_preceding_units_with_cargo_sprites * self.num_spriterows_per_cargo_variant * self.num_cargo_sprite_variants
+        num_preceding_cargo_rows = num_preceding_units_with_cargo_sprites * self.consist.num_spriterows_per_cargo_variant * self.consist.num_cargo_sprite_variants
         # not all units with cargo have specific empty state rows, so calculate correct number of empty state rows
-        num_preceding_empty_state_rows = self.has_empty_state_spriterow * num_preceding_units_with_cargo_sprites
+        num_preceding_empty_state_rows = self.consist.has_empty_state_spriterow * num_preceding_units_with_cargo_sprites
 
         return self.num_preceding_units_with_same_spriterow_flag_set + num_preceding_cargo_rows + num_preceding_empty_state_rows
+
+
+    @property
+    def vehicle_nml_template(self):
+        if self.always_use_same_spriterow:
+            return 'vehicle_default.pynml'
+        else:
+            return self.consist.vehicle_nml_template
 
     @property
     def sg_depot(self):
@@ -426,14 +433,6 @@ class RoadVehicle(object):
     def sg_default(self):
         suffix = "_switch_graphics_by_year"
         return self.id + suffix
-
-    def get_label_refits_allowed(self):
-        # allowed labels, for fine-grained control in addition to classes
-        return ','.join(self.label_refits_allowed)
-
-    def get_label_refits_disallowed(self):
-        # disallowed labels, for fine-grained control, knocking out cargos that are allowed by classes, but don't fit for gameplay reasons
-        return ','.join(self.label_refits_disallowed)
 
     def get_cargo_suffix(self):
         return 'string(' + self.cargo_units_refit_menu + ')'
@@ -467,10 +466,10 @@ class RoadVehicle(object):
 
     def render(self):
         # integrity tests
-        self.assert_cargo_labels(self.label_refits_allowed)
-        self.assert_cargo_labels(self.label_refits_disallowed)
+        self.assert_cargo_labels(self.consist.label_refits_allowed)
+        self.assert_cargo_labels(self.consist.label_refits_disallowed)
         # templating
-        template_name = self.template
+        template_name = self.vehicle_nml_template
         template = templates[template_name]
         nml_result = template(vehicle=self, consist=self.consist, global_constants=global_constants)
         return nml_result
@@ -489,15 +488,6 @@ class ModelVariant(object):
 
     def get_spritesheet_name(self, consist):
         return consist.id + '_' + str(self.spritesheet_suffix) + '.png'
-
-
-class RVConsist(Consist):
-    """
-    Intermediate class for engine consists to subclass from, provides some common properties.
-    This class should be sparse - only declare the most limited set of properties common to engine consists.
-    """
-    def __init__(self, **kwargs):
-        super(RVConsist, self).__init__(**kwargs)
 
 
 class CourierCar(RoadVehicle):
@@ -572,12 +562,10 @@ class BoxHauler(RoadVehicle):
         self.default_cargo = 'GOOD'
 
 
-class DumpHauler(RoadVehicle):
+class DumpHauler(Consist):
     """
     Tram or truck for limited set of bulk (mineral) cargos.
     """
-    graphics_processor_options = {'bulk': True}
-
     def __init__(self, **kwargs):
         super(DumpHauler, self).__init__(**kwargs)
         self.autorefit = True
@@ -586,25 +574,21 @@ class DumpHauler(RoadVehicle):
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_dump_bulk']
         self.default_cargo = 'COAL'
         self.loading_speed_multiplier = 2
-        if self.always_use_same_spriterow:
-            self.template = 'vehicle_default.pynml'
-        else:
-            self.template = 'vehicle_with_visible_cargo.pynml'
-            # cargo rows 0 indexed - 0 = first set of loaded sprites
-            # GRVL is in first position as it is re-used for generic unknown cargos
-            # mining trucks *do* transport SCMT in this set, realism is not relevant here, went back and forth on this a few times :P
-            self.cargo_graphics_mappings = {'GRVL': [0], 'IORE': [1], 'CORE': [2], 'AORE': [3],
-                       'SAND': [4], 'COAL': [5], 'CLAY': [6], 'SCMT': [7], 'PHOS': [8]}
-            self.num_cargo_sprite_variants = 9
-            self.generic_cargo_rows = [0]
+        self.vehicle_nml_template = 'vehicle_with_visible_cargo.pynml'
+        # cargo rows 0 indexed - 0 = first set of loaded sprites
+        # GRVL is in first position as it is re-used for generic unknown cargos
+        # mining trucks *do* transport SCMT in this set, realism is not relevant here, went back and forth on this a few times :P
+        self.cargo_graphics_mappings = {'GRVL': [0], 'IORE': [1], 'CORE': [2], 'AORE': [3],
+                   'SAND': [4], 'COAL': [5], 'CLAY': [6], 'SCMT': [7], 'PHOS': [8]}
+        self.num_cargo_sprite_variants = 9
+        self.generic_cargo_rows = [0]
+        self.graphics_processor_options = {'bulk': True}
 
 
-class FlatBedHauler(RoadVehicle):
+class FlatBedHauler(Consist):
     """
     Flatbed tram or truck - refits most cargos, not bulk.
     """
-    graphics_processor_options = {'piece': True}
-
     def __init__(self, **kwargs):
         super(FlatBedHauler, self).__init__(**kwargs)
         self.autorefit = True
@@ -612,14 +596,12 @@ class FlatBedHauler(RoadVehicle):
         self.label_refits_allowed = ['GOOD']
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_flatbed_freight']
         self.default_cargo = 'STEL'
-        if self.always_use_same_spriterow:
-            self.template = 'vehicle_default.pynml'
-        else:
-            self.template = 'vehicle_with_visible_cargo.pynml'
-            # cargo rows 0 indexed - 0 = first set of loaded sprites
-            self.cargo_graphics_mappings = {'GOOD': [0]}
-            self.num_cargo_sprite_variants = 1
-            self.generic_cargo_rows = [0]
+        self.vehicle_nml_template = 'vehicle_with_visible_cargo.pynml'
+        # cargo rows 0 indexed - 0 = first set of loaded sprites
+        self.cargo_graphics_mappings = {'GOOD': [0]}
+        self.num_cargo_sprite_variants = 1
+        self.generic_cargo_rows = [0]
+        self.graphics_processor_options = {'piece': True}
 
 
 class BulkPowderHauler(RoadVehicle):
