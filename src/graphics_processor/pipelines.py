@@ -152,7 +152,8 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
             # piece cargo spriterows
             if options['piece_cargo_maps'] is not None:
                 for piece_cargo_map in options['piece_cargo_maps']:
-                    print(piece_cargo_map)
+                    pass
+                    #print(piece_cargo_map)
 
         if options.get('swap_company_colours', False):
             units.append(SwapCompanyColours())

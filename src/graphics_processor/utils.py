@@ -55,7 +55,6 @@ def get_composited_cargo_processors(template, graphics_processor_options, copy_b
     # returns two cargo-compositing graphics processors, one of which flips company colours
     # also provides optional 2CC recolor
 
-    print(graphics_processor_options)
     if 'bulk' in graphics_processor_options:
         bulk_cargo_recolour_maps = get_bulk_cargo_recolour_maps()
     else:
