@@ -18,7 +18,8 @@ consist.add_unit(weight = 10,
 consist.add_unit(weight = 5,
                 capacity = 12,
                 vehicle_length = 4)
-
+"""
+!! turned off whilst refactoring
 graphics_processors = consist.get_graphics_processors(copy_block_top_offsets = [10, 100],
                                                       paste_top_offset = 10)
 
@@ -26,3 +27,8 @@ consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,
                        spritesheet_suffix=0,
                        graphics_processor=graphics_processors[0])
+"""
+
+consist.add_model_variant(intro_date=0,
+                       end_date=global_constants.max_game_date,
+                       spritesheet_suffix=0)
