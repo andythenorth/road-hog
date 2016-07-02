@@ -47,6 +47,8 @@ class Consist(object):
         self.model_variants = []
         # create structure to hold the units
         self.units = []
+        # graphics processor options (optional kwargs)
+        self.graphics_processor_options = {}
         # roster is set when the vehicle is registered to a roster, only one roster per vehicle
         self.roster_id = None
 
@@ -154,10 +156,11 @@ class Consist(object):
         return "string(STR_NAME_" + self.id +", string(" + self.get_str_name_suffix() + "))"
 
     def get_graphics_processors(self, **kwargs):
-        # just a wrapper, the vehicle sub-class actually provides the processors
-        #print(self.id, [(unit.numeric_id, unit.always_use_same_spriterow) for unit in self.units])
+        # simple wrapper to get the graphics processors
         template = self.id + '_template.png'
-        return graphics_utils.get_composited_cargo_processors(template = template, **kwargs)
+        return graphics_utils.get_composited_cargo_processors(template = template,
+                                                              graphics_processor_options = self.vehicle_type.graphics_processor_options,
+                                                              **kwargs)
 
     def any_unit_offers_autorefit(self):
         offers_autorefit = False
@@ -573,6 +576,8 @@ class DumpHauler(RoadVehicle):
     """
     Tram or truck for limited set of bulk (mineral) cargos.
     """
+    graphics_processor_options = {'bulk': True}
+
     def __init__(self, **kwargs):
         super(DumpHauler, self).__init__(**kwargs)
         self.autorefit = True
@@ -598,14 +603,23 @@ class FlatBedHauler(RoadVehicle):
     """
     Flatbed tram or truck - refits most cargos, not bulk.
     """
+    graphics_processor_options = {'piece': True}
+
     def __init__(self, **kwargs):
         super(FlatBedHauler, self).__init__(**kwargs)
-        self.template = 'vehicle_default.pynml'
         self.autorefit = True
         self.class_refit_groups = ['flatbed_freight']
         self.label_refits_allowed = ['GOOD']
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_flatbed_freight']
         self.default_cargo = 'STEL'
+        if self.always_use_same_spriterow:
+            self.template = 'vehicle_default.pynml'
+        else:
+            self.template = 'vehicle_with_visible_cargo.pynml'
+            # cargo rows 0 indexed - 0 = first set of loaded sprites
+            self.cargo_graphics_mappings = {'GOOD': [0]}
+            self.num_cargo_sprite_variants = 1
+            self.generic_cargo_rows = [0]
 
 
 class BulkPowderHauler(RoadVehicle):

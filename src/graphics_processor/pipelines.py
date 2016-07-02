@@ -41,7 +41,7 @@ class Pipeline(object):
         for unit in units:
             spritesheet = unit.render(spritesheet)
         # I don't normally leave commented-out code behind, but I'm bored of looking in the PIL docs for how to show the image during compile
-        #spritesheet.sprites.show()
+        spritesheet.sprites.show()
         spritesheet.save(output_path)
 
     def render(self, variant, consist):
@@ -133,20 +133,25 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
                              graphics_constants.spriterow_height)
             units.append(AppendToSpritesheet(vehicle_empty_state_input_as_spritesheet, crop_box_dest))
             # bulk cargo spriterows
-            base_offset = copy_block_top_offset + graphics_constants.spriterow_height
-            crop_box_source = (0,
-                               base_offset,
-                               graphics_constants.spritesheet_width,
-                               base_offset + unit_row_cluster_height)
-            vehicle_bulk_cargo_state_input_image = Image.open(input_path).crop(crop_box_source)
-            vehicle_bulk_cargo_state_input_as_spritesheet = self.make_spritesheet_from_image(vehicle_bulk_cargo_state_input_image)
-            crop_box_dest = (0,
-                             0,
-                             graphics_constants.spritesheet_width,
-                             unit_row_cluster_height)
-            for bulk_cargo_recolour_maps in options['bulk_cargo_recolour_maps']:
-                units.append(AppendToSpritesheet(vehicle_bulk_cargo_state_input_as_spritesheet, crop_box_dest))
-                units.append(SimpleRecolour(bulk_cargo_recolour_maps))
+            if options['bulk_cargo_recolour_maps'] is not None:
+                base_offset = copy_block_top_offset + graphics_constants.spriterow_height
+                crop_box_source = (0,
+                                   base_offset,
+                                   graphics_constants.spritesheet_width,
+                                   base_offset + unit_row_cluster_height)
+                vehicle_bulk_cargo_state_input_image = Image.open(input_path).crop(crop_box_source)
+                vehicle_bulk_cargo_state_input_as_spritesheet = self.make_spritesheet_from_image(vehicle_bulk_cargo_state_input_image)
+                crop_box_dest = (0,
+                                 0,
+                                 graphics_constants.spritesheet_width,
+                                 unit_row_cluster_height)
+                for bulk_cargo_recolour_map in options['bulk_cargo_recolour_maps']:
+                    units.append(AppendToSpritesheet(vehicle_bulk_cargo_state_input_as_spritesheet, crop_box_dest))
+                    units.append(SimpleRecolour(bulk_cargo_recolour_map))
+            # piece cargo spriterows
+            if options['piece_cargo_maps'] is not None:
+                for piece_cargo_map in options['piece_cargo_maps']:
+                    print(piece_cargo_map)
 
         if options.get('swap_company_colours', False):
             units.append(SwapCompanyColours())
