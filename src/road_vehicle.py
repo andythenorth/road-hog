@@ -165,7 +165,8 @@ class Consist(object):
     def get_name(self):
         return "string(STR_NAME_" + self.id +", string(" + self.get_str_name_suffix() + "))"
 
-    def get_graphics_processors(self, **kwargs):
+    @property
+    def graphics_processors(self):
         # wrapper to get the graphics processors
         template = self.id + '_template.png'
 

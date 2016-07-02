@@ -16,14 +16,12 @@ consist.add_unit(weight = 60,
                 vehicle_length = 7,
                 effects = ['EFFECT_SPRITE_AIRCRAFT_BREAKDOWN_SMOKE, -2, 1, 10', 'EFFECT_SPRITE_AIRCRAFT_BREAKDOWN_SMOKE, -2, -1, 10'])
 
-graphics_processors = consist.get_graphics_processors()
-
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,
                        spritesheet_suffix=0,
-                       graphics_processor=graphics_processors[0])
+                       graphics_processor=consist.graphics_processors[0])
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,
                        spritesheet_suffix=1,
-                       graphics_processor=graphics_processors[1])
+                       graphics_processor=consist.graphics_processors[1])

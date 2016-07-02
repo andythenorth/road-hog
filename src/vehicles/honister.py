@@ -17,9 +17,7 @@ consist.add_unit(weight = 6,
                 capacity = 15,
                 vehicle_length = 4)
 
-graphics_processors = consist.get_graphics_processors()
-
 consist.add_model_variant(intro_date=0,
                     end_date=global_constants.max_game_date,
                     spritesheet_suffix=0,
-                    graphics_processor=graphics_processors[0])
+                    graphics_processor=consist.graphics_processors[0])
