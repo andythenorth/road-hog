@@ -23,7 +23,7 @@ consist.add_unit(weight = 0, # put the weight on the truck to compensate for lac
                 capacity = 55, # much bigger is not much better here
                 vehicle_length = 6)
 
-graphics_processors = consist.get_graphics_processors(paste_top_offset = 40)
+graphics_processors = consist.get_graphics_processors()
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,

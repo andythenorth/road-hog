@@ -180,11 +180,14 @@ class Consist(object):
                 cargo_template_rows_height = (1 + self.num_spriterows_per_cargo_variant) * num_preceding_units_with_cargo_sprites * 30
                 non_cargo_rows_height = unit.num_preceding_units_with_same_spriterow_flag_set * 30
                 copy_block_top_offsets.append(10 + cargo_template_rows_height + non_cargo_rows_height)
+                # !! this will only work for specific cases where vehicles with same spriterow are at front of consist
+                # !! needs rethinking - should probably gain capability to explicitly slice out and insert non-cargo rows
+                paste_top_offset = 10 + (30 * unit.num_preceding_units_with_same_spriterow_flag_set)
 
         return graphics_utils.get_composited_cargo_processors(template = template,
                                                               graphics_processor_options = self.graphics_processor_options,
                                                               copy_block_top_offsets = copy_block_top_offsets,
-                                                              **kwargs)
+                                                              paste_top_offset = paste_top_offset)
 
     def get_engine_cost_points(self):
         # Up to 40 points for power. 1 point per 50hp
