@@ -55,16 +55,12 @@ def get_composited_cargo_processors(template, graphics_processor_options, copy_b
     # returns two cargo-compositing graphics processors, one of which flips company colours
     # also provides optional 2CC recolor
 
-    if 'bulk' in graphics_processor_options:
-        bulk_cargo_recolour_maps = get_bulk_cargo_recolour_maps()
-    else:
-        bulk_cargo_recolour_maps = None
     if 'piece' in graphics_processor_options:
         piece_cargo_maps = ['GOOD']
     else:
         piece_cargo_maps = None
     graphics_options_master = {'template': '',
-                               'bulk_cargo_recolour_maps': bulk_cargo_recolour_maps,
+                               'bulk_cargo_recolour_maps': get_bulk_cargo_recolour_maps(),
                                'piece_cargo_maps': piece_cargo_maps,
                                'copy_block_top_offsets': copy_block_top_offsets,
                                'paste_top_offset': paste_top_offset,

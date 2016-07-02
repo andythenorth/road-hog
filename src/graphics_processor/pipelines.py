@@ -41,7 +41,7 @@ class Pipeline(object):
         for unit in units:
             spritesheet = unit.render(spritesheet)
         # I don't normally leave commented-out code behind, but I'm bored of looking in the PIL docs for how to show the image during compile
-        #spritesheet.sprites.show()
+        spritesheet.sprites.show()
         spritesheet.save(output_path)
 
     def render(self, variant, consist):
@@ -112,52 +112,70 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
     def render(self, variant, consist):
         # there are various options for controlling the crop box, I haven't documented them - read example uses to figure them out
         options = variant.graphics_processor.options
-        unit_row_cluster_height = options['num_rows_per_unit'] * graphics_constants.spriterow_height
         input_path = os.path.join(currentdir, 'src', 'graphics', options['template'])
-        units = []
-        # assumes first row from copy_block_top_offset is always the empty state, copied once, remaining rows copied per cargo
-        for counter, copy_block_top_offset in enumerate(options['copy_block_top_offsets']):
-            # empty state spriterow
-            base_offset = copy_block_top_offset
-            crop_box_source = (0,
-                               base_offset,
-                               graphics_constants.spritesheet_width,
-                               graphics_constants.spriterow_height + base_offset)
-            vehicle_empty_state_input_image = Image.open(input_path).crop(crop_box_source)
-            # vehicle_empty_state_input_image.show() # comment in to see the image when debugging
-            vehicle_empty_state_input_as_spritesheet = self.make_spritesheet_from_image(vehicle_empty_state_input_image)
-            crop_box_dest = (0,
-                             0,
-                             graphics_constants.spritesheet_width,
-                             graphics_constants.spriterow_height)
-            units.append(AppendToSpritesheet(vehicle_empty_state_input_as_spritesheet, crop_box_dest))
+        units = [] # graphics units not same as consist units ! confusing overlap of terminology :(
 
-            # bulk cargo spriterows
-            if options['bulk_cargo_recolour_maps'] is not None:
-                base_offset = copy_block_top_offset + graphics_constants.spriterow_height
-                crop_box_source = (0,
-                                   base_offset,
-                                   graphics_constants.spritesheet_width,
-                                   base_offset + unit_row_cluster_height)
-                vehicle_bulk_cargo_state_input_image = Image.open(input_path).crop(crop_box_source)
-                vehicle_bulk_cargo_state_input_as_spritesheet = self.make_spritesheet_from_image(vehicle_bulk_cargo_state_input_image)
-                crop_box_dest = (0,
-                                 0,
-                                 graphics_constants.spritesheet_width,
-                                 unit_row_cluster_height)
-                for bulk_cargo_recolour_map in options['bulk_cargo_recolour_maps']:
-                    units.append(AppendToSpritesheet(vehicle_bulk_cargo_state_input_as_spritesheet, crop_box_dest))
-                    units.append(SimpleRecolour(bulk_cargo_recolour_map))
+        print(consist.id)
+        cumulative_spriterow_counts_by_vehicle = 0
 
-            # piece cargo spriterows
-            if options['piece_cargo_maps'] is not None:
-                for piece_cargo_map in options['piece_cargo_maps']:
-                    pass
-                    #print(piece_cargo_map)
+        for vehicle_counter, vehicle_rows in enumerate(consist.get_spriterows_for_consist_or_subpart(consist.unique_units)):
+            preceding_row_count_this_vehicle = 0
+            for spriterow_type, spriterow_count in vehicle_rows:
+                unit_row_cluster_height = spriterow_count * graphics_constants.spriterow_height
+                if spriterow_type == 'always_use_same_spriterow':
+                    base_offset = 10 + cumulative_spriterow_counts_by_vehicle
+                    crop_box_source = (0,
+                                       base_offset,
+                                       graphics_constants.spritesheet_width,
+                                       graphics_constants.spriterow_height + base_offset)
+                    vehicle_always_use_same_spriterow_input_image = Image.open(input_path).crop(crop_box_source)
+                    # vehicle_always_use_same_spriterow_input_image.show() # comment in to see the image when debugging
+                    vehicle_always_use_same_spriterow_input_as_spritesheet = self.make_spritesheet_from_image(vehicle_always_use_same_spriterow_input_image)
+                    crop_box_dest = (0,
+                                     0,
+                                     graphics_constants.spritesheet_width,
+                                     graphics_constants.spriterow_height)
+                    units.append(AppendToSpritesheet(vehicle_always_use_same_spriterow_input_as_spritesheet, crop_box_dest))
+
+                if spriterow_type == 'empty':
+                    base_offset = 10 + (30 * cumulative_spriterow_counts_by_vehicle)
+                    #print(base_offset)
+                    crop_box_source = (0,
+                                       base_offset,
+                                       graphics_constants.spritesheet_width,
+                                       graphics_constants.spriterow_height + base_offset)
+                    vehicle_empty_state_input_image = Image.open(input_path).crop(crop_box_source)
+                    #vehicle_empty_state_input_image.show() # comment in to see the image when debugging
+                    vehicle_empty_state_input_as_spritesheet = self.make_spritesheet_from_image(vehicle_empty_state_input_image)
+                    crop_box_dest = (0,
+                                     0,
+                                     graphics_constants.spritesheet_width,
+                                     graphics_constants.spriterow_height)
+                    units.append(AppendToSpritesheet(vehicle_empty_state_input_as_spritesheet, crop_box_dest))
+
+                if spriterow_type == 'bulk':
+                    base_offset = 10 + ((cumulative_spriterow_counts_by_vehicle + preceding_row_count_this_vehicle) * graphics_constants.spriterow_height)
+                    crop_box_source = (0,
+                                       base_offset,
+                                       graphics_constants.spritesheet_width,
+                                       base_offset + unit_row_cluster_height)
+                    vehicle_bulk_cargo_state_input_image = Image.open(input_path).crop(crop_box_source)
+                    #vehicle_bulk_cargo_state_input_image.show() # comment in to see the image when debugging
+                    vehicle_bulk_cargo_state_input_as_spritesheet = self.make_spritesheet_from_image(vehicle_bulk_cargo_state_input_image)
+                    crop_box_dest = (0,
+                                     0,
+                                     graphics_constants.spritesheet_width,
+                                     unit_row_cluster_height)
+                    for bulk_cargo_recolour_map in options['bulk_cargo_recolour_maps']:
+                        units.append(AppendToSpritesheet(vehicle_bulk_cargo_state_input_as_spritesheet, crop_box_dest))
+                        units.append(SimpleRecolour(bulk_cargo_recolour_map))
+
+                preceding_row_count_this_vehicle += spriterow_count
+            cumulative_spriterow_counts_by_vehicle += preceding_row_count_this_vehicle
 
         if options.get('swap_company_colours', False):
             units.append(SwapCompanyColours())
-        input_image = Image.open(input_path).crop((0, 0, graphics_constants.spritesheet_width, options['paste_top_offset']))
+        input_image = Image.open(input_path).crop((0, 0, graphics_constants.spritesheet_width, 10))
         result = self.render_common(variant, consist, input_image, units, options)
         return result
 
