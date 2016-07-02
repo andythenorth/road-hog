@@ -23,13 +23,13 @@ disallowed_refits_by_label = {'non_dump_bulk': ['WOOD', 'SGCN', 'FICR', 'BDMT', 
                               'non_freight_special_cases': ['TOUR']}
 
 # capacity multipliers for capacity parameter
-capacity_multipliers = [0.67, 1, 1.33]
+capacity_multipliers = (0.67, 1, 1.33)
 # mailbags are < 1t, multiply capacity appropriately
 mail_multiplier = 2
 
 # used to construct the cargo table automatically
 # ! order is significant ! - openttd will cascade through default cargos in the order specified by the cargo table
-cargo_labels = ['PASS', # pax first
+cargo_labels = ('PASS', # pax first
                 'TOUR',
                 # "the mail must get through"
                 'MAIL',
@@ -86,7 +86,7 @@ cargo_labels = ['PASS', # pax first
                 'CASS',
                 'NUTS',
                 'MNO2',
-                'PHOS']
+                'PHOS')
 
 grfid = r"\97\87\EA\FE"
 
@@ -111,16 +111,16 @@ max_game_date = 5000001
 
 # standard offsets for vehicle
 # for 5/8 and 4/8, Capo truck in rev 732 is tested and canonical for offset, spritesheet position and vehicle length
-default_road_vehicle_offsets = {'1': [[-6, -23], [0, -17], [12, -10], [6, -11], [-6, -12], [-14, -10], [-14, -10], [-8, -16]], # may need fix
-                                '2': [[-6, -23], [-2, -16], [8, -10], [4, -11], [-6, -12], [-14, -10], [-16, -10], [-8, -14]],
-                                '3': [[-6, -22], [-4, -15], [2, -10], [2, -11], [-6, -15], [-14, -10], [-14, -10], [-8, -15]],
-                                '4': [[-6, -20], [-6, -14], [0, -10], [0, -11], [-6, -12], [-14, -10], [-14, -10], [-8, -14]],
-                                '5': [[-6, -17], [-8, -13], [-6, -10], [-2, -11], [-6, -12], [-14, -10], [-14, -10], [-8, -13]],
-                                '6': [[-6, -16], [-10, -12], [-8, -10], [-4, -11], [-6, -15], [-14, -10], [-14, -10], [-8, -12]],
-                                '7': [[-6, -15], [-12, -11], [-14, -10], [-6, -11], [-6, -15], [-14, -10], [-14, -10], [-8, -11]],
-                                '8': [[-6, -13], [-14, -10], [-18, -10], [-8, -11], [-6, -13], [-14, -10], [-14, -10], [-8, -10]]}
+default_road_vehicle_offsets = {'1': ((-6, -23), (0, -17), (12, -10), (6, -11), (-6, -12), (-14, -10), (-14, -10), (-8, -16)), # may need fix
+                                '2': ((-6, -23), (-2, -16), (8, -10), (4, -11), (-6, -12), (-14, -10), (-16, -10), (-8, -14)),
+                                '3': ((-6, -22), (-4, -15), (2, -10), (2, -11), (-6, -15), (-14, -10), (-14, -10), (-8, -15)),
+                                '4': ((-6, -20), (-6, -14), (0, -10), (0, -11), (-6, -12), (-14, -10), (-14, -10), (-8, -14)),
+                                '5': ((-6, -17), (-8, -13), (-6, -10), (-2, -11), (-6, -12), (-14, -10), (-14, -10), (-8, -13)),
+                                '6': ((-6, -16), (-10, -12), (-8, -10), (-4, -11), (-6, -15), (-14, -10), (-14, -10), (-8, -12)),
+                                '7': ((-6, -15), (-12, -11), (-14, -10), (-6, -11), (-6, -15), (-14, -10), (-14, -10), (-8, -11)),
+                                '8': ((-6, -13), (-14, -10), (-18, -10), (-8, -11), (-6, -13), (-14, -10), (-14, -10), (-8, -10))}
 
-semi_truck_offset_jank = [[0, 1], [-2, 1], [-5, 0], [-2, 1], [0, 0], [-2, 1], [-1, 0], [-1, 1]]
+semi_truck_offset_jank = ((0, 1), (-2, 1), (-5, 0), (-2, 1), (0, 0), (-2, 1), (-1, 0), (-1, 1))
 
 # spritesheet bounding boxes, each defined by a 3 tuple (left x, width, height);
 # upper y is determined by spritesheet row position, so isn't defined as a constant
