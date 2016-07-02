@@ -121,8 +121,8 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
         for vehicle_counter, vehicle_rows in enumerate(consist.get_spriterows_for_consist_or_subpart(consist.unique_units)):
             for spriterow_type, spriterow_count in vehicle_rows:
                 unit_row_cluster_height = spriterow_count * graphics_constants.spriterow_height
+                base_offset = 10 + (graphics_constants.spriterow_height * cumulative_spriterow_count)
                 if spriterow_type == 'always_use_same_spriterow':
-                    base_offset = 10 + cumulative_spriterow_count
                     crop_box_source = (0,
                                        base_offset,
                                        graphics_constants.spritesheet_width,
@@ -137,7 +137,6 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
                     units.append(AppendToSpritesheet(vehicle_always_use_same_spriterow_input_as_spritesheet, crop_box_dest))
 
                 if spriterow_type == 'empty':
-                    base_offset = 10 + (30 * cumulative_spriterow_count)
                     crop_box_source = (0,
                                        base_offset,
                                        graphics_constants.spritesheet_width,
@@ -152,7 +151,6 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
                     units.append(AppendToSpritesheet(vehicle_empty_state_input_as_spritesheet, crop_box_dest))
 
                 if spriterow_type == 'bulk':
-                    base_offset = 10 + ((cumulative_spriterow_count) * graphics_constants.spriterow_height)
                     crop_box_source = (0,
                                        base_offset,
                                        graphics_constants.spritesheet_width,
