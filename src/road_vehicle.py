@@ -165,17 +165,50 @@ class Consist(object):
     def get_name(self):
         return "string(STR_NAME_" + self.id +", string(" + self.get_str_name_suffix() + "))"
 
+    def get_spriterows_for_consist_or_subpart(self, units):
+        # pass either list of all units in consist, or a slice of the consist starting from front (arbitrary slices not useful)
+        # used for graphics processing and by nml sprite templating
+        # returns counts of rows and keys to what they are
+        result = []
+        for unit in units:
+            # some vehicles have livery variation only, no cargo sprites (nor empty sprite)
+            if 'livery_only' in self.graphics_processor_options.keys():
+                if not unit.always_use_same_spriterow:
+                    result.append(('livery_only', self.num_cargo_sprite_variants))
+                else:
+                    result.append(('empty', 1))
+            if self.has_empty_state_spriterow:
+                result.append(('empty', 1))
+            if not unit.always_use_same_spriterow:
+                if 'bulk' in self.graphics_processor_options.keys():
+                    result.append(('bulk', 2))
+                if 'piece' in self.graphics_processor_options.keys():
+                    result.append(('piece', 2))
+                # custom is to allow for manually drawn cargos
+                if 'custom' in self.graphics_processor_options.keys():
+                    result.append(('custom', 2))
+        return result
+
     @property
     def graphics_processors(self):
         # wrapper to get the graphics processors
         template = self.id + '_template.png'
+
+        # compose a list of instructions for the processor, per unit, num rows to take and provide
+            # if always_use_same_spriterow, take one 30px block, and insert it, with optional recolour
+            # if not always_use_same_spriterow,
+                # take the empty row and insert it, with optional recolour
+                # if required, take bulk rows and insert with recolour
+                # if required, take piece goods rows and insert, with optional recolour
+        # provide as either:
+            # (1) actual pixels
+            # (2) rows (similar to spriterow_num), and let the graphics processor figure out the actual row heights and base offset
 
         # auto-magic to figure out copy block offsets
         # !! this may be incomplete !!
         # 1. may not handle unit_num_providing_spriterow_num correctly
         # 2. may need extending to account for bulk / piece offsets, currently doesn't do anything for that
         copy_block_top_offsets = []
-        paste_top_offset = 0
         for unit in set(self.units):
             if not unit.always_use_same_spriterow:
                 num_preceding_units_with_cargo_sprites = unit.num_preceding_units - unit.num_preceding_units_with_same_spriterow_flag_set
@@ -426,16 +459,17 @@ class RoadVehicle(object):
         # ugly forcing of over-ride for out-of-sequence repeating vehicles
         if self.unit_num_providing_spriterow_num is not None:
             return self.unit_num_providing_spriterow_num
-        # larks!! Magic is hard!! (a lot of code was deleted to get to this relatively simple calculation)
-        num_preceding_units_with_cargo_sprites = self.num_preceding_units - self.num_preceding_units_with_same_spriterow_flag_set
 
-        # some units have multiple spriterows, which can be assumed to be cargo
-        num_preceding_cargo_rows = num_preceding_units_with_cargo_sprites * self.consist.num_spriterows_per_cargo_variant * self.consist.num_cargo_sprite_variants
-        # not all units with cargo have specific empty state rows, so calculate correct number of empty state rows
-        num_preceding_empty_state_rows = self.consist.has_empty_state_spriterow * num_preceding_units_with_cargo_sprites
-
-        return self.num_preceding_units_with_same_spriterow_flag_set + num_preceding_cargo_rows + num_preceding_empty_state_rows
-
+        preceding_spriterows = self.consist.get_spriterows_for_consist_or_subpart(self.consist.units[0:self.consist.units.index(self)])
+        result = []
+        for i in preceding_spriterows:
+            if i[0] == 'empty':
+                result.append(i[1])
+            elif i[0] == 'livery_only':
+                result.append(i[1])
+            else:
+                result.append(i[1] * self.consist.num_cargo_sprite_variants)
+        return sum(result)
 
     @property
     def vehicle_nml_template(self):
@@ -601,7 +635,6 @@ class DumpHauler(Consist):
         self.num_cargo_sprite_variants = 9
         self.generic_cargo_rows = [0]
         self.graphics_processor_options = {'bulk': True}
-        print(self.graphics_processors[0])
 
 
 class FlatBedHauler(Consist):
@@ -688,6 +721,7 @@ class Tanker(Consist):
         self.default_cargo = 'OIL_'
         self.loading_speed_multiplier = 2
         self.vehicle_nml_template = 'vehicle_with_cargo_specific_liveries.pynml'
+        self.graphics_processor_options = {'livery_only': True}
 
 
 class EdiblesTanker(Consist):
@@ -721,6 +755,7 @@ class LogHauler(Consist):
         self.cargo_graphics_mappings = {'WOOD': [0]}
         self.generic_cargo_rows = [0]
         self.vehicle_nml_template = 'vehicle_with_visible_cargo.pynml'
+        self.graphics_processor_options = {'custom': True}
 
 
 class FoundryHauler(Consist):
