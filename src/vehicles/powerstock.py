@@ -1,8 +1,7 @@
 import global_constants
-from road_vehicle import RVConsist, DumpHauler
+from road_vehicle import DumpHauler
 
-consist = RVConsist(vehicle_type = DumpHauler,
-                id = 'powerstock',
+consist = DumpHauler(      id = 'powerstock',
                 base_numeric_id = 340,
                 title = 'Powerstock [Dump Truck]',
                 replacement_id = '-none',

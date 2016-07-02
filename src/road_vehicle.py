@@ -53,11 +53,12 @@ class Consist(object):
         self.model_variants = []
         # create structure to hold the units
         self.units = []
-        # graphics processor options (optional kwargs)
+        # cargo /livery graphics options
         self.graphics_processor_options = {}
         self.num_cargo_sprite_variants = 0 # over-ridden by subclass when needed
         self.num_spriterows_per_cargo_variant = 2 # assume loading/loaded is the common case
         self.has_empty_state_spriterow = True # assume empty state is common case
+        self.vehicle_nml_template = None # use the default template by default
         # roster is set when the vehicle is registered to a roster, only one roster per vehicle
         self.roster_id = None
 
@@ -419,10 +420,13 @@ class RoadVehicle(object):
 
     @property
     def vehicle_nml_template(self):
-        if self.always_use_same_spriterow:
-            return 'vehicle_default.pynml'
+        if self.consist.vehicle_nml_template is not None:
+            if self.always_use_same_spriterow:
+                return 'vehicle_default.pynml'
+            else:
+                return self.consist.vehicle_nml_template
         else:
-            return self.consist.vehicle_nml_template
+            return 'vehicle_default.pynml'
 
     @property
     def sg_depot(self):
@@ -490,13 +494,12 @@ class ModelVariant(object):
         return consist.id + '_' + str(self.spritesheet_suffix) + '.png'
 
 
-class CourierCar(RoadVehicle):
+class CourierCar(Consist):
     """
     Truck or tram for mail, valuables etc.
     """
     def __init__(self, **kwargs):
         super(CourierCar, self).__init__(**kwargs)
-        self.template = 'vehicle_default.pynml'
         self.autorefit = True
         self.class_refit_groups = ['mail', 'express_freight']
         self.label_refits_allowed = [] # no specific labels needed
@@ -504,13 +507,12 @@ class CourierCar(RoadVehicle):
         self.default_cargo = 'MAIL'
 
 
-class PaxHauler(RoadVehicle):
+class PaxHauler(Consist):
     """
     Bus or tram for pax.
     """
     def __init__(self, **kwargs):
         super(PaxHauler, self).__init__(**kwargs)
-        self.template = 'vehicle_default.pynml'
         self.autorefit = True
         self.class_refit_groups = ['pax']
         self.label_refits_allowed = []
@@ -519,13 +521,12 @@ class PaxHauler(RoadVehicle):
         self.loading_speed_multiplier = 3
 
 
-class PaxExpressHauler(RoadVehicle):
+class PaxExpressHauler(Consist):
     """
     Coach or express tram for pax.
     """
     def __init__(self, **kwargs):
         super(PaxExpressHauler, self).__init__(**kwargs)
-        self.template = 'vehicle_default.pynml'
         self.autorefit = True
         self.class_refit_groups = ['pax']
         self.label_refits_allowed = []
@@ -534,13 +535,12 @@ class PaxExpressHauler(RoadVehicle):
         self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
 
 
-class OpenHauler(RoadVehicle):
+class OpenHauler(Consist):
     """
     General cargo tram or truck - refits everything except mail, pax.
     """
     def __init__(self, **kwargs):
         super(OpenHauler, self).__init__(**kwargs)
-        self.template = 'vehicle_default.pynml'
         self.autorefit = True
         self.class_refit_groups = ['all_freight']
         self.label_refits_allowed = [] # no specific labels needed
@@ -548,13 +548,12 @@ class OpenHauler(RoadVehicle):
         self.default_cargo = 'GOOD'
 
 
-class BoxHauler(RoadVehicle):
+class BoxHauler(Consist):
     """
     Box tram or truck - refits express, piece goods cargos, other selected cargos.
     """
     def __init__(self, **kwargs):
         super(BoxHauler, self).__init__(**kwargs)
-        self.template = 'vehicle_default.pynml'
         self.autorefit = True
         self.class_refit_groups = ['packaged_freight']
         self.label_refits_allowed = ['MAIL', 'GRAI', 'WHEA', 'MAIZ', 'FRUT', 'BEAN', 'NITR'] # Iron Horse compatibility
@@ -596,21 +595,21 @@ class FlatBedHauler(Consist):
         self.label_refits_allowed = ['GOOD']
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_flatbed_freight']
         self.default_cargo = 'STEL'
+        """
         self.vehicle_nml_template = 'vehicle_with_visible_cargo.pynml'
         # cargo rows 0 indexed - 0 = first set of loaded sprites
         self.cargo_graphics_mappings = {'GOOD': [0]}
         self.num_cargo_sprite_variants = 1
         self.generic_cargo_rows = [0]
         self.graphics_processor_options = {'piece': True}
+        """
 
-
-class BulkPowderHauler(RoadVehicle):
+class BulkPowderHauler(Consist):
     """
     Covered hopper truck or trailer for bulk powder cargos.
     """
     def __init__(self, **kwargs):
         super(BulkPowderHauler, self).__init__(**kwargs)
-        self.template = 'vehicle_default.pynml'
         self.autorefit = True
         self.class_refit_groups = ['covered_hopper_freight']
         self.label_refits_allowed = ['GRAI', 'WHEA', 'MAIZ', 'FOOD', 'SUGR', 'FMSP', 'RFPR', 'CLAY', 'BDMT', 'BEAN', 'NITR', 'RUBR', 'SAND']
@@ -619,13 +618,12 @@ class BulkPowderHauler(RoadVehicle):
         self.loading_speed_multiplier = 2
 
 
-class LivestockHauler(RoadVehicle):
+class LivestockHauler(Consist):
     """
     Livestock truck or trailer.
     """
     def __init__(self, **kwargs):
         super(LivestockHauler, self).__init__(**kwargs)
-        self.template = 'vehicle_default.pynml'
         self.autorefit = True
         self.class_refit_groups = []
         self.label_refits_allowed = ['LVST']
@@ -634,14 +632,13 @@ class LivestockHauler(RoadVehicle):
         self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
 
 
-class RefrigeratedHauler(RoadVehicle):
+class RefrigeratedHauler(Consist):
     """
     Refrigerated truck or trailer.
     Refits to limited range of refrigerated cargos, with 'improved' cargo decay rate.
     """
     def __init__(self, **kwargs):
         super(RefrigeratedHauler, self).__init__(**kwargs)
-        self.template = 'vehicle_default.pynml'
         self.autorefit = True
         self.class_refit_groups = ['refrigerated_freight']
         self.label_refits_allowed = [] # no specific labels needed, refits all cargos that have refrigerated class
@@ -650,7 +647,7 @@ class RefrigeratedHauler(RoadVehicle):
         self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
 
 
-class Tanker(RoadVehicle):
+class Tanker(Consist):
     """
     Ronseal ("does what it says on the tin", for those without extensive knowledge of UK advertising).
     """
@@ -670,19 +667,15 @@ class Tanker(RoadVehicle):
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['edible_liquids']
         self.default_cargo = 'OIL_'
         self.loading_speed_multiplier = 2
-        if self.always_use_same_spriterow:
-            self.template = 'vehicle_default.pynml'
-        else:
-            self.template = 'vehicle_with_cargo_specific_liveries.pynml'
+        self.vehicle_nml_template = 'vehicle_with_cargo_specific_liveries.pynml'
 
 
-class EdiblesTanker(RoadVehicle):
+class EdiblesTanker(Consist):
     """
     Wine, milk, water etc.
     """
     def __init__(self, **kwargs):
         super(EdiblesTanker, self).__init__(**kwargs)
-        self.template = 'vehicle_default.pynml'
         self.autorefit = True
         self.class_refit_groups = ['liquids']
         self.label_refits_allowed = ['MILK', 'FOOD']
@@ -692,13 +685,12 @@ class EdiblesTanker(RoadVehicle):
         self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
 
 
-class LogHauler(RoadVehicle):
+class LogHauler(Consist):
     """
     Gets wood.
     """
     def __init__(self, **kwargs):
         super(LogHauler, self).__init__(**kwargs)
-        self.template = 'vehicle_with_visible_cargo.pynml'
         self.autorefit = True
         self.class_refit_groups = []
         self.label_refits_allowed = ['WOOD']
@@ -708,20 +700,16 @@ class LogHauler(RoadVehicle):
         self.num_cargo_sprite_variants = 1
         self.cargo_graphics_mappings = {'WOOD': [0]}
         self.generic_cargo_rows = [0]
-        if self.always_use_same_spriterow:
-            self.template = 'vehicle_default.pynml'
-        else:
-            self.template = 'vehicle_with_cargo_specific_liveries.pynml'
+        self.vehicle_nml_template = 'vehicle_with_visible_cargo.pynml'
 
 
-class FoundryHauler(RoadVehicle):
+class FoundryHauler(Consist):
     """
     Specialist heavy haul tram / truck, e.g. multiwheel platform, steel mill hauler etc.
     High capacity, not very fast, refits to small subset of finished metal cargos.
     """
     def __init__(self, **kwargs):
         super(FoundryHauler, self).__init__(**kwargs)
-        self.template = 'vehicle_default.pynml'
         self.autorefit = True
         self.class_refit_groups = []
         self.label_refits_allowed = ['STEL', 'COPR']
@@ -730,13 +718,12 @@ class FoundryHauler(RoadVehicle):
         self.loading_speed_multiplier = 2
 
 
-class SuppliesHauler(RoadVehicle):
+class SuppliesHauler(Consist):
     """
     Specialist tram / truck with flatbed + crane, supplies and building materials.
     """
     def __init__(self, **kwargs):
         super(SuppliesHauler, self).__init__(**kwargs)
-        self.template = 'vehicle_default.pynml'
         self.autorefit = True
         self.class_refit_groups = []
         self.label_refits_allowed = ['ENSP', 'FMSP', 'VEHI', 'BDMT']
@@ -745,13 +732,12 @@ class SuppliesHauler(RoadVehicle):
         self.loading_speed_multiplier = 2
 
 
-class IntermodalHauler(RoadVehicle):
+class IntermodalHauler(Consist):
     """
     Specialist intermodal (container) truck, limited range of cargos.
     """
     def __init__(self, **kwargs):
         super(IntermodalHauler, self).__init__(**kwargs)
-        self.template = 'vehicle_default.pynml'
         self.autorefit = True
         # maintain other sets (e.g. IH etc) when changing container refits
         self.class_refit_groups = ['express_freight','packaged_freight']

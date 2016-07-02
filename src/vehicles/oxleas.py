@@ -1,11 +1,10 @@
 import global_constants
-from road_vehicle import RVConsist, PaxExpressHauler
+from road_vehicle import PaxExpressHauler
 
 # for each generation, bus and coach variants have same power and intro date
 # coaches lower weight, faster, lower capacity than equivalent bus
 
-consist = RVConsist(vehicle_type = PaxExpressHauler,
-                id = 'oxleas',
+consist = PaxExpressHauler(id = 'oxleas',
                 base_numeric_id = 610,
                 title = 'Oxleas [Coach]',
                 replacement_id = '-none',

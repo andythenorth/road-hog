@@ -1,8 +1,7 @@
 import global_constants
-from road_vehicle import RVConsist, OpenHauler
+from road_vehicle import OpenHauler
 
-consist = RVConsist(vehicle_type = OpenHauler,
-                id = 'brightling',
+consist = OpenHauler(id = 'brightling',
                 base_numeric_id = 90,
                 title = 'Brightling [Open Tram]',
                 roadveh_flag_tram = True,

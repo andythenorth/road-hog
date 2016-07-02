@@ -1,9 +1,8 @@
 import global_constants
-from road_vehicle import RVConsist, SuppliesHauler
+from road_vehicle import SuppliesHauler
 # 'inspired by' Scammell 100t low loader, but much smaller
 
-consist = RVConsist(vehicle_type = SuppliesHauler,
-                id = 'crime_rigg',
+consist = SuppliesHauler(id = 'crime_rigg',
                 base_numeric_id = 530,
                 title = 'Crime Rigg [Supplies Truck]',
                 replacement_id = '-none',
