@@ -106,6 +106,17 @@ class Consist(object):
         for repeat_num in range(repeat):
             self.units.append(unit)
 
+    @property
+    def unique_units(self):
+        # units may be repeated in the consist, sometimes we need an ordered list of unique units
+        # set() doesn't preserve list order, which matters, so do it the hard way
+        unique_units = []
+        for unit in self.units:
+            if unit not in unique_units:
+                unique_units.append(unit)
+        return unique_units
+
+
     def get_and_verify_numeric_id(self, offset):
         numeric_id = self.base_numeric_id + offset
         # guard against the ID being too large to build in an articulated consist
@@ -171,23 +182,25 @@ class Consist(object):
         # returns counts of rows and keys to what they are
         result = []
         for unit in units:
-            # some vehicles have livery variation only, no cargo sprites (nor empty sprite)
-            # this is a bit janky and with a bit more thought, could probably remove special casing here, but eh
-            if 'livery_only' in self.graphics_processor_options.keys():
-                if not unit.always_use_same_spriterow:
-                    result.append(('livery_only', self.num_cargo_sprite_variants))
-                else:
-                    result.append(('empty', 1))
-            if self.has_empty_state_spriterow:
-                result.append(('empty', 1))
-            if not unit.always_use_same_spriterow:
+            unit_rows = []
+            if unit.always_use_same_spriterow:
+                unit_rows.append(('always_use_same_spriterow', 1))
+            elif 'livery_only' in self.graphics_processor_options.keys():
+                # some vehicles have livery variation only, no cargo sprites (nor empty sprite)
+                # provide the count of _all_ the liveries here, no calculating later
+                unit_rows.append(('livery_only', self.num_cargo_sprite_variants))
+            else:
+                if self.has_empty_state_spriterow:
+                    unit_rows.append(('empty', 1))
+                # provide the number of rows per cargo group, total row count for the group is calculated later as needed
                 if 'bulk' in self.graphics_processor_options.keys():
-                    result.append(('bulk', 2))
+                    unit_rows.append(('bulk', 2))
                 if 'piece' in self.graphics_processor_options.keys():
-                    result.append(('piece', 2))
+                    unit_rows.append(('piece', 2))
                 # custom is to allow for manually drawn cargos
                 if 'custom' in self.graphics_processor_options.keys():
-                    result.append(('custom', 2))
+                    unit_rows.append(('custom', 2))
+            result.append(list(unit_rows))
         return result
 
     @property
@@ -210,7 +223,7 @@ class Consist(object):
         # 1. may not handle unit_num_providing_spriterow_num correctly
         # 2. may need extending to account for bulk / piece offsets, currently doesn't do anything for that
         copy_block_top_offsets = []
-        for unit in set(self.units):
+        for unit in self.unique_units:
             if not unit.always_use_same_spriterow:
                 num_preceding_units_with_cargo_sprites = unit.num_preceding_units - unit.num_preceding_units_with_same_spriterow_flag_set
                 cargo_template_rows_height = (1 + self.num_spriterows_per_cargo_variant) * num_preceding_units_with_cargo_sprites * 30
@@ -219,7 +232,22 @@ class Consist(object):
                 # !! this will only work for specific cases where vehicles with same spriterow are at front of consist
                 # !! needs rethinking - should probably gain capability to explicitly slice out and insert non-cargo rows
                 paste_top_offset = 10 + (30 * unit.num_preceding_units_with_same_spriterow_flag_set)
-
+        """
+        new = []
+        print(self.id)
+        for unit in self.unique_units:
+            count = []
+            spriterow_info = self.get_spriterows_for_consist_or_subpart(self.unique_units[0:self.unique_units.index(unit) + 1])
+            print(spriterow_info)
+            base = 10
+            for spriterow_type, spriterow_count in spriterow_info:
+                if spriterow_type != 'always_use_same_spriterow':
+                    new.append(base)
+                else:
+                    pass
+        print('old', copy_block_top_offsets)
+        print('new', new)
+        """
         return graphics_utils.get_composited_cargo_processors(template = template,
                                                               graphics_processor_options = self.graphics_processor_options,
                                                               copy_block_top_offsets = copy_block_top_offsets,
@@ -463,13 +491,15 @@ class RoadVehicle(object):
 
         preceding_spriterows = self.consist.get_spriterows_for_consist_or_subpart(self.consist.units[0:self.consist.units.index(self)])
         result = []
-        for i in preceding_spriterows:
-            if i[0] == 'empty':
-                result.append(i[1])
-            elif i[0] == 'livery_only':
-                result.append(i[1])
-            else:
-                result.append(i[1] * self.consist.num_cargo_sprite_variants)
+        for unit_rows in preceding_spriterows:
+            for spriterow_type, spriterow_count in unit_rows:
+                if spriterow_type == 'empty' or spriterow_type == 'always_use_same_spriterow':
+                    result.append(spriterow_count)
+                elif spriterow_type == 'livery_only':
+                    # 'livery_only' provides the count of all liveries, no further calculation
+                    result.append(spriterow_count)
+                else:
+                    result.append(spriterow_count * self.consist.num_cargo_sprite_variants)
         return sum(result)
 
     @property
