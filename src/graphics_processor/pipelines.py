@@ -7,7 +7,7 @@ from PIL import Image
 from graphics_processor import registered_pipelines
 from graphics_processor import graphics_constants
 from graphics_processor import utils as graphics_utils
-from graphics_processor.units import SimpleRecolour, SwapCompanyColours, PasteAtMagicPixels, AppendToSpritesheet
+from graphics_processor.units import SimpleRecolour, SwapCompanyColours, AppendToSpritesheet
 
 DOS_PALETTE = Image.open('palette_key.png').palette
 
@@ -148,7 +148,7 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
                                      0,
                                      graphics_constants.spritesheet_width,
                                      unit_row_cluster_height)
-                    for bulk_cargo_recolour_map in graphics_utils.get_bulk_cargo_recolour_maps():
+                    for bulk_cargo_recolour_map in graphics_constants.bulk_cargo_recolour_maps():
                         units.append(AppendToSpritesheet(vehicle_bulk_cargo_state_input_as_spritesheet, crop_box_dest))
                         units.append(SimpleRecolour(bulk_cargo_recolour_map))
 
@@ -164,7 +164,7 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
                                      0,
                                      graphics_constants.spritesheet_width,
                                      unit_row_cluster_height)
-                    for bulk_cargo_recolour_map in graphics_utils.get_bulk_cargo_recolour_maps():
+                    for bulk_cargo_recolour_map in graphics_constants.bulk_cargo_recolour_maps():
                         units.append(AppendToSpritesheet(vehicle_bulk_cargo_state_input_as_spritesheet, crop_box_dest))
                         units.append(SimpleRecolour(bulk_cargo_recolour_map))
 
