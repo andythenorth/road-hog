@@ -182,13 +182,13 @@ class Consist(object):
                 if self.has_empty_state_spriterow:
                     unit_rows.append(('empty', 1))
                 # provide the number of rows per cargo group, total row count for the group is calculated later as needed
-                if 'bulk' in self.cargo_graphics_options.keys():
-                    unit_rows.append(('bulk', 2))
-                if 'piece' in self.cargo_graphics_options.keys():
-                    unit_rows.append(('piece', 2))
+                if 'bulk_cargo' in self.cargo_graphics_options.keys():
+                    unit_rows.append(('bulk_cargo', 2))
+                if 'piece_cargo' in self.cargo_graphics_options.keys():
+                    unit_rows.append(('piece_cargo', 2))
                 # custom is to allow for manually drawn cargos
-                if 'custom' in self.cargo_graphics_options.keys():
-                    unit_rows.append(('custom', 2))
+                if 'custom_cargo' in self.cargo_graphics_options.keys():
+                    unit_rows.append(('custom_cargo', 2))
             result.append(list(unit_rows))
         return result
 
@@ -608,7 +608,7 @@ class DumpHauler(Consist):
                    'SAND': [4], 'COAL': [5], 'CLAY': [6], 'SCMT': [7], 'PHOS': [8]}
         self.num_cargo_sprite_variants = 9
         self.generic_cargo_rows = [0]
-        self.cargo_graphics_options = {'bulk': True}
+        self.cargo_graphics_options = {'bulk_cargo': True}
 
 
 class FlatBedHauler(Consist):
@@ -623,7 +623,7 @@ class FlatBedHauler(Consist):
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_flatbed_freight']
         self.default_cargo = 'STEL'
 
-        self.cargo_graphics_options = {'piece': True}
+        self.cargo_graphics_options = {'piece_cargo': True}
         """
         self.vehicle_nml_template = 'vehicle_with_visible_cargo.pynml'
         # cargo rows 0 indexed - 0 = first set of loaded sprites
@@ -733,7 +733,7 @@ class LogHauler(Consist):
         self.cargo_graphics_mappings = {'WOOD': [0]}
         self.generic_cargo_rows = [0]
         self.vehicle_nml_template = 'vehicle_with_visible_cargo.pynml'
-        self.cargo_graphics_options = {'custom': True}
+        self.cargo_graphics_options = {'custom_cargo': True}
 
 
 class FoundryHauler(Consist):

@@ -170,9 +170,9 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
                 self.base_offset = 10 + (graphics_constants.spriterow_height * cumulative_spriterow_count)
                 if spriterow_type == 'always_use_same_spriterow' or spriterow_type == 'empty':
                     self.add_generic_spriterow()
-                elif spriterow_type == 'bulk':
+                elif spriterow_type == 'bulk_cargo':
                     self.add_bulk_cargo_spriterows()
-                elif spriterow_type == 'piece':
+                elif spriterow_type == 'piece_cargo':
                     self.add_piece_cargo_spriterows()
                 cumulative_spriterow_count += spriterow_count
 
