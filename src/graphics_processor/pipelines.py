@@ -152,6 +152,22 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
                         units.append(AppendToSpritesheet(vehicle_bulk_cargo_state_input_as_spritesheet, crop_box_dest))
                         units.append(SimpleRecolour(bulk_cargo_recolour_map))
 
+                if spriterow_type == 'piece':
+                    crop_box_source = (0,
+                                       base_offset,
+                                       graphics_constants.spritesheet_width,
+                                       base_offset + unit_row_cluster_height)
+                    vehicle_bulk_cargo_state_input_image = Image.open(input_path).crop(crop_box_source)
+                    #vehicle_bulk_cargo_state_input_image.show() # comment in to see the image when debugging
+                    vehicle_bulk_cargo_state_input_as_spritesheet = self.make_spritesheet_from_image(vehicle_bulk_cargo_state_input_image)
+                    crop_box_dest = (0,
+                                     0,
+                                     graphics_constants.spritesheet_width,
+                                     unit_row_cluster_height)
+                    for bulk_cargo_recolour_map in graphics_utils.get_bulk_cargo_recolour_maps():
+                        units.append(AppendToSpritesheet(vehicle_bulk_cargo_state_input_as_spritesheet, crop_box_dest))
+                        units.append(SimpleRecolour(bulk_cargo_recolour_map))
+
                 cumulative_spriterow_count += spriterow_count
 
         if options.get('swap_company_colours', False):
