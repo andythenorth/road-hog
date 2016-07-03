@@ -108,8 +108,8 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
     """
     def __init__(self):
         # this should be sparse, don't store any consist or variant info in Pipelines, pass them at render time
+        # initing things here is proven to have unexpected results, as the processor will be shared across multiple vehicles
         super(ExtendSpriterowsForCompositedCargosPipeline, self).__init__("extend_spriterows_for_composited_cargos_pipeline")
-        self.units = [] # graphics units not same as consist units ! confusing overlap of terminology :(
 
     def add_generic_spriterow(self):
         crop_box_source = (0,
@@ -130,37 +130,47 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
                            self.base_offset,
                            graphics_constants.spritesheet_width,
                            self.base_offset + self.unit_row_cluster_height)
-        vehicle_bulk_cargo_state_input_image = Image.open(self.input_path).crop(crop_box_source)
-        #vehicle_bulk_cargo_state_input_image.show() # comment in to see the image when debugging
-        vehicle_bulk_cargo_state_input_as_spritesheet = self.make_spritesheet_from_image(vehicle_bulk_cargo_state_input_image)
+        vehicle_bulk_cargo_input_image = Image.open(self.input_path).crop(crop_box_source)
+        #vehicle_bulk_cargo_input_image.show() # comment in to see the image when debugging
+        vehicle_bulk_cargo_input_as_spritesheet = self.make_spritesheet_from_image(vehicle_bulk_cargo_input_image)
         crop_box_dest = (0,
                          0,
                          graphics_constants.spritesheet_width,
                          self.unit_row_cluster_height)
         for bulk_cargo_recolour_map in graphics_constants.bulk_cargo_recolour_maps():
-            self.units.append(AppendToSpritesheet(vehicle_bulk_cargo_state_input_as_spritesheet, crop_box_dest))
+            self.units.append(AppendToSpritesheet(vehicle_bulk_cargo_input_as_spritesheet, crop_box_dest))
             self.units.append(SimpleRecolour(bulk_cargo_recolour_map))
 
-    def add_piece_cargo_spriterows(self):
+    def add_piece_cargo_spriterows(self, vehicle):
+        print(vehicle.vehicle_length)
+        piece_cargo_maps = ('GOOD','PAPR')
         crop_box_source = (0,
                            self.base_offset,
                            graphics_constants.spritesheet_width,
                            self.base_offset + self.unit_row_cluster_height)
-        vehicle_bulk_cargo_state_input_image = Image.open(self.input_path).crop(crop_box_source)
-        #vehicle_bulk_cargo_state_input_image.show() # comment in to see the image when debugging
-        vehicle_bulk_cargo_state_input_as_spritesheet = self.make_spritesheet_from_image(vehicle_bulk_cargo_state_input_image)
+        vehicle_piece_cargo_input_image = Image.open(self.input_path).crop(crop_box_source)
+        #vehicle_piece_cargo_input_image.show() # comment in to see the image when debugging
+        vehicle_piece_cargo_input_as_spritesheet = self.make_spritesheet_from_image(vehicle_piece_cargo_input_image)
         crop_box_dest = (0,
                          0,
                          graphics_constants.spritesheet_width,
                          self.unit_row_cluster_height)
-        for bulk_cargo_recolour_map in graphics_constants.bulk_cargo_recolour_maps():
-            self.units.append(AppendToSpritesheet(vehicle_bulk_cargo_state_input_as_spritesheet, crop_box_dest))
-            self.units.append(SimpleRecolour(bulk_cargo_recolour_map))
+        crop_box_cargo_sprites = (0,
+                           10,
+                           graphics_constants.spritesheet_width,
+                           10 + graphics_constants.spriterow_height)
+        for piece_cargo_map in piece_cargo_maps:
+            cargo_sprites_input_path = os.path.join(currentdir, 'src', 'graphics', 'cargos', piece_cargo_map + '.png')
+            cargo_sprites_input_image = Image.open(cargo_sprites_input_path).crop(crop_box_cargo_sprites)
+            #cargo_sprites_input_image.show() # comment in to see the image when debugging
+            cargo_sprites_input_as_spritesheet = self.make_spritesheet_from_image(cargo_sprites_input_image)
+            self.units.append(AppendToSpritesheet(vehicle_piece_cargo_input_as_spritesheet, crop_box_dest))
 
     def render(self, variant, consist):
         # there are various options for controlling the crop box, I haven't documented them - read example uses to figure them out
         self.options = variant.graphics_processor.options
         self.input_path = os.path.join(currentdir, 'src', 'graphics', self.options['template'])
+        self.units = [] # graphics units not same as consist units ! confusing overlap of terminology :(
 
         # the cumulative_spriterow_count updates per processed group of spriterows, and is key to making this work
         cumulative_spriterow_count = 0
@@ -173,7 +183,7 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
                 elif spriterow_type == 'bulk_cargo':
                     self.add_bulk_cargo_spriterows()
                 elif spriterow_type == 'piece_cargo':
-                    self.add_piece_cargo_spriterows()
+                    self.add_piece_cargo_spriterows(consist.unique_units[vehicle_counter])
                 cumulative_spriterow_count += spriterow_count
 
         if self.options.get('swap_company_colours', False):

@@ -24,11 +24,11 @@ print("[IMPORT VEHICLES] iron_horse.py")
 
 from rosters import registered_rosters
 
-from rosters import brit
-brit.roster.register()
+#from rosters import brit
+#brit.roster.register()
 
-#from rosters import test
-#test.roster.register()
+from rosters import test
+test.roster.register()
 
 #from rosters import wasteland
 #wasteland.roster.register()
