@@ -142,7 +142,7 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
             self.units.append(AppendToSpritesheet(vehicle_bulk_cargo_input_as_spritesheet, crop_box_dest))
             self.units.append(SimpleRecolour(bulk_cargo_recolour_map))
 
-    def add_piece_cargo_spriterows(self, vehicle):
+    def add_piece_cargo_spriterows(self, vehicle, global_constants):
         piece_cargo_maps = ('PAPR',)
         cargo_spritesheet_bounding_boxes = ((10, 10, 18, 20), (28, 10, 40, 20), (50, 10, 62, 20), (72, 10, 84, 20))
         cargo_group_output_row_height = 2 * graphics_constants.spriterow_height
@@ -200,7 +200,7 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
             vehicle_cargo_rows_image.paste(vehicle_overlay_image, crop_box_comp_dest_2)
             for pixel in loc_points:
                 angle_num = 0
-                for counter, bbox in enumerate(self.global_constants.spritesheet_bounding_boxes):
+                for counter, bbox in enumerate(global_constants.spritesheet_bounding_boxes):
                     if pixel[0] >= bbox[0]:
                         angle_num = counter
                 # clamp angle_num to 4, cargo sprites are symmetrical, only 4 angles provided
@@ -222,7 +222,6 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
     def render(self, variant, consist, global_constants):
         # there are various options for controlling the crop box, I haven't documented them - read example uses to figure them out
         self.options = variant.graphics_processor.options
-        self.global_constants = global_constants
         self.input_path = os.path.join(currentdir, 'src', 'graphics', self.options['template'])
         self.units = [] # graphics units not same as consist units ! confusing overlap of terminology :(
 
@@ -237,7 +236,7 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
                 elif spriterow_type == 'bulk_cargo':
                     self.add_bulk_cargo_spriterows()
                 elif spriterow_type == 'piece_cargo':
-                    self.add_piece_cargo_spriterows(consist.unique_units[vehicle_counter])
+                    self.add_piece_cargo_spriterows(consist.unique_units[vehicle_counter], global_constants)
                 cumulative_spriterow_count += spriterow_count
 
         if self.options.get('swap_company_colours', False):
