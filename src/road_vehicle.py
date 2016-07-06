@@ -168,7 +168,7 @@ class Consist(object):
     def get_spriterows_for_consist_or_subpart(self, units):
         # pass either list of all units in consist, or a slice of the consist starting from front (arbitrary slices not useful)
         # used for graphics processing and by nml sprite templating
-        # returns counts of rows and keys to what they are
+        # returns counts of rows from the template and keys to what they are
         result = []
         for unit in units:
             unit_rows = []
@@ -185,7 +185,7 @@ class Consist(object):
                 if 'bulk_cargo' in self.cargo_graphics_options.keys():
                     unit_rows.append(('bulk_cargo', 2))
                 if 'piece_cargo' in self.cargo_graphics_options.keys():
-                    unit_rows.append(('piece_cargo', 2))
+                    unit_rows.append(('piece_cargo', 3))
                 # custom is to allow for manually drawn cargos
                 if 'custom_cargo' in self.cargo_graphics_options.keys():
                     unit_rows.append(('custom_cargo', 2))
