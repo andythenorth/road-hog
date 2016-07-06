@@ -53,7 +53,7 @@ class PassThroughPipeline(Pipeline):
         # this should be sparse, don't store any consist or variant info in Pipelines, pass them at render time
         super(PassThroughPipeline, self).__init__("pass_through_pipeline")
 
-    def render(self, variant, consist):
+    def render(self, variant, consist, global_constants):
         options = variant.graphics_processor.options
         input_path = os.path.join(currentdir, 'src', 'graphics', options['template'])
         input_image = Image.open(input_path)
@@ -70,7 +70,7 @@ class SimpleRecolourPipeline(Pipeline):
         # this should be sparse, don't store any consist or variant info in Pipelines, pass them at render time
         super(SimpleRecolourPipeline, self).__init__("simple_recolour_pipeline")
 
-    def render(self, variant, consist):
+    def render(self, variant, consist, global_constants):
         options = variant.graphics_processor.options
         input_path = os.path.join(currentdir, 'src', 'graphics', options['template'])
         input_image = Image.open(input_path)
@@ -87,7 +87,7 @@ class SwapCompanyColoursPipeline(Pipeline):
         # this should be sparse, don't store any consist or variant info in Pipelines, pass them at render time
         super(SwapCompanyColoursPipeline, self).__init__("swap_company_colours_pipeline")
 
-    def render(self, variant, consist):
+    def render(self, variant, consist, global_constants):
         options = variant.graphics_processor.options
         input_path = os.path.join(currentdir, 'src', 'graphics', options['template'])
         input_image = Image.open(input_path)
@@ -144,7 +144,7 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
 
     def add_piece_cargo_spriterows(self, vehicle):
         piece_cargo_maps = ('PAPR',)
-        cargo_spritesheet_bounding_boxes = ((10, 10, 18, 20), (28, 10, 36, 20), (46, 10, 58, 20), (68, 10, 76, 20))
+        cargo_spritesheet_bounding_boxes = ((10, 10, 18, 20), (28, 10, 40, 20), (50, 10, 62, 20), (72, 10, 84, 20))
         cargo_group_output_row_height = 2 * graphics_constants.spriterow_height
         # Overview
         # 2 spriterows for the vehicle loading / loaded states, with pink loc points for cargo
@@ -198,24 +198,31 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
             # paste the empty state over the cargo rows (this will obliterate the pink loc points)
             vehicle_cargo_rows_image.paste(vehicle_overlay_image, crop_box_comp_dest_1)
             vehicle_cargo_rows_image.paste(vehicle_overlay_image, crop_box_comp_dest_2)
-            vehicle_cargo_rows_image.show()
             for pixel in loc_points:
-                cargo_width = cargo_sprites[0][0].size[0]
-                cargo_height = cargo_sprites[0][0].size[1]
+                angle_num = 0
+                for counter, bbox in enumerate(self.global_constants.spritesheet_bounding_boxes):
+                    if pixel[0] >= bbox[0]:
+                        angle_num = counter
+                # clamp angle_num to 4, cargo sprites are symmetrical, only 4 angles provided
+                if angle_num > 3:
+                    angle_num = angle_num % 4
+                cargo_width = cargo_sprites[angle_num][0].size[0]
+                cargo_height = cargo_sprites[angle_num][0].size[1]
                 cargo_bounding_box = (pixel[0],
                                       pixel[1] - cargo_height,
                                       pixel[0] + cargo_width,
                                       pixel[1])
-                vehicle_cargo_rows_image.paste(cargo_sprites[0][0], cargo_bounding_box, cargo_sprites[0][1])
-            #vehicle_cargo_rows_image.paste(vehicle_overlay_image, crop_box_comp_dest_1, vehicle_mask)
-            #vehicle_cargo_rows_image.paste(vehicle_overlay_image, crop_box_comp_dest_2, vehicle_mask)
-            vehicle_cargo_rows_image.show()
+                vehicle_cargo_rows_image.paste(cargo_sprites[angle_num][0], cargo_bounding_box, cargo_sprites[angle_num][1])
+            vehicle_cargo_rows_image.paste(vehicle_overlay_image, crop_box_comp_dest_1, vehicle_mask)
+            vehicle_cargo_rows_image.paste(vehicle_overlay_image, crop_box_comp_dest_2, vehicle_mask)
+            #vehicle_cargo_rows_image.show()
             vehicle_cargo_rows_as_spritesheet = self.make_spritesheet_from_image(vehicle_cargo_rows_image)
             self.units.append(AppendToSpritesheet(vehicle_cargo_rows_as_spritesheet, crop_box_dest))
 
-    def render(self, variant, consist):
+    def render(self, variant, consist, global_constants):
         # there are various options for controlling the crop box, I haven't documented them - read example uses to figure them out
         self.options = variant.graphics_processor.options
+        self.global_constants = global_constants
         self.input_path = os.path.join(currentdir, 'src', 'graphics', self.options['template'])
         self.units = [] # graphics units not same as consist units ! confusing overlap of terminology :(
 

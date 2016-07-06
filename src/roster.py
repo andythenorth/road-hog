@@ -1,5 +1,6 @@
 from rosters import registered_rosters
 import pickle
+import utils
 
 class Roster(object):
     """
@@ -32,7 +33,7 @@ class Roster(object):
             try:
                 pickle.dumps(consist)
             except:
-                print("Pickling failed for consist:", consist.id)
+                utils.echo_message("Pickling failed for consist: " + consist.id)
                 raise
         return result
 

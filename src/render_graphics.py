@@ -19,6 +19,7 @@ logger = multiprocessing.log_to_stderr()
 logger.setLevel(25)
 
 import road_hog
+import global_constants
 
 graphics_input = os.path.join(currentdir, 'src', 'graphics')
 graphics_output_path = os.path.join(road_hog.generated_files_path, 'graphics')
@@ -36,7 +37,7 @@ def run_pipeline(items):
     if variant.graphics_processor is None:
         shutil.copy(os.path.join(graphics_input, variant.get_spritesheet_name(consist)), graphics_output_path)
     else:
-        result = variant.graphics_processor.pipeline.render(variant, consist)
+        result = variant.graphics_processor.pipeline.render(variant, consist, global_constants)
         return result
 
 # wrapped in a main() function so this can be called explicitly, because unexpected multiprocessing fork bombs are bad
