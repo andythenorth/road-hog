@@ -145,7 +145,8 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
     def add_piece_cargo_spriterows(self, vehicle, global_constants):
         # !! this could possibly be optimised by slicing all the cargos once, globally, instead of per-unit
         piece_cargo_maps = ('WOOD',)
-        cargo_spritesheet_bounding_boxes = ((10, 10, 18, 22), (28, 10, 40, 22), (50, 10, 62, 20), (72, 10, 84, 22))
+        cargo_loading_spritesheet_bounding_boxes = ((10, 10, 18, 22), (28, 10, 40, 22), (50, 10, 62, 20), (72, 10, 84, 22))
+        cargo_loaded_spritesheet_bounding_boxes = tuple([(i[0], i[1] + 20, i[2], i[3] + 20) for i in cargo_loading_spritesheet_bounding_boxes])
         cargo_group_output_row_height = 2 * graphics_constants.spriterow_height
         # Overview
         # 2 spriterows for the vehicle loading / loaded states, with pink loc points for cargo
@@ -189,12 +190,14 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
             # build a list, with a two-tuple (cargo_sprite, mask) for each of 4 angles
             # cargo sprites are assumed to be symmetrical, only 4 angles are needed
             # for cargos with 8 angles (e.g. bulldozers), provide those manually as custom cargos?
-            for i in cargo_spritesheet_bounding_boxes:
-                cargo_sprite = cargo_sprites_input_image.copy()
-                cargo_sprite = cargo_sprite.crop(i)
-                cargo_mask = cargo_sprite.copy()
-                cargo_mask = cargo_mask.point(lambda i: 0 if i == 0 else 255).convert("1")
-                cargo_sprites.append((cargo_sprite, cargo_mask))
+            # loading states are first 4 sprites, loaded are second 4, all in one list
+            for load_state in [cargo_loading_spritesheet_bounding_boxes, cargo_loaded_spritesheet_bounding_boxes]:
+                for i in load_state:
+                    cargo_sprite = cargo_sprites_input_image.copy()
+                    cargo_sprite = cargo_sprite.crop(i)
+                    cargo_mask = cargo_sprite.copy()
+                    cargo_mask = cargo_mask.point(lambda i: 0 if i == 0 else 255).convert("1")
+                    cargo_sprites.append((cargo_sprite, cargo_mask))
             # get the loc points
             loc_points = [pixel for pixel in pixascan(vehicle_cargo_rows_image) if pixel[2] == 226]
             vehicle_comped_image = vehicle_cargo_rows_image.copy()
@@ -209,15 +212,19 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
                 # clamp angle_num to 4, cargo sprites are symmetrical, only 4 angles provided
                 if angle_num > 3:
                     angle_num = angle_num % 4
-                cargo_width = cargo_sprites[angle_num][0].size[0]
-                cargo_height = cargo_sprites[angle_num][0].size[1]
+                cargo_sprite_num = angle_num
+                # loaded sprites are the second block of 4 in the cargo sprites list
+                if pixel[1] >= graphics_constants.spriterow_height:
+                    cargo_sprite_num = cargo_sprite_num + 4
+                cargo_width = cargo_sprites[cargo_sprite_num][0].size[0]
+                cargo_height = cargo_sprites[cargo_sprite_num][0].size[1]
                 # the +1s for height adjust the crop box to include the loc point
                 # (needed beause loc points are left-bottom not left-top as per co-ordinate system, makes drawing loc points easier)
                 cargo_bounding_box = (pixel[0],
                                       pixel[1] - cargo_height + 1,
                                       pixel[0] + cargo_width,
                                       pixel[1] + 1)
-                vehicle_comped_image.paste(cargo_sprites[angle_num][0], cargo_bounding_box, cargo_sprites[angle_num][1])
+                vehicle_comped_image.paste(cargo_sprites[cargo_sprite_num][0], cargo_bounding_box, cargo_sprites[angle_num][1])
             vehicle_comped_image.paste(vehicle_overlay_image, crop_box_comp_dest_1, vehicle_mask)
             vehicle_comped_image.paste(vehicle_overlay_image, crop_box_comp_dest_2, vehicle_mask)
             #vehicle_comped_image.show()
