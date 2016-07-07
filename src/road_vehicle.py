@@ -167,7 +167,7 @@ class Consist(object):
 
     def get_spriterows_for_consist_or_subpart(self, units):
         # pass either list of all units in consist, or a slice of the consist starting from front (arbitrary slices not useful)
-        # used for graphics processing and by nml sprite templating
+        # spriterow count is number of output sprite rows from graphics processor, to be used by nml sprite templating
         # returns counts of rows from the template and keys to what they are
         result = []
         for unit in units:
@@ -181,11 +181,11 @@ class Consist(object):
             else:
                 if self.has_empty_state_spriterow:
                     unit_rows.append(('empty', 1))
-                # provide the number of rows per cargo group, total row count for the group is calculated later as needed
+                # provide the number of output rows per cargo group, total row count for the group is calculated later as needed
                 if 'bulk_cargo' in self.cargo_graphics_options.keys():
                     unit_rows.append(('bulk_cargo', 2))
                 if 'piece_cargo' in self.cargo_graphics_options.keys():
-                    unit_rows.append(('piece_cargo', 3))
+                    unit_rows.append(('piece_cargo', 2))
                 # custom is to allow for manually drawn cargos
                 if 'custom_cargo' in self.cargo_graphics_options.keys():
                     unit_rows.append(('custom_cargo', 2))
@@ -622,6 +622,10 @@ class FlatBedHauler(Consist):
         self.label_refits_allowed = ['GOOD']
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_flatbed_freight']
         self.default_cargo = 'STEL'
+        self.vehicle_nml_template = 'vehicle_with_visible_cargo.pynml'
+        self.cargo_graphics_mappings = {'WOOD': [0]}
+        self.num_cargo_sprite_variants = 1
+        self.generic_cargo_rows = [0]
 
         self.cargo_graphics_options = {'piece_cargo': True}
         """

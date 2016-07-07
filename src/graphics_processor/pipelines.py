@@ -144,7 +144,7 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
 
     def add_piece_cargo_spriterows(self, vehicle, global_constants):
         # !! this could possibly be optimised by slicing all the cargos once, globally, instead of per-unit
-        piece_cargo_maps = ('PAPR', 'WDPR')
+        piece_cargo_maps = ('WOOD',)
         cargo_spritesheet_bounding_boxes = ((10, 10, 18, 22), (28, 10, 40, 22), (50, 10, 62, 20), (72, 10, 84, 22))
         cargo_group_output_row_height = 2 * graphics_constants.spriterow_height
         # Overview
@@ -230,19 +230,23 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
         self.input_path = os.path.join(currentdir, 'src', 'graphics', self.options['template'])
         self.units = [] # graphics units not same as consist units ! confusing overlap of terminology :(
 
-        # the cumulative_spriterow_count updates per processed group of spriterows, and is key to making this work
-        cumulative_spriterow_count = 0
+        # the cumulative_input_spriterow_count updates per processed group of spriterows, and is key to making this work
+        cumulative_input_spriterow_count = 0
         for vehicle_counter, vehicle_rows in enumerate(consist.get_spriterows_for_consist_or_subpart(consist.unique_units)):
-            self.cur_vehicle_empty_row_offset = 10 + cumulative_spriterow_count * graphics_constants.spriterow_height
-            for spriterow_type, spriterow_count in vehicle_rows:
-                self.base_offset = 10 + (graphics_constants.spriterow_height * cumulative_spriterow_count)
+            self.cur_vehicle_empty_row_offset = 10 + cumulative_input_spriterow_count * graphics_constants.spriterow_height
+            for spriterow_data in vehicle_rows:
+                spriterow_type = spriterow_data[0]
+                self.base_offset = 10 + (graphics_constants.spriterow_height * cumulative_input_spriterow_count)
                 if spriterow_type == 'always_use_same_spriterow' or spriterow_type == 'empty':
+                    input_spriterow_count = 1
                     self.add_generic_spriterow()
                 elif spriterow_type == 'bulk_cargo':
+                    input_spriterow_count = 2
                     self.add_bulk_cargo_spriterows()
                 elif spriterow_type == 'piece_cargo':
+                    input_spriterow_count = 3
                     self.add_piece_cargo_spriterows(consist.unique_units[vehicle_counter], global_constants)
-                cumulative_spriterow_count += spriterow_count
+                cumulative_input_spriterow_count += input_spriterow_count
 
         if self.options.get('swap_company_colours', False):
             units.append(SwapCompanyColours())
