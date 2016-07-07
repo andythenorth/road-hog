@@ -400,6 +400,7 @@ class RoadVehicle(object):
 
     @property
     def is_lead_unit_of_consist(self):
+        # could be refactored - 'if self.consist.units.index(self.id) == 0:'
         if self.numeric_id == self.consist.base_numeric_id:
             return True
         else:

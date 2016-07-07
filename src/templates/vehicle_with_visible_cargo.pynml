@@ -38,8 +38,7 @@
             ];
         }
 
-        switch (FEAT_ROADVEHS, SELF, ${vehicle.id}_switch_graphics_percent_loaded_${variation_num}_${cargo_variant_num},
-            var[0x61, 0, 0x0000FFFF, 0xBC]*100/var[0x61, 0, 0x0000FFFF, 0xBA]) {
+        switch (FEAT_ROADVEHS, SELF, ${vehicle.id}_switch_graphics_percent_loaded_${variation_num}_${cargo_variant_num}, cargo_count*100/cargo_capacity) {
                 0: return ${vehicle.id}_sg_empty_${variation_num}_${cargo_variant_num};
                 1..99: return ${vehicle.id}_sg_loading_${variation_num}_${cargo_variant_num};
             return ${vehicle.id}_sg_loaded_${variation_num}_${cargo_variant_num};
