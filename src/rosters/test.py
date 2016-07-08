@@ -5,6 +5,7 @@ from vehicles import (honister,
                       nettlebridge,
                       scrooby_top,
                       chainburn,
+                      stakebeck,
                       towerhouse)
 
 roster = Roster(id = 'brit',
@@ -19,4 +20,5 @@ roster = Roster(id = 'brit',
                             nettlebridge,
                             scrooby_top,
                             chainburn,
+                            stakebeck,
                             towerhouse])
