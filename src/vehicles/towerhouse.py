@@ -17,7 +17,8 @@ consist.add_unit(weight = 7,
 
 consist.add_unit(weight = 5,
                 capacity = 40,
-                vehicle_length = 7)
+                vehicle_length = 7,
+                cargo_length = 4) # some cargo overlap eh?
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,

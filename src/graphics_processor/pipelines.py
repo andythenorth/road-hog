@@ -144,10 +144,18 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
 
     def add_piece_cargo_spriterows(self, vehicle, global_constants):
         # !! this could possibly be optimised by slicing all the cargos once, globally, instead of per-unit
-        piece_cargo_maps = ('WOOD','WDPR')
-        cargo_loading_spritesheet_bounding_boxes = ((10, 10, 18, 22), (28, 10, 40, 22), (50, 10, 62, 20), (72, 10, 84, 22))
-        cargo_loaded_spritesheet_bounding_boxes = tuple([(i[0], i[1] + 20, i[2], i[3] + 20) for i in cargo_loading_spritesheet_bounding_boxes])
+        piece_cargo_maps = ('WOOD',)
         cargo_group_output_row_height = 2 * graphics_constants.spriterow_height
+        # Cargo spritesheets provide multiple lengths, using a specific format of rows
+        # given a base set, find the bounding boxes for the rows per length
+        cargo_spritesheet_bounding_boxes_base = ((10, 10, 18, 24), (28, 10, 42, 22), (50, 10, 66, 20), (72, 10, 86, 22))
+        cargo_spritesheet_bounding_boxes = {}
+        for counter, length in enumerate([3, 4]):
+            bb_result = []
+            for y_offset in [0, 20]:
+                bb_y_offset = (counter * 40) + y_offset
+                bb_result.append(tuple([(i[0], i[1] + bb_y_offset, i[2], i[3] + bb_y_offset) for i in cargo_spritesheet_bounding_boxes_base]))
+            cargo_spritesheet_bounding_boxes[length] = bb_result
         # Overview
         # 2 spriterows for the vehicle loading / loaded states, with pink loc points for cargo
         # a mask row for the vehicle, with pink mask area, which is converted to black and white mask image
@@ -191,8 +199,8 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
             # cargo sprites are assumed to be symmetrical, only 4 angles are needed
             # for cargos with 8 angles (e.g. bulldozers), provide those manually as custom cargos?
             # loading states are first 4 sprites, loaded are second 4, all in one list
-            for load_state in [cargo_loading_spritesheet_bounding_boxes, cargo_loaded_spritesheet_bounding_boxes]:
-                for i in load_state:
+            for bboxes in cargo_spritesheet_bounding_boxes[vehicle.cargo_length]:
+                for i in bboxes:
                     cargo_sprite = cargo_sprites_input_image.copy()
                     cargo_sprite = cargo_sprite.crop(i)
                     cargo_mask = cargo_sprite.copy()
@@ -226,7 +234,7 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
                                       pixel[1] - cargo_height + 1,
                                       pixel[0] + cargo_width,
                                       pixel[1] + 1)
-                vehicle_comped_image.paste(cargo_sprites[cargo_sprite_num][0], cargo_bounding_box, cargo_sprites[angle_num][1])
+                vehicle_comped_image.paste(cargo_sprites[cargo_sprite_num][0], cargo_bounding_box, cargo_sprites[cargo_sprite_num][1])
             vehicle_comped_image.paste(vehicle_overlay_image, crop_box_comp_dest_1, vehicle_mask)
             vehicle_comped_image.paste(vehicle_overlay_image, crop_box_comp_dest_2, vehicle_mask)
             #vehicle_comped_image.show()

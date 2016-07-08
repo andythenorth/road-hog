@@ -359,6 +359,11 @@ class RoadVehicle(object):
         # for cases where the template handles cargo, but some units in the consist might not show cargo, e.g. tractor units etc
         # can also be used to suppress compile failures during testing when spritesheet is unfinished (missing rows etc)
         self.always_use_same_spriterow = kwargs.get('always_use_same_spriterow', False)
+        # only set if the graphics processor requires it to generate cargo sprites
+        # defines the size of cargo sprite to use
+        # if the vehicle cargo area is not an OTTD unit length, use the next size up and the masking will sort it out
+        # some longer vehicles may place multiple shorter cargo sprites, e.g. 7/8 vehicle, 2 * 4/8 cargo sprites (with some overlapping)
+        self.cargo_length = kwargs.get('cargo_length', None)
         self._effect_spawn_model = kwargs.get('effect_spawn_model', None)
         self.effects = kwargs.get('effects', []) # default for effects is an empty list
 
@@ -624,8 +629,8 @@ class FlatBedHauler(Consist):
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_flatbed_freight']
         self.default_cargo = 'STEL'
         self.vehicle_nml_template = 'vehicle_with_visible_cargo.pynml'
-        self.cargo_graphics_mappings = {'WOOD': [0], 'WDPR': [1]}
-        self.num_cargo_sprite_variants = 2
+        self.cargo_graphics_mappings = {'WOOD': [0]} #'WDPR': [1]}
+        self.num_cargo_sprite_variants = 1
         self.generic_cargo_rows = [0]
 
         self.cargo_graphics_options = {'piece_cargo': True}
