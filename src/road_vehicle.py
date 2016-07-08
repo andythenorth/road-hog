@@ -624,8 +624,8 @@ class FlatBedHauler(Consist):
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_flatbed_freight']
         self.default_cargo = 'STEL'
         self.vehicle_nml_template = 'vehicle_with_visible_cargo.pynml'
-        self.cargo_graphics_mappings = {'WOOD': [0]}
-        self.num_cargo_sprite_variants = 1
+        self.cargo_graphics_mappings = {'WOOD': [0], 'WDPR': [1]}
+        self.num_cargo_sprite_variants = 2
         self.generic_cargo_rows = [0]
 
         self.cargo_graphics_options = {'piece_cargo': True}
