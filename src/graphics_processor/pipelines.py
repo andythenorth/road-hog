@@ -198,12 +198,14 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
                     cargo_mask = cargo_sprite.copy()
                     cargo_mask = cargo_mask.point(lambda i: 0 if i == 0 else 255).convert("1")
                     cargo_sprites.append((cargo_sprite, cargo_mask))
-            # get the loc points
-            loc_points = [pixel for pixel in pixascan(vehicle_cargo_rows_image) if pixel[2] == 226]
             vehicle_comped_image = vehicle_cargo_rows_image.copy()
-            # paste the empty state over the cargo rows (this will obliterate the pink loc points)
+            # paste the empty state over the cargo rows (this will obliterate the pink loc points for those rows in the final comp)
             vehicle_comped_image.paste(vehicle_overlay_image, crop_box_comp_dest_1)
             vehicle_comped_image.paste(vehicle_overlay_image, crop_box_comp_dest_2)
+            # get the loc points
+            loc_points = [pixel for pixel in pixascan(vehicle_cargo_rows_image) if pixel[2] == 226]
+            # sort them in y order, this causes sprites to overlap correctly when there are multiple loc points for an angle
+            loc_points = sorted(loc_points, key=lambda x: x[1])
             for pixel in loc_points:
                 angle_num = 0
                 for counter, bbox in enumerate(global_constants.spritesheet_bounding_boxes):
