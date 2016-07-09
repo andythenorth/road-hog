@@ -628,8 +628,8 @@ class DumpHauler(Consist):
     @property
     def cargo_graphics_mappings(self):
         result = {}
-        for counter, map in enumerate(graphics_constants.bulk_cargo_recolour_maps):
-            result[map[0]] = [counter] # list because cargo_graphics_mappings can map multiple spriterows to a cargo
+        for counter, cargo_map in enumerate(graphics_constants.bulk_cargo_recolour_maps):
+            result[cargo_map[0]] = [counter] # list because cargo_graphics_mappings can map multiple spriterows to a cargo
         return result
 
 
@@ -645,9 +645,15 @@ class FlatBedHauler(Consist):
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_flatbed_freight']
         self.default_cargo = 'STEL'
         self.vehicle_nml_template = 'vehicle_with_visible_cargo.pynml'
-        self.cargo_graphics_mappings = {'WOOD': [0], 'WDPR': [1]}
         self.generic_cargo_rows = [0]
         self.cargo_graphics_options = {'piece_cargo': True}
+
+    @property
+    def cargo_graphics_mappings(self):
+        result = {}
+        for counter, label in enumerate(graphics_constants.piece_cargo_maps):
+            result[label] = [counter] # list because cargo_graphics_mappings can map multiple spriterows to a cargo
+        return result
 
 
 class BulkPowderHauler(Consist):
