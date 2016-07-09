@@ -144,7 +144,6 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
 
     def add_piece_cargo_spriterows(self, vehicle, global_constants):
         # !! this could possibly be optimised by slicing all the cargos once, globally, instead of per-unit
-        piece_cargo_maps = ('WOOD', 'WDPR')
         cargo_group_output_row_height = 2 * graphics_constants.spriterow_height
         # Cargo spritesheets provide multiple lengths, using a specific format of rows
         # given a base set, find the bounding boxes for the rows per length
@@ -203,7 +202,7 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
                          0,
                          graphics_constants.spritesheet_width,
                          cargo_group_output_row_height)
-        for piece_cargo_map in piece_cargo_maps:
+        for piece_cargo_map in graphics_constants.piece_cargo_maps:
             cargo_sprites_input_path = os.path.join(currentdir, 'src', 'graphics', 'cargos', piece_cargo_map + '.png')
             cargo_sprites_input_image = Image.open(cargo_sprites_input_path)
             cargo_sprites = []

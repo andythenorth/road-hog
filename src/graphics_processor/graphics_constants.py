@@ -29,3 +29,5 @@ def bulk_cargo_recolour_maps():
     # GRVL is also reused for generic unknown cargos, and is in position 0 for this reason
     # (there is no mapping for unknown cargos, just uses first spriteset)
     return (GRVL, IORE, CORE, AORE, SAND, COAL, CLAY, SCMT, PHOS)
+
+piece_cargo_maps = ('WOOD', 'WDPR')

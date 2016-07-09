@@ -2,6 +2,7 @@ import global_constants # expose all constants for easy passing to templates
 import utils
 import graphics_processor.pipelines
 import graphics_processor.utils as graphics_utils
+import graphics_processor.graphics_constants as graphics_constants
 
 import os.path
 currentdir = os.curdir
@@ -56,7 +57,6 @@ class Consist(object):
         # cargo /livery graphics options
         self.cargo_graphics_options = {}
         self.num_cargo_sprite_variants = 0 # over-ridden by subclass when needed
-        self.num_spriterows_per_cargo_variant = 2 # assume loading/loaded is the common case
         self.has_empty_state_spriterow = True # assume empty state is common case
         self.vehicle_nml_template = None # use the default template by default
         # roster is set when the vehicle is registered to a roster, only one roster per vehicle
@@ -164,6 +164,18 @@ class Consist(object):
 
     def get_name(self):
         return "string(STR_NAME_" + self.id +", string(" + self.get_str_name_suffix() + "))"
+
+    @property
+    def num_spriterows_per_cargo_variant(self):
+        flags = self.cargo_graphics_options.keys()
+        if 'bulk_cargo' in flags or 'piece_cargo' in flags:
+            # loading and loaded states
+            return 2
+        elif 'livery_only' in flags:
+            # no loading/loaded states, just cargo-specific liveries
+            return 1
+        # no cargo states at all
+        return 0
 
     def get_spriterows_for_consist_or_subpart(self, units):
         # pass either list of all units in consist, or a slice of the consist starting from front (arbitrary slices not useful)
@@ -699,7 +711,6 @@ class Tanker(Consist):
         # they also change livery at stations if refitted between certain cargo types <shrug>
         self.cargo_graphics_mappings = {'OIL_': [0], 'PETR': [1], 'RFPR': [2]}
         self.num_cargo_sprite_variants = len(self.cargo_graphics_mappings)
-        self.num_spriterows_per_cargo_variant = 1 # no loading/loaded state for tankers, just cargo-specific liveries
         self.has_empty_state_spriterow = False
         self.generic_cargo_rows = [0]
         self.label_refits_allowed = []
