@@ -31,6 +31,6 @@ bulk_cargo_recolour_maps = (("GRVL", {170: 6, 171: 4, 172: 7, 173: 8, 174: 21, 1
                             ("PHOS", {170: 63, 171: 64, 172: 192, 173: 65, 174: 193, 175: 64, 176: 194}))
 
 # Piece
-piece_cargo_maps = ('WOOD', 'WDPR')
+piece_cargo_maps = ('WOOD', 'WDPR', 'PAPR')
 
 # --- End Cargo Maps --- #
