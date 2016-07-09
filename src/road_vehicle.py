@@ -632,6 +632,7 @@ class DumpHauler(Consist):
             result[map[0]] = [counter] # list because cargo_graphics_mappings can map multiple spriterows to a cargo
         return result
 
+
 class FlatBedHauler(Consist):
     """
     Flatbed tram or truck - refits most cargos, not bulk.
@@ -646,15 +647,8 @@ class FlatBedHauler(Consist):
         self.vehicle_nml_template = 'vehicle_with_visible_cargo.pynml'
         self.cargo_graphics_mappings = {'WOOD': [0], 'WDPR': [1]}
         self.generic_cargo_rows = [0]
-
         self.cargo_graphics_options = {'piece_cargo': True}
-        """
-        self.vehicle_nml_template = 'vehicle_with_visible_cargo.pynml'
-        # cargo rows 0 indexed - 0 = first set of loaded sprites
-        self.cargo_graphics_mappings = {'GOOD': [0]}
-        self.generic_cargo_rows = [0]
-        self.cargo_graphics_options = {'piece': True}
-        """
+
 
 class BulkPowderHauler(Consist):
     """
