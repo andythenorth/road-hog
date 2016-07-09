@@ -56,7 +56,6 @@ class Consist(object):
         self.units = []
         # cargo /livery graphics options
         self.cargo_graphics_options = {}
-        self.num_cargo_sprite_variants = 0 # over-ridden by subclass when needed
         self.has_empty_state_spriterow = True # assume empty state is common case
         self.vehicle_nml_template = None # use the default template by default
         # roster is set when the vehicle is registered to a roster, only one roster per vehicle
@@ -104,7 +103,6 @@ class Consist(object):
             if unit not in unique_units:
                 unique_units.append(unit)
         return unique_units
-
 
     def get_and_verify_numeric_id(self, offset):
         numeric_id = self.base_numeric_id + offset
@@ -164,6 +162,11 @@ class Consist(object):
 
     def get_name(self):
         return "string(STR_NAME_" + self.id +", string(" + self.get_str_name_suffix() + "))"
+
+    @property
+    def num_cargo_sprite_variants(self):
+        result = len([len(i) for i in self.cargo_graphics_mappings.values()])
+        return(result)
 
     @property
     def num_spriterows_per_cargo_variant(self):
@@ -624,7 +627,6 @@ class DumpHauler(Consist):
         # mining trucks *do* transport SCMT in this set, realism is not relevant here, went back and forth on this a few times :P
         self.cargo_graphics_mappings = {'GRVL': [0], 'IORE': [1], 'CORE': [2], 'AORE': [3],
                    'SAND': [4], 'COAL': [5], 'CLAY': [6], 'SCMT': [7], 'PHOS': [8]}
-        self.num_cargo_sprite_variants = 9
         self.generic_cargo_rows = [0]
         self.cargo_graphics_options = {'bulk_cargo': True}
 
@@ -642,7 +644,6 @@ class FlatBedHauler(Consist):
         self.default_cargo = 'STEL'
         self.vehicle_nml_template = 'vehicle_with_visible_cargo.pynml'
         self.cargo_graphics_mappings = {'WOOD': [0], 'WDPR': [1]}
-        self.num_cargo_sprite_variants = 2
         self.generic_cargo_rows = [0]
 
         self.cargo_graphics_options = {'piece_cargo': True}
@@ -650,7 +651,6 @@ class FlatBedHauler(Consist):
         self.vehicle_nml_template = 'vehicle_with_visible_cargo.pynml'
         # cargo rows 0 indexed - 0 = first set of loaded sprites
         self.cargo_graphics_mappings = {'GOOD': [0]}
-        self.num_cargo_sprite_variants = 1
         self.generic_cargo_rows = [0]
         self.cargo_graphics_options = {'piece': True}
         """
@@ -710,7 +710,6 @@ class Tanker(Consist):
         # Pikka: if people complain that it's unrealistic, tell them "don't do it then"
         # they also change livery at stations if refitted between certain cargo types <shrug>
         self.cargo_graphics_mappings = {'OIL_': [0], 'PETR': [1], 'RFPR': [2]}
-        self.num_cargo_sprite_variants = len(self.cargo_graphics_mappings)
         self.has_empty_state_spriterow = False
         self.generic_cargo_rows = [0]
         self.label_refits_allowed = []
@@ -750,7 +749,6 @@ class LogHauler(Consist):
         self.label_refits_disallowed = []
         self.default_cargo = 'WOOD'
         self.loading_speed_multiplier = 2
-        self.num_cargo_sprite_variants = 1
         self.cargo_graphics_mappings = {'WOOD': [0]}
         self.generic_cargo_rows = [0]
         self.vehicle_nml_template = 'vehicle_with_visible_cargo.pynml'
