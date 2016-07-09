@@ -628,7 +628,7 @@ class DumpHauler(Consist):
     @property
     def cargo_graphics_mappings(self):
         result = {}
-        for counter, map in enumerate(graphics_constants.bulk_cargo_recolour_maps()):
+        for counter, map in enumerate(graphics_constants.bulk_cargo_recolour_maps):
             result[map[0]] = [counter] # list because cargo_graphics_mappings can map multiple spriterows to a cargo
         return result
 
