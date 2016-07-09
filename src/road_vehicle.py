@@ -627,12 +627,10 @@ class DumpHauler(Consist):
 
     @property
     def cargo_graphics_mappings(self):
-        # cargo rows 0 indexed - 0 = first set of loaded sprites
-        # GRVL is in first position as it is re-used for generic unknown cargos
-        # mining trucks *do* transport SCMT in this set, realism is not relevant here, went back and forth on this a few times :P
-        return {'GRVL': [0], 'IORE': [1], 'CORE': [2], 'AORE': [3],
-                'SAND': [4], 'COAL': [5], 'CLAY': [6], 'SCMT': [7], 'PHOS': [8]}
-
+        result = {}
+        for counter, map in enumerate(graphics_constants.bulk_cargo_recolour_maps()):
+            result[map[0]] = [counter] # list because cargo_graphics_mappings can map multiple spriterows to a cargo
+        return result
 
 class FlatBedHauler(Consist):
     """

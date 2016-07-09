@@ -18,6 +18,7 @@ def bulk_cargo_recolour_maps():
     # could probably have used orderedict or named tuple, but...blah
     # GRVL is also reused for generic unknown cargos, and is in position 0 for this reason
     # (there is no mapping for unknown cargos, just uses first spriteset)
+    # SCMT *is* bulk cargo in this set, realism is not relevant here, went back and forth on this a few times :P
     return (("GRVL", {170: 6, 171: 4, 172: 7, 173: 8, 174: 21, 175: 11, 176: 12}),
             ("IORE", {170: 75, 171: 76, 172: 123, 173: 122, 174: 124, 175: 74, 176: 104}),
             ("CORE", {170: 1, 171: 32, 172: 25, 173: 27, 174: 34, 175: 56, 176: 59}),
