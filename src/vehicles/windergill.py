@@ -11,12 +11,15 @@ consist = FlatBedHauler(id = 'windergill',
 consist.add_unit(weight = 10,
                 capacity = 15,
                 vehicle_length = 5,
+                cargo_length = 3,
                 visual_effect = 'VISUAL_EFFECT_DIESEL')
 
 consist.add_unit(weight = 5,
                 capacity = 15,
-                vehicle_length = 4)
+                vehicle_length = 4,
+                cargo_length = 4)
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,
-                       spritesheet_suffix=0)
+                       spritesheet_suffix=0,
+                       graphics_processor=consist.graphics_processors[0])
