@@ -138,9 +138,9 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
                          0,
                          graphics_constants.spritesheet_width,
                          cargo_group_row_height)
-        for bulk_cargo_recolour_map in graphics_constants.bulk_cargo_recolour_maps():
+        for label, recolour_map in graphics_constants.bulk_cargo_recolour_maps():
             self.units.append(AppendToSpritesheet(vehicle_bulk_cargo_input_as_spritesheet, crop_box_dest))
-            self.units.append(SimpleRecolour(bulk_cargo_recolour_map))
+            self.units.append(SimpleRecolour(recolour_map))
 
     def add_piece_cargo_spriterows(self, vehicle, global_constants):
         # !! this could possibly be optimised by slicing all the cargos once, globally, instead of per-unit

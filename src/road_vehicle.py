@@ -622,13 +622,16 @@ class DumpHauler(Consist):
         self.default_cargo = 'COAL'
         self.loading_speed_multiplier = 2
         self.vehicle_nml_template = 'vehicle_with_visible_cargo.pynml'
+        self.generic_cargo_rows = [0]
+        self.cargo_graphics_options = {'bulk_cargo': True}
+
+    @property
+    def cargo_graphics_mappings(self):
         # cargo rows 0 indexed - 0 = first set of loaded sprites
         # GRVL is in first position as it is re-used for generic unknown cargos
         # mining trucks *do* transport SCMT in this set, realism is not relevant here, went back and forth on this a few times :P
-        self.cargo_graphics_mappings = {'GRVL': [0], 'IORE': [1], 'CORE': [2], 'AORE': [3],
-                   'SAND': [4], 'COAL': [5], 'CLAY': [6], 'SCMT': [7], 'PHOS': [8]}
-        self.generic_cargo_rows = [0]
-        self.cargo_graphics_options = {'bulk_cargo': True}
+        return {'GRVL': [0], 'IORE': [1], 'CORE': [2], 'AORE': [3],
+                'SAND': [4], 'COAL': [5], 'CLAY': [6], 'SCMT': [7], 'PHOS': [8]}
 
 
 class FlatBedHauler(Consist):
