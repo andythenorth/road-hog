@@ -203,49 +203,49 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
                          graphics_constants.spritesheet_width,
                          cargo_group_output_row_height)
         for cargo_label, cargo_filenames in graphics_constants.piece_cargo_maps:
-            # !! this will need extending when cargos gain multiple graphics variants
-            cargo_sprites_input_path = os.path.join(currentdir, 'src', 'graphics', 'cargos', cargo_filenames[0] + '.png')
-            cargo_sprites_input_image = Image.open(cargo_sprites_input_path)
-            cargo_sprites = []
-            # build a list, with a two-tuple (cargo_sprite, mask) for each of 4 angles
-            # cargo sprites are assumed to be symmetrical, only 4 angles are needed
-            # for cargos with 8 angles (e.g. bulldozers), provide those manually as custom cargos?
-            # loading states are first 4 sprites, loaded are second 4, all in one list
-            for bboxes in cargo_spritesheet_bounding_boxes[vehicle.cargo_length]:
-                for i in bboxes:
-                    cargo_sprite = cargo_sprites_input_image.copy()
-                    cargo_sprite = cargo_sprite.crop(i)
-                    cargo_mask = cargo_sprite.copy()
-                    cargo_mask = cargo_mask.point(lambda i: 0 if i == 0 else 255).convert("1")
-                    cargo_sprites.append((cargo_sprite, cargo_mask))
-            vehicle_comped_image = vehicle_cargo_rows_image.copy()
-            for pixel in loc_points:
-                angle_num = 0
-                for counter, bbox in enumerate(global_constants.spritesheet_bounding_boxes):
-                    if pixel[0] >= bbox[0]:
-                        angle_num = counter
-                # clamp angle_num to 4, cargo sprites are symmetrical, only 4 angles provided
-                if angle_num > 3:
-                    angle_num = angle_num % 4
-                cargo_sprite_num = angle_num
-                # loaded sprites are the second block of 4 in the cargo sprites list
-                if pixel[1] >= graphics_constants.spriterow_height:
-                    cargo_sprite_num = cargo_sprite_num + 4
-                cargo_width = cargo_sprites[cargo_sprite_num][0].size[0]
-                cargo_height = cargo_sprites[cargo_sprite_num][0].size[1]
-                # the +1s for height adjust the crop box to include the loc point
-                # (needed beause loc points are left-bottom not left-top as per co-ordinate system, makes drawing loc points easier)
-                cargo_bounding_box = (pixel[0],
-                                      pixel[1] - cargo_height + 1,
-                                      pixel[0] + cargo_width,
-                                      pixel[1] + 1)
-                vehicle_comped_image.paste(cargo_sprites[cargo_sprite_num][0], cargo_bounding_box, cargo_sprites[cargo_sprite_num][1])
-            # vehicle overlay with mask - overlays any areas where cargo shouldn't show
-            vehicle_comped_image.paste(vehicle_base_image, crop_box_comp_dest_1, vehicle_mask)
-            vehicle_comped_image.paste(vehicle_base_image, crop_box_comp_dest_2, vehicle_mask)
-            #vehicle_comped_image.show()
-            vehicle_comped_image_as_spritesheet = self.make_spritesheet_from_image(vehicle_comped_image)
-            self.units.append(AppendToSpritesheet(vehicle_comped_image_as_spritesheet, crop_box_dest))
+            for cargo_filename in cargo_filenames:
+                cargo_sprites_input_path = os.path.join(currentdir, 'src', 'graphics', 'cargos', cargo_filename + '.png')
+                cargo_sprites_input_image = Image.open(cargo_sprites_input_path)
+                cargo_sprites = []
+                # build a list, with a two-tuple (cargo_sprite, mask) for each of 4 angles
+                # cargo sprites are assumed to be symmetrical, only 4 angles are needed
+                # for cargos with 8 angles (e.g. bulldozers), provide those manually as custom cargos?
+                # loading states are first 4 sprites, loaded are second 4, all in one list
+                for bboxes in cargo_spritesheet_bounding_boxes[vehicle.cargo_length]:
+                    for i in bboxes:
+                        cargo_sprite = cargo_sprites_input_image.copy()
+                        cargo_sprite = cargo_sprite.crop(i)
+                        cargo_mask = cargo_sprite.copy()
+                        cargo_mask = cargo_mask.point(lambda i: 0 if i == 0 else 255).convert("1")
+                        cargo_sprites.append((cargo_sprite, cargo_mask))
+                vehicle_comped_image = vehicle_cargo_rows_image.copy()
+                for pixel in loc_points:
+                    angle_num = 0
+                    for counter, bbox in enumerate(global_constants.spritesheet_bounding_boxes):
+                        if pixel[0] >= bbox[0]:
+                            angle_num = counter
+                    # clamp angle_num to 4, cargo sprites are symmetrical, only 4 angles provided
+                    if angle_num > 3:
+                        angle_num = angle_num % 4
+                    cargo_sprite_num = angle_num
+                    # loaded sprites are the second block of 4 in the cargo sprites list
+                    if pixel[1] >= graphics_constants.spriterow_height:
+                        cargo_sprite_num = cargo_sprite_num + 4
+                    cargo_width = cargo_sprites[cargo_sprite_num][0].size[0]
+                    cargo_height = cargo_sprites[cargo_sprite_num][0].size[1]
+                    # the +1s for height adjust the crop box to include the loc point
+                    # (needed beause loc points are left-bottom not left-top as per co-ordinate system, makes drawing loc points easier)
+                    cargo_bounding_box = (pixel[0],
+                                          pixel[1] - cargo_height + 1,
+                                          pixel[0] + cargo_width,
+                                          pixel[1] + 1)
+                    vehicle_comped_image.paste(cargo_sprites[cargo_sprite_num][0], cargo_bounding_box, cargo_sprites[cargo_sprite_num][1])
+                # vehicle overlay with mask - overlays any areas where cargo shouldn't show
+                vehicle_comped_image.paste(vehicle_base_image, crop_box_comp_dest_1, vehicle_mask)
+                vehicle_comped_image.paste(vehicle_base_image, crop_box_comp_dest_2, vehicle_mask)
+                #vehicle_comped_image.show()
+                vehicle_comped_image_as_spritesheet = self.make_spritesheet_from_image(vehicle_comped_image)
+                self.units.append(AppendToSpritesheet(vehicle_comped_image_as_spritesheet, crop_box_dest))
 
     def render(self, variant, consist, global_constants):
         # there are various options for controlling the crop box, I haven't documented them - read example uses to figure them out

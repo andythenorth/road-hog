@@ -165,7 +165,7 @@ class Consist(object):
 
     @property
     def num_cargo_sprite_variants(self):
-        result = len([len(i) for i in self.cargo_graphics_mappings.values()])
+        result = sum([len(i) for i in self.cargo_graphics_mappings.values()])
         return(result)
 
     @property
@@ -506,7 +506,7 @@ class RoadVehicle(object):
 
     def get_nml_expression_for_cargo_variant_random_switch(self, variation_num, cargo_id=None):
         switch_id = self.id + "_switch_graphics_" + str(variation_num) + ('_' + str(cargo_id) if cargo_id is not None else '')
-        return "SELF," + switch_id + ", bitmask(TRIGGER_VEHICLE_NEW_LOAD)"
+        return "SELF," + switch_id + ", bitmask(TRIGGER_VEHICLE_ANY_LOAD)"
 
     def render_properties(self):
         template = templates["road_vehicle_properties.pynml"]
@@ -594,6 +594,21 @@ class OpenHauler(Consist):
         self.label_refits_allowed = [] # no specific labels needed
         self.label_refits_disallowed = ['TOUR', 'MAIL']
         self.default_cargo = 'GOOD'
+        self.vehicle_nml_template = 'vehicle_with_visible_cargo.pynml'
+        self.generic_cargo_rows = [0]
+        self.cargo_graphics_options = {'piece_cargo': True}
+
+    @property
+    def cargo_graphics_mappings(self):
+        # currently done per subclass; could be unified to a single method with conditions baed on graphics options, eh?
+        result = {}
+        counter = 0
+        for cargo_label, cargo_filenames in graphics_constants.piece_cargo_maps:
+            num_variants = len(cargo_filenames)
+            spriterow_nums = [counter + i for i in range(num_variants)]
+            result[cargo_label] = spriterow_nums
+            counter += num_variants
+        return result
 
 
 class BoxHauler(Consist):
@@ -653,9 +668,12 @@ class FlatBedHauler(Consist):
     def cargo_graphics_mappings(self):
         # currently done per subclass; could be unified to a single method with conditions baed on graphics options, eh?
         result = {}
-        for counter, cargo_map in enumerate(graphics_constants.piece_cargo_maps):
-            # !! this won't work when cargos gain multiple graphics variants
-            result[cargo_map[0]] = [counter] # list because cargo_graphics_mappings can map multiple spriterows to a cargo
+        counter = 0
+        for cargo_label, cargo_filenames in graphics_constants.piece_cargo_maps:
+            num_variants = len(cargo_filenames)
+            spriterow_nums = [counter + i for i in range(num_variants)]
+            result[cargo_label] = spriterow_nums
+            counter += num_variants
         return result
 
 
