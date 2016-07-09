@@ -160,22 +160,28 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
         # 2 spriterows for the vehicle loading / loaded states, with pink loc points for cargo
         # a mask row for the vehicle, with pink mask area, which is converted to black and white mask image
         # an overlay for the vehicle, created from the vehicle empty state spriterow, and comped with the mask after each cargo has been placed
-        crop_box_vehicle_cargo_rows = (0,
+        # there is a case not handled, where long cargo sprites will cabbed vehicles in / direction with cab at N end, hard to solve
+        crop_box_vehicle_cargo_loc_row = (0,
                            self.base_offset,
                            graphics_constants.spritesheet_width,
-                           self.base_offset + cargo_group_output_row_height)
-        vehicle_cargo_rows_image = Image.open(self.input_path).crop(crop_box_vehicle_cargo_rows)
-        #vehicle_cargo_rows_image.show()
-        crop_box_vehicle_overlay = (0,
+                           self.base_offset + graphics_constants.spriterow_height)
+        vehicle_cargo_loc_image = Image.open(self.input_path).crop(crop_box_vehicle_cargo_loc_row)
+        # get the loc points
+        loc_points = [pixel for pixel in pixascan(vehicle_cargo_loc_image) if pixel[2] == 226]
+        # two cargo rows needed, so extend the loc points list
+        loc_points.extend([(pixel[0], pixel[1] + 30, pixel[2]) for pixel in loc_points])
+        # sort them in y order, this causes sprites to overlap correctly when there are multiple loc points for an angle
+        loc_points = sorted(loc_points, key=lambda x: x[1])
+        crop_box_vehicle_base = (0,
                            self.cur_vehicle_empty_row_offset,
                            graphics_constants.spritesheet_width,
                            self.cur_vehicle_empty_row_offset + graphics_constants.spriterow_height)
-        vehicle_overlay_image = Image.open(self.input_path).crop(crop_box_vehicle_overlay)
-        #vehicle_overlay_image.show()
+        vehicle_base_image = Image.open(self.input_path).crop(crop_box_vehicle_base)
+        #vehicle_base_image.show()
         crop_box_mask = (0,
-                         self.base_offset + cargo_group_output_row_height,
+                         self.base_offset + graphics_constants.spriterow_height,
                          graphics_constants.spritesheet_width,
-                         self.base_offset + cargo_group_output_row_height + graphics_constants.spriterow_height)
+                         self.base_offset + (2 * graphics_constants.spriterow_height))
         vehicle_mask = Image.open(self.input_path).crop(crop_box_mask).point(lambda i: 255 if i == 226 else 0).convert("1")
         #vehicle_mask.show()
         #mask and empty state will need pasting once for each of two cargo rows, so two crop boxes needed
@@ -187,6 +193,12 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
                                 graphics_constants.spriterow_height,
                                 graphics_constants.spritesheet_width,
                                 2 * graphics_constants.spriterow_height)
+        vehicle_cargo_rows_image = Image.new("P", (graphics_constants.spritesheet_width, cargo_group_output_row_height))
+        vehicle_cargo_rows_image.putpalette(DOS_PALETTE)
+        # paste empty states in for the cargo rows (base image = empty state)
+        vehicle_cargo_rows_image.paste(vehicle_base_image, crop_box_comp_dest_1)
+        vehicle_cargo_rows_image.paste(vehicle_base_image, crop_box_comp_dest_2)
+        #vehicle_cargo_rows_image.show()
         crop_box_dest = (0,
                          0,
                          graphics_constants.spritesheet_width,
@@ -207,13 +219,6 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
                     cargo_mask = cargo_mask.point(lambda i: 0 if i == 0 else 255).convert("1")
                     cargo_sprites.append((cargo_sprite, cargo_mask))
             vehicle_comped_image = vehicle_cargo_rows_image.copy()
-            # paste the empty state over the cargo rows (this will obliterate the pink loc points for those rows in the final comp)
-            vehicle_comped_image.paste(vehicle_overlay_image, crop_box_comp_dest_1)
-            vehicle_comped_image.paste(vehicle_overlay_image, crop_box_comp_dest_2)
-            # get the loc points
-            loc_points = [pixel for pixel in pixascan(vehicle_cargo_rows_image) if pixel[2] == 226]
-            # sort them in y order, this causes sprites to overlap correctly when there are multiple loc points for an angle
-            loc_points = sorted(loc_points, key=lambda x: x[1])
             for pixel in loc_points:
                 angle_num = 0
                 for counter, bbox in enumerate(global_constants.spritesheet_bounding_boxes):
@@ -235,8 +240,9 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
                                       pixel[0] + cargo_width,
                                       pixel[1] + 1)
                 vehicle_comped_image.paste(cargo_sprites[cargo_sprite_num][0], cargo_bounding_box, cargo_sprites[cargo_sprite_num][1])
-            vehicle_comped_image.paste(vehicle_overlay_image, crop_box_comp_dest_1, vehicle_mask)
-            vehicle_comped_image.paste(vehicle_overlay_image, crop_box_comp_dest_2, vehicle_mask)
+            # vehicle overlay with mask - overlays any areas where cargo shouldn't show
+            vehicle_comped_image.paste(vehicle_base_image, crop_box_comp_dest_1, vehicle_mask)
+            vehicle_comped_image.paste(vehicle_base_image, crop_box_comp_dest_2, vehicle_mask)
             #vehicle_comped_image.show()
             vehicle_comped_image_as_spritesheet = self.make_spritesheet_from_image(vehicle_comped_image)
             self.units.append(AppendToSpritesheet(vehicle_comped_image_as_spritesheet, crop_box_dest))
@@ -261,7 +267,7 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
                     input_spriterow_count = 2
                     self.add_bulk_cargo_spriterows()
                 elif spriterow_type == 'piece_cargo':
-                    input_spriterow_count = 3
+                    input_spriterow_count = 2
                     self.add_piece_cargo_spriterows(consist.unique_units[vehicle_counter], global_constants)
                 cumulative_input_spriterow_count += input_spriterow_count
 
