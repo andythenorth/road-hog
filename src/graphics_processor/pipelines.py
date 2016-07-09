@@ -202,8 +202,9 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
                          0,
                          graphics_constants.spritesheet_width,
                          cargo_group_output_row_height)
-        for piece_cargo_map in graphics_constants.piece_cargo_maps:
-            cargo_sprites_input_path = os.path.join(currentdir, 'src', 'graphics', 'cargos', piece_cargo_map + '.png')
+        for cargo_label, cargo_filenames in graphics_constants.piece_cargo_maps:
+            # !! this will need extending when cargos gain multiple graphics variants
+            cargo_sprites_input_path = os.path.join(currentdir, 'src', 'graphics', 'cargos', cargo_filenames[0] + '.png')
             cargo_sprites_input_image = Image.open(cargo_sprites_input_path)
             cargo_sprites = []
             # build a list, with a two-tuple (cargo_sprite, mask) for each of 4 angles

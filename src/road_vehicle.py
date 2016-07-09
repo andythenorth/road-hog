@@ -653,8 +653,9 @@ class FlatBedHauler(Consist):
     def cargo_graphics_mappings(self):
         # currently done per subclass; could be unified to a single method with conditions baed on graphics options, eh?
         result = {}
-        for counter, label in enumerate(graphics_constants.piece_cargo_maps):
-            result[label] = [counter] # list because cargo_graphics_mappings can map multiple spriterows to a cargo
+        for counter, cargo_map in enumerate(graphics_constants.piece_cargo_maps):
+            # !! this won't work when cargos gain multiple graphics variants
+            result[cargo_map[0]] = [counter] # list because cargo_graphics_mappings can map multiple spriterows to a cargo
         return result
 
 
