@@ -216,6 +216,8 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
                         cargo_sprite = cargo_sprites_input_image.copy()
                         cargo_sprite = cargo_sprite.crop(i)
                         cargo_mask = cargo_sprite.copy()
+                        # !! .point is noticeably slow although not signifcantly so with only 3 cargo types
+                        # !! check this again if optimisation is a concern - can cargos be processed once and passed to the pipeline?
                         cargo_mask = cargo_mask.point(lambda i: 0 if i == 0 else 255).convert("1")
                         cargo_sprites.append((cargo_sprite, cargo_mask))
                 vehicle_comped_image = vehicle_cargo_rows_image.copy()
