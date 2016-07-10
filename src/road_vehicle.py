@@ -432,8 +432,8 @@ class RoadVehicle(object):
         if not self.always_use_same_spriterow:
             if self.consist.visible_cargo.nml_template:
                 return self.consist.visible_cargo.nml_template
-        else:
-            return 'vehicle_default.pynml'
+        # default case
+        return 'vehicle_default.pynml'
 
     @property
     def sg_depot(self):

@@ -1,6 +1,5 @@
 import global_constants
 from road_vehicle import SuppliesHauler
-# 4 axle machinery hauler, with 4 axle lowbed or drag trailer, (not huge)
 
 consist = SuppliesHauler(id = 'road_thief',
                 base_numeric_id = 560,
