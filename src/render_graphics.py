@@ -11,6 +11,7 @@ print("[RENDER GRAPHICS] render_graphics.py")
 import codecs # used for writing files - more unicode friendly than standard open() module
 
 import shutil
+import sys
 import os
 currentdir = os.curdir
 from multiprocessing import Pool
@@ -19,7 +20,16 @@ logger = multiprocessing.log_to_stderr()
 logger.setLevel(25)
 
 import road_hog
+import utils
 import global_constants
+
+# get args passed by makefile
+repo_vars = utils.get_repo_vars(sys)
+num_pool_workers = repo_vars.get('num_pool_workers', 1)
+if num_pool_workers == 0:
+    use_multiprocessing = False
+else:
+    use_multiprocessing = True
 
 graphics_input = os.path.join(currentdir, 'src', 'graphics')
 graphics_output_path = os.path.join(road_hog.generated_files_path, 'graphics')
@@ -54,14 +64,12 @@ def main():
                 spritesheet_suffixes_seen.append(variant.spritesheet_suffix)
             variants.append((variant, consist))
 
-    # I disabled multiprocessing as a temporary measure when moving to python 3
-    # it can be restored if needed, it should be modified to pick up num pool workers from sysargs
-    use_multiprocessing = False
     if use_multiprocessing == False:
+        utils.echo_message('Multiprocessing disabled: (pw=0)')
         for variant in variants:
             run_pipeline(variant)
     else:
-        pool = Pool(processes=16)
+        pool = Pool(processes=num_pool_workers)
         pool.map(run_pipeline, variants)
         pool.close()
 
