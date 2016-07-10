@@ -618,6 +618,7 @@ class OpenHauler(Consist):
         self.label_refits_disallowed = ['TOUR', 'MAIL']
         self.default_cargo = 'GOOD'
         self.vehicle_nml_template = 'vehicle_with_visible_cargo.pynml'
+        # Cargo Graphics
         self.generic_cargo_rows = [0]
         self.cargo_graphics_options = {'bulk_cargo': True, 'piece_cargo': True}
 
@@ -648,6 +649,7 @@ class DumpHauler(Consist):
         self.default_cargo = 'COAL'
         self.loading_speed_multiplier = 2
         self.vehicle_nml_template = 'vehicle_with_visible_cargo.pynml'
+        # Cargo graphics
         self.generic_cargo_rows = [0]
         self.cargo_graphics_options = {'bulk_cargo': True}
 
@@ -664,6 +666,7 @@ class FlatBedHauler(Consist):
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_flatbed_freight']
         self.default_cargo = 'STEL'
         self.vehicle_nml_template = 'vehicle_with_visible_cargo.pynml'
+        # Cargo graphics
         self.generic_cargo_rows = [0]
         self.cargo_graphics_options = {'piece_cargo': True}
 
@@ -717,22 +720,23 @@ class Tanker(Consist):
     """
     def __init__(self, **kwargs):
         super(Tanker, self).__init__(**kwargs)
-        self.autorefit = True
-        self.class_refit_groups = ['liquids']
         # tankers are unrealistically autorefittable, and at no cost
         # Pikka: if people complain that it's unrealistic, tell them "don't do it then"
         # they also change livery at stations if refitted between certain cargo types <shrug>
-        self._cargo_graphics_mappings = {'OIL_': [0], 'PETR': [1], 'RFPR': [2]}
-        self.has_empty_state_spriterow = False
-        self.generic_cargo_rows = [0]
+        self.autorefit = True
+        self.class_refit_groups = ['liquids']
         self.label_refits_allowed = []
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['edible_liquids']
         self.default_cargo = 'OIL_'
         self.loading_speed_multiplier = 2
         self.vehicle_nml_template = 'vehicle_with_cargo_specific_liveries.pynml'
+        # Cargo graphics
         # !! as of July 2016, this wasn't provided for graphics_processor, but only as a hack supporting get_spriterows_for_consist_or_subpart
         # it overlaps imho with has_empty_state_spriterow, num_cargo_sprite_variants and num_spriterows_per_cargo_variant
         self.cargo_graphics_options = {'livery_only': True}
+        self._cargo_graphics_mappings = {'OIL_': [0], 'PETR': [1], 'RFPR': [2]}
+        self.has_empty_state_spriterow = False
+        self.generic_cargo_rows = [0]
 
 
 class EdiblesTanker(Consist):
@@ -762,10 +766,11 @@ class LogHauler(Consist):
         self.label_refits_disallowed = []
         self.default_cargo = 'WOOD'
         self.loading_speed_multiplier = 2
+        self.vehicle_nml_template = 'vehicle_with_visible_cargo.pynml'
+        # Cargo graphics
+        self.cargo_graphics_options = {'custom_cargo': True}
         self._cargo_graphics_mappings = {'WOOD': [0]}
         self.generic_cargo_rows = [0]
-        self.vehicle_nml_template = 'vehicle_with_visible_cargo.pynml'
-        self.cargo_graphics_options = {'custom_cargo': True}
 
 
 class FoundryHauler(Consist):
