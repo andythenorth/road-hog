@@ -57,7 +57,6 @@ class Consist(object):
         # cargo /livery graphics options
         self.visible_cargo = VisibleCargo()
         self._cargo_graphics_mappings = None # !! (possibly temporary) hack to allow some subclass to over-ride calculation of cargo_graphics_mapping
-        self.vehicle_nml_template = None # use the default template by default
         # roster is set when the vehicle is registered to a roster, only one roster per vehicle
         self.roster_id = None
 
@@ -489,11 +488,9 @@ class RoadVehicle(object):
 
     @property
     def vehicle_nml_template(self):
-        if self.consist.vehicle_nml_template is not None:
-            if self.always_use_same_spriterow:
-                return 'vehicle_default.pynml'
-            else:
-                return self.consist.vehicle_nml_template
+        if not self.always_use_same_spriterow:
+            if self.consist.visible_cargo.nml_template:
+                return self.consist.visible_cargo.nml_template
         else:
             return 'vehicle_default.pynml'
 
@@ -571,6 +568,14 @@ class VisibleCargo(object):
         self.livery_only = False
         self.custom = False
 
+    @property
+    def nml_template(self):
+        if self.livery_only:
+            return 'vehicle_with_cargo_specific_liveries.pynml'
+        elif self.bulk or self.piece:
+            return 'vehicle_with_visible_cargo.pynml'
+        else:
+            return None
 
 class CourierCar(Consist):
     """
@@ -624,7 +629,6 @@ class OpenHauler(Consist):
         self.label_refits_allowed = [] # no specific labels needed
         self.label_refits_disallowed = ['TOUR', 'MAIL']
         self.default_cargo = 'GOOD'
-        self.vehicle_nml_template = 'vehicle_with_visible_cargo.pynml'
         # Cargo Graphics
         self.generic_cargo_rows = [0]
         self.visible_cargo.bulk = True
@@ -656,7 +660,6 @@ class DumpHauler(Consist):
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_dump_bulk']
         self.default_cargo = 'COAL'
         self.loading_speed_multiplier = 2
-        self.vehicle_nml_template = 'vehicle_with_visible_cargo.pynml'
         # Cargo graphics
         self.generic_cargo_rows = [0]
         self.visible_cargo.bulk = True
@@ -673,7 +676,6 @@ class FlatBedHauler(Consist):
         self.label_refits_allowed = ['GOOD']
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_flatbed_freight']
         self.default_cargo = 'STEL'
-        self.vehicle_nml_template = 'vehicle_with_visible_cargo.pynml'
         # Cargo graphics
         self.generic_cargo_rows = [0]
         self.visible_cargo.piece = True
@@ -737,7 +739,6 @@ class Tanker(Consist):
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['edible_liquids']
         self.default_cargo = 'OIL_'
         self.loading_speed_multiplier = 2
-        self.vehicle_nml_template = 'vehicle_with_cargo_specific_liveries.pynml'
         # Cargo graphics
         # !! as of July 2016, this wasn't provided for graphics_processor, but only as a hack supporting get_spriterows_for_consist_or_subpart
         self.visible_cargo.livery_only = True
@@ -772,11 +773,11 @@ class LogHauler(Consist):
         self.label_refits_disallowed = []
         self.default_cargo = 'WOOD'
         self.loading_speed_multiplier = 2
-        self.vehicle_nml_template = 'vehicle_with_visible_cargo.pynml'
         # Cargo graphics
         self._cargo_graphics_mappings = {'WOOD': [0]}
         self.generic_cargo_rows = [0]
         self.visible_cargo.custom = True
+        self.visible_cargo.custom_template = 'vehicle_with_visible_cargo.pynml'
 
 
 class FoundryHauler(Consist):
