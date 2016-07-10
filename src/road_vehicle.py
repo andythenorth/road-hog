@@ -164,7 +164,6 @@ class Consist(object):
     def get_spriterows_for_consist_or_subpart(self, units):
         # pass either list of all units in consist, or a slice of the consist starting from front (arbitrary slices not useful)
         # spriterow count is number of output sprite rows from graphics processor, to be used by nml sprite templating
-        # returns counts of rows from the template and keys to what they are
         result = []
         for unit in units:
             unit_rows = []
@@ -425,6 +424,8 @@ class RoadVehicle(object):
         preceding_spriterows = self.consist.get_spriterows_for_consist_or_subpart(self.consist.units[0:self.consist.units.index(self)])
         result = []
         # !! looks like this could be refactored to use the consist.visible_cargo object somehow eh?
+        # !! could move the calculation of actual rows into visible_cargo.get_output_row_counts_by_type
+        # !! this method predates splitting the input and output row counts
         for unit_rows in preceding_spriterows:
             for spriterow_type, spriterow_count in unit_rows:
                 if spriterow_type == 'empty' or spriterow_type == 'always_use_same_spriterow':
