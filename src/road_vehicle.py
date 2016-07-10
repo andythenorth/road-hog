@@ -167,17 +167,6 @@ class Consist(object):
         return sum([len(i) for i in self.cargo_graphics_mappings.values()])
 
     @property
-    def num_spriterows_per_cargo_variant(self):
-        if self.visible_cargo.bulk or self.visible_cargo.piece:
-            # loading and loaded states
-            return 2
-        elif self.visible_cargo.livery_only:
-            # no loading/loaded states, just cargo-specific liveries
-            return 1
-        # no cargo states at all
-        return 0
-
-    @property
     def cargo_graphics_mappings(self):
         # some subclasses provide the graphics mapping manually, in which case use the private _cargo_graphics_mapping prop
         if self._cargo_graphics_mappings:
@@ -574,6 +563,8 @@ class VisibleCargo(object):
             return 'vehicle_with_cargo_specific_liveries.pynml'
         elif self.bulk or self.piece:
             return 'vehicle_with_visible_cargo.pynml'
+        elif self.custom:
+            return self.custom_template
         else:
             return None
 
