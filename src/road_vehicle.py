@@ -424,7 +424,7 @@ class RoadVehicle(object):
         preceding_spriterows = self.consist.get_spriterows_for_consist_or_subpart(self.consist.units[0:self.consist.units.index(self)])
         result = []
         for unit_rows in preceding_spriterows:
-            result.append(sum([i[1] for i in unit_rows]))
+            result.append(sum([unit_row[1] for unit_row in unit_rows]))
         return sum(result)
 
     @property
@@ -525,7 +525,7 @@ class VisibleCargo(object):
         if self.bulk:
             result.append(('bulk_cargo', 2 * len(graphics_constants.bulk_cargo_recolour_maps)))
         if self.piece:
-            result.append(('piece_cargo', 2 * sum([len(i[1]) for i in graphics_constants.piece_cargo_maps])))
+            result.append(('piece_cargo', 2 * sum([len(cargo_map[1]) for cargo_map in graphics_constants.piece_cargo_maps])))
         return result
 
     def get_output_row_counts_by_type(self):
