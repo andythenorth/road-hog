@@ -20,8 +20,6 @@ generated_files_path = os.path.join(currentdir, global_constants.generated_files
 if not os.path.exists(generated_files_path):
     os.mkdir(generated_files_path)
 
-print("[IMPORT VEHICLES] iron_horse.py")
-
 from rosters import registered_rosters
 
 from rosters import brit
