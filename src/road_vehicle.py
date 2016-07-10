@@ -55,7 +55,7 @@ class Consist(object):
         # create structure to hold the units
         self.units = []
         # cargo /livery graphics options
-        self.cargo_graphics_options = {}
+        self.visible_cargo = VisibleCargo()
         self._cargo_graphics_mappings = None # !! (possibly temporary) hack to allow some subclass to over-ride calculation of cargo_graphics_mapping
         self.has_empty_state_spriterow = True # assume empty state is common case
         self.vehicle_nml_template = None # use the default template by default
@@ -170,11 +170,10 @@ class Consist(object):
 
     @property
     def num_spriterows_per_cargo_variant(self):
-        flags = self.cargo_graphics_options.keys()
-        if 'bulk_cargo' in flags or 'piece_cargo' in flags:
+        if self.visible_cargo.bulk or self.visible_cargo.piece:
             # loading and loaded states
             return 2
-        elif 'livery_only' in flags:
+        elif self.visible_cargo.livery_only:
             # no loading/loaded states, just cargo-specific liveries
             return 1
         # no cargo states at all
@@ -189,11 +188,11 @@ class Consist(object):
         # !! the order of cargo types here must be kept in sync with the order in the cargo graphics processor
         result = {}
         counter = 0
-        if 'bulk_cargo' in self.cargo_graphics_options.keys():
+        if self.visible_cargo.bulk:
             for cargo_map in graphics_constants.bulk_cargo_recolour_maps:
                 result[cargo_map[0]] = [counter] # list because cargo_graphics_mappings can map multiple spriterows to a cargo
                 counter += 1
-        if 'piece_cargo' in self.cargo_graphics_options.keys():
+        if self.visible_cargo.piece:
             for cargo_label, cargo_filenames in graphics_constants.piece_cargo_maps:
                 num_variants = len(cargo_filenames)
                 spriterow_nums = [counter + i for i in range(num_variants)]
@@ -210,7 +209,7 @@ class Consist(object):
             unit_rows = []
             if unit.always_use_same_spriterow:
                 unit_rows.append(('always_use_same_spriterow', 1))
-            elif 'livery_only' in self.cargo_graphics_options.keys():
+            elif self.visible_cargo.livery_only:
                 # some vehicles have livery variation only, no cargo sprites (nor empty sprite)
                 # provide the count of _all_ the liveries here, no calculating later
                 unit_rows.append(('livery_only', self._num_cargo_sprite_variants))
@@ -218,12 +217,12 @@ class Consist(object):
                 if self.has_empty_state_spriterow:
                     unit_rows.append(('empty', 1))
                 # provide the number of output rows per cargo group, total row count for the group is calculated later as needed
-                if 'bulk_cargo' in self.cargo_graphics_options.keys():
+                if self.visible_cargo.bulk:
                     unit_rows.append(('bulk_cargo', 2))
-                if 'piece_cargo' in self.cargo_graphics_options.keys():
+                if self.visible_cargo.piece:
                     unit_rows.append(('piece_cargo', 2))
                 # custom is to allow for manually drawn cargos
-                if 'custom_cargo' in self.cargo_graphics_options.keys():
+                if self.visible_cargo.custom:
                     unit_rows.append(('custom_cargo', 2))
             result.append(list(unit_rows))
         return result
@@ -565,6 +564,15 @@ class ModelVariant(object):
         return consist.id + '_' + str(self.spritesheet_suffix) + '.png'
 
 
+class VisibleCargo(object):
+    # simple class to hold configuration of the consist's cargo graphics (if any)
+    def __init__(self):
+        self.bulk = False
+        self.piece = False
+        self.livery_only = False
+        self.custom = False
+
+
 class CourierCar(Consist):
     """
     Truck or tram for mail, valuables etc.
@@ -620,7 +628,8 @@ class OpenHauler(Consist):
         self.vehicle_nml_template = 'vehicle_with_visible_cargo.pynml'
         # Cargo Graphics
         self.generic_cargo_rows = [0]
-        self.cargo_graphics_options = {'bulk_cargo': True, 'piece_cargo': True}
+        self.visible_cargo.bulk = True
+        self.visible_cargo.piece = True
 
 
 class BoxHauler(Consist):
@@ -651,7 +660,7 @@ class DumpHauler(Consist):
         self.vehicle_nml_template = 'vehicle_with_visible_cargo.pynml'
         # Cargo graphics
         self.generic_cargo_rows = [0]
-        self.cargo_graphics_options = {'bulk_cargo': True}
+        self.visible_cargo.bulk = True
 
 
 class FlatBedHauler(Consist):
@@ -668,7 +677,7 @@ class FlatBedHauler(Consist):
         self.vehicle_nml_template = 'vehicle_with_visible_cargo.pynml'
         # Cargo graphics
         self.generic_cargo_rows = [0]
-        self.cargo_graphics_options = {'piece_cargo': True}
+        self.visible_cargo.piece = True
 
 
 class BulkPowderHauler(Consist):
@@ -733,7 +742,7 @@ class Tanker(Consist):
         # Cargo graphics
         # !! as of July 2016, this wasn't provided for graphics_processor, but only as a hack supporting get_spriterows_for_consist_or_subpart
         # it overlaps imho with has_empty_state_spriterow, num_cargo_sprite_variants and num_spriterows_per_cargo_variant
-        self.cargo_graphics_options = {'livery_only': True}
+        self.visible_cargo.livery_only = True
         self._cargo_graphics_mappings = {'OIL_': [0], 'PETR': [1], 'RFPR': [2]}
         self.has_empty_state_spriterow = False
         self.generic_cargo_rows = [0]
@@ -768,9 +777,9 @@ class LogHauler(Consist):
         self.loading_speed_multiplier = 2
         self.vehicle_nml_template = 'vehicle_with_visible_cargo.pynml'
         # Cargo graphics
-        self.cargo_graphics_options = {'custom_cargo': True}
         self._cargo_graphics_mappings = {'WOOD': [0]}
         self.generic_cargo_rows = [0]
+        self.visible_cargo.custom = True
 
 
 class FoundryHauler(Consist):
