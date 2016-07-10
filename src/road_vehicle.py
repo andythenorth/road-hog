@@ -532,6 +532,7 @@ class VisibleCargo(object):
     def _get_output_row_counts_by_type(self):
         # private method because I want to reuse it in subclasses which over-ride the public method
         # provide the number of output rows per cargo group, total row count for the group is calculated later as needed
+        # uses a list of tuples, not a dict as order must be preserved
         result = []
         # assume an empty state spriterow - there was an optional bool flag for this per consist but it was unused so I removed it
         result.append(('empty', 1))
