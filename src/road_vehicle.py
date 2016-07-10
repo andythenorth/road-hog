@@ -171,6 +171,7 @@ class Consist(object):
             if unit.always_use_same_spriterow:
                 unit_rows.append(('always_use_same_spriterow', 1))
             else:
+                # assumes visible_cargo is used to handle any other rows, no other cases at time of writing, could be changed eh?
                 unit_rows.extend(self.visible_cargo.get_output_row_counts_by_type())
             result.append(list(unit_rows))
         return result
@@ -512,23 +513,20 @@ class ModelVariant(object):
 
 class VisibleCargo(object):
     # simple class to hold configuration of the consist's cargo graphics (if any)
+    # base class assumes *only* pixa-generated cargos are used; subclass for all other cases
     def __init__(self):
         self.bulk = False
         self.piece = False
-        self.custom = False
-        self.custom_template = None
-        self.custom_cargo_row_map = None
 
     @property
     def nml_template(self):
         if self.bulk or self.piece:
             return 'vehicle_with_visible_cargo.pynml'
-        elif self.custom:
-            return self.custom_template
         else:
             return None
 
-    def get_output_row_counts_by_type(self):
+    def _get_output_row_counts_by_type(self):
+        # private method because I want to reuse it in subclasses which over-ride the public method
         # provide the number of output rows per cargo group, total row count for the group is calculated later as needed
         result = []
         # assume an empty state spriterow - there was an optional bool flag for this per consist but it was unused so I removed it
@@ -537,10 +535,10 @@ class VisibleCargo(object):
             result.append(('bulk_cargo', 2))
         if self.piece:
             result.append(('piece_cargo', 2))
-        # custom is to allow for manually drawn cargos
-        if self.custom:
-            result.append(('custom_cargo', 2))
         return result
+
+    def get_output_row_counts_by_type(self):
+        return self._get_output_row_counts_by_type()
 
     @property
     def num_cargo_sprite_variants(self, cargo_type=None):
@@ -552,8 +550,6 @@ class VisibleCargo(object):
         # !! the order of cargo types here must be kept in sync with the order in the cargo graphics processor
         result = {}
         counter = 0
-        if self.custom_cargo_row_map:
-            return self.custom_cargo_row_map
         if self.bulk:
             for cargo_map in graphics_constants.bulk_cargo_recolour_maps:
                 result[cargo_map[0]] = [counter] # list because multiple spriterows can map to a cargo label
@@ -582,6 +578,33 @@ class VisibleCargoLiveryOnly(VisibleCargo):
     def get_output_row_counts_by_type(self):
         # the template for visible livery requires the count of _all_ the liveries, *no calculating later*
         return [('livery_only', self.num_cargo_sprite_variants)]
+
+    @property
+    def cargo_row_map(self):
+        return self._cargo_row_map
+
+
+class VisibleCargoCustom(VisibleCargo):
+    # Subclass of VisibleCargo to handle cases like vehicles with hand-drawn cargo (no generation).
+    # this cannot currently also use pixa-generated cargos
+    # - pixa cargo pipeline has no support for compositing custom rows, that looked like TMWFTLB
+    def __init__(self, _cargo_row_map, _nml_template):
+        super(VisibleCargoCustom, self).__init__()
+        self.custom = True
+        self._nml_template = _nml_template
+        self._cargo_row_map = _cargo_row_map
+
+    @property
+    def nml_template(self):
+        return self._nml_template
+
+    def get_output_row_counts_by_type(self):
+        # assume we want whatever the base class count of rows is (handles empty state etc)
+        # ^ that might not be viable as it ties 'custom' to same template assumptions as base class - change if needed eh?
+        result = self._get_output_row_counts_by_type()
+        # assume two output rows (loading, loaded) - extend this if it's not viable
+        result.append(('custom_cargo', 2))
+        return result
 
     @property
     def cargo_row_map(self):
@@ -785,10 +808,8 @@ class LogHauler(Consist):
         self.loading_speed_multiplier = 2
         # Cargo graphics
         self.generic_cargo_rows = [0]
-        # ths is hacked, it would be better to move it to a single method call (or a subclass?)
-        self.visible_cargo.custom = True
-        self.visible_cargo.custom_template = 'vehicle_with_visible_cargo.pynml'
-        self.visible_cargo.custom_cargo_row_map = {'WOOD': [0]}
+        self.visible_cargo = VisibleCargoCustom({'WOOD': [0]},
+                                                'vehicle_with_visible_cargo.pynml')
 
 
 class FoundryHauler(Consist):
