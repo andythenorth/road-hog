@@ -56,7 +56,6 @@ class Consist(object):
         self.units = []
         # cargo /livery graphics options
         self.visible_cargo = VisibleCargo()
-        self._cargo_graphics_mappings = None # !! (possibly temporary) hack to allow some subclass to over-ride calculation of cargo_graphics_mapping
         # roster is set when the vehicle is registered to a roster, only one roster per vehicle
         self.roster_id = None
 
@@ -161,14 +160,6 @@ class Consist(object):
 
     def get_name(self):
         return "string(STR_NAME_" + self.id +", string(" + self.get_str_name_suffix() + "))"
-
-    @property
-    def cargo_graphics_mappings(self):
-        # some subclasses provide the graphics mapping manually, in which case use the private _cargo_graphics_mapping prop
-        if self._cargo_graphics_mappings:
-            return self._cargo_graphics_mappings
-        else:
-            return self.visible_cargo.cargo_row_map
 
     def get_spriterows_for_consist_or_subpart(self, units):
         # pass either list of all units in consist, or a slice of the consist starting from front (arbitrary slices not useful)
@@ -525,6 +516,8 @@ class VisibleCargo(object):
         self.bulk = False
         self.piece = False
         self.custom = False
+        self.custom_template = None
+        self.custom_cargo_row_map = None
 
     @property
     def nml_template(self):
@@ -559,6 +552,8 @@ class VisibleCargo(object):
         # !! the order of cargo types here must be kept in sync with the order in the cargo graphics processor
         result = {}
         counter = 0
+        if self.custom_cargo_row_map:
+            return self.custom_cargo_row_map
         if self.bulk:
             for cargo_map in graphics_constants.bulk_cargo_recolour_maps:
                 result[cargo_map[0]] = [counter] # list because multiple spriterows can map to a cargo label
@@ -789,10 +784,11 @@ class LogHauler(Consist):
         self.default_cargo = 'WOOD'
         self.loading_speed_multiplier = 2
         # Cargo graphics
-        self._cargo_graphics_mappings = {'WOOD': [0]}
         self.generic_cargo_rows = [0]
+        # ths is hacked, it would be better to move it to a single method call (or a subclass?)
         self.visible_cargo.custom = True
         self.visible_cargo.custom_template = 'vehicle_with_visible_cargo.pynml'
+        self.visible_cargo.custom_cargo_row_map = {'WOOD': [0]}
 
 
 class FoundryHauler(Consist):
