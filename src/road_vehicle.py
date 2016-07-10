@@ -57,7 +57,6 @@ class Consist(object):
         # cargo /livery graphics options
         self.visible_cargo = VisibleCargo()
         self._cargo_graphics_mappings = None # !! (possibly temporary) hack to allow some subclass to over-ride calculation of cargo_graphics_mapping
-        self.has_empty_state_spriterow = True # assume empty state is common case
         self.vehicle_nml_template = None # use the default template by default
         # roster is set when the vehicle is registered to a roster, only one roster per vehicle
         self.roster_id = None
@@ -214,8 +213,8 @@ class Consist(object):
                 # provide the count of _all_ the liveries here, no calculating later
                 unit_rows.append(('livery_only', self._num_cargo_sprite_variants))
             else:
-                if self.has_empty_state_spriterow:
-                    unit_rows.append(('empty', 1))
+                # assume an empty state spriterow - there was an optional bool flag for this per consist but it was unused so I removed it
+                unit_rows.append(('empty', 1))
                 # provide the number of output rows per cargo group, total row count for the group is calculated later as needed
                 if self.visible_cargo.bulk:
                     unit_rows.append(('bulk_cargo', 2))
@@ -741,10 +740,8 @@ class Tanker(Consist):
         self.vehicle_nml_template = 'vehicle_with_cargo_specific_liveries.pynml'
         # Cargo graphics
         # !! as of July 2016, this wasn't provided for graphics_processor, but only as a hack supporting get_spriterows_for_consist_or_subpart
-        # it overlaps imho with has_empty_state_spriterow, num_cargo_sprite_variants and num_spriterows_per_cargo_variant
         self.visible_cargo.livery_only = True
         self._cargo_graphics_mappings = {'OIL_': [0], 'PETR': [1], 'RFPR': [2]}
-        self.has_empty_state_spriterow = False
         self.generic_cargo_rows = [0]
 
 
