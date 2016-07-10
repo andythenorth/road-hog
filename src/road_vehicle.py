@@ -423,23 +423,8 @@ class RoadVehicle(object):
 
         preceding_spriterows = self.consist.get_spriterows_for_consist_or_subpart(self.consist.units[0:self.consist.units.index(self)])
         result = []
-        # !! looks like this could be refactored to use the consist.visible_cargo object somehow eh?
-        # !! could move the calculation of actual rows into visible_cargo.get_output_row_counts_by_type
-        # !! this method predates splitting the input and output row counts
         for unit_rows in preceding_spriterows:
-            for spriterow_type, spriterow_count in unit_rows:
-                if spriterow_type == 'empty' or spriterow_type == 'always_use_same_spriterow':
-                    result.append(spriterow_count)
-                elif spriterow_type == 'livery_only':
-                    # 'livery_only' provides the count of all liveries, no further calculation
-                    result.append(spriterow_count)
-                elif spriterow_type == 'bulk_cargo':
-                    result.append(spriterow_count * len(graphics_constants.bulk_cargo_recolour_maps))
-                elif spriterow_type == 'piece_cargo':
-                    result.append(spriterow_count * sum([len(i[1]) for i in graphics_constants.piece_cargo_maps]))
-                elif spriterow_type == 'custom_cargo':
-                    # !! assumes that custom provides the spriterow count accurately, probably ok, change if needed
-                    result.append(spriterow_count)
+            result.append(sum([i[1] for i in unit_rows]))
         return sum(result)
 
     @property
@@ -533,14 +518,14 @@ class VisibleCargo(object):
     def _get_output_row_counts_by_type(self):
         # private method because I want to reuse it in subclasses which over-ride the public method
         # provide the number of output rows per cargo group, total row count for the group is calculated later as needed
-        # uses a list of tuples, not a dict as order must be preserved
+        # uses a list of 2-tuples, not a dict as order must be preserved
         result = []
         # assume an empty state spriterow - there was an optional bool flag for this per consist but it was unused so I removed it
         result.append(('empty', 1))
         if self.bulk:
-            result.append(('bulk_cargo', 2))
+            result.append(('bulk_cargo', 2 * len(graphics_constants.bulk_cargo_recolour_maps)))
         if self.piece:
-            result.append(('piece_cargo', 2))
+            result.append(('piece_cargo', 2 * sum([len(i[1]) for i in graphics_constants.piece_cargo_maps])))
         return result
 
     def get_output_row_counts_by_type(self):
