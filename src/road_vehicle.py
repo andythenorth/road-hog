@@ -173,7 +173,7 @@ class Consist(object):
             else:
                 # assumes visible_cargo is used to handle any other rows, no other cases at time of writing, could be changed eh?
                 unit_rows.extend(self.visible_cargo.get_output_row_counts_by_type())
-            result.append(list(unit_rows))
+            result.append(unit_rows)
         return result
 
     @property
@@ -424,6 +424,7 @@ class RoadVehicle(object):
 
         preceding_spriterows = self.consist.get_spriterows_for_consist_or_subpart(self.consist.units[0:self.consist.units.index(self)])
         result = []
+        # !! looks like this could be refactored to use the consist.visible_cargo object somehow eh?
         for unit_rows in preceding_spriterows:
             for spriterow_type, spriterow_count in unit_rows:
                 if spriterow_type == 'empty' or spriterow_type == 'always_use_same_spriterow':
@@ -435,6 +436,9 @@ class RoadVehicle(object):
                     result.append(spriterow_count * len(graphics_constants.bulk_cargo_recolour_maps))
                 elif spriterow_type == 'piece_cargo':
                     result.append(spriterow_count * sum([len(i[1]) for i in graphics_constants.piece_cargo_maps]))
+                elif spriterow_type == 'custom_cargo':
+                    # !! assumes that custom provides the spriterow count accurately, probably ok, change if needed
+                    result.append(spriterow_count)
         return sum(result)
 
     @property
