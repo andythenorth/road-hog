@@ -10,16 +10,15 @@ consist = OpenHauler(id = 'portland',
                 intro_date = 1900,)
 
 consist.add_unit(weight = 12,
-                capacity = 24,
-                vehicle_length = 7,
-                effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 10'],
-                always_use_same_spriterow = True)
+                capacity = 48,
+                vehicle_length = 8,
+                cargo_length = 3,
+                effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 10'])
 
 consist.add_unit(weight = 4,
                 capacity = 24,
-                vehicle_length = 3,
-                cargo_length = 3,
-                repeat=2)
+                vehicle_length = 4,
+                cargo_length = 3)
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,
