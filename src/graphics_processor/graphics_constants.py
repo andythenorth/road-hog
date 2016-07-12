@@ -31,11 +31,13 @@ bulk_cargo_recolour_maps = (("GRVL", {170: 6, 171: 4, 172: 7, 173: 8, 174: 21, 1
                             ("PHOS", {170: 63, 171: 64, 172: 192, 173: 65, 174: 193, 175: 64, 176: 194}))
 
 # Piece
-# would it be better to invert this?
+# should this be changed
 # multiple cargos might map to a set of sprites, and in the current mechanic
 # this would cause duplicate rows to be added, wasting compile time and bloating filesize
-# could map sprite filenames to cargos instead?
+# would a better format be 2-tuples with 2 lists? (['LABEL1', 'LABEL2'], ['filename1', 'filename2'])
+# this groups cargos and sprites, reducing flexibility, but there's no obvious problem with that right now
 piece_cargo_maps = (('GOOD', ['crates_1']),
+                    ('ENSP', ['tarps_1']),
                     ('WOOD', ['logs']),
                     ('WDPR', ['lumber_planks']),
                     ('PAPR', ['paper_coils']))
