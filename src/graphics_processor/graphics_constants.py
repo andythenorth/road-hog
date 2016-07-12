@@ -36,10 +36,10 @@ bulk_cargo_recolour_maps = (("GRVL", {170: 6, 171: 4, 172: 7, 173: 8, 174: 21, 1
 # this would cause duplicate rows to be added, wasting compile time and bloating filesize
 # would a better format be 2-tuples with 2 lists? (['LABEL1', 'LABEL2'], ['filename1', 'filename2'])
 # this groups cargos and sprites, reducing flexibility, but there's no obvious problem with that right now
-piece_cargo_maps = (('GOOD', ['crates_1']),
-                    ('ENSP', ['tarps_1']),
-                    ('WOOD', ['logs']),
-                    ('WDPR', ['lumber_planks']),
-                    ('PAPR', ['paper_coils']))
+piece_cargo_maps = ((['GOOD'], ['crates_1']),
+                    (['ENSP', 'FMSP'], ['tarps_1']),
+                    (['WOOD'], ['logs']),
+                    (['WDPR'], ['lumber_planks']),
+                    (['PAPR'], ['paper_coils']))
 
 # --- End Cargo Maps --- #

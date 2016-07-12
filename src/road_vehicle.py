@@ -533,7 +533,12 @@ class VisibleCargo(object):
 
     @property
     def num_cargo_sprite_variants(self, cargo_type=None):
-        return sum([len(i) for i in self.cargo_row_map.values()])
+        # rows can be reused across multiple cargo labels, so find uniques (assumes row nums are identical when reused across labels)
+        unique_row_nums = []
+        for row_nums in self.cargo_row_map.values():
+            if row_nums not in unique_row_nums:
+                unique_row_nums.append(row_nums)
+        return sum([len(i) for i in unique_row_nums])
 
     @property
     def cargo_row_map(self):
@@ -546,10 +551,11 @@ class VisibleCargo(object):
                 result[cargo_map[0]] = [counter] # list because multiple spriterows can map to a cargo label
                 counter += 1
         if self.piece:
-            for cargo_label, cargo_filenames in graphics_constants.piece_cargo_maps:
+            for cargo_labels, cargo_filenames in graphics_constants.piece_cargo_maps:
                 num_variants = len(cargo_filenames)
                 spriterow_nums = [counter + i for i in range(num_variants)]
-                result[cargo_label] = spriterow_nums
+                for cargo_label in cargo_labels:
+                    result[cargo_label] = spriterow_nums
                 counter += num_variants
         return result
 
