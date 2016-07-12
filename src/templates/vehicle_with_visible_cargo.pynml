@@ -54,7 +54,7 @@
     </tal:cargo_random_switches>
 
     random_switch (FEAT_ROADVEHS, ${vehicle.get_nml_expression_for_cargo_variant_random_switch(variation_num, 'generic_cargos')}) {
-        <tal:random_graphics_variations repeat="spriterow_num consist.generic_cargo_rows">
+        <tal:random_graphics_variations repeat="spriterow_num consist.visible_cargo.generic_rows">
             1: return ${vehicle.id}_switch_graphics_percent_loaded_${variation_num}_${spriterow_num};
         </tal:random_graphics_variations>
     }

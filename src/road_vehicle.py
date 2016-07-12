@@ -507,6 +507,7 @@ class VisibleCargo(object):
     def __init__(self):
         self.bulk = False
         self.piece = False
+        self.generic_rows = [0]
 
     @property
     def nml_template(self):
@@ -585,11 +586,12 @@ class VisibleCargoCustom(VisibleCargo):
     # Subclass of VisibleCargo to handle cases like vehicles with hand-drawn cargo (no generation).
     # this cannot currently also use pixa-generated cargos
     # - pixa cargo pipeline has no support for compositing custom rows, that looked like TMWFTLB
-    def __init__(self, _cargo_row_map, _nml_template):
+    def __init__(self, _cargo_row_map, _nml_template, generic_rows):
         super(VisibleCargoCustom, self).__init__()
         self.custom = True
         self._nml_template = _nml_template
         self._cargo_row_map = _cargo_row_map
+        self.generic_rows = generic_rows
 
     @property
     def nml_template(self):
@@ -661,7 +663,6 @@ class OpenHauler(Consist):
         self.label_refits_disallowed = ['TOUR', 'MAIL']
         self.default_cargo = 'GOOD'
         # Cargo Graphics
-        self.generic_cargo_rows = [0]
         self.visible_cargo.bulk = True
         self.visible_cargo.piece = True
 
@@ -692,7 +693,6 @@ class DumpHauler(Consist):
         self.default_cargo = 'COAL'
         self.loading_speed_multiplier = 2
         # Cargo graphics
-        self.generic_cargo_rows = [0]
         self.visible_cargo.bulk = True
 
 
@@ -708,7 +708,6 @@ class FlatBedHauler(Consist):
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_flatbed_freight']
         self.default_cargo = 'STEL'
         # Cargo graphics
-        self.generic_cargo_rows = [0]
         self.visible_cargo.piece = True
 
 
@@ -773,7 +772,6 @@ class Tanker(Consist):
         # Cargo graphics
         # replace the visible_cargo object with a subclass specific to showing cargo by livery only
         self.visible_cargo = VisibleCargoLiveryOnly({'OIL_': [0], 'PETR': [1], 'RFPR': [2]})
-        self.generic_cargo_rows = [0]
 
 
 class EdiblesTanker(Consist):
@@ -804,9 +802,9 @@ class LogHauler(Consist):
         self.default_cargo = 'WOOD'
         self.loading_speed_multiplier = 2
         # Cargo graphics
-        self.generic_cargo_rows = [0]
         self.visible_cargo = VisibleCargoCustom({'WOOD': [0]},
-                                                'vehicle_with_visible_cargo.pynml')
+                                                'vehicle_with_visible_cargo.pynml',
+                                                generic_rows = [0])
 
 
 class FoundryHauler(Consist):
