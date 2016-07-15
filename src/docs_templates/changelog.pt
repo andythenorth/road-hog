@@ -1,24 +1,68 @@
 Changelog
 =========
 
+Beta 5
+------
+
+*Changes*
+
+- cargo sprites for open and flatbed vehicles, including
+    - paper
+    - wood
+    - lumber
+    - engineering supplies / farm supplies
+    - goods
+- reworked appearance of
+    - open trams
+    - flatbed trams
+    - livestock trucks and trams
+    - covered hopper trucks
+    - tanker trucks
+    - edibles tanker trucks
+    - Scrooby Top mining tram
+
+*Fixes*
+
+- steam not sparks for Stakebeck tram
+- Ladycross tram wrong length for some angles
+- correct offsets for 3/8 long vehicles
+
+*Codechanges*
+
+- cargo sprites compositor now works
+- cargo templating reworked
+- refactored from vehicle subclasses to consist subclasses
+- provide multiprocessing support for grapics processor
+- tidy some trivial mistakes in the compile
+
+*Translations*
+
+- updated
+- translator credits: http://bundles.openttdcoop.org/road-hog/releases/LATEST/credits.txt
+
+
 Beta 4
 ------
 
 *Changes*
+
 - added Boilingwell steam tanker truck
 - change trailers on Cowsleigh livestock truck (needs more work)
 - reworked Merrivale, Fortiscue and Coldfall reefer trucks
 - reworked Runwell and Easywheal box trucks
 
 *Fixes*
+
 - Greenscoe tanker truck cab out of position (also copy improved pixels from Honister)
 - tweak out-of-place pixels for multiple trucks
 - set correct power value for Coleman dump truck
+
 
 Beta 3
 ------
 
 *Changes*
+
 - added Coleman steam dump truck
 - reworked appearance (adjusted lengths, wheels, body style)
     - all open, flat, box and dump trucks
@@ -26,6 +70,7 @@ Beta 3
 - removed mining trucks, they don't make gameplay / graphical sense in current form (might add them back later in revised form)
 
 *Codechanges*
+
 - reworked assignment of sprites to vehicles
 - prepared compile to add cargo sprite compositing
 
@@ -34,6 +79,7 @@ Beta 2
 ------
 
 *Changes*
+
 - new sprites for Waterperry and Silvertop edibles tankers
 - new sprites for Capo and Yeoman open trucks
 - new sprites for Cowsleigh livestock truck
@@ -44,6 +90,7 @@ Beta 2
 - (unfinished) Witch Hill Mining Truck has a trailer
 
 *Fixes*
+
 - Scrooby Top mining tram showed wrong sprites when empty
 - correct visual effects for Cowsleigh and Trefell steam trucks
 - correct capacity for Capo and Rattlebrook open trucks
@@ -58,6 +105,7 @@ Beta 1
 ------
 
 *Changes*
+
 - add support for edible oil, nuts and phosphate cargos
 - white trailer for Ribble and McDowell covered hopper trucks, consistent with Iron Horse covered hoppers
 - covered hoppers now refit sand cargo
@@ -68,6 +116,7 @@ Beta 1
 - remove Big Sky coach, not needed
 
 *Fixes*
+
 - wrong trailer position for Ribble and McDowell covered hopper trucks
 - (codechange) don't set certain properties for trailing parts, they're not valid
 
@@ -81,20 +130,24 @@ Alpha 18
 --------
 
 *Changes*
+
 - covered hopper trucks now refit rubber cargo
 - mining trucks were a bit too fast, reduce speed
 - replace some temporary sprites for flatbed trucks with better temporary sprites :P
 - visible cargo states working for dump trucks and mining trucks (cargo colours don't cover all cargos for these trucks yet)
 
 *Fixes*
+
 - wrong lengths for Towerhouse Flatbed Truck
 - reset a bunch of speeds that were wrong after refactoring some code
 - wrong trailer sprites for Buff, Trefell and Griff logging trucks
+
 
 Alpha 17
 --------
 
 *Changes*
+
 - dibble TE way up, RV performance sucks
 - fix some bugs
 - add Cowsleigh livestock truck
@@ -102,6 +155,7 @@ Alpha 17
 - supplies haulers now refit to vehicles cargo
 - use more appropriate sprites for some trucks
 - set correct ‘faster’ speeds for some vehicles
+
 
 Alpha 16
 --------
@@ -116,6 +170,7 @@ Changed the approach to vehicle types and reworked the whole roster.  Can't be h
 
 - updated
 - translator credits: http://bundles.openttdcoop.org/road-hog/releases/LATEST/credits.txt
+
 
 Alpha 15
 --------
