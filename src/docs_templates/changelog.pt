@@ -1,6 +1,24 @@
 Changelog
 =========
 
+Beta 6
+------
+
+*Changes*
+
+- cargo sprites for
+    - steel / metal
+    - copper
+    - pyrite ore
+    - nitrates
+    - manganese
+    - alcohol, dyes, edible oil, milk, oil, petrol, chemicals, water
+
+*Fixes*
+
+- adjust cargo location points for a bunch of trucks
+
+
 Beta 5
 ------
 
