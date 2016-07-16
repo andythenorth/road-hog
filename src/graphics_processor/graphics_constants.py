@@ -38,7 +38,7 @@ bulk_cargo_recolour_maps = (("GRVL", {170: 6, 171: 4, 172: 7, 173: 8, 174: 21, 1
 # this groups labels and sprites, but there's no obvious problem with that right now
 # if a label can't share a group of sprites, it can repeat some filenames, that's just inefficient, but works
 piece_cargo_maps = ((['GOOD'], ['crates_1']),
-                    (['ENSP', 'FMSP'], ['tarps_1']),
+                    (['ENSP', 'FMSP'], ['tarps_blue_1']),
                     (['WOOD'], ['logs']),
                     (['WDPR'], ['lumber_planks']),
                     (['PAPR'], ['paper_coils']),
