@@ -38,6 +38,8 @@ piece_cargo_maps = ((['GOOD'], ['crates_1']),
                     (['ENSP', 'FMSP'], ['tarps_1']),
                     (['WOOD'], ['logs']),
                     (['WDPR'], ['lumber_planks']),
-                    (['PAPR'], ['paper_coils']))
+                    (['PAPR'], ['paper_coils']),
+                    (['COPR'], ['copper_coils']),
+                    (['STEL'], ['steel_coils']))
 
 # --- End Cargo Maps --- #
