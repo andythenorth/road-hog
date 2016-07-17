@@ -16,7 +16,7 @@ consist.add_unit(weight = 20,
                 always_use_same_spriterow = True)
 
 consist.add_unit(weight = 5,
-                capacity = 24,
+                capacity = 18,
                 vehicle_length = 4,
                 cargo_length = 4,
                 repeat = 4)

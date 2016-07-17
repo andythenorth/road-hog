@@ -10,7 +10,7 @@ consist = DumpHauler(id = 'nettlebridge',
                 intro_date = 1944)
 
 consist.add_unit(weight = 15,
-                capacity = 48,
+                capacity = 36,
                 vehicle_length = 8,
                 effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 10'],
                 repeat = 2)

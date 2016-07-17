@@ -10,13 +10,13 @@ consist = OpenHauler(id = 'brightling',
                 intro_date = 1940)
 
 consist.add_unit(weight = 14,
-                capacity = 48,
+                capacity = 36,
                 vehicle_length = 8,
                 cargo_length = 3,
                 effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 10'])
 
 consist.add_unit(weight = 4,
-                capacity = 24,
+                capacity = 18,
                 vehicle_length = 4,
                 cargo_length = 3,
                 repeat = 2)

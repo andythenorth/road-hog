@@ -10,16 +10,16 @@ consist = Tanker(id = 'oylbarral',
                 intro_date = 1945)
 
 consist.add_unit(weight = 16,
-                capacity = 32,
+                capacity = 24,
                 vehicle_length = 6,
                 effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 10'])
 
 consist.add_unit(weight = 5,
-                capacity = 32,
+                capacity = 24,
                 vehicle_length = 4)
 
 consist.add_unit(weight = 16,
-                capacity = 32,
+                capacity = 24,
                 vehicle_length = 6,
                 effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 10'])
 

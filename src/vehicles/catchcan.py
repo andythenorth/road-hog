@@ -10,14 +10,10 @@ consist = Tanker(id = 'catchcan',
                 intro_date = 1902)
 
 consist.add_unit(weight = 16,
-                capacity = 36,
+                capacity = 30,
                 vehicle_length = 6,
-                effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 10'])
-
-consist.add_unit(weight = 16,
-                capacity = 36,
-                vehicle_length = 6,
-                effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 10'])
+                effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 10'],
+                repeat = 2)
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,
