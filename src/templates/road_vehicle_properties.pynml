@@ -25,7 +25,7 @@ item(FEAT_ROADVEHS, ${vehicle.id}, ${vehicle.numeric_id}) {
             vehicle_life:                   ${consist.vehicle_life};
             reliability_decay:              20; // default value
             retire_early:                   ${consist.vehicle_life - 4}; // magic from Eddi
-            sound_effect:                   SOUND_TRUCK_START;
+            sound_effect:                   ${consist.sound_effect};
         </tal:lead_unit_props>
         refit_cost:                     0; // this needs to be 0 if we want autorefit without using cb
         refittable_cargo_classes:       bitmask(${consist.refittable_classes});

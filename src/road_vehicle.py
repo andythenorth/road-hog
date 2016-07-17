@@ -288,6 +288,13 @@ class Consist(object):
         return 'VEHICLE_NEVER_EXPIRES'
 
     @property
+    def sound_effect(self):
+        if self.roadveh_flag_tram is True:
+            return 'SOUND_CAR_HORN'
+        else:
+            return 'SOUND_TRUCK_START'
+
+    @property
     def buy_menu_width (self):
         # max sensible width in buy menu is 64px, but RH templates currently drawn at 36px - legacy stuff
         consist_length = 4 * sum([unit.vehicle_length for unit in self.units])
