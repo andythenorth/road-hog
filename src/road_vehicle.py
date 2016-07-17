@@ -36,6 +36,7 @@ class Consist(object):
         self.replacement_id = kwargs.get('replacement_id', None)
         self.vehicle_life = kwargs.get('vehicle_life', None)
         self._power = kwargs.get('power', None)
+        self._sound_effect = kwargs.get('sound_effect', None)
         # semi-trucks need some redistribution of capacity to get correct TE (don't use this of other magic, bad idea)
         self.semi_truck_so_redistribute_capacity = kwargs.get('semi_truck_so_redistribute_capacity', False)
         self._speed = kwargs.get('speed', None)
@@ -289,10 +290,22 @@ class Consist(object):
 
     @property
     def sound_effect(self):
-        if self.roadveh_flag_tram is True:
+        # allow custom sound effects (set per subclass or vehicle)
+        if self._sound_effect:
+            return self._sound_effect
+        # is this vehicle steam? (relies on visual effect being set correctly)
+        for unit in self.units:
+            if len(unit.effects) > 0:
+                if 'STEAM' in unit.effects[0]:
+                    return 'SOUND_FACTORY_WHISTLE'
+        # otherwise
+        if self.roadveh_flag_tram:
             return 'SOUND_CAR_HORN'
         else:
-            return 'SOUND_TRUCK_START'
+            if self.default_cargo == 'PASS':
+                return 'SOUND_BUS_START_PULL_AWAY'
+            else:
+                return 'SOUND_TRUCK_START_2'
 
     @property
     def buy_menu_width (self):
