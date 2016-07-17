@@ -73,7 +73,7 @@ from vehicles import (acton,
                       stagrun,
                       stakebeck,
                       stancliffe,
-                      steeraway,
+                      # steeraway, # deprecated, pending decision on foundry haulers being in or out
                       stungun,
                       swineshead,
                       tallyho,
@@ -188,6 +188,6 @@ roster = Roster(id = 'brit',
                             griff,
                             trefell,
                             knockdown,
-                            buff,
-                            steeraway])
+                            buff])
+                            #steeraway
 
