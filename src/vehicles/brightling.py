@@ -9,7 +9,7 @@ consist = OpenHauler(id = 'brightling',
                 vehicle_life = 40,
                 intro_date = 1940)
 
-consist.add_unit(weight = 12,
+consist.add_unit(weight = 14,
                 capacity = 48,
                 vehicle_length = 8,
                 cargo_length = 3,
