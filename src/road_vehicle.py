@@ -224,9 +224,12 @@ class Consist(object):
     def tractive_effort_coefficient(self):
         # vehicles cannot set their own TE coefficients, shouldn't be needed
         # vehicle classes can do it by over-riding this property in their class
-        # TE is dibbled up substantially higher than the default 0.3 because RV performance sucks otherwise
-        # dubious use of @property here, eh?
-        return 0.7
+        if self.roadveh_flag_tram:
+            # for trams, reduced TE
+            return 0.18
+        else:
+            # for RVs TE is dibbled up substantially higher than the default 0.3 because RV performance sucks otherwise
+            return 0.7
 
     @property
     def total_capacities(self):
