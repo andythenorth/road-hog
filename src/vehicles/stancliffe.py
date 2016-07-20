@@ -9,17 +9,12 @@ consist = FlatBedHauler(id = 'stancliffe',
                 vehicle_life = 40,
                 intro_date = 1940)
 
-consist.add_unit(weight = 20,
-                capacity = 0,
-                vehicle_length = 3,
+consist.add_unit(weight = 14,
+                capacity = 30,
+                vehicle_length = 8,
+                cargo_length = 3,
                 effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 10'],
-                always_use_same_spriterow = True)
-
-consist.add_unit(weight = 5,
-                capacity = 18,
-                vehicle_length = 4,
-                cargo_length = 4,
-                repeat = 4)
+                repeat = 2)
 
 consist.add_model_variant(intro_date=0,
                        end_date=global_constants.max_game_date,
