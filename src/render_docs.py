@@ -106,6 +106,14 @@ class DocHelper(object):
     def get_active_nav(self, doc_name, nav_link):
         return ('','active')[doc_name == nav_link]
 
+    def get_special_features_for_vehicle(self, consist):
+        result = {}
+        if consist.loading_speed_multiplier is not 1:
+            result['Loading Speed Multiplier'] = consist.loading_speed_multiplier
+        if consist.cargo_age_period is not global_constants.CARGO_AGE_PERIOD:
+            result['Cargo Decay Rate'] = global_constants.CARGO_AGE_PERIOD / consist.cargo_age_period
+        return result
+
 def render_docs(doc_list, file_type, use_markdown=False):
     for doc_name in doc_list:
         template = docs_templates[doc_name + '.pt'] # .pt is the conventional extension for chameleon page templates

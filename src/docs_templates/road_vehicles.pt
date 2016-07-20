@@ -9,7 +9,7 @@
                 <tr>
                     <th>Vehicle Name</th>
                     <th class="number">Intro Date</th>
-                    <th>Speed</th>
+                    <th>Special Features</th>
                 </tr>
             </thead>
             <tbody>
@@ -17,7 +17,11 @@
                     <tr>
                         <td>${consist.get_name_substr()} ${base_lang_strings[consist.get_str_name_suffix()]}</td>
                         <td class="number">${consist.intro_date}</td>
-                        <!--!<td>${int(consist.speed)} mph</td>-->
+                        <td>
+                            <tal:special_features repeat="feature doc_helper.get_special_features_for_vehicle(consist).items()">
+                                ${feature[0]}: ${feature[1]}
+                            </tal:special_features>
+                        </td>
                     </tr>
                 </tal:consists_list>
             </tbody>
