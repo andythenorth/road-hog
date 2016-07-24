@@ -226,9 +226,6 @@ class Consist(object):
         # vehicle classes can do it by over-riding this property in their class
         if self.roadveh_flag_tram:
             # for trams, reduced TE compared to rubber-tyred vehicles
-            # but not too much because OTTD's friction model cripples trams compared to trains,
-            # otherwise trams need twice as many tiles to reach full speed compared to equivalent train
-            # TE is therefore 'unrealistically' high in game [shrug]
             return 0.3
         else:
             # for RVs TE is dibbled up substantially higher than the default 0.3 because RV performance sucks otherwise
