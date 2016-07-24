@@ -18,14 +18,13 @@ spritesheet_width = 455
 # could probably have used orderedict or named tuple, but...blah
 
 # Bulk
-# GRVL is also reused for generic unknown cargos, and is in position 0 for this reason
-# other cargos should be in alphabetical order
+# keep cargos in alphabetical order for ease of reading
 # SCMT *is* bulk cargo in this set, realism is not relevant here, went back and forth on this a few times :P
-bulk_cargo_recolour_maps = (("GRVL", {170: 6, 171: 4, 172: 7, 173: 8, 174: 21, 175: 11, 176: 12}),
-                            ("AORE", {170: 42, 171: 123, 172: 74, 173: 125, 174: 162, 175: 126, 176: 78}),
+bulk_cargo_recolour_maps = (("AORE", {170: 42, 171: 123, 172: 74, 173: 125, 174: 162, 175: 126, 176: 78}),
                             ("CLAY", {170: 57, 171: 57, 172: 57, 173: 77, 174: 78, 175: 78, 176: 79}),
                             ("COAL", {170: 1, 171: 1, 172: 2, 173: 2, 174: 3, 175: 4, 176: 5}),
                             ("CORE", {170: 1, 171: 32, 172: 25, 173: 27, 174: 34, 175: 56, 176: 59}),
+                            ("GRVL", {170: 6, 171: 4, 172: 7, 173: 8, 174: 21, 175: 11, 176: 12}),
                             ("IORE", {170: 75, 171: 76, 172: 123, 173: 122, 174: 124, 175: 74, 176: 104}),
                             ("MNO2", {170: 1, 171: 16, 172: 3, 173: 17, 174: 18, 175: 19, 176: 20}),
                             ("NITR", {170: 37, 171: 38, 172: 38, 173: 39, 174: 39, 175: 69, 176: 69}),

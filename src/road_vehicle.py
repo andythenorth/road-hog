@@ -530,7 +530,19 @@ class VisibleCargo(object):
     def __init__(self):
         self.bulk = False
         self.piece = False
-        self.generic_rows = [0]
+
+    @property
+    def generic_rows(self):
+        # map unknown cargos to sprites for some other label
+        # assume that piece > bulk, it's acceptable to show something like tarps for bulk, but not gravel for piece
+        if self.piece:
+            return self.cargo_row_map['GOOD']
+        elif self.bulk:
+            return self.cargo_row_map['GRVL']
+        else:
+            # shouldn't reach here, but eh,
+            utils.echo_message('generic_rows hit an unknown result in VisibleCargo')
+            return [0]
 
     @property
     def nml_template(self):
@@ -593,6 +605,11 @@ class VisibleCargoLiveryOnly(VisibleCargo):
         self._cargo_row_map = _cargo_row_map
 
     @property
+    def generic_rows(self):
+        utils.echo_message ('generic_rows not implemented in VisibleCargoLiveryOnly')
+        return None
+
+    @property
     def nml_template(self):
         return 'vehicle_with_cargo_specific_liveries.pynml'
 
@@ -614,7 +631,12 @@ class VisibleCargoCustom(VisibleCargo):
         self.custom = True
         self._nml_template = _nml_template
         self._cargo_row_map = _cargo_row_map
-        self.generic_rows = generic_rows
+        self._generic_rows = generic_rows
+
+    @property
+    def generic_rows(self):
+        # generic rows is normally automated, but for custom, get it from a manully specified property
+        return self._generic_rows
 
     @property
     def nml_template(self):
