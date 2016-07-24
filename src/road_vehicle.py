@@ -536,7 +536,7 @@ class VisibleCargo(object):
         # map unknown cargos to sprites for some other label
         # assume that piece > bulk, it's acceptable to show something like tarps for bulk, but not gravel for piece
         if self.piece:
-            return self.cargo_row_map['GOOD']
+            return self.cargo_row_map['DFLT']
         elif self.bulk:
             return self.cargo_row_map['GRVL']
         else:
