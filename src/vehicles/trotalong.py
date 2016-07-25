@@ -10,7 +10,7 @@ consist = LivestockHauler(id = 'trotalong',
                 intro_date = 1901)
 
 consist.add_unit(weight = 12,
-                capacity = 36,
+                capacity = 30,
                 vehicle_length = 8,
                 effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 10'],
                 repeat = 2)
