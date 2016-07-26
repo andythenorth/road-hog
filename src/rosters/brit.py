@@ -2,6 +2,7 @@ from roster import Roster
 
 from vehicles import (acton,
                       amblecote,
+                      applethwaite,
                       beerwoods,
                       big_rigg,
                       # big_sky, deprecated
@@ -185,6 +186,7 @@ roster = Roster(id = 'brit',
                             bottlebrook,
                             winterfold,
                             sparkford,
+                            applethwaite,
                             # off-highway
                             griff,
                             trefell,

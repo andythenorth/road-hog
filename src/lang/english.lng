@@ -42,6 +42,7 @@ STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK                            :Edibles Tanker 
 STR_NAME_SUFFIX_REEFER_TRAM                                     :Reefer Tram
 STR_NAME_SUFFIX_REEFER_TRUCK                                    :Reefer Truck
 STR_NAME_SUFFIX_LOGGING_TRUCK                                   :Logging Truck
+STR_NAME_SUFFIX_FRUIT_TRAM                                      :Fruit Tram
 
 STR_COASTER                                                     :The Cow Jumped Over the Moon (this is not finished reminder)
 STR_DOGTRACK                                                    :Dogs are brown, sometime

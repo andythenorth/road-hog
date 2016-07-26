@@ -789,7 +789,7 @@ class FruitHauler(Consist):
     Fruit truck or tram.
     """
     def __init__(self, **kwargs):
-        super(LivestockHauler, self).__init__(**kwargs)
+        super(FruitHauler, self).__init__(**kwargs)
         self.autorefit = True
         self.class_refit_groups = []
         self.label_refits_allowed = ['FRUT', 'BEAN', 'CASS', 'JAVA', 'NUTS']
