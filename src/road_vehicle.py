@@ -758,7 +758,7 @@ class FlatBedHauler(Consist):
 
 class BulkPowderHauler(Consist):
     """
-    Covered hopper truck or trailer for bulk powder cargos.
+    Covered hopper truck or tram for bulk powder cargos.
     """
     def __init__(self, **kwargs):
         super(BulkPowderHauler, self).__init__(**kwargs)
@@ -772,7 +772,7 @@ class BulkPowderHauler(Consist):
 
 class LivestockHauler(Consist):
     """
-    Livestock truck or trailer.
+    Livestock truck or tram.
     """
     def __init__(self, **kwargs):
         super(LivestockHauler, self).__init__(**kwargs)
@@ -784,9 +784,23 @@ class LivestockHauler(Consist):
         self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
 
 
+class FruitHauler(Consist):
+    """
+    Fruit truck or tram.
+    """
+    def __init__(self, **kwargs):
+        super(LivestockHauler, self).__init__(**kwargs)
+        self.autorefit = True
+        self.class_refit_groups = []
+        self.label_refits_allowed = ['FRUT', 'BEAN', 'CASS', 'JAVA', 'NUTS']
+        self.label_refits_disallowed = []
+        self.default_cargo = 'FRUT'
+        self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
+
+
 class RefrigeratedHauler(Consist):
     """
-    Refrigerated truck or trailer.
+    Refrigerated truck or tram.
     Refits to limited range of refrigerated cargos, with 'improved' cargo decay rate.
     """
     def __init__(self, **kwargs):
