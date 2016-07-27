@@ -41,11 +41,12 @@ bulk_cargo_recolour_maps = (("AORE", {170: 42, 171: 123, 172: 74, 173: 125, 174:
 # if a label can't share a group of sprites, it can repeat some filenames, that's just inefficient, but works
 # DFLT label is a hack to support cargos with no specific sprites (including unknown cargos), and should not be added to cargo translation table
 piece_cargo_maps = ((['DFLT'], ['tarps_2cc_1']), # see note on DFLT above
-                    (['GOOD'], ['crates_1']),
                     (['BEER', 'DYES', 'EOIL', 'MILK', 'OIL_', 'PETR', 'RFPR', 'WATR'], ['barrels_silver']),
+                    (['BDMT',], ['tarps_red_1']),
                     (['COPR'], ['copper_coils']),
                     (['ENSP',], ['tarps_gold_1']),
                     (['FMSP'], ['tarps_blue_1']),
+                    (['GOOD'], ['crates_1']),
                     (['PAPR'], ['paper_coils']),
                     (['STEL'], ['steel_coils']),
                     (['WDPR'], ['lumber_planks']),
