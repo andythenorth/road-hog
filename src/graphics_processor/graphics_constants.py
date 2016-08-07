@@ -17,6 +17,12 @@ spritesheet_width = 455
 # label order matters, so tuples are used not dicts
 # could probably have used orderedict or named tuple, but...blah
 
+# Livery Only
+# keep cargos in alphabetical order for ease of reading
+livery_only_recolour_maps = (("OIL_", {136: 1, 137: 2, 138: 3, 139: 4, 140: 5, 141: 6, 142: 7, 143: 8}),
+                            ("RFPR", {136: 198, 137: 199, 138: 200, 139: 201, 140: 202, 141: 203, 142: 204, 143: 205}),
+                            ("PETR", {136: 16, 137: 17, 138: 18, 139: 19, 140: 20, 141: 21, 142: 22, 143: 23}))
+
 # Bulk
 # keep cargos in alphabetical order for ease of reading
 # SCMT *is* bulk cargo in this set, realism is not relevant here, went back and forth on this a few times :P

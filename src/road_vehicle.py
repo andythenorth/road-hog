@@ -534,7 +534,7 @@ class VisibleCargo(object):
     @property
     def generic_rows(self):
         # map unknown cargos to sprites for some other label
-        # assume that piece > bulk, it's acceptable to show something like tarps for bulk, but not gravel for piece
+        # assume that piece > input_spriterow_count, it's acceptable to show something like tarps for bulk, but not gravel for piece
         if self.piece:
             return self.cargo_row_map['DFLT']
         elif self.bulk:
@@ -830,6 +830,7 @@ class Tanker(Consist):
         self.loading_speed_multiplier = 2
         # Cargo graphics
         # replace the visible_cargo object with a subclass specific to showing cargo by livery only
+        # !!?? consider moving the cargo:row mapping to the grqphics processor ??!!
         self.visible_cargo = VisibleCargoLiveryOnly({'OIL_': [0], 'PETR': [1], 'RFPR': [2]})
 
 
