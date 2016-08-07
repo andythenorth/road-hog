@@ -125,7 +125,10 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
                          graphics_constants.spriterow_height)
         self.units.append(AppendToSpritesheet(vehicle_generic_spriterow_input_as_spritesheet, crop_box_dest))
 
-    def add_livery_only_spriterows(self, cargo_row_map):
+    def add_livery_only_spriterows(self, recolour_map):
+        # this might be extensible for containers when needed, using simple conditionals
+        # or because containers include random options it might need reworking,
+        # to be more similar to piece cargo handling, but using recolour not actual sprites
         crop_box_source = (0,
                            self.base_offset,
                            graphics_constants.spritesheet_width,
@@ -134,17 +137,11 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
         # vehicle_generic_spriterow_input_image.show() # comment in to see the image when debugging
         vehicle_livery_only_spriterow_input_as_spritesheet = self.make_spritesheet_from_image(vehicle_livery_only_spriterow_input_image)
 
-        # !! temp - mangle recolour maps to dict for ease of access - rethink how this is done later !!
-        recolour_maps = {}
-        for item in graphics_constants.livery_only_recolour_maps:
-            recolour_maps[item[0]] = item[1]
-        # !! end temp
-        for cargo_label, row_num in cargo_row_map.items():
+        for label, recolour_map in recolour_map:
             crop_box_dest = (0,
                              0,
                              graphics_constants.spritesheet_width,
                              graphics_constants.spriterow_height)
-            recolour_map = recolour_maps[cargo_label]
             self.units.append(AppendToSpritesheet(vehicle_livery_only_spriterow_input_as_spritesheet, crop_box_dest))
             self.units.append(SimpleRecolour(recolour_map))
 
@@ -290,7 +287,8 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
                     self.add_generic_spriterow()
                 elif spriterow_type == 'livery_only':
                     input_spriterow_count = 1
-                    self.add_livery_only_spriterows(consist.visible_cargo.cargo_row_map)
+                     # specific to tankers, see notes in method about container support in future
+                    self.add_livery_only_spriterows(graphics_constants.tanker_livery_recolour_maps)
                 elif spriterow_type == 'bulk_cargo':
                     input_spriterow_count = 2
                     self.add_bulk_cargo_spriterows()

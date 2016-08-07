@@ -19,10 +19,17 @@ spritesheet_width = 455
 
 # Livery Only
 # keep cargos in alphabetical order for ease of reading
-livery_only_recolour_maps = (("OIL_", {136: 1, 137: 2, 138: 3, 139: 4, 140: 5, 141: 6, 142: 7, 143: 8}),
-                            ("RFPR", {136: 198, 137: 199, 138: 200, 139: 201, 140: 202, 141: 203, 142: 204, 143: 205}),
-                            ("PETR", {136: 16, 137: 17, 138: 18, 139: 19, 140: 20, 141: 21, 142: 22, 143: 23}))
-
+# DFLT label is a hack to provide specific livery for unknown cargos and should not be added to cargo translation table
+# OIL_ is in first position as the buy menu sprites should be the Oil sprites, and this is the easiest way to do it
+# in principle that's wrong, because in a map without oil, the buy menu won't match the sprites of the vehicle when built
+# try it and see what happens eh?
+tanker_livery_recolour_maps = (("OIL_", {136: 1, 137: 2, 138: 3, 139: 4, 140: 5, 141: 6, 142: 7, 143: 8}), # see note on oil above
+                               ("DFLT", {136: 80, 137: 81, 138: 82, 139: 83, 140: 84, 141: 85, 142: 86, 143: 87}), # see note on DFLT above
+                               ("RFPR", {136: 198, 137: 199, 138: 200, 139: 201, 140: 202, 141: 203, 142: 204, 143: 205}),
+                               ("PETR", {136: 16, 137: 17, 138: 18, 139: 19, 140: 20, 141: 21, 142: 22, 143: 23}))
+                            #RUBR
+                            #DYES
+                            #PLAS
 # Bulk
 # keep cargos in alphabetical order for ease of reading
 # SCMT *is* bulk cargo in this set, realism is not relevant here, went back and forth on this a few times :P

@@ -21,6 +21,8 @@
         }
     </tal:cargo_variants>
 
+    <!--! this triggers random on a new load, which was designed for use specifically with containers where colours are randomised on load
+          it's not necessary for e.g. tankers, which only have livery one option per cargo -->
     <tal:cargo_random_switches repeat="mapping consist.visible_cargo.cargo_row_map.items()">
         random_switch (FEAT_ROADVEHS, SELF, ${vehicle.id}_switch_graphics_${variation_num}_${mapping[0]}, bitmask(TRIGGER_VEHICLE_NEW_LOAD)) {
             <tal:random_graphics_variations repeat="spriterow_num mapping[1]">
@@ -31,9 +33,15 @@
 
     switch (FEAT_ROADVEHS, SELF, ${vehicle.id}_switch_graphics_${variation_num}, cargo_type_in_veh) {
         <tal:cargos repeat="mapping consist.visible_cargo.cargo_row_map.items()">
-            ${mapping[0]}: return ${vehicle.id}_switch_graphics_${variation_num}_${mapping[0]};
+            <tal:exclude_default_cargo condition="mapping[0] != 'DFLT'">
+                ${mapping[0]}: return ${vehicle.id}_switch_graphics_${variation_num}_${mapping[0]};
+            </tal:exclude_default_cargo>
         </tal:cargos>
-        return ${vehicle.id}_switch_graphics_${variation_num}_${consist.default_cargo};
+        <tal:default_cargo repeat="mapping consist.visible_cargo.cargo_row_map.items()">
+            <tal:block condition="mapping[0] == 'DFLT'">
+                return ${vehicle.id}_switch_graphics_${variation_num}_${mapping[0]};
+            </tal:block>
+        </tal:default_cargo>
     }
 </tal:sprites_random_variations>
 

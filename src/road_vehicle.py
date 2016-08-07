@@ -599,10 +599,11 @@ class VisibleCargo(object):
 class VisibleCargoLiveryOnly(VisibleCargo):
     # subclass of VisibleCargo to handle the specific case of cargos shown only by vehicle livery
     # this is effectively a change of mode, and subclass the object seemed the cleanest way to enforce that
-    def __init__(self, _cargo_row_map):
+    def __init__(self):
         super(VisibleCargoLiveryOnly, self).__init__()
         self.livery_only = True
-        self._cargo_row_map = _cargo_row_map
+        self.tanker = False
+        # self.container = False # !! add support for containers here when needed
 
     @property
     def generic_rows(self):
@@ -619,8 +620,15 @@ class VisibleCargoLiveryOnly(VisibleCargo):
 
     @property
     def cargo_row_map(self):
-        return self._cargo_row_map
-
+        # !! this works more by accident than design
+        # !! the order of cargo types here must be kept in sync with the order in the cargo graphics processor
+        result = {}
+        counter = 0
+        if self.tanker:
+            for cargo_map in graphics_constants.tanker_livery_recolour_maps:
+                result[cargo_map[0]] = [counter] # list because multiple spriterows can map to a cargo label
+                counter += 1
+        return result
 
 class VisibleCargoCustom(VisibleCargo):
     # Subclass of VisibleCargo to handle cases like vehicles with hand-drawn cargo (no generation).
@@ -829,9 +837,8 @@ class Tanker(Consist):
         self.default_cargo = 'OIL_'
         self.loading_speed_multiplier = 2
         # Cargo graphics
-        # replace the visible_cargo object with a subclass specific to showing cargo by livery only
-        # !!?? consider moving the cargo:row mapping to the grqphics processor ??!!
-        self.visible_cargo = VisibleCargoLiveryOnly({'OIL_': [0], 'PETR': [1], 'RFPR': [2]})
+        self.visible_cargo = VisibleCargoLiveryOnly()
+        self.visible_cargo.tanker = True
 
 
 class EdiblesTanker(Consist):
