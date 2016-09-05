@@ -1,6 +1,43 @@
 Changelog
 =========
 
+Beta 7
+------
+
+*Changes*
+
+- added three fruit trams
+- reworked appearance of most freight trams
+- adjusted freight tram capacity, generation 2 is now 60t and generation 3 is 72t
+- adjusted freight tram weight, tractive effort and power
+- use different sound effects for different vehicle types (tram, bus, truck etc)
+- removed Steeraway foundry hauler, doesn't make gameplay / graphical sense in current form (might add it back later in revised form)
+- cargo sprites
+    - tarpaulins in 2nd company colour for generic piece cargo loads
+    - blue tarpaulins for farm supplies
+    - gold tarpaulins for engineering supplies
+    - red tarpaulins for building materials
+    - added potash
+    - added sugar beet
+    - improved clay
+- tanker colours
+    - use dark red for rubber cargo
+    - use 2nd company colour for generic cargos
+
+*Docs*
+
+- list special features (if any) for each vehicle in vehicles page
+
+*Codechanges*
+
+- tankers now automatically recoloured with pixa
+
+*Translations*
+
+- updated
+- translator credits: http://bundles.openttdcoop.org/road-hog/releases/LATEST/credits.txt
+
+
 Beta 6
 ------
 
