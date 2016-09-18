@@ -12,7 +12,7 @@ consist = PaxHauler(id = 'newbold',
 
 consist.add_unit(weight = 16,
                 capacity = 80,
-                vehicle_length = 5,
+                vehicle_length = 8,
                 effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 12'],
                 repeat = 2)
 
