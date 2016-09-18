@@ -11,8 +11,8 @@ consist = CourierCar(id = 'singing_river',
                 intro_date = 1990)
 
 consist.add_unit(weight = 10,
-                capacity = 60,
-                vehicle_length = 6,
+                capacity = 36,
+                vehicle_length = 8,
                 effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 10'])
 
 consist.add_model_variant(intro_date=0,

@@ -11,8 +11,8 @@ consist = CourierCar(id = 'strongbox',
                 intro_date = 1961)
 
 consist.add_unit(weight = 10,
-                capacity = 50,
-                vehicle_length = 6,
+                capacity = 36,
+                vehicle_length = 8,
                 effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 10'])
 
 consist.add_model_variant(intro_date=0,
