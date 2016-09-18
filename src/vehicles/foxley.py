@@ -12,7 +12,7 @@ consist = CourierCar(id = 'foxley',
 
 consist.add_unit(weight = 10,
                 capacity = 15,
-                vehicle_length = 5,
+                vehicle_length = 4,
                 effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 10'],
                 repeat = 2)
 
