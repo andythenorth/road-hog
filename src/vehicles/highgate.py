@@ -14,7 +14,7 @@ consist = PaxHauler(id = 'highgate',
                 intro_date = 1964)
 
 consist.add_unit(weight = 14,
-                capacity = 70,
+                capacity = 60,
                 vehicle_length = 7,
                 visual_effect = 'VISUAL_EFFECT_DIESEL')
 

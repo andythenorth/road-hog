@@ -6,17 +6,17 @@ consist = PaxHauler(id = 'fairlop',
                 title = 'Fairlop [Passenger Tram]',
                 roadveh_flag_tram = True,
                 replacement_id = '-none',
-                power = 180,
+                power = 360,
                 vehicle_life = 40,
                 intro_date = 1903)
 
 consist.add_unit(weight = 12,
-                capacity = 20,
+                capacity = 30,
                 vehicle_length = 6,
                 effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 12'])
 
 consist.add_unit(weight = 12,
-                capacity = 20,
+                capacity = 25,
                 vehicle_length = 5,
                 repeat = 2)
 

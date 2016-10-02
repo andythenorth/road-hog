@@ -6,12 +6,12 @@ consist = PaxHauler(id = 'northbeach',
                 title = 'Northbeach [Passenger Tram]',
                 roadveh_flag_tram = True,
                 replacement_id = '-none',
-                power = 360,
+                power = 600,
                 vehicle_life = 40,
                 intro_date = 1961)
 
 consist.add_unit(weight = 20,
-                capacity = 100,
+                capacity = 60,
                 vehicle_length = 8,
                 effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 12'],
                 repeat = 2)
