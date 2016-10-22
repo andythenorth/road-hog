@@ -98,7 +98,7 @@ roster = Roster(id = 'brit',
                 numeric_id = 1,
                 # keep dates for power and speeds matched
                 truck_speeds = {0: 25, 1905: 40, 1935: 55, 1965: 70, 1985: 80},
-                tram_speeds = {0: 25, 1900: 35, 1930: 45, 1960: 55, 1990: 65},
+                tram_speeds = {0: 25, 1900: 35, 1930: 45, 1960: 55, 1990: 60}, # last generation only increase by 5mph by design
                 truck_power_bands = {0: 100, 1905: 150, 1935: 250, 1965: 450, 1985: 700},
                 # tram power is excessive compare to RL, otherwise the OpenTTD physics model spanks the trams
                 tram_power_bands = {0: 240, 1900: 480, 1930: 720, 1960: 960, 1990: 1200},
