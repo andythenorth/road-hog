@@ -6,7 +6,6 @@ consist = PaxHauler(id = 'ladycross',
                 title = 'Ladycross [Passenger Tram]',
                 roadveh_flag_tram = True,
                 replacement_id = '-none',
-                power = 120,
                 vehicle_life = 40,
                 intro_date = 1860)
 
