@@ -125,7 +125,7 @@ def render_docs(doc_list, file_type, use_markdown=False):
         if use_markdown:
             # the doc might be in markdown format, if so we need to render markdown to html, and wrap the result in some boilerplate html
             markdown_wrapper = docs_templates['markdown_wrapper.pt']
-            doc = markdown_wrapper(content=markdown.markdown(doc), global_constants=global_constants, repo_vars=repo_vars,
+            doc = markdown_wrapper(consists=consists, content=markdown.markdown(doc), global_constants=global_constants, repo_vars=repo_vars,
                               metadata=metadata, utils=utils, doc_helper=DocHelper(), doc_name=doc_name)
         if file_type == 'html':
             subdir = 'html'
