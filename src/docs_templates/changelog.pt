@@ -1,6 +1,25 @@
 Changelog
 =========
 
+1.0.0
+------
+
+*Changes*
+
+- rebalanced costs for all vehicles
+- adjusted weights for all vehicles
+
+*Docs*
+
+- updated html docs, including removal of stuff left over from the FISH Ate Squid docs
+
+*Translations*
+
+- updated
+- translator credits: http://bundles.openttdcoop.org/road-hog/releases/LATEST/credits.txt
+
+
+
 Beta 8
 ------
 
