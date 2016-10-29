@@ -23,7 +23,7 @@
                                             width: 36px;
                                             height: 16px;
                                             background-position: -370px -10px;
-                                            background-image:url(static/graphics/${consist.id}_0.png);" />
+                                            background-image:url(static/img/${consist.id}.png);" />
                             </td>
                             <td>${consist.get_name_substr()} ${base_lang_strings[consist.get_str_name_suffix()]}</td>
                             <td class="number">${consist.intro_date}</td>

@@ -15,6 +15,8 @@ import sys
 import os
 currentdir = os.curdir
 
+from PIL import Image
+
 import road_hog
 import utils
 import global_constants
@@ -37,12 +39,8 @@ static_dir_src = os.path.join(docs_src, 'html', 'static')
 static_dir_dst = os.path.join(docs_output_path, 'html', 'static')
 shutil.copytree(static_dir_src, static_dir_dst)
 
-# assumes render_graphics has been run and generated dir has correct content
-# I'm not going to try and handle that in python, makefile will handle it in production
-# for development, just run render_graphics manually before running render_docs
-vehicle_graphics_dir_src = os.path.join(currentdir, 'generated', 'graphics')
-vehicle_graphics_dir_dst = os.path.join(static_dir_dst, 'graphics')
-shutil.copytree(vehicle_graphics_dir_src, vehicle_graphics_dir_dst)
+# we'll be processing some extra images and saving them into the img dir
+images_dir_dst = os.path.join(static_dir_dst, 'img')
 
 import markdown
 from chameleon import PageTemplateLoader # chameleon used in most template cases
@@ -138,6 +136,20 @@ def render_docs(doc_list, file_type, use_markdown=False):
         doc_file.write(doc)
         doc_file.close()
 
+def render_docs_images():
+    # process vehicle buy menu sprites for reuse in docs
+    # extend this similar to render_docs if other image types need processing in future
+
+    # vehicles: assumes render_graphics has been run and generated dir has correct content
+    # I'm not going to try and handle that in python, makefile will handle it in production
+    # for development, just run render_graphics manually before running render_docs
+    vehicle_graphics_src = os.path.join(currentdir, 'generated', 'graphics')
+    for consist in consists:
+        vehicle_spritesheet = Image.open(os.path.join(vehicle_graphics_src, consist.id + '_0.png'))
+        print(vehicle_spritesheet)
+        output_path = os.path.join(images_dir_dst, consist.id + '.png')
+        vehicle_spritesheet.save(output_path, optimize=True)
+
 def main():
     # render standard docs from a list
     html_docs = ['road_vehicles', 'code_reference', 'get_started']
@@ -149,6 +161,9 @@ def main():
     # just render the markdown docs twice to get txt and html versions, simples no?
     render_docs(markdown_docs, 'txt')
     render_docs(markdown_docs, 'html', use_markdown=True)
+    # process images for use in docs
+    render_docs_images()
+
 
 if __name__ == '__main__':
     main()
