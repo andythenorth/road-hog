@@ -9,15 +9,13 @@ consist = Tanker(id = 'meriden',
                 vehicle_life = 40,
                 intro_date = 1974)
 
-consist.add_unit(weight = 7,
-                capacity = 0,
+consist.add_unit(capacity = 0,
                 vehicle_length = 2,
                 semi_truck_shift_offset_jank = 2,
                 effects = ['EFFECT_SPRITE_DIESEL, -3, 1, 10'],
                 always_use_same_spriterow = True)
 
-consist.add_unit(weight = 8,
-                capacity = 40,
+consist.add_unit(capacity = 40,
                 vehicle_length = 7)
 
 consist.add_model_variant(intro_date=0,

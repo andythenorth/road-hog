@@ -10,18 +10,15 @@ consist = SuppliesHauler(id = 'crime_rigg',
                 vehicle_life = 40,
                 intro_date = 1920)
 
-consist.add_unit(weight = 10,
-                capacity = 0,
+consist.add_unit(capacity = 0,
                 vehicle_length = 5,
                 effect_spawn_model = 'EFFECT_SPAWN_MODEL_STEAM',
                 effects = ['EFFECT_SPRITE_STEAM, -3, 0, 12'])
 
-consist.add_unit(weight = 7,
-                capacity = 45,
+consist.add_unit(capacity = 45,
                 vehicle_length = 7)
 
-consist.add_unit(weight = 10,
-                capacity = 0,
+consist.add_unit(capacity = 0,
                 vehicle_length = 5,
                 effect_spawn_model = 'EFFECT_SPAWN_MODEL_STEAM',
                 effects = ['EFFECT_SPRITE_STEAM, -5, 0, 12'],

@@ -12,15 +12,13 @@ consist = DumpHauler(id = 'broadrock',
                 vehicle_life = 40,
                 intro_date = 1947)
 
-consist.add_unit(weight = 35,
-                capacity = 0,
+consist.add_unit(capacity = 0,
                 vehicle_length = 2,
                 semi_truck_shift_offset_jank = 3,
                 effects = ['EFFECT_SPRITE_AIRCRAFT_BREAKDOWN_SMOKE, -2, 1, 10', 'EFFECT_SPRITE_AIRCRAFT_BREAKDOWN_SMOKE, -2, -1, 10'],
                 always_use_same_spriterow = True)
 
-consist.add_unit(weight = 0, # put the weight on the truck to compensate for lack of TE when loaded
-                capacity = 55, # much bigger is not much better here
+consist.add_unit(capacity = 55, # much bigger is not much better here
                 vehicle_length = 6)
 
 consist.add_model_variant(intro_date=0,

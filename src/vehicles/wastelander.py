@@ -10,18 +10,15 @@ consist = OpenHauler(id = 'wastelander',
                 vehicle_life = 40,
                 intro_date = 1870)
 
-consist.add_unit(weight = 12,
-                capacity = 0,
+consist.add_unit(capacity = 0,
                 vehicle_length = 4,
                 visual_effect = 'VISUAL_EFFECT_STEAM')
 
-consist.add_unit(weight = 2,
-                capacity = 10,
+consist.add_unit(capacity = 10,
                 vehicle_length = 3,
                 repeat = 2)
 
-consist.add_unit(weight = 4,
-                capacity = 10,
+consist.add_unit(capacity = 10,
                 vehicle_length = 3)
 
 consist.add_model_variant(intro_date=0,

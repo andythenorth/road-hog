@@ -8,13 +8,11 @@ consist = EdiblesTanker(id = 'silvertop',
                 vehicle_life = 40,
                 intro_date = 2001)
 
-consist.add_unit(weight = 9,
-                capacity = 20,
+consist.add_unit(capacity = 20,
                 vehicle_length = 5,
                 effects = ['EFFECT_SPRITE_DIESEL, -3, 1, 10'])
 
-consist.add_unit(weight = 9,
-                capacity = 20,
+consist.add_unit(capacity = 20,
                 vehicle_length = 4)
 
 consist.add_model_variant(intro_date=0,

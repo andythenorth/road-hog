@@ -9,15 +9,13 @@ consist = RefrigeratedHauler(id = 'merrivale',
                 vehicle_life = 40,
                 intro_date = 1949)
 
-consist.add_unit(weight = 5,
-                capacity = 0,
+consist.add_unit(capacity = 0,
                 vehicle_length = 2,
                 semi_truck_shift_offset_jank = 2,
                 visual_effect = 'VISUAL_EFFECT_DIESEL',
                 always_use_same_spriterow = True)
 
-consist.add_unit(weight = 14,
-                capacity = 30,
+consist.add_unit(capacity = 30,
                 vehicle_length = 6)
 
 consist.add_model_variant(intro_date=0,

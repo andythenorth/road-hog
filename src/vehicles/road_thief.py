@@ -9,13 +9,11 @@ consist = SuppliesHauler(id = 'road_thief',
                 vehicle_life = 40,
                 intro_date = 1989)
 
-consist.add_unit(weight = 20,
-                capacity = 0,
+consist.add_unit(capacity = 0,
                 vehicle_length = 7,
                 visual_effect = 'VISUAL_EFFECT_DIESEL')
 
-consist.add_unit(weight = 20,
-                capacity = 45,
+consist.add_unit(capacity = 45,
                 vehicle_length = 7)
 
 consist.add_model_variant(intro_date=0,

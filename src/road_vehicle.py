@@ -51,6 +51,9 @@ class Consist(object):
         # values can be -ve or +ve to dibble specific vehicles (but total calculated points cannot exceed 255)
         self.type_base_buy_cost_points = kwargs.get('type_base_buy_cost_points', 0)
         self.type_base_running_cost_points = kwargs.get('type_base_running_cost_points', 0)
+        # multiplier of capacity, used to set consist weight, over-ride in vehicle sub-class as needed
+        # set this to the value for road vehicles...trams will be automatically adjusted
+        self.weight_multiplier = 0.4
         # create a structure to hold model variants
         self.model_variants = []
         # create structure to hold the units
@@ -221,10 +224,14 @@ class Consist(object):
 
     @property
     def weight(self):
-        consist_weight = sum([getattr(unit, 'weight', 0) for unit in self.units])
+        mult = self.weight_multiplier
+        # trams are 10% heavier per capacity
+        if self.roadveh_flag_tram:
+            mult = mult + 0.1
+        consist_weight = mult * self.total_capacities[1]
         if consist_weight > 63:
             utils.echo_message("Error: consist weight is " + str(consist_weight) + "t for " + self.id + "; must be < 63t")
-        return consist_weight
+        return min(consist_weight, 63)
 
     @property
     def tractive_effort_coefficient(self):
@@ -357,7 +364,6 @@ class RoadVehicle(object):
         # setup properties for this road vehicle
         self.numeric_id = kwargs.get('numeric_id', None)
         self.vehicle_length = kwargs.get('vehicle_length', None)
-        self.weight = kwargs.get('weight', None)
         self.semi_truck_shift_offset_jank = kwargs.get('semi_truck_shift_offset_jank', None)
         # capacities variable by parameter
         self.capacities = self.get_capacity_variations(kwargs.get('capacity', 0))
@@ -680,6 +686,7 @@ class CourierCar(Consist):
         self.label_refits_allowed = [] # no specific labels needed
         self.label_refits_disallowed = ['TOUR']
         self.default_cargo = 'MAIL'
+        self.weight_multiplier = 0.2
 
 
 class PaxHauler(Consist):
@@ -694,6 +701,7 @@ class PaxHauler(Consist):
         self.label_refits_disallowed = []
         self.default_cargo = 'PASS'
         self.loading_speed_multiplier = 3
+        self.weight_multiplier = 0.17
 
 
 class PaxExpressHauler(Consist):
@@ -708,6 +716,7 @@ class PaxExpressHauler(Consist):
         self.label_refits_disallowed = []
         self.default_cargo = 'PASS'
         self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
+        self.weight_multiplier = 0.2
 
 
 class OpenHauler(Consist):
@@ -737,6 +746,7 @@ class BoxHauler(Consist):
         self.label_refits_allowed = ['MAIL', 'GRAI', 'WHEA', 'MAIZ', 'FRUT', 'BEAN', 'NITR'] # Iron Horse compatibility
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_freight_special_cases']
         self.default_cargo = 'GOOD'
+        self.weight_multiplier = 0.45
 
 
 class DumpHauler(Consist):
@@ -753,6 +763,7 @@ class DumpHauler(Consist):
         self.loading_speed_multiplier = 2
         # Cargo graphics
         self.visible_cargo.bulk = True
+        self.weight_multiplier = 0.45
 
 
 class FlatBedHauler(Consist):
@@ -782,6 +793,7 @@ class BulkPowderHauler(Consist):
         self.label_refits_disallowed = []
         self.default_cargo = 'GRAI'
         self.loading_speed_multiplier = 2
+        self.weight_multiplier = 0.45
 
 
 class LivestockHauler(Consist):
@@ -796,6 +808,7 @@ class LivestockHauler(Consist):
         self.label_refits_disallowed = []
         self.default_cargo = 'LVST'
         self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
+        self.weight_multiplier = 0.45
 
 
 class FruitHauler(Consist):
@@ -810,6 +823,7 @@ class FruitHauler(Consist):
         self.label_refits_disallowed = []
         self.default_cargo = 'FRUT'
         self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
+        self.weight_multiplier = 0.45
 
 
 class RefrigeratedHauler(Consist):
@@ -825,6 +839,7 @@ class RefrigeratedHauler(Consist):
         self.label_refits_disallowed = []
         self.default_cargo = 'FOOD'
         self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
+        self.weight_multiplier = 0.5
 
 
 class Tanker(Consist):
@@ -845,6 +860,7 @@ class Tanker(Consist):
         # Cargo graphics
         self.visible_cargo = VisibleCargoLiveryOnly()
         self.visible_cargo.tanker = True
+        self.weight_multiplier = 0.45
 
 
 class EdiblesTanker(Consist):
@@ -860,6 +876,7 @@ class EdiblesTanker(Consist):
         self.default_cargo = 'WATR'
         self.loading_speed_multiplier = 2
         self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
+        self.weight_multiplier = 0.5
 
 
 class LogHauler(Consist):
@@ -907,6 +924,7 @@ class SuppliesHauler(Consist):
         self.label_refits_disallowed = []
         self.default_cargo = 'ENSP'
         self.loading_speed_multiplier = 2
+        self.weight_multiplier = 0.5
 
 
 class IntermodalHauler(Consist):

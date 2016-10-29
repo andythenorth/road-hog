@@ -9,14 +9,12 @@ consist = BulkPowderHauler(id = 'limebreach',
                 vehicle_life = 40,
                 intro_date = 1949)
 
-consist.add_unit(weight = 6,
-                capacity = 0,
+consist.add_unit(capacity = 0,
                 vehicle_length = 2,
                 semi_truck_shift_offset_jank = 2,
                 effects = ['EFFECT_SPRITE_DIESEL, -2, 1, 10'])
 
-consist.add_unit(weight = 8,
-                capacity = 30,
+consist.add_unit(capacity = 30,
                 vehicle_length = 5)
 
 consist.add_model_variant(intro_date=0,

@@ -8,14 +8,12 @@ consist = OpenHauler(id = 'capo',
                 vehicle_life = 40,
                 intro_date = 1997)
 
-consist.add_unit(weight = 10,
-                capacity = 20,
+consist.add_unit(capacity = 20,
                 vehicle_length = 5,
                 cargo_length = 3,
                 effects = ['EFFECT_SPRITE_DIESEL, -2, 1, 10'])
 
-consist.add_unit(weight = 5,
-                capacity = 20,
+consist.add_unit(capacity = 20,
                 vehicle_length = 4,
                 cargo_length = 3)
 

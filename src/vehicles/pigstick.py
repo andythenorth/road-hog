@@ -8,13 +8,11 @@ consist = LivestockHauler(id = 'pigstick',
                 vehicle_life = 40,
                 intro_date = 1941)
 
-consist.add_unit(weight = 10,
-                capacity = 20,
+consist.add_unit(capacity = 20,
                 vehicle_length = 6,
                 visual_effect = 'VISUAL_EFFECT_DIESEL')
 
-consist.add_unit(weight = 10,
-                capacity = 10,
+consist.add_unit(capacity = 10,
                 vehicle_length = 4)
 
 consist.add_model_variant(intro_date=0,

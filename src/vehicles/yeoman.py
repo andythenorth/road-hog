@@ -9,14 +9,12 @@ consist = OpenHauler(id = 'yeoman',
                 vehicle_life = 40,
                 intro_date = 1968)
 
-consist.add_unit(weight = 7,
-                vehicle_length = 2,
+consist.add_unit(vehicle_length = 2,
                 semi_truck_shift_offset_jank = 2,
                 visual_effect = 'VISUAL_EFFECT_DIESEL',
                 always_use_same_spriterow = True)
 
-consist.add_unit(weight = 5,
-                capacity = 40,
+consist.add_unit(capacity = 40,
                 vehicle_length = 7,
                 cargo_length = 4)
 

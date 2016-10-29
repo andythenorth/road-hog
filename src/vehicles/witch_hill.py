@@ -11,8 +11,7 @@ consist = DumpHauler(id = 'witch_hill',
                 vehicle_life = 40,
                 intro_date = 2007)
 
-consist.add_unit(weight = 60,
-                capacity = 85, # much bigger is not much better here
+consist.add_unit(capacity = 85, # much bigger is not much better here
                 vehicle_length = 7,
                 effects = ['EFFECT_SPRITE_AIRCRAFT_BREAKDOWN_SMOKE, -2, 1, 10', 'EFFECT_SPRITE_AIRCRAFT_BREAKDOWN_SMOKE, -2, -1, 10'])
 

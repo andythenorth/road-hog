@@ -10,13 +10,11 @@ consist = LogHauler(id = 'buff',
                 vehicle_life = 40,
                 intro_date = 1994)
 
-consist.add_unit(weight = 10,
-                capacity = 40,
+consist.add_unit(capacity = 40,
                 vehicle_length = 7,
                 visual_effect = 'VISUAL_EFFECT_DIESEL')
 
-consist.add_unit(weight = 7,
-                capacity = 35,
+consist.add_unit(capacity = 35,
                 vehicle_length = 8)
 
 consist.add_model_variant(intro_date=0,

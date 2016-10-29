@@ -9,8 +9,7 @@ consist = FlatBedHauler(id = 'rackwood',
                 vehicle_life = 40,
                 intro_date = 1900)
 
-consist.add_unit(weight = 14,
-                capacity = 30,
+consist.add_unit(capacity = 30,
                 vehicle_length = 8,
                 cargo_length = 3,
                 effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 10'],

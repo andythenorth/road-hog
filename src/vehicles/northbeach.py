@@ -9,8 +9,7 @@ consist = PaxHauler(id = 'northbeach',
                 vehicle_life = 40,
                 intro_date = 1961)
 
-consist.add_unit(weight = 20,
-                capacity = 60,
+consist.add_unit(capacity = 60,
                 vehicle_length = 8,
                 effects = ['EFFECT_SPRITE_ELECTRIC, 0, 0, 12'],
                 repeat = 2)

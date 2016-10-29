@@ -10,13 +10,11 @@ consist = FoundryHauler(id = 'steeraway',
                 vehicle_life = 80,
                 intro_date = 1960)
 
-consist.add_unit(weight = 33,
-                capacity = 0,
+consist.add_unit(capacity = 0,
                 vehicle_length = 6,
                 visual_effect = 'VISUAL_EFFECT_DIESEL')
 
-consist.add_unit(weight = 15,
-                capacity = 50,
+consist.add_unit(capacity = 50,
                 vehicle_length = 7,
                 repeat=2)
 

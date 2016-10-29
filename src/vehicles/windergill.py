@@ -8,14 +8,12 @@ consist = FlatBedHauler(id = 'windergill',
                 vehicle_life = 40,
                 intro_date = 1939)
 
-consist.add_unit(weight = 10,
-                capacity = 15,
+consist.add_unit(capacity = 15,
                 vehicle_length = 5,
                 cargo_length = 3,
                 visual_effect = 'VISUAL_EFFECT_DIESEL')
 
-consist.add_unit(weight = 5,
-                capacity = 15,
+consist.add_unit(capacity = 15,
                 vehicle_length = 4,
                 cargo_length = 4)
 

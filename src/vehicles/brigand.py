@@ -10,17 +10,14 @@ consist = SuppliesHauler(id = 'brigand',
                 vehicle_life = 40,
                 intro_date = 1953)
 
-consist.add_unit(weight = 20,
-                capacity = 0,
+consist.add_unit(capacity = 0,
                 vehicle_length = 6,
                 visual_effect = 'VISUAL_EFFECT_DIESEL')
 
-consist.add_unit(weight = 12,
-                capacity = 45,
+consist.add_unit(capacity = 45,
                 vehicle_length = 7)
 
-consist.add_unit(weight = 20,
-                capacity = 0,
+consist.add_unit(capacity = 0,
                 vehicle_length = 6,
                 visual_effect = 'VISUAL_EFFECT_DIESEL',
                 unit_num_providing_spriterow_num = 0)
