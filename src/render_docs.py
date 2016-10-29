@@ -37,6 +37,13 @@ static_dir_src = os.path.join(docs_src, 'html', 'static')
 static_dir_dst = os.path.join(docs_output_path, 'html', 'static')
 shutil.copytree(static_dir_src, static_dir_dst)
 
+# assumes render_graphics has been run and generated dir has correct content
+# I'm not going to try and handle that in python, makefile will handle it in production
+# for development, just run render_graphics manually before running render_docs
+vehicle_graphics_dir_src = os.path.join(currentdir, 'generated', 'graphics')
+vehicle_graphics_dir_dst = os.path.join(static_dir_dst, 'graphics')
+shutil.copytree(vehicle_graphics_dir_src, vehicle_graphics_dir_dst)
+
 import markdown
 from chameleon import PageTemplateLoader # chameleon used in most template cases
 # setup the places we look for templates
