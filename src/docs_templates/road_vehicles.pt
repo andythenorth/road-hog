@@ -19,7 +19,7 @@
                     <tal:consists_list repeat="consist consists">
                         <tr tal:condition="(consist.roadveh_flag_tram) if vehicle_type is 'Tram' else (not consist.roadveh_flag_tram)">
                             <td>
-                                <img src="static/img/${consist.id}.png" />
+                                <img src="static/img/${consist.id}.png" width="50%" height="50%" />
                             </td>
                             <td>${consist.get_name_substr()} ${base_lang_strings[consist.get_str_name_suffix()]}</td>
                             <td class="number">${consist.intro_date}</td>
