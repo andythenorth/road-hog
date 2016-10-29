@@ -4,34 +4,37 @@
     <div class="span12">
         <h2>${len(consists)} road vehicles for OpenTTD</h2>
         <hr />
-        <table class="table table-striped tablesorter">
-            <thead>
-                <tr>
-                    <td><!--! empty cell --></td>
-                    <th>Vehicle Name</th>
-                    <th class="number">Intro Date</th>
-                    <th>Special Features</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tal:consists_list repeat="consist consists">
+        <tal:road_vehicles_and_trams repeat="vehicle_type ['Road Vehicle', 'Tram']">
+            <h3>${vehicle_type}s</h3>
+            <table class="table table-striped tablesorter">
+                <thead>
                     <tr>
-                        <td>
-                            <div style="margin-top: 2px;
-                                        width: 36px;
-                                        height: 16px;
-                                        background-position: -370px -10px;
-                                        background-image:url(../../generated/graphics/${consist.id}_0.png);" />
-                        </td>
-                        <td>${consist.get_name_substr()} ${base_lang_strings[consist.get_str_name_suffix()]}</td>
-                        <td class="number">${consist.intro_date}</td>
-                        <td>
-                            ${', '.join(doc_helper.get_special_features_for_vehicle(consist)).capitalize()}
-                        </td>
+                        <td><!--! empty cell --></td>
+                        <th>Vehicle Name</th>
+                        <th class="number">Intro Date</th>
+                        <th>Special Features</th>
                     </tr>
-                </tal:consists_list>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <tal:consists_list repeat="consist consists">
+                        <tr tal:condition="(consist.roadveh_flag_tram) if vehicle_type is 'Tram' else (not consist.roadveh_flag_tram)">
+                            <td>
+                                <div style="margin-top: 2px;
+                                            width: 36px;
+                                            height: 16px;
+                                            background-position: -370px -10px;
+                                            background-image:url(../../generated/graphics/${consist.id}_0.png);" />
+                            </td>
+                            <td>${consist.get_name_substr()} ${base_lang_strings[consist.get_str_name_suffix()]}</td>
+                            <td class="number">${consist.intro_date}</td>
+                            <td>
+                                ${', '.join(doc_helper.get_special_features_for_vehicle(consist)).capitalize()}
+                            </td>
+                        </tr>
+                    </tal:consists_list>
+                </tbody>
+            </table>
+        </tal:road_vehicles_and_trams>
     </div>
 
 </div>
