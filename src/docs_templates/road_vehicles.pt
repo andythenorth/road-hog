@@ -18,14 +18,14 @@
                 <tbody>
                     <tal:consists_list repeat="consist consists">
                         <tr tal:condition="(consist.roadveh_flag_tram) if vehicle_type is 'Tram' else (not consist.roadveh_flag_tram)">
-                            <td>
+                            <td style="vertical-align:middle;">
                                 <img src="static/img/${consist.id}.png"
                                      width="${2 * global_constants.buy_menu_sprite_width}"
                                      height="${2 * global_constants.buy_menu_sprite_width}" />
                             </td>
-                            <td>${consist.get_name_substr()} ${base_lang_strings[consist.get_str_name_suffix()]}</td>
-                            <td class="number">${consist.intro_date}</td>
-                            <td>
+                            <td style="vertical-align:middle;">${consist.get_name_substr()} ${base_lang_strings[consist.get_str_name_suffix()]}</td>
+                            <td style="vertical-align:middle;" class="number">${consist.intro_date}</td>
+                            <td style="vertical-align:middle;">
                                 ${', '.join(doc_helper.get_special_features_for_vehicle(consist)).capitalize()}
                             </td>
                         </tr>
