@@ -17,7 +17,8 @@
                 </thead>
                 <tbody>
                     <tal:consists_list repeat="consist consists">
-                        <tr tal:condition="(consist.roadveh_flag_tram) if vehicle_type is 'Tram' else (not consist.roadveh_flag_tram)">
+                        <tr tal:condition="(consist.roadveh_flag_tram) if vehicle_type is 'Tram' else (not consist.roadveh_flag_tram)"
+                            id="${consist.id}">
                             <td style="vertical-align:middle;">
                                 <img src="static/img/${consist.id}.png"
                                      width="${2 * global_constants.buy_menu_sprite_width}"
