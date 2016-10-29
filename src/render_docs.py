@@ -105,11 +105,11 @@ class DocHelper(object):
         return ('','active')[doc_name == nav_link]
 
     def get_special_features_for_vehicle(self, consist):
-        result = {}
-        if consist.loading_speed_multiplier is not 1:
-            result['Loading Speed Multiplier'] = consist.loading_speed_multiplier
-        if consist.cargo_age_period is not global_constants.CARGO_AGE_PERIOD:
-            result['Cargo Decay Rate'] = global_constants.CARGO_AGE_PERIOD / consist.cargo_age_period
+        result = []
+        if consist.loading_speed_multiplier > 1:
+            result.append('faster loading') # assumes we never do slower loading penalty
+        if consist.cargo_age_period > global_constants.CARGO_AGE_PERIOD:
+            result.append('improved payment') # assumes we never do higher cargo decay penalty
         return result
 
 def render_docs(doc_list, file_type, use_markdown=False):
