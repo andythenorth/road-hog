@@ -120,8 +120,8 @@ class DocHelper(object):
 def render_docs(doc_list, file_type, use_markdown=False):
     for doc_name in doc_list:
         template = docs_templates[doc_name + '.pt'] # .pt is the conventional extension for chameleon page templates
-        doc = template(consists=consists, repo_vars=repo_vars, base_lang_strings=base_lang_strings, metadata=metadata,
-                       utils=utils, doc_helper=DocHelper(), doc_name=doc_name)
+        doc = template(consists=consists, global_constants=global_constants, repo_vars=repo_vars, base_lang_strings=base_lang_strings,
+                       metadata=metadata, utils=utils, doc_helper=DocHelper(), doc_name=doc_name)
         if use_markdown:
             # the doc might be in markdown format, if so we need to render markdown to html, and wrap the result in some boilerplate html
             markdown_wrapper = docs_templates['markdown_wrapper.pt']
@@ -146,11 +146,13 @@ def render_docs_images():
     vehicle_graphics_src = os.path.join(currentdir, 'generated', 'graphics')
     for consist in consists:
         vehicle_spritesheet = Image.open(os.path.join(vehicle_graphics_src, consist.id + '_0.png'))
-        # could put the buy menu crop box in global_constants for reuse where needed, but eh, TMWFTLB currently
-        buy_menu_sprite_width = 36
-        buy_menu_sprite_height = 16
-        processed_vehicle_image = vehicle_spritesheet.crop(box=(370, 10, 370 + buy_menu_sprite_width, 10 + buy_menu_sprite_height))
-        processed_vehicle_image = processed_vehicle_image.resize((4 * buy_menu_sprite_width, 4 * buy_menu_sprite_height), resample=Image.NEAREST)
+        processed_vehicle_image = vehicle_spritesheet.crop(box=(370,
+                                                                10,
+                                                                370 + global_constants.buy_menu_sprite_width,
+                                                                10 + global_constants.buy_menu_sprite_height))
+        # oversize the images to account for how browsers interpolate the images on retina / HDPI screens
+        processed_vehicle_image = processed_vehicle_image.resize((4 * global_constants.buy_menu_sprite_width, 4 * global_constants.buy_menu_sprite_height),
+                                                                  resample=Image.NEAREST)
         output_path = os.path.join(images_dir_dst, consist.id + '.png')
         processed_vehicle_image.save(output_path, optimize=True, transparency=0)
 
