@@ -85,12 +85,11 @@ class DocHelper(object):
             result = self.fetch_prop(result, 'HP', int(vehicle.power))
             result = self.fetch_prop(result, 'Speed (mph)', vehicle.speed)
             result = self.fetch_prop(result, 'Weight (t)', int(vehicle.weight)) # cast to int to get same result as game will show
-            result = self.fetch_prop(result, 'TE coefficient', vehicle.tractive_effort_coefficient)
             result = self.fetch_prop(result, 'Intro Date', vehicle.intro_date)
             result = self.fetch_prop(result, 'Vehicle Life', vehicle.vehicle_life)
             result = self.fetch_prop(result, 'Capacity', vehicle.total_capacities[1])
-            result = self.fetch_prop(result, 'Buy Cost', round(vehicle.buy_cost, 2))
-            result = self.fetch_prop(result, 'Running Cost', round(vehicle.running_cost, 2))
+            result = self.fetch_prop(result, 'Buy Cost Factor', round(vehicle.buy_cost, 2))
+            result = self.fetch_prop(result, 'Running Cost Factor', round(vehicle.running_cost, 2))
             #result = self.fetch_prop(result, 'Loading Speed', vehicle.loading_speed)
             #result = self.fetch_prop(result, 'Model Variants', len(vehicle.model_variants))
 
