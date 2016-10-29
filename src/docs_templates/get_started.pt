@@ -51,11 +51,33 @@
             <hr />
             <br />
             <div id="setting-up">
+
                 <h2>2. Setting Up a Game with Road Hog</h2>
                 <p class="lead">
                     A few things to know before setting up a Road Hog game...
                 </p>
-                UNFINISHED - PARAMETERS ETC
+                <h3>Default Vehicles</h3>
+                <p>Road Hog will disable all the default OpenTTD vehicles.</p>
+
+                <h3>Capacity Parameter</h3>
+                <p>
+                    There is a parameter to adjust vehicle capacity up or down from the default.
+                    This will apply to all vehicles in the set.
+                </p>
+
+                <h3>Conflicts with other NewGRF sets.</h3>
+                <p>There are no known conflicts between Road Hog and other NewGRF sets.</p>
+
+                <h3>Vehicle introduction dates</h3>
+                <p>
+                    Vehicles are introduced between approximately ${metadata['dates'][0]} and ${metadata['dates'][1]}.
+                    OpenTTD randomises introduction dates, so these may vary a little.
+                </p>
+
+                <h3>Cargo Support</h3>
+                <p>Every cargo in the game should be supported by at least one vehicle in Road Hog (from 1860 onwards).  Report back if it doesn't.</p>
+                <p>For certain cargos, some vehicles will show accurate cargo graphics or different liveries.</p>
+
             </div>
             <br />
             <hr />
