@@ -315,7 +315,7 @@ class Consist(object):
         # max sensible width in buy menu is 64px, but RH templates currently drawn at 36px - legacy stuff
         consist_length = 4 * sum([unit.vehicle_length for unit in self.units])
         if consist_length < 36:
-            return consist_length + 1 # +1 is pure jank to handle clipped Greenscoe sprite, cba to fix it properly
+            return consist_length
         else:
             return 36
 
