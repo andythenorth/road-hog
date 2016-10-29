@@ -7,7 +7,6 @@ from road_vehicle import PaxExpressHauler
 consist = PaxExpressHauler(id = 'big_sky',
                 base_numeric_id = 620,
                 title = 'Big Sky [Coach]',
-                replacement_id = '-none',
                 power = 220,
                 speed = 90,
                 vehicle_life = 40,

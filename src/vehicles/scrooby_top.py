@@ -5,7 +5,6 @@ consist = DumpHauler(id = 'scrooby_top',
                 base_numeric_id = 700,
                 title = 'Scrooby Top [Dump Tram]',
                 roadveh_flag_tram = True,
-                replacement_id = '-none',
                 vehicle_life = 40,
                 intro_date = 1870)
 

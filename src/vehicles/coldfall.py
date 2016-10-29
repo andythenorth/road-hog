@@ -4,7 +4,6 @@ from road_vehicle import RefrigeratedHauler
 consist = RefrigeratedHauler(id = 'coldfall',
                 base_numeric_id = 150,
                 title = 'Coldfall [Reefer Truck]',
-                replacement_id = '-none',
                 semi_truck_so_redistribute_capacity = True,
                 vehicle_life = 40,
                 intro_date = 1998)

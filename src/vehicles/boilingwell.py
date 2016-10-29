@@ -4,7 +4,6 @@ from road_vehicle import Tanker
 consist = Tanker(id = 'boilingwell',
                 base_numeric_id = 920,
                 title = 'Boilingwell [Tanker Truck]',
-                replacement_id = '-none',
                 semi_truck_so_redistribute_capacity = True,
                 vehicle_life = 40,
                 intro_date = 1915)

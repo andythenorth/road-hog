@@ -5,7 +5,6 @@ consist = OpenHauler(id = 'wastelander',
                 base_numeric_id = 1010,
                 title = 'Wastelander [General Cargo Tram]',
                 roadveh_flag_tram = True,
-                replacement_id = '-none',
                 power = 90,
                 vehicle_life = 40,
                 intro_date = 1870)

@@ -4,7 +4,6 @@ from road_vehicle import FoundryHauler
 consist = FoundryHauler(id = 'steeraway',
                 base_numeric_id = 520,
                 title = 'Steeraway [Foundry Hauler]',
-                replacement_id = '-none',
                 power = 500,
                 speed = 45,
                 vehicle_life = 80,

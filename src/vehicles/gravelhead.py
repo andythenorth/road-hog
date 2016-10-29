@@ -4,7 +4,6 @@ from road_vehicle import DumpHauler
 consist = DumpHauler(id = 'gravelhead',
                 base_numeric_id = 580,
                 title = 'Gravelhead [Dump Truck]',
-                replacement_id = '-none',
                 power = 130,
                 vehicle_life = 40,
                 intro_date = 1920)

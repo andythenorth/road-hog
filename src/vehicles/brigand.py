@@ -5,7 +5,6 @@ from road_vehicle import SuppliesHauler
 consist = SuppliesHauler(id = 'brigand',
                 base_numeric_id = 540,
                 title = 'Brigand [Supplies Truck]',
-                replacement_id = '-none',
                 power = 480,
                 vehicle_life = 40,
                 intro_date = 1953)

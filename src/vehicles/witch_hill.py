@@ -4,7 +4,6 @@ from road_vehicle import DumpHauler
 consist = DumpHauler(id = 'witch_hill',
                 base_numeric_id = 500,
                 title = 'Witch Hill [Mining Truck]',
-                replacement_id = '-none',
                 power = 900,
                 speed = 50, # dibbled up above RL for game balance
                 type_base_running_cost_points = 30, # dibble running costs for game balance

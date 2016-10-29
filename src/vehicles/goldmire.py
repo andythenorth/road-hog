@@ -4,7 +4,6 @@ from road_vehicle import CourierCar
 consist = CourierCar(id = 'goldmire',
                 base_numeric_id = 200,
                 title = 'Goldmire [Courier Truck]',
-                replacement_id = '-none',
                 power = 250, # custom power
                 speed = 75,
                 vehicle_life = 40,

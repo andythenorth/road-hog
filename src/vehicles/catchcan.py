@@ -5,7 +5,6 @@ consist = Tanker(id = 'catchcan',
                 base_numeric_id = 810,
                 title = 'Catchcan [Tanker Tram]',
                 roadveh_flag_tram = True,
-                replacement_id = '-none',
                 vehicle_life = 40,
                 intro_date = 1902)
 

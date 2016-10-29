@@ -5,7 +5,6 @@ consist = EdiblesTanker(id = 'bottlebrook',
                 base_numeric_id = 510,
                 title = 'Bottlebrook [Edibles Tanker Tram]',
                 roadveh_flag_tram = True,
-                replacement_id = '-none',
                 vehicle_life = 40,
                 intro_date = 1946)
 

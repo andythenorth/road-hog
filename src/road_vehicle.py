@@ -33,7 +33,6 @@ class Consist(object):
         self.base_numeric_id = kwargs.get('base_numeric_id', None)
         self.roadveh_flag_tram = kwargs.get('roadveh_flag_tram', None)
         self.intro_date = kwargs.get('intro_date', None)
-        self.replacement_id = kwargs.get('replacement_id', None)
         self.vehicle_life = kwargs.get('vehicle_life', None)
         self._power = kwargs.get('power', None)
         self._sound_effect = kwargs.get('sound_effect', None)

@@ -4,7 +4,6 @@ from road_vehicle import FlatBedHauler
 consist = FlatBedHauler(id = 'chainburn',
                 base_numeric_id = 630,
                 title = 'Chainburn [Flatbed Truck]',
-                replacement_id = '-none',
                 vehicle_life = 40,
                 intro_date = 1910)
 

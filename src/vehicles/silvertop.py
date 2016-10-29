@@ -4,7 +4,6 @@ from road_vehicle import EdiblesTanker
 consist = EdiblesTanker(id = 'silvertop',
                 base_numeric_id = 380,
                 title = 'Silvertop [Edibles Tanker Truck]',
-                replacement_id = '-none',
                 vehicle_life = 40,
                 intro_date = 2001)
 

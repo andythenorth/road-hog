@@ -4,7 +4,6 @@ from road_vehicle import BoxHauler
 consist = BoxHauler(id = 'quickset',
                 base_numeric_id = 350,
                 title = 'Quickset [Box Truck]',
-                replacement_id = '-none',
                 semi_truck_so_redistribute_capacity = True,
                 vehicle_life = 40,
                 intro_date = 1968)

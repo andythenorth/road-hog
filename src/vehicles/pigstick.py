@@ -4,7 +4,6 @@ from road_vehicle import LivestockHauler
 consist = LivestockHauler(id = 'pigstick',
                 base_numeric_id = 330,
                 title = 'Pigstick [Livestock Truck]',
-                replacement_id = '-none',
                 vehicle_life = 40,
                 intro_date = 1941)
 

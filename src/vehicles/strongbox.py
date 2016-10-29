@@ -5,7 +5,6 @@ consist = CourierCar(id = 'strongbox',
                 base_numeric_id = 830,
                 title = 'Strongbox [Courier Tram]',
                 roadveh_flag_tram = True,
-                replacement_id = '-none',
                 power = 480, # custom power
                 vehicle_life = 40,
                 intro_date = 1961)

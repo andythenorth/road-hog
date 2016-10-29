@@ -4,7 +4,6 @@ from road_vehicle import OpenHauler
 consist = OpenHauler(id = 'rattlebrook',
                 base_numeric_id = 670,
                 title = 'Rattlebrook [Open Truck]',
-                replacement_id = '-none',
                 vehicle_life = 40,
                 intro_date = 1939)
 

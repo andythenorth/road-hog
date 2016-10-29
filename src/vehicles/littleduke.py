@@ -4,7 +4,6 @@ from road_vehicle import CourierCar
 consist = CourierCar(id = 'littleduke',
                 base_numeric_id = 270,
                 title = 'Littleduke [Courier Truck]',
-                replacement_id = '-none',
                 power = 380,
                 speed = 90,
                 vehicle_life = 40,

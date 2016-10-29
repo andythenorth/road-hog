@@ -5,7 +5,6 @@ consist = RefrigeratedHauler(id = 'winterfold',
                 base_numeric_id = 770,
                 title = 'Winterfold [Reefer Tram]',
                 roadveh_flag_tram = True,
-                replacement_id = '-none',
                 vehicle_life = 40,
                 intro_date = 1915)
 

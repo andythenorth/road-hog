@@ -5,7 +5,6 @@ consist = FlatBedHauler(id = 'stakebeck',
                 base_numeric_id = 750,
                 title = 'Stakebeck [Flatbed Tram]',
                 roadveh_flag_tram = True,
-                replacement_id = '-none',
                 vehicle_life = 40,
                 intro_date = 1860)
 

@@ -4,7 +4,6 @@ from road_vehicle import LogHauler
 consist = LogHauler(id = 'buff',
                 base_numeric_id = 110,
                 title = 'Buff [Logging Truck]',
-                replacement_id = '-none',
                 power = 550,
                 speed = 60,
                 vehicle_life = 40,
