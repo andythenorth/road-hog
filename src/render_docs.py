@@ -146,9 +146,9 @@ def render_docs_images():
     vehicle_graphics_src = os.path.join(currentdir, 'generated', 'graphics')
     for consist in consists:
         vehicle_spritesheet = Image.open(os.path.join(vehicle_graphics_src, consist.id + '_0.png'))
-        print(vehicle_spritesheet)
+        processed_vehicle_image = vehicle_spritesheet.crop(box=(370, 10, 406, 26))
         output_path = os.path.join(images_dir_dst, consist.id + '.png')
-        vehicle_spritesheet.save(output_path, optimize=True)
+        processed_vehicle_image.save(output_path, optimize=True)
 
 def main():
     # render standard docs from a list
