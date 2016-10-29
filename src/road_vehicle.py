@@ -183,11 +183,11 @@ class Consist(object):
         return graphics_utils.get_composited_cargo_processors(template = template)
 
     def get_engine_cost_points(self):
-        # Up to 40 points for power. 1 point per 50hp
+        # Up to 20 points for power. 1 point per 100hp
         # Power is therefore capped at 2000hp by design, this isn't a hard limit, but raise a warning
         if self.power > 2000:
             utils.echo_message("Consist " + self.id + " has power > 2000hp, which is too much")
-        power_cost_points = self.power / 50
+        power_cost_points = self.power / 100
 
         # Up to 30 points for speed above up to 90mph. 1 point per 3mph
         if self.speed > 90:
@@ -200,18 +200,24 @@ class Consist(object):
             utils.echo_message("Consist " + self.id + " has intro_date > 2030, which is too much")
         date_cost_points = max((self.intro_date - 1870), 0) / 8
 
-        return power_cost_points + speed_cost_points + date_cost_points
+        # Up to 20 points for capacity. 1 point per 8t.
+        # Capacity capped at 160, this isn't a hard limit, but raise a warning
+        if self.total_capacities[1] > 160:
+            utils.echo_message("Consist " + self.id + " has capacity > 160, which is too much")
+        consist_capacity_points = min(self.total_capacities[1], 160)
+
+        return power_cost_points + speed_cost_points + date_cost_points + consist_capacity_points
 
     @property
     def buy_cost(self):
         # type_base_buy_cost_points is an arbitrary adjustment that can be applied on a type-by-type basis,
-        return self.get_engine_cost_points() + self.type_base_buy_cost_points
+        # there is an arbitrary multiplier applied to get sensible costs in range with Iron Horse
+        return 0.5 * self.get_engine_cost_points() + self.type_base_buy_cost_points
 
     @property
     def running_cost(self):
-        consist_capacity_points = min(self.total_capacities[1], 160)
         # type_base_running_cost_points is an arbitrary adjustment that can be applied on a type-by-type basis,
-        return self.get_engine_cost_points() + consist_capacity_points + self.type_base_running_cost_points
+        return self.get_engine_cost_points()  + self.type_base_running_cost_points
 
     @property
     def weight(self):
