@@ -7,6 +7,7 @@
         <table class="table table-striped tablesorter">
             <thead>
                 <tr>
+                    <td><!--! empty cell --></td>
                     <th>Vehicle Name</th>
                     <th class="number">Intro Date</th>
                     <th>Special Features</th>
@@ -15,6 +16,13 @@
             <tbody>
                 <tal:consists_list repeat="consist consists">
                     <tr>
+                        <td>
+                            <div style="margin-top: 2px;
+                                        width: 36px;
+                                        height: 16px;
+                                        background-position: -370px -10px;
+                                        background-image:url(../../generated/graphics/${consist.id}_0.png);" />
+                        </td>
                         <td>${consist.get_name_substr()} ${base_lang_strings[consist.get_str_name_suffix()]}</td>
                         <td class="number">${consist.intro_date}</td>
                         <td>
