@@ -6,7 +6,7 @@ consist = SuppliesHauler(id = 'crime_rigg',
                 base_numeric_id = 530,
                 title = 'Crime Rigg [Supplies Truck]',
                 replacement_id = '-none',
-                power = 240,
+                power = 360,
                 vehicle_life = 40,
                 intro_date = 1920)
 
