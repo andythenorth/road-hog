@@ -1,6 +1,23 @@
 Changelog
 =========
 
+1.1.0
+------
+
+*Features*
+
+- cargo graphics for cassava, coffee, fruit, nuts
+
+*Fixes*
+
+- bad cargo mask for Portland tram in | views
+
+*Translations*
+
+- updated
+- translator credits: http://bundles.openttdcoop.org/road-hog/releases/LATEST/credits.txt
+
+
 1.0.0
 ------
 
