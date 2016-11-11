@@ -590,8 +590,6 @@ class VisibleCargo(object):
 
     @property
     def cargo_row_map(self):
-        # !! this works more by accident than design
-        # !! the order of cargo types here must be kept in sync with the order in the cargo graphics processor
         result = {}
         counter = 0
         if self.bulk:
