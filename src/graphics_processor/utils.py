@@ -1,18 +1,6 @@
 from graphics_processor import graphics_constants
 from graphics_processor import pipelines
 
-def make_colour_map(input, output, map_size):
-    result = {}
-    for i in range(map_size):
-        result[input + i] = output + i
-    return result
-
-def get_container_recolour_maps():
-    map_1 = make_colour_map(170, graphics_constants.CC1, 8)
-    map_2 = make_colour_map(170, graphics_constants.CC2, 8)
-    map_3 = make_colour_map(170, 8, 8)
-
-    return (map_1, map_2, map_3)
 
 class GraphicsProcessorFactory(object):
     # simple class which wraps graphics_processor, which uses pixa library
