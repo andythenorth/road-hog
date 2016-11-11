@@ -1,6 +1,5 @@
 from graphics_processor import graphics_constants
-from graphics_processor import registered_pipelines
-
+from graphics_processor import pipelines
 
 def make_colour_map(input, output, map_size):
     result = {}
@@ -30,7 +29,7 @@ class GraphicsProcessorFactory(object):
     def __init__(self, pipeline_name, options):
         self.pipeline_name = pipeline_name
         self.options = options
-        self.pipeline = registered_pipelines[pipeline_name]
+        self.pipeline = pipelines.get_pipeline(pipeline_name)
 
 
 def get_composited_cargo_processors(template):

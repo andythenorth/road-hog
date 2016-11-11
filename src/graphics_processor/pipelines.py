@@ -4,15 +4,10 @@ currentdir = os.curdir
 from pixa import Spritesheet, pixascan
 from PIL import Image
 
-from graphics_processor import registered_pipelines
 from graphics_processor import graphics_constants
-from graphics_processor import utils as graphics_utils
 from graphics_processor.units import SimpleRecolour, SwapCompanyColours, AppendToSpritesheet
 
 DOS_PALETTE = Image.open('palette_key.png').palette
-
-def register(pipeline):
-    registered_pipelines[pipeline.name] = pipeline
 
 """
 Pipelines can be dedicated to a single task such as SimpleRecolourPipeline
@@ -61,8 +56,6 @@ class PassThroughPipeline(Pipeline):
         result = self.render_common(variant, consist, input_image, units, options)
         return result
 
-register(PassThroughPipeline())
-
 
 class SimpleRecolourPipeline(Pipeline):
     """ Swaps colours using the recolour map (dict {colour index: replacement colour}) """
@@ -78,8 +71,6 @@ class SimpleRecolourPipeline(Pipeline):
         result = self.render_common(variant, consist, input_image, units, options)
         return result
 
-register(SimpleRecolourPipeline())
-
 
 class SwapCompanyColoursPipeline(Pipeline):
     """ Swaps 1CC and 2CC colours """
@@ -94,8 +85,6 @@ class SwapCompanyColoursPipeline(Pipeline):
         units = [SwapCompanyColours()]
         result = self.render_common(variant, consist, input_image, units, options)
         return result
-
-register(SwapCompanyColoursPipeline())
 
 
 class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
@@ -298,9 +287,24 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
                 cumulative_input_spriterow_count += input_spriterow_count
 
         if self.options.get('swap_company_colours', False):
-            units.append(SwapCompanyColours())
+            self.units.append(SwapCompanyColours())
         input_image = Image.open(self.input_path).crop((0, 0, graphics_constants.spritesheet_width, 10))
         result = self.render_common(variant, consist, input_image, self.units, self.options)
         return result
 
-register(ExtendSpriterowsForCompositedCargosPipeline())
+def get_pipeline(pipeline_name):
+    # return a pipeline by name;
+    # add pipelines here when creating new ones
+    for pipeline in [SimpleRecolourPipeline(),
+                     PassThroughPipeline(),
+                     ExtendSpriterowsForCompositedCargosPipeline(),
+                     SwapCompanyColoursPipeline()]:
+        if pipeline_name == pipeline.name:
+            return pipeline
+    raise Exception("Pipeline not found: " + pipeline_name) # should never get to here
+
+def main():
+    print("yeah, pipelines.main() does nothing")
+
+if __name__ == '__main__':
+    main()
