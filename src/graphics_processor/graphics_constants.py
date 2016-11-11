@@ -30,6 +30,13 @@ tanker_livery_recolour_maps = (("OIL_", {136: 1, 137: 2, 138: 3, 139: 4, 140: 5,
                                ("PETR", {136: 16, 137: 17, 138: 18, 139: 19, 140: 20, 141: 21, 142: 22, 143: 23}))
                             #DYES
                             #PLAS
+
+# Containers
+# !! simple recolouring, not cargo specific.  May need work ??  Could be cargo-specific??
+container_recolour_maps = ({170 + i: CC1 + i for i in range(8)},
+                           {170 + i: CC2 + i for i in range(8)},
+                           {170 + i: 8 + i for i in range(8)})
+
 # Bulk
 # keep cargos in alphabetical order for ease of reading
 # SCMT *is* bulk cargo in this set, realism is not relevant here, went back and forth on this a few times :P
