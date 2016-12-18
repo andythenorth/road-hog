@@ -11,6 +11,12 @@ STR_PARAM_ROSTER_DESC                                           :Choose which se
 STR_PARAM_ROSTER_OPTION_0                                       :Brit
 STR_PARAM_ROSTER_OPTION_1                                       :Wasteland
 
+STR_NAME_HEAVY_HAUL_ROAD                                        :Heavy Haul Road
+STR_TOOLBAR_CAPTION_HEAVY_HAUL_ROAD                             :Heavy Haul Road Construction
+STR_MENU_TEXT_HEAVY_HAUL_ROAD                                   :Heavy Haul Road
+STR_BUILD_WINDOW_CAPTION_HEAVY_HAUL_ROAD                        :New Heavy Haul Road Vehicles
+STR_AUTOREPLACE_TEXT_HEAVY_HAUL_ROAD                            :Heavy Haul Road Vehicles
+STR_NEW_ENGINE_TEXT_HEAVY_HAUL_ROAD                             :Heavy Haul Road
 STR_NAME_TRAMWAY                                                :Tramway
 STR_TOOLBAR_CAPTION_TRAMWAY                                     :Tramway Construction
 STR_MENU_TEXT_TRAMWAY                                           :Tramway

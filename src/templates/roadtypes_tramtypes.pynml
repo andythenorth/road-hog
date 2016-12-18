@@ -10,7 +10,7 @@
 // -----------
 
 roadtypetable {
- 	ROAD
+ 	ROAD, HAUL
  }
 
 tramtypetable {
@@ -20,6 +20,18 @@ tramtypetable {
 
 // Type Definitions
 // ----------------
+
+item(FEAT_ROADTYPES, heavy_haul_road, 0) {
+    property {
+        name: string(STR_NAME_HEAVY_HAUL_ROAD);
+        label: "HAUL";
+        toolbar_caption: string(STR_TOOLBAR_CAPTION_HEAVY_HAUL_ROAD);
+        menu_text: string(STR_MENU_TEXT_HEAVY_HAUL_ROAD);
+        build_window_caption: string(STR_BUILD_WINDOW_CAPTION_HEAVY_HAUL_ROAD);
+        autoreplace_text: string(STR_AUTOREPLACE_TEXT_HEAVY_HAUL_ROAD);
+        new_engine_text: string(STR_NEW_ENGINE_TEXT_HEAVY_HAUL_ROAD);
+    }
+}
 
 item(FEAT_TRAMTYPES, tramway, 0) {
     property {
