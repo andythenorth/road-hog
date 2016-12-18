@@ -13,8 +13,10 @@ roadtypetable {
  	ROAD, HAUL
  }
 
+// tram is light rail so copy existing railtype labels where appropriate (for ease, no new thinking required)
+// as per https://newgrf-specs.tt-wiki.net/wiki/RailtypeLabels
 tramtypetable {
- 	TRAM, ELTR
+ 	RAIL, ELRL
  }
 
 
@@ -25,6 +27,7 @@ item(FEAT_ROADTYPES, heavy_haul_road, 0) {
     property {
         name: string(STR_NAME_HEAVY_HAUL_ROAD);
         label: "HAUL";
+        powered_roadtype_list: [];
         toolbar_caption: string(STR_TOOLBAR_CAPTION_HEAVY_HAUL_ROAD);
         menu_text: string(STR_MENU_TEXT_HEAVY_HAUL_ROAD);
         build_window_caption: string(STR_BUILD_WINDOW_CAPTION_HEAVY_HAUL_ROAD);
@@ -36,8 +39,8 @@ item(FEAT_ROADTYPES, heavy_haul_road, 0) {
 item(FEAT_TRAMTYPES, tramway, 0) {
     property {
         name: string(STR_NAME_TRAMWAY);
-        label: "TRAM";
-        powered_tramtype_list: ["ELTR"];
+        label: "RAIL";
+        powered_tramtype_list: ["ELRL"];
         toolbar_caption: string(STR_TOOLBAR_CAPTION_TRAMWAY);
         menu_text: string(STR_MENU_TEXT_TRAMWAY);
         build_window_caption: string(STR_BUILD_WINDOW_CAPTION_TRAMWAY);
@@ -49,7 +52,7 @@ item(FEAT_TRAMTYPES, tramway, 0) {
 item(FEAT_TRAMTYPES, electric_tramway, 1) {
     property {
         name: string(STR_NAME_ELECTRIC_TRAMWAY);
-        label: "ELTR";
+        label: "ELRL";
         powered_tramtype_list: [];
         toolbar_caption: string(STR_TOOLBAR_CAPTION_ELECTRIC_TRAMWAY);
         menu_text: string(STR_MENU_TEXT_ELECTRIC_TRAMWAY);

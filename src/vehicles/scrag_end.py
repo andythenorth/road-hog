@@ -4,7 +4,7 @@ from road_vehicle import LivestockHauler
 consist = LivestockHauler(id = 'scrag_end',
                           base_numeric_id = 710,
                           title = 'Scrag End [Livestock Tram]',
-                          tram_type = 'TRAM',
+                          tram_type = 'RAIL',
                           vehicle_life = 40,
                           intro_date = 1865)
 

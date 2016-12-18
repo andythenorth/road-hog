@@ -4,7 +4,7 @@ from road_vehicle import CourierCar
 consist = CourierCar(id = 'singing_river',
                      base_numeric_id = 850,
                      title = 'Singing River [Courier Tram]',
-                     tram_type = 'ELTR',
+                     tram_type = 'ELRL',
                      power = 600,
                      vehicle_life = 40,
                      intro_date = 1990)

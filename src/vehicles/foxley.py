@@ -4,7 +4,7 @@ from road_vehicle import CourierCar
 consist = CourierCar(id = 'foxley',
                      base_numeric_id = 190,
                      title = 'Foxley [Courier Tram]',
-                     tram_type = 'ELTR',
+                     tram_type = 'ELRL',
                      power = 240, # custom HP
                      vehicle_life = 40,
                      intro_date = 1903)

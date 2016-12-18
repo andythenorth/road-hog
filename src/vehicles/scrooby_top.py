@@ -4,7 +4,7 @@ from road_vehicle import DumpHauler
 consist = DumpHauler(id = 'scrooby_top',
                      base_numeric_id = 700,
                      title = 'Scrooby Top [Dump Tram]',
-                     tram_type = 'TRAM',
+                     tram_type = 'RAIL',
                      vehicle_life = 40,
                      intro_date = 1870)
 

@@ -4,7 +4,7 @@ from road_vehicle import RefrigeratedHauler
 consist = RefrigeratedHauler(id = 'winterfold',
                              base_numeric_id = 770,
                              title = 'Winterfold [Reefer Tram]',
-                             tram_type = 'ELTR',
+                             tram_type = 'ELRL',
                              vehicle_life = 40,
                              intro_date = 1915)
 

@@ -4,7 +4,7 @@ from road_vehicle import FruitHauler
 consist = FruitHauler(id = 'applethwaite',
                       base_numeric_id = 940,
                       title = 'Applethwaite [Fruit Tram]',
-                      tram_type = 'ELTR',
+                      tram_type = 'ELRL',
                       vehicle_life = 40,
                       intro_date = 1901)
 
