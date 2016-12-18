@@ -30,11 +30,11 @@ class Consist(object):
         # setup properties for this consist (props either shared for all vehicles, or placed on lead vehicle of consist)
         self.title = kwargs.get('title', None)
         self.base_numeric_id = kwargs.get('base_numeric_id', None)
-        self.roadveh_flag_tram = kwargs.get('roadveh_flag_tram', None)
         self.road_type = kwargs.get('road_type', None)
         self.tram_type = kwargs.get('tram_type', None)
         if self.road_type is not None and self.tram_type is not None:
             utils.echo_message("Error: " + self.id + ". Vehicles must not have both road_type and tram_type properties set.  Set one of these only")
+        self.roadveh_flag_tram = True if self.tram_type is not None else None
         self.intro_date = kwargs.get('intro_date', None)
         self.vehicle_life = kwargs.get('vehicle_life', None)
         self._power = kwargs.get('power', None)

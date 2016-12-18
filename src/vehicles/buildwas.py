@@ -4,7 +4,6 @@ from road_vehicle import OpenHauler
 consist = OpenHauler(id = 'buildwas',
                      base_numeric_id = 120,
                      title = 'Buildwas [Open Tram]',
-                     roadveh_flag_tram = True,
                      tram_type = 'TRAM',
                      vehicle_life = 40,
                      intro_date = 1860)

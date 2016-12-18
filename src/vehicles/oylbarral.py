@@ -4,7 +4,6 @@ from road_vehicle import Tanker
 consist = Tanker(id = 'oylbarral',
                  base_numeric_id = 320,
                  title = 'Oylbarral [Tanker Tram]',
-                 roadveh_flag_tram = True,
                  tram_type = 'ELTR',
                  vehicle_life = 40,
                  intro_date = 1945)

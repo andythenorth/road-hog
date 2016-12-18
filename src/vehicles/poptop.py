@@ -4,7 +4,6 @@ from road_vehicle import EdiblesTanker
 consist = EdiblesTanker(id = 'poptop',
                         base_numeric_id = 780,
                         title = 'Poptop [Edibles Tanker Tram]',
-                        roadveh_flag_tram = True,
                         tram_type = 'ELTR',
                         vehicle_life = 40,
                         intro_date = 1906)

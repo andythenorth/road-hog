@@ -4,7 +4,6 @@ from road_vehicle import PaxHauler
 consist = PaxHauler(id = 'ladycross',
                     base_numeric_id = 0,
                     title = 'Ladycross [Passenger Tram]',
-                    roadveh_flag_tram = True,
                     tram_type = 'TRAM',
                     vehicle_life = 40,
                     intro_date = 1860)

@@ -4,7 +4,6 @@ from road_vehicle import BulkPowderHauler
 consist = BulkPowderHauler(id = 'thurlbear',
                            base_numeric_id = 460,
                            title = 'Thurlbear [Covered Hopper Tram]',
-                           roadveh_flag_tram = True,
                            tram_type = 'ELTR',
                            vehicle_life = 40,
                            intro_date = 1940)

@@ -4,7 +4,6 @@ from road_vehicle import BoxHauler
 consist = BoxHauler(id = 'colbiggan',
                     base_numeric_id = 880,
                     title = 'Colbiggan [Box Tram]',
-                    roadveh_flag_tram = True,
                     tram_type = 'ELTR',
                     vehicle_life = 40,
                     intro_date = 1940)

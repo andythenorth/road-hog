@@ -4,7 +4,6 @@ from road_vehicle import RefrigeratedHauler
 consist = RefrigeratedHauler(id = 'sparkford',
                              base_numeric_id = 390,
                              title = 'Sparkford [Reefer Tram]',
-                             roadveh_flag_tram = True,
                              tram_type = 'ELTR',
                              vehicle_life = 40,
                              intro_date = 1955)

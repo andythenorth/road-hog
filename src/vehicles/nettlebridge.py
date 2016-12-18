@@ -4,7 +4,6 @@ from road_vehicle import DumpHauler
 consist = DumpHauler(id = 'nettlebridge',
                      base_numeric_id = 310,
                      title = 'Nettlebridge [Dump Tram]',
-                     roadveh_flag_tram = True,
                      tram_type = 'ELTR',
                      vehicle_life = 40,
                      intro_date = 1944)
