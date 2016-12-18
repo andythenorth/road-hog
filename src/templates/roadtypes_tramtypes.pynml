@@ -34,6 +34,10 @@ item(FEAT_ROADTYPES, heavy_haul_road, 0) {
         autoreplace_text: string(STR_AUTOREPLACE_TEXT_HEAVY_HAUL_ROAD);
         new_engine_text: string(STR_NEW_ENGINE_TEXT_HEAVY_HAUL_ROAD);
     }
+    graphics {
+        track_overlay: heavy_haul_road_overlays;
+        underlay: heavy_haul_road_overlays;
+    }
 }
 
 item(FEAT_TRAMTYPES, tramway, 0) {
@@ -61,4 +65,38 @@ item(FEAT_TRAMTYPES, electric_tramway, 1) {
         new_engine_text: string(STR_NEW_ENGINE_TEXT_ELECTRIC_TRAMWAY);
         tramtype_flags: bitmask(TRAMTYPE_FLAG_CATENARY);
     }
+}
+
+
+// Sprites
+// -------
+
+template tmpl_overlay_roadtypes() {
+    [ 0, 0, 64, 31, -31, 0]
+    [75, 0, 64, 31, -31, 0]
+
+    [150, 0, 64, 31, -31, 0]
+    [225, 0, 64, 31, -31, 0]
+    [300, 0, 64, 31, -31, 0]
+    [375, 0, 64, 31, -31, 0]
+    [450, 0, 64, 31, -31, 0]
+
+    [  0, 40, 64, 31, -31, 0]
+    [ 75, 40, 64, 31, -31, 0]
+    [150, 40, 64, 31, -31, 0]
+    [225, 40, 64, 31, -31, 0]
+
+    [300, 40, 64, 39, -31, -8]
+    [375, 40, 64, 21, -31, 0]
+    [450, 40, 64, 21, -31, 0]
+    [525, 40, 64, 39, -31, -8]
+
+    [  0, 80, 64, 31, -31, 0]
+    [ 75, 80, 64, 31, -31, 0]
+    [150, 80, 64, 31, -31, 0]
+    [225, 80, 64, 31, -31, 0]
+}
+/* Spriteset for overlays */
+spriteset(heavy_haul_road_overlays, "src/graphics/roadtypes/heavy_haul_road.png") {
+    tmpl_overlay_roadtypes()
 }
