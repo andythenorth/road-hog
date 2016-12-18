@@ -2,7 +2,7 @@
 <div metal:fill-slot='body'>
 
     <div class="span12">
-        <h2>${len(consists)} road vehicles for OpenTTD</h2>
+        <h2>${len(consists)} road vehicles and trams for OpenTTD</h2>
         <hr />
         <tal:road_vehicles_and_trams repeat="vehicle_type ['Road Vehicle', 'Tram']">
             <h3>${vehicle_type}s</h3>
