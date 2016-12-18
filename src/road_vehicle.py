@@ -562,6 +562,7 @@ class PaxHauler(Consist):
         self.default_cargo = 'PASS'
         self.loading_speed_multiplier = 3
         self.weight_multiplier = 0.17
+        self.steam = True
 
 
 class PaxExpressHauler(Consist):

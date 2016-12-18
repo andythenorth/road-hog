@@ -53,7 +53,7 @@ def main():
     consists = road_hog.get_consists_in_buy_menu_order()
 
     grf_nml = codecs.open(os.path.join('road-hog.nml'),'w','utf8')
-    header_items = ['header', 'cargo_table', 'disable_default_vehicles']
+    header_items = ['header', 'cargo_table', 'roadtypes_tramtypes', 'disable_default_vehicles']
     for header_item in header_items:
         template = templates[header_item + '.pynml']
         grf_nml.write(utils.unescape_chameleon_output(template(consists=consists, global_constants=global_constants,

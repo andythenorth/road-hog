@@ -11,6 +11,19 @@ STR_PARAM_ROSTER_DESC                                           :Choose which se
 STR_PARAM_ROSTER_OPTION_0                                       :Brit
 STR_PARAM_ROSTER_OPTION_1                                       :Wasteland
 
+STR_NAME_TRAMWAY                                                :Tramway
+STR_TOOLBAR_CAPTION_TRAMWAY                                     :Tramway
+STR_MENU_TEXT_TRAMWAY                                           :Tramway
+STR_BUILD_WINDOW_CAPTION_TRAMWAY                                :Tramway
+STR_AUTOREPLACE_TEXT_TRAMWAY                                    :Tramway
+STR_NEW_ENGINE_TEXT_TRAMWAY                                     :Tramway
+STR_NAME_ELECTRIC_TRAMWAY                                       :Electric Tramway
+STR_TOOLBAR_CAPTION_ELECTRIC_TRAMWAY                            :Electric Tramway
+STR_MENU_TEXT_ELECTRIC_TRAMWAY                                  :Electric Tramway
+STR_BUILD_WINDOW_CAPTION_ELECTRIC_TRAMWAY                       :Electric Tramway
+STR_AUTOREPLACE_TEXT_ELECTRIC_TRAMWAY                           :Electric Tramway
+STR_NEW_ENGINE_TEXT_ELECTRIC_TRAMWAY                            :Electric Tramway
+
 STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Passenger Tram
 STR_NAME_SUFFIX_BUS                                             :Bus
 STR_NAME_SUFFIX_COACH                                           :Coach

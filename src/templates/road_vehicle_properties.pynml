@@ -10,6 +10,7 @@ switch (FEAT_ROADVEHS, SELF, ${vehicle.id}_create_visual_effect, ${vehicle.get_e
 item(FEAT_ROADVEHS, ${vehicle.id}, ${vehicle.numeric_id}) {
     property {
         name:                           ${consist.get_name()};
+        tram_type:                      ${'TRAM' if hasattr(consist, 'steam') else 'ELTR'};
         cargo_capacity:                 ${vehicle.capacities[0]};
         sprite_id:                      SPRITE_ID_NEW_ROADVEH; //enable new graphics - nml constant
         <tal:lead_unit_props condition="vehicle.is_lead_unit_of_consist">

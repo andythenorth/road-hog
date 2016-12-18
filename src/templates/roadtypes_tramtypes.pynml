@@ -1,0 +1,49 @@
+// Road Hog directly provides all the roadtypes and tramtypes that the vehicles in the set need
+// this is contrary to the established convention of providing separate grfs for vehicles and [route]types
+// My view is that:
+// 1. it's faff for players to add an extra grf
+// 2. there's no effective mechanism for players to discover they *need* an extra grf, or which one to use
+// 3. with route types missing, some/many vehicles may be missing; impairs design balance in the set
+// 4. the 'choice' aspects of providing route types separately are over-emphasised relative to the hassle
+
+// Type Tables
+// -----------
+
+roadtypetable {
+ 	ROAD
+ }
+
+tramtypetable {
+ 	TRAM, ELTR
+ }
+
+
+// Type Definitions
+// ----------------
+
+item(FEAT_TRAMTYPES, tramway, 0) {
+    property {
+        name: string(STR_NAME_TRAMWAY);
+        label: "TRAM";
+        powered_tramtype_list: [];
+        toolbar_caption: string(STR_TOOLBAR_CAPTION_TRAMWAY);
+        menu_text: string(STR_MENU_TEXT_TRAMWAY);
+        build_window_caption: string(STR_BUILD_WINDOW_CAPTION_TRAMWAY);
+        autoreplace_text: string(STR_AUTOREPLACE_TEXT_TRAMWAY);
+        new_engine_text: string(STR_NEW_ENGINE_TEXT_TRAMWAY);
+    }
+}
+
+item(FEAT_TRAMTYPES, electric_tramway, 1) {
+    property {
+        name: string(STR_NAME_ELECTRIC_TRAMWAY);
+        label: "ELTR";
+        powered_tramtype_list: [];
+        toolbar_caption: string(STR_TOOLBAR_CAPTION_ELECTRIC_TRAMWAY);
+        menu_text: string(STR_MENU_TEXT_ELECTRIC_TRAMWAY);
+        build_window_caption: string(STR_BUILD_WINDOW_CAPTION_ELECTRIC_TRAMWAY);
+        autoreplace_text: string(STR_AUTOREPLACE_TEXT_ELECTRIC_TRAMWAY);
+        new_engine_text: string(STR_NEW_ENGINE_TEXT_ELECTRIC_TRAMWAY);
+        tramtype_flags: bitmask(TRAMTYPE_FLAG_CATENARY);
+    }
+}
