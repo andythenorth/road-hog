@@ -25,7 +25,7 @@ item(FEAT_TRAMTYPES, tramway, 0) {
     property {
         name: string(STR_NAME_TRAMWAY);
         label: "TRAM";
-        powered_tramtype_list: [];
+        powered_tramtype_list: ["ELTR"];
         toolbar_caption: string(STR_TOOLBAR_CAPTION_TRAMWAY);
         menu_text: string(STR_MENU_TEXT_TRAMWAY);
         build_window_caption: string(STR_BUILD_WINDOW_CAPTION_TRAMWAY);
