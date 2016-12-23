@@ -4,6 +4,7 @@ from road_vehicle import DumpHauler
 consist = DumpHauler(id = 'broadrock',
                 base_numeric_id = 100,
                 title = 'Broadrock [Mining Truck]',
+                road_type = 'HAUL',
                 power = 400,
                 semi_truck_so_redistribute_capacity = True,
                 speed = 40, # dibbled up above RL for game balance

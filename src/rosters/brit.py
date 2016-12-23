@@ -11,6 +11,7 @@ from vehicles import (acton,
                       brass_monkey,
                       brigand,
                       brightling,
+                      broadrock,
                       buildwas,
                       buff,
                       capo,
@@ -91,6 +92,7 @@ from vehicles import (acton,
                       waterperry,
                       windergill,
                       winterfold,
+                      witch_hill,
                       wookey,
                       yeoman)
 
@@ -195,6 +197,8 @@ roster = Roster(id = 'brit',
                             griff,
                             trefell,
                             knockdown,
-                            buff])
+                            buff,
+                            broadrock,
+                            witch_hill])
                             #steeraway
 
