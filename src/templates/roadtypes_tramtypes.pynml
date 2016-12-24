@@ -35,8 +35,11 @@ item(FEAT_ROADTYPES, heavy_haul_road, 0) {
         new_engine_text: string(STR_NEW_ENGINE_TEXT_HEAVY_HAUL_ROAD);
     }
     graphics {
-        track_overlay: heavy_haul_road_overlays;
-        underlay: heavy_haul_road_overlays;
+        underlay: heavy_haul_underlay;
+        track_overlay: heavy_haul_track_overlay;
+        depots: heavy_haul_depots;
+        bridge_surfaces: heavy_haul_bridge_surfaces;
+        roadstops: heavy_haul_roadstops;
     }
 }
 
@@ -71,6 +74,67 @@ item(FEAT_TRAMTYPES, electric_tramway, 1) {
 // Sprites
 // -------
 
+// Default ground tile template (re-use as needed)
+template ground_tile(x, y) { [x, y, 64, 31, -31, 0] }
+
+// Template for underlays; 2x straight road, 5x junctions, 4x corners, 4x slope, 4x half-tile road
+// Used for bridge surfaces also, therefore the template is split
+
+template tmpl_underlay_straight() {
+    ground_tile( 0, 0)
+    ground_tile(75, 0)
+}
+template tmpl_underlay_junctions() {
+    ground_tile(150, 0)
+    ground_tile(225, 0)
+    ground_tile(300, 0)
+    ground_tile(375, 0)
+    ground_tile(450, 0)
+}
+template tmpl_underlay_corners() {
+    ground_tile(  0, 40)
+    ground_tile( 75, 40)
+    ground_tile(150, 40)
+    ground_tile(225, 40)
+}
+
+template tmpl_underlay_slope() {
+    [300, 40, 64, 39, -31, -8]
+    [375, 40, 64, 23, -31, 0]
+    [450, 40, 64, 23, -31, 0]
+    [525, 40, 64, 39, -31, -8]
+}
+
+template tmpl_underlay_half_tiles() {
+    ground_tile(  0, 80)
+    ground_tile( 75, 80)
+    ground_tile(150, 80)
+    ground_tile(225, 80)
+}
+
+
+template tmpl_underlay_roadtypes() {
+    tmpl_underlay_straight()
+    tmpl_underlay_junctions()
+    tmpl_underlay_corners()
+    tmpl_underlay_slope()
+    tmpl_underlay_half_tiles()
+
+    /* X-crossing */
+    ground_tile(0, 120)
+
+    /* underlay for crossings w/o tracks */
+    ground_tile(  0, 80)
+    ground_tile(225, 80)
+    ground_tile(150, 80)
+    ground_tile( 75, 80)
+    ground_tile(300, 80)
+}
+spriteset(heavy_haul_underlay, "src/graphics/roadtypes/heavy_haul_road.png") {
+    tmpl_underlay_roadtypes()
+}
+
+// overlays
 template tmpl_overlay_roadtypes() {
     [ 0, 0, 64, 31, -31, 0]
     [75, 0, 64, 31, -31, 0]
@@ -96,7 +160,40 @@ template tmpl_overlay_roadtypes() {
     [150, 80, 64, 31, -31, 0]
     [225, 80, 64, 31, -31, 0]
 }
-/* Spriteset for overlays */
-spriteset(heavy_haul_road_overlays, "src/graphics/roadtypes/heavy_haul_road.png") {
+spriteset(heavy_haul_track_overlay, "src/graphics/roadtypes/heavy_haul_road.png") {
     tmpl_overlay_roadtypes()
+}
+
+// Template for depot sprites
+template tmpl_depot() {
+    [200, 10, 16,  8,  17,   7+4]
+    [118,  8, 64, 47,  -9+8, -31]
+    [  0, 10, 16,  8, -31,   7+4]
+    [ 37,  8, 64, 47, -53-8, -31]
+    [ 37, 63, 64, 47, -53-8, -31]
+    [118, 63, 64, 47,  -9+8, -31]
+}
+spriteset(heavy_haul_depots, "src/graphics/roadtypes/heavy_haul_road.png") {
+    tmpl_depot()
+}
+
+// Bridge surface, uses the same sprites as track underlays, but in a different order
+template tmpl_bridge_surfaces() {
+    tmpl_underlay_straight()
+    tmpl_underlay_slope()
+    tmpl_underlay_junctions()
+}
+spriteset(heavy_haul_bridge_surfaces, "src/graphics/roadtypes/heavy_haul_road.png") {
+    tmpl_bridge_surfaces()
+}
+
+// Roadstop sprites:
+template tmpl_underlay_roadstop() {
+    ground_tile(  0, 120)
+    ground_tile( 75, 120)
+    ground_tile(150, 120)
+    ground_tile(225, 120)
+}
+spriteset(heavy_haul_roadstops, "src/graphics/roadtypes/heavy_haul_road.png") {
+    tmpl_underlay_roadstop()
 }
