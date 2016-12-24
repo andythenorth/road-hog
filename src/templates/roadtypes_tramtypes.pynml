@@ -128,7 +128,6 @@ template tmpl_underlay_roadtypes() {
     ground_tile(225, 80)
     ground_tile(150, 80)
     ground_tile( 75, 80)
-    ground_tile(300, 80)
 }
 spriteset(heavy_haul_underlay, "src/graphics/roadtypes/heavy_haul_road.png") {
     tmpl_underlay_roadtypes()
@@ -166,12 +165,12 @@ spriteset(heavy_haul_track_overlay, "src/graphics/roadtypes/heavy_haul_road.png"
 
 // Template for depot sprites
 template tmpl_depot() {
-    [200, 10, 16,  8,  17,   7+4]
-    [118,  8, 64, 47,  -9+8, -31]
-    [  0, 10, 16,  8, -31,   7+4]
-    [ 37,  8, 64, 47, -53-8, -31]
-    [ 37, 63, 64, 47, -53-8, -31]
-    [118, 63, 64, 47,  -9+8, -31]
+    [300, 236, 18, 16,  13,   0]
+    [225, 236, 64, 64,  -1, -43]
+    [123, 236, 18, 16, -29,   0]
+    [150, 236, 64, 64, -61, -43]
+    [225, 160, 64, 64, -61, -43]
+    [150, 160, 64, 64,  -1, -43]
 }
 spriteset(heavy_haul_depots, "src/graphics/roadtypes/heavy_haul_road.png") {
     tmpl_depot()
