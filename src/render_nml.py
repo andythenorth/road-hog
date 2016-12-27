@@ -11,7 +11,7 @@ currentdir = os.curdir
 import road_hog
 import utils
 import global_constants
-from rosters import registered_rosters
+from rosters import registered_rosters # Iron Horse has support for compiling only active roster, copy if/when needed
 
 # get args passed by makefile
 repo_vars = utils.get_repo_vars(sys)
