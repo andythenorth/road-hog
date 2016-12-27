@@ -51,6 +51,8 @@ def main():
         for consist in consists:
             render_consist_nml(consist)
     else:
+        # multiprocessing is not always a win for rendering chameleon templates, the overhead can increase render time substantially
+        # worth testing occasionally for empirical results
         pool = Pool(processes=num_pool_workers)
         pool.map(render_consist_nml, consists)
 
