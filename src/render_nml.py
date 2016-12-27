@@ -7,7 +7,6 @@ import codecs # used for writing files - more unicode friendly than standard ope
 import sys
 import os
 currentdir = os.curdir
-from multiprocessing import Pool
 
 import road_hog
 import utils
@@ -16,50 +15,44 @@ from rosters import registered_rosters
 
 # get args passed by makefile
 repo_vars = utils.get_repo_vars(sys)
-num_pool_workers = repo_vars.get('num_pool_workers', 0) # default to no mp, makes debugging easier (mp fails to pickle errors correctly)
-if num_pool_workers == 0:
-    use_multiprocessing = False
-else:
-    use_multiprocessing = True
 
 from chameleon import PageTemplateLoader # chameleon used in most template cases
 # setup the places we look for templates
 templates = PageTemplateLoader(os.path.join(currentdir, 'src', 'templates'))
 
-generated_nml_path = os.path.join(road_hog.generated_files_path, 'nml')
-if not os.path.exists(generated_nml_path):
-    os.mkdir(generated_nml_path)
+def render_header_item_nml(header_item, consists):
+    template = templates[header_item + '.pynml']
+    print("Rendering " + header_item)
+    return utils.unescape_chameleon_output(template(consists=consists,
+                                                    global_constants=global_constants,
+                                                    utils=utils,
+                                                    registered_rosters=registered_rosters,
+                                                    repo_vars=repo_vars))
 
 def render_consist_nml(consist):
+    result = utils.unescape_chameleon_output(consist.render())
+    # write the nml per vehicle to disk, it aids debugging
     consist_nml = codecs.open(os.path.join('generated', 'nml', consist.id + '.nml'),'w','utf8')
-    consist_nml.write(utils.unescape_chameleon_output(consist.render()))
+    consist_nml.write(result)
     consist_nml.close()
+    # also return the nml directly for writing to the concatenated nml, don't faff around opening the generated nml files from disk
+    return result
 
 def main():
+    generated_nml_path = os.path.join(road_hog.generated_files_path, 'nml')
+    if not os.path.exists(generated_nml_path):
+        os.mkdir(generated_nml_path) # reminder to self: inside main() to avoid modifying filesystem simply by importing module
+    grf_nml = codecs.open(os.path.join('road-hog.nml'),'w','utf8')
+
     consists = road_hog.get_consists_in_buy_menu_order()
 
-    grf_nml = codecs.open(os.path.join('road-hog.nml'),'w','utf8')
     header_items = ['header', 'cargo_table', 'roadtypes_tramtypes', 'disable_default_vehicles']
     for header_item in header_items:
-        template = templates[header_item + '.pynml']
-        grf_nml.write(utils.unescape_chameleon_output(template(consists=consists, global_constants=global_constants,
-                                                      registered_rosters=registered_rosters,
-                                                      utils=utils, sys=sys, repo_vars=repo_vars)))
+        grf_nml.write(render_header_item_nml(header_item, consists))
 
-    if use_multiprocessing == False:
-        utils.echo_message('Multiprocessing disabled: (pw=0)')
-        for consist in consists:
-            render_consist_nml(consist)
-    else:
-        # multiprocessing is not always a win for rendering chameleon templates, the overhead can increase render time substantially
-        # worth testing occasionally for empirical results
-        pool = Pool(processes=num_pool_workers)
-        pool.map(render_consist_nml, consists)
-
+    # multiprocessing was tried here and removed as it was empirically slower in testing (due to overhead of starting extra pythons probably)
     for consist in consists:
-        # makefile passes 'roster' arg, but there is no python compile support for compiling a single roster yet
-        consist_nml = codecs.open(os.path.join('generated', 'nml', consist.id + '.nml'),'r','utf8').read()
-        grf_nml.write(consist_nml)
+        grf_nml.write(render_consist_nml(consist))
 
     grf_nml.close()
 
