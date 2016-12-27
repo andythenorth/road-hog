@@ -33,7 +33,7 @@ def render_header_item_nml(header_item, consists):
 def render_consist_nml(consist):
     result = utils.unescape_chameleon_output(consist.render())
     # write the nml per vehicle to disk, it aids debugging
-    consist_nml = codecs.open(os.path.join('generated', 'nml', consist.id + '.nml'),'w','utf8')
+    consist_nml = codecs.open(os.path.join(generated_files_path, 'nml', consist.id + '.nml'),'w','utf8')
     consist_nml.write(result)
     consist_nml.close()
     # also return the nml directly for writing to the concatenated nml, don't faff around opening the generated nml files from disk
