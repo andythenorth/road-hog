@@ -22,7 +22,6 @@ templates = PageTemplateLoader(os.path.join(currentdir, 'src', 'templates'))
 
 def render_header_item_nml(header_item, consists):
     template = templates[header_item + '.pynml']
-    print("Rendering " + header_item)
     return utils.unescape_chameleon_output(template(consists=consists,
                                                     global_constants=global_constants,
                                                     utils=utils,
