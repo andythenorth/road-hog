@@ -18,8 +18,6 @@ import render_nml
 render_nml.main()
 elapsed_time = (time() - start)
 print(format(elapsed_time, '.2f')+'s')
-if elapsed_time > 2:
-    utils.echo_message("<!--! lies, road hog incremental compiles don't work yet --> Slow nml rendering?  Try the incremental_compile=True make flag if you're only changing vehicle properties ")
 
 # render the graphics
 start = time()

@@ -60,9 +60,6 @@ def main():
                                                       registered_rosters=registered_rosters,
                                                       utils=utils, sys=sys, repo_vars=repo_vars)))
 
-    if repo_vars.get('incremental_compile', None) == 'True':
-        utils.echo_message('Only rendering changed nml files: (ic=True)')
-
     if use_multiprocessing == False:
         utils.echo_message('Multiprocessing disabled: (pw=0)')
         for consist in consists:
