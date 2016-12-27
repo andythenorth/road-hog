@@ -1,5 +1,7 @@
 # Here also go all build targets specific to this very newgrf
 
+NML_FILE := generated/road-hog.nml
+
 GENERATE_NML := road-hog-nml
 GENERATE_LNG := road-hog-nml
 GENERATE_DOC := road-hog-nml
@@ -16,7 +18,6 @@ road-hog-nml:
 	$(_V) python3 src/build_road_hog.py '${REPO_TITLE}' '${REPO_REVISION}' '${pw}' '${roster}'
 
 clean::
-	$(_V)-rm road-hog.nml
 	$(_V)-rm -r docs
 	$(_V)-rm -r chameleon_cache
 	$(_V)-rm -r generated

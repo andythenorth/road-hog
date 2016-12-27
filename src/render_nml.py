@@ -20,6 +20,8 @@ from chameleon import PageTemplateLoader # chameleon used in most template cases
 # setup the places we look for templates
 templates = PageTemplateLoader(os.path.join(currentdir, 'src', 'templates'))
 
+generated_files_path = road_hog.generated_files_path
+
 def render_header_item_nml(header_item, consists):
     template = templates[header_item + '.pynml']
     return utils.unescape_chameleon_output(template(consists=consists,
@@ -38,10 +40,10 @@ def render_consist_nml(consist):
     return result
 
 def main():
-    generated_nml_path = os.path.join(road_hog.generated_files_path, 'nml')
+    generated_nml_path = os.path.join(generated_files_path, 'nml')
     if not os.path.exists(generated_nml_path):
         os.mkdir(generated_nml_path) # reminder to self: inside main() to avoid modifying filesystem simply by importing module
-    grf_nml = codecs.open(os.path.join('road-hog.nml'),'w','utf8')
+    grf_nml = codecs.open(os.path.join(generated_files_path, 'road-hog.nml'),'w','utf8')
 
     consists = road_hog.get_consists_in_buy_menu_order()
 
