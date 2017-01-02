@@ -8,7 +8,6 @@ base_refits_by_class = {'empty': [],
                         'packaged_freight': ['CC_PIECE_GOODS', 'CC_EXPRESS', 'CC_ARMOURED', 'CC_LIQUID'],
                         'flatbed_freight': ['CC_PIECE_GOODS'],
                         'dump_freight': ['CC_BULK'],
-                        'bulk_farm_freight': [], # explicit allowal by label instead
                         'covered_hopper_freight': [], # explicit allowal by label instead
                         'refrigerated_freight': ['CC_REFRIGERATED'],
                         'express_freight': ['CC_EXPRESS','CC_ARMOURED']}
