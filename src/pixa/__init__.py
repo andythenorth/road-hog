@@ -1,2 +1,1 @@
-from .pixa import Spritesheet, pixascan
-
+# nothing here, by design
