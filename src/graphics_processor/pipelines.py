@@ -1,7 +1,7 @@
 import os.path
 currentdir = os.curdir
 
-from pixa.pixa import Spritesheet, pixascan
+from graphics_processor.pixa import Spritesheet, pixascan
 from PIL import Image
 
 from graphics_processor import graphics_constants
