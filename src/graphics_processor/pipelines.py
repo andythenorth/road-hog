@@ -50,7 +50,7 @@ class PassThroughPipeline(Pipeline):
 
     def render(self, variant, consist, global_constants):
         options = variant.graphics_processor.options
-        input_path = os.path.join(currentdir, 'src', 'graphics', 'vehicles', options['template'])
+        input_path = os.path.join(currentdir, 'src', 'graphics', graphics_constants.vehicles_input_dir, options['template'])
         input_image = Image.open(input_path)
         units = []
         result = self.render_common(variant, consist, input_image, units, options)
@@ -65,7 +65,7 @@ class SimpleRecolourPipeline(Pipeline):
 
     def render(self, variant, consist, global_constants):
         options = variant.graphics_processor.options
-        input_path = os.path.join(currentdir, 'src', 'graphics', 'vehicles', options['template'])
+        input_path = os.path.join(currentdir, 'src', 'graphics', graphics_constants.vehicles_input_dir, options['template'])
         input_image = Image.open(input_path)
         units = [SimpleRecolour(options['recolour_map'])]
         result = self.render_common(variant, consist, input_image, units, options)
@@ -80,7 +80,7 @@ class SwapCompanyColoursPipeline(Pipeline):
 
     def render(self, variant, consist, global_constants):
         options = variant.graphics_processor.options
-        input_path = os.path.join(currentdir, 'src', 'graphics', 'vehicles', options['template'])
+        input_path = os.path.join(currentdir, 'src', 'graphics', graphics_constants.vehicles_input_dir, options['template'])
         input_image = Image.open(input_path)
         units = [SwapCompanyColours()]
         result = self.render_common(variant, consist, input_image, units, options)
@@ -261,7 +261,7 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
     def render(self, variant, consist, global_constants):
         # there are various options for controlling the crop box, I haven't documented them - read example uses to figure them out
         self.options = variant.graphics_processor.options
-        self.input_path = os.path.join(currentdir, 'src', 'graphics', 'vehicles', self.options['template'])
+        self.input_path = os.path.join(currentdir, 'src', 'graphics', graphics_constants.vehicles_input_dir, self.options['template'])
         self.units = [] # graphics units not same as consist units ! confusing overlap of terminology :(
 
         # the cumulative_input_spriterow_count updates per processed group of spriterows, and is key to making this work

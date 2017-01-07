@@ -13,6 +13,8 @@ spriterow_height = 30
 spritesheet_top_margin = 10
 spritesheet_width = 455
 
+vehicles_input_dir = 'vehicles'
+
 # --- Cargo Maps ---- #
 # label order matters, so tuples are used not dicts
 # could probably have used orderedict or named tuple, but...blah
