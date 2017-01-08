@@ -626,9 +626,9 @@ class DumpHauler(Consist):
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_dump_bulk']
         self.default_cargo = 'COAL'
         self.loading_speed_multiplier = 2
+        self.weight_multiplier = 0.45
         # Cargo graphics
         self.visible_cargo.bulk = True
-        self.weight_multiplier = 0.45
 
 
 class FlatBedHauler(Consist):
@@ -722,10 +722,10 @@ class Tanker(Consist):
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['edible_liquids']
         self.default_cargo = 'OIL_'
         self.loading_speed_multiplier = 2
+        self.weight_multiplier = 0.45
         # Cargo graphics
         self.visible_cargo = VisibleCargoLiveryOnly()
         self.visible_cargo.tanker = True
-        self.weight_multiplier = 0.45
 
 
 class EdiblesTanker(Consist):
