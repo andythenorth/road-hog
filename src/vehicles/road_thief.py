@@ -10,7 +10,8 @@ consist = SuppliesHauler(id = 'road_thief',
 
 consist.add_unit(capacity = 0,
                 vehicle_length = 7,
-                visual_effect = 'VISUAL_EFFECT_DIESEL')
+                visual_effect = 'VISUAL_EFFECT_DIESEL',
+                always_use_same_spriterow = True)
 
 consist.add_unit(capacity = 45,
                 vehicle_length = 7)

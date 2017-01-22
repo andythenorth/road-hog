@@ -790,6 +790,10 @@ class SuppliesHauler(Consist):
         self.default_cargo = 'ENSP'
         self.loading_speed_multiplier = 2
         self.weight_multiplier = 0.5
+        # Cargo graphics
+        self.visible_cargo = VisibleCargoCustom({'ENSP': [0], 'FMSP': [0], 'VEHI': [0], 'BDMT': [0]},
+                                                'vehicle_with_visible_cargo.pynml',
+                                                generic_rows = [0])
 
 
 class IntermodalHauler(Consist):
