@@ -40,8 +40,8 @@ STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :가축 수송 �
 STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :가축 트럭
 STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM                             :식품 수송 전차
 STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK                            :식품 수송 트럭
-STR_NAME_SUFFIX_REEFER_TRAM                                     :냉장(곡물) 전차
-STR_NAME_SUFFIX_REEFER_TRUCK                                    :가축 수송 트럭
+STR_NAME_SUFFIX_REEFER_TRAM                                     :냉장 전차
+STR_NAME_SUFFIX_REEFER_TRUCK                                    :냉장 트럭
 STR_NAME_SUFFIX_LOGGING_TRUCK                                   :목재 수송 트럭
 STR_NAME_SUFFIX_FRUIT_TRAM                                      :과일 트럭
 
