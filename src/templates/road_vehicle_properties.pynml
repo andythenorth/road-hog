@@ -30,7 +30,7 @@ item(FEAT_ROADVEHS, ${vehicle.id}, ${vehicle.numeric_id}) {
             model_life:                     ${consist.adjusted_model_life};
             vehicle_life:                   ${consist.vehicle_life};
             reliability_decay:              20; // default value
-            retire_early:                   ${consist.vehicle_life - 4}; // magic from Eddi
+            retire_early:                   ${consist.retire_early};
             sound_effect:                   ${consist.sound_effect};
         </tal:lead_unit_props>
         refit_cost:                     0; // this needs to be 0 if we want autorefit without using cb
