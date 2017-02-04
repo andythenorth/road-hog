@@ -1,6 +1,27 @@
 Changelog
 =========
 
+1.2.0
+------
+
+*Features*
+
+- vehicle models now have expiry dates (if OpenTTD 'vehicles never expire' setting is 'off')
+- cargo support for potash, quicklime
+
+*Fixes*
+
+- bad sprite for Tin Hatch tram
+
+*Translations*
+
+- updated
+- translator credits: http://bundles.openttdcoop.org/road-hog/releases/LATEST/credits.txt
+
+*Codechanges*
+
+- refactored graphics processing
+
 1.1.0
 ------
 
