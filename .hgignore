@@ -21,6 +21,7 @@ custom_tags.txt
 .version
 chameleon_cache
 generated/*
+.nmlcache/*
 
 # Dependency files:
 Makefile.dep
