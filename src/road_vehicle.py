@@ -277,9 +277,9 @@ class Consist(object):
     def speed(self):
         if self._speed is None:
             if self.roadveh_flag_tram is True:
-                speeds = self.get_roster(self.roster_id).default_tram_speeds
+                speeds = self.roster.default_tram_speeds
             else:
-                speeds = self.get_roster(self.roster_id).default_truck_speeds
+                speeds = self.roster.default_truck_speeds
             speed = speeds[max([year for year in speeds if self.intro_date >= year])]
             return speed
         else:
@@ -290,9 +290,9 @@ class Consist(object):
         # only trucks have standard power bands, trams are custom
         if self._power is None:
             if self.roadveh_flag_tram is True:
-                power_bands = self.get_roster(self.roster_id).default_tram_power_bands
+                power_bands = self.roster.default_tram_power_bands
             else:
-                power_bands = self.get_roster(self.roster_id).default_truck_power_bands
+                power_bands = self.roster.default_truck_power_bands
             power = power_bands[max([year for year in power_bands if self.intro_date >= year])]
             return power
         else:
@@ -300,7 +300,34 @@ class Consist(object):
 
     @property
     def adjusted_model_life(self):
-        return 'VEHICLE_NEVER_EXPIRES'
+        similar_consists = []
+        for consist in self.roster.consists:
+            if type(consist) == type(self):
+                if consist.roadveh_flag_tram == self.roadveh_flag_tram:
+                    # !! this will need to account for roadtypes ^^
+                    print("adjusted_model_life will need to account for roadtype, not just tram flag")
+                    similar_consists.append(consist)
+        replacement_consist = None
+        replacement_count = 0
+        for consist in sorted(similar_consists, key=lambda consist: consist.intro_date):
+            if consist.intro_date > self.intro_date:
+                replacement_count += 1
+                # faff to keep previous generation around for when a new one appears
+                if replacement_count == 2:
+                    replacement_consist = consist
+                    break
+        if replacement_consist is None:
+            return 'VEHICLE_NEVER_EXPIRES'
+        else:
+            print(self.id, str(replacement_consist.intro_date - self.intro_date))
+            return replacement_consist.intro_date - self.intro_date
+
+    @property
+    def retire_early(self):
+        # affects when vehicle is removed from buy menu (in combination with model life)
+        # to understand why this is needed see https://newgrf-specs.tt-wiki.net/wiki/NML:Vehicles#Engine_life_cycle
+        return 0
+
 
     @property
     def sound_effect(self):
@@ -325,20 +352,21 @@ class Consist(object):
     def buy_menu_width (self):
         # max sensible width in buy menu is 64px, but RH templates currently drawn at 36px - legacy stuff
         consist_length = 4 * sum([unit.vehicle_length for unit in self.units])
-        print(self.id, consist_length)
+        #print(self.id, consist_length)
         if consist_length < global_constants.buy_menu_sprite_width:
             return consist_length
         else:
             return global_constants.buy_menu_sprite_width
 
-    def get_roster(self, roster_id):
+    @property
+    def roster(self):
         for roster in registered_rosters:
-            if roster_id == roster.id:
+            if roster.id == self.roster_id:
                 return roster
 
     def get_expression_for_roster(self):
         # the working definition is one and only one roster per vehicle
-        roster = self.get_roster(self.roster_id)
+        roster = self.roster
         return 'param[1]==' + str(roster.numeric_id - 1)
 
     def render_articulated_switch(self):
