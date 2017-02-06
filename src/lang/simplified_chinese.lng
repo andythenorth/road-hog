@@ -1,0 +1,44 @@
+##grflangid 0x56
+##plural 1
+STR_GRF_DESCRIPTION                                             :License: {SILVER}GPL v2{}{BLACK}
+
+STR_PARAM_ADJUST_VEHICLE_CAPACITY                               :公路车具容量
+STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_0                      :很少
+STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_1                      :很多
+STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2                      :极多
+STR_PARAM_ROSTER                                                :选项
+STR_PARAM_ROSTER_DESC                                           :车辆类型的选择
+STR_PARAM_ROSTER_OPTION_0                                       :英式
+STR_PARAM_ROSTER_OPTION_1                                       :废土
+
+STR_NAME_SUFFIX_PASSENGER_TRAM                                  :旅客电车
+STR_NAME_SUFFIX_BUS                                             :公交
+STR_NAME_SUFFIX_COACH                                           :长途大巴
+STR_NAME_SUFFIX_BOX_TRAM                                        :厢式电车
+STR_NAME_SUFFIX_BOX_TRUCK                                       :厢式卡车
+STR_NAME_SUFFIX_OPEN_TRAM                                       :敞篷卡车
+STR_NAME_SUFFIX_OPEN_TRUCK                                      :敞篷卡车
+STR_NAME_SUFFIX_COURIER_TRAM                                    :邮件电车
+STR_NAME_SUFFIX_COURIER_TRUCK                                   :邮件卡车
+STR_NAME_SUFFIX_TANKER_TRAM                                     :罐车电车
+STR_NAME_SUFFIX_TANKER_TRUCK                                    :油罐车
+STR_NAME_SUFFIX_COVERED_HOPPER_TRAM                             :带棚自卸电车
+STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :带蓬自卸卡车
+STR_NAME_SUFFIX_DUMP_TRAM                                       :自卸电车
+STR_NAME_SUFFIX_DUMP_TRUCK                                      :自卸卡车
+STR_NAME_SUFFIX_MINING_TRAM                                     :采矿电车
+STR_NAME_SUFFIX_MINING_TRUCK                                    :采矿车
+STR_NAME_SUFFIX_FLATBED_TRAM                                    :平板电车
+STR_NAME_SUFFIX_FLATBED_TRUCK                                   :平板卡车
+STR_NAME_SUFFIX_INTERMODAL_HAULER                               :多级拖挂车
+STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :牲畜电车
+STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :牲畜运输车
+STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM                             :食品罐电车
+STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK                            :食品罐卡车
+STR_NAME_SUFFIX_REEFER_TRAM                                     :冷藏电车
+STR_NAME_SUFFIX_REEFER_TRUCK                                    :冷藏卡车
+STR_NAME_SUFFIX_LOGGING_TRUCK                                   :伐木卡车
+STR_NAME_SUFFIX_FRUIT_TRAM                                      :水果电车
+
+STR_COASTER                                                     :奶牛跳过了月亮（这是未完成的提示）
+STR_DOGTRACK                                                    :棕狗，有时如此。
