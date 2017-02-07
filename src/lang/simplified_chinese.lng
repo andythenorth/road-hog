@@ -30,6 +30,10 @@ STR_NAME_SUFFIX_MINING_TRAM                                     :采矿电车
 STR_NAME_SUFFIX_MINING_TRUCK                                    :采矿车
 STR_NAME_SUFFIX_FLATBED_TRAM                                    :平板电车
 STR_NAME_SUFFIX_FLATBED_TRUCK                                   :平板卡车
+STR_NAME_SUFFIX_FOUNDRY_TRAM                                    :铸件拖挂电车
+STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :铸件拖挂车
+STR_NAME_SUFFIX_SUPPLIES_TRAM                                   :救援电车
+STR_NAME_SUFFIX_SUPPLIES_TRUCK                                  :救援卡车
 STR_NAME_SUFFIX_INTERMODAL_HAULER                               :多级拖挂车
 STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :牲畜电车
 STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :牲畜运输车
