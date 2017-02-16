@@ -94,7 +94,8 @@ cargo_labels = ('PASS', # pax first
                 'TOFF',
                 'SULP',
                 'URAN',
-                'QLME')
+                'QLME',
+                'SASH')
 
 grfid = r"\97\87\EA\FE"
 
