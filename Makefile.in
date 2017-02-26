@@ -19,7 +19,7 @@ road-hog-nml:
 
 clean::
 	$(_V)-rm -r docs
-	$(_V)-rm -r chameleon_cache
+	$(_V)-rm -r .chameleon_cache
 	$(_V)-rm -r generated
-	$(_V)-rm src/*.pyc
-	$(_V)-rm src/*/*.pyc
+	$(_V)-rm -r src/__pycache__
+	$(_V)-rm -r src/*/__pycache__

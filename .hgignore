@@ -21,6 +21,7 @@ custom_tags.txt
 .version
 generated/*
 chameleon_cache
+.chameleon_cache/*
 .nmlcache/*
 road-hog.grf.cache
 road-hog.grf.cacheindex

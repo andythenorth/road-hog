@@ -100,7 +100,7 @@ cargo_labels = ('PASS', # pax first
 grfid = r"\97\87\EA\FE"
 
 # chameleon templating goes faster if a cache dir is used; this specifies which dir is cache dir
-chameleon_cache_dir = 'chameleon_cache'
+chameleon_cache_dir = '.chameleon_cache'
 
 # specify location for intermediate files generated during build (nml, graphics, lang etc)
 generated_files_dir = 'generated'
