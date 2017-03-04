@@ -39,6 +39,9 @@ basecost {
  	PR_RUNNING_ROADVEH: 1;
 }
 
+// disable default road vehicles
+disable_item(FEAT_ROADVEHS, 00, 115);
+
 // sort order
 sort(FEAT_ROADVEHS, ${[consist.base_numeric_id for consist in consists]});
 
