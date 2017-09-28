@@ -1,11 +1,5 @@
 #!/usr/bin/env python
 
-"""
-  This file is part of Road Hog Newgrf for OpenTTD.
-  Road Hog is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, version 2.
-  Road Hog is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with Road Hog. If not, see <http://www.gnu.org/licenses/>.
-"""
 print("[RENDER GRAPHICS] render_graphics.py")
 
 import codecs # used for writing files - more unicode friendly than standard open() module
