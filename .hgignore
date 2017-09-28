@@ -20,6 +20,7 @@ road-hog/*
 custom_tags.txt
 .version
 chameleon_cache
+.chameleon_cache/*
 generated/*
 .nmlcache/*
 
