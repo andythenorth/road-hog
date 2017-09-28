@@ -1,4 +1,5 @@
 def get_repo_vars(sys):
+    # port to makefile_args from Horse utils.py
     # get args passed by makefile
     if len(sys.argv) > 1:
         repo_vars = {'repo_title': sys.argv[1], 'repo_version': sys.argv[2],
