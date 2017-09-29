@@ -1,11 +1,5 @@
 #!/usr/bin/env python
 
-"""
-  This file is part of Road Hog Newgrf for OpenTTD.
-  Road Hog is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, version 2.
-  Road Hog is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with Road Hog. If not, see <http://www.gnu.org/licenses/>.
-"""
 print("[RENDER GRAPHICS] render_graphics.py")
 
 import codecs # used for writing files - more unicode friendly than standard open() module
@@ -45,7 +39,7 @@ def run_pipeline(items):
     variant = items[0]
     consist = items[1]
     if variant.graphics_processor is None:
-        shutil.copy(os.path.join(graphics_input, variant.get_spritesheet_name(consist)), graphics_output_path)
+        shutil.copy(os.path.join(graphics_input, consist.roster_id, variant.get_spritesheet_name(consist)), graphics_output_path)
     else:
         result = variant.graphics_processor.pipeline.render(variant, consist, global_constants)
         return result
@@ -72,9 +66,6 @@ def main():
         pool = Pool(processes=num_pool_workers)
         pool.map(run_pipeline, variants)
         pool.close()
-
-    # handle special case spritesheets
-    shutil.copy(os.path.join(graphics_input, 'null_trailing_part.png'), graphics_output_path)
 
 if __name__ == '__main__':
     main()
