@@ -700,9 +700,9 @@ class LivestockHauler(Consist):
         self.weight_multiplier = 0.45
 
 
-class FruitHauler(Consist):
+class FruitVegHauler(Consist):
     """
-    Fruit truck or tram.
+    Fruit and vegetables truck or tram.
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
