@@ -25,7 +25,7 @@ if num_pool_workers == 0:
 else:
     use_multiprocessing = True
 
-graphics_input = os.path.join(currentdir, 'src', 'graphics', 'vehicles')
+graphics_input = os.path.join(currentdir, 'src', 'graphics')
 graphics_output_path = os.path.join(road_hog.generated_files_path, 'graphics')
 if os.path.exists(graphics_output_path):
     shutil.rmtree(graphics_output_path)
