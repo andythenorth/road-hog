@@ -695,12 +695,12 @@ class LivestockHauler(Consist):
         self.weight_multiplier = 0.45
 
 
-class FruitHauler(Consist):
+class FruitVegHauler(Consist):
     """
-    Fruit truck or tram.
+    Fruit and vegetables truck or tram.
     """
     def __init__(self, **kwargs):
-        super(FruitHauler, self).__init__(**kwargs)
+        super(FruitVegHauler, self).__init__(**kwargs)
         self.autorefit = True
         self.class_refit_groups = []
         self.label_refits_allowed = ['FRUT', 'BEAN', 'CASS', 'JAVA', 'NUTS']

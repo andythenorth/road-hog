@@ -1,7 +1,7 @@
 import global_constants
-from road_vehicle import FruitHauler
+from road_vehicle import FruitVegHauler
 
-consist = FruitHauler(id = 'applethwaite',
+consist = FruitVegHauler(id = 'applethwaite',
                 base_numeric_id = 940,
                 title = 'Applethwaite [Fruit Tram]',
                 roadveh_flag_tram = True,
