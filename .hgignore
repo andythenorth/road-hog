@@ -19,18 +19,18 @@ docs/*
 road-hog/*
 custom_tags.txt
 .version
+generated/*
 chameleon_cache
 .chameleon_cache/*
-generated/*
 .nmlcache/*
+road-hog.grf.cache
+road-hog.grf.cacheindex
 
 # Dependency files:
 Makefile.dep
 *.dep
 *.REV
 parsetab.py
-road-hog.grf.cache
-road-hog.grf.cacheindex
 
 # Ignore directories from bundle creation / install:
 road-hog-*
