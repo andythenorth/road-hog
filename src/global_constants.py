@@ -17,7 +17,7 @@ base_refits_by_class = {'empty': [],
 # these lists are similar but not identical across Iron Horse, Squid, Road Hog etc
 disallowed_refits_by_label = {'non_dump_bulk': ['WOOD', 'SGCN', 'FICR', 'BDMT', 'WDPR', 'GRAI', 'WHEA', 'CERE', 'MAIZ', 'FRUT', 'BEAN', 'CMNT', 'CTCD', 'FERT', 'OLSD', 'SUGR', 'SULP', 'TOFF', 'URAN'],
                               'edible_liquids': ['MILK', 'WATR', 'BEER', 'FOOD', 'EOIL'],
-                              'non_flatbed_freight': ['FOOD', 'FISH', 'LVST', 'FRUT', 'BEER', 'MILK', 'JAVA', 'SUGR', 'NUTS', 'EOIL'],
+                              'non_flatbed_freight': ['FOOD', 'FISH', 'LVST', 'FRUT', 'BEER', 'MILK', 'JAVA', 'SUGR', 'NUTS', 'EOIL', 'BOOM', 'FERT'],
                               'non_edible_liquids': ['RFPR', 'OIL_', 'FMSP', 'PETR', 'RUBR', 'SULP'],
                               'non_freight_special_cases': ['TOUR']}
 
@@ -95,7 +95,8 @@ cargo_labels = ('PASS', # pax first
                 'SULP',
                 'URAN',
                 'QLME',
-                'SASH')
+                'SASH',
+                'BOOM')
 
 grfid = r"\97\87\EA\FE"
 
