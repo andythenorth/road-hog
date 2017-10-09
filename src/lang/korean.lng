@@ -43,7 +43,7 @@ STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK                            :식품 수송 �
 STR_NAME_SUFFIX_REEFER_TRAM                                     :냉장 전차
 STR_NAME_SUFFIX_REEFER_TRUCK                                    :냉장 트럭
 STR_NAME_SUFFIX_LOGGING_TRUCK                                   :목재 수송 트럭
-STR_NAME_SUFFIX_FRUIT_TRAM                                      :과일 트럭
+STR_NAME_SUFFIX_FRUIT_TRAM                                      :과일 & 채소 트럭
 
 STR_COASTER                                                     :소가 달을 뛰어 넘었다네 (나머지는 아직 안 끝났지)
 STR_DOGTRACK                                                    :어떤 때는, 개들은 갈색입니다.
