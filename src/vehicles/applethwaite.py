@@ -7,12 +7,6 @@ consist = FruitVegHauler(id = 'applethwaite',
                       tram_type = 'ELRL',
                       vehicle_life = 40,
                       intro_date = 1901)
-consist = FruitVegHauler(id = 'applethwaite',
-                base_numeric_id = 940,
-                title = 'Applethwaite [Fruit Tram]',
-                roadveh_flag_tram = True,
-                vehicle_life = 40,
-                intro_date = 1901)
 
 consist.add_unit(capacity = 30,
                  vehicle_length = 8,
