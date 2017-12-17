@@ -9,7 +9,6 @@ consist = CourierCar(id = 'tallyho',
                 intro_date = 1909)
 
 consist.add_unit(capacity = 15,
-                capacity_mail = 30,
                 vehicle_length = 6,
                 visual_effect = 'VISUAL_EFFECT_DIESEL')
 

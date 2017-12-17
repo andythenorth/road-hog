@@ -10,7 +10,6 @@ consist = CourierCar(id = 'goldmire',
                 intro_date = 1971)
 
 consist.add_unit(capacity = 25,
-                        capacity_mail = 50,
                 vehicle_length = 6,
                 visual_effect = 'VISUAL_EFFECT_DIESEL')
 
