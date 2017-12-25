@@ -531,7 +531,7 @@ class RoadVehicle(object):
         return "SELF," + switch_id + ", bitmask(TRIGGER_VEHICLE_ANY_LOAD)"
 
     def render_properties(self):
-        template = templates["road_vehicle_properties.pynml"]
+        template = templates["properties.pynml"]
         return template(vehicle=self, consist=self.consist, global_constants=global_constants)
 
     def render_cargo_capacity(self):
