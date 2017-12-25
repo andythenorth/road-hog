@@ -530,14 +530,6 @@ class RoadVehicle(object):
         switch_id = self.id + "_switch_graphics_" + str(variation_num) + ('_' + str(cargo_id) if cargo_id is not None else '')
         return "SELF," + switch_id + ", bitmask(TRIGGER_VEHICLE_ANY_LOAD)"
 
-    def render_properties(self):
-        template = templates["properties.pynml"]
-        return template(vehicle=self, consist=self.consist, global_constants=global_constants)
-
-    def render_cargo_capacity(self):
-        template = templates["capacity_switches.pynml"]
-        return template(vehicle=self, global_constants=global_constants)
-
     def render(self):
         # integrity tests
         self.assert_cargo_labels(self.consist.label_refits_allowed)

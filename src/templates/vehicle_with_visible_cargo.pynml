@@ -87,6 +87,6 @@ spritegroup ${vehicle.id}_sg_purchase {
     ];
 }
 
-${vehicle.render_cargo_capacity()}
+<tal:include metal:use-macro="load: capacity_switches.pynml" />
 
-${vehicle.render_properties()}
+<tal:include metal:use-macro="load: properties.pynml" />
