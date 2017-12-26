@@ -12,6 +12,7 @@ STR_PARAM_ROSTER_DESC                                           :Choix des véhi
 STR_PARAM_ROSTER_OPTION_0                                       :Outre-Manche
 STR_PARAM_ROSTER_OPTION_1                                       :Wasteland
 
+
 STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Tram pour passagers
 STR_NAME_SUFFIX_BUS                                             :Bus
 STR_NAME_SUFFIX_COACH                                           :Car
