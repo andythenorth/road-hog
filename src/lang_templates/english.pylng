@@ -1,4 +1,4 @@
-STR_GRF_NAME                                                    :Road Hog ${repo_vars.repo_title}
+STR_GRF_NAME                                                    :Road Hog ${makefile_args.repo_version}
 <!--! empty string is not translated :) -->
 STR_EMPTY                                                       :
 

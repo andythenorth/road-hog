@@ -8,7 +8,8 @@ sys.path.append(os.path.join('src')) # add to the module search path
 
 import global_constants
 import utils
-repo_vars = utils.get_repo_vars(sys)
+# get args passed by makefile
+makefile_args = utils.get_makefile_args(sys)
 
 # setting up a cache for compiled chameleon templates can significantly speed up template rendering
 chameleon_cache_path = os.path.join(currentdir, global_constants.chameleon_cache_dir)
@@ -35,10 +36,10 @@ def get_consists_in_buy_menu_order():
     consists = []
     # first compose the buy menu order list
     buy_menu_sort_order = []
-    if repo_vars.get('roster', '*') == '*':
+    if makefile_args.get('roster', '*') == '*':
         active_rosters = [roster.id for roster in registered_rosters]
     else:
-        active_rosters = [repo_vars['roster']] # make sure it's iterable
+        active_rosters = [makefile_args['roster']] # make sure it's iterable
     for roster in registered_rosters:
         if roster.id in active_rosters:
             buy_menu_sort_order.extend(roster.buy_menu_sort_order)

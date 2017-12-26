@@ -18,8 +18,8 @@ import utils
 import global_constants
 
 # get args passed by makefile
-repo_vars = utils.get_repo_vars(sys)
-num_pool_workers = repo_vars.get('num_pool_workers', 0) # default to no mp, makes debugging easier (mp fails to pickle errors correctly)
+makefile_args = utils.get_makefile_args(sys)
+num_pool_workers = makefile_args.get('num_pool_workers', 0) # default to no mp, makes debugging easier (mp fails to pickle errors correctly)
 if num_pool_workers == 0:
     use_multiprocessing = False
 else:
