@@ -8,7 +8,6 @@ base_refits_by_class = {'empty': [],
                         'packaged_freight': ['CC_PIECE_GOODS', 'CC_EXPRESS', 'CC_ARMOURED', 'CC_LIQUID'],
                         'flatbed_freight': ['CC_PIECE_GOODS'],
                         'dump_freight': ['CC_BULK'],
-                        'bulk_farm_freight': [], # explicit allowal by label instead
                         'covered_hopper_freight': [], # explicit allowal by label instead
                         'refrigerated_freight': ['CC_REFRIGERATED'],
                         'express_freight': ['CC_EXPRESS','CC_ARMOURED']}
@@ -18,8 +17,8 @@ base_refits_by_class = {'empty': [],
 # these lists are similar but not identical across Iron Horse, Squid, Road Hog etc
 disallowed_refits_by_label = {'non_dump_bulk': ['WOOD', 'SGCN', 'FICR', 'BDMT', 'WDPR', 'GRAI', 'WHEA', 'CERE', 'MAIZ', 'FRUT', 'BEAN', 'CMNT', 'CTCD', 'FERT', 'OLSD', 'SUGR', 'SULP', 'TOFF', 'URAN'],
                               'edible_liquids': ['MILK', 'WATR', 'BEER', 'FOOD', 'EOIL'],
-                              'non_flatbed_freight': ['FOOD', 'FISH', 'LVST', 'FRUT', 'BEER', 'MILK', 'JAVA', 'SUGR', 'NUTS', 'EOIL'],
-                              'non_edible_liquids': ['RFPR', 'OIL_', 'FMSP', 'PETR', 'RUBR'],
+                              'non_flatbed_freight': ['FOOD', 'FISH', 'LVST', 'FRUT', 'BEER', 'MILK', 'JAVA', 'SUGR', 'NUTS', 'EOIL', 'BOOM', 'FERT'],
+                              'non_edible_liquids': ['RFPR', 'OIL_', 'FMSP', 'PETR', 'RUBR', 'SULP'],
                               'non_freight_special_cases': ['TOUR']}
 
 # capacity multipliers for capacity parameter
@@ -95,12 +94,14 @@ cargo_labels = ('PASS', # pax first
                 'TOFF',
                 'SULP',
                 'URAN',
-                'QLME')
+                'QLME',
+                'SASH',
+                'BOOM')
 
 grfid = r"\97\87\EA\FE"
 
 # chameleon templating goes faster if a cache dir is used; this specifies which dir is cache dir
-chameleon_cache_dir = 'chameleon_cache'
+chameleon_cache_dir = '.chameleon_cache'
 
 # specify location for intermediate files generated during build (nml, graphics, lang etc)
 generated_files_dir = 'generated'

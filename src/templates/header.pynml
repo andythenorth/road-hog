@@ -4,7 +4,7 @@ grf {
 	name: string(STR_GRF_NAME);
 	desc: string(STR_GRF_DESCRIPTION);
 	version: ${repo_vars.repo_version};
-	min_compatible_version: 1115;
+	min_compatible_version: 1176;
 	param 0 {
         param_adjust_vehicle_capacity {
             type:    int;
@@ -38,6 +38,9 @@ basecost {
  	PR_BUILD_VEHICLE_ROAD: 3;
  	PR_RUNNING_ROADVEH: 1;
 }
+
+// disable default road vehicles
+disable_item(FEAT_ROADVEHS, 00, 115);
 
 // sort order
 sort(FEAT_ROADVEHS, ${[consist.base_numeric_id for consist in consists]});

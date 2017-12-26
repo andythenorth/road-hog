@@ -1,0 +1,198 @@
+// Road Hog directly provides all the roadtypes and tramtypes that the vehicles in the set need
+// this is contrary to the established convention of providing separate grfs for vehicles and [route]types
+// My view is that:
+// 1. it's faff for players to add an extra grf
+// 2. there's no effective mechanism for players to discover they *need* an extra grf, or which one to use
+// 3. with route types missing, some/many vehicles may be missing; impairs design balance in the set
+// 4. the 'choice' aspects of providing route types separately are over-emphasised relative to the hassle
+
+// Type Tables
+// -----------
+
+roadtypetable {
+ 	ROAD, HAUL
+ }
+
+// tram is light rail so copy existing railtype labels where appropriate (for ease, no new thinking required)
+// as per https://newgrf-specs.tt-wiki.net/wiki/RailtypeLabels
+tramtypetable {
+ 	RAIL, ELRL
+ }
+
+
+// Type Definitions
+// ----------------
+
+item(FEAT_ROADTYPES, heavy_haul_road, 0) {
+    property {
+        name: string(STR_NAME_HEAVY_HAUL_ROAD);
+        label: "HAUL";
+        powered_roadtype_list: [];
+        toolbar_caption: string(STR_TOOLBAR_CAPTION_HEAVY_HAUL_ROAD);
+        menu_text: string(STR_MENU_TEXT_HEAVY_HAUL_ROAD);
+        build_window_caption: string(STR_BUILD_WINDOW_CAPTION_HEAVY_HAUL_ROAD);
+        autoreplace_text: string(STR_AUTOREPLACE_TEXT_HEAVY_HAUL_ROAD);
+        new_engine_text: string(STR_NEW_ENGINE_TEXT_HEAVY_HAUL_ROAD);
+    }
+    graphics {
+        underlay: heavy_haul_underlay;
+        track_overlay: heavy_haul_track_overlay;
+        depots: heavy_haul_depots;
+        bridge_surfaces: heavy_haul_bridge_surfaces;
+        roadstops: heavy_haul_roadstops;
+    }
+}
+
+item(FEAT_TRAMTYPES, tramway, 0) {
+    property {
+        name: string(STR_NAME_TRAMWAY);
+        label: "RAIL";
+        powered_tramtype_list: ["ELRL"];
+        toolbar_caption: string(STR_TOOLBAR_CAPTION_TRAMWAY);
+        menu_text: string(STR_MENU_TEXT_TRAMWAY);
+        build_window_caption: string(STR_BUILD_WINDOW_CAPTION_TRAMWAY);
+        autoreplace_text: string(STR_AUTOREPLACE_TEXT_TRAMWAY);
+        new_engine_text: string(STR_NEW_ENGINE_TEXT_TRAMWAY);
+    }
+}
+
+item(FEAT_TRAMTYPES, electric_tramway, 1) {
+    property {
+        name: string(STR_NAME_ELECTRIC_TRAMWAY);
+        label: "ELRL";
+        powered_tramtype_list: [];
+        toolbar_caption: string(STR_TOOLBAR_CAPTION_ELECTRIC_TRAMWAY);
+        menu_text: string(STR_MENU_TEXT_ELECTRIC_TRAMWAY);
+        build_window_caption: string(STR_BUILD_WINDOW_CAPTION_ELECTRIC_TRAMWAY);
+        autoreplace_text: string(STR_AUTOREPLACE_TEXT_ELECTRIC_TRAMWAY);
+        new_engine_text: string(STR_NEW_ENGINE_TEXT_ELECTRIC_TRAMWAY);
+        tramtype_flags: bitmask(TRAMTYPE_FLAG_CATENARY);
+    }
+}
+
+
+// Sprites
+// -------
+
+// Default ground tile template (re-use as needed)
+template ground_tile(x, y) { [x, y, 64, 31, -31, 0] }
+
+// Template for underlays; 2x straight road, 5x junctions, 4x corners, 4x slope, 4x half-tile road
+// Used for bridge surfaces also, therefore the template is split
+
+template tmpl_underlay_straight() {
+    ground_tile( 0, 0)
+    ground_tile(75, 0)
+}
+template tmpl_underlay_junctions() {
+    ground_tile(150, 0)
+    ground_tile(225, 0)
+    ground_tile(300, 0)
+    ground_tile(375, 0)
+    ground_tile(450, 0)
+}
+template tmpl_underlay_corners() {
+    ground_tile(  0, 40)
+    ground_tile( 75, 40)
+    ground_tile(150, 40)
+    ground_tile(225, 40)
+}
+
+template tmpl_underlay_slope() {
+    [300, 40, 64, 39, -31, -8]
+    [375, 40, 64, 23, -31, 0]
+    [450, 40, 64, 23, -31, 0]
+    [525, 40, 64, 39, -31, -8]
+}
+
+template tmpl_underlay_half_tiles() {
+    ground_tile(  0, 80)
+    ground_tile( 75, 80)
+    ground_tile(150, 80)
+    ground_tile(225, 80)
+}
+
+
+template tmpl_underlay_roadtypes() {
+    tmpl_underlay_straight()
+    tmpl_underlay_junctions()
+    tmpl_underlay_corners()
+    tmpl_underlay_slope()
+    tmpl_underlay_half_tiles()
+
+    /* X-crossing */
+    ground_tile(0, 120)
+
+    /* underlay for crossings w/o tracks */
+    ground_tile(  0, 80)
+    ground_tile(225, 80)
+    ground_tile(150, 80)
+    ground_tile( 75, 80)
+}
+spriteset(heavy_haul_underlay, "src/graphics/roadtypes/heavy_haul_road.png") {
+    tmpl_underlay_roadtypes()
+}
+
+// overlays
+template tmpl_overlay_roadtypes() {
+    [ 0, 0, 64, 31, -31, 0]
+    [75, 0, 64, 31, -31, 0]
+
+    [150, 0, 64, 31, -31, 0]
+    [225, 0, 64, 31, -31, 0]
+    [300, 0, 64, 31, -31, 0]
+    [375, 0, 64, 31, -31, 0]
+    [450, 0, 64, 31, -31, 0]
+
+    [  0, 40, 64, 31, -31, 0]
+    [ 75, 40, 64, 31, -31, 0]
+    [150, 40, 64, 31, -31, 0]
+    [225, 40, 64, 31, -31, 0]
+
+    [300, 40, 64, 39, -31, -8]
+    [375, 40, 64, 21, -31, 0]
+    [450, 40, 64, 21, -31, 0]
+    [525, 40, 64, 39, -31, -8]
+
+    [  0, 80, 64, 31, -31, 0]
+    [ 75, 80, 64, 31, -31, 0]
+    [150, 80, 64, 31, -31, 0]
+    [225, 80, 64, 31, -31, 0]
+}
+spriteset(heavy_haul_track_overlay, "src/graphics/roadtypes/heavy_haul_road.png") {
+    tmpl_overlay_roadtypes()
+}
+
+// Template for depot sprites
+template tmpl_depot() {
+    [300, 236, 18, 16,  13,   0]
+    [225, 236, 64, 64,  -1, -43]
+    [123, 236, 18, 16, -29,   0]
+    [150, 236, 64, 64, -61, -43]
+    [225, 160, 64, 64, -61, -43]
+    [150, 160, 64, 64,  -1, -43]
+}
+spriteset(heavy_haul_depots, "src/graphics/roadtypes/heavy_haul_road.png") {
+    tmpl_depot()
+}
+
+// Bridge surface, uses the same sprites as track underlays, but in a different order
+template tmpl_bridge_surfaces() {
+    tmpl_underlay_straight()
+    tmpl_underlay_slope()
+    tmpl_underlay_junctions()
+}
+spriteset(heavy_haul_bridge_surfaces, "src/graphics/roadtypes/heavy_haul_road.png") {
+    tmpl_bridge_surfaces()
+}
+
+// Roadstop sprites:
+template tmpl_underlay_roadstop() {
+    ground_tile(  0, 120)
+    ground_tile( 75, 120)
+    ground_tile(150, 120)
+    ground_tile(225, 120)
+}
+spriteset(heavy_haul_roadstops, "src/graphics/roadtypes/heavy_haul_road.png") {
+    tmpl_underlay_roadstop()
+}

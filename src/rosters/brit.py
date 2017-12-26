@@ -11,6 +11,7 @@ from vehicles import (acton,
                       brass_monkey,
                       brigand,
                       brightling,
+                      broadrock,
                       buildwas,
                       buff,
                       capo,
@@ -76,7 +77,7 @@ from vehicles import (acton,
                       stagrun,
                       stakebeck,
                       stancliffe,
-                      # steeraway, # deprecated, pending decision on foundry haulers being in or out
+                      steeraway,
                       stungun,
                       swineshead,
                       tallyho,
@@ -91,6 +92,7 @@ from vehicles import (acton,
                       waterperry,
                       windergill,
                       winterfold,
+                      witch_hill,
                       wookey,
                       yeoman)
 
@@ -195,6 +197,9 @@ roster = Roster(id = 'brit',
                             griff,
                             trefell,
                             knockdown,
-                            buff])
-                            #steeraway
+                            buff,
+                            broadrock,
+                            witch_hill,
+                            steeraway])
+
 

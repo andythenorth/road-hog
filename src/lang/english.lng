@@ -11,6 +11,25 @@ STR_PARAM_ROSTER_DESC                                           :Choose which se
 STR_PARAM_ROSTER_OPTION_0                                       :Brit
 STR_PARAM_ROSTER_OPTION_1                                       :Wasteland
 
+STR_NAME_HEAVY_HAUL_ROAD                                        :Heavy Haul Road
+STR_TOOLBAR_CAPTION_HEAVY_HAUL_ROAD                             :Heavy Haul Road Construction
+STR_MENU_TEXT_HEAVY_HAUL_ROAD                                   :Heavy haul road construction
+STR_BUILD_WINDOW_CAPTION_HEAVY_HAUL_ROAD                        :New Heavy Haul Road Vehicles
+STR_AUTOREPLACE_TEXT_HEAVY_HAUL_ROAD                            :Heavy Haul Road Vehicles
+STR_NEW_ENGINE_TEXT_HEAVY_HAUL_ROAD                             :heavy haul road vehicle
+STR_NAME_TRAMWAY                                                :Tramway
+STR_TOOLBAR_CAPTION_TRAMWAY                                     :Tramway Construction
+STR_MENU_TEXT_TRAMWAY                                           :Tramway construction
+STR_BUILD_WINDOW_CAPTION_TRAMWAY                                :New Trams
+STR_AUTOREPLACE_TEXT_TRAMWAY                                    :Trams
+STR_NEW_ENGINE_TEXT_TRAMWAY                                     :tram
+STR_NAME_ELECTRIC_TRAMWAY                                       :Electric Tramway
+STR_TOOLBAR_CAPTION_ELECTRIC_TRAMWAY                            :Electric Tramway Construction
+STR_MENU_TEXT_ELECTRIC_TRAMWAY                                  :Electric tramway construction
+STR_BUILD_WINDOW_CAPTION_ELECTRIC_TRAMWAY                       :New Electric Trams
+STR_AUTOREPLACE_TEXT_ELECTRIC_TRAMWAY                           :Electric Trams
+STR_NEW_ENGINE_TEXT_ELECTRIC_TRAMWAY                            :electric tram
+
 STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Passenger Tram
 STR_NAME_SUFFIX_BUS                                             :Bus
 STR_NAME_SUFFIX_COACH                                           :Coach

@@ -2,7 +2,7 @@
 <div metal:fill-slot='body'>
     <div class="span12">
         <h2>Code Reference</h2>
-        <h3>${len(consists)} road vehicles</h3>
+        <h3>${len(consists)} road vehicles and trams</h3>
         <hr />
         <tal:subclasses repeat="subclass doc_helper.get_vehicles_by_subclass()">
             <tal:props_for_subclass define="props_to_print doc_helper.get_props_to_print_in_code_reference(subclass)">

@@ -2,7 +2,7 @@
 <div metal:fill-slot='body'>
 
     <div class="span12">
-        <h2>${len(consists)} road vehicles for OpenTTD</h2>
+        <h2>${len(consists)} road vehicles and trams for OpenTTD</h2>
         <hr />
         <tal:road_vehicles_and_trams repeat="vehicle_type ['Road Vehicle', 'Tram']">
             <h3>${vehicle_type}s</h3>
@@ -22,7 +22,7 @@
                             <td style="vertical-align:middle;">
                                 <img src="static/img/${consist.id}.png"
                                      width="${2 * global_constants.buy_menu_sprite_width}"
-                                     height="${2 * global_constants.buy_menu_sprite_width}" />
+                                     height="${2 * global_constants.buy_menu_sprite_height}" />
                             </td>
                             <td style="vertical-align:middle;">${consist.get_name_substr()} ${base_lang_strings[consist.get_str_name_suffix()]}</td>
                             <td style="vertical-align:middle;" class="number">${consist.intro_date}</td>

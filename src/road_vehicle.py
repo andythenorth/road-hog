@@ -31,7 +31,11 @@ class Consist(object):
         # setup properties for this consist (props either shared for all vehicles, or placed on lead vehicle of consist)
         self.title = kwargs.get('title', None)
         self.base_numeric_id = kwargs.get('base_numeric_id', None)
-        self.roadveh_flag_tram = kwargs.get('roadveh_flag_tram', None)
+        self.road_type = kwargs.get('road_type', None)
+        self.tram_type = kwargs.get('tram_type', None)
+        if self.road_type is not None and self.tram_type is not None:
+            utils.echo_message("Error: " + self.id + ". Vehicles must not have both road_type and tram_type properties set.  Set one of these only")
+        self.roadveh_flag_tram = True if self.tram_type is not None else None
         self.intro_date = kwargs.get('intro_date', None)
         self.vehicle_life = kwargs.get('vehicle_life', None)
         self._power = kwargs.get('power', None)
@@ -417,7 +421,8 @@ class RoadVehicle(object):
     def get_loading_speed(self, cargo_type, capacity_param):
         # ottd vehicles load at different rates depending on type,
         # normalise default loading time for this set to 240 ticks, regardless of capacity
-        transport_type_rate = 12 # openttd loading rates vary by transport type, look them up in wiki to find value to use here to normalise loading time to 240 ticks
+        # openttd loading rates vary by transport type, look them up in wiki to find value to use here to normalise loading time to 240 ticks
+        transport_type_rate = 12 # this is (240 / loading frequency in ticks for transport type) from wiki
         capacity = self.capacities[capacity_param]
         if cargo_type == 'mail':
             capacity = int(global_constants.mail_multiplier * capacity)
@@ -525,14 +530,6 @@ class RoadVehicle(object):
         switch_id = self.id + "_switch_graphics_" + str(variation_num) + ('_' + str(cargo_id) if cargo_id is not None else '')
         return "SELF," + switch_id + ", bitmask(TRIGGER_VEHICLE_ANY_LOAD)"
 
-    def render_properties(self):
-        template = templates["road_vehicle_properties.pynml"]
-        return template(vehicle=self, consist=self.consist, global_constants=global_constants)
-
-    def render_cargo_capacity(self):
-        template = templates["capacity_switches.pynml"]
-        return template(vehicle=self, global_constants=global_constants)
-
     def render(self):
         # integrity tests
         self.assert_cargo_labels(self.consist.label_refits_allowed)
@@ -564,7 +561,7 @@ class CourierCar(Consist):
     Truck or tram for mail, valuables etc.
     """
     def __init__(self, **kwargs):
-        super(CourierCar, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.autorefit = True
         self.class_refit_groups = ['mail', 'express_freight']
         self.label_refits_allowed = [] # no specific labels needed
@@ -578,7 +575,7 @@ class PaxHauler(Consist):
     Bus or tram for pax.
     """
     def __init__(self, **kwargs):
-        super(PaxHauler, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.autorefit = True
         self.class_refit_groups = ['pax']
         self.label_refits_allowed = []
@@ -593,7 +590,7 @@ class PaxExpressHauler(Consist):
     Coach or express tram for pax.
     """
     def __init__(self, **kwargs):
-        super(PaxExpressHauler, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.autorefit = True
         self.class_refit_groups = ['pax']
         self.label_refits_allowed = []
@@ -608,7 +605,7 @@ class OpenHauler(Consist):
     General cargo tram or truck - refits everything except mail, pax.
     """
     def __init__(self, **kwargs):
-        super(OpenHauler, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.autorefit = True
         self.class_refit_groups = ['all_freight']
         self.label_refits_allowed = [] # no specific labels needed
@@ -624,7 +621,7 @@ class BoxHauler(Consist):
     Box tram or truck - refits express, piece goods cargos, other selected cargos.
     """
     def __init__(self, **kwargs):
-        super(BoxHauler, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.autorefit = True
         self.class_refit_groups = ['packaged_freight']
         self.label_refits_allowed = ['MAIL', 'GRAI', 'WHEA', 'MAIZ', 'FRUT', 'BEAN', 'NITR'] # Iron Horse compatibility
@@ -638,16 +635,16 @@ class DumpHauler(Consist):
     Tram or truck for limited set of bulk (mineral) cargos.
     """
     def __init__(self, **kwargs):
-        super(DumpHauler, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.autorefit = True
         self.class_refit_groups = ['dump_freight']
         self.label_refits_allowed = [] # no specific labels needed
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_dump_bulk']
         self.default_cargo = 'COAL'
         self.loading_speed_multiplier = 2
+        self.weight_multiplier = 0.45
         # Cargo graphics
         self.visible_cargo.bulk = True
-        self.weight_multiplier = 0.45
 
 
 class FlatBedHauler(Consist):
@@ -655,7 +652,7 @@ class FlatBedHauler(Consist):
     Flatbed tram or truck - refits most cargos, not bulk.
     """
     def __init__(self, **kwargs):
-        super(FlatBedHauler, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.autorefit = True
         self.class_refit_groups = ['flatbed_freight']
         self.label_refits_allowed = ['GOOD']
@@ -670,7 +667,7 @@ class BulkPowderHauler(Consist):
     Covered hopper truck or tram for bulk powder cargos.
     """
     def __init__(self, **kwargs):
-        super(BulkPowderHauler, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.autorefit = True
         self.class_refit_groups = ['covered_hopper_freight']
         self.label_refits_allowed = ['GRAI', 'WHEA', 'MAIZ', 'FOOD', 'SUGR', 'FMSP', 'RFPR', 'CLAY', 'BDMT', 'BEAN', 'NITR', 'RUBR', 'SAND', 'POTA', 'QLME', 'FERT']
@@ -685,7 +682,7 @@ class LivestockHauler(Consist):
     Livestock truck or tram.
     """
     def __init__(self, **kwargs):
-        super(LivestockHauler, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.autorefit = True
         self.class_refit_groups = []
         self.label_refits_allowed = ['LVST']
@@ -700,7 +697,7 @@ class FruitVegHauler(Consist):
     Fruit and vegetables truck or tram.
     """
     def __init__(self, **kwargs):
-        super(FruitVegHauler, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.autorefit = True
         self.class_refit_groups = []
         self.label_refits_allowed = ['FRUT', 'BEAN', 'CASS', 'JAVA', 'NUTS']
@@ -716,7 +713,7 @@ class RefrigeratedHauler(Consist):
     Refits to limited range of refrigerated cargos, with 'improved' cargo decay rate.
     """
     def __init__(self, **kwargs):
-        super(RefrigeratedHauler, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.autorefit = True
         self.class_refit_groups = ['refrigerated_freight']
         self.label_refits_allowed = [] # no specific labels needed, refits all cargos that have refrigerated class
@@ -731,7 +728,7 @@ class Tanker(Consist):
     Ronseal ("does what it says on the tin", for those without extensive knowledge of UK advertising).
     """
     def __init__(self, **kwargs):
-        super(Tanker, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         # tankers are unrealistically autorefittable, and at no cost
         # Pikka: if people complain that it's unrealistic, tell them "don't do it then"
         # they also change livery at stations if refitted between certain cargo types <shrug>
@@ -741,10 +738,10 @@ class Tanker(Consist):
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['edible_liquids']
         self.default_cargo = 'OIL_'
         self.loading_speed_multiplier = 2
+        self.weight_multiplier = 0.45
         # Cargo graphics
         self.visible_cargo = VisibleCargoLiveryOnly()
         self.visible_cargo.tanker = True
-        self.weight_multiplier = 0.45
 
 
 class EdiblesTanker(Consist):
@@ -752,7 +749,7 @@ class EdiblesTanker(Consist):
     Wine, milk, water etc.
     """
     def __init__(self, **kwargs):
-        super(EdiblesTanker, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.autorefit = True
         self.class_refit_groups = ['liquids']
         self.label_refits_allowed = ['MILK', 'FOOD']
@@ -768,7 +765,7 @@ class LogHauler(Consist):
     Gets wood.
     """
     def __init__(self, **kwargs):
-        super(LogHauler, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.autorefit = True
         self.class_refit_groups = []
         self.label_refits_allowed = ['WOOD']
@@ -787,7 +784,7 @@ class FoundryHauler(Consist):
     High capacity, not very fast, refits to small subset of finished metal cargos.
     """
     def __init__(self, **kwargs):
-        super(FoundryHauler, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.autorefit = True
         self.class_refit_groups = []
         self.label_refits_allowed = ['STEL', 'COPR']
@@ -801,7 +798,7 @@ class SuppliesHauler(Consist):
     Specialist tram / truck with flatbed + crane, supplies and building materials.
     """
     def __init__(self, **kwargs):
-        super(SuppliesHauler, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.autorefit = True
         self.class_refit_groups = []
         self.label_refits_allowed = ['ENSP', 'FMSP', 'VEHI', 'BDMT']
@@ -809,6 +806,10 @@ class SuppliesHauler(Consist):
         self.default_cargo = 'ENSP'
         self.loading_speed_multiplier = 2
         self.weight_multiplier = 0.5
+        # Cargo graphics
+        self.visible_cargo = VisibleCargoCustom({'ENSP': [0], 'FMSP': [0], 'VEHI': [0]},
+                                                'vehicle_with_visible_cargo.pynml',
+                                                generic_rows = [0])
 
 
 class IntermodalHauler(Consist):
@@ -816,7 +817,7 @@ class IntermodalHauler(Consist):
     Specialist intermodal (container) truck, limited range of cargos.
     """
     def __init__(self, **kwargs):
-        super(IntermodalHauler, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.autorefit = True
         # maintain other sets (e.g. IH etc) when changing container refits
         self.class_refit_groups = ['express_freight','packaged_freight']
