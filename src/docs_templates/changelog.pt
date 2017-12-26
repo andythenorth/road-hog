@@ -1,6 +1,32 @@
 Changelog
 =========
 
+1.3.0
+------
+
+*Changes*
+
+- add Steeraway foundry hauler back in
+- supplies trucks show cargo when loaded
+- cargo support for explosives, fertiliser, soda ash, sulphur
+- 'Fruit & Vegetables' not 'Fruit'
+
+*Docs*
+
+- improved text
+- fixed vehicle image height bug
+
+*Translations*
+
+- updated
+- translator credits: http://bundles.openttdcoop.org/road-hog/releases/LATEST/credits.txt
+
+*Codechanges*
+
+- refactored python compile (code quality, performance)
+- refactored makefile (Alberth)
+
+
 1.2.1
 ------
 
@@ -17,7 +43,7 @@ Changelog
 1.2.0
 ------
 
-*Features*
+*Changes*
 
 - vehicle models now have expiry dates (if OpenTTD 'vehicles never expire' setting is 'off')
 - cargo support for potash, quicklime
@@ -38,7 +64,7 @@ Changelog
 1.1.0
 ------
 
-*Features*
+*Changes*
 
 - cargo graphics for cassava, coffee, fruit, nuts
 
