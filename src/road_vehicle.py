@@ -670,7 +670,7 @@ class BulkPowderHauler(Consist):
         super().__init__(**kwargs)
         self.autorefit = True
         self.class_refit_groups = ['covered_hopper_freight']
-        self.label_refits_allowed = ['GRAI', 'WHEA', 'MAIZ', 'FOOD', 'SUGR', 'FMSP', 'RFPR', 'CLAY', 'BDMT', 'BEAN', 'NITR', 'RUBR', 'SAND', 'POTA', 'QLME', 'FERT']
+        self.label_refits_allowed = ['GRAI', 'WHEA', 'MAIZ', 'SUGR', 'FMSP', 'RFPR', 'CLAY', 'BDMT', 'BEAN', 'NITR', 'RUBR', 'SAND', 'POTA', 'QLME', 'SASH', 'CMNT', 'KAOL', 'FERT', 'SALT']
         self.label_refits_disallowed = []
         self.default_cargo = 'GRAI'
         self.loading_speed_multiplier = 2
@@ -787,7 +787,7 @@ class FoundryHauler(Consist):
         super().__init__(**kwargs)
         self.autorefit = True
         self.class_refit_groups = []
-        self.label_refits_allowed = ['STEL', 'COPR']
+        self.label_refits_allowed = ['STEL', 'COPR', 'IRON', 'SLAG']
         self.label_refits_disallowed = []
         self.default_cargo = 'STEL'
         self.loading_speed_multiplier = 2
