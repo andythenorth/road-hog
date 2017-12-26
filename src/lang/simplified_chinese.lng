@@ -11,6 +11,7 @@ STR_PARAM_ROSTER_DESC                                           :车辆类型的
 STR_PARAM_ROSTER_OPTION_0                                       :英式
 STR_PARAM_ROSTER_OPTION_1                                       :废土
 
+
 STR_NAME_SUFFIX_PASSENGER_TRAM                                  :旅客电车
 STR_NAME_SUFFIX_BUS                                             :公交
 STR_NAME_SUFFIX_COACH                                           :长途大巴

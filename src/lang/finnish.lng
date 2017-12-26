@@ -10,6 +10,7 @@ STR_PARAM_ROSTER                                                :Valikoimat
 STR_PARAM_ROSTER_DESC                                           :Valitse, mitä ajoneuvovalikoimaa käytetään.
 STR_PARAM_ROSTER_OPTION_0                                       :Britti
 
+
 STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Matkustajaraitiovaunu
 STR_NAME_SUFFIX_BUS                                             :Linja-auto
 STR_NAME_SUFFIX_BOX_TRAM                                        :Umpikoriraitiovaunu

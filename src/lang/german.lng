@@ -12,6 +12,7 @@ STR_PARAM_ROSTER_DESC                                           :Suche aus welch
 STR_PARAM_ROSTER_OPTION_0                                       :Brit
 STR_PARAM_ROSTER_OPTION_1                                       :Brachland
 
+
 STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Straßenbahn (Passagiere)
 STR_NAME_SUFFIX_BUS                                             :Bus
 STR_NAME_SUFFIX_COACH                                           :Anhänger
