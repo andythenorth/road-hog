@@ -4,9 +4,7 @@ PYTHON3 = python3
 SED = sed
 ZIP = zip
 
-#NMLC = nmlc
-# temp to get a build whilst sorting out bad branch strategy
-NMLC = ../../tools/nml-andythenorth/nmlc
+NMLC = nmlc
 GRFID = grfid
 
 HG_INFO = bin/hg-info
