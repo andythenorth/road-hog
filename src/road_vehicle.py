@@ -310,7 +310,7 @@ class Consist(object):
             if type(consist) == type(self):
                 if consist.roadveh_flag_tram == self.roadveh_flag_tram:
                     # !! this will need to account for roadtypes ^^
-                    print("adjusted_model_life will need to account for roadtype, not just tram flag")
+                    utils.echo_message("adjusted_model_life will need to account for roadtype, not just tram flag")
                     similar_consists.append(consist)
         replacement_consist = None
         for consist in sorted(similar_consists, key=lambda consist: consist.intro_date):
