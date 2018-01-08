@@ -44,7 +44,7 @@ STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK                            :Camión cistern
 STR_NAME_SUFFIX_REEFER_TRAM                                     :Tranvía frigorífico
 STR_NAME_SUFFIX_REEFER_TRUCK                                    :Camión frigorífico
 STR_NAME_SUFFIX_LOGGING_TRUCK                                   :Camión de troncos
-STR_NAME_SUFFIX_FRUIT_TRAM                                      :Tranvía de frutas
+STR_NAME_SUFFIX_FRUIT_TRAM                                      :Tranvía de frutas y vegetales
 
 STR_COASTER                                                     :La vaca salta sobre la luna (esto no es sino un recordatorio de que este NewGRF está sin acabar)
 STR_DOGTRACK                                                    :Los perros son marrones, alguna vez
