@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 print("[RENDER GRAPHICS] render_graphics.py")
 
 import codecs # used for writing files - more unicode friendly than standard open() module
@@ -12,6 +10,7 @@ from multiprocessing import Pool
 import multiprocessing
 logger = multiprocessing.log_to_stderr()
 logger.setLevel(25)
+from time import time
 
 import road_hog
 import utils
@@ -46,6 +45,7 @@ def run_pipeline(items):
 
 # wrapped in a main() function so this can be called explicitly, because unexpected multiprocessing fork bombs are bad
 def main():
+    start = time()
     consists = road_hog.get_consists_in_buy_menu_order()
     variants = []
     for consist in consists:
@@ -66,6 +66,8 @@ def main():
         pool = Pool(processes=num_pool_workers)
         pool.map(run_pipeline, variants)
         pool.close()
+    # eh, how long does this take anyway?
+    print(format((time() - start), '.2f')+'s')
 
 if __name__ == '__main__':
     main()
