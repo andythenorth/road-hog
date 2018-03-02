@@ -12,10 +12,28 @@ STR_PARAM_ROSTER_DESC                                           :Choix des véhi
 STR_PARAM_ROSTER_OPTION_0                                       :Outre-Manche
 STR_PARAM_ROSTER_OPTION_1                                       :Wasteland
 
+STR_NAME_HEAVY_HAUL_ROAD                                        :Route pour transport lourd
+STR_TOOLBAR_CAPTION_HEAVY_HAUL_ROAD                             :Construction de route pour transport lourd
+STR_MENU_TEXT_HEAVY_HAUL_ROAD                                   :Construction de route pour transport lourd
+STR_BUILD_WINDOW_CAPTION_HEAVY_HAUL_ROAD                        :Nouveaux véhicules pour transport lourd
+STR_AUTOREPLACE_TEXT_HEAVY_HAUL_ROAD                            :Véhicule pour transport lourd
+STR_NEW_ENGINE_TEXT_HEAVY_HAUL_ROAD                             :véhicule pour transport lourd
+STR_NAME_TRAMWAY                                                :Tram
+STR_TOOLBAR_CAPTION_TRAMWAY                                     :Construction de voie de tram
+STR_MENU_TEXT_TRAMWAY                                           :Construction de voie de tramway
+STR_BUILD_WINDOW_CAPTION_TRAMWAY                                :Nouveaux trams
+STR_AUTOREPLACE_TEXT_TRAMWAY                                    :Trams
+STR_NEW_ENGINE_TEXT_TRAMWAY                                     :tram
+STR_NAME_ELECTRIC_TRAMWAY                                       :Tram électrique
+STR_TOOLBAR_CAPTION_ELECTRIC_TRAMWAY                            :Construction de voie de tram électrique
+STR_MENU_TEXT_ELECTRIC_TRAMWAY                                  :Construction de voie de tramway électrique
+STR_BUILD_WINDOW_CAPTION_ELECTRIC_TRAMWAY                       :Nouveaux trams électriques
+STR_AUTOREPLACE_TEXT_ELECTRIC_TRAMWAY                           :Trams électriques
+STR_NEW_ENGINE_TEXT_ELECTRIC_TRAMWAY                            :tram électrique
 
-STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Tram pour passagers
-STR_NAME_SUFFIX_BUS                                             :Bus
-STR_NAME_SUFFIX_COACH                                           :Car
+STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Tramway de passagers
+STR_NAME_SUFFIX_BUS                                             :Autobus
+STR_NAME_SUFFIX_COACH                                           :Autocar
 STR_NAME_SUFFIX_BOX_TRAM                                        :Tram à caisse
 STR_NAME_SUFFIX_BOX_TRUCK                                       :Camion-caisse
 STR_NAME_SUFFIX_OPEN_TRAM                                       :Tram-tombereau

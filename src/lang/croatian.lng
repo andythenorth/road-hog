@@ -13,6 +13,24 @@ STR_PARAM_ROSTER_DESC                                           :Odaberite koji 
 STR_PARAM_ROSTER_OPTION_0                                       :Brit
 STR_PARAM_ROSTER_OPTION_1                                       :Pustoš
 
+STR_NAME_HEAVY_HAUL_ROAD                                        :Cesta za teške terete
+STR_TOOLBAR_CAPTION_HEAVY_HAUL_ROAD                             :Izgradnja ceste za teške terete
+STR_MENU_TEXT_HEAVY_HAUL_ROAD                                   :Izgradnja ceste za teške terete
+STR_BUILD_WINDOW_CAPTION_HEAVY_HAUL_ROAD                        :Nova cestovna vozila za teške terete
+STR_AUTOREPLACE_TEXT_HEAVY_HAUL_ROAD                            :Cestovna vozila za teške terete
+STR_NEW_ENGINE_TEXT_HEAVY_HAUL_ROAD                             :vozilo za teške terete
+STR_NAME_TRAMWAY                                                :Tramvajska pruga
+STR_TOOLBAR_CAPTION_TRAMWAY                                     :Izgradnja tramvajske pruge
+STR_MENU_TEXT_TRAMWAY                                           :Izgradnja tramvajske pruge
+STR_BUILD_WINDOW_CAPTION_TRAMWAY                                :Novi tramvaji
+STR_AUTOREPLACE_TEXT_TRAMWAY                                    :Tramvaji
+STR_NEW_ENGINE_TEXT_TRAMWAY                                     :tramvaj
+STR_NAME_ELECTRIC_TRAMWAY                                       :Električna tramvajska pruga
+STR_TOOLBAR_CAPTION_ELECTRIC_TRAMWAY                            :Izgradnja električne tramvajske pruge
+STR_MENU_TEXT_ELECTRIC_TRAMWAY                                  :Izgradnja električne tramvajske pruge
+STR_BUILD_WINDOW_CAPTION_ELECTRIC_TRAMWAY                       :Novi električni tramvaji
+STR_AUTOREPLACE_TEXT_ELECTRIC_TRAMWAY                           :Električni tramvaji
+STR_NEW_ENGINE_TEXT_ELECTRIC_TRAMWAY                            :električni tramvaj
 
 STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Putnički tramvaj
 STR_NAME_SUFFIX_BUS                                             :Autobus
