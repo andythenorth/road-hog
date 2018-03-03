@@ -609,7 +609,7 @@ class OpenHauler(Consist):
         self.autorefit = True
         self.class_refit_groups = ['all_freight']
         self.label_refits_allowed = [] # no specific labels needed
-        self.label_refits_disallowed = ['TOUR', 'MAIL']
+        self.label_refits_disallowed = ['TOUR']
         self.default_cargo = 'GOOD'
         # Cargo Graphics
         self.visible_cargo.bulk = True
