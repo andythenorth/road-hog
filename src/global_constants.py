@@ -1,8 +1,6 @@
 from polar_fox import base_refits_by_class, cargo_labels, chameleon_cache_dir, generated_files_dir, graphics_path, max_game_date
 
 # rather than using disallowed classes (can cause breakage), specific labels are disallowed
-# this is done per vehicle type, or added to global_constants for ease of reuse and updating
-# these lists are similar but not identical across Iron Horse, Squid, Road Hog etc
 disallowed_refits_by_label = {'non_dump_bulk': ['WOOD', 'SGCN', 'FICR', 'BDMT', 'WDPR', 'GRAI', 'WHEA', 'CERE', 'MAIZ', 'FRUT', 'BEAN', 'CMNT', 'CTCD', 'FERT', 'OLSD', 'SUGR', 'TOFF', 'URAN'],
                               'edible_liquids': ['MILK', 'WATR', 'BEER', 'FOOD', 'EOIL'],
                               'non_edible_liquids': ['RFPR', 'OIL_', 'FMSP', 'PETR', 'RUBR', 'SULP', 'ACID', 'CHLO', 'KAOL'],
