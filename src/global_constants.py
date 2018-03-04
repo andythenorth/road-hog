@@ -1,9 +1,7 @@
-from polar_fox import base_refits_by_class, cargo_labels, disallowed_refits_by_label, chameleon_cache_dir, generated_files_dir, graphics_path, max_game_date
+from polar_fox import base_refits_by_class, cargo_labels, disallowed_refits_by_label, chameleon_cache_dir, generated_files_dir, graphics_path, mail_multiplier, max_game_date
 
 # capacity multipliers for capacity parameter
 capacity_multipliers = (0.67, 1, 1.33)
-# mailbags are < 1t, multiply capacity appropriately
-mail_multiplier = 2
 
 grfid = r"\97\87\EA\FE"
 
