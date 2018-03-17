@@ -749,32 +749,36 @@ class OpenHauler(Consist):
         self.visible_cargo.piece = True
 
 
-class PaxHauler(Consist):
+class PaxHaulerBase(Consist):
+    """
+    Common base class for pax vehicles.
+    """
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.autorefit = True
+        self.class_refit_groups = ['pax']
+        self.label_refits_allowed = []
+        self.label_refits_disallowed = []
+        #self.default_cargos = global_constants.default_cargos['pax']
+        self.default_cargo = 'PASS'
+
+
+class PaxHauler(PaxHaulerBase):
     """
     Bus or tram for pax.
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.autorefit = True
-        self.class_refit_groups = ['pax']
-        self.label_refits_allowed = []
-        self.label_refits_disallowed = []
-        self.default_cargo = 'PASS'
         self.loading_speed_multiplier = 3
         self.weight_multiplier = 0.17
 
 
-class PaxExpressHauler(Consist):
+class PaxExpressHauler(PaxHaulerBase):
     """
     Coach or express tram for pax.
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.autorefit = True
-        self.class_refit_groups = ['pax']
-        self.label_refits_allowed = []
-        self.label_refits_disallowed = []
-        self.default_cargo = 'PASS'
         self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
         self.weight_multiplier = 0.2
 
