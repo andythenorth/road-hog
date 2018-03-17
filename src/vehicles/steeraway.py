@@ -1,7 +1,7 @@
 import global_constants
-from road_vehicle import FoundryHauler
+from road_vehicle import MetalHauler
 
-consist = FoundryHauler(id='steeraway',
+consist = MetalHauler(id='steeraway',
                         base_numeric_id=520,
                         title='Steeraway [Foundry Hauler]',
                         road_type='HAUL',

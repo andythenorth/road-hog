@@ -1,7 +1,7 @@
 import global_constants
-from road_vehicle import BulkPowderHauler
+from road_vehicle import CoveredHopperHauler
 
-consist = BulkPowderHauler(id='thurlbear',
+consist = CoveredHopperHauler(id='thurlbear',
                            base_numeric_id=460,
                            title='Thurlbear [Covered Hopper Tram]',
                            tram_type='ELRL',

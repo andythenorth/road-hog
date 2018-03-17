@@ -1,7 +1,7 @@
 import global_constants
-from road_vehicle import BulkPowderHauler
+from road_vehicle import CoveredHopperHauler
 
-consist = BulkPowderHauler(id='ribble',
+consist = CoveredHopperHauler(id='ribble',
                            base_numeric_id=360,
                            title='Ribble [Covered Hopper Truck]',
                            semi_truck_so_redistribute_capacity=True,

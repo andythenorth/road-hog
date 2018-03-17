@@ -1,7 +1,7 @@
 import global_constants
-from road_vehicle import FlatBedHauler
+from road_vehicle import FlatHauler
 
-consist = FlatBedHauler(id='chainburn',
+consist = FlatHauler(id='chainburn',
                         base_numeric_id=630,
                         title='Chainburn [Flatbed Truck]',
                         vehicle_life=40,

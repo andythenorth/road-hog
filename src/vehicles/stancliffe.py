@@ -1,7 +1,7 @@
 import global_constants
-from road_vehicle import FlatBedHauler
+from road_vehicle import FlatHauler
 
-consist = FlatBedHauler(id='stancliffe',
+consist = FlatHauler(id='stancliffe',
                         base_numeric_id=410,
                         title='Stancliffe [Flatbed Tram]',
                         tram_type='ELRL',

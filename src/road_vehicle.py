@@ -578,7 +578,7 @@ class BoxHauler(Consist):
         self.weight_multiplier = 0.45
 
 
-class BulkPowderHauler(Consist):
+class CoveredHopperHauler(Consist):
     """
     Covered hopper truck or tram for bulk powder cargos.
     """
@@ -591,20 +591,6 @@ class BulkPowderHauler(Consist):
         self.default_cargo = 'GRAI'
         self.loading_speed_multiplier = 2
         self.weight_multiplier = 0.45
-
-
-class CourierCar(Consist):
-    """
-    Truck or tram for mail, valuables etc.
-    """
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.autorefit = True
-        self.class_refit_groups = ['mail', 'express_freight']
-        self.label_refits_allowed = [] # no specific labels needed
-        self.label_refits_disallowed = ['TOUR']
-        self.default_cargo = 'MAIL'
-        self.weight_multiplier = 0.2
 
 
 class DumpHauler(Consist):
@@ -640,7 +626,7 @@ class EdiblesTanker(Consist):
         self.weight_multiplier = 0.5
 
 
-class FlatBedHauler(Consist):
+class FlatHauler(Consist):
     """
     Flatbed tram or truck - refits most cargos, not bulk.
     """
@@ -653,21 +639,6 @@ class FlatBedHauler(Consist):
         self.default_cargo = 'STEL'
         # Cargo graphics
         self.visible_cargo.piece = True
-
-
-class FoundryHauler(Consist):
-    """
-    Specialist heavy haul tram / truck, e.g. multiwheel platform, steel mill hauler etc.
-    High capacity, not very fast, refits to small subset of finished metal cargos.
-    """
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.autorefit = True
-        self.class_refit_groups = []
-        self.label_refits_allowed = ['STEL', 'COPR', 'IRON', 'SLAG']
-        self.label_refits_disallowed = []
-        self.default_cargo = 'STEL'
-        self.loading_speed_multiplier = 2
 
 
 class FruitVegHauler(Consist):
@@ -731,6 +702,35 @@ class LogHauler(Consist):
         self.visible_cargo = VisibleCargoCustom({'WOOD': [0]},
                                                 'vehicle_with_visible_cargo.pynml',
                                                 generic_rows = [0])
+
+
+class MailHauler(Consist):
+    """
+    Truck or tram for mail, valuables etc.
+    """
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.autorefit = True
+        self.class_refit_groups = ['mail', 'express_freight']
+        self.label_refits_allowed = [] # no specific labels needed
+        self.label_refits_disallowed = ['TOUR']
+        self.default_cargo = 'MAIL'
+        self.weight_multiplier = 0.2
+
+
+class MetalHauler(Consist):
+    """
+    Specialist heavy haul tram / truck, e.g. multiwheel platform, steel mill hauler etc.
+    High capacity, not very fast, refits to small subset of finished metal cargos.
+    """
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.autorefit = True
+        self.class_refit_groups = []
+        self.label_refits_allowed = ['STEL', 'COPR', 'IRON', 'SLAG']
+        self.label_refits_disallowed = []
+        self.default_cargo = 'STEL'
+        self.loading_speed_multiplier = 2
 
 
 class OpenHauler(Consist):

@@ -1,7 +1,7 @@
 import global_constants
-from road_vehicle import FlatBedHauler
+from road_vehicle import FlatHauler
 
-consist = FlatBedHauler(id='big_rigg',
+consist = FlatHauler(id='big_rigg',
                         base_numeric_id=660,
                         title='Big Rigg [Flatbed Truck]',
                         vehicle_life=40,

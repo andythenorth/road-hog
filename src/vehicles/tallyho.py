@@ -1,7 +1,7 @@
 import global_constants
-from road_vehicle import CourierCar
+from road_vehicle import MailHauler
 
-consist = CourierCar(id='tallyho',
+consist = MailHauler(id='tallyho',
                      base_numeric_id=450,
                      title='Tallyho [Courier Truck]',
                      power=90,

@@ -1,7 +1,7 @@
 import global_constants
-from road_vehicle import FlatBedHauler
+from road_vehicle import FlatHauler
 
-consist = FlatBedHauler(id='towerhouse',
+consist = FlatHauler(id='towerhouse',
                         base_numeric_id=650,
                         title='Towerhouse [Flatbed Truck]',
                         semi_truck_so_redistribute_capacity=True,
