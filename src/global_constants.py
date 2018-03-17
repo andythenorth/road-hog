@@ -32,23 +32,14 @@ buy_menu_sprite_width = 36 # 36 is correct, but some spritesheets might have wro
 buy_menu_sprite_height = 16
 
 # shared global constants via Polar Fox library - import at end to make the this project's constants easier to work with
-from polar_fox import base_refits_by_class
-from polar_fox import cargo_labels
-from polar_fox import chameleon_cache_dir
-from polar_fox import default_cargos
-from polar_fox import disallowed_refits_by_label
-from polar_fox import generated_files_dir
-from polar_fox import graphics_path
-from polar_fox import mail_multiplier
-from polar_fox import max_game_date
-
-# stupid hax to stop pyflakes tripping on the unused Polar Fox imports (unused for valid reasons)
-assert base_refits_by_class
-assert cargo_labels
-assert chameleon_cache_dir
-assert default_cargos
-assert disallowed_refits_by_label
-assert generated_files_dir
-assert graphics_path
-assert mail_multiplier
-assert max_game_date
+# assignments are clunky - they exist to stop pyflakes tripping on 'unused' imports
+import polar_fox
+base_refits_by_class = polar_fox.base_refits_by_class
+cargo_labels = polar_fox.cargo_labels
+chameleon_cache_dir = polar_fox.chameleon_cache_dir
+default_cargos = polar_fox.default_cargos
+disallowed_refits_by_label = polar_fox.disallowed_refits_by_label
+generated_files_dir = polar_fox.generated_files_dir
+graphics_path = polar_fox.graphics_path
+mail_multiplier = polar_fox.mail_multiplier
+max_game_date = polar_fox.max_game_date
