@@ -4,12 +4,12 @@ currentdir = os.curdir
 import sys
 sys.path.append(os.path.join('src')) # add to the module search path
 
-property_to_delete = 'intro_date'
+property_to_delete = 'buy_menu_width'
 property_to_move = 'sea_capable'
 property_to_insert_after = 'gross_tonnage'
-line_to_insert = "            property_name = 'example',"
+line_to_insert = "            graphics_status = 'Unstarted',"
 
-filenames = ['edibles_tank_cars.py','fruit_cars.py','high_speed_cars.py','rotary_gondola_cars.py','supplies_cars.py','vehicle_transporter_cars.py','intermodal_flat_cars.py','log_cars.py','metal_cars.py','mail_box_cars.py','box_cars.py','open_cars.py','caboose_cars.py','covered_hopper_cars.py','tank_cars.py','reefer_cars.py','livestock_cars.py','hopper_cars.py','flat_cars.py','passenger_cars.py','mail_cars.py']
+filenames = ['screamer.py','pendolino.py','slammer.py','box_cars.py','open_cars.py','caboose_cars.py','raven.py','covered_hopper_cars.py','metro.py','gresley.py','hellenic.py','wordsell.py','goods.py','tank_cars.py','reefer_cars.py','livestock_cars.py','hopper_cars.py','flat_cars.py','passenger_cars.py','mail_cars.py','standard.py','suburban.py','collier.py','whistler.py','zebedee.py','chinook.py','gridiron.py','geep.py','dmc_sd40.py','growler.py']
 
 
 def delete_property(filename):
@@ -38,7 +38,6 @@ def move_property(filename):
             line_to_insert_after = line
     insert_position = content.index(line_to_insert_after)
     content.insert(insert_position+1, cut_line)
-    #print ''.join(content)
 
     file = open(os.path.join('src','vehicles',filename),'w')
     file.write(''.join(content))
@@ -53,7 +52,6 @@ def insert_property(filename):
             line_to_insert_after = line
     insert_position = content.index(line_to_insert_after)
     content.insert(insert_position+1, line_to_insert)
-    #print ''.join(content)
 
     file = open(os.path.join('src','vehicles',filename),'w')
     file.write(''.join(content))
