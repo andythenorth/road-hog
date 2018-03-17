@@ -2,11 +2,11 @@ import global_constants
 from road_vehicle import CoveredHopperHauler
 
 consist = CoveredHopperHauler(id='mcdowell',
-                           base_numeric_id=280,
-                           title='McDowell [Covered Hopper Truck]',
-                           semi_truck_so_redistribute_capacity=True,
-                           vehicle_life=40,
-                           intro_date=2007)
+                              base_numeric_id=280,
+                              title='McDowell [Covered Hopper Truck]',
+                              semi_truck_so_redistribute_capacity=True,
+                              vehicle_life=40,
+                              intro_date=2007)
 
 consist.add_unit(capacity=0,
                  vehicle_length=2,

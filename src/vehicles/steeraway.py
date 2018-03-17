@@ -2,13 +2,13 @@ import global_constants
 from road_vehicle import MetalHauler
 
 consist = MetalHauler(id='steeraway',
-                        base_numeric_id=520,
-                        title='Steeraway [Foundry Hauler]',
-                        road_type='HAUL',
-                        power=500,
-                        speed=45,
-                        vehicle_life=80,
-                        intro_date=1960)
+                      base_numeric_id=520,
+                      title='Steeraway [Foundry Hauler]',
+                      road_type='HAUL',
+                      power=500,
+                      speed=45,
+                      vehicle_life=80,
+                      intro_date=1960)
 
 consist.add_unit(capacity=0,
                  vehicle_length=6,
