@@ -16,6 +16,4 @@ consist.add_unit(capacity=44,
                  vehicle_length=7,
                  visual_effect='VISUAL_EFFECT_DIESEL')
 
-consist.add_model_variant(intro_date=0,
-                          end_date=global_constants.max_game_date,
-                          spritesheet_suffix=0)
+consist.add_model_variant(spritesheet_suffix=0)

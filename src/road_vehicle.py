@@ -67,8 +67,8 @@ class Consist(object):
         # roster is set when the vehicle is registered to a roster, only one roster per vehicle
         self.roster_id = None
 
-    def add_model_variant(self, intro_date, end_date, spritesheet_suffix, graphics_processor=None):
-        self.model_variants.append(ModelVariant(intro_date, end_date, spritesheet_suffix, graphics_processor))
+    def add_model_variant(self, spritesheet_suffix, graphics_processor=None):
+        self.model_variants.append(ModelVariant(spritesheet_suffix, graphics_processor))
 
     def add_unit(self, repeat=1, **kwargs):
         # how many unique units? (units can be repeated, we are using count for numerid ID, so we want uniques)
@@ -522,9 +522,7 @@ class ModelVariant(object):
     # variants are mostly randomised or date-sensitive graphics
     # must be a minimum of one variant per vehicle
     # at least one variant must have intro date 0 (for nml switch defaults to work)
-    def __init__(self, intro_date, end_date, spritesheet_suffix, graphics_processor):
-        self.intro_date = intro_date
-        self.end_date = end_date
+    def __init__(self, spritesheet_suffix, graphics_processor):
         self.spritesheet_suffix = spritesheet_suffix # use digits for these - to match spritesheet filenames
         self.graphics_processor = graphics_processor
 
