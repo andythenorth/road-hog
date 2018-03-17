@@ -67,12 +67,6 @@ class Consist(object):
         # roster is set when the vehicle is registered to a roster, only one roster per vehicle
         self.roster_id = None
 
-    @property
-    def default_cargo(self):
-        # !! temp whilst refactoring default_cargos, remove when complete
-        return self.default_cargos[0]
-
-
     def add_model_variant(self, intro_date, end_date, spritesheet_suffix, graphics_processor=None):
         self.model_variants.append(ModelVariant(intro_date, end_date, spritesheet_suffix, graphics_processor))
 
@@ -262,7 +256,8 @@ class Consist(object):
         for i in range(3):
             consist_capacity = 0
             for unit in self.units:
-                if self.default_cargo == 'MAIL':
+                # possibly fragile assumption that mail vehicles will always have to put mail first in default cargo list
+                if self.default_cargos[0] == 'MAIL':
                     consist_capacity += int(global_constants.mail_multiplier * unit.capacities[i])
                 else:
                     consist_capacity += unit.capacities[i]
@@ -350,7 +345,8 @@ class Consist(object):
         if self.roadveh_flag_tram:
             return 'SOUND_CAR_HORN'
         else:
-            if self.default_cargo == 'PASS':
+            # possibly fragile assumption that pax vehicles will put PASS first in default cargos list
+            if self.default_cargos[0] == 'PASS':
                 return 'SOUND_BUS_START_PULL_AWAY'
             else:
                 return 'SOUND_TRUCK_START_2'
