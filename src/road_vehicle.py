@@ -45,7 +45,6 @@ class Consist(object):
         # semi-trucks need some redistribution of capacity to get correct TE (don't use this of other magic, bad idea)
         self.semi_truck_so_redistribute_capacity = kwargs.get('semi_truck_so_redistribute_capacity', False)
         self._speed = kwargs.get('speed', None)
-        self.default_cargo = 'PASS' # over-ride in subclass as needed (PASS is sane default)
         self.class_refit_groups = []
         self.label_refits_allowed = [] # no specific labels needed
         self.label_refits_disallowed = []
@@ -68,11 +67,11 @@ class Consist(object):
         # roster is set when the vehicle is registered to a roster, only one roster per vehicle
         self.roster_id = None
 
-    """
     @property
     def default_cargo(self):
+        # !! temp whilst refactoring default_cargos, remove when complete
         return self.default_cargos[0]
-    """
+
 
     def add_model_variant(self, intro_date, end_date, spritesheet_suffix, graphics_processor=None):
         self.model_variants.append(ModelVariant(intro_date, end_date, spritesheet_suffix, graphics_processor))
@@ -377,6 +376,19 @@ class Consist(object):
         roster = self.roster
         return 'param[1]==' + str(roster.numeric_id - 1)
 
+    def get_nml_expression_for_default_cargos(self):
+        # sometimes first default cargo is not available, so we use a list
+        # this avoids unwanted cases like box cars defaulting to mail when goods cargo not available
+        # if there is only one default cargo, the list just has one entry, that's no problem
+        if len(self.default_cargos) == 1:
+            return self.default_cargos[0]
+        else:
+            # build stacked ternary operators for cargos
+            result = self.default_cargos[-1]
+            for cargo in reversed(self.default_cargos[0:-1]):
+                result = 'cargotype_available("' + cargo + '")?' + cargo + ':' + result
+            return result
+
     def render_articulated_switch(self):
         template = templates["add_articulated_parts.pynml"]
         nml_result = template(consist=self, global_constants=global_constants)
@@ -574,7 +586,7 @@ class BoxHauler(Consist):
         self.class_refit_groups = ['packaged_freight']
         self.label_refits_allowed = ['MAIL', 'GRAI', 'WHEA', 'MAIZ', 'FRUT', 'BEAN', 'NITR'] # Iron Horse compatibility
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_freight_special_cases']
-        self.default_cargo = 'GOOD'
+        self.default_cargos = global_constants.default_cargos['box']
         self.weight_multiplier = 0.45
 
 
@@ -588,7 +600,7 @@ class CoveredHopperHauler(Consist):
         self.class_refit_groups = ['covered_hopper_freight']
         self.label_refits_allowed = ['GRAI', 'WHEA', 'MAIZ', 'SUGR', 'FMSP', 'RFPR', 'CLAY', 'BDMT', 'BEAN', 'NITR', 'RUBR', 'SAND', 'POTA', 'QLME', 'SASH', 'CMNT', 'KAOL', 'FERT', 'SALT']
         self.label_refits_disallowed = []
-        self.default_cargo = 'GRAI'
+        self.default_cargos = global_constants.default_cargos['covered_hopper']
         self.loading_speed_multiplier = 2
         self.weight_multiplier = 0.45
 
@@ -603,7 +615,7 @@ class DumpHauler(Consist):
         self.class_refit_groups = ['dump_freight']
         self.label_refits_allowed = [] # no specific labels needed
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_dump_bulk']
-        self.default_cargo = 'COAL'
+        self.default_cargos = global_constants.default_cargos['dump']
         self.loading_speed_multiplier = 2
         self.weight_multiplier = 0.45
         # Cargo graphics
@@ -620,7 +632,7 @@ class EdiblesTanker(Consist):
         self.class_refit_groups = ['liquids']
         self.label_refits_allowed = ['MILK', 'FOOD']
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_edible_liquids']
-        self.default_cargo = 'WATR'
+        self.default_cargos = global_constants.default_cargos['edibles_tank']
         self.loading_speed_multiplier = 2
         self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
         self.weight_multiplier = 0.5
@@ -636,7 +648,7 @@ class FlatHauler(Consist):
         self.class_refit_groups = ['flatbed_freight']
         self.label_refits_allowed = ['GOOD']
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_flatbed_freight']
-        self.default_cargo = 'STEL'
+        self.default_cargos = global_constants.default_cargos['flat']
         # Cargo graphics
         self.visible_cargo.piece = True
 
@@ -651,7 +663,7 @@ class FruitVegHauler(Consist):
         self.class_refit_groups = []
         self.label_refits_allowed = ['FRUT', 'BEAN', 'CASS', 'JAVA', 'NUTS']
         self.label_refits_disallowed = []
-        self.default_cargo = 'FRUT'
+        self.default_cargos = global_constants.default_cargos['fruit_veg']
         self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
         self.weight_multiplier = 0.45
 
@@ -667,7 +679,7 @@ class IntermodalHauler(Consist):
         self.class_refit_groups = ['express_freight','packaged_freight']
         self.label_refits_allowed = ['FRUT','WATR']
         self.label_refits_disallowed = ['FISH','LVST','OIL_','TOUR','WOOD']
-        self.default_cargo = 'GOOD'
+        self.default_cargos = global_constants.default_cargos['intermodal']
         self.loading_speed_multiplier = 2
 
 
@@ -681,7 +693,7 @@ class LivestockHauler(Consist):
         self.class_refit_groups = []
         self.label_refits_allowed = ['LVST']
         self.label_refits_disallowed = []
-        self.default_cargo = 'LVST'
+        self.default_cargos = ['LVST'] # no need for fallbacks, only one cargo
         self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
         self.weight_multiplier = 0.45
 
@@ -696,7 +708,7 @@ class LogHauler(Consist):
         self.class_refit_groups = []
         self.label_refits_allowed = ['WOOD']
         self.label_refits_disallowed = []
-        self.default_cargo = 'WOOD'
+        self.default_cargos = ['WOOD'] # no need for fallbacks, only one cargo
         self.loading_speed_multiplier = 2
         # Cargo graphics
         self.visible_cargo = VisibleCargoCustom({'WOOD': [0]},
@@ -714,7 +726,7 @@ class MailHauler(Consist):
         self.class_refit_groups = ['mail', 'express_freight']
         self.label_refits_allowed = [] # no specific labels needed
         self.label_refits_disallowed = ['TOUR']
-        self.default_cargo = 'MAIL'
+        self.default_cargos = global_constants.default_cargos['mail']
         self.weight_multiplier = 0.2
 
 
@@ -729,7 +741,7 @@ class MetalHauler(Consist):
         self.class_refit_groups = []
         self.label_refits_allowed = ['STEL', 'COPR', 'IRON', 'SLAG']
         self.label_refits_disallowed = []
-        self.default_cargo = 'STEL'
+        self.default_cargos = global_constants.default_cargos['metal']
         self.loading_speed_multiplier = 2
 
 
@@ -743,7 +755,7 @@ class OpenHauler(Consist):
         self.class_refit_groups = ['all_freight']
         self.label_refits_allowed = [] # no specific labels needed
         self.label_refits_disallowed = ['TOUR']
-        self.default_cargo = 'GOOD'
+        self.default_cargos = global_constants.default_cargos['open']
         # Cargo Graphics
         self.visible_cargo.bulk = True
         self.visible_cargo.piece = True
@@ -759,8 +771,7 @@ class PaxHaulerBase(Consist):
         self.class_refit_groups = ['pax']
         self.label_refits_allowed = []
         self.label_refits_disallowed = []
-        #self.default_cargos = global_constants.default_cargos['pax']
-        self.default_cargo = 'PASS'
+        self.default_cargos = global_constants.default_cargos['pax']
 
 
 class PaxHauler(PaxHaulerBase):
@@ -794,7 +805,7 @@ class RefrigeratedHauler(Consist):
         self.class_refit_groups = ['refrigerated_freight']
         self.label_refits_allowed = [] # no specific labels needed, refits all cargos that have refrigerated class
         self.label_refits_disallowed = []
-        self.default_cargo = 'FOOD'
+        self.default_cargos = global_constants.default_cargos['reefer']
         self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
         self.weight_multiplier = 0.5
 
@@ -809,7 +820,7 @@ class SuppliesHauler(Consist):
         self.class_refit_groups = []
         self.label_refits_allowed = ['ENSP', 'FMSP', 'VEHI', 'BDMT']
         self.label_refits_disallowed = []
-        self.default_cargo = 'ENSP'
+        self.default_cargos = global_constants.default_cargos['supplies']
         self.loading_speed_multiplier = 2
         self.weight_multiplier = 0.5
         # Cargo graphics
@@ -831,7 +842,7 @@ class Tanker(Consist):
         self.class_refit_groups = ['liquids']
         self.label_refits_allowed = []
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['edible_liquids']
-        self.default_cargo = 'OIL_'
+        self.default_cargos = global_constants.default_cargos['tank']
         self.loading_speed_multiplier = 2
         self.weight_multiplier = 0.45
         # Cargo graphics
