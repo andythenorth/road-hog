@@ -5,13 +5,14 @@ from PIL import Image
 
 from graphics_processor import graphics_constants
 from graphics_processor.pixa import Spritesheet, pixascan
-from graphics_processor.units import SimpleRecolour, SwapCompanyColours, AppendToSpritesheet
+from graphics_processor.units import SimpleRecolour, AppendToSpritesheet
 
 DOS_PALETTE = Image.open('palette_key.png').palette
 
 """
-Pipelines can be dedicated to a single task such as SimpleRecolourPipeline
+Pipelines can be dedicated to a single task such as simple recolouring
 Or they can compose units for more complicated tasks, such as colouring and loading a specific vehicle type
+As of Jan 2018 there is just one complex pipeline for vehicles, which handles body recolouring + optional cargo provision
 """
 
 
@@ -25,9 +26,14 @@ class Pipeline(object):
         spritesheet.sprites.paste(input_image)
         return spritesheet
 
-    def render_common(self, variant, consist, input_image, units, options):
+    @property
+    def input_path(self):
+        # convenience method to get the vehicle template image
+        # I considered having this return the Image, not just the path, but it's not saving much, and is less obvious what it does when used
+        return os.path.join(currentdir, 'src', 'graphics', self.consist.roster_id, self.consist.id + '.png')
+
+    def render_common(self, variant, consist, input_image, units):
         # expects to be passed a PIL Image object
-        # options is a dict and can be used abitrarily to pass options wherever needed in the pipeline
         # units is a list of objects, with their config data already baked in (don't have to pass anything to units except the spritesheet)
         # each unit is then called in order, passing in and returning a pixa SpriteSheet
         # finally the spritesheet is saved
@@ -43,47 +49,16 @@ class Pipeline(object):
     def render(self, variant, consist):
         raise NotImplementedError("Implement me in %s" % repr(self))
 
+
 class PassThroughPipeline(Pipeline):
     def __init__(self):
         # this should be sparse, don't store any consist or variant info in Pipelines, pass them at render time
         super(PassThroughPipeline, self).__init__("pass_through_pipeline")
 
     def render(self, variant, consist, global_constants):
-        options = variant.graphics_processor.options
-        input_path = os.path.join(currentdir, 'src', 'graphics', consist.roster_id, options['template'])
-        input_image = Image.open(input_path)
+        input_image = Image.open(self.vehicle_template_input_path)
         units = []
-        result = self.render_common(variant, consist, input_image, units, options)
-        return result
-
-
-class SimpleRecolourPipeline(Pipeline):
-    """ Swaps colours using the recolour map (dict {colour index: replacement colour}) """
-    def __init__(self):
-        # this should be sparse, don't store any consist or variant info in Pipelines, pass them at render time
-        super(SimpleRecolourPipeline, self).__init__("simple_recolour_pipeline")
-
-    def render(self, variant, consist, global_constants):
-        options = variant.graphics_processor.options
-        input_path = os.path.join(currentdir, 'src', 'graphics', consist.roster_id, options['template'])
-        input_image = Image.open(input_path)
-        units = [SimpleRecolour(options['recolour_map'])]
-        result = self.render_common(variant, consist, input_image, units, options)
-        return result
-
-
-class SwapCompanyColoursPipeline(Pipeline):
-    """ Swaps 1CC and 2CC colours """
-    def __init__(self):
-        # this should be sparse, don't store any consist or variant info in Pipelines, pass them at render time
-        super(SwapCompanyColoursPipeline, self).__init__("swap_company_colours_pipeline")
-
-    def render(self, variant, consist, global_constants):
-        options = variant.graphics_processor.options
-        input_path = os.path.join(currentdir, 'src', 'graphics', consist.roster_id, options['template'])
-        input_image = Image.open(input_path)
-        units = [SwapCompanyColours()]
-        result = self.render_common(variant, consist, input_image, units, options)
+        result = self.render_common(variant, consist, input_image, units)
         return result
 
 
@@ -114,6 +89,7 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
                          graphics_constants.spriterow_height)
         self.units.append(AppendToSpritesheet(vehicle_generic_spriterow_input_as_spritesheet, crop_box_dest))
 
+
     def add_livery_only_spriterows(self, recolour_map):
         # this might be extensible for containers when needed, using simple conditionals
         # or because containers include random options it might need reworking,
@@ -126,7 +102,7 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
         # vehicle_generic_spriterow_input_image.show() # comment in to see the image when debugging
         vehicle_livery_only_spriterow_input_as_spritesheet = self.make_spritesheet_from_image(vehicle_livery_only_spriterow_input_image)
 
-        for label, recolour_map in recolour_map:
+        for label, recolour_map in self.consist.gestalt_graphics.recolour_maps:
             crop_box_dest = (0,
                              0,
                              graphics_constants.spritesheet_width,
@@ -259,10 +235,8 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
                 self.units.append(AppendToSpritesheet(vehicle_comped_image_as_spritesheet, crop_box_dest))
 
     def render(self, variant, consist, global_constants):
-        # there are various options for controlling the crop box, I haven't documented them - read example uses to figure them out
-        self.options = variant.graphics_processor.options
-        self.input_path = os.path.join(currentdir, 'src', 'graphics', consist.roster_id, self.options['template'])
         self.units = [] # graphics units not same as consist units ! confusing overlap of terminology :(
+        self.consist = consist
 
         # the cumulative_input_spriterow_count updates per processed group of spriterows, and is key to making this work
         cumulative_input_spriterow_count = 0
@@ -286,19 +260,15 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
                     self.add_piece_cargo_spriterows(consist.unique_units[vehicle_counter], global_constants)
                 cumulative_input_spriterow_count += input_spriterow_count
 
-        if self.options.get('swap_company_colours', False):
-            self.units.append(SwapCompanyColours())
         input_image = Image.open(self.input_path).crop((0, 0, graphics_constants.spritesheet_width, 10))
-        result = self.render_common(variant, consist, input_image, self.units, self.options)
+        result = self.render_common(variant, consist, input_image, self.units)
         return result
 
 def get_pipeline(pipeline_name):
     # return a pipeline by name;
     # add pipelines here when creating new ones
-    for pipeline in [SimpleRecolourPipeline(),
-                     PassThroughPipeline(),
-                     ExtendSpriterowsForCompositedCargosPipeline(),
-                     SwapCompanyColoursPipeline()]:
+    for pipeline in [PassThroughPipeline(),
+                     ExtendSpriterowsForCompositedCargosPipeline()]:
         if pipeline_name == pipeline.name:
             return pipeline
     raise Exception("Pipeline not found: " + pipeline_name) # should never get to here

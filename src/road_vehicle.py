@@ -14,8 +14,10 @@ templates = PageTemplateLoader(os.path.join(currentdir, 'src', 'templates'))
 import global_constants # expose all constants for easy passing to templates
 import utils
 
+from graphics_processor.gestalt_graphics import GestaltGraphics, GestaltGraphicsVisibleCargo, GestaltGraphicsLiveryOnly, GestaltGraphicsCustom
 from graphics_processor.visible_cargo import VisibleCargo, VisibleCargoCustom, VisibleCargoLiveryOnly
 import graphics_processor.utils as graphics_utils
+import graphics_processor.graphics_constants as graphics_constants
 
 from rosters import registered_rosters
 from vehicles import numeric_id_defender
@@ -62,7 +64,9 @@ class Consist(object):
         self.model_variants = []
         # create structure to hold the units
         self.units = []
-        # cargo /livery graphics options
+        # create a structure for cargo /livery graphics options
+        self.gestalt_graphics = GestaltGraphics()
+        # cargo /livery graphics options !! deprecated -refactor out
         self.visible_cargo = VisibleCargo()
         # roster is set when the vehicle is registered to a roster, only one roster per vehicle
         self.roster_id = None
@@ -149,7 +153,7 @@ class Consist(object):
                 unit_rows.append(('always_use_same_spriterow', 1))
             else:
                 # assumes visible_cargo is used to handle any other rows, no other cases at time of writing, could be changed eh?
-                unit_rows.extend(self.visible_cargo.get_output_row_counts_by_type())
+                unit_rows.extend(self.gestalt_graphics.get_output_row_counts_by_type())
             result.append(unit_rows)
         return result
 
@@ -572,8 +576,8 @@ class DumpHauler(Consist):
         self.default_cargos = global_constants.default_cargos['dump']
         self.loading_speed_multiplier = 2
         self.weight_multiplier = 0.45
-        # Cargo graphics
-        self.visible_cargo.bulk = True
+        # Graphics configuration
+        self.gestalt_graphics = GestaltGraphicsVisibleCargo(bulk=True)
 
 
 class EdiblesTanker(Consist):
@@ -603,8 +607,8 @@ class FlatHauler(Consist):
         self.label_refits_allowed = ['GOOD']
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_flatbed_freight']
         self.default_cargos = global_constants.default_cargos['flat']
-        # Cargo graphics
-        self.visible_cargo.piece = True
+        # Graphics configuration
+        self.gestalt_graphics = GestaltGraphicsVisibleCargo(piece=True)
 
 
 class FruitVegHauler(Consist):
@@ -710,9 +714,9 @@ class OpenHauler(Consist):
         self.label_refits_allowed = [] # no specific labels needed
         self.label_refits_disallowed = ['TOUR']
         self.default_cargos = global_constants.default_cargos['open']
-        # Cargo Graphics
-        self.visible_cargo.bulk = True
-        self.visible_cargo.piece = True
+        # Graphics configuration
+        self.gestalt_graphics = GestaltGraphicsVisibleCargo(bulk=True,
+                                                            piece=True)
 
 
 class PaxHaulerBase(Consist):
@@ -777,10 +781,10 @@ class SuppliesHauler(Consist):
         self.default_cargos = global_constants.default_cargos['supplies']
         self.loading_speed_multiplier = 2
         self.weight_multiplier = 0.5
-        # Cargo graphics
-        self.visible_cargo = VisibleCargoCustom({'ENSP': [0], 'FMSP': [0], 'VEHI': [0]},
-                                                'vehicle_with_visible_cargo.pynml',
-                                                generic_rows = [0])
+        # Graphics configuration
+        self.gestalt_graphics = GestaltGraphicsCustom({'ENSP': [0], 'FMSP': [0], 'VEHI': [0]},
+                                                       'vehicle_with_visible_cargo.pynml',
+                                                       generic_rows = [0])
 
 
 class Tanker(Consist):
@@ -799,8 +803,7 @@ class Tanker(Consist):
         self.default_cargos = global_constants.default_cargos['tank']
         self.loading_speed_multiplier = 2
         self.weight_multiplier = 0.45
-        # Cargo graphics
-        self.visible_cargo = VisibleCargoLiveryOnly()
-        self.visible_cargo.tanker = True
+        # Graphics configuration
+        self.gestalt_graphics = GestaltGraphicsLiveryOnly(recolour_maps=graphics_constants.tanker_livery_recolour_maps)
 
 
