@@ -40,6 +40,8 @@ class Consist(object):
         self.vehicle_life = kwargs.get('vehicle_life', None)
         self._power = kwargs.get('power', None)
         self._sound_effect = kwargs.get('sound_effect', None)
+        # option for multiple default cargos, cascading if first cargo(s) are not available
+        self.default_cargos = []
         # semi-trucks need some redistribution of capacity to get correct TE (don't use this of other magic, bad idea)
         self.semi_truck_so_redistribute_capacity = kwargs.get('semi_truck_so_redistribute_capacity', False)
         self._speed = kwargs.get('speed', None)
@@ -65,6 +67,12 @@ class Consist(object):
         self.visible_cargo = VisibleCargo()
         # roster is set when the vehicle is registered to a roster, only one roster per vehicle
         self.roster_id = None
+
+    """
+    @property
+    def default_cargo(self):
+        return self.default_cargos[0]
+    """
 
     def add_model_variant(self, intro_date, end_date, spritesheet_suffix, graphics_processor=None):
         self.model_variants.append(ModelVariant(intro_date, end_date, spritesheet_suffix, graphics_processor))
