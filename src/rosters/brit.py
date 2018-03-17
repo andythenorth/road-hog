@@ -1,6 +1,5 @@
 from roster import Roster
 
-"""
 from vehicles import (acton,
                       amblecote,
                       applethwaite,
@@ -96,8 +95,6 @@ from vehicles import (acton,
                       witch_hill,
                       wookey,
                       yeoman)
-"""
-from vehicles import brightling, oylbarral, chainburn, road_thief
 
 roster = Roster(id = 'brit',
                 numeric_id = 1,
@@ -107,9 +104,6 @@ roster = Roster(id = 'brit',
                 truck_power_bands = {0: 100, 1905: 150, 1935: 250, 1965: 450, 1985: 700},
                 # tram power is excessive compare to RL, otherwise the OpenTTD physics model spanks the trams
                 tram_power_bands = {0: 240, 1900: 480, 1930: 720, 1960: 960, 1990: 1200},
-                vehicles = [brightling, oylbarral, chainburn, road_thief,
-                            ])
-"""
                 vehicles = [leyburn,
                             thunder,
                             highgate,
@@ -207,5 +201,3 @@ roster = Roster(id = 'brit',
                             broadrock,
                             witch_hill,
                             steeraway])
-"""
-

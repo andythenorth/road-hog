@@ -24,6 +24,10 @@ class GestaltGraphics(object):
                 unique_row_nums.append(row_nums)
         return sum([len(i) for i in unique_row_nums])
 
+    def get_output_row_counts_by_type(self):
+        # stub, for template compatibility reasons
+        return []
+
 
 class GestaltGraphicsVisibleCargo(GestaltGraphics):
     # used for ship with visible cargos

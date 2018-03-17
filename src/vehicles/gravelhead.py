@@ -15,5 +15,4 @@ consist.add_unit(capacity=12,
 consist.add_unit(capacity=12,
                  vehicle_length=5)
 
-consist.add_model_variant(spritesheet_suffix=0,
-                          graphics_processor=consist.graphics_processors[1])
+consist.add_model_variant(spritesheet_suffix=0)
