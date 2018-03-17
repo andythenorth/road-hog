@@ -56,9 +56,10 @@ class PassThroughPipeline(Pipeline):
         super(PassThroughPipeline, self).__init__("pass_through_pipeline")
 
     def render(self, variant, consist, global_constants):
-        input_image = Image.open(self.vehicle_template_input_path)
-        units = []
-        result = self.render_common(variant, consist, input_image, units)
+        self.units = []
+        self.consist = consist
+        input_image = Image.open(self.input_path)
+        result = self.render_common(variant, self.consist, input_image, self.units)
         return result
 
 

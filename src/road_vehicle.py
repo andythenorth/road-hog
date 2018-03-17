@@ -15,8 +15,6 @@ import global_constants # expose all constants for easy passing to templates
 import utils
 
 from graphics_processor.gestalt_graphics import GestaltGraphics, GestaltGraphicsVisibleCargo, GestaltGraphicsLiveryOnly, GestaltGraphicsCustom
-from graphics_processor.visible_cargo import VisibleCargo, VisibleCargoCustom, VisibleCargoLiveryOnly
-import graphics_processor.utils as graphics_utils
 import graphics_processor.graphics_constants as graphics_constants
 
 from rosters import registered_rosters
@@ -66,8 +64,6 @@ class Consist(object):
         self.units = []
         # create a structure for cargo /livery graphics options
         self.gestalt_graphics = GestaltGraphics()
-        # cargo /livery graphics options !! deprecated -refactor out
-        self.visible_cargo = VisibleCargo()
         # roster is set when the vehicle is registered to a roster, only one roster per vehicle
         self.roster_id = None
 
@@ -156,12 +152,6 @@ class Consist(object):
                 unit_rows.extend(self.gestalt_graphics.get_output_row_counts_by_type())
             result.append(unit_rows)
         return result
-
-    @property
-    def graphics_processors(self):
-        # wrapper to get the graphics processors
-        template = self.id + '_template.png'
-        return graphics_utils.get_composited_cargo_processors(template = template)
 
     def get_engine_cost_points(self):
         # Up to 20 points for power. 1 point per 100hp
@@ -483,8 +473,8 @@ class RoadVehicle(object):
     @property
     def vehicle_nml_template(self):
         if not self.always_use_same_spriterow:
-            if self.consist.visible_cargo.nml_template:
-                return self.consist.visible_cargo.nml_template
+            if self.consist.gestalt_graphics.nml_template:
+                return self.consist.gestalt_graphics.nml_template
         # default case
         return 'vehicle_default.pynml'
 
@@ -669,7 +659,7 @@ class LogHauler(Consist):
         self.default_cargos = ['WOOD'] # no need for fallbacks, only one cargo
         self.loading_speed_multiplier = 2
         # Cargo graphics
-        self.visible_cargo = VisibleCargoCustom({'WOOD': [0]},
+        self.gestalt_graphics = GestaltGraphicsCustom({'WOOD': [0]},
                                                 'vehicle_with_visible_cargo.pynml',
                                                 generic_rows = [0])
 

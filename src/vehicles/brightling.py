@@ -18,5 +18,4 @@ consist.add_unit(capacity=36,
                  cargo_length=3,
                  repeat=2)
 
-consist.add_model_variant(spritesheet_suffix=0,
-                          graphics_processor=consist.graphics_processors[0])
+consist.add_model_variant(spritesheet_suffix=0)

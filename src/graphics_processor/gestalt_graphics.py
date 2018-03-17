@@ -1,5 +1,6 @@
 import graphics_processor.graphics_constants as graphics_constants
 from graphics_processor import pipelines
+import utils
 
 class GestaltGraphics(object):
     # simple stub class, which is extended in sub-classes to configure:
@@ -129,8 +130,10 @@ class GestaltGraphicsCustom(GestaltGraphics):
     # - pixa cargo pipeline has no support for compositing custom rows, that looked like TMWFTLB
     def __init__(self, _cargo_row_map, _nml_template, generic_rows):
         super().__init__()
-        # as of Jan 2018 only one pipeline is used, but support is in place for alternative pipelines
-        self.pipeline = pipelines.get_pipeline('extend_spriterows_for_composited_cargos_pipeline')
+        utils.echo_message("GestaltGraphicsCustom does nothing but a pass-through currently, might be fine, might not")
+        # !! ^ this unfinished hax to get GestalGraphics ported from Sam
+        # this should get support for body recolouring if needed
+        self.pipeline = pipelines.get_pipeline('pass_through_pipeline')
         # options
         self.custom = True
         self._nml_template = _nml_template
@@ -149,7 +152,7 @@ class GestaltGraphicsCustom(GestaltGraphics):
     def get_output_row_counts_by_type(self):
         # assume we want whatever the base class count of rows is (handles empty state etc)
         # ^ that might not be viable as it ties 'custom' to same template assumptions as base class - change if needed eh?
-        result = {}
+        result = []
         # assume two output rows (loading, loaded) - extend this if it's not viable
         result.append(('custom_cargo', 2))
         return result
