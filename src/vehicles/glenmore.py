@@ -1,4 +1,3 @@
-import global_constants
 from road_vehicle import PaxExpressHauler
 
 # for each generation, bus and coach variants have same power and intro date

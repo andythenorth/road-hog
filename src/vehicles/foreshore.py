@@ -1,4 +1,3 @@
-import global_constants
 from road_vehicle import IntermodalHauler
 
 consist = IntermodalHauler(id='foreshore',

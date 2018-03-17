@@ -1,4 +1,3 @@
-import global_constants
 from road_vehicle import SuppliesHauler
 # 'inspired by' Scammell 100t low loader, but much smaller
 

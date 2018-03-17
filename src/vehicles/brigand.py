@@ -1,4 +1,3 @@
-import global_constants
 from road_vehicle import SuppliesHauler
 # equiv. Scammell Highwayman or Explorer with dolly low loader trailer - not huge
 

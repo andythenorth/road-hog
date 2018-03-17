@@ -1,4 +1,3 @@
-import global_constants
 from road_vehicle import OpenHauler
 
 consist = OpenHauler(id='jinglepot',

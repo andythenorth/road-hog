@@ -1,4 +1,3 @@
-import global_constants
 from road_vehicle import DumpHauler
 
 consist = DumpHauler(id='scrooby_top',
