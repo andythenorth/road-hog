@@ -98,8 +98,8 @@ class GestaltGraphicsVisibleCargo(GestaltGraphics):
 
 class GestaltGraphicsLiveryOnly(GestaltGraphics):
     """
-        Subclass of GestaltGraphics to handle the specific case of cargos shown only by vehicle livery.
-        This can also be used for recolouring vehicle bodies in the case of just a *single* livery with no visible cargo
+        Used to handle the specific case of cargos shown only by vehicle livery.
+        This can also be used for recolouring vehicles with just a *single* livery which isn't cargo-specific.
     """
     def __init__(self, recolour_maps, **kwargs):
         super().__init__()
@@ -135,11 +135,12 @@ class GestaltGraphicsLiveryOnly(GestaltGraphics):
 
 
 class GestaltGraphicsCustom(GestaltGraphics):
-    """ Subclass of GestaltGraphics to handle cases like vehicles with hand-drawn cargo (no generation).
+    """
+        Used to handle (rare) cases with hand-drawn cargo (no pixa-generated cargos).
         There is currently no graphics processing for this:
         - just a simple pass-through, and an interface to the nml templates
         - this could get support for body recolouring if needed
-        - this should not get support for compositing custom rows, TMWFTLB
+        - this should not get support for compositing custom rows, TMWFTLB, just draw them in the vehicle spritesheet
     """
     def __init__(self, _cargo_row_map, _nml_template, generic_rows):
         super().__init__()
