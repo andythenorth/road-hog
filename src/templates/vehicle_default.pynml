@@ -2,41 +2,25 @@
 
 <tal:include metal:use-macro="load: spriteset_templates.pynml" />
 
-<tal:sprites_random_variations repeat="variation_num python:range(consist.get_num_spritesets())">
-    spriteset(${vehicle.id}_ss_${variation_num}, "${global_constants.graphics_path}${consist.id}_${variation_num}.png") {
-      spriteset_template_${vehicle.id}(10 + ${vehicle.spriterow_num * 30})
-    }
-
-    spritegroup ${vehicle.id}_sg_${variation_num} {
-        loaded:  [
-            ${vehicle.id}_ss_${variation_num},
-        ];
-        loading: [
-            ${vehicle.id}_ss_${variation_num},
-        ];
-    }
-    // always include a switch to get to spritegroups even if it does nothing - the random switches need to route to it
-    switch (FEAT_ROADVEHS, SELF, ${vehicle.id}_switch_graphics_${variation_num}, 0) {
-        0: return ${vehicle.id}_sg_${variation_num};
-        return ${vehicle.id}_sg_${variation_num};
-    }
-</tal:sprites_random_variations>
-
-<tal:include metal:use-macro="load: graphics_switches.pynml" />
-
-// buy menu graphics
-spriteset(${vehicle.id}_ss_purchase, "${global_constants.graphics_path}${consist.id}_0.png") {
-  spriteset_template_purchase_${vehicle.id}()
+spriteset(${vehicle.id}_ss, "${global_constants.graphics_path}${consist.id}.png") {
+  spriteset_template_${vehicle.id}(10 + ${vehicle.spriterow_num * 30})
 }
 
-spritegroup ${vehicle.id}_sg_purchase {
+spritegroup ${vehicle.id}_sg {
     loaded:  [
-        ${vehicle.id}_ss_purchase,
+        ${vehicle.id}_ss,
     ];
     loading: [
-        ${vehicle.id}_ss_purchase,
+        ${vehicle.id}_ss,
     ];
 }
+// always include a switch to get to spritegroups even if it does nothing - the random switches need to route to it
+switch (FEAT_ROADVEHS, SELF, ${vehicle.id}_switch_graphics, 0) {
+    0: return ${vehicle.id}_sg;
+    return ${vehicle.id}_sg;
+}
+
+<tal:include metal:use-macro="load: graphics_switches.pynml" />
 
 <tal:include metal:use-macro="load: capacity_switches.pynml" />
 

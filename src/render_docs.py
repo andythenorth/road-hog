@@ -89,8 +89,6 @@ class DocHelper(object):
             result = self.fetch_prop(result, 'Buy Cost Factor', round(vehicle.buy_cost, 2))
             result = self.fetch_prop(result, 'Running Cost Factor', round(vehicle.running_cost, 2))
             #result = self.fetch_prop(result, 'Loading Speed', vehicle.loading_speed)
-            #result = self.fetch_prop(result, 'Model Variants', len(vehicle.model_variants))
-
             props_to_print[vehicle] = result['vehicle']
             props_to_print[subclass] = result['subclass_props']
 
@@ -138,7 +136,7 @@ def render_docs_images():
     # for development, just run render_graphics manually before running render_docs
     vehicle_graphics_src = os.path.join(currentdir, 'generated', 'graphics')
     for consist in consists:
-        vehicle_spritesheet = Image.open(os.path.join(vehicle_graphics_src, consist.id + '_0.png'))
+        vehicle_spritesheet = Image.open(os.path.join(vehicle_graphics_src, consist.id + '.png'))
         processed_vehicle_image = vehicle_spritesheet.crop(box=(370,
                                                                 10,
                                                                 370 + global_constants.buy_menu_sprite_width,

@@ -15,4 +15,3 @@ consist.add_unit(capacity=30,
                  vehicle_length=7,
                  visual_effect='VISUAL_EFFECT_DIESEL')
 
-consist.add_model_variant(spritesheet_suffix=0)

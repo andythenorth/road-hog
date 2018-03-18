@@ -15,5 +15,3 @@ consist.add_unit(vehicle_length=2,
 consist.add_unit(capacity=40,
                  vehicle_length=7,
                  cargo_length=4)
-
-consist.add_model_variant(spritesheet_suffix=0)

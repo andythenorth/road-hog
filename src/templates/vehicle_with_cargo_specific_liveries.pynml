@@ -5,63 +5,45 @@
 
 <tal:include metal:use-macro="load: spriteset_templates.pynml" />
 
-<tal:sprites_random_variations repeat="variation_num python:range(consist.get_num_spritesets())">
-    <tal:cargo_variants repeat="cargo_variant_num python:range(consist.gestalt_graphics.num_cargo_sprite_variants)">
-        spriteset(${vehicle.id}_ss_${variation_num}_${cargo_variant_num}, "${global_constants.graphics_path}${consist.id}_${variation_num}.png") {
-          spriteset_template_${vehicle.id}(${vehicle.spriterow_num * 30} + ${cargo_variant_num * 30} + 10)
-        }
-
-        spritegroup ${vehicle.id}_sg_${variation_num}_${cargo_variant_num} {
-            loaded:  [
-                ${vehicle.id}_ss_${variation_num}_${cargo_variant_num},
-            ];
-            loading: [
-                ${vehicle.id}_ss_${variation_num}_${cargo_variant_num},
-            ];
-        }
-    </tal:cargo_variants>
-
-    <!--! this triggers random on a new load, which was designed for use specifically with containers where colours are randomised on load
-          it's not necessary for e.g. tankers, which only have livery one option per cargo -->
-    <tal:cargo_random_switches repeat="mapping consist.gestalt_graphics.cargo_row_map.items()">
-        random_switch (FEAT_ROADVEHS, SELF, ${vehicle.id}_switch_graphics_${variation_num}_${mapping[0]}, bitmask(TRIGGER_VEHICLE_NEW_LOAD)) {
-            <tal:random_graphics_variations repeat="spriterow_num mapping[1]">
-                1: return ${vehicle.id}_sg_${variation_num}_${spriterow_num};
-            </tal:random_graphics_variations>
-        }
-    </tal:cargo_random_switches>
-
-    switch (FEAT_ROADVEHS, SELF, ${vehicle.id}_switch_graphics_${variation_num}, cargo_type_in_veh) {
-        <tal:cargos repeat="mapping consist.gestalt_graphics.cargo_row_map.items()">
-            <tal:exclude_default_cargo condition="mapping[0] != 'DFLT'">
-                ${mapping[0]}: return ${vehicle.id}_switch_graphics_${variation_num}_${mapping[0]};
-            </tal:exclude_default_cargo>
-        </tal:cargos>
-        <tal:default_cargo repeat="mapping consist.gestalt_graphics.cargo_row_map.items()">
-            <tal:block condition="mapping[0] == 'DFLT'">
-                return ${vehicle.id}_switch_graphics_${variation_num}_${mapping[0]};
-            </tal:block>
-        </tal:default_cargo>
+<tal:cargo_variants repeat="cargo_variant_num python:range(consist.gestalt_graphics.num_cargo_sprite_variants)">
+    spriteset(${vehicle.id}_ss_${cargo_variant_num}, "${global_constants.graphics_path}${consist.id}.png") {
+      spriteset_template_${vehicle.id}(${vehicle.spriterow_num * 30} + ${cargo_variant_num * 30} + 10)
     }
-</tal:sprites_random_variations>
+
+    spritegroup ${vehicle.id}_sg_${cargo_variant_num} {
+        loaded:  [
+            ${vehicle.id}_ss_${cargo_variant_num},
+        ];
+        loading: [
+            ${vehicle.id}_ss_${cargo_variant_num},
+        ];
+    }
+</tal:cargo_variants>
+
+<!--! this triggers random on a new load, which was designed for use specifically with containers where colours are randomised on load
+      it's not necessary for e.g. tankers, which only have livery one option per cargo -->
+<tal:cargo_random_switches repeat="mapping consist.gestalt_graphics.cargo_row_map.items()">
+    random_switch (FEAT_ROADVEHS, SELF, ${vehicle.id}_switch_graphics_${mapping[0]}, bitmask(TRIGGER_VEHICLE_NEW_LOAD)) {
+        <tal:random_graphics_variations repeat="spriterow_num mapping[1]">
+            1: return ${vehicle.id}_sg_${spriterow_num};
+        </tal:random_graphics_variations>
+    }
+</tal:cargo_random_switches>
+
+switch (FEAT_ROADVEHS, SELF, ${vehicle.id}_switch_graphics, cargo_type_in_veh) {
+    <tal:cargos repeat="mapping consist.gestalt_graphics.cargo_row_map.items()">
+        <tal:exclude_default_cargo condition="mapping[0] != 'DFLT'">
+            ${mapping[0]}: return ${vehicle.id}_switch_graphics_${mapping[0]};
+        </tal:exclude_default_cargo>
+    </tal:cargos>
+    <tal:default_cargo repeat="mapping consist.gestalt_graphics.cargo_row_map.items()">
+        <tal:block condition="mapping[0] == 'DFLT'">
+            return ${vehicle.id}_switch_graphics_${mapping[0]};
+        </tal:block>
+    </tal:default_cargo>
+}
 
 <tal:include metal:use-macro="load: graphics_switches.pynml" />
-
-// buy menu graphics
-
-// buy menu graphics
-spriteset(${vehicle.id}_ss_purchase, "${global_constants.graphics_path}${consist.id}_0.png") {
-  spriteset_template_purchase_${vehicle.id}()
-}
-
-spritegroup ${vehicle.id}_sg_purchase {
-    loaded:  [
-        ${vehicle.id}_ss_purchase,
-    ];
-    loading: [
-        ${vehicle.id}_ss_purchase,
-    ];
-}
 
 <tal:include metal:use-macro="load: capacity_switches.pynml" />
 

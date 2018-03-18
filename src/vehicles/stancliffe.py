@@ -12,5 +12,3 @@ consist.add_unit(capacity=36,
                  cargo_length=3,
                  effects=['EFFECT_SPRITE_ELECTRIC, 0, 0, 10'],
                  repeat=2)
-
-consist.add_model_variant(spritesheet_suffix=0)

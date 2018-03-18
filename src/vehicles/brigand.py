@@ -22,4 +22,3 @@ consist.add_unit(capacity=0,
                  unit_num_providing_spriterow_num=0,
                  always_use_same_spriterow=True)
 
-consist.add_model_variant(spritesheet_suffix=0)

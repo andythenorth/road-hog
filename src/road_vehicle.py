@@ -58,17 +58,12 @@ class Consist(object):
         # multiplier of capacity, used to set consist weight, over-ride in vehicle sub-class as needed
         # set this to the value for road vehicles...trams will be automatically adjusted
         self.weight_multiplier = 0.4
-        # create a structure to hold model variants
-        self.model_variants = []
         # create structure to hold the units
         self.units = []
         # create a structure for cargo /livery graphics options
         self.gestalt_graphics = GestaltGraphics()
         # roster is set when the vehicle is registered to a roster, only one roster per vehicle
         self.roster_id = None
-
-    def add_model_variant(self, spritesheet_suffix, graphics_processor=None):
-        self.model_variants.append(ModelVariant(spritesheet_suffix, graphics_processor))
 
     def add_unit(self, repeat=1, **kwargs):
         # how many unique units? (units can be repeated, we are using count for numerid ID, so we want uniques)
@@ -123,7 +118,8 @@ class Consist(object):
         return numeric_id
 
     def get_num_spritesets(self):
-        return len(set([i.spritesheet_suffix for i in self.model_variants]))
+        print("remove get_num_spritesets")
+        return 1
 
     def get_name_substr(self):
         # relies on name being in format "Foo [Bar]" for Name [Type Suffix]
@@ -496,8 +492,8 @@ class RoadVehicle(object):
         else:
             return 0
 
-    def get_nml_expression_for_cargo_variant_random_switch(self, variation_num, cargo_id=None):
-        switch_id = self.id + "_switch_graphics_" + str(variation_num) + ('_' + str(cargo_id) if cargo_id is not None else '')
+    def get_nml_expression_for_cargo_variant_random_switch(self, cargo_id=None):
+        switch_id = self.id + "_switch_graphics" + ('_' + str(cargo_id) if cargo_id is not None else '')
         return "SELF," + switch_id + ", bitmask(TRIGGER_VEHICLE_ANY_LOAD)"
 
     def render(self):
@@ -509,19 +505,6 @@ class RoadVehicle(object):
         template = templates[template_name]
         nml_result = template(vehicle=self, consist=self.consist, global_constants=global_constants)
         return nml_result
-
-
-class ModelVariant(object):
-    # simple class to hold model variants
-    # variants are mostly randomised or date-sensitive graphics
-    # must be a minimum of one variant per vehicle
-    # at least one variant must have intro date 0 (for nml switch defaults to work)
-    def __init__(self, spritesheet_suffix, graphics_processor):
-        self.spritesheet_suffix = spritesheet_suffix # use digits for these - to match spritesheet filenames
-        self.graphics_processor = graphics_processor
-
-    def get_spritesheet_name(self, consist):
-        return consist.id + '_' + str(self.spritesheet_suffix) + '.png'
 
 
 class BoxHauler(Consist):
