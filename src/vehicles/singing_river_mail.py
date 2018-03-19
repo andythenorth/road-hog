@@ -1,6 +1,6 @@
 from road_vehicle import MailHauler
 
-consist = MailHauler(id='singing_river',
+consist = MailHauler(id='singing_river_mail',
                      base_numeric_id=850,
                      title='Singing River [Courier Tram]',
                      tram_type='ELRL',

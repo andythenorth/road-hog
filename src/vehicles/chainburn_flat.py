@@ -1,6 +1,6 @@
 from road_vehicle import FlatHauler
 
-consist = FlatHauler(id='chainburn',
+consist = FlatHauler(id='chainburn_flat',
                         base_numeric_id=630,
                         title='Chainburn [Flatbed Truck]',
                         vehicle_life=40,

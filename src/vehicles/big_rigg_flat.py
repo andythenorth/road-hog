@@ -1,6 +1,6 @@
 from road_vehicle import FlatHauler
 
-consist = FlatHauler(id='big_rigg',
+consist = FlatHauler(id='big_rigg_flat',
                         base_numeric_id=660,
                         title='Big Rigg [Flatbed Truck]',
                         vehicle_life=40,

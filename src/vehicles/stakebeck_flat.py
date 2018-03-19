@@ -1,6 +1,6 @@
 from road_vehicle import FlatHauler
 
-consist = FlatHauler(id='stakebeck',
+consist = FlatHauler(id='stakebeck_flat',
                         base_numeric_id=750,
                         title='Stakebeck [Flatbed Tram]',
                         tram_type='RAIL',

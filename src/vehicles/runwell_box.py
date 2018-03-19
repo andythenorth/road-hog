@@ -1,6 +1,6 @@
 from road_vehicle import BoxHauler
 
-consist = BoxHauler(id='runwell',
+consist = BoxHauler(id='runwell_box',
                     base_numeric_id=890,
                     title='Runwell [Box Truck]',
                     semi_truck_so_redistribute_capacity=True,

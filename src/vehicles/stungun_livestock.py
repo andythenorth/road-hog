@@ -1,6 +1,6 @@
 from road_vehicle import LivestockHauler
 
-consist = LivestockHauler(id='stungun',
+consist = LivestockHauler(id='stungun_livestock',
                           base_numeric_id=430,
                           title='Stungun [Livestock Truck]',
                           semi_truck_so_redistribute_capacity=True,

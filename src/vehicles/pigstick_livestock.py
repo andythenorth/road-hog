@@ -1,6 +1,6 @@
 from road_vehicle import LivestockHauler
 
-consist = LivestockHauler(id='pigstick',
+consist = LivestockHauler(id='pigstick_livestock',
                           base_numeric_id=330,
                           title='Pigstick [Livestock Truck]',
                           vehicle_life=40,

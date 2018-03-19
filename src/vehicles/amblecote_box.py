@@ -1,6 +1,6 @@
 from road_vehicle import BoxHauler
 
-consist = BoxHauler(id='amblecote',
+consist = BoxHauler(id='amblecote_box',
                     base_numeric_id=80,
                     title='Amblecote [Box Tram]',
                     tram_type='RAIL',

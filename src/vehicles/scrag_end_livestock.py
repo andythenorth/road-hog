@@ -1,6 +1,6 @@
 from road_vehicle import LivestockHauler
 
-consist = LivestockHauler(id='scrag_end',
+consist = LivestockHauler(id='scrag_end_livestock',
                           base_numeric_id=710,
                           title='Scrag End [Livestock Tram]',
                           tram_type='RAIL',

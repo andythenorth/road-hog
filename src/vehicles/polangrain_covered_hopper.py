@@ -1,6 +1,6 @@
 from road_vehicle import CoveredHopperHauler
 
-consist = CoveredHopperHauler(id='polangrain',
+consist = CoveredHopperHauler(id='polangrain_covered_hopper',
                               base_numeric_id=790,
                               title='Polangrain [Covered Hopper Tram]',
                               tram_type='ELRL',

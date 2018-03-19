@@ -1,6 +1,6 @@
 from road_vehicle import MailHauler
 
-consist = MailHauler(id='goldmire',
+consist = MailHauler(id='goldmire_mail',
                      base_numeric_id=200,
                      title='Goldmire [Courier Truck]',
                      power=250,  # custom power

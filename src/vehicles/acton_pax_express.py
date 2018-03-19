@@ -3,7 +3,7 @@ from road_vehicle import PaxExpressHauler
 # for each generation, bus and coach variants have same power and intro date
 # coaches faster, lower capacity than equivalent bus
 
-consist = PaxExpressHauler(id='acton',
+consist = PaxExpressHauler(id='acton_pax_express',
                            base_numeric_id=600,
                            title='Acton [Coach]',
                            power=360,

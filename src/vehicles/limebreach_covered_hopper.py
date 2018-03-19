@@ -1,6 +1,6 @@
 from road_vehicle import CoveredHopperHauler
 
-consist = CoveredHopperHauler(id='limebreach',
+consist = CoveredHopperHauler(id='limebreach_covered_hopper',
                               base_numeric_id=260,
                               title='Limebreach [Covered Hopper Truck]',
                               semi_truck_so_redistribute_capacity=True,

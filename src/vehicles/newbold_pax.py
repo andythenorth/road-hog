@@ -1,6 +1,6 @@
 from road_vehicle import PaxHauler
 
-consist = PaxHauler(id='newbold',
+consist = PaxHauler(id='newbold_pax',
                     base_numeric_id=30,
                     title='Newbold [Passenger Tram]',
                     tram_type='ELRL',

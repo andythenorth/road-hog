@@ -1,6 +1,6 @@
 from road_vehicle import FlatHauler
 
-consist = FlatHauler(id='towerhouse',
+consist = FlatHauler(id='towerhouse_flat',
                         base_numeric_id=650,
                         title='Towerhouse [Flatbed Truck]',
                         semi_truck_so_redistribute_capacity=True,
