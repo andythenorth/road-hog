@@ -1,6 +1,6 @@
 from road_vehicle import RefrigeratedHauler
 
-consist = RefrigeratedHauler(id='merrivale',
+consist = RefrigeratedHauler(id='merrivale_refrigerated',
                              base_numeric_id=300,
                              title='Merrivale [Reefer Truck]',
                              semi_truck_so_redistribute_capacity=True,

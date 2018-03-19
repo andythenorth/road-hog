@@ -1,6 +1,6 @@
 from road_vehicle import RefrigeratedHauler
 
-consist = RefrigeratedHauler(id='sparkford',
+consist = RefrigeratedHauler(id='sparkford_refrigerated',
                              base_numeric_id=390,
                              title='Sparkford [Reefer Tram]',
                              tram_type='ELRL',

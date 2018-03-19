@@ -1,6 +1,6 @@
 from road_vehicle import LogHauler
 
-consist = LogHauler(id='buff',
+consist = LogHauler(id='buff_log',
                     base_numeric_id=110,
                     title='Buff [Logging Truck]',
                     road_type='HAUL',

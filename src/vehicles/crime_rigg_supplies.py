@@ -1,7 +1,7 @@
 from road_vehicle import SuppliesHauler
 # 'inspired by' Scammell 100t low loader, but much smaller
 
-consist = SuppliesHauler(id='crime_rigg',
+consist = SuppliesHauler(id='crime_rigg_supplies',
                          base_numeric_id=530,
                          title='Crime Rigg [Supplies Truck]',
                          power=360,

@@ -1,7 +1,7 @@
 from road_vehicle import SuppliesHauler
 # equiv. Scammell Highwayman or Explorer with dolly low loader trailer - not huge
 
-consist = SuppliesHauler(id='brigand',
+consist = SuppliesHauler(id='brigand_supplies',
                          base_numeric_id=540,
                          title='Brigand [Supplies Truck]',
                          power=480,

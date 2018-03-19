@@ -1,6 +1,6 @@
 from road_vehicle import SuppliesHauler
 
-consist = SuppliesHauler(id='road_thief',
+consist = SuppliesHauler(id='road_thief_supplies',
                          base_numeric_id=560,
                          title='Road Thief [Supplies Truck]',
                          power=720,

@@ -1,6 +1,6 @@
 from road_vehicle import Tanker
 
-consist = Tanker(id='drumbreck',
+consist = Tanker(id='drumbreck_tanker',
                  base_numeric_id=800,
                  title='Drumbreck [Tanker Tram]',
                  tram_type='RAIL',
