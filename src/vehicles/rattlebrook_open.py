@@ -1,6 +1,6 @@
 from road_vehicle import OpenHauler
 
-consist = OpenHauler(id='rattlebrook',
+consist = OpenHauler(id='rattlebrook_open',
                      base_numeric_id=670,
                      title='Rattlebrook [Open Truck]',
                      vehicle_life=40,

@@ -1,6 +1,6 @@
 from road_vehicle import EdiblesTanker
 
-consist = EdiblesTanker(id='bottlebrook',
+consist = EdiblesTanker(id='bottlebrook_edibles_tanker',
                         base_numeric_id=510,
                         title='Bottlebrook [Edibles Tanker Tram]',
                         tram_type='ELRL',

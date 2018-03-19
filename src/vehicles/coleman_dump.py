@@ -1,6 +1,6 @@
 from road_vehicle import DumpHauler
 
-consist = DumpHauler(id='coleman',
+consist = DumpHauler(id='coleman_dump',
                      base_numeric_id=910,
                      title='Coleman [Dump Truck]',
                      semi_truck_so_redistribute_capacity=True,

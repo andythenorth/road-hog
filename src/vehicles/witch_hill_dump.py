@@ -1,6 +1,6 @@
 from road_vehicle import DumpHauler
 
-consist = DumpHauler(id='witch_hill',
+consist = DumpHauler(id='witch_hill_dump',
                      base_numeric_id=500,
                      title='Witch Hill [Mining Truck]',
                      road_type='HAUL',

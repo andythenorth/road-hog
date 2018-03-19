@@ -1,6 +1,6 @@
 from road_vehicle import DumpHauler
 
-consist = DumpHauler(id='gravelhead',
+consist = DumpHauler(id='gravelhead_dump',
                      base_numeric_id=580,
                      title='Gravelhead [Dump Truck]',
                      power=130,

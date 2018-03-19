@@ -1,6 +1,6 @@
 from road_vehicle import OpenHauler
 
-consist = OpenHauler(id='brightling',
+consist = OpenHauler(id='brightling_open',
                      base_numeric_id=90,
                      title='Brightling [Open Tram]',
                      tram_type='ELRL',

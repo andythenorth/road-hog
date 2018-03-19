@@ -1,6 +1,6 @@
 from road_vehicle import FruitVegHauler
 
-consist = FruitVegHauler(id='applethwaite',
+consist = FruitVegHauler(id='applethwaite_fruit_veg',
                          base_numeric_id=940,
                          title='Applethwaite [Fruit Tram]',
                          tram_type='ELRL',

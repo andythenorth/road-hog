@@ -1,6 +1,6 @@
 from road_vehicle import DumpHauler
 
-consist = DumpHauler(id='hawkmoor',
+consist = DumpHauler(id='hawkmoor_dump',
                      base_numeric_id=760,
                      title='Hawkmoor [Dump Tram]',
                      tram_type='ELRL',
