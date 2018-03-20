@@ -29,6 +29,6 @@ container_recolour_maps = ({170 + i: CC1 + i for i in range(8)},
 # assignments are clunky - they exist to stop pyflakes tripping on 'unused' imports
 import polar_fox
 bulk_cargo_recolour_maps = polar_fox.bulk_cargo_recolour_maps
-piece_cargo_maps = polar_fox.piece_cargo_maps
-pseudo_bulk_cargo_maps = polar_fox.pseudo_bulk_cargo_maps
+piece_sprites_to_cargo_labels_maps = polar_fox.piece_sprites_to_cargo_labels_maps
+piece_vehicle_type_to_sprites_maps = polar_fox.piece_vehicle_type_to_sprites_maps
 tanker_livery_recolour_maps = polar_fox.tanker_livery_recolour_maps

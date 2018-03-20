@@ -581,7 +581,7 @@ class FlatHauler(Consist):
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_flatbed_freight']
         self.default_cargos = global_constants.default_cargos['flat']
         # Graphics configuration
-        self.gestalt_graphics = GestaltGraphicsVisibleCargo(piece=True)
+        self.gestalt_graphics = GestaltGraphicsVisibleCargo(piece='flat')
 
 
 class FruitVegHauler(Consist):
@@ -689,7 +689,7 @@ class OpenHauler(Consist):
         self.default_cargos = global_constants.default_cargos['open']
         # Graphics configuration
         self.gestalt_graphics = GestaltGraphicsVisibleCargo(bulk=True,
-                                                            piece=True)
+                                                            piece='open')
 
 
 class PaxHaulerBase(Consist):
