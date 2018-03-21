@@ -1,7 +1,7 @@
 from road_vehicle import IntermodalHauler
 
 consist = IntermodalHauler(id='foreshore',
-                           base_numeric_id=170,
+                           base_numeric_id=970,
                            name='Foreshore [Intermodal Hauler]',
                            power=950,
                            vehicle_life=40,
