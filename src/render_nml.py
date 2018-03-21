@@ -42,6 +42,8 @@ def render_consist_nml(consist):
 
 def main():
     start = time()
+    print(road_hog.vacant_numeric_ids_formatted())
+
     generated_nml_path = os.path.join(generated_files_path, 'nml')
     if not os.path.exists(generated_nml_path):
         os.mkdir(generated_nml_path) # reminder to self: inside main() to avoid modifying filesystem simply by importing module
