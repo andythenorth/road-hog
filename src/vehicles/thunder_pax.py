@@ -5,7 +5,7 @@ from road_vehicle import PaxHauler
 
 consist = PaxHauler(id='thunder_pax',
                     base_numeric_id=40,
-                    title='Thunder [Bus]',
+                    name='Thunder [Bus]',
                     power=160,
                     speed=45,
                     vehicle_life=40,

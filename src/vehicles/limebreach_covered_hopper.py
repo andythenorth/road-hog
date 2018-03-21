@@ -2,7 +2,7 @@ from road_vehicle import CoveredHopperHauler
 
 consist = CoveredHopperHauler(id='limebreach_covered_hopper',
                               base_numeric_id=260,
-                              title='Limebreach [Covered Hopper Truck]',
+                              name='Limebreach [Covered Hopper Truck]',
                               semi_truck_so_redistribute_capacity=True,
                               vehicle_life=40,
                               intro_date=1949)

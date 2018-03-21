@@ -2,7 +2,7 @@ from road_vehicle import IntermodalHauler
 
 consist = IntermodalHauler(id='foreshore',
                            base_numeric_id=170,
-                           title='Foreshore [Intermodal Hauler]',
+                           name='Foreshore [Intermodal Hauler]',
                            power=950,
                            vehicle_life=40,
                            intro_date=1959)

@@ -2,7 +2,7 @@ from road_vehicle import LogHauler
 
 consist = LogHauler(id='trefell_log',
                     base_numeric_id=480,
-                    title='Trefell [Logging Truck]',
+                    name='Trefell [Logging Truck]',
                     road_type='HAUL',
                     power=100,  # custom power
                     vehicle_life=40,

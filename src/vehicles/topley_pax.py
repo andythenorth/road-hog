@@ -5,7 +5,7 @@ from road_vehicle import PaxHauler
 
 consist = PaxHauler(id='topley_pax',
                     base_numeric_id=60,
-                    title='Topley [Bus]',
+                    name='Topley [Bus]',
                     power=360,
                     speed=55,
                     vehicle_life=40,

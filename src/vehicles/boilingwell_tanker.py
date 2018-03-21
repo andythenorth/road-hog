@@ -2,7 +2,7 @@ from road_vehicle import Tanker
 
 consist = Tanker(id='boilingwell_tanker',
                  base_numeric_id=920,
-                 title='Boilingwell [Tanker Truck]',
+                 name='Boilingwell [Tanker Truck]',
                  semi_truck_so_redistribute_capacity=True,
                  vehicle_life=40,
                  intro_date=1915)

@@ -2,7 +2,7 @@ from road_vehicle import FlatHauler
 
 consist = FlatHauler(id='stakebeck_flat',
                         base_numeric_id=750,
-                        title='Stakebeck [Flatbed Tram]',
+                        name='Stakebeck [Flatbed Tram]',
                         tram_type='RAIL',
                         vehicle_life=40,
                         intro_date=1860)

@@ -2,7 +2,7 @@ from road_vehicle import SuppliesHauler
 
 consist = SuppliesHauler(id='reaver_supplies',
                          base_numeric_id=550,
-                         title='Reaver [Supplies Truck]',
+                         name='Reaver [Supplies Truck]',
                          power=240,  # custom power
                          vehicle_life=40,
                          intro_date=1875)

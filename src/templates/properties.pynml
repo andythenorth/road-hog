@@ -9,7 +9,7 @@ switch (FEAT_ROADVEHS, SELF, ${vehicle.id}_create_visual_effect, ${vehicle.get_e
 // -- props -- //
 item(FEAT_ROADVEHS, ${vehicle.id}, ${vehicle.numeric_id}) {
     property {
-        name:                           ${consist.get_name()};
+        name:                           ${consist.name};
         cargo_capacity:                 ${vehicle.capacities[0]};
         sprite_id:                      SPRITE_ID_NEW_ROADVEH; //enable new graphics - nml constant
         <!--! if NRT gets done

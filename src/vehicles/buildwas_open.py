@@ -2,7 +2,7 @@ from road_vehicle import OpenHauler
 
 consist = OpenHauler(id='buildwas_open',
                      base_numeric_id=120,
-                     title='Buildwas [Open Tram]',
+                     name='Buildwas [Open Tram]',
                      tram_type='RAIL',
                      vehicle_life=40,
                      intro_date=1860)

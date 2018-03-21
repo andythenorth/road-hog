@@ -2,7 +2,7 @@ from road_vehicle import EdiblesTanker
 
 consist = EdiblesTanker(id='beerwoods_edibles_tanker',
                         base_numeric_id=420,
-                        title='Beerwoods [Edibles Tanker Truck]',
+                        name='Beerwoods [Edibles Tanker Truck]',
                         vehicle_life=40,
                         intro_date=1943)
 

@@ -29,7 +29,7 @@ class Consist(object):
         self.id = kwargs.get('id', None)
         self.vehicle_module_path = inspect.stack()[2][1]
         # setup properties for this consist (props either shared for all vehicles, or placed on lead vehicle of consist)
-        self.title = kwargs.get('title', None)
+        self._name = kwargs.get('name', None) # private as 'name' is an @property method to add type substring
         self.base_numeric_id = kwargs.get('base_numeric_id', None)
         self.road_type = kwargs.get('road_type', None)
         self.tram_type = kwargs.get('tram_type', None)
@@ -123,16 +123,18 @@ class Consist(object):
 
     def get_name_substr(self):
         # relies on name being in format "Foo [Bar]" for Name [Type Suffix]
-        return self.title.split('[')[0]
+        return self._name.split('[')[0]
 
     def get_str_name_suffix(self):
         # used in vehicle name string only, relies on name property value being in format "Foo [Bar]" for Name [Type Suffix]
-        type_suffix = self.title.split('[')[1].split(']')[0]
+        # Iron Horse has a cleaner implementation of this, dropping the [STUFF] faff, getting it from vehicle subclass instead
+        type_suffix = self._name.split('[')[1].split(']')[0]
         type_suffix = type_suffix.upper()
         type_suffix = '_'.join(type_suffix.split(' '))
         return 'STR_NAME_SUFFIX_' + type_suffix
 
-    def get_name(self):
+    @property
+    def name(self):
         return "string(STR_NAME_" + self.id +", string(" + self.get_str_name_suffix() + "))"
 
     def get_spriterows_for_consist_or_subpart(self, units):

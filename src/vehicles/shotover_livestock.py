@@ -2,7 +2,7 @@ from road_vehicle import LivestockHauler
 
 consist = LivestockHauler(id='shotover_livestock',
                           base_numeric_id=370,
-                          title='Shotover [Livestock Tram]',
+                          name='Shotover [Livestock Tram]',
                           tram_type='ELRL',
                           vehicle_life=40,
                           intro_date=1941)

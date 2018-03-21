@@ -2,7 +2,7 @@ from road_vehicle import MailHauler
 
 consist = MailHauler(id='littleduke_mail',
                      base_numeric_id=270,
-                     title='Littleduke [Courier Truck]',
+                     name='Littleduke [Courier Truck]',
                      power=380,
                      speed=90,
                      vehicle_life=40,

@@ -2,7 +2,7 @@ from road_vehicle import BoxHauler
 
 consist = BoxHauler(id='rakeway_box',
                     base_numeric_id=870,
-                    title='Rakeway [Box Tram]',
+                    name='Rakeway [Box Tram]',
                     tram_type='ELRL',
                     vehicle_life=40,
                     intro_date=1900)

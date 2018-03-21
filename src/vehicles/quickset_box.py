@@ -2,7 +2,7 @@ from road_vehicle import BoxHauler
 
 consist = BoxHauler(id='quickset_box',
                     base_numeric_id=350,
-                    title='Quickset [Box Truck]',
+                    name='Quickset [Box Truck]',
                     semi_truck_so_redistribute_capacity=True,
                     vehicle_life=40,
                     intro_date=1968)
