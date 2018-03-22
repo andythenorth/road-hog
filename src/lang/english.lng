@@ -30,33 +30,32 @@ STR_BUILD_WINDOW_CAPTION_ELECTRIC_TRAMWAY                       :New Electric Tr
 STR_AUTOREPLACE_TEXT_ELECTRIC_TRAMWAY                           :Electric Trams
 STR_NEW_ENGINE_TEXT_ELECTRIC_TRAMWAY                            :electric tram
 
-STR_NAME_SUFFIX_BUS_TRAM                                        :CABBAGE
-STR_NAME_SUFFIX_COACH_TRAM                                      :CABBAGE
-STR_NAME_SUFFIX_MAIL_TRAM                                       :CABBAGE
-STR_NAME_SUFFIX_LOG_TRAM                                        :CABBAGE
-STR_NAME_SUFFIX_METAL_TRAM                                      :CABBAGE
+# keep these alphabetised, easier
+STR_NAME_SUFFIX_DIESEL                                          :Diesel
+STR_NAME_SUFFIX_ELECTRIC                                        :Electric
+STR_NAME_SUFFIX_STEAM                                           :Steam
 
-STR_NAME_SUFFIX_BUS                                             :Bus
 STR_NAME_SUFFIX_BOX_TRAM                                        :Box Tram
 STR_NAME_SUFFIX_BOX_TRUCK                                       :Box Truck
+STR_NAME_SUFFIX_BUS                                             :Bus
 STR_NAME_SUFFIX_COACH                                           :Coach
-STR_NAME_SUFFIX_COURIER_TRAM                                    :Courier Tram
-STR_NAME_SUFFIX_COURIER_TRUCK                                   :Courier Truck
 STR_NAME_SUFFIX_COVERED_HOPPER_TRAM                             :Covered Hopper Tram
 STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :Covered Hopper Truck
 STR_NAME_SUFFIX_DUMP_TRAM                                       :Dump Tram
 STR_NAME_SUFFIX_DUMP_TRUCK                                      :Dump Truck
 STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM                             :Edibles Tanker Tram
 STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK                            :Edibles Tanker Truck
-STR_NAME_SUFFIX_FRUIT_VEG_TRAM                                  :Fruit & Vegetables Tram
 STR_NAME_SUFFIX_FLATBED_TRAM                                    :Flatbed Tram
 STR_NAME_SUFFIX_FLATBED_TRUCK                                   :Flatbed Truck
-STR_NAME_SUFFIX_FOUNDRY_TRAM                                    :Foundry Tram
-STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :Foundry Hauler
+STR_NAME_SUFFIX_FRUIT_VEG_TRAM                                  :Fruit & Vegetables Tram
 STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Intermodal Hauler
 STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :Livestock Tram
 STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :Livestock Truck
-STR_NAME_SUFFIX_LOGGING_TRUCK                                   :Logging Truck
+STR_NAME_SUFFIX_LOG_TRUCK                                       :Logging Truck
+STR_NAME_SUFFIX_MAIL_TRAM                                       :Courier Tram
+STR_NAME_SUFFIX_MAIL_TRUCK                                      :Courier Truck
+STR_NAME_SUFFIX_METAL_TRAM                                      :Foundry Tram
+STR_NAME_SUFFIX_METAL_TRUCK                                     :Foundry Hauler
 STR_NAME_SUFFIX_MINING_TRAM                                     :Mining Tram
 STR_NAME_SUFFIX_MINING_TRUCK                                    :Mining Truck
 STR_NAME_SUFFIX_OPEN_TRAM                                       :Open Tram

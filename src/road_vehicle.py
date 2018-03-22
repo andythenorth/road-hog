@@ -121,12 +121,25 @@ class Consist(object):
         print("remove get_num_spritesets")
         return 1
 
-    def get_str_name_suffix(self):
-        return 'STR_NAME_SUFFIX_' + self.name_type_suffix + "_TRAM"
+    @property
+    def name_type_suffix(self):
+        result = 'STR_NAME_SUFFIX_' + self._name_type_suffix
+        no_veh_type_suffix = ["BUS", "COACH"] # some vehicle types don't use 'truck' or 'tram'
+        if self._name_type_suffix not in no_veh_type_suffix:
+            if self.roadveh_flag_tram:
+                result = result + "_TRAM"
+            else:
+                result = result + "_TRUCK"
+        return result
+
+    @property
+    def power_type_suffix(self):
+        self._power_type_suffix = 'DIESEL'
+        return 'STR_NAME_SUFFIX_' + self._power_type_suffix
 
     @property
     def name(self):
-        return "string(STR_NAME_CONSIST, string(STR_NAME_" + self.id + "), string(" + self.get_str_name_suffix() + "))"
+        return "string(STR_NAME_CONSIST, string(STR_NAME_" + self.id + "), string(" + self.name_type_suffix + "), string(" + self.power_type_suffix +"))"
 
     def get_spriterows_for_consist_or_subpart(self, units):
         # pass either list of all units in consist, or a slice of the consist starting from front (arbitrary slices not useful)
@@ -506,7 +519,7 @@ class BoxHauler(Consist):
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.name_type_suffix = "BOX"
+        self._name_type_suffix = "BOX"
         self.autorefit = True
         self.class_refit_groups = ['packaged_freight']
         self.label_refits_allowed = ['MAIL', 'GRAI', 'WHEA', 'MAIZ', 'FRUT', 'BEAN', 'NITR'] # Iron Horse compatibility
@@ -521,7 +534,7 @@ class CoveredHopperHauler(Consist):
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.name_type_suffix = "COVERED_HOPPER"
+        self._name_type_suffix = "COVERED_HOPPER"
         self.autorefit = True
         self.class_refit_groups = ['covered_hopper_freight']
         self.label_refits_allowed = ['GRAI', 'WHEA', 'MAIZ', 'SUGR', 'FMSP', 'RFPR', 'CLAY', 'BDMT', 'BEAN', 'NITR', 'RUBR', 'SAND', 'POTA', 'QLME', 'SASH', 'CMNT', 'KAOL', 'FERT', 'SALT']
@@ -537,7 +550,7 @@ class DumpHauler(Consist):
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.name_type_suffix = "DUMP"
+        self._name_type_suffix = "DUMP"
         self.autorefit = True
         self.class_refit_groups = ['dump_freight']
         self.label_refits_allowed = [] # no specific labels needed
@@ -555,7 +568,7 @@ class EdiblesTanker(Consist):
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.name_type_suffix = "EDIBLES_TANKER"
+        self._name_type_suffix = "EDIBLES_TANKER"
         self.autorefit = True
         self.class_refit_groups = ['liquids']
         self.label_refits_allowed = ['MILK', 'FOOD']
@@ -572,7 +585,7 @@ class FlatHauler(Consist):
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.name_type_suffix = "FLATBED"
+        self._name_type_suffix = "FLATBED"
         self.autorefit = True
         self.class_refit_groups = ['flatbed_freight']
         self.label_refits_allowed = ['GOOD']
@@ -588,7 +601,7 @@ class FruitVegHauler(Consist):
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.name_type_suffix = "FRUIT_VEG"
+        self._name_type_suffix = "FRUIT_VEG"
         self.autorefit = True
         self.class_refit_groups = []
         self.label_refits_allowed = ['FRUT', 'BEAN', 'CASS', 'JAVA', 'NUTS']
@@ -604,7 +617,7 @@ class IntermodalHauler(Consist):
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.name_type_suffix = "INTERMODAL"
+        self._name_type_suffix = "INTERMODAL"
         self.autorefit = True
         # maintain other sets (e.g. IH etc) when changing container refits
         self.class_refit_groups = ['express_freight','packaged_freight']
@@ -620,7 +633,7 @@ class LivestockHauler(Consist):
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.name_type_suffix = "LIVESTOCK"
+        self._name_type_suffix = "LIVESTOCK"
         self.autorefit = True
         self.class_refit_groups = []
         self.label_refits_allowed = ['LVST']
@@ -636,7 +649,7 @@ class LogHauler(Consist):
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.name_type_suffix = "LOG"
+        self._name_type_suffix = "LOG"
         self.autorefit = True
         self.class_refit_groups = []
         self.label_refits_allowed = ['WOOD']
@@ -655,7 +668,7 @@ class MailHauler(Consist):
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.name_type_suffix = "MAIL"
+        self._name_type_suffix = "MAIL"
         self.autorefit = True
         self.class_refit_groups = ['mail', 'express_freight']
         self.label_refits_allowed = [] # no specific labels needed
@@ -671,7 +684,7 @@ class MetalHauler(Consist):
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.name_type_suffix = "METAL"
+        self._name_type_suffix = "METAL"
         self.autorefit = True
         self.class_refit_groups = []
         self.label_refits_allowed = ['STEL', 'COPR', 'IRON', 'SLAG']
@@ -686,7 +699,7 @@ class OpenHauler(Consist):
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.name_type_suffix = "OPEN"
+        self._name_type_suffix = "OPEN"
         self.autorefit = True
         self.class_refit_groups = ['all_freight']
         self.label_refits_allowed = [] # no specific labels needed
@@ -716,7 +729,7 @@ class PaxHauler(PaxHaulerBase):
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.name_type_suffix = "BUS"
+        self._name_type_suffix = "BUS"
         self.loading_speed_multiplier = 3
         self.weight_multiplier = 0.17
 
@@ -727,7 +740,7 @@ class PaxExpressHauler(PaxHaulerBase):
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.name_type_suffix = "COACH"
+        self._name_type_suffix = "COACH"
         self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
         self.weight_multiplier = 0.2
 
@@ -739,7 +752,7 @@ class RefrigeratedHauler(Consist):
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.name_type_suffix = "REEFER"
+        self._name_type_suffix = "REEFER"
         self.autorefit = True
         self.class_refit_groups = ['refrigerated_freight']
         self.label_refits_allowed = [] # no specific labels needed, refits all cargos that have refrigerated class
@@ -755,7 +768,7 @@ class SuppliesHauler(Consist):
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.name_type_suffix = "SUPPLIES"
+        self._name_type_suffix = "SUPPLIES"
         self.autorefit = True
         self.class_refit_groups = []
         self.label_refits_allowed = ['ENSP', 'FMSP', 'VEHI', 'BDMT']
@@ -775,7 +788,7 @@ class Tanker(Consist):
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.name_type_suffix = "TANKER"
+        self._name_type_suffix = "TANKER"
         # tankers are unrealistically autorefittable, and at no cost
         # Pikka: if people complain that it's unrealistic, tell them "don't do it then"
         # they also change livery at stations if refitted between certain cargo types <shrug>

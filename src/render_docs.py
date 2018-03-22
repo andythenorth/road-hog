@@ -79,7 +79,7 @@ class DocHelper(object):
         props_to_print = {}
         for vehicle in self.get_vehicles_by_subclass()[subclass]:
             result = {'vehicle':{}, 'subclass_props': []}
-            result = self.fetch_prop(result, 'Vehicle Name', vehicle.name)
+            result = self.fetch_prop(result, 'Vehicle Name', self.unpack_name_string(vehicle))
             result = self.fetch_prop(result, 'HP', int(vehicle.power))
             result = self.fetch_prop(result, 'Speed (mph)', vehicle.speed)
             result = self.fetch_prop(result, 'Weight (t)', int(vehicle.weight)) # cast to int to get same result as game will show
@@ -93,6 +93,13 @@ class DocHelper(object):
             props_to_print[subclass] = result['subclass_props']
 
         return props_to_print
+
+    def unpack_name_string(self, consist):
+        substrings = consist.name.split('string(')
+        name = consist._name
+        type_suffix = base_lang_strings[substrings[3][0:-3]]
+        power_suffix = base_lang_strings[substrings[4][0:-2]]
+        return name + ' ' + type_suffix + ' (' + power_suffix + ')'
 
     def get_base_numeric_id(self, consist):
         return consist.base_numeric_id
