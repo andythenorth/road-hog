@@ -2,7 +2,7 @@ from road_vehicle import EdiblesTanker
 
 consist = EdiblesTanker(id='flow_edge_edibles_tanker',
                         base_numeric_id=930,
-                        name='Flow Edge [Edibles Tanker Truck]',
+                        name='Flow Edge',
                         vehicle_life=40,
                         intro_date=1912)
 

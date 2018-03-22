@@ -2,7 +2,7 @@ from road_vehicle import RefrigeratedHauler
 
 consist = RefrigeratedHauler(id='fortiscue_refrigerated',
                              base_numeric_id=180,
-                             name='Fortiscue [Reefer Truck]',
+                             name='Fortiscue',
                              vehicle_life=40,
                              intro_date=1972)
 

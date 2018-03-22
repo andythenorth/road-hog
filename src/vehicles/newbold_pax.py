@@ -2,7 +2,7 @@ from road_vehicle import PaxHauler
 
 consist = PaxHauler(id='newbold_pax',
                     base_numeric_id=30,
-                    name='Newbold [Passenger Tram]',
+                    name='Newbold',
                     tram_type='ELRL',
                     vehicle_life=40,
                     intro_date=1932)

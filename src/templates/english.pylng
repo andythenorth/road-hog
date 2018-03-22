@@ -2,7 +2,9 @@ STR_GRF_NAME                                                    :Road Hog ${make
 <!--! empty string is not translated :) -->
 STR_EMPTY                                                       :
 
+STR_NAME_CONSIST                                                :{STRING} {STRING}
+
 <!--! consist names -->
 <tal:build_consist_names repeat="consist consists">
-STR_NAME_${consist.id}                                          :${consist.get_name_substr()} {STRING}
+STR_NAME_${consist.id}                                          :${consist._name}
 </tal:build_consist_names>

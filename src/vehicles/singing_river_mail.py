@@ -2,7 +2,7 @@ from road_vehicle import MailHauler
 
 consist = MailHauler(id='singing_river_mail',
                      base_numeric_id=850,
-                     name='Singing River [Courier Tram]',
+                     name='Singing River',
                      tram_type='ELRL',
                      power=600,
                      vehicle_life=40,

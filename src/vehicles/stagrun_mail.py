@@ -2,7 +2,7 @@ from road_vehicle import MailHauler
 
 consist = MailHauler(id='stagrun_mail',
                      base_numeric_id=840,
-                     name='Stagrun [Courier Tram]',
+                     name='Stagrun',
                      tram_type='ELRL',
                      power=360,  # custom power
                      vehicle_life=40,

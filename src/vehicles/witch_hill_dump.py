@@ -2,7 +2,7 @@ from road_vehicle import DumpHauler
 
 consist = DumpHauler(id='witch_hill_dump',
                      base_numeric_id=500,
-                     name='Witch Hill [Mining Truck]',
+                     name='Witch Hill',
                      road_type='HAUL',
                      power=900,
                      speed=50,  # dibbled up above RL for game balance

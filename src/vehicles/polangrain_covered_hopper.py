@@ -2,7 +2,7 @@ from road_vehicle import CoveredHopperHauler
 
 consist = CoveredHopperHauler(id='polangrain_covered_hopper',
                               base_numeric_id=790,
-                              name='Polangrain [Covered Hopper Tram]',
+                              name='Polangrain',
                               tram_type='ELRL',
                               vehicle_life=40,
                               intro_date=1900)

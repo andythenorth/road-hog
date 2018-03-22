@@ -2,7 +2,7 @@ from road_vehicle import FruitVegHauler
 
 consist = FruitVegHauler(id='nutbrook_fruit_veg',
                          base_numeric_id=960,
-                         name='Nutbrook [Fruit Tram]',
+                         name='Nutbrook',
                          tram_type='ELRL',
                          vehicle_life=40,
                          intro_date=1940)

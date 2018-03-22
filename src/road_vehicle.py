@@ -121,10 +121,6 @@ class Consist(object):
         print("remove get_num_spritesets")
         return 1
 
-    def get_name_substr(self):
-        # relies on name being in format "Foo [Bar]" for Name [Type Suffix]
-        return self._name.split('[')[0]
-
     def get_str_name_suffix(self):
         # used in vehicle name string only, relies on name property value being in format "Foo [Bar]" for Name [Type Suffix]
         # Iron Horse has a cleaner implementation of this, dropping the [STUFF] faff, getting it from vehicle subclass instead
@@ -135,7 +131,7 @@ class Consist(object):
 
     @property
     def name(self):
-        return "string(STR_NAME_" + self.id +", string(" + self.get_str_name_suffix() + "))"
+        return "string(STR_NAME_CONSIST, string(STR_NAME_" + self.id + "), string(" + "STR_EMPTY" + "))"
 
     def get_spriterows_for_consist_or_subpart(self, units):
         # pass either list of all units in consist, or a slice of the consist starting from front (arbitrary slices not useful)

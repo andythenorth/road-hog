@@ -2,7 +2,7 @@ from road_vehicle import FlatHauler
 
 consist = FlatHauler(id='chainburn_flat',
                         base_numeric_id=630,
-                        name='Chainburn [Flatbed Truck]',
+                        name='Chainburn',
                         vehicle_life=40,
                         intro_date=1910)
 

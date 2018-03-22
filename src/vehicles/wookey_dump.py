@@ -2,7 +2,7 @@ from road_vehicle import DumpHauler
 
 consist = DumpHauler(id='wookey_dump',
                      base_numeric_id=490,
-                     name='Wookey [Dump Truck]',
+                     name='Wookey',
                      semi_truck_so_redistribute_capacity=True,
                      vehicle_life=40,
                      intro_date=1974)

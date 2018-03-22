@@ -2,7 +2,7 @@ from road_vehicle import MetalHauler
 
 consist = MetalHauler(id='steeraway_metal',
                       base_numeric_id=520,
-                      name='Steeraway [Foundry Hauler]',
+                      name='Steeraway',
                       road_type='HAUL',
                       power=500,
                       speed=45,

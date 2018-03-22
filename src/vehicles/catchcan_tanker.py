@@ -2,7 +2,7 @@ from road_vehicle import Tanker
 
 consist = Tanker(id='catchcan_tanker',
                  base_numeric_id=810,
-                 name='Catchcan [Tanker Tram]',
+                 name='Catchcan',
                  tram_type='ELRL',
                  vehicle_life=40,
                  intro_date=1902)

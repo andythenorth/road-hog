@@ -3,7 +3,7 @@ from road_vehicle import SuppliesHauler
 
 consist = SuppliesHauler(id='crime_rigg_supplies',
                          base_numeric_id=530,
-                         name='Crime Rigg [Supplies Truck]',
+                         name='Crime Rigg',
                          power=360,
                          vehicle_life=40,
                          intro_date=1920)
