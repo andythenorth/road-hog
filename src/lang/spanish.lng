@@ -13,32 +13,34 @@ STR_PARAM_ROSTER_OPTION_0                                       :Gran Bretaña
 STR_PARAM_ROSTER_OPTION_1                                       :Tierras baldías
 
 
-STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Tranvía de pasajeros
-STR_NAME_SUFFIX_BUS                                             :Autobús
-STR_NAME_SUFFIX_COACH                                           :Autobús
+# keep these alphabetised, easier
+
 STR_NAME_SUFFIX_BOX_TRAM                                        :Tranvía furgón cerrado
 STR_NAME_SUFFIX_BOX_TRUCK                                       :Camión furgón cerrado
-STR_NAME_SUFFIX_OPEN_TRAM                                       :Tranvía furgón abierto
-STR_NAME_SUFFIX_OPEN_TRUCK                                      :Camión furgón abierto
-STR_NAME_SUFFIX_TANKER_TRAM                                     :Tranvía cisterna
-STR_NAME_SUFFIX_TANKER_TRUCK                                    :Camión cisterna
+STR_NAME_SUFFIX_BUS                                             :Autobús
+STR_NAME_SUFFIX_COACH                                           :Autobús
 STR_NAME_SUFFIX_COVERED_HOPPER_TRAM                             :Tranvía Tolva cubierto
 STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :Camión Tolva cubierto
 STR_NAME_SUFFIX_DUMP_TRAM                                       :Tranvía Volquete
 STR_NAME_SUFFIX_DUMP_TRUCK                                      :Camión Volquete
-STR_NAME_SUFFIX_MINING_TRAM                                     :Tranvía minero
-STR_NAME_SUFFIX_MINING_TRUCK                                    :Camión Minero
+STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM                             :Tranvía cisterna de/para comestibles
+STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK                            :Camión cisterna de/para comestibles
 STR_NAME_SUFFIX_FLATBED_TRAM                                    :Tranvía plataforma
 STR_NAME_SUFFIX_FLATBED_TRUCK                                   :Camión plataforma
-STR_NAME_SUFFIX_SUPPLIES_TRAM                                   :Tranvía de suministros
-STR_NAME_SUFFIX_SUPPLIES_TRUCK                                  :Camión de suministros
 STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Camión Intermodal
 STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :Tranvía de ganado
 STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :Camión de ganado
-STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM                             :Tranvía cisterna de/para comestibles
-STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK                            :Camión cisterna de/para comestibles
+STR_NAME_SUFFIX_MINING_TRAM                                     :Tranvía minero
+STR_NAME_SUFFIX_MINING_TRUCK                                    :Camión Minero
+STR_NAME_SUFFIX_OPEN_TRAM                                       :Tranvía furgón abierto
+STR_NAME_SUFFIX_OPEN_TRUCK                                      :Camión furgón abierto
+STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Tranvía de pasajeros
 STR_NAME_SUFFIX_REEFER_TRAM                                     :Tranvía frigorífico
 STR_NAME_SUFFIX_REEFER_TRUCK                                    :Camión frigorífico
+STR_NAME_SUFFIX_SUPPLIES_TRAM                                   :Tranvía de suministros
+STR_NAME_SUFFIX_SUPPLIES_TRUCK                                  :Camión de suministros
+STR_NAME_SUFFIX_TANKER_TRAM                                     :Tranvía cisterna
+STR_NAME_SUFFIX_TANKER_TRUCK                                    :Camión cisterna
 
 STR_COASTER                                                     :La vaca salta sobre la luna (esto no es sino un recordatorio de que este NewGRF está sin acabar)
 STR_DOGTRACK                                                    :Los perros son marrones, alguna vez

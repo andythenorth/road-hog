@@ -13,32 +13,34 @@ STR_PARAM_ROSTER_OPTION_0                                       :Brit
 STR_PARAM_ROSTER_OPTION_1                                       :Brachland
 
 
-STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Straßenbahn (Passagiere)
-STR_NAME_SUFFIX_BUS                                             :Bus
-STR_NAME_SUFFIX_COACH                                           :Anhänger
+# keep these alphabetised, easier
+
 STR_NAME_SUFFIX_BOX_TRAM                                        :Tram mit Kastenaufbau
 STR_NAME_SUFFIX_BOX_TRUCK                                       :Kastenwagen
-STR_NAME_SUFFIX_OPEN_TRAM                                       :Offene Straßenbahn
-STR_NAME_SUFFIX_OPEN_TRUCK                                      :Pritschenlaster
-STR_NAME_SUFFIX_TANKER_TRAM                                     :Tankwagen-Tram
-STR_NAME_SUFFIX_TANKER_TRUCK                                    :Tanklaster
+STR_NAME_SUFFIX_BUS                                             :Bus
+STR_NAME_SUFFIX_COACH                                           :Anhänger
 STR_NAME_SUFFIX_COVERED_HOPPER_TRAM                             :Gedeckte Schüttgut-Tram
 STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :Gedeckter Schüttgut-LKW
 STR_NAME_SUFFIX_DUMP_TRAM                                       :Straßenbahn für Schüttgüter
 STR_NAME_SUFFIX_DUMP_TRUCK                                      :Muldenkipper
-STR_NAME_SUFFIX_MINING_TRAM                                     :Grubenbahn
-STR_NAME_SUFFIX_MINING_TRUCK                                    :Grubenlaster
+STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM                             :Straßenbahn für flüssige Nahrungsmittel
+STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK                            :Nahrungsmittel-Laster
 STR_NAME_SUFFIX_FLATBED_TRAM                                    :Straßenbahn mit Pritsche
 STR_NAME_SUFFIX_FLATBED_TRUCK                                   :Pritschenlaster
-STR_NAME_SUFFIX_SUPPLIES_TRAM                                   :Straßenbahn für Bedarfsgüter
-STR_NAME_SUFFIX_SUPPLIES_TRUCK                                  :Lastkraftwagen für Bedarfsgüter
 STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Container-Laster
 STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :Viehtransporter
 STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :Viehtransporter
-STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM                             :Straßenbahn für flüssige Nahrungsmittel
-STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK                            :Nahrungsmittel-Laster
+STR_NAME_SUFFIX_MINING_TRAM                                     :Grubenbahn
+STR_NAME_SUFFIX_MINING_TRUCK                                    :Grubenlaster
+STR_NAME_SUFFIX_OPEN_TRAM                                       :Offene Straßenbahn
+STR_NAME_SUFFIX_OPEN_TRUCK                                      :Pritschenlaster
+STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Straßenbahn (Passagiere)
 STR_NAME_SUFFIX_REEFER_TRAM                                     :Kühlwagen-Tram
 STR_NAME_SUFFIX_REEFER_TRUCK                                    :Kühltransporter
+STR_NAME_SUFFIX_SUPPLIES_TRAM                                   :Straßenbahn für Bedarfsgüter
+STR_NAME_SUFFIX_SUPPLIES_TRUCK                                  :Lastkraftwagen für Bedarfsgüter
+STR_NAME_SUFFIX_TANKER_TRAM                                     :Tankwagen-Tram
+STR_NAME_SUFFIX_TANKER_TRUCK                                    :Tanklaster
 
 STR_COASTER                                                     :Lalelu, nur der Mann im Mond schaut zu... (Erinnerung, dass dies noch nicht fertig ist)
 STR_DOGTRACK                                                    :Hunde sind braun. Manchmal.
