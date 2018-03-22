@@ -38,8 +38,6 @@ STR_NAME_SUFFIX_BOX_TRAM                                        :Tram à caisse
 STR_NAME_SUFFIX_BOX_TRUCK                                       :Camion-caisse
 STR_NAME_SUFFIX_OPEN_TRAM                                       :Tram-tombereau
 STR_NAME_SUFFIX_OPEN_TRUCK                                      :Camion ouvert
-STR_NAME_SUFFIX_COURIER_TRAM                                    :Tram postal
-STR_NAME_SUFFIX_COURIER_TRUCK                                   :Camion postal
 STR_NAME_SUFFIX_TANKER_TRAM                                     :Tram-citerne
 STR_NAME_SUFFIX_TANKER_TRUCK                                    :Camion-citerne
 STR_NAME_SUFFIX_COVERED_HOPPER_TRAM                             :Tram-tombereau couvert
@@ -50,8 +48,6 @@ STR_NAME_SUFFIX_MINING_TRAM                                     :Tram minier
 STR_NAME_SUFFIX_MINING_TRUCK                                    :Camion de mine
 STR_NAME_SUFFIX_FLATBED_TRAM                                    :Tram-plateau
 STR_NAME_SUFFIX_FLATBED_TRUCK                                   :Camion-plateau
-STR_NAME_SUFFIX_FOUNDRY_TRAM                                    :Tram de fonderie
-STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :Camion de fonderie
 STR_NAME_SUFFIX_SUPPLIES_TRAM                                   :Tram de ravitaillement
 STR_NAME_SUFFIX_SUPPLIES_TRUCK                                  :Camion de ravitallement
 STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Camion intermodal
@@ -61,8 +57,6 @@ STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM                             :Tram citerne al
 STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK                            :Camion citerne alimentaire
 STR_NAME_SUFFIX_REEFER_TRAM                                     :Tram frigorifique
 STR_NAME_SUFFIX_REEFER_TRUCK                                    :Camion frigorifique
-STR_NAME_SUFFIX_LOGGING_TRUCK                                   :Grumier
-STR_NAME_SUFFIX_FRUIT_TRAM                                      :Tram pour fruits et légumes
 
 STR_COASTER                                                     :Une alumette prend feu. Pscht. (pas encore fini)
 STR_DOGTRACK                                                    :Ça le fait, des fois

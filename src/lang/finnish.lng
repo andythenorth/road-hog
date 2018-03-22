@@ -17,8 +17,6 @@ STR_NAME_SUFFIX_BOX_TRAM                                        :Umpikoriraitiov
 STR_NAME_SUFFIX_BOX_TRUCK                                       :Umpikoriauto
 STR_NAME_SUFFIX_OPEN_TRAM                                       :Avolavaraitiovaunu
 STR_NAME_SUFFIX_OPEN_TRUCK                                      :Avolavakuorma-auto
-STR_NAME_SUFFIX_COURIER_TRAM                                    :Lähettiraitiovaunu
-STR_NAME_SUFFIX_COURIER_TRUCK                                   :Lähettiauto
 STR_NAME_SUFFIX_TANKER_TRAM                                     :Säiliöraitiovaunu
 STR_NAME_SUFFIX_TANKER_TRUCK                                    :Säiliöauto
 STR_NAME_SUFFIX_COVERED_HOPPER_TRAM                             :Katettu Suppiloraitiovaunu
@@ -29,8 +27,6 @@ STR_NAME_SUFFIX_MINING_TRAM                                     :Mineraaliraitio
 STR_NAME_SUFFIX_MINING_TRUCK                                    :Kaivoskuorma-auto
 STR_NAME_SUFFIX_FLATBED_TRAM                                    :Avolavaraitiovaunu
 STR_NAME_SUFFIX_FLATBED_TRUCK                                   :Avolavakuorma-auto
-STR_NAME_SUFFIX_FOUNDRY_TRAM                                    :Sulattamoraitiovaunu
-STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :Sulattamorekka
 STR_NAME_SUFFIX_SUPPLIES_TRAM                                   :Tarvikeraitiovaunu
 STR_NAME_SUFFIX_SUPPLIES_TRUCK                                  :Tarvikekuorma-auto
 STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Konttirekka
@@ -40,7 +36,6 @@ STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM                             :Syömäkelpoist
 STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK                            :Syömäkelpoisten Nesteiden Säiliöauto
 STR_NAME_SUFFIX_REEFER_TRAM                                     :Kylmäraitiovaunu
 STR_NAME_SUFFIX_REEFER_TRUCK                                    :Kylmäkuorma-auto
-STR_NAME_SUFFIX_LOGGING_TRUCK                                   :Tukkirekka
 
 STR_COASTER                                                     :Vesihiisi sihisi hississä (tämä ei ole valmis -muistutus)
 STR_DOGTRACK                                                    :Koirat ovat ruskeita, joskus

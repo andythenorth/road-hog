@@ -21,8 +21,6 @@ STR_NAME_SUFFIX_BOX_TRAM                                        :Transviaria Rae
 STR_NAME_SUFFIX_BOX_TRUCK                                       :Autoplaustrum Cubicum
 STR_NAME_SUFFIX_OPEN_TRAM                                       :Transviaria Raeda Aperta
 STR_NAME_SUFFIX_OPEN_TRUCK                                      :Autoplaustrum Apertum
-STR_NAME_SUFFIX_COURIER_TRAM                                    :Transviaria Raeda Cursualis
-STR_NAME_SUFFIX_COURIER_TRUCK                                   :Autoplaustrum Cursualis
 STR_NAME_SUFFIX_TANKER_TRAM                                     :Transviaria Raeda Cisternina
 STR_NAME_SUFFIX_TANKER_TRUCK                                    :Autoplaustrum Cisterninum
 STR_NAME_SUFFIX_COVERED_HOPPER_TRAM                             :Transviaria Raeda Infundibularis Tecta
@@ -42,7 +40,5 @@ STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM                             :Transviaria Rae
 STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK                            :Autoplaustrum Cisterninum Edulium
 STR_NAME_SUFFIX_REEFER_TRAM                                     :Transviaria Raeda Frigidaria
 STR_NAME_SUFFIX_REEFER_TRUCK                                    :Autoplaustrum Frigidarium
-STR_NAME_SUFFIX_LOGGING_TRUCK                                   :Autoplaustrum Caudicale
-STR_NAME_SUFFIX_FRUIT_TRAM                                      :Transviaria Raeda Fructuaria
 
 STR_COASTER                                                     :Bos Salivit Supra Lunam (memento adhuc progredi)

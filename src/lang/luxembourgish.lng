@@ -19,8 +19,6 @@ STR_NAME_SUFFIX_BOX_TRAM                                        :Këschten-Tram
 STR_NAME_SUFFIX_BOX_TRUCK                                       :Këschtecamion
 STR_NAME_SUFFIX_OPEN_TRAM                                       :Openen Tram
 STR_NAME_SUFFIX_OPEN_TRUCK                                      :Opene Camion
-STR_NAME_SUFFIX_COURIER_TRAM                                    :Post-Tram
-STR_NAME_SUFFIX_COURIER_TRUCK                                   :Postcamion
 STR_NAME_SUFFIX_TANKER_TRAM                                     :Tanker-Tram
 STR_NAME_SUFFIX_TANKER_TRUCK                                    :Tankcamion
 STR_NAME_SUFFIX_COVERED_HOPPER_TRAM                             :Iwwerdeckte Kipp-Tram
@@ -31,8 +29,6 @@ STR_NAME_SUFFIX_MINING_TRAM                                     :Minnen-Tram
 STR_NAME_SUFFIX_MINING_TRUCK                                    :Minnecamion
 STR_NAME_SUFFIX_FLATBED_TRAM                                    :Flachbett-Tram
 STR_NAME_SUFFIX_FLATBED_TRUCK                                   :Flachbettcamion
-STR_NAME_SUFFIX_FOUNDRY_TRAM                                    :Schmelz-Tram
-STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :Schmelzwuerecamion
 STR_NAME_SUFFIX_SUPPLIES_TRAM                                   :Ersatzdeeler-Tram
 STR_NAME_SUFFIX_SUPPLIES_TRUCK                                  :Ersatzdeelercamion
 STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Containercamion
@@ -42,8 +38,6 @@ STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM                             :Liewensmëttel-
 STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK                            :Liewensmëttel-Tankcamion
 STR_NAME_SUFFIX_REEFER_TRAM                                     :Killwueren-Tram
 STR_NAME_SUFFIX_REEFER_TRUCK                                    :Killcamion
-STR_NAME_SUFFIX_LOGGING_TRUCK                                   :Fieschterei Camion
-STR_NAME_SUFFIX_FRUIT_TRAM                                      :Friischten-Tram
 
 STR_COASTER                                                     :Bliblablubb (e Reminder vum Andy...)
 STR_DOGTRACK                                                    :Hënn si brong, munchmol.

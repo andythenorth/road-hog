@@ -20,8 +20,6 @@ STR_NAME_SUFFIX_BOX_TRAM                                        :Tranvía furgó
 STR_NAME_SUFFIX_BOX_TRUCK                                       :Camión furgón cerrado
 STR_NAME_SUFFIX_OPEN_TRAM                                       :Tranvía furgón abierto
 STR_NAME_SUFFIX_OPEN_TRUCK                                      :Camión furgón abierto
-STR_NAME_SUFFIX_COURIER_TRAM                                    :Tranvía de mensajería-correo urgente
-STR_NAME_SUFFIX_COURIER_TRUCK                                   :Camión de mensajería-correo urgente
 STR_NAME_SUFFIX_TANKER_TRAM                                     :Tranvía cisterna
 STR_NAME_SUFFIX_TANKER_TRUCK                                    :Camión cisterna
 STR_NAME_SUFFIX_COVERED_HOPPER_TRAM                             :Tranvía Tolva cubierto
@@ -32,8 +30,6 @@ STR_NAME_SUFFIX_MINING_TRAM                                     :Tranvía minero
 STR_NAME_SUFFIX_MINING_TRUCK                                    :Camión Minero
 STR_NAME_SUFFIX_FLATBED_TRAM                                    :Tranvía plataforma
 STR_NAME_SUFFIX_FLATBED_TRUCK                                   :Camión plataforma
-STR_NAME_SUFFIX_FOUNDRY_TRAM                                    :Tranvía para/de la fundición
-STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :Camión para/de la fundición
 STR_NAME_SUFFIX_SUPPLIES_TRAM                                   :Tranvía de suministros
 STR_NAME_SUFFIX_SUPPLIES_TRUCK                                  :Camión de suministros
 STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Camión Intermodal
@@ -43,8 +39,6 @@ STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM                             :Tranvía cister
 STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK                            :Camión cisterna de/para comestibles
 STR_NAME_SUFFIX_REEFER_TRAM                                     :Tranvía frigorífico
 STR_NAME_SUFFIX_REEFER_TRUCK                                    :Camión frigorífico
-STR_NAME_SUFFIX_LOGGING_TRUCK                                   :Camión de troncos
-STR_NAME_SUFFIX_FRUIT_TRAM                                      :Tranvía de frutas y vegetales
 
 STR_COASTER                                                     :La vaca salta sobre la luna (esto no es sino un recordatorio de que este NewGRF está sin acabar)
 STR_DOGTRACK                                                    :Los perros son marrones, alguna vez

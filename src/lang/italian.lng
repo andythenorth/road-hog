@@ -21,8 +21,6 @@ STR_NAME_SUFFIX_BOX_TRAM                                        :Tram a cassone 
 STR_NAME_SUFFIX_BOX_TRUCK                                       :Camion chiuso
 STR_NAME_SUFFIX_OPEN_TRAM                                       :Tram a cassone aperto
 STR_NAME_SUFFIX_OPEN_TRUCK                                      :Camion a cassone aperto
-STR_NAME_SUFFIX_COURIER_TRAM                                    :Tram per merci leggere
-STR_NAME_SUFFIX_COURIER_TRUCK                                   :Camion leggero
 STR_NAME_SUFFIX_TANKER_TRAM                                     :Tram cisterna
 STR_NAME_SUFFIX_TANKER_TRUCK                                    :Autobotte
 STR_NAME_SUFFIX_COVERED_HOPPER_TRAM                             :Tram a tramoggia coperto
@@ -33,8 +31,6 @@ STR_NAME_SUFFIX_MINING_TRAM                                     :Tram di miniera
 STR_NAME_SUFFIX_MINING_TRUCK                                    :Automezzo di miniera
 STR_NAME_SUFFIX_FLATBED_TRAM                                    :Tram pianale
 STR_NAME_SUFFIX_FLATBED_TRUCK                                   :Camion pianale
-STR_NAME_SUFFIX_FOUNDRY_TRAM                                    :Tram di fonderia
-STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :Automezzo di fonderia
 STR_NAME_SUFFIX_SUPPLIES_TRAM                                   :Tram per forniture
 STR_NAME_SUFFIX_SUPPLIES_TRUCK                                  :Camion per forniture
 STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Automezzo intermodale
@@ -44,8 +40,6 @@ STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM                             :Tram cisterna p
 STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK                            :Autobotte per alimentari
 STR_NAME_SUFFIX_REEFER_TRAM                                     :Tram refrigerato
 STR_NAME_SUFFIX_REEFER_TRUCK                                    :Camion refrigerato
-STR_NAME_SUFFIX_LOGGING_TRUCK                                   :Camion per legname
-STR_NAME_SUFFIX_FRUIT_TRAM                                      :Tram per frutta e verdure
 
 STR_COASTER                                                     :La mucca ha saltato sopra la luna (questo é un promemoria non finito)
 STR_DOGTRACK                                                    :I cani sono marroni, a volte

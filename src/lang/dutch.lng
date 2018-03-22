@@ -19,8 +19,6 @@ STR_NAME_SUFFIX_BOX_TRAM                                        :Baktram
 STR_NAME_SUFFIX_BOX_TRUCK                                       :Bakwagen
 STR_NAME_SUFFIX_OPEN_TRAM                                       :Open Tram
 STR_NAME_SUFFIX_OPEN_TRUCK                                      :Open Truck
-STR_NAME_SUFFIX_COURIER_TRAM                                    :Koerierstram
-STR_NAME_SUFFIX_COURIER_TRUCK                                   :Koerierstruck
 STR_NAME_SUFFIX_TANKER_TRAM                                     :Tanktram
 STR_NAME_SUFFIX_TANKER_TRUCK                                    :Tankwagen
 STR_NAME_SUFFIX_COVERED_HOPPER_TRAM                             :Afgedekte stortgoedtram
@@ -31,8 +29,6 @@ STR_NAME_SUFFIX_MINING_TRAM                                     :Mijnbouwtram
 STR_NAME_SUFFIX_MINING_TRUCK                                    :Mijnbouwtruck
 STR_NAME_SUFFIX_FLATBED_TRAM                                    :Semi-diepladertram
 STR_NAME_SUFFIX_FLATBED_TRUCK                                   :Semi-diepladertruck
-STR_NAME_SUFFIX_FOUNDRY_TRAM                                    :Hoogoventram
-STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :Platte truck
 STR_NAME_SUFFIX_SUPPLIES_TRAM                                   :Materialentram
 STR_NAME_SUFFIX_SUPPLIES_TRUCK                                  :Materialentruck
 STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Containertruck
@@ -42,8 +38,6 @@ STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM                             :Voedseltanktram
 STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK                            :Voedseltankwagen
 STR_NAME_SUFFIX_REEFER_TRAM                                     :Gekoelde tram
 STR_NAME_SUFFIX_REEFER_TRUCK                                    :Gekoelde truck
-STR_NAME_SUFFIX_LOGGING_TRUCK                                   :Houttruck
-STR_NAME_SUFFIX_FRUIT_TRAM                                      :Fruittram
 
 STR_COASTER                                                     :de koe sprong over de maan (herinnering dat dit nog niet af is)
 STR_DOGTRACK                                                    :honden hebben soms een bruine periode

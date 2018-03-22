@@ -21,8 +21,6 @@ STR_NAME_SUFFIX_BOX_TRAM                                        :Kassetrikk
 STR_NAME_SUFFIX_BOX_TRUCK                                       :Kassebil
 STR_NAME_SUFFIX_OPEN_TRAM                                       :Åpen trikk
 STR_NAME_SUFFIX_OPEN_TRUCK                                      :Åpen bil
-STR_NAME_SUFFIX_COURIER_TRAM                                    :Kurertrikk
-STR_NAME_SUFFIX_COURIER_TRUCK                                   :Kurerbil
 STR_NAME_SUFFIX_TANKER_TRAM                                     :Tanktrikk
 STR_NAME_SUFFIX_TANKER_TRUCK                                    :Tankbil
 STR_NAME_SUFFIX_COVERED_HOPPER_TRAM                             :Tildekket trautrikk
@@ -33,8 +31,6 @@ STR_NAME_SUFFIX_MINING_TRAM                                     :Gruvetrikk
 STR_NAME_SUFFIX_MINING_TRUCK                                    :Gruvebil
 STR_NAME_SUFFIX_FLATBED_TRAM                                    :Flatvogntrikk
 STR_NAME_SUFFIX_FLATBED_TRUCK                                   :Flatvognbil
-STR_NAME_SUFFIX_FOUNDRY_TRAM                                    :Støperitrikk
-STR_NAME_SUFFIX_FOUNDRY_HAULER                                  :Støperibil
 STR_NAME_SUFFIX_SUPPLIES_TRAM                                   :Utstyrstrikk
 STR_NAME_SUFFIX_SUPPLIES_TRUCK                                  :Utstyrsbil
 STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Containerbil
@@ -44,8 +40,6 @@ STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM                             :Tanktrikk for m
 STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK                            :Tankbil for matvarer
 STR_NAME_SUFFIX_REEFER_TRAM                                     :Kjølevogntrikk
 STR_NAME_SUFFIX_REEFER_TRUCK                                    :Kjølevognbil
-STR_NAME_SUFFIX_LOGGING_TRUCK                                   :Tømmerbil
-STR_NAME_SUFFIX_FRUIT_TRAM                                      :Frukttrikk
 
 STR_COASTER                                                     :Kua hoppet over månen (dette er en påminnelse om at ikke alt er ferdig)
 STR_DOGTRACK                                                    :Hunder er brune iblant
