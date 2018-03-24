@@ -14,31 +14,33 @@ STR_PARAM_ROSTER_OPTION_0                                       :Anglica
 STR_PARAM_ROSTER_OPTION_1                                       :Erema
 
 
-STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Transviaria Raeda Vectoria
-STR_NAME_SUFFIX_BUS                                             :Laophorium
-STR_NAME_SUFFIX_COACH                                           :Carruca
+# keep these alphabetised, easier
+
 STR_NAME_SUFFIX_BOX_TRAM                                        :Transviaria Raeda Clausa
 STR_NAME_SUFFIX_BOX_TRUCK                                       :Autoplaustrum Cubicum
-STR_NAME_SUFFIX_OPEN_TRAM                                       :Transviaria Raeda Aperta
-STR_NAME_SUFFIX_OPEN_TRUCK                                      :Autoplaustrum Apertum
-STR_NAME_SUFFIX_TANKER_TRAM                                     :Transviaria Raeda Cisternina
-STR_NAME_SUFFIX_TANKER_TRUCK                                    :Autoplaustrum Cisterninum
+STR_NAME_SUFFIX_BUS                                             :Laophorium
+STR_NAME_SUFFIX_COACH                                           :Carruca
 STR_NAME_SUFFIX_COVERED_HOPPER_TRAM                             :Transviaria Raeda Infundibularis Tecta
 STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :Autoplaustrum Infundibulare Tectum
 STR_NAME_SUFFIX_DUMP_TRAM                                       :Transviaria Raeda Demissa
 STR_NAME_SUFFIX_DUMP_TRUCK                                      :Autoplaustrum Demissum
-STR_NAME_SUFFIX_MINING_TRAM                                     :Transviaria Raeda Fodinalis
-STR_NAME_SUFFIX_MINING_TRUCK                                    :Autoplaustrum Fodinale
+STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM                             :Transviaria Raeda Cisternina Edulium
+STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK                            :Autoplaustrum Cisterninum Edulium
 STR_NAME_SUFFIX_FLATBED_TRAM                                    :Transviaria Raeda Plana
 STR_NAME_SUFFIX_FLATBED_TRUCK                                   :Autoplaustrum Planum
-STR_NAME_SUFFIX_SUPPLIES_TRAM                                   :Transviaria Raeda Apparatuum
-STR_NAME_SUFFIX_SUPPLIES_TRUCK                                  :Autoplaustrum Apparatuum
 STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Autoplaustrum Intermodale
 STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :Transviaria Raeda Pecuaria
 STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :Autoplaustrum Pecuarium
-STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM                             :Transviaria Raeda Cisternina Edulium
-STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK                            :Autoplaustrum Cisterninum Edulium
+STR_NAME_SUFFIX_MINING_TRAM                                     :Transviaria Raeda Fodinalis
+STR_NAME_SUFFIX_MINING_TRUCK                                    :Autoplaustrum Fodinale
+STR_NAME_SUFFIX_OPEN_TRAM                                       :Transviaria Raeda Aperta
+STR_NAME_SUFFIX_OPEN_TRUCK                                      :Autoplaustrum Apertum
+STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Transviaria Raeda Vectoria
 STR_NAME_SUFFIX_REEFER_TRAM                                     :Transviaria Raeda Frigidaria
 STR_NAME_SUFFIX_REEFER_TRUCK                                    :Autoplaustrum Frigidarium
+STR_NAME_SUFFIX_SUPPLIES_TRAM                                   :Transviaria Raeda Apparatuum
+STR_NAME_SUFFIX_SUPPLIES_TRUCK                                  :Autoplaustrum Apparatuum
+STR_NAME_SUFFIX_TANKER_TRAM                                     :Transviaria Raeda Cisternina
+STR_NAME_SUFFIX_TANKER_TRUCK                                    :Autoplaustrum Cisterninum
 
 STR_COASTER                                                     :Bos Salivit Supra Lunam (memento adhuc progredi)

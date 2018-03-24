@@ -31,32 +31,34 @@ STR_BUILD_WINDOW_CAPTION_ELECTRIC_TRAMWAY                       :Nouveaux trams 
 STR_AUTOREPLACE_TEXT_ELECTRIC_TRAMWAY                           :Trams électriques
 STR_NEW_ENGINE_TEXT_ELECTRIC_TRAMWAY                            :tram électrique
 
-STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Tramway de passagers
-STR_NAME_SUFFIX_BUS                                             :Autobus
-STR_NAME_SUFFIX_COACH                                           :Autocar
+# keep these alphabetised, easier
+
 STR_NAME_SUFFIX_BOX_TRAM                                        :Tram à caisse
 STR_NAME_SUFFIX_BOX_TRUCK                                       :Camion-caisse
-STR_NAME_SUFFIX_OPEN_TRAM                                       :Tram-tombereau
-STR_NAME_SUFFIX_OPEN_TRUCK                                      :Camion ouvert
-STR_NAME_SUFFIX_TANKER_TRAM                                     :Tram-citerne
-STR_NAME_SUFFIX_TANKER_TRUCK                                    :Camion-citerne
+STR_NAME_SUFFIX_BUS                                             :Autobus
+STR_NAME_SUFFIX_COACH                                           :Autocar
 STR_NAME_SUFFIX_COVERED_HOPPER_TRAM                             :Tram-tombereau couvert
 STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :Camion-tombereau couvert
 STR_NAME_SUFFIX_DUMP_TRAM                                       :Tram-benne
 STR_NAME_SUFFIX_DUMP_TRUCK                                      :Camion-benne
-STR_NAME_SUFFIX_MINING_TRAM                                     :Tram minier
-STR_NAME_SUFFIX_MINING_TRUCK                                    :Camion de mine
+STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM                             :Tram citerne alimentaire
+STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK                            :Camion citerne alimentaire
 STR_NAME_SUFFIX_FLATBED_TRAM                                    :Tram-plateau
 STR_NAME_SUFFIX_FLATBED_TRUCK                                   :Camion-plateau
-STR_NAME_SUFFIX_SUPPLIES_TRAM                                   :Tram de ravitaillement
-STR_NAME_SUFFIX_SUPPLIES_TRUCK                                  :Camion de ravitallement
 STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Camion intermodal
 STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :Tram-bétaillère
 STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :Bétaillère
-STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM                             :Tram citerne alimentaire
-STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK                            :Camion citerne alimentaire
+STR_NAME_SUFFIX_MINING_TRAM                                     :Tram minier
+STR_NAME_SUFFIX_MINING_TRUCK                                    :Camion de mine
+STR_NAME_SUFFIX_OPEN_TRAM                                       :Tram-tombereau
+STR_NAME_SUFFIX_OPEN_TRUCK                                      :Camion ouvert
+STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Tramway de passagers
 STR_NAME_SUFFIX_REEFER_TRAM                                     :Tram frigorifique
 STR_NAME_SUFFIX_REEFER_TRUCK                                    :Camion frigorifique
+STR_NAME_SUFFIX_SUPPLIES_TRAM                                   :Tram de ravitaillement
+STR_NAME_SUFFIX_SUPPLIES_TRUCK                                  :Camion de ravitallement
+STR_NAME_SUFFIX_TANKER_TRAM                                     :Tram-citerne
+STR_NAME_SUFFIX_TANKER_TRUCK                                    :Camion-citerne
 
 STR_COASTER                                                     :Une alumette prend feu. Pscht. (pas encore fini)
 STR_DOGTRACK                                                    :Ça le fait, des fois
