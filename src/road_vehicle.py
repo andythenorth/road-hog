@@ -128,14 +128,12 @@ class Consist(object):
 
     @property
     def name_type_suffix(self):
+        # some consist subclasses will over-ride this for special case handling
         result = 'STR_NAME_SUFFIX_' + self._name_type_suffix
-        no_veh_type_suffix = ["BUS", "COACH"] # some vehicle types don't use 'truck' or 'tram'
-        if self._name_type_suffix not in no_veh_type_suffix:
-            if self.roadveh_flag_tram:
-                result = result + "_TRAM"
-            else:
-                result = result + "_TRUCK"
-        return result
+        if self.roadveh_flag_tram:
+            return result + "_TRAM"
+        else:
+            return result + "_TRUCK"
 
     @property
     def power_type_suffix(self):
@@ -771,9 +769,16 @@ class PaxHauler(PaxHaulerBase):
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self._name_type_suffix = "BUS"
         self.loading_speed_multiplier = 3
         self.weight_multiplier = 0.17
+
+    @property
+    def name_type_suffix(self):
+        # special case handling for name suffix strings
+        if self.roadveh_flag_tram:
+            return "STR_NAME_SUFFIX_PASSENGER_TRAM"
+        else:
+            return "STR_NAME_SUFFIX_BUS"
 
 
 class PaxExpressHauler(PaxHaulerBase):
@@ -782,9 +787,17 @@ class PaxExpressHauler(PaxHaulerBase):
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self._name_type_suffix = "COACH"
+        self._name_type_suffix = "COACH" # other magic applies this only to road vehicles, trams will still be "TRAM"
         self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
         self.weight_multiplier = 0.2
+
+    @property
+    def name_type_suffix(self):
+        # special case handling for name suffix strings
+        if self.roadveh_flag_tram:
+            return "STR_NAME_SUFFIX_PASSENGER_TRAM"
+        else:
+            return "STR_NAME_SUFFIX_COACH"
 
 
 class RefrigeratedHauler(Consist):
