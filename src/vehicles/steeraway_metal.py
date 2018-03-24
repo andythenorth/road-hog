@@ -1,4 +1,4 @@
-from road_vehicle import MetalHauler
+from road_vehicle import MetalHauler, DieselRoadVehicle
 
 consist = MetalHauler(id='steeraway_metal',
                       base_numeric_id=520,
@@ -9,11 +9,10 @@ consist = MetalHauler(id='steeraway_metal',
                       vehicle_life=80,
                       intro_date=1960)
 
-consist.add_unit(capacity=0,
-                 vehicle_length=6,
-                 visual_effect='VISUAL_EFFECT_DIESEL')
+consist.add_unit(type=DieselRoadVehicle,
+                 capacity=0,
+                 vehicle_length=6)
 
 consist.add_unit(capacity=50,
                  vehicle_length=7,
                  repeat=2)
-

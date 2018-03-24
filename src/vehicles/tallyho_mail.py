@@ -1,4 +1,4 @@
-from road_vehicle import MailHauler
+from road_vehicle import MailHauler, DieselRoadVehicle
 
 consist = MailHauler(id='tallyho_mail',
                      base_numeric_id=450,
@@ -7,7 +7,6 @@ consist = MailHauler(id='tallyho_mail',
                      vehicle_life=40,
                      intro_date=1909)
 
-consist.add_unit(capacity=15,
-                 vehicle_length=6,
-                 visual_effect='VISUAL_EFFECT_DIESEL')
-
+consist.add_unit(type=DieselRoadVehicle,
+                 capacity=15,
+                 vehicle_length=6)

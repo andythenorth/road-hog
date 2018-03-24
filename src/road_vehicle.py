@@ -40,6 +40,8 @@ class Consist(object):
         self.vehicle_life = kwargs.get('vehicle_life', None)
         self._power = kwargs.get('power', None)
         self._sound_effect = kwargs.get('sound_effect', None)
+        # suffix for 'Diesel', 'Steam' etc in name string, set by unit subclasses, but stored in consist as it's a consist property
+        self._power_type_suffix = None
         # option for multiple default cargos, cascading if first cargo(s) are not available
         self.default_cargos = []
         # semi-trucks need some redistribution of capacity to get correct TE (don't use this of other magic, bad idea)
@@ -69,7 +71,10 @@ class Consist(object):
         # how many unique units? (units can be repeated, we are using count for numerid ID, so we want uniques)
         count = len(set(self.units))
 
-        unit = RoadVehicle(consist=self, **kwargs)
+        if kwargs.get('type', None) is not None:
+            unit = kwargs['type'](consist=self, **kwargs)
+        else:
+            unit = RoadVehicle(consist=self, **kwargs)
 
         if count == 0:
             unit.id = self.id # first vehicle gets no numeric id suffix - for compatibility with buy menu list ids etc
@@ -134,8 +139,10 @@ class Consist(object):
 
     @property
     def power_type_suffix(self):
-        self._power_type_suffix = 'DIESEL'
-        return 'STR_NAME_SUFFIX_' + self._power_type_suffix
+        if self._power_type_suffix is None:
+            utils.echo_message('Consist ' + self.id + ' has no _power_type_suffix set by any of its units')
+        else:
+            return 'STR_NAME_SUFFIX_' + self._power_type_suffix
 
     @property
     def name(self):
@@ -299,6 +306,7 @@ class Consist(object):
 
     @property
     def sound_effect(self):
+        utils.echo_message('sound_effect should use RoadVehicle subclasses, not look at effects')
         # allow custom sound effects (set per subclass or vehicle)
         if self._sound_effect:
             return self._sound_effect
@@ -496,6 +504,7 @@ class RoadVehicle(object):
                  result.append('STORE_TEMP(create_effect(' + effect + '), 0x10' + str(index) + ')')
             return '[' + ','.join(result) + ']'
         else:
+            utils.echo_message("visual_effect isn't being used by get_expression_for_effects() in case where 'effects' is not used")
             return 0
 
     def get_nml_expression_for_cargo_variant_random_switch(self, cargo_id=None):
@@ -511,6 +520,39 @@ class RoadVehicle(object):
         template = templates[template_name]
         nml_result = template(vehicle=self, consist=self.consist, global_constants=global_constants)
         return nml_result
+
+
+class SteamRoadVehicle(RoadVehicle):
+    """
+    Unit for a steam vehicle, with over-rideable smoke
+    """
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self._effect_spawn_model = 'EFFECT_SPAWN_MODEL_STEAM'
+        self.visual_effect = 'VISUAL_EFFECT_STEAM'
+        self.consist._power_type_suffix = 'STEAM'
+
+
+class DieselRoadVehicle(RoadVehicle):
+    """
+    Unit for a diesel vehicle, with over-rideable smoke
+    """
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self._effect_spawn_model = 'EFFECT_SPAWN_MODEL_DIESEL'
+        self.visual_effect = 'VISUAL_EFFECT_DIESEL'
+        self.consist._power_type_suffix = 'DIESEL'
+
+
+class ElectricRoadVehicle(RoadVehicle):
+    """
+    Unit for an electric vehicle, with over-rideable sparks
+    """
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self._effect_spawn_model = 'EFFECT_SPAWN_MODEL_ELECTRIC'
+        self.visual_effect = 'VISUAL_EFFECT_ELECTRIC'
+        self.consist._power_type_suffix = 'ELECTRIC'
 
 
 class BoxHauler(Consist):

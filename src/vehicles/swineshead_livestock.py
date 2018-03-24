@@ -1,4 +1,4 @@
-from road_vehicle import LivestockHauler
+from road_vehicle import LivestockHauler, DieselRoadVehicle
 
 consist = LivestockHauler(id='swineshead_livestock',
                           base_numeric_id=440,
@@ -6,10 +6,9 @@ consist = LivestockHauler(id='swineshead_livestock',
                           vehicle_life=40,
                           intro_date=1970)
 
-consist.add_unit(capacity=25,
-                 vehicle_length=6,
-                 visual_effect='VISUAL_EFFECT_DIESEL')
+consist.add_unit(type=DieselRoadVehicle,
+                 capacity=25,
+                 vehicle_length=6)
 
 consist.add_unit(capacity=15,
                  vehicle_length=4)
-

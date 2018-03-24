@@ -1,4 +1,4 @@
-from road_vehicle import EdiblesTanker
+from road_vehicle import EdiblesTanker, DieselRoadVehicle
 
 consist = EdiblesTanker(id='beerwoods_edibles_tanker',
                         base_numeric_id=420,
@@ -6,10 +6,9 @@ consist = EdiblesTanker(id='beerwoods_edibles_tanker',
                         vehicle_life=40,
                         intro_date=1943)
 
-consist.add_unit(capacity=15,
-                 vehicle_length=5,
-                 visual_effect='VISUAL_EFFECT_DIESEL')
+consist.add_unit(type=DieselRoadVehicle,
+                 capacity=15,
+                 vehicle_length=5)
 
 consist.add_unit(capacity=15,
                  vehicle_length=4)
-

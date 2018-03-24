@@ -14,4 +14,3 @@ consist.add_unit(capacity=12,
 
 consist.add_unit(capacity=12,
                  vehicle_length=5)
-

@@ -1,4 +1,4 @@
-from road_vehicle import Tanker
+from road_vehicle import Tanker, DieselRoadVehicle
 
 consist = Tanker(id='greenscoe_tanker',
                  base_numeric_id=210,
@@ -7,7 +7,8 @@ consist = Tanker(id='greenscoe_tanker',
                  vehicle_life=40,
                  intro_date=1942)
 
-consist.add_unit(capacity=0,
+consist.add_unit(type=DieselRoadVehicle,
+                 capacity=0,
                  vehicle_length=2,
                  semi_truck_shift_offset_jank=2,
                  effects=['EFFECT_SPRITE_DIESEL, -3, 1, 10'],

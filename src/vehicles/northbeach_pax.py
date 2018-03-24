@@ -1,4 +1,4 @@
-from road_vehicle import PaxHauler
+from road_vehicle import PaxHauler, ElectricRoadVehicle
 
 consist = PaxHauler(id='northbeach_pax',
                     base_numeric_id=690,
@@ -7,8 +7,8 @@ consist = PaxHauler(id='northbeach_pax',
                     vehicle_life=40,
                     intro_date=1961)
 
-consist.add_unit(capacity=60,
+consist.add_unit(type=ElectricRoadVehicle,
+                 capacity=60,
                  vehicle_length=8,
                  effects=['EFFECT_SPRITE_ELECTRIC, 0, 0, 12'],
                  repeat=2)
-

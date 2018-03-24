@@ -1,4 +1,4 @@
-from road_vehicle import LogHauler
+from road_vehicle import LogHauler, DieselRoadVehicle
 
 consist = LogHauler(id='buff_log',
                     base_numeric_id=110,
@@ -9,10 +9,9 @@ consist = LogHauler(id='buff_log',
                     vehicle_life=40,
                     intro_date=1994)
 
-consist.add_unit(capacity=40,
-                 vehicle_length=7,
-                 visual_effect='VISUAL_EFFECT_DIESEL')
+consist.add_unit(type=DieselRoadVehicle,
+                 capacity=40,
+                 vehicle_length=7)
 
 consist.add_unit(capacity=35,
                  vehicle_length=8)
-

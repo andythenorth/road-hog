@@ -1,4 +1,4 @@
-from road_vehicle import RefrigeratedHauler
+from road_vehicle import RefrigeratedHauler, ElectricRoadVehicle
 
 consist = RefrigeratedHauler(id='sparkford_refrigerated',
                              base_numeric_id=390,
@@ -7,8 +7,8 @@ consist = RefrigeratedHauler(id='sparkford_refrigerated',
                              vehicle_life=40,
                              intro_date=1955)
 
-consist.add_unit(capacity=36,
+consist.add_unit(type=ElectricRoadVehicle,
+                 capacity=36,
                  vehicle_length=8,
                  effects=['EFFECT_SPRITE_ELECTRIC, 0, 0, 10'],
                  repeat=2)
-

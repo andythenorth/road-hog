@@ -9,8 +9,7 @@ consist = OpenHauler(id='wastelander_open',
                      intro_date=1870)
 
 consist.add_unit(capacity=0,
-                 vehicle_length=4,
-                 visual_effect='VISUAL_EFFECT_STEAM')
+                 vehicle_length=4)
 
 consist.add_unit(capacity=10,
                  vehicle_length=3,
@@ -18,4 +17,3 @@ consist.add_unit(capacity=10,
 
 consist.add_unit(capacity=10,
                  vehicle_length=3)
-

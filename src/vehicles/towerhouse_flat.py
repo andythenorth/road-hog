@@ -1,4 +1,4 @@
-from road_vehicle import FlatHauler
+from road_vehicle import FlatHauler, DieselRoadVehicle
 
 consist = FlatHauler(id='towerhouse_flat',
                         base_numeric_id=650,
@@ -7,9 +7,9 @@ consist = FlatHauler(id='towerhouse_flat',
                         vehicle_life=40,
                         intro_date=1968)
 
-consist.add_unit(vehicle_length=2,
+consist.add_unit(type=DieselRoadVehicle,
+                 vehicle_length=2,
                  semi_truck_shift_offset_jank=2,
-                 visual_effect='VISUAL_EFFECT_DIESEL',
                  always_use_same_spriterow=True)
 
 consist.add_unit(capacity=40,

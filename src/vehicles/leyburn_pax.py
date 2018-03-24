@@ -1,4 +1,4 @@
-from road_vehicle import PaxHauler
+from road_vehicle import PaxHauler, DieselRoadVehicle
 
 # for each generation, bus and coach variants have same power and intro date
 # coaches faster, lower capacity than equivalent bus
@@ -11,7 +11,6 @@ consist = PaxHauler(id='leyburn_pax',
                     vehicle_life=40,
                     intro_date=1909)
 
-consist.add_unit(capacity=44,
-                 vehicle_length=7,
-                 visual_effect='VISUAL_EFFECT_DIESEL')
-
+consist.add_unit(type=DieselRoadVehicle,
+                 capacity=44,
+                 vehicle_length=7)

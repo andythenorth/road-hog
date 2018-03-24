@@ -1,4 +1,4 @@
-from road_vehicle import DumpHauler
+from road_vehicle import DumpHauler, DieselRoadVehicle
 
 consist = DumpHauler(id='powerstock_dump',
                      base_numeric_id=340,
@@ -7,7 +7,8 @@ consist = DumpHauler(id='powerstock_dump',
                      vehicle_life=40,
                      intro_date=2001)
 
-consist.add_unit(capacity=0,
+consist.add_unit(type=DieselRoadVehicle,
+                 capacity=0,
                  vehicle_length=2,
                  semi_truck_shift_offset_jank=2,
                  effects=['EFFECT_SPRITE_DIESEL, -2, 1, 10',

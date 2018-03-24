@@ -1,4 +1,4 @@
-from road_vehicle import DumpHauler
+from road_vehicle import DumpHauler, DieselRoadVehicle
 
 consist = DumpHauler(id='broadrock_dump',
                      base_numeric_id=100,
@@ -11,7 +11,8 @@ consist = DumpHauler(id='broadrock_dump',
                      vehicle_life=40,
                      intro_date=1947)
 
-consist.add_unit(capacity=0,
+consist.add_unit(type=DieselRoadVehicle,
+                 capacity=0,
                  vehicle_length=2,
                  semi_truck_shift_offset_jank=3,
                  effects=['EFFECT_SPRITE_AIRCRAFT_BREAKDOWN_SMOKE, -2, 1, 10',

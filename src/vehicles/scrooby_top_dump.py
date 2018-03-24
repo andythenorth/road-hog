@@ -1,4 +1,4 @@
-from road_vehicle import DumpHauler
+from road_vehicle import DumpHauler, SteamRoadVehicle
 
 consist = DumpHauler(id='scrooby_top_dump',
                      base_numeric_id=700,
@@ -7,9 +7,9 @@ consist = DumpHauler(id='scrooby_top_dump',
                      vehicle_life=40,
                      intro_date=1870)
 
-consist.add_unit(capacity=0,
+consist.add_unit(type=SteamRoadVehicle,
+                 capacity=0,
                  vehicle_length=4,
-                 effect_spawn_model='EFFECT_SPAWN_MODEL_STEAM',
                  effects=['EFFECT_SPRITE_STEAM, -3, 0, 12',
                           'EFFECT_SPRITE_STEAM, 1, 0, 12'],
                  always_use_same_spriterow=True)

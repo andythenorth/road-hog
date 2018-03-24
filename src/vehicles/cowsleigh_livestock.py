@@ -1,4 +1,4 @@
-from road_vehicle import LivestockHauler
+from road_vehicle import LivestockHauler, SteamRoadVehicle
 
 consist = LivestockHauler(id='cowsleigh_livestock',
                           base_numeric_id=900,
@@ -6,11 +6,10 @@ consist = LivestockHauler(id='cowsleigh_livestock',
                           vehicle_life=40,
                           intro_date=1911)
 
-consist.add_unit(capacity=14,
+consist.add_unit(type=SteamRoadVehicle,
+                 capacity=14,
                  vehicle_length=6,
-                 effect_spawn_model='EFFECT_SPAWN_MODEL_STEAM',
                  effects=['EFFECT_SPRITE_STEAM, -5, 0, 12'])
 
 consist.add_unit(capacity=10,
                  vehicle_length=4)
-
