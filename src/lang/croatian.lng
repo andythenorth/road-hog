@@ -33,6 +33,9 @@ STR_AUTOREPLACE_TEXT_ELECTRIC_TRAMWAY                           :Električni tra
 STR_NEW_ENGINE_TEXT_ELECTRIC_TRAMWAY                            :električni tramvaj
 
 # keep these alphabetised, easier
+STR_NAME_SUFFIX_DIESEL                                          :Dizel
+STR_NAME_SUFFIX_ELECTRIC                                        :Električni
+STR_NAME_SUFFIX_STEAM                                           :Para
 
 STR_NAME_SUFFIX_BOX_TRAM                                        :Zatvoreni teretni tramvaj
 STR_NAME_SUFFIX_BOX_TRUCK                                       :Zatvoreni teretni kamion
@@ -46,9 +49,15 @@ STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM                             :Tramvaj-cistern
 STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK                            :Kamion-cisterna za prehrambene proizvode
 STR_NAME_SUFFIX_FLATBED_TRAM                                    :Tramvaj sa ravnom površinom
 STR_NAME_SUFFIX_FLATBED_TRUCK                                   :Kamion sa ravnom površinom
+STR_NAME_SUFFIX_FRUIT_VEG_TRAM                                  :Tramvaj za voće i povrće
 STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Kamion za intermodalni prijevoz
 STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :Tramvaj za stoku
 STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :Kamion za stoku
+STR_NAME_SUFFIX_LOG_TRUCK                                       :Kamion za drvene trupce
+STR_NAME_SUFFIX_MAIL_TRAM                                       :Tramvaj za pošiljke
+STR_NAME_SUFFIX_MAIL_TRUCK                                      :Kamion za pošiljke
+STR_NAME_SUFFIX_METAL_TRAM                                      :Tramvaj za talioničke proizvode
+STR_NAME_SUFFIX_METAL_TRUCK                                     :Kamion za talioničke proizvode
 STR_NAME_SUFFIX_MINING_TRAM                                     :Rudarski tramvaj
 STR_NAME_SUFFIX_MINING_TRUCK                                    :Rudarski kamion
 STR_NAME_SUFFIX_OPEN_TRAM                                       :Otvoreni teretni tramvaj
@@ -57,7 +66,7 @@ STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Putnički tramv
 STR_NAME_SUFFIX_REEFER_TRAM                                     :Tramvaj-hladnjača
 STR_NAME_SUFFIX_REEFER_TRUCK                                    :Kamion-hladnjača
 STR_NAME_SUFFIX_SUPPLIES_TRAM                                   :Tramvaj za opskrbu
-STR_NAME_SUFFIX_SUPPLIES_TRUCK                                  :Kamion za opskrbu
+STR_NAME_SUFFIX_SUPPLIES_TRUCK                                  :Kamion za dostavu
 STR_NAME_SUFFIX_TANKER_TRAM                                     :Tramvaj-cisterna
 STR_NAME_SUFFIX_TANKER_TRUCK                                    :Kamion-cisterna
 
