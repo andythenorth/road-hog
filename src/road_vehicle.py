@@ -39,7 +39,9 @@ class Consist(object):
         self.intro_date = kwargs.get('intro_date', None)
         self.vehicle_life = kwargs.get('vehicle_life', None)
         self._power = kwargs.get('power', None)
-        self._sound_effect = kwargs.get('sound_effect', None)
+        # sound effects are faff, they can be set by consist subclass (Bus vs. Coach), or will fall back to a default sound for the vehicle subclass (by power type)
+        self._sound_effect = None
+        self.default_sound_effect = None # set by unit subclasses
         # suffix for 'Diesel', 'Steam' etc in name string, set by unit subclasses, but stored in consist as it's a consist property
         self._power_type_suffix = None
         # option for multiple default cargos, cascading if first cargo(s) are not available
@@ -301,27 +303,13 @@ class Consist(object):
         # to understand why this is needed see https://newgrf-specs.tt-wiki.net/wiki/NML:Vehicles#Engine_life_cycle
         return -10 # retire at end of model life + 10 (fudge factor - no need to be more precise than that)
 
-
     @property
     def sound_effect(self):
-        utils.echo_message('sound_effect should use RoadVehicle subclasses, not look at effects')
         # allow custom sound effects (set per subclass or vehicle)
-        if self._sound_effect:
+        if self._sound_effect is not None:
             return self._sound_effect
-        # is this vehicle steam? (relies on visual effect being set correctly)
-        for unit in self.units:
-            if len(unit.effects) > 0:
-                if 'STEAM' in unit.effects[0]:
-                    return 'SOUND_FACTORY_WHISTLE'
-        # otherwise
-        if self.roadveh_flag_tram:
-            return 'SOUND_CAR_HORN'
         else:
-            # possibly fragile assumption that pax vehicles will put PASS first in default cargos list
-            if self.default_cargos[0] == 'PASS':
-                return 'SOUND_BUS_START_PULL_AWAY'
-            else:
-                return 'SOUND_TRUCK_START_2'
+            return self.default_sound_effect
 
     @property
     def buy_menu_width (self):
@@ -529,6 +517,7 @@ class SteamRoadVehicle(RoadVehicle):
         self._effect_spawn_model = 'EFFECT_SPAWN_MODEL_STEAM'
         self.visual_effect = 'VISUAL_EFFECT_STEAM'
         self.consist._power_type_suffix = 'STEAM'
+        self.consist.default_sound_effect = 'SOUND_FACTORY_WHISTLE'
 
 
 class DieselRoadVehicle(RoadVehicle):
@@ -540,6 +529,8 @@ class DieselRoadVehicle(RoadVehicle):
         self._effect_spawn_model = 'EFFECT_SPAWN_MODEL_DIESEL'
         self.visual_effect = 'VISUAL_EFFECT_DIESEL'
         self.consist._power_type_suffix = 'DIESEL'
+        # this can be over-ridden in consist subclasses for e.g. buses using consist._sound_effect
+        self.consist.default_sound_effect = 'SOUND_BUS_START_PULL_AWAY' # sound effect mis-named, original base set uses this for trucks
 
 
 class ElectricRoadVehicle(RoadVehicle):
@@ -551,6 +542,7 @@ class ElectricRoadVehicle(RoadVehicle):
         self._effect_spawn_model = 'EFFECT_SPAWN_MODEL_ELECTRIC'
         self.visual_effect = 'VISUAL_EFFECT_ELECTRIC'
         self.consist._power_type_suffix = 'ELECTRIC'
+        self.consist.default_sound_effect = 'SOUND_ELECTRIC_SPARK'
 
 
 class BoxHauler(Consist):
@@ -715,6 +707,8 @@ class MailHauler(Consist):
         self.label_refits_disallowed = ['TOUR']
         self.default_cargos = global_constants.default_cargos['mail']
         self.weight_multiplier = 0.2
+        if not self.roadveh_flag_tram:
+            self._sound_effect = 'SOUND_TRUCK_START'
 
 
 class MetalHauler(Consist):
@@ -771,6 +765,12 @@ class PaxHauler(PaxHaulerBase):
         super().__init__(**kwargs)
         self.loading_speed_multiplier = 3
         self.weight_multiplier = 0.17
+        # sound effects are faff, interacts with RoadVehicle subclass too
+        if self.roadveh_flag_tram:
+            self._sound_effect = 'SOUND_LEVEL_CROSSING'
+        else:
+            self._sound_effect = 'SOUND_BUS_START_PULL_AWAY_WITH_HORN'
+
 
     @property
     def name_type_suffix(self):
@@ -790,6 +790,11 @@ class PaxExpressHauler(PaxHaulerBase):
         self._name_type_suffix = "COACH" # other magic applies this only to road vehicles, trams will still be "TRAM"
         self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
         self.weight_multiplier = 0.2
+        # sound effects are faff, interacts with RoadVehicle subclass too
+        if self.roadveh_flag_tram:
+            self._sound_effect = 'SOUND_LEVEL_CROSSING'
+        else:
+            self._sound_effect = 'SOUND_TRUCK_START_2'
 
     @property
     def name_type_suffix(self):
