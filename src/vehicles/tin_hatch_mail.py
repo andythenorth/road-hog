@@ -11,7 +11,8 @@ consist = MailHauler(id='tin_hatch_mail',
 consist.add_unit(type=SteamRoadVehicle,
                  capacity=0,
                  vehicle_length=3,
-                 effects=['EFFECT_SPRITE_STEAM, -3, 0, 12', 'EFFECT_SPRITE_STEAM, 1, 0, 12'])
+                 effects=['EFFECT_SPRITE_STEAM, -3, 0, 12', 'EFFECT_SPRITE_STEAM, 1, 0, 12'],
+                 always_use_same_spriterow=True)
 
 consist.add_unit(capacity=24,
                  vehicle_length=5)
