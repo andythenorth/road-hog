@@ -24,7 +24,7 @@
                                      width="${2 * global_constants.buy_menu_sprite_width}"
                                      height="${2 * global_constants.buy_menu_sprite_height}" />
                             </td>
-                            <td style="vertical-align:middle;">${consist.name}</td>
+                            <td style="vertical-align:middle;">${doc_helper.unpack_name_string(consist)}</td>
                             <td style="vertical-align:middle;" class="number">${consist.intro_date}</td>
                             <td style="vertical-align:middle;">
                                 ${', '.join(doc_helper.get_special_features_for_vehicle(consist)).capitalize()}
