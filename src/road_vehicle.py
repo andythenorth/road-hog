@@ -283,11 +283,17 @@ class Consist(object):
         similar_consists = []
         for consist in self.roster.consists:
             if type(consist) == type(self):
-                if consist.roadveh_flag_tram == self.roadveh_flag_tram:
-                    # !! this will need to account for roadtypes ^^
-                    utils.echo_message("adjusted_model_life will need to account for roadtype, not just tram flag")
-                    similar_consists.append(consist)
+                # the order of if statements here is specific and to split tram / road vehicles reliably
+                if self.roadveh_flag_tram:
+                    if consist.roadveh_flag_tram:
+                        # all trams are currently considered compatible, unless/until new tram_types are added
+                        similar_consists.append(consist)
+                else:
+                    if consist.road_type == self.road_type:
+                        # all road_types are currently considered to require exact match, unless/until new road_types are added
+                        similar_consists.append(consist)
         replacement_consist = None
+        print(self.id, [consist.id for consist in similar_consists])
         for consist in sorted(similar_consists, key=lambda consist: consist.intro_date):
             if consist.intro_date > self.intro_date:
                 replacement_consist = consist
