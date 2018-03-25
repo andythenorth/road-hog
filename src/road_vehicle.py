@@ -385,8 +385,10 @@ class RoadVehicle(object):
         # if the vehicle cargo area is not an OTTD unit length, use the next size up and the masking will sort it out
         # some longer vehicles may place multiple shorter cargo sprites, e.g. 7/8 vehicle, 2 * 4/8 cargo sprites (with some overlapping)
         self.cargo_length = kwargs.get('cargo_length', None)
+        # effects can be specified in detail per vehicle, or fall back to those defined by RoadVehicle subclass
         self._effect_spawn_model = kwargs.get('effect_spawn_model', None)
         self.effects = kwargs.get('effects', []) # default for effects is an empty list
+        self.default_effect_sprite = None # default is no effect sprite
 
     def get_capacity_variations(self, capacity):
         # capacity is variable, controlled by a newgrf parameter
@@ -482,16 +484,19 @@ class RoadVehicle(object):
             if i not in global_constants.cargo_labels:
                 utils.echo_message("Warning: vehicle " + self.id + " references cargo label " + i + " which is not defined in the cargo table")
 
-    def get_expression_for_effects(self):
-        # provides part of nml switch for effects (smoke), or none if no effects defined
+    def get_effects(self):
+        # provides part of nml switch for effects (smoke), or none if no effects defined in vehicle or RoadVehicle subclass
+        result = []
         if len(self.effects) > 0:
-            result = []
             for index, effect in enumerate(self.effects):
                  result.append('STORE_TEMP(create_effect(' + effect + '), 0x10' + str(index) + ')')
-            return '[' + ','.join(result) + ']'
+        elif self.default_effect_sprite is not None:
+            result.append('STORE_TEMP(create_effect(' + self.default_effect_sprite + ', -2, 0, 10), 0x100)')
+        # only return a list if there's a list to return :P
+        if len(result) > 0:
+            return ['[' + ','.join(result) + ']', len(result)]
         else:
-            utils.echo_message("visual_effect isn't being used by get_expression_for_effects() in case where 'effects' is not used")
-            return 0
+            return [0, 0]
 
     def get_nml_expression_for_cargo_variant_random_switch(self, cargo_id=None):
         switch_id = self.id + "_switch_graphics" + ('_' + str(cargo_id) if cargo_id is not None else '')
@@ -515,7 +520,7 @@ class SteamRoadVehicle(RoadVehicle):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self._effect_spawn_model = 'EFFECT_SPAWN_MODEL_STEAM'
-        self.visual_effect = 'VISUAL_EFFECT_STEAM'
+        self.default_effect_sprite = 'EFFECT_SPRITE_STEAM'
         self.consist._power_type_suffix = 'STEAM'
         self.consist.default_sound_effect = 'SOUND_FACTORY_WHISTLE'
 
@@ -527,7 +532,7 @@ class DieselRoadVehicle(RoadVehicle):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self._effect_spawn_model = 'EFFECT_SPAWN_MODEL_DIESEL'
-        self.visual_effect = 'VISUAL_EFFECT_DIESEL'
+        self.default_effect_sprite = 'EFFECT_SPRITE_DIESEL'
         self.consist._power_type_suffix = 'DIESEL'
         # this can be over-ridden in consist subclasses for e.g. buses using consist._sound_effect
         self.consist.default_sound_effect = 'SOUND_BUS_START_PULL_AWAY' # sound effect mis-named, original base set uses this for trucks
@@ -540,7 +545,7 @@ class ElectricRoadVehicle(RoadVehicle):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self._effect_spawn_model = 'EFFECT_SPAWN_MODEL_ELECTRIC'
-        self.visual_effect = 'VISUAL_EFFECT_ELECTRIC'
+        self.default_effect_sprite = 'EFFECT_SPRITE_ELECTRIC'
         self.consist._power_type_suffix = 'ELECTRIC'
         self.consist.default_sound_effect = 'SOUND_ELECTRIC_SPARK'
 

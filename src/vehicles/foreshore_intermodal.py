@@ -8,5 +8,4 @@ consist = IntermodalHauler(id='foreshore',
                            intro_date=1959)
 
 consist.add_unit(capacity=50,
-                 vehicle_length=7,
-                 visual_effect='VISUAL_EFFECT_DIESEL')
+                 vehicle_length=7)

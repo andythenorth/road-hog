@@ -10,8 +10,7 @@ consist = DumpHauler(id='scrooby_top_dump',
 consist.add_unit(type=SteamRoadVehicle,
                  capacity=0,
                  vehicle_length=4,
-                 effects=['EFFECT_SPRITE_STEAM, -3, 0, 12',
-                          'EFFECT_SPRITE_STEAM, 1, 0, 12'],
+                 effects=['EFFECT_SPRITE_STEAM, -3, 0, 12'],
                  always_use_same_spriterow=True)
 
 consist.add_unit(capacity=12,
