@@ -124,10 +124,6 @@ class Consist(object):
         numeric_id_defender.append(numeric_id)
         return numeric_id
 
-    def get_num_spritesets(self):
-        print("remove get_num_spritesets")
-        return 1
-
     @property
     def name_type_suffix(self):
         # some consist subclasses will over-ride this for special case handling
@@ -293,7 +289,6 @@ class Consist(object):
                         # all road_types are currently considered to require exact match, unless/until new road_types are added
                         similar_consists.append(consist)
         replacement_consist = None
-        print(self.id, [consist.id for consist in similar_consists])
         for consist in sorted(similar_consists, key=lambda consist: consist.intro_date):
             if consist.intro_date > self.intro_date:
                 replacement_consist = consist
@@ -321,7 +316,6 @@ class Consist(object):
     def buy_menu_width (self):
         # max sensible width in buy menu is 64px, but RH templates currently drawn at 36px - legacy stuff
         consist_length = 4 * sum([unit.vehicle_length for unit in self.units])
-        #print(self.id, consist_length)
         if consist_length < global_constants.buy_menu_sprite_width:
             return consist_length
         else:
