@@ -69,6 +69,3 @@ if (${consist.get_expression_for_roster()}) {
         }
     }
 }
-
-// -- end ${vehicle.numeric_id} -- <!--! another comment to aid reading the final nml  -->
-
