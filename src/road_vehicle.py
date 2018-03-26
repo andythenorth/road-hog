@@ -656,17 +656,16 @@ class FruitVegHauler(Consist):
 
 class IntermodalHauler(Consist):
     """
-    Specialist intermodal (container) truck, limited range of cargos.
+    Specialist intermodal (container) truck, limited range of cargos.  Keep same refit and speeds as BoxHauler
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self._name_type_suffix = "INTERMODAL"
         self.autorefit = True
-        # maintain other sets (e.g. IH etc) when changing container refits
-        self.class_refit_groups = ['express_freight','packaged_freight']
-        self.label_refits_allowed = ['FRUT','WATR']
-        self.label_refits_disallowed = ['FISH','LVST','OIL_','TOUR','WOOD']
-        self.default_cargos = global_constants.default_cargos['intermodal']
+        self.class_refit_groups = ['packaged_freight']
+        self.label_refits_allowed = global_constants.allowed_refits_by_label['box_freight']
+        self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_freight_special_cases']
+        self.default_cargos = global_constants.default_cargos['box']
         self.loading_speed_multiplier = 2
 
 
