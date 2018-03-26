@@ -29,7 +29,7 @@ item(FEAT_ROADVEHS, ${vehicle.id}, ${vehicle.numeric_id}) {
             cost_factor:                    ${consist.buy_cost};
             running_cost_base:              RUNNING_COST_ROADVEH;
             running_cost_factor:            ${consist.running_cost};
-            model_life:                     ${consist.adjusted_model_life};
+            model_life:                     ${consist.model_life};
             vehicle_life:                   ${consist.vehicle_life};
             reliability_decay:              20; // default value
             retire_early:                   ${consist.retire_early};

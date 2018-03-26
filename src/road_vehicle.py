@@ -279,7 +279,7 @@ class Consist(object):
             return self._power
 
     @property
-    def adjusted_model_life(self):
+    def model_life(self):
         similar_consists = []
         for consist in self.roster.consists:
             if type(consist) == type(self):
