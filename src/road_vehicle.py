@@ -347,7 +347,7 @@ class Consist(object):
 
     def render_articulated_switch(self):
         if len(self.units) > 1:
-            template = templates["add_articulated_parts.pynml"]
+            template = templates["articulated_parts.pynml"]
             nml_result = template(consist=self, global_constants=global_constants)
             return nml_result
         else:
