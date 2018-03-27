@@ -11,6 +11,7 @@ from chameleon import PageTemplateLoader # chameleon used in most template cases
 # setup the places we look for templates
 templates = PageTemplateLoader(os.path.join(currentdir, 'src', 'templates'))
 
+import polar_fox
 import global_constants # expose all constants for easy passing to templates
 import utils
 
@@ -867,6 +868,6 @@ class Tanker(Consist):
         self.loading_speed_multiplier = 2
         self.weight_multiplier = 0.45
         # Graphics configuration
-        self.gestalt_graphics = GestaltGraphicsLiveryOnly(recolour_maps=graphics_constants.tanker_livery_recolour_maps)
+        self.gestalt_graphics = GestaltGraphicsLiveryOnly(recolour_maps=polar_fox.constants.tanker_livery_recolour_maps)
 
 
