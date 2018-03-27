@@ -14,4 +14,4 @@ consist.add_unit(type=DieselRoadVehicle,
 
 consist.add_unit(capacity=40,
                  vehicle_length=7,
-                 cargo_length=4)
+                 cargo_length=7)
