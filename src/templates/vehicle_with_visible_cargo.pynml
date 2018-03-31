@@ -37,6 +37,8 @@ spriteset(${vehicle.id}_ss_empty, "${global_constants.graphics_path}${consist.id
         ];
     }
 
+    <!--! March 2018 - experimental change of 'loading' threshold from 1% to 25%, seems to look better
+          Might have unwanted side effects, e.g. box cars not opening side doors?  Unverified. -->
     switch (FEAT_ROADVEHS, SELF, ${vehicle.id}_switch_graphics_percent_loaded_${cargo_variant_num}, cargo_count*100/cargo_capacity) {
             0..24: return ${vehicle.id}_sg_empty_${cargo_variant_num};
             25..99: return ${vehicle.id}_sg_loading_${cargo_variant_num};
