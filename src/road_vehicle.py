@@ -470,6 +470,8 @@ class RoadVehicle(object):
         result = []
         for unit_rows in preceding_spriterows:
             result.append(sum([unit_row[1] for unit_row in unit_rows]))
+        if ('flow_edge_edibles_tanker' in self.id):
+            print(self.id, sum(result))
         return sum(result)
 
     @property
