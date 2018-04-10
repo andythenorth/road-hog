@@ -76,6 +76,7 @@ class GestaltGraphicsVisibleCargo(GestaltGraphics):
         # however the pre-existing pipelines and templates expect a specific data structure
         # it's more effective right now to simply remap the new data structure onto the old
         # the templates and pipelines can be refactored later, and this can then be simpler
+        # I cleaned this up in Horse April 2018
         result = []
         sprite_names = polar_fox.constants.piece_vehicle_type_to_sprites_maps[self.piece_type]
         for sprite_name in sprite_names:
