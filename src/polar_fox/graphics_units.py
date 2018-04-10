@@ -4,9 +4,22 @@ Don't make changes here, make them in the Polar Fox project and redistribute.
 Any changes made here are liable to be over-written.
 """
 
-from PIL import Image
+"""
+This file is generated from the Polar Fox project.
+Don't make changes here, make them in the Polar Fox project and redistribute.
+Any changes made here are liable to be over-written.
+"""
+
+import os
+from PIL import Image, ImageDraw, ImageFont
 
 DOS_PALETTE = Image.open('palette_key.png').palette
+try:
+    # truetype fonts may not be available in older versions of PIL / Pillow
+    label_font = ImageFont.truetype(os.path.join('font','slkscr.ttf'), 8)
+except:
+    # if truetype fonts are not available, 'None' will trigger fallback to PIL default bitmap font
+    label_font = None
 
 class ProcessingUnit(object):
     def __init__(self):
@@ -91,3 +104,21 @@ class AppendToSpritesheet(ProcessingUnit):
         spritesheet.sprites.paste(image_to_paste, box)
         return spritesheet
 
+
+class AddCargoLabel(ProcessingUnit):
+    """AddCargoLabel"""
+    """Adds a cargo (or other) label to the spritesheet"""
+
+    def __init__(self, label, x_offset, y_offset):
+        self.label = label
+        self.x_offset = x_offset
+        # the y_offset is usually negative, as it's a relative offset to the *bottom* of the spritesheet, with y=0 at the top
+        # this is so that we can print labels as we add cargo rows to the end of the spritesheet (via AppendToSpritesheet label)
+        self.y_offset = y_offset
+        super(AddCargoLabel, self).__init__()
+
+    def render(self, spritesheet):
+        position = (self.x_offset, spritesheet.sprites.size[1] + self.y_offset)
+        draw_cargo_labels = ImageDraw.Draw(spritesheet.sprites)
+        draw_cargo_labels.text(position, self.label, font=label_font)
+        return spritesheet
