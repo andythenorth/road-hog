@@ -286,9 +286,10 @@ class Consist(object):
                         # all trams are currently considered compatible, unless/until new tram_types are added
                         similar_consists.append(consist)
                 else:
-                    if consist.road_type == self.road_type:
-                        # all road_types are currently considered to require exact match, unless/until new road_types are added
-                        similar_consists.append(consist)
+                    if not consist.roadveh_flag_tram:
+                        if consist.road_type == self.road_type:
+                            # all road_types are currently considered to require exact match, unless/until new road_types are added
+                            similar_consists.append(consist)
         replacement_consist = None
         for consist in sorted(similar_consists, key=lambda consist: consist.intro_date):
             if consist.intro_date > self.intro_date:
