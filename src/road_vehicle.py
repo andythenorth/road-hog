@@ -299,15 +299,17 @@ class Consist(object):
             return 'VEHICLE_NEVER_EXPIRES'
         else:
             # see comments for retire_early
-            return 40 + (replacement_consist.intro_date - self.intro_date)
+            # model life based on replacement date + 17 for max random intro date of replacement
+            return replacement_consist.intro_date - self.intro_date + 17
 
     @property
     def retire_early(self):
         # affects when vehicle is removed from buy menu (in combination with model life)
         # to understand why this is needed see https://newgrf-specs.tt-wiki.net/wiki/NML:Vehicles#Engine_life_cycle
-        # Pikka: extend model life by 40 years, set retire_early to 30
-        # Pikka: that will keep it disappearing from the list at the same time, but extend the period of maximum reliability by 40 years, ie until the last ones built when they were the current gen are getting old
-        return 30 # retire at model life - 10 (fudge factor - no need to be more precise than that)
+        # Pikka: that will keep it disappearing from the list at the same time, but extend the period of maximum reliability by n years, ie until the last ones built when they were the current gen are getting old
+        # retirement trigger is end of phase 2 - n; n needs to be: length of phase 1 (rnd, up to 3 years) + phase 2 offset (-8)
+        # then add 1 for safety with randomisation (ensure overlap is guaranteed with replacement)
+        return 3 - 8 - 1 # -ve value here is correct
 
     @property
     def sound_effect(self):
