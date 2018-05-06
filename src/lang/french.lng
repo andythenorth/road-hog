@@ -28,10 +28,13 @@ STR_NAME_ELECTRIC_TRAMWAY                                       :Tram électriqu
 STR_TOOLBAR_CAPTION_ELECTRIC_TRAMWAY                            :Construction de voie de tram électrique
 STR_MENU_TEXT_ELECTRIC_TRAMWAY                                  :Construction de voie de tramway électrique
 STR_BUILD_WINDOW_CAPTION_ELECTRIC_TRAMWAY                       :Nouveaux trams électriques
-STR_AUTOREPLACE_TEXT_ELECTRIC_TRAMWAY                           :Trams électriques
+STR_AUTOREPLACE_TEXT_ELECTRIC_TRAMWAY                           :Tramways électriques
 STR_NEW_ENGINE_TEXT_ELECTRIC_TRAMWAY                            :tram électrique
 
 # keep these alphabetised, easier
+STR_NAME_SUFFIX_DIESEL                                          :Diésel
+STR_NAME_SUFFIX_ELECTRIC                                        :Électrique
+STR_NAME_SUFFIX_STEAM                                           :Vapeur
 
 STR_NAME_SUFFIX_BOX_TRAM                                        :Tram à caisse
 STR_NAME_SUFFIX_BOX_TRUCK                                       :Camion-caisse
@@ -45,9 +48,15 @@ STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM                             :Tram citerne al
 STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK                            :Camion citerne alimentaire
 STR_NAME_SUFFIX_FLATBED_TRAM                                    :Tram-plateau
 STR_NAME_SUFFIX_FLATBED_TRUCK                                   :Camion-plateau
+STR_NAME_SUFFIX_FRUIT_VEG_TRAM                                  :Tramway pour fruits & végétaux
 STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Camion intermodal
 STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :Tram-bétaillère
 STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :Bétaillère
+STR_NAME_SUFFIX_LOG_TRUCK                                       :Camion grumier
+STR_NAME_SUFFIX_MAIL_TRAM                                       :Tramway postal
+STR_NAME_SUFFIX_MAIL_TRUCK                                      :Camion postal
+STR_NAME_SUFFIX_METAL_TRAM                                      :Tramway transporteur de fonte
+STR_NAME_SUFFIX_METAL_TRUCK                                     :Transporteur de fonte
 STR_NAME_SUFFIX_MINING_TRAM                                     :Tram minier
 STR_NAME_SUFFIX_MINING_TRUCK                                    :Camion de mine
 STR_NAME_SUFFIX_OPEN_TRAM                                       :Tram-tombereau
