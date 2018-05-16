@@ -1,6 +1,46 @@
 Changelog
 =========
 
+1.4.0
+------
+
+*Changes*
+
+- repainted Fruit & Vegetable trams to match fruit & veg vehicles in Iron Horse 2, Unsinkable Sam
+- show power type in vehicle name, e.g. '(Steam)', '(Diesel)', '(Electric)'
+- improved handling of default vehicle cargos; in the case where first cargo(s) are not available in game fallback cargo(s) will be tried
+
+*Fixes*
+
+- reworked handling of model life for more reliable and useful handling of vehicle expiry dates (with help from Pikka, Eddi)
+- don't set articulated consist flag unless needed (confuses AIs)
+- 'open' vehicles had some piece goods sprites missing
+- Jinglepot trailer mask was out of position in one angle
+- some trams needed always_use_same_spriterow flag set
+
+*Docs*
+
+- better explanation of asset licenses that are not GPL compliant
+- anchor links for individual road vehicles in Road Vehicles page
+- improved readme.txt
+-
+
+*Translations*
+
+- updated
+- translator credits: http://bundles.openttdcoop.org/road-hog/releases/LATEST/credits.txt
+
+*Codechanges*
+
+- adopt Polar Fox library for consistent handling of cargo across Unsinkable Sam, Road Hog, Iron Horse
+- multiple compile improvements
+- code formatting/linting improvements
+- renamed vehicle .py files on filesystem so they're easier to work with
+- move solitary lang template to src/templates and remove src/lang_templates dir
+- remove unused code, notably ModelVariant support, which is dead
+- show vacant numeric ids at compile time
+
+
 1.3.0
 ------
 
