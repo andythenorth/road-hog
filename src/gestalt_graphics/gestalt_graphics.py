@@ -183,6 +183,7 @@ class GestaltGraphicsCustom(GestaltGraphics):
         # assume we want whatever the base class count of rows is (handles empty state etc)
         # ^ that might not be viable as it ties 'custom' to same template assumptions as base class - change if needed eh?
         result = []
+        result.append(('empty', 1))
         # assume two output rows (loading, loaded) - extend this if it's not viable
         result.append(('custom_cargo', 2))
         return result
