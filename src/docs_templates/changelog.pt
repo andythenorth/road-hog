@@ -1,6 +1,14 @@
 Changelog
 =========
 
+1.4.1
+------
+
+*Fixes*
+
+- logging trucks were showing incorrect sprites, probably also affected supplies trucks and foundry transporters
+
+
 1.4.0
 ------
 
