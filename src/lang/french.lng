@@ -32,7 +32,7 @@ STR_AUTOREPLACE_TEXT_ELECTRIC_TRAMWAY                           :Tramways élect
 STR_NEW_ENGINE_TEXT_ELECTRIC_TRAMWAY                            :tram électrique
 
 # keep these alphabetised, easier
-STR_NAME_SUFFIX_DIESEL                                          :Diésel
+STR_NAME_SUFFIX_DIESEL                                          :Diesel
 STR_NAME_SUFFIX_ELECTRIC                                        :Électrique
 STR_NAME_SUFFIX_STEAM                                           :Vapeur
 

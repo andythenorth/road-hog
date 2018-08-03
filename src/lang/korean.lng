@@ -12,8 +12,14 @@ STR_PARAM_ROSTER_DESC                                           :어떤 종류�
 STR_PARAM_ROSTER_OPTION_0                                       :정어리
 STR_PARAM_ROSTER_OPTION_1                                       :황무지
 
+STR_MENU_TEXT_TRAMWAY                                           :트램 선로 건설
+STR_BUILD_WINDOW_CAPTION_TRAMWAY                                :신규 트램
+STR_NEW_ENGINE_TEXT_TRAMWAY                                     :트램
+STR_TOOLBAR_CAPTION_ELECTRIC_TRAMWAY                            :전기 트램 선로 건설
+STR_NEW_ENGINE_TEXT_ELECTRIC_TRAMWAY                            :전기 트램
 
 # keep these alphabetised, easier
+STR_NAME_SUFFIX_ELECTRIC                                        :전기
 
 STR_NAME_SUFFIX_BOX_TRAM                                        :박스 트럭
 STR_NAME_SUFFIX_BOX_TRUCK                                       :박스 트럭
