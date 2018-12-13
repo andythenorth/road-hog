@@ -16,6 +16,8 @@ STR_MENU_TEXT_TRAMWAY                                           :트램 선로 �
 STR_BUILD_WINDOW_CAPTION_TRAMWAY                                :신규 트램
 STR_NEW_ENGINE_TEXT_TRAMWAY                                     :트램
 STR_TOOLBAR_CAPTION_ELECTRIC_TRAMWAY                            :전기 트램 선로 건설
+STR_MENU_TEXT_ELECTRIC_TRAMWAY                                  :전기 트램 선로 건설
+STR_AUTOREPLACE_TEXT_ELECTRIC_TRAMWAY                           :전기 트램
 STR_NEW_ENGINE_TEXT_ELECTRIC_TRAMWAY                            :전기 트램
 
 # keep these alphabetised, easier
@@ -33,8 +35,9 @@ STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM                             :식품 수송 �
 STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK                            :식품 수송 트럭
 STR_NAME_SUFFIX_FLATBED_TRAM                                    :평판 트램
 STR_NAME_SUFFIX_FLATBED_TRUCK                                   :평판 트럭
+STR_NAME_SUFFIX_FRUIT_VEG_TRAM                                  :과일 수송 트램
 STR_NAME_SUFFIX_INTERMODAL_HAULER                               :다중 수송 트럭
-STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :가축 수송 트럭
+STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :가축 수송 트램
 STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :가축 트럭
 STR_NAME_SUFFIX_MINING_TRAM                                     :광석 수송 전차
 STR_NAME_SUFFIX_MINING_TRUCK                                    :광석 수송 트럭
