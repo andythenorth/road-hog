@@ -16,6 +16,12 @@ Don't make changes here, make them in the Polar Fox project and redistribute.
 Any changes made here are liable to be over-written.
 """
 
+"""
+This file is generated from the Polar Fox project.
+Don't make changes here, make them in the Polar Fox project and redistribute.
+Any changes made here are liable to be over-written.
+"""
+
 import os
 from PIL import Image, ImageDraw, ImageFont
 
@@ -117,13 +123,12 @@ class AddBuyMenuSprite(ProcessingUnit):
     # to create the buy menu sprite, we need the *processed* vehicle sprites
     # to do that, we use this unit at or near the end of the pipeline
     # it requires a function to be passed, which can process the buy menu sprite, and isn't called until the pipeline is rendered
-    def __init__(self, processing_function, processing_args):
+    def __init__(self, processing_function):
         self.processing_function = processing_function
-        self.processing_args = processing_args
         super().__init__()
 
     def render(self, spritesheet):
-        return self.processing_function(spritesheet, self.processing_args)
+        return self.processing_function(spritesheet)
 
 class AddCargoLabel(ProcessingUnit):
     """AddCargoLabel"""
