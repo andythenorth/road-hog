@@ -17,21 +17,23 @@ STR_BUILD_WINDOW_CAPTION_TRAMWAY                                :신규 트램
 STR_NEW_ENGINE_TEXT_TRAMWAY                                     :트램
 STR_TOOLBAR_CAPTION_ELECTRIC_TRAMWAY                            :전기 트램 선로 건설
 STR_MENU_TEXT_ELECTRIC_TRAMWAY                                  :전기 트램 선로 건설
+STR_BUILD_WINDOW_CAPTION_ELECTRIC_TRAMWAY                       :신규 전기 트램
 STR_AUTOREPLACE_TEXT_ELECTRIC_TRAMWAY                           :전기 트램
 STR_NEW_ENGINE_TEXT_ELECTRIC_TRAMWAY                            :전기 트램
 
 # keep these alphabetised, easier
+STR_NAME_SUFFIX_DIESEL                                          :디젤
 STR_NAME_SUFFIX_ELECTRIC                                        :전기
 
 STR_NAME_SUFFIX_BOX_TRAM                                        :박스 트럭
 STR_NAME_SUFFIX_BOX_TRUCK                                       :박스 트럭
 STR_NAME_SUFFIX_BUS                                             :버스
 STR_NAME_SUFFIX_COACH                                           :객차
-STR_NAME_SUFFIX_COVERED_HOPPER_TRAM                             :유개 전차
+STR_NAME_SUFFIX_COVERED_HOPPER_TRAM                             :유개 트램
 STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :유개(덮개가 있는) 트럭
 STR_NAME_SUFFIX_DUMP_TRAM                                       :덤프 트램
 STR_NAME_SUFFIX_DUMP_TRUCK                                      :덤프 트럭
-STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM                             :식품 수송 전차
+STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM                             :식품 수송 트램
 STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK                            :식품 수송 트럭
 STR_NAME_SUFFIX_FLATBED_TRAM                                    :평판 트램
 STR_NAME_SUFFIX_FLATBED_TRUCK                                   :평판 트럭
@@ -39,15 +41,16 @@ STR_NAME_SUFFIX_FRUIT_VEG_TRAM                                  :과일 수송 �
 STR_NAME_SUFFIX_INTERMODAL_HAULER                               :다중 수송 트럭
 STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :가축 수송 트램
 STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :가축 트럭
-STR_NAME_SUFFIX_MINING_TRAM                                     :광석 수송 전차
+STR_NAME_SUFFIX_METAL_TRAM                                      :철 수송 트램
+STR_NAME_SUFFIX_MINING_TRAM                                     :광석 수송 트램
 STR_NAME_SUFFIX_MINING_TRUCK                                    :광석 수송 트럭
 STR_NAME_SUFFIX_OPEN_TRAM                                       :무개 트램
 STR_NAME_SUFFIX_OPEN_TRUCK                                      :무개 트럭
-STR_NAME_SUFFIX_PASSENGER_TRAM                                  :승객 전차
-STR_NAME_SUFFIX_REEFER_TRAM                                     :냉장 전차
+STR_NAME_SUFFIX_PASSENGER_TRAM                                  :승객 트램
+STR_NAME_SUFFIX_REEFER_TRAM                                     :냉장 트램
 STR_NAME_SUFFIX_REEFER_TRUCK                                    :냉장 트럭
-STR_NAME_SUFFIX_SUPPLIES_TRAM                                   :공급품 수송 전차
-STR_NAME_SUFFIX_SUPPLIES_TRUCK                                  :공급품 수송 차량
+STR_NAME_SUFFIX_SUPPLIES_TRAM                                   :공급품 수송 트램
+STR_NAME_SUFFIX_SUPPLIES_TRUCK                                  :공급품 수송 트럭
 STR_NAME_SUFFIX_TANKER_TRAM                                     :유조 전차
 STR_NAME_SUFFIX_TANKER_TRUCK                                    :탱크로리
 
