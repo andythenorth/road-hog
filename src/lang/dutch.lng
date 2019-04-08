@@ -3,16 +3,37 @@
 STR_GRF_DESCRIPTION                                             :Licentie: {SILVER}GPL v2{}{BLACK}
 
 STR_PARAM_ADJUST_VEHICLE_CAPACITY                               :Wegvoertuigcapaciteit
-STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_0                      :Kleinzielig
+STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_0                      :Miezerig
 STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_1                      :Geweldig
 STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2                      :Buitensporig
 STR_PARAM_ROSTER                                                :Schema
 STR_PARAM_ROSTER_DESC                                           :Kies de te gebruiken set voertuigen
 STR_PARAM_ROSTER_OPTION_0                                       :Brits
-STR_PARAM_ROSTER_OPTION_1                                       :Wasteland
+STR_PARAM_ROSTER_OPTION_1                                       :Woestenij
 
+STR_NAME_HEAVY_HAUL_ROAD                                        :Weg voor zware vracht
+STR_TOOLBAR_CAPTION_HEAVY_HAUL_ROAD                             :Wegenbouw voor zware vracht
+STR_MENU_TEXT_HEAVY_HAUL_ROAD                                   :Wegenbouw voor zware vracht
+STR_BUILD_WINDOW_CAPTION_HEAVY_HAUL_ROAD                        :Nieuwe zware vrachtwagens
+STR_AUTOREPLACE_TEXT_HEAVY_HAUL_ROAD                            :Zware vrachtwagens
+STR_NEW_ENGINE_TEXT_HEAVY_HAUL_ROAD                             :zware vrachtwagen
+STR_NAME_TRAMWAY                                                :Tramspoor
+STR_TOOLBAR_CAPTION_TRAMWAY                                     :Tramspoorbouw
+STR_MENU_TEXT_TRAMWAY                                           :Tramspoorbouw
+STR_BUILD_WINDOW_CAPTION_TRAMWAY                                :Nieuwe trams
+STR_AUTOREPLACE_TEXT_TRAMWAY                                    :Trams
+STR_NEW_ENGINE_TEXT_TRAMWAY                                     :tram
+STR_NAME_ELECTRIC_TRAMWAY                                       :Elektrisch tramspoor
+STR_TOOLBAR_CAPTION_ELECTRIC_TRAMWAY                            :Elektrische-tramspoorbouw
+STR_MENU_TEXT_ELECTRIC_TRAMWAY                                  :Elektrische-tramspoorbouw
+STR_BUILD_WINDOW_CAPTION_ELECTRIC_TRAMWAY                       :Nieuwe elektrische trams
+STR_AUTOREPLACE_TEXT_ELECTRIC_TRAMWAY                           :Elektrische trams
+STR_NEW_ENGINE_TEXT_ELECTRIC_TRAMWAY                            :elektrische tram
 
 # keep these alphabetised, easier
+STR_NAME_SUFFIX_DIESEL                                          :Diesel
+STR_NAME_SUFFIX_ELECTRIC                                        :Elektrisch
+STR_NAME_SUFFIX_STEAM                                           :Stoom
 
 STR_NAME_SUFFIX_BOX_TRAM                                        :Baktram
 STR_NAME_SUFFIX_BOX_TRUCK                                       :Bakwagen
@@ -26,20 +47,26 @@ STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM                             :Voedseltanktram
 STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK                            :Voedseltankwagen
 STR_NAME_SUFFIX_FLATBED_TRAM                                    :Semi-diepladertram
 STR_NAME_SUFFIX_FLATBED_TRUCK                                   :Semi-diepladertruck
+STR_NAME_SUFFIX_FRUIT_VEG_TRAM                                  :Fruit-en-groententram
 STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Containertruck
 STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :Veetram
 STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :Veetruck
+STR_NAME_SUFFIX_LOG_TRUCK                                       :Boomstammenwagen
+STR_NAME_SUFFIX_MAIL_TRAM                                       :Koerierstram
+STR_NAME_SUFFIX_MAIL_TRUCK                                      :Koerierswagen
+STR_NAME_SUFFIX_METAL_TRAM                                      :Metaaltram
+STR_NAME_SUFFIX_METAL_TRUCK                                     :Metaalvrachtwagen
 STR_NAME_SUFFIX_MINING_TRAM                                     :Mijnbouwtram
 STR_NAME_SUFFIX_MINING_TRUCK                                    :Mijnbouwtruck
-STR_NAME_SUFFIX_OPEN_TRAM                                       :Open Tram
-STR_NAME_SUFFIX_OPEN_TRUCK                                      :Open Truck
+STR_NAME_SUFFIX_OPEN_TRAM                                       :Open tram
+STR_NAME_SUFFIX_OPEN_TRUCK                                      :Open vrachtwagen
 STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Passagierstram
-STR_NAME_SUFFIX_REEFER_TRAM                                     :Gekoelde tram
-STR_NAME_SUFFIX_REEFER_TRUCK                                    :Gekoelde truck
+STR_NAME_SUFFIX_REEFER_TRAM                                     :Koeltram
+STR_NAME_SUFFIX_REEFER_TRUCK                                    :Koelvrachtwagen
 STR_NAME_SUFFIX_SUPPLIES_TRAM                                   :Materialentram
-STR_NAME_SUFFIX_SUPPLIES_TRUCK                                  :Materialentruck
+STR_NAME_SUFFIX_SUPPLIES_TRUCK                                  :Materialenwagen
 STR_NAME_SUFFIX_TANKER_TRAM                                     :Tanktram
 STR_NAME_SUFFIX_TANKER_TRUCK                                    :Tankwagen
 
-STR_COASTER                                                     :de koe sprong over de maan (herinnering dat dit nog niet af is)
-STR_DOGTRACK                                                    :honden hebben soms een bruine periode
+STR_COASTER                                                     :De koe sprong over de maan (herinnering dat dit nog niet af is)
+STR_DOGTRACK                                                    :Honden zijn bruin. Soms toch.
