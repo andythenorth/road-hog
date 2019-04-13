@@ -584,7 +584,7 @@ class CoveredHopperHauler(Consist):
         self._name_type_suffix = "COVERED_HOPPER"
         self.autorefit = True
         self.class_refit_groups = ['covered_hopper_freight']
-        self.label_refits_allowed = ['GRAI', 'WHEA', 'MAIZ', 'SUGR', 'FMSP', 'RFPR', 'CLAY', 'BDMT', 'BEAN', 'NITR', 'RUBR', 'SAND', 'POTA', 'QLME', 'SASH', 'CMNT', 'KAOL', 'FERT', 'SALT']
+        self.label_refits_allowed = global_constants.allowed_refits_by_label['covered_hoppers']
         self.label_refits_disallowed = []
         self.default_cargos = global_constants.default_cargos['covered_hopper']
         self.loading_speed_multiplier = 2
