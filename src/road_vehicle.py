@@ -617,8 +617,8 @@ class EdiblesTanker(Consist):
         super().__init__(**kwargs)
         self._name_type_suffix = "EDIBLES_TANKER"
         self.autorefit = True
-        self.class_refit_groups = []
-        self.label_refits_allowed = global_constants.disallowed_refits_by_label['edible_liquids']
+        self.class_refit_groups = [] # no classes, use explicit labels
+        self.label_refits_allowed = global_constants.allowed_refits_by_label['edible_liquids']
         self.label_refits_disallowed = []
         self.default_cargos = global_constants.default_cargos['edibles_tank']
         self.loading_speed_multiplier = 2
@@ -650,7 +650,7 @@ class FruitVegHauler(Consist):
         super().__init__(**kwargs)
         self._name_type_suffix = "FRUIT_VEG"
         self.autorefit = True
-        self.class_refit_groups = []
+        self.class_refit_groups = [] # no classes, use explicit labels
         self.label_refits_allowed = ['FRUT', 'BEAN', 'CASS', 'JAVA', 'NUTS']
         self.label_refits_disallowed = []
         self.default_cargos = global_constants.default_cargos['fruit_veg']
@@ -681,7 +681,7 @@ class LivestockHauler(Consist):
         super().__init__(**kwargs)
         self._name_type_suffix = "LIVESTOCK"
         self.autorefit = True
-        self.class_refit_groups = []
+        self.class_refit_groups = [] # no classes, use explicit labels
         self.label_refits_allowed = ['LVST']
         self.label_refits_disallowed = []
         self.default_cargos = ['LVST'] # no need for fallbacks, only one cargo
@@ -697,7 +697,7 @@ class LogHauler(Consist):
         super().__init__(**kwargs)
         self._name_type_suffix = "LOG"
         self.autorefit = True
-        self.class_refit_groups = []
+        self.class_refit_groups = [] # no classes, use explicit labels
         self.label_refits_allowed = ['WOOD']
         self.label_refits_disallowed = []
         self.default_cargos = ['WOOD'] # no need for fallbacks, only one cargo
@@ -734,7 +734,7 @@ class MetalHauler(Consist):
         super().__init__(**kwargs)
         self._name_type_suffix = "METAL"
         self.autorefit = True
-        self.class_refit_groups = []
+        self.class_refit_groups = [] # no classes, use explicit labels
         self.label_refits_allowed = ['STEL', 'COPR', 'IRON', 'SLAG']
         self.label_refits_disallowed = []
         self.default_cargos = global_constants.default_cargos['metal']
@@ -844,7 +844,7 @@ class SuppliesHauler(Consist):
         super().__init__(**kwargs)
         self._name_type_suffix = "SUPPLIES"
         self.autorefit = True
-        self.class_refit_groups = []
+        self.class_refit_groups = [] # no classes, use explicit labels
         self.label_refits_allowed = ['ENSP', 'FMSP', 'VEHI', 'BDMT']
         self.label_refits_disallowed = []
         self.default_cargos = global_constants.default_cargos['supplies']
@@ -869,7 +869,7 @@ class Tanker(Consist):
         self.autorefit = True
         self.class_refit_groups = ['liquids']
         self.label_refits_allowed = []
-        self.label_refits_disallowed = global_constants.disallowed_refits_by_label['edible_liquids']
+        self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_generic_liquids']
         self.default_cargos = global_constants.default_cargos['tank']
         self.loading_speed_multiplier = 2
         self.weight_multiplier = 0.45
