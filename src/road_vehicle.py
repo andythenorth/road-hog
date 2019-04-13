@@ -617,9 +617,9 @@ class EdiblesTanker(Consist):
         super().__init__(**kwargs)
         self._name_type_suffix = "EDIBLES_TANKER"
         self.autorefit = True
-        self.class_refit_groups = ['liquids']
-        self.label_refits_allowed = ['MILK', 'FOOD']
-        self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_edible_liquids']
+        self.class_refit_groups = []
+        self.label_refits_allowed = global_constants.disallowed_refits_by_label['edible_liquids']
+        self.label_refits_disallowed = []
         self.default_cargos = global_constants.default_cargos['edibles_tank']
         self.loading_speed_multiplier = 2
         self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD

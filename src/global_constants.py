@@ -39,6 +39,7 @@ base_refits_by_class = polar_fox.constants.base_refits_by_class
 cargo_labels = polar_fox.constants.cargo_labels
 chameleon_cache_dir = polar_fox.constants.chameleon_cache_dir
 default_cargos = polar_fox.constants.default_cargos
+allowed_refits_by_label = polar_fox.constants.allowed_refits_by_label
 disallowed_refits_by_label = polar_fox.constants.disallowed_refits_by_label
 generated_files_dir = polar_fox.constants.generated_files_dir
 graphics_path = polar_fox.constants.graphics_path
