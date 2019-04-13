@@ -88,6 +88,12 @@ cargo_labels = ['PASS', # pax first
                 'CTCD',
                 'TOFF',
                 'URAN',
+                'CTAR',
+                'O2__',
+                'STAL',
+                'STCB',
+                'STST',
+                'CAST',
                 #
                 'NULL']
 
@@ -105,11 +111,14 @@ base_refits_by_class = {'empty': [],
                         'express_freight': ['CC_EXPRESS','CC_ARMOURED']}
 
 # rather than using disallowed classes (can cause breakage), specific labels are disallowed
-disallowed_refits_by_label = {'non_dump_bulk': ['WOOD', 'SGCN', 'FICR', 'BDMT', 'WDPR', 'GRAI', 'WHEA', 'CERE', 'MAIZ', 'FRUT', 'BEAN', 'CMNT', 'CTCD', 'FERT', 'OLSD', 'SUGR', 'SULP', 'TOFF', 'URAN'],
+disallowed_refits_by_label = {'non_dump_bulk': ['WOOD', 'SGCN', 'FICR', 'BDMT', 'WDPR', 'GRAI', 'WHEA', 'CERE', 'MAIZ', 'FRUT', 'BEAN', 'CMNT',
+                                                'CTCD', 'FERT', 'OLSD', 'SUGR', 'TOFF', 'URAN', 'CBLK', 'PLAS'],
                               'edible_liquids': ['MILK', 'WATR', 'BEER', 'FOOD', 'EOIL'],
                               # !! would it be better to do an include list for edibles tankers?  Excluding liquids by label is a PITA
-                              'non_edible_liquids': ['RFPR', 'OIL_', 'FMSP', 'PETR', 'RUBR', 'SULP', 'ACID', 'CHLO', 'KAOL'],
-                              'non_flatbed_freight': ['FOOD', 'FISH', 'LVST', 'FRUT', 'BEER', 'MILK', 'JAVA', 'SUGR', 'NUTS', 'EOIL', 'BOOM', 'FERT'],
+                              # ^ see Iron Horse train.py for lists of label_refits_allowed that could be moved to Polar Fox
+                              'non_edible_liquids': ['RFPR', 'OIL_', 'FMSP', 'PETR', 'RUBR', 'SULP', 'ACID', 'CHLO', 'KAOL', 'CTAR', 'O2__'],
+                              'non_flatbed_freight': ['FOOD', 'FISH', 'LVST', 'FRUT', 'BEER', 'MILK', 'JAVA', 'SUGR', 'NUTS', 'EOIL', 'BOOM',
+                                                      'FERT', 'PLAS', 'CBLK'],
                               'non_freight_special_cases': ['TOUR']}
 
 # cascading lists of default cargos, if the first cargo(s) are not available, all will be tried in order
@@ -121,7 +130,7 @@ default_cargos = {'box': ['GOOD', 'VPTS', 'FOOD'],
                   'dump': ['IORE', 'MNO2', 'NITR'],
                   'edibles_tank': ['WATR', 'MILK', 'BEER'],
                   'express': ['ENSP', 'FMSP', 'GOOD', 'FOOD', 'MAIL'],
-                  'flat': ['STEL', 'COPR', 'METL'],
+                  'flat': ['STEL', 'STCB', 'COPR', 'METL'],
                   'fruit_veg': ['FRUT', 'BEAN', 'CASS', 'JAVA', 'NUTS'],
                   'hopper': ['COAL', 'CORE', 'PORE'],
                   # no intermodal, uses box
@@ -198,6 +207,8 @@ piece_sprites_to_cargo_labels_maps = {'barrels_silver': ['BEER', 'DYES', 'EOIL',
 # DFLT label is a hack to support cargos with no specific sprites (including unknown cargos), and should not be added to cargo translation table
 tanker_livery_recolour_maps = (("OIL_", {136: 1, 137: 2, 138: 3, 139: 4,
                                          140: 5, 141: 6, 142: 7, 143: 8}),
+                               ("CTAR", {136: 1, 137: 2, 138: 3, 139: 4,
+                                         140: 5, 141: 6, 142: 7, 143: 8}),
                                # see note on DFLT above
                                ("DFLT", {136: 198, 137: 199, 138: 200, 139: 201,
                                          140: 202, 141: 203, 142: 204, 143: 205}),
@@ -224,12 +235,17 @@ bulk_cargo_recolour_maps = (("AORE", {170: 42, 171: 123, 172: 74, 173: 125, 174:
                             ("CORE", {170: 1, 171: 32, 172: 25, 173: 27, 174: 34, 175: 56, 176: 59}),
                             ("GRVL", {170: 6, 171: 4, 172: 7, 173: 8, 174: 21, 175: 11, 176: 12}),
                             ("IORE", {170: 75, 171: 76, 172: 123, 173: 122, 174: 124, 175: 74, 176: 104}),
-                            ("LIME", {170: 6, 171: 4, 172: 7, 173: 8, 174: 21, 175: 11, 176: 12}),
+                            ("LIME", {170: 35, 171: 58, 172: 36, 173: 37, 174: 38, 175: 38, 176: 39}),
+                            ("KAOL", {170: 11, 171: 12, 172: 13, 173: 14, 174: 14, 175: 15, 176: 15}),
                             ("MNO2", {170: 1, 171: 16, 172: 3, 173: 17, 174: 18, 175: 19, 176: 20}),
                             ("NITR", {170: 37, 171: 38, 172: 38, 173: 39, 174: 39, 175: 69, 176: 69}),
                             ("PHOS", {170: 63, 171: 64, 172: 192, 173: 65, 174: 193, 175: 64, 176: 194}),
                             ("PORE", {170: 40, 171: 72, 172: 73, 173: 33, 174: 33, 175: 63, 176: 63}),
                             ("POTA", {170: 63, 171: 64, 172: 192, 173: 65, 174: 193, 175: 64, 176: 194}),
+                            ("SALT", {170: 58, 171: 12, 172: 13, 173: 14, 174: 14, 175: 15, 176: 15}),
                             ("SAND", {170: 108, 171: 64, 172: 65, 173: 197, 174: 36, 175: 196, 176: 197}),
+                            ("SASH", {170: 11, 171: 12, 172: 13, 173: 14, 174: 14, 175: 15, 176: 15}),
                             ("SCMT", {170: 104, 171: 3, 172: 2, 173: 70, 174: 71, 175: 72, 176: 3}),
-                            ("SGBT", {170: 60, 171: 53, 172: 54, 173: 55, 174: 56, 175: 57, 176: 58}))
+                            ("SGBT", {170: 60, 171: 53, 172: 54, 173: 55, 174: 56, 175: 57, 176: 58}),
+                            ("SLAG", {170: 24, 171: 3, 172: 2, 173: 3, 174: 4, 175: 5, 176: 5}),
+                            ("SULP", {170: 65, 171: 67, 172: 66, 173: 67, 174: 68, 175: 69, 176: 69}))
