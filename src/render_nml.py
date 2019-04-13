@@ -51,9 +51,7 @@ def main():
 
     consists = road_hog.get_consists_in_buy_menu_order()
 
-    # if NRT gets done
-    # header_items = ['header', 'cargo_table', 'roadtypes_tramtypes']
-    header_items = ['header', 'cargo_table']
+    header_items = ['header', 'cargo_table', 'roadtypes_tramtypes']
     for header_item in header_items:
         grf_nml.write(render_header_item_nml(header_item, consists))
 
