@@ -9,8 +9,8 @@ consist = PaxHauler(id='topley_pax',
                     power=360,
                     speed=55,
                     vehicle_life=40,
-                    gen=4,
-                    intro_date=1990)
+                    gen=5,
+                    intro_date_offset=-7)  # introduce earlier than gen epoch by design
 
 consist.add_unit(type=DieselRoadVehicle,
                  capacity=72,

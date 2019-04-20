@@ -5,8 +5,8 @@ consist = FruitVegTram(id='plumley_fruit_veg',
                        name='Plumley',
                        tram_type='RAIL',
                        vehicle_life=40,
-                       gen=4,
-                       intro_date=1865)
+                       gen=1,
+                       intro_date_offset=1)  # introduce later than gen epoch by design
 
 consist.add_unit(type=SteamRoadVehicle,
                  capacity=0,

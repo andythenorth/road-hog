@@ -1,5 +1,6 @@
 from road_vehicle import PaxExpressCoach, DieselRoadVehicle
 
+# !! unused ??
 # for each generation, bus and coach variants have same power and intro date
 # coaches faster, lower capacity than equivalent bus
 

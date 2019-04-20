@@ -5,8 +5,8 @@ consist = EdiblesTanker(id='poptop_edibles_tanker',
                         name='Poptop',
                         tram_type='ELRL',
                         vehicle_life=40,
-                        gen=4,
-                        intro_date=1906)
+                        gen=2,
+                        intro_date_offset=6)  # introduce later than gen epoch by design
 
 consist.add_unit(type=ElectricRoadVehicle,
                  capacity=30,

@@ -5,7 +5,7 @@ consist = EdiblesTanker(id='beerwoods_edibles_tanker',
                         name='Beerwoods',
                         vehicle_life=40,
                         gen=3,
-                        intro_date=1943)
+                        intro_date_offset=4)  # introduce later than gen epoch by design
 
 consist.add_unit(type=DieselRoadVehicle,
                  capacity=15,

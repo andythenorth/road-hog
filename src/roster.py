@@ -9,6 +9,7 @@ class Roster(object):
     def __init__(self, **kwargs):
         self.id = kwargs.get('id')
         self.numeric_id = kwargs.get('numeric_id')
+        self.intro_dates = kwargs.get('intro_dates')
         # default speeds, determined by intro date; can be over-ridden per vehicle when needed
         self.default_truck_speeds = kwargs.get('truck_speeds')
         self.default_tram_speeds = kwargs.get('tram_speeds')

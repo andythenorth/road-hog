@@ -37,6 +37,12 @@ class Consist(object):
         if self.road_type is not None and self.tram_type is not None:
             utils.echo_message("Error: " + self.id + ". Vehicles must not have both road_type and tram_type properties set.  Set one of these only")
         self.roadveh_flag_tram = True if self.tram_type is not None else None
+
+        print("base_track_type hax in Consist, to make compile work")
+        if self.roadveh_flag_tram is not None:
+            self.base_track_type = "RAIL"
+        else:
+            self.base_track_type = "ROAD"
         # either gen xor intro_date is required, don't set both, one will be interpolated from the other
         self._intro_date = kwargs.get('intro_date', None)
         self._gen = kwargs.get('gen', None)
@@ -205,7 +211,7 @@ class Consist(object):
     def intro_date(self):
         # automatic intro_date, but can over-ride by passing in kwargs for consist
         if self._intro_date:
-            print('intro date assert tickled by ', self.id)
+            print('intro date assert tickled by ', self.id, self.base_track_type)
             #assert(self._gen == None), "%s consist has both gen and intro_date set, which is incorrect" % self.id
             assert(self.intro_date_offset == None), "%s consist has both intro_date and intro_date_offset set, which is incorrect" % self.id
             return self._intro_date

@@ -1,12 +1,11 @@
 from road_vehicle import FlatHauler, DieselRoadVehicle
 
 consist = FlatHauler(id='towerhouse_flat',
-                        base_numeric_id=650,
-                        name='Towerhouse',
-                        semi_truck_so_redistribute_capacity=True,
-                        vehicle_life=40,
-                     gen=4,
-                     intro_date=1968)
+                     base_numeric_id=650,
+                     name='Towerhouse',
+                     semi_truck_so_redistribute_capacity=True,
+                     vehicle_life=40,
+                     gen=4)
 
 consist.add_unit(type=DieselRoadVehicle,
                  vehicle_length=2,

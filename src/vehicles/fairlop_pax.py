@@ -5,8 +5,8 @@ consist = PaxHauler(id='fairlop_pax',
                     name='Fairlop',
                     tram_type='ELRL',
                     vehicle_life=40,
-                    gen=4,
-                    intro_date=1903)
+                    gen=2,
+                    intro_date_offset=3)  # introduce later than gen epoch by design
 
 consist.add_unit(type=ElectricRoadVehicle,
                  capacity=30,

@@ -5,8 +5,7 @@ consist = BoxHauler(id='amblecote_box',
                     name='Amblecote',
                     tram_type='RAIL',
                     vehicle_life=40,
-                    gen=1,
-                    intro_date=1860)
+                    gen=1)
 
 consist.add_unit(type=SteamRoadVehicle,
                  capacity=0,

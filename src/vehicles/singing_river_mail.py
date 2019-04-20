@@ -6,8 +6,7 @@ consist = MailHauler(id='singing_river_mail',
                      tram_type='ELRL',
                      power=600,
                      vehicle_life=40,
-                     gen=4,
-                     intro_date=1990)
+                     gen=5)
 
 consist.add_unit(type=ElectricRoadVehicle,
                  capacity=36,

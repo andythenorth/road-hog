@@ -5,7 +5,7 @@ consist = RefrigeratedHauler(id='fortiscue_refrigerated',
                              name='Fortiscue',
                              vehicle_life=40,
                              gen=4,
-                             intro_date=1972)
+                             intro_date_offset=4)  # introduce later than gen epoch by design
 
 consist.add_unit(type=DieselRoadVehicle,
                  capacity=25,

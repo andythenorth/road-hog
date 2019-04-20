@@ -5,8 +5,8 @@ consist = DumpHauler(id='coleman_dump',
                      name='Coleman',
                      semi_truck_so_redistribute_capacity=True,
                      vehicle_life=40,
-                     gen=4,
-                     intro_date=1920)
+                     gen=2,
+                     intro_date_offset=7)  # introduce later than gen epoch by design
 
 consist.add_unit(type=SteamRoadVehicle,
                  capacity=0,

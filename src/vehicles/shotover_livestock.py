@@ -5,8 +5,8 @@ consist = LivestockHauler(id='shotover_livestock',
                           name='Shotover',
                           tram_type='ELRL',
                           vehicle_life=40,
-                          gen=4,
-                          intro_date=1941)
+                          gen=3,
+                          intro_date_offset=1)  # introduce later than gen epoch by design
 
 consist.add_unit(type=ElectricRoadVehicle,
                  capacity=36,

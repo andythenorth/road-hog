@@ -9,8 +9,8 @@ consist = PaxHauler(id='thunder_pax',
                     power=160,
                     speed=45,
                     vehicle_life=40,
-                    gen=4,
-                    intro_date=1935)
+                    gen=3,
+                    intro_date_offset=-4)  # introduce earlier than gen epoch by design
 
 consist.add_unit(type=DieselRoadVehicle,
                  capacity=50,

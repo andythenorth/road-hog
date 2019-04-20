@@ -5,8 +5,8 @@ consist = Tanker(id='boilingwell_tanker',
                  name='Boilingwell',
                  semi_truck_so_redistribute_capacity=True,
                  vehicle_life=40,
-                 gen=4,
-                 intro_date=1915)
+                 gen=2,
+                 intro_date_offset=5)  # introduce later than gen epoch by design
 
 consist.add_unit(type=SteamRoadVehicle,
                  capacity=0,

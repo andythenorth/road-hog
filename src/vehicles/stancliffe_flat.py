@@ -1,12 +1,11 @@
 from road_vehicle import FlatHauler, ElectricRoadVehicle
 
 consist = FlatHauler(id='stancliffe_flat',
-                        base_numeric_id=410,
-                        name='Stancliffe',
-                        tram_type='ELRL',
-                        vehicle_life=40,
-                     gen=4,
-                     intro_date=1940)
+                     base_numeric_id=410,
+                     name='Stancliffe',
+                     tram_type='ELRL',
+                     vehicle_life=40,
+                     gen=3)
 
 consist.add_unit(type=ElectricRoadVehicle,
                  capacity=36,

@@ -5,7 +5,8 @@ consist = Tanker(id='drumbreck_tanker',
                  name='Drumbreck',
                  tram_type='RAIL',
                  vehicle_life=40,
-                 gen=4,                 intro_date=1870)
+                 gen=1,
+                 intro_date_offset=4)  # introduce later than gen epoch by design
 
 consist.add_unit(type=SteamRoadVehicle,
                  vehicle_length=4,
