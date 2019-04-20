@@ -29,6 +29,12 @@ STR_MENU_TEXT_ELECTRIC_TRAMWAY                                  :Electric tramwa
 STR_BUILD_WINDOW_CAPTION_ELECTRIC_TRAMWAY                       :New Electric Trams
 STR_AUTOREPLACE_TEXT_ELECTRIC_TRAMWAY                           :Electric Trams
 STR_NEW_ENGINE_TEXT_ELECTRIC_TRAMWAY                            :electric tram
+STR_NAME_FELDBAHN                                               :Feldbahn
+STR_TOOLBAR_CAPTION_FELDBAHN                                    :Feldbahn Construction
+STR_MENU_TEXT_FELDBAHN                                          :Feldbahn construction
+STR_BUILD_WINDOW_CAPTION_FELDBAHN                               :New Feldbahn vehicles
+STR_AUTOREPLACE_TEXT_FELDBAHN                                   :Feldbahn vehicles
+STR_NEW_ENGINE_TEXT_FELDBAHN                                    :feldbahn
 
 # keep these alphabetised, easier
 STR_NAME_SUFFIX_DIESEL                                          :Diesel
