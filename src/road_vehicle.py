@@ -684,7 +684,7 @@ class FlatHauler(Consist):
 
 class FruitVegHaulerBase(Consist):
     """
-    Consist base class for fruit and vegetables
+    Consist base class for fruit and vegetables hauler.
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -704,7 +704,7 @@ class FruitVegTram(FruitVegHaulerBase):
     """
     def __init__(self, **kwargs):
         print("I am a tram")
-        self.roadveh_flag_tram = True
+        self.base_track_type = "RAIL"
         super().__init__(**kwargs)
 
 
@@ -723,9 +723,9 @@ class IntermodalHauler(Consist):
         self.loading_speed_multiplier = 2
 
 
-class LivestockHauler(Consist):
+class LivestockHaulerBase(Consist):
     """
-    Livestock truck or tram.
+    Consist base class for livestock Hauler
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -737,6 +737,26 @@ class LivestockHauler(Consist):
         self.default_cargos = ['LVST'] # no need for fallbacks, only one cargo
         self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
         self.weight_multiplier = 0.45
+
+
+class LivestockTram(LivestockHaulerBase):
+    """
+    Livestock tram.
+    """
+    def __init__(self, **kwargs):
+        print("I am a tram")
+        self.base_track_type = "RAIL"
+        super().__init__(**kwargs)
+
+
+class LivestockTruck(LivestockHaulerBase):
+    """
+    Livestock truck.
+    """
+    def __init__(self, **kwargs):
+        print("I am a truck")
+        self.base_track_type = "ROAD"
+        super().__init__(**kwargs)
 
 
 class LogHauler(Consist):

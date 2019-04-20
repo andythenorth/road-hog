@@ -1,11 +1,11 @@
-from road_vehicle import LivestockHauler, SteamRoadVehicle
+from road_vehicle import LivestockTram, SteamRoadVehicle
 
-consist = LivestockHauler(id='scrag_end_livestock',
-                          base_numeric_id=710,
-                          name='Scrag End',
-                          tram_type='RAIL',
-                          vehicle_life=40,
-                          gen=1)
+consist = LivestockTram(id='scrag_end_livestock',
+                        base_numeric_id=710,
+                        name='Scrag End',
+                        tram_type='RAIL',
+                        vehicle_life=40,
+                        gen=1)
 
 consist.add_unit(type=SteamRoadVehicle,
                  capacity=0,
