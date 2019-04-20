@@ -1,9 +1,8 @@
-from road_vehicle import DumpTram, ElectricRoadVehicle
+from road_vehicle import DumpFeldbahn, ElectricRoadVehicle
 
-consist = DumpTram(id='hake_lake_dump',
+consist = DumpFeldbahn(id='hake_lake_dump',
                    base_numeric_id=620,
                    name='Hake Lake',
-                   tram_type='HAKE',
                    vehicle_life=40,
                    gen=4,
                    intro_date=1944)

@@ -36,7 +36,6 @@ class Consist(object):
         self.tram_type = kwargs.get('tram_type', None)
         if self.road_type is not None and self.tram_type is not None:
             utils.echo_message("Error: " + self.id + ". Vehicles must not have both road_type and tram_type properties set.  Set one of these only")
-        self.roadveh_flag_tram = True if self.tram_type is not None else None
         # either gen xor intro_date is required, don't set both, one will be interpolated from the other
         self._intro_date = kwargs.get('intro_date', None)
         self._gen = kwargs.get('gen', None)
@@ -412,6 +411,18 @@ class CakeMixin(object):
     """
     print("I am a cake base class")
     base_track_type = "CAKE"
+    roadveh_flag_tram = False
+
+
+class FeldbahnMixin(object):
+    """
+        Stupid mixin for feldbahn (industrial trains with tiny gauge, 600mm and similar)
+        Keep this simple, don't use an __init__, it gets tricky with super.
+        Just use class attrs.
+    """
+    print("I am a feldbahn base class")
+    base_track_type = "HAKE"
+    roadveh_flag_tram = True # feldbahn uses tram newgrf spec
 
 
 class HEQSMixin(object):
@@ -422,6 +433,7 @@ class HEQSMixin(object):
     """
     print("I am a truck base class")
     base_track_type = "HEQS"
+    roadveh_flag_tram = False
 
 
 class TramMixin(object):
@@ -432,6 +444,7 @@ class TramMixin(object):
     """
     print("I am a tram base class")
     base_track_type = "RAIL"
+    roadveh_flag_tram = True # tram uses tram newgrf spec
 
 
 class TruckMixin(object):
@@ -442,6 +455,7 @@ class TruckMixin(object):
     """
     print("I am a truck base class")
     base_track_type = "ROAD"
+    roadveh_flag_tram = False
 
 
 class RoadVehicle(object):
@@ -714,6 +728,14 @@ class DumpHaulerBase(Consist):
         self.weight_multiplier = 0.45
         # Graphics configuration
         self.gestalt_graphics = GestaltGraphicsVisibleCargo(bulk=True)
+
+
+class DumpFeldbahn(DumpHaulerBase, FeldbahnMixin):
+    """
+    Dump feldbahn.
+    """
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
 
 
 class DumpTram(DumpHaulerBase, TramMixin):
@@ -1016,6 +1038,8 @@ class PaxLocalBus(PaxHaulerLocalBase):
         # don't use the truck mixin eh, mostly becuase it looks confusing for buses :P
         print("I am a local bus")
         self.base_track_type = "ROAD"
+        # stupidity with setting tram flag, due to mixin shenanigans elsewhere
+        self.roadveh_flag_tram = False
         super().__init__(**kwargs)
         # over-ride the default sound effect set by RoadVehicle subclass
         # this assumes diesel, and will fail if none-diesel local buses are added
@@ -1050,6 +1074,8 @@ class PaxExpressCoach(PaxHaulerBase):
         # don't use the truck mixin eh, mostly becuase it looks confusing for coaches :P
         print("I am an express coach")
         self.base_track_type = "ROAD"
+        # stupidity with setting tram flag, due to mixin shenanigans elsewhere
+        self.roadveh_flag_tram = False
         super().__init__(**kwargs)
         self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
         self.weight_multiplier = 0.2
