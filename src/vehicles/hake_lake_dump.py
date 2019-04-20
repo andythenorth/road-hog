@@ -4,8 +4,7 @@ consist = DumpFeldbahn(id='hake_lake_dump',
                    base_numeric_id=620,
                    name='Hake Lake',
                    vehicle_life=40,
-                   gen=4,
-                   intro_date=1944)
+                   gen=3)
 
 consist.add_unit(type=ElectricRoadVehicle,
                  capacity=0,
