@@ -409,6 +409,26 @@ class Consist(object):
         return nml_result
 
 
+class TramMixin(object):
+    """
+        Stupid mixin for trams.
+        Keep this simple, don't use an __init__, it gets tricky with super.
+        Just use class attrs.
+    """
+    print("I am a tram base class")
+    base_track_type = "RAIL"
+
+
+class TruckMixin(object):
+    """
+        Stupid mixin for trucks.
+        Keep this simple, don't use an __init__, it gets tricky with super.
+        Just use class attrs.
+    """
+    print("I am a truck base class")
+    base_track_type = "ROAD"
+
+
 class RoadVehicle(object):
     """Base class for all types of road vehicles"""
     def __init__(self, **kwargs):
@@ -615,23 +635,19 @@ class BoxHaulerBase(Consist):
         self.weight_multiplier = 0.45
 
 
-class BoxTram(BoxHaulerBase):
+class BoxTram(BoxHaulerBase, TramMixin):
     """
     Box tram.
     """
     def __init__(self, **kwargs):
-        print("I am a tram")
-        self.base_track_type = "RAIL"
         super().__init__(**kwargs)
 
 
-class BoxTruck(BoxHaulerBase):
+class BoxTruck(BoxHaulerBase, TruckMixin):
     """
     Box truck.
     """
     def __init__(self, **kwargs):
-        print("I am a truck")
-        self.base_track_type = "ROAD"
         super().__init__(**kwargs)
 
 
@@ -651,23 +667,19 @@ class CoveredHopperHaulerBase(Consist):
         self.weight_multiplier = 0.45
 
 
-class CoveredHopperTram(CoveredHopperHaulerBase):
+class CoveredHopperTram(CoveredHopperHaulerBase, TramMixin):
     """
     Covered hopper tram.
     """
     def __init__(self, **kwargs):
-        print("I am a tram")
-        self.base_track_type = "RAIL"
         super().__init__(**kwargs)
 
 
-class CoveredHopperTruck(CoveredHopperHaulerBase):
+class CoveredHopperTruck(CoveredHopperHaulerBase, TruckMixin):
     """
     Covered hopper truck.
     """
     def __init__(self, **kwargs):
-        print("I am a truck")
-        self.base_track_type = "ROAD"
         super().__init__(**kwargs)
 
 
@@ -689,23 +701,19 @@ class DumpHaulerBase(Consist):
         self.gestalt_graphics = GestaltGraphicsVisibleCargo(bulk=True)
 
 
-class DumpTram(DumpHaulerBase):
+class DumpTram(DumpHaulerBase, TramMixin):
     """
     Dump tram.
     """
     def __init__(self, **kwargs):
-        print("I am a tram")
-        self.base_track_type = "RAIL"
         super().__init__(**kwargs)
 
 
-class DumpTruck(DumpHaulerBase):
+class DumpTruck(DumpHaulerBase, TruckMixin):
     """
     Dump truck.
     """
     def __init__(self, **kwargs):
-        print("I am a truck")
-        self.base_track_type = "ROAD"
         super().__init__(**kwargs)
 
 
@@ -726,23 +734,19 @@ class EdiblesTankerBase(Consist):
         self.weight_multiplier = 0.5
 
 
-class EdiblesTankerTram(EdiblesTankerBase):
+class EdiblesTankerTram(EdiblesTankerBase, TramMixin):
     """
     Edibles tanker tram.
     """
     def __init__(self, **kwargs):
-        print("I am a tram")
-        self.base_track_type = "RAIL"
         super().__init__(**kwargs)
 
 
-class EdiblesTankerTruck(EdiblesTankerBase):
+class EdiblesTankerTruck(EdiblesTankerBase, TruckMixin):
     """
     Edibles tanker truck.
     """
     def __init__(self, **kwargs):
-        print("I am a truck")
-        self.base_track_type = "ROAD"
         super().__init__(**kwargs)
 
 
@@ -762,23 +766,19 @@ class FlatbedHaulerBase(Consist):
         self.gestalt_graphics = GestaltGraphicsVisibleCargo(piece='flat')
 
 
-class FlatbedTram(FlatbedHaulerBase):
+class FlatbedTram(FlatbedHaulerBase, TramMixin):
     """
     Flatbed tram.
     """
     def __init__(self, **kwargs):
-        print("I am a tram")
-        self.base_track_type = "RAIL"
         super().__init__(**kwargs)
 
 
-class FlatbedTruck(FlatbedHaulerBase):
+class FlatbedTruck(FlatbedHaulerBase, TruckMixin):
     """
     Flatbed truck.
     """
     def __init__(self, **kwargs):
-        print("I am a truck")
-        self.base_track_type = "ROAD"
         super().__init__(**kwargs)
 
 
@@ -798,13 +798,11 @@ class FruitVegHaulerBase(Consist):
         self.weight_multiplier = 0.45
 
 
-class FruitVegTram(FruitVegHaulerBase):
+class FruitVegTram(FruitVegHaulerBase, TramMixin):
     """
     Fruit and vegetables tram.  No FruitVegTruck yet as of April 2019.
     """
     def __init__(self, **kwargs):
-        print("I am a tram")
-        self.base_track_type = "RAIL"
         super().__init__(**kwargs)
 
 
@@ -839,23 +837,19 @@ class LivestockHaulerBase(Consist):
         self.weight_multiplier = 0.45
 
 
-class LivestockTram(LivestockHaulerBase):
+class LivestockTram(LivestockHaulerBase, TramMixin):
     """
     Livestock tram.
     """
     def __init__(self, **kwargs):
-        print("I am a tram")
-        self.base_track_type = "RAIL"
         super().__init__(**kwargs)
 
 
-class LivestockTruck(LivestockHaulerBase):
+class LivestockTruck(LivestockHaulerBase, TruckMixin):
     """
     Livestock truck.
     """
     def __init__(self, **kwargs):
-        print("I am a truck")
-        self.base_track_type = "ROAD"
         super().__init__(**kwargs)
 
 
@@ -878,13 +872,11 @@ class LogHaulerBase(Consist):
                                                 generic_rows = [0])
 
 
-class LogTruck(LogHaulerBase):
+class LogTruck(LogHaulerBase, TruckMixin):
     """
     Log truck.
     """
     def __init__(self, **kwargs):
-        print("I am a truck")
-        self.base_track_type = "ROAD"
         super().__init__(**kwargs)
 
 
@@ -905,23 +897,19 @@ class MailHaulerBase(Consist):
             self._sound_effect = 'SOUND_TRUCK_START'
 
 
-class MailTram(MailHaulerBase):
+class MailTram(MailHaulerBase, TramMixin):
     """
     Mail tram.
     """
     def __init__(self, **kwargs):
-        print("I am a tram")
-        self.base_track_type = "RAIL"
         super().__init__(**kwargs)
 
 
-class MailTruck(MailHaulerBase):
+class MailTruck(MailHaulerBase, TruckMixin):
     """
     Mail truck.
     """
     def __init__(self, **kwargs):
-        print("I am a truck")
-        self.base_track_type = "ROAD"
         super().__init__(**kwargs)
 
 
@@ -941,13 +929,11 @@ class MetalHaulerBase(Consist):
         self.loading_speed_multiplier = 2
 
 
-class MetalTruck(MetalHaulerBase):
+class MetalTruck(MetalHaulerBase, TruckMixin):
     """
     Metal truck.
     """
     def __init__(self, **kwargs):
-        print("I am a truck")
-        self.base_track_type = "ROAD"
         super().__init__(**kwargs)
 
 
@@ -968,23 +954,19 @@ class OpenHaulerBase(Consist):
                                                             piece='open')
 
 
-class OpenTram(OpenHaulerBase):
+class OpenTram(OpenHaulerBase, TramMixin):
     """
     Open tram.
     """
     def __init__(self, **kwargs):
-        print("I am a tram")
-        self.base_track_type = "RAIL"
         super().__init__(**kwargs)
 
 
-class OpenTruck(OpenHaulerBase):
+class OpenTruck(OpenHaulerBase, TruckMixin):
     """
     Open truck.
     """
     def __init__(self, **kwargs):
-        print("I am a truck")
-        self.base_track_type = "ROAD"
         super().__init__(**kwargs)
 
 
@@ -1029,13 +1011,11 @@ class PaxLocalBus(PaxHaulerLocalBase):
         return "STR_NAME_SUFFIX_BUS"
 
 
-class PaxLocalTram(PaxHaulerLocalBase):
+class PaxLocalTram(PaxHaulerLocalBase, TramMixin):
     """
     Local passenger tram.
     """
     def __init__(self, **kwargs):
-        print("I am a tram")
-        self.base_track_type = "RAIL"
         super().__init__(**kwargs)
         # over-ride the default sound effect set by RoadVehicle subclass
         self._sound_effect = 'SOUND_LEVEL_CROSSING'
@@ -1082,23 +1062,19 @@ class RefrigeratedHaulerBase(Consist):
         self.weight_multiplier = 0.5
 
 
-class RefrigeratedTram(RefrigeratedHaulerBase):
+class RefrigeratedTram(RefrigeratedHaulerBase, TramMixin):
     """
     Refrigerated tram.
     """
     def __init__(self, **kwargs):
-        print("I am a tram")
-        self.base_track_type = "RAIL"
         super().__init__(**kwargs)
 
 
-class RefrigeratedTruck(RefrigeratedHaulerBase):
+class RefrigeratedTruck(RefrigeratedHaulerBase, TruckMixin):
     """
     Refrigerated truck.
     """
     def __init__(self, **kwargs):
-        print("I am a truck")
-        self.base_track_type = "ROAD"
         super().__init__(**kwargs)
 
 
@@ -1122,13 +1098,11 @@ class SuppliesHaulerBase(Consist):
                                                        generic_rows = [0])
 
 
-class SuppliesTruck(SuppliesHaulerBase):
+class SuppliesTruck(SuppliesHaulerBase, TruckMixin):
     """
     Supplies truck.  No supplies trams yet as of April 2019.
     """
     def __init__(self, **kwargs):
-        print("I am a truck")
-        self.base_track_type = "ROAD"
         super().__init__(**kwargs)
 
 
@@ -1153,23 +1127,19 @@ class TankerBase(Consist):
         self.gestalt_graphics = GestaltGraphicsLiveryOnly(recolour_maps=polar_fox.constants.tanker_livery_recolour_maps)
 
 
-class TankerTram(TankerBase):
+class TankerTram(TankerBase, TramMixin):
     """
     Tanker tram.
     """
     def __init__(self, **kwargs):
-        print("I am a tram")
-        self.base_track_type = "RAIL"
         super().__init__(**kwargs)
 
 
-class TankerTruck(TankerBase):
+class TankerTruck(TankerBase, TruckMixin):
     """
     Tanker truck.
     """
     def __init__(self, **kwargs):
-        print("I am a truck")
-        self.base_track_type = "ROAD"
         super().__init__(**kwargs)
 
 
