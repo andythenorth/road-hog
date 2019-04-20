@@ -402,6 +402,19 @@ class Consist(object):
         return nml_result
 
 
+class BusCoachMixin(object):
+    """
+        Stupid mixin for buses / coaches.
+        Keep this simple, don't use an __init__, it gets tricky with super.
+        Just use class attrs.
+    """
+    base_track_type = "ROAD"
+    roadveh_flag_tram = False
+    # over-ride the default sound effect set by RoadVehicle subclass
+    # this assumes diesel, and will fail if none-diesel local buses are added
+    _sound_effect = 'SOUND_BUS_START_PULL_AWAY_WITH_HORN' # coaches still might over-ride this, eh
+
+
 class CakeMixin(object):
     # !! the name is deliberately stupid to JFDI things, needs refactored !!
     """
@@ -409,8 +422,7 @@ class CakeMixin(object):
         Keep this simple, don't use an __init__, it gets tricky with super.
         Just use class attrs.
     """
-    print("I am a cake base class")
-    base_track_type = "CAKE"
+    base_track_type = "CAKE" # !! fix the label later, JFDI
     roadveh_flag_tram = False
 
 
@@ -420,8 +432,7 @@ class FeldbahnMixin(object):
         Keep this simple, don't use an __init__, it gets tricky with super.
         Just use class attrs.
     """
-    print("I am a feldbahn base class")
-    base_track_type = "HAKE"
+    base_track_type = "HAKE" # !! fix the label later, JFDI
     roadveh_flag_tram = True # feldbahn uses tram newgrf spec
 
 
@@ -431,7 +442,6 @@ class HEQSMixin(object):
         Keep this simple, don't use an __init__, it gets tricky with super.
         Just use class attrs.
     """
-    print("I am a truck base class")
     base_track_type = "HEQS"
     roadveh_flag_tram = False
 
@@ -442,7 +452,6 @@ class TramMixin(object):
         Keep this simple, don't use an __init__, it gets tricky with super.
         Just use class attrs.
     """
-    print("I am a tram base class")
     base_track_type = "RAIL"
     roadveh_flag_tram = True # tram uses tram newgrf spec
 
@@ -453,7 +462,6 @@ class TruckMixin(object):
         Keep this simple, don't use an __init__, it gets tricky with super.
         Just use class attrs.
     """
-    print("I am a truck base class")
     base_track_type = "ROAD"
     roadveh_flag_tram = False
 
@@ -1030,20 +1038,12 @@ class PaxHaulerLocalBase(PaxHaulerBase):
         self.weight_multiplier = 0.17
 
 
-class PaxLocalBus(PaxHaulerLocalBase):
+class PaxLocalBus(PaxHaulerLocalBase, BusCoachMixin):
     """
     Local passenger bus.
     """
     def __init__(self, **kwargs):
-        # don't use the truck mixin eh, mostly becuase it looks confusing for buses :P
-        print("I am a local bus")
-        self.base_track_type = "ROAD"
-        # stupidity with setting tram flag, due to mixin shenanigans elsewhere
-        self.roadveh_flag_tram = False
         super().__init__(**kwargs)
-        # over-ride the default sound effect set by RoadVehicle subclass
-        # this assumes diesel, and will fail if none-diesel local buses are added
-        self._sound_effect = 'SOUND_BUS_START_PULL_AWAY_WITH_HORN'
 
     @property
     def name_type_suffix(self):
@@ -1066,20 +1066,15 @@ class PaxLocalTram(PaxHaulerLocalBase, TramMixin):
         return "STR_NAME_SUFFIX_PASSENGER_TRAM"
 
 
-class PaxExpressCoach(PaxHaulerBase):
+class PaxExpressCoach(PaxHaulerBase, BusCoachMixin):
     """
     Express coach for pax. Express tram wasn't defined as of April 2019.  Split a PaxExpressBase subclass if needed
     """
     def __init__(self, **kwargs):
-        # don't use the truck mixin eh, mostly becuase it looks confusing for coaches :P
-        print("I am an express coach")
-        self.base_track_type = "ROAD"
-        # stupidity with setting tram flag, due to mixin shenanigans elsewhere
-        self.roadveh_flag_tram = False
         super().__init__(**kwargs)
         self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
         self.weight_multiplier = 0.2
-        # over-ride the default sound effect set by RoadVehicle subclass
+        # over-ride the default sound effect set by parent subclasses
         # this assumes diesel, and will fail if none-diesel express coaches are added
         self._sound_effect = 'SOUND_TRUCK_START_2'
 
