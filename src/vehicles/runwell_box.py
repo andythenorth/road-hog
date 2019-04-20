@@ -1,11 +1,11 @@
-from road_vehicle import BoxHauler, SteamRoadVehicle
+from road_vehicle import BoxTruck, SteamRoadVehicle
 
-consist = BoxHauler(id='runwell_box',
-                    base_numeric_id=890,
-                    name='Runwell',
-                    semi_truck_so_redistribute_capacity=True,
-                    vehicle_life=40,
-                    gen=2)
+consist = BoxTruck(id='runwell_box',
+                   base_numeric_id=890,
+                   name='Runwell',
+                   semi_truck_so_redistribute_capacity=True,
+                   vehicle_life=40,
+                   gen=2)
 
 consist.add_unit(type=SteamRoadVehicle,
                  capacity=0,

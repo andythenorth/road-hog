@@ -1,11 +1,11 @@
-from road_vehicle import BoxHauler, SteamRoadVehicle
+from road_vehicle import BoxTram, SteamRoadVehicle
 
-consist = BoxHauler(id='amblecote_box',
-                    base_numeric_id=80,
-                    name='Amblecote',
-                    tram_type='RAIL',
-                    vehicle_life=40,
-                    gen=1)
+consist = BoxTram(id='amblecote_box',
+                  base_numeric_id=80,
+                  name='Amblecote',
+                  tram_type='RAIL',
+                  vehicle_life=40,
+                  gen=1)
 
 consist.add_unit(type=SteamRoadVehicle,
                  capacity=0,

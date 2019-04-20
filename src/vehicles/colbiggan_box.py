@@ -1,11 +1,11 @@
-from road_vehicle import BoxHauler, ElectricRoadVehicle
+from road_vehicle import BoxTram, ElectricRoadVehicle
 
-consist = BoxHauler(id='colbiggan_box',
-                    base_numeric_id=880,
-                    name='Colbiggan',
-                    tram_type='ELRL',
-                    vehicle_life=40,
-                    gen=3)
+consist = BoxTram(id='colbiggan_box',
+                  base_numeric_id=880,
+                  name='Colbiggan',
+                  tram_type='ELRL',
+                  vehicle_life=40,
+                  gen=3)
 
 consist.add_unit(type=ElectricRoadVehicle,
                  capacity=36,

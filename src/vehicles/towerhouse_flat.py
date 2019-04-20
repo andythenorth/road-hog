@@ -1,11 +1,11 @@
-from road_vehicle import FlatHauler, DieselRoadVehicle
+from road_vehicle import FlatbedTruck, DieselRoadVehicle
 
-consist = FlatHauler(id='towerhouse_flat',
-                     base_numeric_id=650,
-                     name='Towerhouse',
-                     semi_truck_so_redistribute_capacity=True,
-                     vehicle_life=40,
-                     gen=4)
+consist = FlatbedTruck(id='towerhouse_flat',
+                       base_numeric_id=650,
+                       name='Towerhouse',
+                       semi_truck_so_redistribute_capacity=True,
+                       vehicle_life=40,
+                       gen=4)
 
 consist.add_unit(type=DieselRoadVehicle,
                  vehicle_length=2,

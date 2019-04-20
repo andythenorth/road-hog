@@ -1,11 +1,11 @@
-from road_vehicle import FlatHauler, ElectricRoadVehicle
+from road_vehicle import FlatbedTram, ElectricRoadVehicle
 
-consist = FlatHauler(id='rackwood_flat',
-                     base_numeric_id=740,
-                     name='Rackwood',
-                     tram_type='ELRL',
-                     vehicle_life=40,
-                     gen=2)
+consist = FlatbedTram(id='rackwood_flat',
+                      base_numeric_id=740,
+                      name='Rackwood',
+                      tram_type='ELRL',
+                      vehicle_life=40,
+                      gen=2)
 
 consist.add_unit(type=ElectricRoadVehicle,
                  capacity=30,

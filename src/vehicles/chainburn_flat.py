@@ -1,10 +1,10 @@
-from road_vehicle import FlatHauler, SteamRoadVehicle
+from road_vehicle import FlatbedTruck, SteamRoadVehicle
 
-consist = FlatHauler(id='chainburn_flat',
-                     base_numeric_id=630,
-                     name='Chainburn',
-                     vehicle_life=40,
-                     gen=2)
+consist = FlatbedTruck(id='chainburn_flat',
+                       base_numeric_id=630,
+                       name='Chainburn',
+                       vehicle_life=40,
+                       gen=2)
 
 consist.add_unit(type=SteamRoadVehicle,
                  capacity=12,

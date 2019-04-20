@@ -600,9 +600,9 @@ class ElectricRoadVehicle(RoadVehicle):
         self.consist.default_sound_effect = 'SOUND_ELECTRIC_SPARK'
 
 
-class BoxHauler(Consist):
+class BoxHaulerBase(Consist):
     """
-    Box tram or truck - refits express, piece goods cargos, other selected cargos.
+    Base consist for box haulers. Refits express, piece goods cargos, other selected cargos.
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -613,6 +613,26 @@ class BoxHauler(Consist):
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_freight_special_cases']
         self.default_cargos = global_constants.default_cargos['box']
         self.weight_multiplier = 0.45
+
+
+class BoxTram(BoxHaulerBase):
+    """
+    Box tram.
+    """
+    def __init__(self, **kwargs):
+        print("I am a tram")
+        self.base_track_type = "RAIL"
+        super().__init__(**kwargs)
+
+
+class BoxTruck(BoxHaulerBase):
+    """
+    Box truck.
+    """
+    def __init__(self, **kwargs):
+        print("I am a truck")
+        self.base_track_type = "ROAD"
+        super().__init__(**kwargs)
 
 
 class CoveredHopperHauler(Consist):
@@ -649,9 +669,9 @@ class DumpHauler(Consist):
         self.gestalt_graphics = GestaltGraphicsVisibleCargo(bulk=True)
 
 
-class EdiblesTanker(Consist):
+class EdiblesTankerBase(Consist):
     """
-    Wine, milk, water etc.
+    Base consist for edibles tankers. Wine, milk, water etc.
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -666,9 +686,29 @@ class EdiblesTanker(Consist):
         self.weight_multiplier = 0.5
 
 
-class FlatHauler(Consist):
+class EdiblesTankerTram(EdiblesTankerBase):
     """
-    Flatbed tram or truck - refits most cargos, not bulk.
+    Edibles tanker tram.
+    """
+    def __init__(self, **kwargs):
+        print("I am a tram")
+        self.base_track_type = "RAIL"
+        super().__init__(**kwargs)
+
+
+class EdiblesTankerTruck(EdiblesTankerBase):
+    """
+    Edibles tanker truck.
+    """
+    def __init__(self, **kwargs):
+        print("I am a truck")
+        self.base_track_type = "ROAD"
+        super().__init__(**kwargs)
+
+
+class FlatbedHaulerBase(Consist):
+    """
+    Base consist for flatbed hauler. Refits most cargos, not bulk.
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -680,6 +720,26 @@ class FlatHauler(Consist):
         self.default_cargos = global_constants.default_cargos['flat']
         # Graphics configuration
         self.gestalt_graphics = GestaltGraphicsVisibleCargo(piece='flat')
+
+
+class FlatbedTram(FlatbedHaulerBase):
+    """
+    Flatbed tram.
+    """
+    def __init__(self, **kwargs):
+        print("I am a tram")
+        self.base_track_type = "RAIL"
+        super().__init__(**kwargs)
+
+
+class FlatbedTruck(FlatbedHaulerBase):
+    """
+    Flatbed truck.
+    """
+    def __init__(self, **kwargs):
+        print("I am a truck")
+        self.base_track_type = "ROAD"
+        super().__init__(**kwargs)
 
 
 class FruitVegHaulerBase(Consist):
