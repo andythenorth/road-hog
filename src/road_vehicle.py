@@ -778,9 +778,9 @@ class LogHauler(Consist):
                                                 generic_rows = [0])
 
 
-class MailHauler(Consist):
+class MailHaulerBase(Consist):
     """
-    Truck or tram for mail, valuables etc.
+    Consist base class for mail hauler.  Valuables, express cargos etc.
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -793,6 +793,26 @@ class MailHauler(Consist):
         self.weight_multiplier = 0.2
         if not self.roadveh_flag_tram:
             self._sound_effect = 'SOUND_TRUCK_START'
+
+
+class MailTram(MailHaulerBase):
+    """
+    Mail tram.
+    """
+    def __init__(self, **kwargs):
+        print("I am a tram")
+        self.base_track_type = "RAIL"
+        super().__init__(**kwargs)
+
+
+class MailTruck(MailHaulerBase):
+    """
+    Mail truck.
+    """
+    def __init__(self, **kwargs):
+        print("I am a truck")
+        self.base_track_type = "ROAD"
+        super().__init__(**kwargs)
 
 
 class MetalHauler(Consist):
@@ -927,7 +947,7 @@ class SuppliesHauler(Consist):
                                                        generic_rows = [0])
 
 
-class Tanker(Consist):
+class TankerBase(Consist):
     """
     Ronseal ("does what it says on the tin", for those without extensive knowledge of UK advertising).
     """
@@ -946,5 +966,25 @@ class Tanker(Consist):
         self.weight_multiplier = 0.45
         # Graphics configuration
         self.gestalt_graphics = GestaltGraphicsLiveryOnly(recolour_maps=polar_fox.constants.tanker_livery_recolour_maps)
+
+
+class TankerTram(TankerBase):
+    """
+    Tanker tram.
+    """
+    def __init__(self, **kwargs):
+        print("I am a tram")
+        self.base_track_type = "RAIL"
+        super().__init__(**kwargs)
+
+
+class TankerTruck(TankerBase):
+    """
+    Tanker truck.
+    """
+    def __init__(self, **kwargs):
+        print("I am a truck")
+        self.base_track_type = "ROAD"
+        super().__init__(**kwargs)
 
 

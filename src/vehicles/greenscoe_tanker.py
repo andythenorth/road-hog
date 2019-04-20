@@ -1,6 +1,6 @@
-from road_vehicle import Tanker, DieselRoadVehicle
+from road_vehicle import TankerTruck, DieselRoadVehicle
 
-consist = Tanker(id='greenscoe_tanker',
+consist = TankerTruck(id='greenscoe_tanker',
                  base_numeric_id=210,
                  name='Greenscoe',
                  semi_truck_so_redistribute_capacity=True,

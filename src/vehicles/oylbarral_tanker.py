@@ -1,6 +1,6 @@
-from road_vehicle import Tanker, ElectricRoadVehicle
+from road_vehicle import TankerTram, ElectricRoadVehicle
 
-consist = Tanker(id='oylbarral_tanker',
+consist = TankerTram(id='oylbarral_tanker',
                  base_numeric_id=320,
                  name='Oylbarral',
                  tram_type='ELRL',

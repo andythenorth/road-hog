@@ -1,12 +1,12 @@
-from road_vehicle import MailHauler, SteamRoadVehicle
+from road_vehicle import MailTram, SteamRoadVehicle
 
-consist = MailHauler(id='tin_hatch_mail',
-                     base_numeric_id=820,
-                     name='Tin Hatch',
-                     tram_type='RAIL',
-                     power=120,  # custom power
-                     vehicle_life=40,
-                     gen=1)
+consist = MailTram(id='tin_hatch_mail',
+                   base_numeric_id=820,
+                   name='Tin Hatch',
+                   tram_type='RAIL',
+                   power=120,  # custom power
+                   vehicle_life=40,
+                   gen=1)
 
 consist.add_unit(type=SteamRoadVehicle,
                  capacity=0,
