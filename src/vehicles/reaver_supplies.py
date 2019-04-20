@@ -1,12 +1,12 @@
-from road_vehicle import SuppliesTruck, SteamRoadVehicle
+from road_vehicle import SuppliesCake, SteamRoadVehicle
 
-consist = SuppliesTruck(id='reaver_supplies',
+consist = SuppliesCake(id='reaver_supplies',
                         base_numeric_id=550,
                         name='Reaver',
                         power=240,  # custom power
                         vehicle_life=40,
-                        gen=4,
-                        intro_date=1875)
+                        gen=1,
+                        intro_date_offset=15)  # introduce later than gen epoch by design
 
 consist.add_unit(type=SteamRoadVehicle,
                  capacity=0,

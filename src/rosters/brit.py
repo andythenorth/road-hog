@@ -102,9 +102,10 @@ roster = Roster(id = 'brit',
                 numeric_id = 1,
                 # default intro dates per generation, can be over-ridden if needed by setting intro_date kw on consist
                 intro_dates = {'ROAD': [1860, 1910, 1939, 1968, 1997, 2026], # gen 1 is long, then after 1910, 29 year gaps for trucks / buses
-                               'HAUL': [1900, 1950, 2000],
+                               'HEQS': [1870, 1910, 1950, 1990, 2030], # !! 40 year gaps (might reduce??)
                                'RAIL': [1860, 1900, 1930, 1960, 1990, 2020], # 30 year gaps for trams
-                               'HAKE': [1860, 1905, 1950, 2000]},
+                               'CAKE': [1860, 1920, 1955, 1990, 2025], # !! 35 year gaps (might reduce??)
+                               'HAKE': [1860, 1900, 1930, 1960, 1990, 2020]}, # !! 30 year gaps for feldbahn?? (increase??)
                 # keep dates for power and speeds matched
                 truck_speeds = {0: 25, 1905: 40, 1935: 55, 1965: 70, 1985: 80},
                 tram_speeds = {0: 25, 1900: 35, 1930: 45, 1960: 55, 1990: 60}, # last generation only increase by 5mph by design

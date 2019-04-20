@@ -37,12 +37,6 @@ class Consist(object):
         if self.road_type is not None and self.tram_type is not None:
             utils.echo_message("Error: " + self.id + ". Vehicles must not have both road_type and tram_type properties set.  Set one of these only")
         self.roadveh_flag_tram = True if self.tram_type is not None else None
-
-        print("base_track_type hax in Consist, to make compile work")
-        if self.roadveh_flag_tram is not None:
-            self.base_track_type = "RAIL"
-        else:
-            self.base_track_type = "ROAD"
         # either gen xor intro_date is required, don't set both, one will be interpolated from the other
         self._intro_date = kwargs.get('intro_date', None)
         self._gen = kwargs.get('gen', None)
@@ -427,6 +421,27 @@ class TruckMixin(object):
     """
     print("I am a truck base class")
     base_track_type = "ROAD"
+
+
+class HEQSMixin(object):
+    """
+        Stupid mixin for heavy equipment (non-rail).
+        Keep this simple, don't use an __init__, it gets tricky with super.
+        Just use class attrs.
+    """
+    print("I am a truck base class")
+    base_track_type = "HEQS"
+
+
+class CakeMixin(object):
+    # !! the name is deliberately stupid to JFDI things, needs refactored !!
+    """
+        Stupid mixin for multi-roadtype (HEQS and ROAD).
+        Keep this simple, don't use an __init__, it gets tricky with super.
+        Just use class attrs.
+    """
+    print("I am a cake base class")
+    base_track_type = "CAKE"
 
 
 class RoadVehicle(object):
@@ -872,9 +887,9 @@ class LogHaulerBase(Consist):
                                                 generic_rows = [0])
 
 
-class LogTruck(LogHaulerBase, TruckMixin):
+class LogHEQS(LogHaulerBase, HEQSMixin):
     """
-    Log truck.
+    Log hauling heavy equipment.
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -1100,9 +1115,9 @@ class SuppliesHaulerBase(Consist):
                                                        generic_rows = [0])
 
 
-class SuppliesTruck(SuppliesHaulerBase, TruckMixin):
+class SuppliesCake(SuppliesHaulerBase, CakeMixin):
     """
-    Supplies truck.  No supplies trams yet as of April 2019.
+    Supplies hauler (multi-roadtype).  No supplies trams yet as of April 2019.
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)

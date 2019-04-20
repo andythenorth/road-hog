@@ -26,8 +26,8 @@ tramtypetable {
 item(FEAT_ROADTYPES, heavy_haul_road, 0) {
     property {
         name: string(STR_NAME_HEAVY_HAUL_ROAD);
-        label: "HAUL";
-        powered_roadtype_list: [];
+        label: "HEQS";
+        powered_roadtype_list: ["HAUL"];
         toolbar_caption: string(STR_TOOLBAR_CAPTION_HEAVY_HAUL_ROAD);
         menu_text: string(STR_MENU_TEXT_HEAVY_HAUL_ROAD);
         build_window_caption: string(STR_BUILD_WINDOW_CAPTION_HEAVY_HAUL_ROAD);

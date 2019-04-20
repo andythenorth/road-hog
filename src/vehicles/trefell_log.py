@@ -1,13 +1,11 @@
-from road_vehicle import LogTruck, SteamRoadVehicle
+from road_vehicle import LogHEQS, SteamRoadVehicle
 
-consist = LogTruck(id='trefell_log',
+consist = LogHEQS(id='trefell_log',
                    base_numeric_id=480,
                    name='Trefell',
-                   road_type='HAUL',
                    power=100,  # custom power
                    vehicle_life=40,
-                   gen=4,
-                   intro_date=1910)
+                   gen=2)
 
 consist.add_unit(type=SteamRoadVehicle,
                  capacity=0,

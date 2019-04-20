@@ -1,13 +1,12 @@
-from road_vehicle import LogTruck, SteamRoadVehicle
+from road_vehicle import LogHEQS, SteamRoadVehicle
 
-consist = LogTruck(id='griff_log',
+consist = LogHEQS(id='griff_log',
                    base_numeric_id=220,
                    name='Griff',
-                   road_type='HAUL',
                    power=100,  # custom power
                    vehicle_life=40,
-                   gen=4,
-                   intro_date=1870)
+                   gen=1,
+                   intro_date_offset=10)  # introduce later than gen epoch by design
 
 consist.add_unit(type=SteamRoadVehicle,
                  capacity=0,

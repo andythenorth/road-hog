@@ -1,14 +1,12 @@
-from road_vehicle import LogTruck, DieselRoadVehicle
+from road_vehicle import LogHEQS, DieselRoadVehicle
 
-consist = LogTruck(id='buff_log',
+consist = LogHEQS(id='buff_log',
                    base_numeric_id=110,
                    name='Buff',
-                   road_type='HAUL',
                    power=550,
                    speed=60,
                    vehicle_life=40,
-                   gen=4,
-                   intro_date=1994)
+                   gen=4)
 
 consist.add_unit(type=DieselRoadVehicle,
                  capacity=40,
