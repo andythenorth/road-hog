@@ -79,7 +79,7 @@ class DocHelper(object):
         props_to_print = {}
         for vehicle in self.get_vehicles_by_subclass()[subclass]:
             result = {'vehicle':{}, 'subclass_props': []}
-            result = self.fetch_prop(result, 'Vehicle Name', self.unpack_name_string(vehicle))
+            result = self.fetch_prop(result, 'Vehicle Name', self.unpack_name_string(vehicle)['full_name'])
             result = self.fetch_prop(result, 'HP', int(vehicle.power))
             result = self.fetch_prop(result, 'Speed (mph)', vehicle.speed)
             result = self.fetch_prop(result, 'Weight (t)', int(vehicle.weight)) # cast to int to get same result as game will show
