@@ -1,12 +1,12 @@
-from road_vehicle import PaxHauler, ElectricRoadVehicle
+from road_vehicle import PaxLocalTram, ElectricRoadVehicle
 
-consist = PaxHauler(id='northbeach_pax',
-                    base_numeric_id=690,
-                    name='Northbeach',
-                    tram_type='ELRL',
-                    vehicle_life=40,
-                    gen=4,
-                    intro_date_offset=1)  # introduce later than gen epoch by design
+consist = PaxLocalTram(id='northbeach_pax',
+                       base_numeric_id=690,
+                       name='Northbeach',
+                       tram_type='ELRL',
+                       vehicle_life=40,
+                       gen=4,
+                       intro_date_offset=1)  # introduce later than gen epoch by design
 
 consist.add_unit(type=ElectricRoadVehicle,
                  capacity=60,

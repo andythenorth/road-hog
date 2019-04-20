@@ -1,14 +1,14 @@
-from road_vehicle import MetalHauler, DieselRoadVehicle
+from road_vehicle import MetalTruck, DieselRoadVehicle
 
-consist = MetalHauler(id='steeraway_metal',
-                      base_numeric_id=520,
-                      name='Steeraway',
-                      road_type='HAUL',
-                      power=500,
-                      speed=45,
-                      vehicle_life=80,
-                      gen=4,
-                      intro_date=1960)
+consist = MetalTruck(id='steeraway_metal',
+                     base_numeric_id=520,
+                     name='Steeraway',
+                     road_type='HAUL',
+                     power=500,
+                     speed=45,
+                     vehicle_life=80,
+                     gen=4,
+                     intro_date=1960)
 
 consist.add_unit(type=DieselRoadVehicle,
                  capacity=0,

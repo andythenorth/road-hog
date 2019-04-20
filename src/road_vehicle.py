@@ -925,9 +925,9 @@ class MailTruck(MailHaulerBase):
         super().__init__(**kwargs)
 
 
-class MetalHauler(Consist):
+class MetalHaulerBase(Consist):
     """
-    Specialist heavy haul tram / truck, e.g. multiwheel platform, steel mill hauler etc.
+    Base consist for specialist heavy hauler, e.g. multiwheel platform, steel mill hauler etc.
     High capacity, not very fast, refits to small subset of finished metal cargos.
     """
     def __init__(self, **kwargs):
@@ -939,6 +939,16 @@ class MetalHauler(Consist):
         self.label_refits_disallowed = []
         self.default_cargos = global_constants.default_cargos['metal']
         self.loading_speed_multiplier = 2
+
+
+class MetalTruck(MetalHaulerBase):
+    """
+    Metal truck.
+    """
+    def __init__(self, **kwargs):
+        print("I am a truck")
+        self.base_track_type = "ROAD"
+        super().__init__(**kwargs)
 
 
 class OpenHaulerBase(Consist):
@@ -991,45 +1001,60 @@ class PaxHaulerBase(Consist):
         self.default_cargos = global_constants.default_cargos['pax']
 
 
-class PaxHauler(PaxHaulerBase):
+class PaxHaulerLocalBase(PaxHaulerBase):
     """
-    Bus or tram for pax.
+    Base subclass for fast loading passenger tram or bus.
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.loading_speed_multiplier = 3
         self.weight_multiplier = 0.17
-        # sound effects are faff, interacts with RoadVehicle subclass too
-        if self.roadveh_flag_tram:
-            self._sound_effect = 'SOUND_LEVEL_CROSSING'
-        else:
-            self._sound_effect = 'SOUND_BUS_START_PULL_AWAY_WITH_HORN'
 
+
+class PaxLocalBus(PaxHaulerLocalBase):
+    """
+    Local passenger bus.
+    """
+    def __init__(self, **kwargs):
+        print("I am a truck")
+        self.base_track_type = "ROAD"
+        super().__init__(**kwargs)
+        # over-ride the default sound effect set by RoadVehicle subclass
+        # this assumes diesel, and will fail if none-diesel local buses are added
+        self._sound_effect = 'SOUND_BUS_START_PULL_AWAY_WITH_HORN'
 
     @property
     def name_type_suffix(self):
         # special case handling for name suffix strings
-        if self.roadveh_flag_tram:
-            return "STR_NAME_SUFFIX_PASSENGER_TRAM"
-        else:
-            return "STR_NAME_SUFFIX_BUS"
+        return "STR_NAME_SUFFIX_BUS"
 
 
-class PaxExpressHauler(PaxHaulerBase):
+class PaxLocalTram(PaxHaulerLocalBase):
     """
-    Sparse base class for coach or express tram for pax.
+    Local passenger tram.
+    """
+    def __init__(self, **kwargs):
+        print("I am a tram")
+        self.base_track_type = "RAIL"
+        super().__init__(**kwargs)
+        # over-ride the default sound effect set by RoadVehicle subclass
+        self._sound_effect = 'SOUND_LEVEL_CROSSING'
+
+    @property
+    def name_type_suffix(self):
+        # special case handling for name suffix strings
+        return "STR_NAME_SUFFIX_PASSENGER_TRAM"
+
+
+class PaxExpressCoach(PaxHaulerBase):
+    """
+    Express coach for pax. Express tram wasn't defined as of April 2019.  Split a PaxExpressBase subclass if needed
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        print("I am an express coach")
+        self.base_track_type = "ROAD"
         self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
-
-
-class PaxExpressCoach(PaxExpressHauler):
-    """
-    Express coach for pax.  Tram wasn't defined as of April 2019.
-    """
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
         self.weight_multiplier = 0.2
         # over-ride the default sound effect set by RoadVehicle subclass
         # this assumes diesel, and will fail if none-diesel express coaches are added
