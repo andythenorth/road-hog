@@ -5,7 +5,7 @@ consist = DumpHauler(id='nettlebridge_dump',
                      name='Nettlebridge',
                      tram_type='ELRL',
                      vehicle_life=40,
-                     intro_date=1944)
+                     gen=4,                     intro_date=1944)
 
 consist.add_unit(type=ElectricRoadVehicle,
                  capacity=0,

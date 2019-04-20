@@ -5,6 +5,7 @@ consist = SuppliesHauler(id='reaver_supplies',
                          name='Reaver',
                          power=240,  # custom power
                          vehicle_life=40,
+                         gen=4,
                          intro_date=1875)
 
 consist.add_unit(type=SteamRoadVehicle,

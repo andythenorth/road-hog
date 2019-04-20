@@ -4,7 +4,7 @@ consist = EdiblesTanker(id='flow_edge_edibles_tanker',
                         base_numeric_id=930,
                         name='Flow Edge',
                         vehicle_life=40,
-                        intro_date=1912)
+                        gen=4,                        intro_date=1912)
 
 consist.add_unit(type=SteamRoadVehicle,
                  capacity=12,

@@ -37,7 +37,12 @@ class Consist(object):
         if self.road_type is not None and self.tram_type is not None:
             utils.echo_message("Error: " + self.id + ". Vehicles must not have both road_type and tram_type properties set.  Set one of these only")
         self.roadveh_flag_tram = True if self.tram_type is not None else None
-        self.intro_date = kwargs.get('intro_date', None)
+        # either gen xor intro_date is required, don't set both, one will be interpolated from the other
+        self._intro_date = kwargs.get('intro_date', None)
+        self._gen = kwargs.get('gen', None)
+        print('_gen', self._gen, '_intro_date', self._intro_date)
+        # if gen is used, the calculated intro date can be adjusted with +ve or -ve offset
+        self.intro_date_offset = kwargs.get('intro_date_offset', None)
         self.vehicle_life = kwargs.get('vehicle_life', None)
         self._power = kwargs.get('power', None)
         # sound effects are faff, they can be set by consist subclass (Bus vs. Coach), or will fall back to a default sound for the vehicle subclass (by power type)
@@ -195,6 +200,35 @@ class Consist(object):
     def running_cost(self):
         # type_base_running_cost_points is an arbitrary adjustment that can be applied on a type-by-type basis,
         return self.get_engine_cost_points()  + self.type_base_running_cost_points
+
+    @property
+    def intro_date(self):
+        # automatic intro_date, but can over-ride by passing in kwargs for consist
+        if self._intro_date:
+            print('intro date assert tickled')
+            #assert(self._gen == None), "%s consist has both gen and intro_date set, which is incorrect" % self.id
+            assert(self.intro_date_offset == None), "%s consist has both intro_date and intro_date_offset set, which is incorrect" % self.id
+            return self._intro_date
+        else:
+            assert(self._gen != None), "%s consist has neither gen nor intro_date set, which is incorrect" % self.id
+            result = self.roster.intro_dates[self.base_track_type][self.gen - 1]
+            if self.intro_date_offset is not None:
+                result = result + self.intro_date_offset
+            return result
+
+    @property
+    def gen(self):
+        # gen is usually set in the vehicle, but can be left unset if intro_date is set
+        if self._gen:
+            assert(self._intro_date == None), "%s consist has both gen and intro_date set, which is incorrect" % self.id
+            return self._gen
+        else:
+            assert(self._intro_date != None), "%s consist has neither gen nor intro_date set, which is incorrect" % self.id
+            for gen_counter, intro_date in enumerate(self.roster.intro_dates[self.base_track_type]):
+                if self.intro_date < intro_date:
+                    return gen_counter
+            # if no result is found in list, it's last gen
+            return len(self.roster.intro_dates[self.base_track_type])
 
     @property
     def weight(self):

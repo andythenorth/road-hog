@@ -5,6 +5,7 @@ consist = RefrigeratedHauler(id='merrivale_refrigerated',
                              name='Merrivale',
                              semi_truck_so_redistribute_capacity=True,
                              vehicle_life=40,
+                             gen=4,
                              intro_date=1949)
 
 consist.add_unit(type=DieselRoadVehicle,

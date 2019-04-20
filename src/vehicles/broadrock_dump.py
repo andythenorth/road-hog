@@ -9,7 +9,7 @@ consist = DumpHauler(id='broadrock_dump',
                      speed=40,  # dibbled up above RL for game balance
                      type_base_running_cost_points=20,  # dibble running costs for game balance
                      vehicle_life=40,
-                     intro_date=1947)
+                     gen=4,                     intro_date=1947)
 
 consist.add_unit(type=DieselRoadVehicle,
                  capacity=0,

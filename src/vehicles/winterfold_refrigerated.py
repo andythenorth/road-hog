@@ -5,6 +5,7 @@ consist = RefrigeratedHauler(id='winterfold_refrigerated',
                              name='Winterfold',
                              tram_type='ELRL',
                              vehicle_life=40,
+                             gen=4,
                              intro_date=1915)
 
 consist.add_unit(type=ElectricRoadVehicle,

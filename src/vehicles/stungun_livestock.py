@@ -5,6 +5,7 @@ consist = LivestockHauler(id='stungun_livestock',
                           name='Stungun',
                           semi_truck_so_redistribute_capacity=True,
                           vehicle_life=40,
+                          gen=4,
                           intro_date=1999)
 
 consist.add_unit(type=DieselRoadVehicle,

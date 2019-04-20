@@ -5,7 +5,7 @@ consist = Tanker(id='greenscoe_tanker',
                  name='Greenscoe',
                  semi_truck_so_redistribute_capacity=True,
                  vehicle_life=40,
-                 intro_date=1942)
+                 gen=4,                 intro_date=1942)
 
 consist.add_unit(type=DieselRoadVehicle,
                  capacity=0,

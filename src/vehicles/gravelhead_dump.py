@@ -5,7 +5,7 @@ consist = DumpHauler(id='gravelhead_dump',
                      name='Gravelhead',
                      power=130,
                      vehicle_life=40,
-                     intro_date=1920)
+                     gen=4,                     intro_date=1920)
 
 consist.add_unit(capacity=12,
                  vehicle_length=6,

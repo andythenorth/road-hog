@@ -6,7 +6,7 @@ consist = LogHauler(id='griff_log',
                     road_type='HAUL',
                     power=100,  # custom power
                     vehicle_life=40,
-                    intro_date=1870)
+                    gen=4,                    intro_date=1870)
 
 consist.add_unit(type=SteamRoadVehicle,
                  capacity=0,

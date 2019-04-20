@@ -6,6 +6,7 @@ consist = SuppliesHauler(id='brigand_supplies',
                          name='Brigand',
                          power=480,
                          vehicle_life=40,
+                         gen=4,
                          intro_date=1953)
 
 consist.add_unit(type=DieselRoadVehicle,

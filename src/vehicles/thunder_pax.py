@@ -9,7 +9,7 @@ consist = PaxHauler(id='thunder_pax',
                     power=160,
                     speed=45,
                     vehicle_life=40,
-                    intro_date=1935)
+                    gen=4,                    intro_date=1935)
 
 consist.add_unit(type=DieselRoadVehicle,
                  capacity=50,

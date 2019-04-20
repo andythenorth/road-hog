@@ -100,6 +100,11 @@ from vehicles import (acton_pax_express,
 
 roster = Roster(id = 'brit',
                 numeric_id = 1,
+                # default intro dates per generation, can be over-ridden if needed by setting intro_date kw on consist
+                intro_dates = {'ROAD': [1860, 1910, 1939, 1968, 1997, 2026], # gen 1 is long, then after 1910, 29 year gaps for trucks / buses
+                               'HAUL': [1900, 1950, 2000],
+                               'TRAM': [1900, 1950, 2000],
+                               'HAKE': [1860, 1905, 1950, 2000]},
                 # keep dates for power and speeds matched
                 truck_speeds = {0: 25, 1905: 40, 1935: 55, 1965: 70, 1985: 80},
                 tram_speeds = {0: 25, 1900: 35, 1930: 45, 1960: 55, 1990: 60}, # last generation only increase by 5mph by design

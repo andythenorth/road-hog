@@ -9,6 +9,7 @@ consist = PaxExpressHauler(id='big_sky_pax_express',
                            power=220,
                            speed=90,
                            vehicle_life=40,
+                           gen=4,
                            intro_date=1990)
 
 consist.add_unit(type=DieselRoadVehicle,

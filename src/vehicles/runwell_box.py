@@ -5,7 +5,7 @@ consist = BoxHauler(id='runwell_box',
                     name='Runwell',
                     semi_truck_so_redistribute_capacity=True,
                     vehicle_life=40,
-                    intro_date=1910)
+                    gen=4,                    intro_date=1910)
 
 consist.add_unit(type=SteamRoadVehicle,
                  capacity=0,

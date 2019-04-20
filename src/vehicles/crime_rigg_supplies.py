@@ -6,6 +6,7 @@ consist = SuppliesHauler(id='crime_rigg_supplies',
                          name='Crime Rigg',
                          power=360,
                          vehicle_life=40,
+                         gen=4,
                          intro_date=1920)
 
 consist.add_unit(type=SteamRoadVehicle,

@@ -7,7 +7,7 @@ consist = MetalHauler(id='steeraway_metal',
                       power=500,
                       speed=45,
                       vehicle_life=80,
-                      intro_date=1960)
+                      gen=4,                      intro_date=1960)
 
 consist.add_unit(type=DieselRoadVehicle,
                  capacity=0,

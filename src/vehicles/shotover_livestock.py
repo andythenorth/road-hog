@@ -5,6 +5,7 @@ consist = LivestockHauler(id='shotover_livestock',
                           name='Shotover',
                           tram_type='ELRL',
                           vehicle_life=40,
+                          gen=4,
                           intro_date=1941)
 
 consist.add_unit(type=ElectricRoadVehicle,

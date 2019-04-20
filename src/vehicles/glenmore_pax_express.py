@@ -9,6 +9,7 @@ consist = PaxExpressHauler(id='glenmore_pax_express',
                            power=160,
                            speed=55,
                            vehicle_life=40,
+                           gen=4,
                            intro_date=1935)
 
 consist.add_unit(type=DieselRoadVehicle,

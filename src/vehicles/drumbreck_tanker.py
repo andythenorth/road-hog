@@ -5,7 +5,7 @@ consist = Tanker(id='drumbreck_tanker',
                  name='Drumbreck',
                  tram_type='RAIL',
                  vehicle_life=40,
-                 intro_date=1870)
+                 gen=4,                 intro_date=1870)
 
 consist.add_unit(type=SteamRoadVehicle,
                  vehicle_length=4,

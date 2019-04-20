@@ -5,6 +5,7 @@ consist = LivestockHauler(id='scrag_end_livestock',
                           name='Scrag End',
                           tram_type='RAIL',
                           vehicle_life=40,
+                          gen=4,
                           intro_date=1865)
 
 consist.add_unit(type=SteamRoadVehicle,

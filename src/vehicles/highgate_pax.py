@@ -9,7 +9,7 @@ consist = PaxHauler(id='highgate_pax',
                     power=240,
                     speed=50,
                     vehicle_life=40,
-                    intro_date=1964)
+                    gen=4,                    intro_date=1964)
 
 consist.add_unit(type=DieselRoadVehicle,
                  capacity=60,

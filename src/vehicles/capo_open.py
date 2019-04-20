@@ -4,7 +4,7 @@ consist = OpenHauler(id='capo_open',
                      base_numeric_id=680,
                      name='Capo',
                      vehicle_life=40,
-                     intro_date=1997)
+                     gen=4,                     intro_date=1997)
 
 consist.add_unit(type=DieselRoadVehicle,
                  capacity=20,

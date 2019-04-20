@@ -4,7 +4,7 @@ consist = OpenHauler(id='jinglepot_open',
                      base_numeric_id=240,
                      name='Jinglepot',
                      vehicle_life=40,
-                     intro_date=1910)
+                     gen=4,                     intro_date=1910)
 
 consist.add_unit(type=SteamRoadVehicle,
                  capacity=12,

@@ -5,7 +5,7 @@ consist = DumpHauler(id='hake_lake_dump',
                      name='Hake Lake',
                      tram_type='HAKE',
                      vehicle_life=40,
-                     intro_date=1944)
+                     gen=4,                     intro_date=1944)
 
 consist.add_unit(type=ElectricRoadVehicle,
                  capacity=0,

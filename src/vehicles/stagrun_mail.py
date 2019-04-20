@@ -6,7 +6,7 @@ consist = MailHauler(id='stagrun_mail',
                      tram_type='ELRL',
                      power=360,  # custom power
                      vehicle_life=40,
-                     intro_date=1932)
+                     gen=4,                     intro_date=1932)
 
 consist.add_unit(type=ElectricRoadVehicle,
                  capacity=18,

@@ -4,6 +4,7 @@ consist = LivestockHauler(id='cowsleigh_livestock',
                           base_numeric_id=900,
                           name='Cowsleigh',
                           vehicle_life=40,
+                          gen=4,
                           intro_date=1911)
 
 consist.add_unit(type=SteamRoadVehicle,

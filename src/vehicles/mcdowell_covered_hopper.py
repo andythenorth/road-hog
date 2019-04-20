@@ -5,6 +5,7 @@ consist = CoveredHopperHauler(id='mcdowell_covered_hopper',
                               name='McDowell',
                               semi_truck_so_redistribute_capacity=True,
                               vehicle_life=40,
+                              gen=4,
                               intro_date=2007)
 
 consist.add_unit(type=DieselRoadVehicle,

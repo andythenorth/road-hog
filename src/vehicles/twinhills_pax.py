@@ -5,7 +5,7 @@ consist = PaxHauler(id='twinhills_pax',
                     name='Twinhills',
                     tram_type='ELRL',
                     vehicle_life=40,
-                    intro_date=1990)
+                    gen=4,                    intro_date=1990)
 
 consist.add_unit(type=ElectricRoadVehicle,
                  capacity=70,

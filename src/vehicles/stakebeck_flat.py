@@ -5,7 +5,7 @@ consist = FlatHauler(id='stakebeck_flat',
                         name='Stakebeck',
                         tram_type='RAIL',
                         vehicle_life=40,
-                        intro_date=1860)
+                     gen=4,                        intro_date=1860)
 
 consist.add_unit(type=SteamRoadVehicle,
                  capacity=0,
