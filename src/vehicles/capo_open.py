@@ -1,10 +1,10 @@
-from road_vehicle import OpenHauler, DieselRoadVehicle
+from road_vehicle import OpenTruck, DieselRoadVehicle
 
-consist = OpenHauler(id='capo_open',
-                     base_numeric_id=680,
-                     name='Capo',
-                     vehicle_life=40,
-                     gen=5)
+consist = OpenTruck(id='capo_open',
+                    base_numeric_id=680,
+                    name='Capo',
+                    vehicle_life=40,
+                    gen=5)
 
 consist.add_unit(type=DieselRoadVehicle,
                  capacity=20,

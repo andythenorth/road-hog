@@ -831,9 +831,9 @@ class MetalHauler(Consist):
         self.loading_speed_multiplier = 2
 
 
-class OpenHauler(Consist):
+class OpenHaulerBase(Consist):
     """
-    General cargo tram or truck - refits everything except mail, pax.
+    Base consist for general cargo hauler. Refits everything except mail, pax.
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -846,6 +846,26 @@ class OpenHauler(Consist):
         # Graphics configuration
         self.gestalt_graphics = GestaltGraphicsVisibleCargo(bulk=True,
                                                             piece='open')
+
+
+class OpenTram(OpenHaulerBase):
+    """
+    Open tram.
+    """
+    def __init__(self, **kwargs):
+        print("I am a tram")
+        self.base_track_type = "RAIL"
+        super().__init__(**kwargs)
+
+
+class OpenTruck(OpenHaulerBase):
+    """
+    Open truck.
+    """
+    def __init__(self, **kwargs):
+        print("I am a truck")
+        self.base_track_type = "ROAD"
+        super().__init__(**kwargs)
 
 
 class PaxHaulerBase(Consist):
@@ -910,9 +930,9 @@ class PaxExpressCoach(PaxExpressHauler):
         return "STR_NAME_SUFFIX_COACH"
 
 
-class RefrigeratedHauler(Consist):
+class RefrigeratedHaulerBase(Consist):
     """
-    Refrigerated truck or tram.
+    Base consist for Refrigerated hauler.
     Refits to limited range of refrigerated cargos, with 'improved' cargo decay rate.
     """
     def __init__(self, **kwargs):
@@ -925,6 +945,26 @@ class RefrigeratedHauler(Consist):
         self.default_cargos = global_constants.default_cargos['reefer']
         self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
         self.weight_multiplier = 0.5
+
+
+class RefrigeratedTram(RefrigeratedHaulerBase):
+    """
+    Refrigerated tram.
+    """
+    def __init__(self, **kwargs):
+        print("I am a tram")
+        self.base_track_type = "RAIL"
+        super().__init__(**kwargs)
+
+
+class RefrigeratedTruck(RefrigeratedHaulerBase):
+    """
+    Refrigerated truck.
+    """
+    def __init__(self, **kwargs):
+        print("I am a truck")
+        self.base_track_type = "ROAD"
+        super().__init__(**kwargs)
 
 
 class SuppliesHauler(Consist):

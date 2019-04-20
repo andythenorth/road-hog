@@ -1,11 +1,11 @@
-from road_vehicle import OpenHauler, ElectricRoadVehicle
+from road_vehicle import OpenTram, ElectricRoadVehicle
 
-consist = OpenHauler(id='portland_open',
-                     base_numeric_id=860,
-                     name='Portland',
-                     tram_type='ELRL',
-                     vehicle_life=40,
-                     gen=2)
+consist = OpenTram(id='portland_open',
+                   base_numeric_id=860,
+                   name='Portland',
+                   tram_type='ELRL',
+                   vehicle_life=40,
+                   gen=2)
 
 consist.add_unit(type=ElectricRoadVehicle,
                  capacity=30,
