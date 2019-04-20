@@ -11,6 +11,7 @@
                     <tr>
                         <td><!--! empty cell --></td>
                         <th>Vehicle Name</th>
+                        <th>Type</th>
                         <th class="number">Intro Date</th>
                         <th>Special Features</th>
                     </tr>
@@ -18,6 +19,7 @@
                 <tbody>
                     <tal:consists_list repeat="consist consists">
                         <tr tal:condition="(consist.roadveh_flag_tram) if vehicle_type is 'Tram' else (not consist.roadveh_flag_tram)"
+                            tal:define="consist_name_dict doc_helper.unpack_name_string(consist)"
                             id="${consist.id}">
                             <td style="vertical-align:middle; width:${2 * global_constants.buy_menu_sprite_width};">
                                 <img src="static/img/${consist.id}.png"
@@ -25,8 +27,9 @@
                                      height="${2 * global_constants.buy_menu_sprite_height}" />
                             </td>
                             <td style="vertical-align:middle;">
-                                <a class="table-link-dark" href="#${consist.id}">${doc_helper.unpack_name_string(consist)}</a>
+                                <a class="table-link-dark" href="#${consist.id}">${consist_name_dict['name']} (${consist_name_dict['power_suffix']})</a>
                             </td>
+                            <td>${consist_name_dict['type_suffix']}</td>
                             <td style="vertical-align:middle;" class="number">${consist.intro_date}</td>
                             <td style="vertical-align:middle;">
                                 ${', '.join(doc_helper.get_special_features_for_vehicle(consist)).capitalize()}

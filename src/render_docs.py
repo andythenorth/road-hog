@@ -99,7 +99,10 @@ class DocHelper(object):
         name = consist._name
         type_suffix = base_lang_strings[substrings[3][0:-3]]
         power_suffix = base_lang_strings[substrings[4][0:-2]]
-        return name + ' ' + type_suffix + ' (' + power_suffix + ')'
+        return {'full_name': name + ' ' + type_suffix + ' (' + power_suffix + ')',
+                'name': name,
+                'type_suffix': type_suffix,
+                'power_suffix': power_suffix}
 
     def get_base_numeric_id(self, consist):
         return consist.base_numeric_id
