@@ -1,12 +1,12 @@
-from road_vehicle import DumpHauler
+from road_vehicle import DumpTruck
 
-consist = DumpHauler(id='gravelhead_dump',
-                     base_numeric_id=580,
-                     name='Gravelhead',
-                     power=130,
-                     vehicle_life=40,
-                     gen=4,
-                     intro_date=1920)
+consist = DumpTruck(id='gravelhead_dump',
+                    base_numeric_id=580,
+                    name='Gravelhead',
+                    power=130,
+                    vehicle_life=40,
+                    gen=4,
+                    intro_date=1920)
 
 consist.add_unit(capacity=12,
                  vehicle_length=6,

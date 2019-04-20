@@ -635,9 +635,9 @@ class BoxTruck(BoxHaulerBase):
         super().__init__(**kwargs)
 
 
-class CoveredHopperHauler(Consist):
+class CoveredHopperHaulerBase(Consist):
     """
-    Covered hopper truck or tram for bulk powder cargos.
+    Consist base for covered hopper hauler.  Refits bulk powder cargos.
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -651,9 +651,29 @@ class CoveredHopperHauler(Consist):
         self.weight_multiplier = 0.45
 
 
-class DumpHauler(Consist):
+class CoveredHopperTram(CoveredHopperHaulerBase):
     """
-    Tram or truck for limited set of bulk (mineral) cargos.
+    Covered hopper tram.
+    """
+    def __init__(self, **kwargs):
+        print("I am a tram")
+        self.base_track_type = "RAIL"
+        super().__init__(**kwargs)
+
+
+class CoveredHopperTruck(CoveredHopperHaulerBase):
+    """
+    Covered hopper truck.
+    """
+    def __init__(self, **kwargs):
+        print("I am a truck")
+        self.base_track_type = "ROAD"
+        super().__init__(**kwargs)
+
+
+class DumpHaulerBase(Consist):
+    """
+    Base consist for dump hauler. Limited set of bulk (mineral) cargos.
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -667,6 +687,26 @@ class DumpHauler(Consist):
         self.weight_multiplier = 0.45
         # Graphics configuration
         self.gestalt_graphics = GestaltGraphicsVisibleCargo(bulk=True)
+
+
+class DumpTram(DumpHaulerBase):
+    """
+    Dump tram.
+    """
+    def __init__(self, **kwargs):
+        print("I am a tram")
+        self.base_track_type = "RAIL"
+        super().__init__(**kwargs)
+
+
+class DumpTruck(DumpHaulerBase):
+    """
+    Dump truck.
+    """
+    def __init__(self, **kwargs):
+        print("I am a truck")
+        self.base_track_type = "ROAD"
+        super().__init__(**kwargs)
 
 
 class EdiblesTankerBase(Consist):

@@ -1,12 +1,12 @@
-from road_vehicle import DumpHauler, SteamRoadVehicle
+from road_vehicle import DumpTruck, SteamRoadVehicle
 
-consist = DumpHauler(id='coleman_dump',
-                     base_numeric_id=910,
-                     name='Coleman',
-                     semi_truck_so_redistribute_capacity=True,
-                     vehicle_life=40,
-                     gen=2,
-                     intro_date_offset=7)  # introduce later than gen epoch by design
+consist = DumpTruck(id='coleman_dump',
+                    base_numeric_id=910,
+                    name='Coleman',
+                    semi_truck_so_redistribute_capacity=True,
+                    vehicle_life=40,
+                    gen=2,
+                    intro_date_offset=7)  # introduce later than gen epoch by design
 
 consist.add_unit(type=SteamRoadVehicle,
                  capacity=0,

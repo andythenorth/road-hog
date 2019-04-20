@@ -1,11 +1,11 @@
-from road_vehicle import CoveredHopperHauler, ElectricRoadVehicle
+from road_vehicle import CoveredHopperTruck, ElectricRoadVehicle
 
-consist = CoveredHopperHauler(id='thurlbear_covered_hopper',
-                              base_numeric_id=460,
-                              name='Thurlbear',
-                              tram_type='ELRL',
-                              vehicle_life=40,
-                              gen=3)
+consist = CoveredHopperTruck(id='thurlbear_covered_hopper',
+                             base_numeric_id=460,
+                             name='Thurlbear',
+                             tram_type='ELRL',
+                             vehicle_life=40,
+                             gen=3)
 
 consist.add_unit(type=ElectricRoadVehicle,
                  capacity=36,

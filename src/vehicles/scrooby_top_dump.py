@@ -1,12 +1,12 @@
-from road_vehicle import DumpHauler, SteamRoadVehicle
+from road_vehicle import DumpTram, SteamRoadVehicle
 
-consist = DumpHauler(id='scrooby_top_dump',
-                     base_numeric_id=700,
-                     name='Scrooby Top',
-                     tram_type='RAIL',
-                     vehicle_life=40,
-                     gen=1,
-                     intro_date_offset=10)  # introduce later than gen epoch by design
+consist = DumpTram(id='scrooby_top_dump',
+                   base_numeric_id=700,
+                   name='Scrooby Top',
+                   tram_type='RAIL',
+                   vehicle_life=40,
+                   gen=1,
+                   intro_date_offset=10)  # introduce later than gen epoch by design
 
 consist.add_unit(type=SteamRoadVehicle,
                  capacity=0,

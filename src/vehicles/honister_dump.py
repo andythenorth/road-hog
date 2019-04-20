@@ -1,11 +1,11 @@
-from road_vehicle import DumpHauler, DieselRoadVehicle
+from road_vehicle import DumpTruck, DieselRoadVehicle
 
-consist = DumpHauler(id='honister_dump',
-                     base_numeric_id=230,
-                     name='Honister',
-                     vehicle_life=40,
-                     gen=3,
-                     intro_date_offset=7)  # introduce later than gen epoch by design
+consist = DumpTruck(id='honister_dump',
+                    base_numeric_id=230,
+                    name='Honister',
+                    vehicle_life=40,
+                    gen=3,
+                    intro_date_offset=7)  # introduce later than gen epoch by design
 
 consist.add_unit(type=DieselRoadVehicle,
                  capacity=15,

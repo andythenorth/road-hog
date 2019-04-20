@@ -1,12 +1,12 @@
-from road_vehicle import DumpHauler, ElectricRoadVehicle
+from road_vehicle import DumpTram, ElectricRoadVehicle
 
-consist = DumpHauler(id='hake_lake_dump',
-                     base_numeric_id=620,
-                     name='Hake Lake',
-                     tram_type='HAKE',
-                     vehicle_life=40,
-                     gen=4,
-                     intro_date=1944)
+consist = DumpTram(id='hake_lake_dump',
+                   base_numeric_id=620,
+                   name='Hake Lake',
+                   tram_type='HAKE',
+                   vehicle_life=40,
+                   gen=4,
+                   intro_date=1944)
 
 consist.add_unit(type=ElectricRoadVehicle,
                  capacity=0,
