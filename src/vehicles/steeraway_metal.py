@@ -7,8 +7,8 @@ consist = MetalTruck(id='steeraway_metal',
                      power=500,
                      speed=45,
                      vehicle_life=80,
-                     gen=4,
-                     intro_date=1960)
+                     gen=3,
+                     intro_date_offset=10)  # introduce later than gen epoch by design
 
 consist.add_unit(type=DieselRoadVehicle,
                  capacity=0,

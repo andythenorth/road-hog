@@ -9,7 +9,7 @@ consist = DumpTruck(id='witch_hill_dump',
                     type_base_running_cost_points=30,  # dibble running costs for game balance
                     vehicle_life=40,
                     gen=4,
-                    intro_date=2007)
+                    intro_date_offset=17)  # introduce later than gen epoch by design
 
 consist.add_unit(type=DieselRoadVehicle,
                  capacity=85,  # much bigger is not much better here
