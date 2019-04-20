@@ -1,12 +1,12 @@
-from road_vehicle import SuppliesHauler, SteamRoadVehicle
+from road_vehicle import SuppliesTruck, SteamRoadVehicle
 
-consist = SuppliesHauler(id='reaver_supplies',
-                         base_numeric_id=550,
-                         name='Reaver',
-                         power=240,  # custom power
-                         vehicle_life=40,
-                         gen=4,
-                         intro_date=1875)
+consist = SuppliesTruck(id='reaver_supplies',
+                        base_numeric_id=550,
+                        name='Reaver',
+                        power=240,  # custom power
+                        vehicle_life=40,
+                        gen=4,
+                        intro_date=1875)
 
 consist.add_unit(type=SteamRoadVehicle,
                  capacity=0,

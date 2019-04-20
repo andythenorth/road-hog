@@ -1,13 +1,13 @@
-from road_vehicle import SuppliesHauler, SteamRoadVehicle
+from road_vehicle import SuppliesTruck, SteamRoadVehicle
 # 'inspired by' Scammell 100t low loader, but much smaller
 
-consist = SuppliesHauler(id='crime_rigg_supplies',
-                         base_numeric_id=530,
-                         name='Crime Rigg',
-                         power=360,
-                         vehicle_life=40,
-                         gen=4,
-                         intro_date=1920)
+consist = SuppliesTruck(id='crime_rigg_supplies',
+                        base_numeric_id=530,
+                        name='Crime Rigg',
+                        power=360,
+                        vehicle_life=40,
+                        gen=4,
+                        intro_date=1920)
 
 consist.add_unit(type=SteamRoadVehicle,
                  capacity=0,

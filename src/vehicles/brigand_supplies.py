@@ -1,13 +1,13 @@
-from road_vehicle import SuppliesHauler, DieselRoadVehicle
+from road_vehicle import SuppliesTruck, DieselRoadVehicle
 # equiv. Scammell Highwayman or Explorer with dolly low loader trailer - not huge
 
-consist = SuppliesHauler(id='brigand_supplies',
-                         base_numeric_id=540,
-                         name='Brigand',
-                         power=480,
-                         vehicle_life=40,
-                         gen=4,
-                         intro_date=1953)
+consist = SuppliesTruck(id='brigand_supplies',
+                        base_numeric_id=540,
+                        name='Brigand',
+                        power=480,
+                        vehicle_life=40,
+                        gen=4,
+                        intro_date=1953)
 
 consist.add_unit(type=DieselRoadVehicle,
                  capacity=0,

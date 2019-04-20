@@ -859,9 +859,9 @@ class LivestockTruck(LivestockHaulerBase):
         super().__init__(**kwargs)
 
 
-class LogHauler(Consist):
+class LogHaulerBase(Consist):
     """
-    Gets wood.
+    Base consist for log hauler.  Wood.
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -876,6 +876,16 @@ class LogHauler(Consist):
         self.gestalt_graphics = GestaltGraphicsCustom({'WOOD': [0]},
                                                 'vehicle_with_visible_cargo.pynml',
                                                 generic_rows = [0])
+
+
+class LogTruck(LogHaulerBase):
+    """
+    Log truck.
+    """
+    def __init__(self, **kwargs):
+        print("I am a truck")
+        self.base_track_type = "ROAD"
+        super().__init__(**kwargs)
 
 
 class MailHaulerBase(Consist):
@@ -1067,9 +1077,9 @@ class RefrigeratedTruck(RefrigeratedHaulerBase):
         super().__init__(**kwargs)
 
 
-class SuppliesHauler(Consist):
+class SuppliesHaulerBase(Consist):
     """
-    Specialist tram / truck with flatbed + crane, supplies and building materials.
+    Base consist for specialist hauler with flatbed + crane or similar, for supplies.
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -1085,6 +1095,16 @@ class SuppliesHauler(Consist):
         self.gestalt_graphics = GestaltGraphicsCustom({'ENSP': [0], 'FMSP': [0], 'VEHI': [0]},
                                                        'vehicle_with_visible_cargo.pynml',
                                                        generic_rows = [0])
+
+
+class SuppliesTruck(SuppliesHaulerBase):
+    """
+    Supplies truck.  No supplies trams yet as of April 2019.
+    """
+    def __init__(self, **kwargs):
+        print("I am a truck")
+        self.base_track_type = "ROAD"
+        super().__init__(**kwargs)
 
 
 class TankerBase(Consist):
