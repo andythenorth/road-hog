@@ -403,6 +403,27 @@ class Consist(object):
         return nml_result
 
 
+class CakeMixin(object):
+    # !! the name is deliberately stupid to JFDI things, needs refactored !!
+    """
+        Stupid mixin for multi-roadtype (HEQS and ROAD).
+        Keep this simple, don't use an __init__, it gets tricky with super.
+        Just use class attrs.
+    """
+    print("I am a cake base class")
+    base_track_type = "CAKE"
+
+
+class HEQSMixin(object):
+    """
+        Stupid mixin for heavy equipment (non-rail).
+        Keep this simple, don't use an __init__, it gets tricky with super.
+        Just use class attrs.
+    """
+    print("I am a truck base class")
+    base_track_type = "HEQS"
+
+
 class TramMixin(object):
     """
         Stupid mixin for trams.
@@ -421,27 +442,6 @@ class TruckMixin(object):
     """
     print("I am a truck base class")
     base_track_type = "ROAD"
-
-
-class HEQSMixin(object):
-    """
-        Stupid mixin for heavy equipment (non-rail).
-        Keep this simple, don't use an __init__, it gets tricky with super.
-        Just use class attrs.
-    """
-    print("I am a truck base class")
-    base_track_type = "HEQS"
-
-
-class CakeMixin(object):
-    # !! the name is deliberately stupid to JFDI things, needs refactored !!
-    """
-        Stupid mixin for multi-roadtype (HEQS and ROAD).
-        Keep this simple, don't use an __init__, it gets tricky with super.
-        Just use class attrs.
-    """
-    print("I am a cake base class")
-    base_track_type = "CAKE"
 
 
 class RoadVehicle(object):
