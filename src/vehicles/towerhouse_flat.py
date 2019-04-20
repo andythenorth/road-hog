@@ -5,7 +5,8 @@ consist = FlatHauler(id='towerhouse_flat',
                         name='Towerhouse',
                         semi_truck_so_redistribute_capacity=True,
                         vehicle_life=40,
-                     gen=4,                        intro_date=1968)
+                     gen=4,
+                     intro_date=1968)
 
 consist.add_unit(type=DieselRoadVehicle,
                  vehicle_length=2,

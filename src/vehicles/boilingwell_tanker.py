@@ -5,7 +5,8 @@ consist = Tanker(id='boilingwell_tanker',
                  name='Boilingwell',
                  semi_truck_so_redistribute_capacity=True,
                  vehicle_life=40,
-                 gen=4,                 intro_date=1915)
+                 gen=4,
+                 intro_date=1915)
 
 consist.add_unit(type=SteamRoadVehicle,
                  capacity=0,

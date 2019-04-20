@@ -5,7 +5,8 @@ consist = EdiblesTanker(id='bottlebrook_edibles_tanker',
                         name='Bottlebrook',
                         tram_type='ELRL',
                         vehicle_life=40,
-                        gen=4,                        intro_date=1946)
+                        gen=4,
+                        intro_date=1946)
 
 consist.add_unit(type=ElectricRoadVehicle,
                  capacity=36,

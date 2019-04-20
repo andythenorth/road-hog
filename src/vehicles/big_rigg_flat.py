@@ -1,10 +1,11 @@
 from road_vehicle import FlatHauler, DieselRoadVehicle
 
 consist = FlatHauler(id='big_rigg_flat',
-                        base_numeric_id=660,
-                        name='Big Rigg',
-                        vehicle_life=40,
-                     gen=4,                        intro_date=1997)
+                     base_numeric_id=660,
+                     name='Big Rigg',
+                     vehicle_life=40,
+                     gen=5,
+                     intro_date=1997)
 
 consist.add_unit(type=DieselRoadVehicle,
                  capacity=20,

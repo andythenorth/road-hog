@@ -7,7 +7,8 @@ consist = LogHauler(id='buff_log',
                     power=550,
                     speed=60,
                     vehicle_life=40,
-                    gen=4,                    intro_date=1994)
+                    gen=4,
+                    intro_date=1994)
 
 consist.add_unit(type=DieselRoadVehicle,
                  capacity=40,

@@ -205,7 +205,7 @@ class Consist(object):
     def intro_date(self):
         # automatic intro_date, but can over-ride by passing in kwargs for consist
         if self._intro_date:
-            print('intro date assert tickled')
+            print('intro date assert tickled by ', self.id)
             #assert(self._gen == None), "%s consist has both gen and intro_date set, which is incorrect" % self.id
             assert(self.intro_date_offset == None), "%s consist has both intro_date and intro_date_offset set, which is incorrect" % self.id
             return self._intro_date
@@ -676,9 +676,9 @@ class FlatHauler(Consist):
         self.gestalt_graphics = GestaltGraphicsVisibleCargo(piece='flat')
 
 
-class FruitVegHauler(Consist):
+class FruitVegHaulerBase(Consist):
     """
-    Fruit and vegetables truck or tram.
+    Consist base class for fruit and vegetables
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -690,6 +690,16 @@ class FruitVegHauler(Consist):
         self.default_cargos = global_constants.default_cargos['fruit_veg']
         self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
         self.weight_multiplier = 0.45
+
+
+class FruitVegTram(FruitVegHaulerBase):
+    """
+    Fruit and vegetables tram.  No FruitVegTruck yet as of April 2019.
+    """
+    def __init__(self, **kwargs):
+        print("I am a tram")
+        self.roadveh_flag_tram = True
+        super().__init__(**kwargs)
 
 
 class IntermodalHauler(Consist):
@@ -831,26 +841,27 @@ class PaxHauler(PaxHaulerBase):
 
 class PaxExpressHauler(PaxHaulerBase):
     """
-    Coach or express tram for pax.
+    Sparse base class for coach or express tram for pax.
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self._name_type_suffix = "COACH" # other magic applies this only to road vehicles, trams will still be "TRAM"
         self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
+
+
+class PaxExpressCoach(PaxExpressHauler):
+    """
+    Express coach for pax.  Tram wasn't defined as of April 2019.
+    """
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
         self.weight_multiplier = 0.2
-        # sound effects are faff, interacts with RoadVehicle subclass too
-        if self.roadveh_flag_tram:
-            self._sound_effect = 'SOUND_LEVEL_CROSSING'
-        else:
-            self._sound_effect = 'SOUND_TRUCK_START_2'
+        # over-ride the default sound effect set by RoadVehicle subclass
+        # this assumes diesel, and will fail if none-diesel express coaches are added
+        self._sound_effect = 'SOUND_TRUCK_START_2'
 
     @property
     def name_type_suffix(self):
-        # special case handling for name suffix strings
-        if self.roadveh_flag_tram:
-            return "STR_NAME_SUFFIX_PASSENGER_TRAM"
-        else:
-            return "STR_NAME_SUFFIX_COACH"
+        return "STR_NAME_SUFFIX_COACH"
 
 
 class RefrigeratedHauler(Consist):

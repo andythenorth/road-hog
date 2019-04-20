@@ -4,7 +4,8 @@ consist = EdiblesTanker(id='waterperry_edibles_tanker',
                         base_numeric_id=470,
                         name='Waterperry',
                         vehicle_life=40,
-                        gen=4,                        intro_date=1972)
+                        gen=4,
+                        intro_date=1972)
 
 consist.add_unit(type=DieselRoadVehicle,
                  capacity=20,

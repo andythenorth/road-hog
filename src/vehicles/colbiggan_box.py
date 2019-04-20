@@ -5,7 +5,8 @@ consist = BoxHauler(id='colbiggan_box',
                     name='Colbiggan',
                     tram_type='ELRL',
                     vehicle_life=40,
-                    gen=4,                    intro_date=1940)
+                    gen=4,
+                    intro_date=1940)
 
 consist.add_unit(type=ElectricRoadVehicle,
                  capacity=36,

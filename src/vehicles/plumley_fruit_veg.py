@@ -1,12 +1,12 @@
-from road_vehicle import FruitVegHauler, SteamRoadVehicle
+from road_vehicle import FruitVegTram, SteamRoadVehicle
 
-consist = FruitVegHauler(id='plumley_fruit_veg',
-                         base_numeric_id=950,
-                         name='Plumley',
-                         tram_type='RAIL',
-                         vehicle_life=40,
-                         gen=4,
-                         intro_date=1865)
+consist = FruitVegTram(id='plumley_fruit_veg',
+                       base_numeric_id=950,
+                       name='Plumley',
+                       tram_type='RAIL',
+                       vehicle_life=40,
+                       gen=4,
+                       intro_date=1865)
 
 consist.add_unit(type=SteamRoadVehicle,
                  capacity=0,

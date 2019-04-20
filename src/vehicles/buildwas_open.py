@@ -5,7 +5,8 @@ consist = OpenHauler(id='buildwas_open',
                      name='Buildwas',
                      tram_type='RAIL',
                      vehicle_life=40,
-                     gen=4,                     intro_date=1860)
+                     gen=4,
+                     intro_date=1860)
 
 consist.add_unit(type=SteamRoadVehicle,
                  capacity=0,

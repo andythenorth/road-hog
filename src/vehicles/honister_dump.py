@@ -4,7 +4,8 @@ consist = DumpHauler(id='honister_dump',
                      base_numeric_id=230,
                      name='Honister',
                      vehicle_life=40,
-                     gen=4,                     intro_date=1947)
+                     gen=4,
+                     intro_date=1947)
 
 consist.add_unit(type=DieselRoadVehicle,
                  capacity=15,

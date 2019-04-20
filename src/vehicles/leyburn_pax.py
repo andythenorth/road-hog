@@ -9,7 +9,8 @@ consist = PaxHauler(id='leyburn_pax',
                     power=100,  # custom power
                     speed=40,
                     vehicle_life=40,
-                    gen=4,                    intro_date=1909)
+                    gen=4,
+                    intro_date=1909)
 
 consist.add_unit(type=DieselRoadVehicle,
                  capacity=44,
