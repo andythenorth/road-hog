@@ -998,7 +998,8 @@ class PaxLocalBus(PaxHaulerLocalBase):
     Local passenger bus.
     """
     def __init__(self, **kwargs):
-        print("I am a truck")
+        # don't use the truck mixin eh, mostly becuase it looks confusing for buses :P
+        print("I am a local bus")
         self.base_track_type = "ROAD"
         super().__init__(**kwargs)
         # over-ride the default sound effect set by RoadVehicle subclass
@@ -1031,9 +1032,10 @@ class PaxExpressCoach(PaxHaulerBase):
     Express coach for pax. Express tram wasn't defined as of April 2019.  Split a PaxExpressBase subclass if needed
     """
     def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+        # don't use the truck mixin eh, mostly becuase it looks confusing for coaches :P
         print("I am an express coach")
         self.base_track_type = "ROAD"
+        super().__init__(**kwargs)
         self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
         self.weight_multiplier = 0.2
         # over-ride the default sound effect set by RoadVehicle subclass
