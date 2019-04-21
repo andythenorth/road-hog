@@ -135,11 +135,7 @@ class Consist(object):
     @property
     def name_type_suffix(self):
         # some consist subclasses will over-ride this for special case handling
-        result = 'STR_NAME_SUFFIX_' + self._name_type_suffix
-        if self.roadveh_flag_tram:
-            return result + "_TRAM"
-        else:
-            return result + "_TRUCK"
+        return 'STR_NAME_SUFFIX_' + self.name_suffix_consist_type + self.name_suffix_vehicle_type
 
     @property
     def power_type_suffix(self):
@@ -418,6 +414,7 @@ class TrackTypeMixinBase(object):
         * base_track_type, from which road_type or tram_type are derived using power type set on units
         * roadveh_flag_tram if needed
         * tractive effort co-efficient for the type, which can be over-ridden as needed
+        * name_suffix_vehicle_type, use to derive 'Tram', 'Truck' etc in name strings
 
         Remember, *power type* and *default sound effect* are set by units, not by the consist or TrackType mixin.
 
@@ -428,6 +425,7 @@ class TrackTypeMixinBase(object):
     base_track_type = None # set this in subclass as a label; fail if not set explicitly
     roadveh_flag_tram = False
     tractive_effort_coefficient = None # set in subclass to float (0..1); fail if not set explicitly
+    name_suffix_vehicle_type = None # set in subclass to string; fail if not set explicitly
 
 
 class TrackTypeMixinCake(TrackTypeMixinBase):
@@ -441,6 +439,7 @@ class TrackTypeMixinCake(TrackTypeMixinBase):
     base_track_type = "CAKE" # !! fix the label later, JFDI
     # TE bonus assuming rubber tyres, much higher than the OpenTTD default of 0.3
     tractive_effort_coefficient = 0.7
+    name_suffix_vehicle_type = "_TRUCK" # !! possibly wrong?
 
 
 class TrackTypeMixinFeldbahn(TrackTypeMixinBase):
@@ -453,6 +452,7 @@ class TrackTypeMixinFeldbahn(TrackTypeMixinBase):
     roadveh_flag_tram = True # feldbahn uses tram newgrf spec
     # steel wheel on steel rail, leave as OpenTTD default
     tractive_effort_coefficient = 0.3
+    name_suffix_vehicle_type = "_FELDBAHN"
 
 
 class TrackTypeMixinHEQS(TrackTypeMixinBase):
@@ -464,6 +464,7 @@ class TrackTypeMixinHEQS(TrackTypeMixinBase):
     base_track_type = "HEQS"
     # TE bonus assuming rubber tyres, much higher than the OpenTTD default of 0.3
     tractive_effort_coefficient = 0.7
+    name_suffix_vehicle_type = "_TRUCK" # !! wrong, should be ???? - JFDI
 
 
 class TrackTypeMixinTram(TrackTypeMixinBase):
@@ -476,6 +477,7 @@ class TrackTypeMixinTram(TrackTypeMixinBase):
     roadveh_flag_tram = True # tram uses tram newgrf spec
     # small TE bonus for trams versus trains, assuming all wheels powered or similar
     tractive_effort_coefficient = 0.4
+    name_suffix_vehicle_type = "_TRAM"
 
 
 class TrackTypeMixinTruckBusCoach(TrackTypeMixinBase):
@@ -488,6 +490,7 @@ class TrackTypeMixinTruckBusCoach(TrackTypeMixinBase):
     base_track_type = "ROAD"
     # TE bonus assuming rubber tyres, much higher than the OpenTTD default of 0.3
     tractive_effort_coefficient = 0.7
+    name_suffix_vehicle_type = "_TRUCK" # default to truck, over-ride in consist subclasses for bus or coach
 
 
 class RoadVehicle(object):
@@ -548,14 +551,16 @@ class RoadVehicle(object):
 
     @property
     def effect_spawn_model(self):
+        # effect spawn model is set per unit in RoadVehicle subclasses
+        # can also be over-ridden per vehicle but that shouldn't be needed
         if self._effect_spawn_model:
             return self._effect_spawn_model
         else:
-            if self.consist.roadveh_flag_tram == True:
-                # trams electric by default, over-ride in vehicle as needed
+            # handle the possible case that the subclass hasn't defined effect spawn model
+            # !! by design, this shouldn't be reached, and can probably be removed, and any non=compliant cases fixed, but TMWFTLB right now
+            if self.consist.requires_electricity_supply == True:
                 return 'EFFECT_SPAWN_MODEL_ELECTRIC'
             else:
-                # other vehicles diesel by default, over-ride in vehicle as needed
                 return 'EFFECT_SPAWN_MODEL_DIESEL'
 
     @property
@@ -688,7 +693,7 @@ class BoxHaulerBase(Consist):
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self._name_type_suffix = "BOX"
+        self.name_suffix_consist_type = "BOX"
         self.autorefit = True
         self.class_refit_groups = ['packaged_freight']
         self.label_refits_allowed = ['MAIL', 'GRAI', 'WHEA', 'MAIZ', 'FRUT', 'BEAN', 'NITR'] # Iron Horse compatibility
@@ -719,7 +724,7 @@ class CoveredHopperHaulerBase(Consist):
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self._name_type_suffix = "COVERED_HOPPER"
+        self.name_suffix_consist_type = "COVERED_HOPPER"
         self.autorefit = True
         self.class_refit_groups = ['covered_hopper_freight']
         self.label_refits_allowed = global_constants.allowed_refits_by_label['covered_hoppers']
@@ -751,7 +756,7 @@ class DumpHaulerBase(Consist):
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self._name_type_suffix = "DUMP"
+        self.name_suffix_consist_type = "DUMP"
         self.autorefit = True
         self.class_refit_groups = ['dump_freight']
         self.label_refits_allowed = [] # no specific labels needed
@@ -793,7 +798,7 @@ class EdiblesTankerBase(Consist):
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self._name_type_suffix = "EDIBLES_TANKER"
+        self.name_suffix_consist_type = "EDIBLES_TANKER"
         self.autorefit = True
         self.class_refit_groups = [] # no classes, use explicit labels
         self.label_refits_allowed = global_constants.allowed_refits_by_label['edible_liquids']
@@ -826,7 +831,7 @@ class FlatbedHaulerBase(Consist):
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self._name_type_suffix = "FLATBED"
+        self.name_suffix_consist_type = "FLATBED"
         self.autorefit = True
         self.class_refit_groups = ['flatbed_freight']
         self.label_refits_allowed = ['GOOD']
@@ -858,7 +863,7 @@ class FruitVegHaulerBase(Consist):
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self._name_type_suffix = "FRUIT_VEG"
+        self.name_suffix_consist_type = "FRUIT_VEG"
         self.autorefit = True
         self.class_refit_groups = [] # no classes, use explicit labels
         self.label_refits_allowed = global_constants.allowed_refits_by_label['fruit_veg']
@@ -882,7 +887,7 @@ class IntermodalHauler(Consist):
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self._name_type_suffix = "INTERMODAL"
+        self.name_suffix_consist_type = "INTERMODAL"
         self.autorefit = True
         self.class_refit_groups = ['packaged_freight']
         self.label_refits_allowed = global_constants.allowed_refits_by_label['box_freight']
@@ -897,7 +902,7 @@ class LivestockHaulerBase(Consist):
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self._name_type_suffix = "LIVESTOCK"
+        self.name_suffix_consist_type = "LIVESTOCK"
         self.autorefit = True
         self.class_refit_groups = [] # no classes, use explicit labels
         self.label_refits_allowed = ['LVST']
@@ -929,7 +934,7 @@ class LogHaulerBase(Consist):
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self._name_type_suffix = "LOG"
+        self.name_suffix_consist_type = "LOG"
         self.autorefit = True
         self.class_refit_groups = [] # no classes, use explicit labels
         self.label_refits_allowed = ['WOOD']
@@ -956,7 +961,7 @@ class MailHaulerBase(Consist):
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self._name_type_suffix = "MAIL"
+        self.name_suffix_consist_type = "MAIL"
         self.autorefit = True
         self.class_refit_groups = ['mail', 'express_freight']
         self.label_refits_allowed = [] # no specific labels needed
@@ -988,7 +993,7 @@ class MetalHaulerBase(Consist):
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self._name_type_suffix = "METAL"
+        self.name_suffix_consist_type = "METAL"
         self.autorefit = True
         self.class_refit_groups = [] # no classes, use explicit labels
         self.label_refits_allowed = ['STEL', 'COPR', 'IRON', 'SLAG']
@@ -1011,7 +1016,7 @@ class OpenHaulerBase(Consist):
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self._name_type_suffix = "OPEN"
+        self.name_suffix_consist_type = "OPEN"
         self.autorefit = True
         self.class_refit_groups = ['all_freight']
         self.label_refits_allowed = [] # no specific labels needed
@@ -1116,7 +1121,7 @@ class RefrigeratedHaulerBase(Consist):
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self._name_type_suffix = "REEFER"
+        self.name_suffix_consist_type = "REEFER"
         self.autorefit = True
         self.class_refit_groups = ['refrigerated_freight']
         self.label_refits_allowed = [] # no specific labels needed, refits all cargos that have refrigerated class
@@ -1148,7 +1153,7 @@ class SuppliesHaulerBase(Consist):
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self._name_type_suffix = "SUPPLIES"
+        self.name_suffix_consist_type = "SUPPLIES"
         self.autorefit = True
         self.class_refit_groups = [] # no classes, use explicit labels
         self.label_refits_allowed = ['ENSP', 'FMSP', 'VEHI', 'BDMT']
@@ -1176,7 +1181,7 @@ class TankerBase(Consist):
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self._name_type_suffix = "TANKER"
+        self.name_suffix_consist_type = "TANKER"
         # tankers are unrealistically autorefittable, and at no cost
         # Pikka: if people complain that it's unrealistic, tell them "don't do it then"
         # they also change livery at stations if refitted between certain cargo types <shrug>

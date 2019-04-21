@@ -47,6 +47,7 @@ STR_NAME_SUFFIX_BUS                                             :Bus
 STR_NAME_SUFFIX_COACH                                           :Coach
 STR_NAME_SUFFIX_COVERED_HOPPER_TRAM                             :Covered Hopper Tram
 STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :Covered Hopper Truck
+STR_NAME_SUFFIX_DUMP_FELDBAHN                                   :Dump Feldbahn
 STR_NAME_SUFFIX_DUMP_TRAM                                       :Dump Tram
 STR_NAME_SUFFIX_DUMP_TRUCK                                      :Dump Truck
 STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM                             :Edibles Tanker Tram
