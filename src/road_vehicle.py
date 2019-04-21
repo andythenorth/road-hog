@@ -407,11 +407,14 @@ class TrackTypeMixinBase(object):
         * roadveh_flag_tram if needed
         * sound effect for type, which can be over-ridden as needed
         * tractive effort co-efficient for the type, which can be over-ridden as needed
+
+        Remember, *power type* is set by units on the consist.
+
         Mixins are usually stupid, but seem to work ok here.
         Keep this simple, don't use an __init__, it adds faff with super() about order of calls.
         Just use class attrs.
     """
-    base_track_type = None # set as a label
+    base_track_type = None # set this as a label, defaults to None so it fails if not set in subclass
     roadveh_flag_tram = False
 
 
