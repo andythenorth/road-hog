@@ -1,11 +1,11 @@
 from road_vehicle import LogHEQS, SteamRoadVehicle
 
 consist = LogHEQS(id='trefell_log',
-                   base_numeric_id=480,
-                   name='Trefell',
-                   power=100,  # custom power
-                   vehicle_life=40,
-                   gen=2)
+                  base_numeric_id=480,
+                  name='Trefell',
+                  power=100,  # custom power
+                  vehicle_life=40,
+                  gen=2)
 
 consist.add_unit(type=SteamRoadVehicle,
                  capacity=0,

@@ -1,10 +1,10 @@
 from road_vehicle import DumpFeldbahn, ElectricRoadVehicle
 
 consist = DumpFeldbahn(id='hake_lake_dump',
-                   base_numeric_id=620,
-                   name='Hake Lake',
-                   vehicle_life=40,
-                   gen=3)
+                       base_numeric_id=620,
+                       name='Hake Lake',
+                       vehicle_life=40,
+                       gen=3)
 
 consist.add_unit(type=ElectricRoadVehicle,
                  capacity=0,

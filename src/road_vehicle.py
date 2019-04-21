@@ -36,6 +36,10 @@ class Consist(object):
         self.tram_type = kwargs.get('tram_type', None)
         if self.road_type is not None and self.tram_type is not None:
             utils.echo_message("Error: " + self.id + ". Vehicles must not have both road_type and tram_type properties set.  Set one of these only")
+        # modify base_track_type for electric vehicles when writing out the actual road or tram type
+        # without this, RAIL and ELRL etc have to be specially handled whenever a list of compatible consists is wanted
+        # this *does* need a specific flag, can't rely on unit visual effect or unit engine type props - they are used for other things
+        self.requires_electricity_supply = False # set by unit subclasses as needed, not a kwarg
         # either gen xor intro_date is required, don't set both, one will be interpolated from the other
         self._intro_date = kwargs.get('intro_date', None)
         self._gen = kwargs.get('gen', None)
@@ -337,15 +341,12 @@ class Consist(object):
         # track_type handles converting base_track_type to ELRL, ELNG etc as needed for electric engines
         # it's often more convenient to use base_track_type prop, which treats ELRL and RAIL as same (for example)
         eltrack_type_mapping = {'RAIL': 'ELRL',
-                                'NG': 'ELNG',
-                                'METRO': 'METRO'} # assume METRO is always METRO, whether electric flag is set or not
-        """
-        if self.requires_electric_rails:
+                                'HAKE': 'LAKE'}
+        if self.requires_electricity_supply:
+            print('requires_electricity_supply', self.id)
             return eltrack_type_mapping[self.base_track_type]
         else:
             return self.base_track_type
-        """
-        return self.base_track_type
 
     @property
     def get_expression_for_road_or_tram_type(self):
@@ -675,6 +676,7 @@ class ElectricRoadVehicle(RoadVehicle):
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        self.consist.requires_electricity_supply = True
         self._effect_spawn_model = 'EFFECT_SPAWN_MODEL_ELECTRIC'
         self.default_effect_sprite = 'EFFECT_SPRITE_ELECTRIC'
         self.consist._power_type_suffix = 'ELECTRIC'

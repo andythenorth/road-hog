@@ -2,11 +2,11 @@ from road_vehicle import SuppliesCake, DieselRoadVehicle
 # equiv. Scammell Highwayman or Explorer with dolly low loader trailer - not huge
 
 consist = SuppliesCake(id='brigand_supplies',
-                        base_numeric_id=540,
-                        name='Brigand',
-                        power=480,
-                        vehicle_life=40,
-                        gen=3)
+                       base_numeric_id=540,
+                       name='Brigand',
+                       power=480,
+                       vehicle_life=40,
+                       gen=3)
 
 consist.add_unit(type=DieselRoadVehicle,
                  capacity=0,

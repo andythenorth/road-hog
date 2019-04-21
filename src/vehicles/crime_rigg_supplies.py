@@ -2,11 +2,11 @@ from road_vehicle import SuppliesCake, SteamRoadVehicle
 # 'inspired by' Scammell 100t low loader, but much smaller
 
 consist = SuppliesCake(id='crime_rigg_supplies',
-                        base_numeric_id=530,
-                        name='Crime Rigg',
-                        power=360,
-                        vehicle_life=40,
-                        gen=2)
+                       base_numeric_id=530,
+                       name='Crime Rigg',
+                       power=360,
+                       vehicle_life=40,
+                       gen=2)
 
 consist.add_unit(type=SteamRoadVehicle,
                  capacity=0,
