@@ -3,7 +3,6 @@ from road_vehicle import BoxTram, ElectricRoadVehicle
 consist = BoxTram(id='rakeway_box',
                   base_numeric_id=870,
                   name='Rakeway',
-                  tram_type='ELRL',
                   vehicle_life=40,
                   gen=2)
 

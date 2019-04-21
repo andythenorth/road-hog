@@ -3,7 +3,6 @@ from road_vehicle import LivestockTram, ElectricRoadVehicle
 consist = LivestockTram(id='trotalong_livestock',
                         base_numeric_id=720,
                         name='Trotalong',
-                        tram_type='ELRL',
                         vehicle_life=40,
                         gen=2,
                         intro_date_offset=1)  # introduce later than gen epoch by design

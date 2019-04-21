@@ -3,7 +3,6 @@ from road_vehicle import MetalTruck, DieselRoadVehicle
 consist = MetalTruck(id='steeraway_metal',
                      base_numeric_id=520,
                      name='Steeraway',
-                     road_type='HAUL',
                      power=500,
                      speed=45,
                      vehicle_life=80,

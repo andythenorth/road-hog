@@ -3,7 +3,6 @@ from road_vehicle import CoveredHopperTram, ElectricRoadVehicle
 consist = CoveredHopperTram(id='thurlbear_covered_hopper',
                             base_numeric_id=460,
                             name='Thurlbear',
-                            tram_type='ELRL',
                             vehicle_life=40,
                             gen=3)
 

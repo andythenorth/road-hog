@@ -3,7 +3,6 @@ from road_vehicle import PaxLocalTram, SteamRoadVehicle
 consist = PaxLocalTram(id='ladycross_pax',
                        base_numeric_id=0,
                        name='Ladycross',
-                       tram_type='RAIL',
                        vehicle_life=40,
                        gen=1)
 

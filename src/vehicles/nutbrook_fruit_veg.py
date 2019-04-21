@@ -3,7 +3,6 @@ from road_vehicle import FruitVegTram, ElectricRoadVehicle
 consist = FruitVegTram(id='nutbrook_fruit_veg',
                        base_numeric_id=960,
                        name='Nutbrook',
-                       tram_type='ELRL',
                        vehicle_life=40,
                        gen=3)
 

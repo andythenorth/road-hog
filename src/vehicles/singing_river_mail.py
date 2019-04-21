@@ -3,7 +3,6 @@ from road_vehicle import MailTram, ElectricRoadVehicle
 consist = MailTram(id='singing_river_mail',
                    base_numeric_id=850,
                    name='Singing River',
-                   tram_type='ELRL',
                    power=600,
                    vehicle_life=40,
                    gen=5)

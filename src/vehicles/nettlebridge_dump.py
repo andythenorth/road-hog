@@ -3,7 +3,6 @@ from road_vehicle import DumpTram, ElectricRoadVehicle
 consist = DumpTram(id='nettlebridge_dump',
                    base_numeric_id=310,
                    name='Nettlebridge',
-                   tram_type='ELRL',
                    vehicle_life=40,
                    gen=3,
                    intro_date_offset=4)  # introduce later than gen epoch by design

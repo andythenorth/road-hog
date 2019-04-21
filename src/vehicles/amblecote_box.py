@@ -3,7 +3,6 @@ from road_vehicle import BoxTram, SteamRoadVehicle
 consist = BoxTram(id='amblecote_box',
                   base_numeric_id=80,
                   name='Amblecote',
-                  tram_type='RAIL',
                   vehicle_life=40,
                   gen=1)
 

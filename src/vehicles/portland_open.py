@@ -3,7 +3,6 @@ from road_vehicle import OpenTram, ElectricRoadVehicle
 consist = OpenTram(id='portland_open',
                    base_numeric_id=860,
                    name='Portland',
-                   tram_type='ELRL',
                    vehicle_life=40,
                    gen=2)
 

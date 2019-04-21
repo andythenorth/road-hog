@@ -3,8 +3,7 @@ from road_vehicle import FlatbedTram, SteamRoadVehicle
 consist = FlatbedTram(id='stakebeck_flat',
                       base_numeric_id=750,
                       name='Stakebeck',
-                      tram_type='RAIL',
-                      vehicle_life=40,
+                         vehicle_life=40,
                       gen=1)
 
 consist.add_unit(type=SteamRoadVehicle,

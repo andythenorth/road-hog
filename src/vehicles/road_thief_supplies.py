@@ -3,7 +3,6 @@ from road_vehicle import SuppliesCake, DieselRoadVehicle
 consist = SuppliesCake(id='road_thief_supplies',
                        base_numeric_id=560,
                        name='Road Thief',
-                       road_type='CAKE',
                        power=720,
                        vehicle_life=40,
                        gen=4)

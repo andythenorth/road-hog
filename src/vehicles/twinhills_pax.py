@@ -3,7 +3,6 @@ from road_vehicle import PaxLocalTram, ElectricRoadVehicle
 consist = PaxLocalTram(id='twinhills_pax',
                        base_numeric_id=70,
                        name='Twinhills',
-                       tram_type='ELRL',
                        vehicle_life=40,
                        gen=5)
 

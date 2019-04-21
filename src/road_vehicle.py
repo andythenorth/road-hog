@@ -343,7 +343,6 @@ class Consist(object):
         eltrack_type_mapping = {'RAIL': 'ELRL',
                                 'HAKE': 'LAKE'}
         if self.requires_electricity_supply:
-            print('requires_electricity_supply', self.id)
             return eltrack_type_mapping[self.base_track_type]
         else:
             return self.base_track_type

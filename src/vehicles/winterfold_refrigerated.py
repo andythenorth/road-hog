@@ -3,8 +3,7 @@ from road_vehicle import RefrigeratedTram, ElectricRoadVehicle
 consist = RefrigeratedTram(id='winterfold_refrigerated',
                            base_numeric_id=770,
                            name='Winterfold',
-                           tram_type='ELRL',
-                           vehicle_life=40,
+                              vehicle_life=40,
                            gen=2,
                            intro_date_offset=10)  # introduce later than gen epoch by design
 
