@@ -118,6 +118,12 @@ class DocHelper(object):
             result.append('improved payment') # assumes we never do higher cargo decay penalty
         return result
 
+    def get_base_track_types(self):
+        result = []
+        for consist in consists:
+            result.append(consist.base_track_type)
+        return sorted(set(result))
+
 def render_docs(doc_list, file_type, use_markdown=False):
     for doc_name in doc_list:
         template = docs_templates[doc_name + '.pt'] # .pt is the conventional extension for chameleon page templates

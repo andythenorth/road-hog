@@ -4,8 +4,8 @@
     <div class="span12">
         <h2>${len(consists)} road vehicles and trams for OpenTTD</h2>
         <hr />
-        <tal:road_vehicles_and_trams repeat="vehicle_type ['Road Vehicle', 'Tram']">
-            <h3>${vehicle_type}s</h3>
+        <tal:base_track_type repeat="base_track_type doc_helper.get_base_track_types()">
+            <h3 id="${base_track_type}">${base_track_type}</h3>
             <table class="table table-striped tablesorter">
                 <thead>
                     <tr>
@@ -19,7 +19,7 @@
                 </thead>
                 <tbody>
                     <tal:consists_list repeat="consist consists">
-                        <tr tal:condition="(consist.roadveh_flag_tram) if vehicle_type is 'Tram' else (not consist.roadveh_flag_tram)"
+                        <tr tal:condition="consist.base_track_type == base_track_type"
                             tal:define="consist_name_dict doc_helper.unpack_name_string(consist)"
                             id="${consist.id}">
                             <td style="vertical-align:middle; width:${2 * global_constants.buy_menu_sprite_width};">
@@ -40,7 +40,7 @@
                     </tal:consists_list>
                 </tbody>
             </table>
-        </tal:road_vehicles_and_trams>
+        </tal:base_track_type>
     </div>
 
 </div>
