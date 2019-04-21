@@ -43,7 +43,7 @@ class Consist(object):
         self.intro_date_offset = kwargs.get('intro_date_offset', None)
         self.vehicle_life = kwargs.get('vehicle_life', None)
         self._power = kwargs.get('power', None)
-        # sound effects are faff, they can be set by consist subclass (Bus vs. Coach), or will fall back to a default sound for the vehicle subclass (by power type)
+        # default sound effects are set by the unit classes, but can be over-ridden in consist subclasses as needed
         self._sound_effect = None
         self.default_sound_effect = None # set by unit subclasses
         # suffix for 'Diesel', 'Steam' etc in name string, set by unit subclasses, but stored in consist as it's a consist property
@@ -239,17 +239,6 @@ class Consist(object):
         return min(consist_weight, 63)
 
     @property
-    def tractive_effort_coefficient(self):
-        # vehicles cannot set their own TE coefficients, shouldn't be needed
-        # vehicle classes can do it by over-riding this property in their class
-        if self.roadveh_flag_tram:
-            # for trams, reduced TE compared to rubber-tyred vehicles
-            return 0.3
-        else:
-            # for RVs TE is dibbled up substantially higher than the default 0.3 because RV performance sucks otherwise
-            return 0.7
-
-    @property
     def total_capacities(self):
         # total capacity of consist, summed from vehicles (with variants for capacity multipler param)
         # convenience function used only when the total consist capacity is needed rather than per-unit
@@ -405,17 +394,17 @@ class TrackTypeMixinBase(object):
         Base class for mixins that set:
         * base_track_type, from which road_type or tram_type are derived using power type set on units
         * roadveh_flag_tram if needed
-        * sound effect for type, which can be over-ridden as needed
         * tractive effort co-efficient for the type, which can be over-ridden as needed
 
-        Remember, *power type* is set by units on the consist.
+        Remember, *power type* and *default sound effect* are set by units, not by the consist or TrackType mixin.
 
         Mixins are usually stupid, but seem to work ok here.
         Keep this simple, don't use an __init__, it adds faff with super() about order of calls.
         Just use class attrs.
     """
-    base_track_type = None # set this as a label, defaults to None so it fails if not set in subclass
+    base_track_type = None # set this in subclass as a label; fail if not set explicitly
     roadveh_flag_tram = False
+    tractive_effort_coefficient = None # set in subclass to float (0..1); fail if not set explicitly
 
 
 class TrackTypeMixinCake(TrackTypeMixinBase):
@@ -427,6 +416,8 @@ class TrackTypeMixinCake(TrackTypeMixinBase):
         Just use class attrs.
     """
     base_track_type = "CAKE" # !! fix the label later, JFDI
+    # TE bonus assuming rubber tyres, much higher than the OpenTTD default of 0.3
+    tractive_effort_coefficient = 0.7
 
 
 class TrackTypeMixinFeldbahn(TrackTypeMixinBase):
@@ -437,6 +428,8 @@ class TrackTypeMixinFeldbahn(TrackTypeMixinBase):
     """
     base_track_type = "HAKE" # !! fix the label later, JFDI
     roadveh_flag_tram = True # feldbahn uses tram newgrf spec
+    # steel wheel on steel rail, leave as OpenTTD default
+    tractive_effort_coefficient = 0.3
 
 
 class TrackTypeMixinHEQS(TrackTypeMixinBase):
@@ -446,6 +439,8 @@ class TrackTypeMixinHEQS(TrackTypeMixinBase):
         Just use class attrs.
     """
     base_track_type = "HEQS"
+    # TE bonus assuming rubber tyres, much higher than the OpenTTD default of 0.3
+    tractive_effort_coefficient = 0.7
 
 
 class TrackTypeMixinTram(TrackTypeMixinBase):
@@ -456,6 +451,8 @@ class TrackTypeMixinTram(TrackTypeMixinBase):
     """
     base_track_type = "RAIL"
     roadveh_flag_tram = True # tram uses tram newgrf spec
+    # small TE bonus for trams versus trains, assuming all wheels powered or similar
+    tractive_effort_coefficient = 0.4
 
 
 class TrackTypeMixinTruckBusCoach(TrackTypeMixinBase):
@@ -466,6 +463,8 @@ class TrackTypeMixinTruckBusCoach(TrackTypeMixinBase):
         Just use class attrs.
     """
     base_track_type = "ROAD"
+    # TE bonus assuming rubber tyres, much higher than the OpenTTD default of 0.3
+    tractive_effort_coefficient = 0.7
 
 
 class RoadVehicle(object):
@@ -940,8 +939,6 @@ class MailHaulerBase(Consist):
         self.label_refits_disallowed = ['TOUR']
         self.default_cargos = global_constants.default_cargos['mail']
         self.weight_multiplier = 0.2
-        if not self.roadveh_flag_tram:
-            self._sound_effect = 'SOUND_TRUCK_START'
 
 
 class MailTram(MailHaulerBase, TrackTypeMixinTram):
@@ -1046,6 +1043,9 @@ class PaxLocalBus(PaxHaulerLocalBase, TrackTypeMixinTruckBusCoach):
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        # over-ride the default sound effect set by parent subclasses
+        # this assumes diesel, and will fail if non-diesel local buses are added
+        self._sound_effect = 'SOUND_BUS_START_PULL_AWAY_WITH_HORN'
 
     @property
     def name_type_suffix(self):
@@ -1077,7 +1077,7 @@ class PaxExpressCoach(PaxHaulerBase, TrackTypeMixinTruckBusCoach):
         self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
         self.weight_multiplier = 0.2
         # over-ride the default sound effect set by parent subclasses
-        # this assumes diesel, and will fail if none-diesel express coaches are added
+        # this assumes diesel, and will fail if non-diesel express coaches are added
         self._sound_effect = 'SOUND_TRUCK_START_2'
 
     @property
