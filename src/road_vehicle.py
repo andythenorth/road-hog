@@ -402,7 +402,12 @@ class Consist(object):
 
 class TrackTypeMixinBase(object):
     """
-        Stupid mixin for buses base track type (road type).
+        Base class for mixins that set:
+        * base_track_type, from which road_type or tram_type are derived using power type set on units
+        * roadveh_flag_tram if needed
+        * sound effect for type, which can be over-ridden as needed
+        * tractive effort co-efficient for the type, which can be over-ridden as needed
+        Mixins are usually stupid, but seem to work ok here.
         Keep this simple, don't use an __init__, it adds faff with super() about order of calls.
         Just use class attrs.
     """
@@ -410,31 +415,20 @@ class TrackTypeMixinBase(object):
     roadveh_flag_tram = False
 
 
-class BusCoachMixin(TrackTypeMixinBase):
-    """
-        Stupid mixin for buses / coaches.
-        Keep this simple, don't use an __init__, it gets tricky with super.
-        Just use class attrs.
-    """
-    base_track_type = "ROAD"
-    # over-ride the default sound effect set by RoadVehicle subclass
-    # this assumes diesel, and will fail if none-diesel local buses are added
-    _sound_effect = 'SOUND_BUS_START_PULL_AWAY_WITH_HORN' # coaches still might over-ride this, eh
-
-
-class CakeMixin(TrackTypeMixinBase):
+class TrackTypeMixinCake(TrackTypeMixinBase):
     # !! the name is deliberately stupid to JFDI things, needs refactored !!
     """
-        Stupid mixin for multi-roadtype (HEQS and ROAD).
+        Special vehicles with multi-roadtype capability (HEQS and ROAD).
+        These vehicles sit between conventional road and heavy-equipment.
         Keep this simple, don't use an __init__, it gets tricky with super.
         Just use class attrs.
     """
     base_track_type = "CAKE" # !! fix the label later, JFDI
 
 
-class FeldbahnMixin(TrackTypeMixinBase):
+class TrackTypeMixinFeldbahn(TrackTypeMixinBase):
     """
-        Stupid mixin for feldbahn (industrial trains with tiny gauge, 600mm and similar)
+        Feldbahn (industrial trains with tiny gauge, 600mm and similar)
         Keep this simple, don't use an __init__, it gets tricky with super.
         Just use class attrs.
     """
@@ -442,18 +436,18 @@ class FeldbahnMixin(TrackTypeMixinBase):
     roadveh_flag_tram = True # feldbahn uses tram newgrf spec
 
 
-class HEQSMixin(TrackTypeMixinBase):
+class TrackTypeMixinHEQS(TrackTypeMixinBase):
     """
-        Stupid mixin for heavy equipment (non-rail).
+        For heavy equipment (non-rail).
         Keep this simple, don't use an __init__, it gets tricky with super.
         Just use class attrs.
     """
     base_track_type = "HEQS"
 
 
-class TramMixin(TrackTypeMixinBase):
+class TrackTypeMixinTram(TrackTypeMixinBase):
     """
-        Stupid mixin for trams.
+        Trams (short rail vehicles, suitable for street running, roughly standard gauge).
         Keep this simple, don't use an __init__, it gets tricky with super.
         Just use class attrs.
     """
@@ -461,9 +455,10 @@ class TramMixin(TrackTypeMixinBase):
     roadveh_flag_tram = True # tram uses tram newgrf spec
 
 
-class TruckMixin(TrackTypeMixinBase):
+class TrackTypeMixinTruckBusCoach(TrackTypeMixinBase):
     """
-        Stupid mixin for trucks.
+        Trucks, buses, coaches etc.  Conventional vehicles on conventional roads.
+        Didn't use 'road' in the name as it conflates with wider use of 'road' in the spec
         Keep this simple, don't use an __init__, it gets tricky with super.
         Just use class attrs.
     """
@@ -676,7 +671,7 @@ class BoxHaulerBase(Consist):
         self.weight_multiplier = 0.45
 
 
-class BoxTram(BoxHaulerBase, TramMixin):
+class BoxTram(BoxHaulerBase, TrackTypeMixinTram):
     """
     Box tram.
     """
@@ -684,7 +679,7 @@ class BoxTram(BoxHaulerBase, TramMixin):
         super().__init__(**kwargs)
 
 
-class BoxTruck(BoxHaulerBase, TruckMixin):
+class BoxTruck(BoxHaulerBase, TrackTypeMixinTruckBusCoach):
     """
     Box truck.
     """
@@ -708,7 +703,7 @@ class CoveredHopperHaulerBase(Consist):
         self.weight_multiplier = 0.45
 
 
-class CoveredHopperTram(CoveredHopperHaulerBase, TramMixin):
+class CoveredHopperTram(CoveredHopperHaulerBase, TrackTypeMixinTram):
     """
     Covered hopper tram.
     """
@@ -716,7 +711,7 @@ class CoveredHopperTram(CoveredHopperHaulerBase, TramMixin):
         super().__init__(**kwargs)
 
 
-class CoveredHopperTruck(CoveredHopperHaulerBase, TruckMixin):
+class CoveredHopperTruck(CoveredHopperHaulerBase, TrackTypeMixinTruckBusCoach):
     """
     Covered hopper truck.
     """
@@ -742,7 +737,7 @@ class DumpHaulerBase(Consist):
         self.gestalt_graphics = GestaltGraphicsVisibleCargo(bulk=True)
 
 
-class DumpFeldbahn(DumpHaulerBase, FeldbahnMixin):
+class DumpFeldbahn(DumpHaulerBase, TrackTypeMixinFeldbahn):
     """
     Dump feldbahn.
     """
@@ -750,7 +745,7 @@ class DumpFeldbahn(DumpHaulerBase, FeldbahnMixin):
         super().__init__(**kwargs)
 
 
-class DumpTram(DumpHaulerBase, TramMixin):
+class DumpTram(DumpHaulerBase, TrackTypeMixinTram):
     """
     Dump tram.
     """
@@ -758,7 +753,7 @@ class DumpTram(DumpHaulerBase, TramMixin):
         super().__init__(**kwargs)
 
 
-class DumpTruck(DumpHaulerBase, TruckMixin):
+class DumpTruck(DumpHaulerBase, TrackTypeMixinTruckBusCoach):
     """
     Dump truck.
     """
@@ -783,7 +778,7 @@ class EdiblesTankerBase(Consist):
         self.weight_multiplier = 0.5
 
 
-class EdiblesTankerTram(EdiblesTankerBase, TramMixin):
+class EdiblesTankerTram(EdiblesTankerBase, TrackTypeMixinTram):
     """
     Edibles tanker tram.
     """
@@ -791,7 +786,7 @@ class EdiblesTankerTram(EdiblesTankerBase, TramMixin):
         super().__init__(**kwargs)
 
 
-class EdiblesTankerTruck(EdiblesTankerBase, TruckMixin):
+class EdiblesTankerTruck(EdiblesTankerBase, TrackTypeMixinTruckBusCoach):
     """
     Edibles tanker truck.
     """
@@ -815,7 +810,7 @@ class FlatbedHaulerBase(Consist):
         self.gestalt_graphics = GestaltGraphicsVisibleCargo(piece='flat')
 
 
-class FlatbedTram(FlatbedHaulerBase, TramMixin):
+class FlatbedTram(FlatbedHaulerBase, TrackTypeMixinTram):
     """
     Flatbed tram.
     """
@@ -823,7 +818,7 @@ class FlatbedTram(FlatbedHaulerBase, TramMixin):
         super().__init__(**kwargs)
 
 
-class FlatbedTruck(FlatbedHaulerBase, TruckMixin):
+class FlatbedTruck(FlatbedHaulerBase, TrackTypeMixinTruckBusCoach):
     """
     Flatbed truck.
     """
@@ -847,7 +842,7 @@ class FruitVegHaulerBase(Consist):
         self.weight_multiplier = 0.45
 
 
-class FruitVegTram(FruitVegHaulerBase, TramMixin):
+class FruitVegTram(FruitVegHaulerBase, TrackTypeMixinTram):
     """
     Fruit and vegetables tram.  No FruitVegTruck yet as of April 2019.
     """
@@ -886,7 +881,7 @@ class LivestockHaulerBase(Consist):
         self.weight_multiplier = 0.45
 
 
-class LivestockTram(LivestockHaulerBase, TramMixin):
+class LivestockTram(LivestockHaulerBase, TrackTypeMixinTram):
     """
     Livestock tram.
     """
@@ -894,7 +889,7 @@ class LivestockTram(LivestockHaulerBase, TramMixin):
         super().__init__(**kwargs)
 
 
-class LivestockTruck(LivestockHaulerBase, TruckMixin):
+class LivestockTruck(LivestockHaulerBase, TrackTypeMixinTruckBusCoach):
     """
     Livestock truck.
     """
@@ -921,7 +916,7 @@ class LogHaulerBase(Consist):
                                                 generic_rows = [0])
 
 
-class LogHEQS(LogHaulerBase, HEQSMixin):
+class LogHEQS(LogHaulerBase, TrackTypeMixinHEQS):
     """
     Log hauling heavy equipment.
     """
@@ -946,7 +941,7 @@ class MailHaulerBase(Consist):
             self._sound_effect = 'SOUND_TRUCK_START'
 
 
-class MailTram(MailHaulerBase, TramMixin):
+class MailTram(MailHaulerBase, TrackTypeMixinTram):
     """
     Mail tram.
     """
@@ -954,7 +949,7 @@ class MailTram(MailHaulerBase, TramMixin):
         super().__init__(**kwargs)
 
 
-class MailTruck(MailHaulerBase, TruckMixin):
+class MailTruck(MailHaulerBase, TrackTypeMixinTruckBusCoach):
     """
     Mail truck.
     """
@@ -978,7 +973,7 @@ class MetalHaulerBase(Consist):
         self.loading_speed_multiplier = 2
 
 
-class MetalTruck(MetalHaulerBase, TruckMixin):
+class MetalTruck(MetalHaulerBase, TrackTypeMixinTruckBusCoach):
     """
     Metal truck.
     """
@@ -1003,7 +998,7 @@ class OpenHaulerBase(Consist):
                                                             piece='open')
 
 
-class OpenTram(OpenHaulerBase, TramMixin):
+class OpenTram(OpenHaulerBase, TrackTypeMixinTram):
     """
     Open tram.
     """
@@ -1011,7 +1006,7 @@ class OpenTram(OpenHaulerBase, TramMixin):
         super().__init__(**kwargs)
 
 
-class OpenTruck(OpenHaulerBase, TruckMixin):
+class OpenTruck(OpenHaulerBase, TrackTypeMixinTruckBusCoach):
     """
     Open truck.
     """
@@ -1042,7 +1037,7 @@ class PaxHaulerLocalBase(PaxHaulerBase):
         self.weight_multiplier = 0.17
 
 
-class PaxLocalBus(PaxHaulerLocalBase, BusCoachMixin):
+class PaxLocalBus(PaxHaulerLocalBase, TrackTypeMixinTruckBusCoach):
     """
     Local passenger bus.
     """
@@ -1055,7 +1050,7 @@ class PaxLocalBus(PaxHaulerLocalBase, BusCoachMixin):
         return "STR_NAME_SUFFIX_BUS"
 
 
-class PaxLocalTram(PaxHaulerLocalBase, TramMixin):
+class PaxLocalTram(PaxHaulerLocalBase, TrackTypeMixinTram):
     """
     Local passenger tram.
     """
@@ -1070,7 +1065,7 @@ class PaxLocalTram(PaxHaulerLocalBase, TramMixin):
         return "STR_NAME_SUFFIX_PASSENGER_TRAM"
 
 
-class PaxExpressCoach(PaxHaulerBase, BusCoachMixin):
+class PaxExpressCoach(PaxHaulerBase, TrackTypeMixinTruckBusCoach):
     """
     Express coach for pax. Express tram wasn't defined as of April 2019.  Split a PaxExpressBase subclass if needed
     """
@@ -1104,7 +1099,7 @@ class RefrigeratedHaulerBase(Consist):
         self.weight_multiplier = 0.5
 
 
-class RefrigeratedTram(RefrigeratedHaulerBase, TramMixin):
+class RefrigeratedTram(RefrigeratedHaulerBase, TrackTypeMixinTram):
     """
     Refrigerated tram.
     """
@@ -1112,7 +1107,7 @@ class RefrigeratedTram(RefrigeratedHaulerBase, TramMixin):
         super().__init__(**kwargs)
 
 
-class RefrigeratedTruck(RefrigeratedHaulerBase, TruckMixin):
+class RefrigeratedTruck(RefrigeratedHaulerBase, TrackTypeMixinTruckBusCoach):
     """
     Refrigerated truck.
     """
@@ -1140,7 +1135,7 @@ class SuppliesHaulerBase(Consist):
                                                        generic_rows = [0])
 
 
-class SuppliesCake(SuppliesHaulerBase, CakeMixin):
+class SuppliesCake(SuppliesHaulerBase, TrackTypeMixinCake):
     """
     Supplies hauler (multi-roadtype).  No supplies trams yet as of April 2019.
     """
@@ -1169,7 +1164,7 @@ class TankerBase(Consist):
         self.gestalt_graphics = GestaltGraphicsLiveryOnly(recolour_maps=polar_fox.constants.tanker_livery_recolour_maps)
 
 
-class TankerTram(TankerBase, TramMixin):
+class TankerTram(TankerBase, TrackTypeMixinTram):
     """
     Tanker tram.
     """
@@ -1177,7 +1172,7 @@ class TankerTram(TankerBase, TramMixin):
         super().__init__(**kwargs)
 
 
-class TankerTruck(TankerBase, TruckMixin):
+class TankerTruck(TankerBase, TrackTypeMixinTruckBusCoach):
     """
     Tanker truck.
     """
