@@ -400,20 +400,29 @@ class Consist(object):
         return nml_result
 
 
-class BusCoachMixin(object):
+class TrackTypeMixinBase(object):
+    """
+        Stupid mixin for buses base track type (road type).
+        Keep this simple, don't use an __init__, it adds faff with super() about order of calls.
+        Just use class attrs.
+    """
+    base_track_type = None # set as a label
+    roadveh_flag_tram = False
+
+
+class BusCoachMixin(TrackTypeMixinBase):
     """
         Stupid mixin for buses / coaches.
         Keep this simple, don't use an __init__, it gets tricky with super.
         Just use class attrs.
     """
     base_track_type = "ROAD"
-    roadveh_flag_tram = False
     # over-ride the default sound effect set by RoadVehicle subclass
     # this assumes diesel, and will fail if none-diesel local buses are added
     _sound_effect = 'SOUND_BUS_START_PULL_AWAY_WITH_HORN' # coaches still might over-ride this, eh
 
 
-class CakeMixin(object):
+class CakeMixin(TrackTypeMixinBase):
     # !! the name is deliberately stupid to JFDI things, needs refactored !!
     """
         Stupid mixin for multi-roadtype (HEQS and ROAD).
@@ -421,10 +430,9 @@ class CakeMixin(object):
         Just use class attrs.
     """
     base_track_type = "CAKE" # !! fix the label later, JFDI
-    roadveh_flag_tram = False
 
 
-class FeldbahnMixin(object):
+class FeldbahnMixin(TrackTypeMixinBase):
     """
         Stupid mixin for feldbahn (industrial trains with tiny gauge, 600mm and similar)
         Keep this simple, don't use an __init__, it gets tricky with super.
@@ -434,17 +442,16 @@ class FeldbahnMixin(object):
     roadveh_flag_tram = True # feldbahn uses tram newgrf spec
 
 
-class HEQSMixin(object):
+class HEQSMixin(TrackTypeMixinBase):
     """
         Stupid mixin for heavy equipment (non-rail).
         Keep this simple, don't use an __init__, it gets tricky with super.
         Just use class attrs.
     """
     base_track_type = "HEQS"
-    roadveh_flag_tram = False
 
 
-class TramMixin(object):
+class TramMixin(TrackTypeMixinBase):
     """
         Stupid mixin for trams.
         Keep this simple, don't use an __init__, it gets tricky with super.
@@ -454,14 +461,13 @@ class TramMixin(object):
     roadveh_flag_tram = True # tram uses tram newgrf spec
 
 
-class TruckMixin(object):
+class TruckMixin(TrackTypeMixinBase):
     """
         Stupid mixin for trucks.
         Keep this simple, don't use an __init__, it gets tricky with super.
         Just use class attrs.
     """
     base_track_type = "ROAD"
-    roadveh_flag_tram = False
 
 
 class RoadVehicle(object):
