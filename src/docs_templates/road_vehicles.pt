@@ -13,6 +13,7 @@
                         <th>Vehicle Name</th>
                         <th>Type</th>
                         <th class="number">Intro Date</th>
+                        <th class="number">Power (hp)</th>
                         <th class="number">Speed (mph)</th>
                         <th>Special Features</th>
                     </tr>
@@ -32,6 +33,7 @@
                             </td>
                             <td>${consist_name_dict['type_suffix']}</td>
                             <td style="vertical-align:middle;" class="number">${consist.intro_date}</td>
+                            <td style="vertical-align:middle;" class="number">${consist.power}</td>
                             <td style="vertical-align:middle;" class="number">${consist.speed}</td>
                             <td style="vertical-align:middle;">
                                 ${', '.join(doc_helper.get_special_features_for_vehicle(consist)).capitalize()}
