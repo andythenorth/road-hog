@@ -10,7 +10,7 @@
 // -----------
 
 roadtypetable {
- 	ROAD, HAUL, CAKE
+ 	ROAD, HAUL, CAKE, HEQS
 }
 
 // tram is light rail so copy existing railtype labels where appropriate (for ease, no new thinking required)

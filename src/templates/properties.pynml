@@ -12,12 +12,8 @@ item(FEAT_ROADVEHS, ${vehicle.id}, ${vehicle.numeric_id}) {
         name:                           ${consist.name};
         cargo_capacity:                 ${vehicle.capacities[0]};
         sprite_id:                      SPRITE_ID_NEW_ROADVEH; //enable new graphics - nml constant
-        <tal:tram_type condition="consist.tram_type is not None">
-            tram_type:                      ${consist.tram_type};
-        </tal:tram_type>
-        <tal:road_type condition="consist.road_type is not None">
-            road_type:                      ${consist.road_type};
-        </tal:road_type>
+        <!--! insert either road_type or  track_type as appropriate to the vehicle type -->
+        ${consist.get_expression_for_road_or_tram_type}
         <tal:lead_unit_props condition="vehicle.is_lead_unit_of_consist">
             introduction_date:              date(${consist.intro_date},01,01); // consist just supplies intro year - openttd randomises intro dates a bit anyway
             power:                          ${consist.power}hp;

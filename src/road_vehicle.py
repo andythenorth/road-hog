@@ -332,6 +332,29 @@ class Consist(object):
         return 3 - 8 - 1 # -ve value here is correct
 
     @property
+    def track_type(self):
+        # are you sure you don't want base_track_type instead?
+        # track_type handles converting base_track_type to ELRL, ELNG etc as needed for electric engines
+        # it's often more convenient to use base_track_type prop, which treats ELRL and RAIL as same (for example)
+        eltrack_type_mapping = {'RAIL': 'ELRL',
+                                'NG': 'ELNG',
+                                'METRO': 'METRO'} # assume METRO is always METRO, whether electric flag is set or not
+        """
+        if self.requires_electric_rails:
+            return eltrack_type_mapping[self.base_track_type]
+        else:
+            return self.base_track_type
+        """
+        return self.base_track_type
+
+    @property
+    def get_expression_for_road_or_tram_type(self):
+        if self.roadveh_flag_tram:
+            return 'tram_type:' + self.track_type + ';'
+        else:
+            return 'road_type:' + self.track_type + ';'
+
+    @property
     def sound_effect(self):
         # allow custom sound effects (set per subclass or vehicle)
         if self._sound_effect is not None:
