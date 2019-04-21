@@ -272,15 +272,10 @@ class Consist(object):
 
     @property
     def speed(self):
-        if self._speed is None:
-            if self.roadveh_flag_tram is True:
-                speeds = self.roster.default_tram_speeds
-            else:
-                speeds = self.roster.default_truck_speeds
-            speed = speeds[max([year for year in speeds if self.intro_date >= year])]
-            return speed
-        else:
+        if self._speed:
             return self._speed
+        else:
+            return self.roster.speeds[self.base_track_type][self.gen - 1]
 
     @property
     def power(self):
