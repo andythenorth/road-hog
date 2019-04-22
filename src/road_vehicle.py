@@ -1014,6 +1014,14 @@ class OpenHaulerBase(Consist):
                                                             piece='open')
 
 
+class OpenFeldbahn(OpenHaulerBase, TrackTypeMixinFeldbahn):
+    """
+    Open feldbahn.
+    """
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+
 class OpenTram(OpenHaulerBase, TrackTypeMixinTram):
     """
     Open tram.

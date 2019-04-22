@@ -65,6 +65,7 @@ STR_NAME_SUFFIX_METAL_TRAM                                      :Foundry Tram
 STR_NAME_SUFFIX_METAL_TRUCK                                     :Foundry Hauler
 STR_NAME_SUFFIX_MINING_TRAM                                     :Mining Tram
 STR_NAME_SUFFIX_MINING_TRUCK                                    :Mining Truck
+STR_NAME_SUFFIX_OPEN_FELDBAHN                                   :Open Feldbahn
 STR_NAME_SUFFIX_OPEN_TRAM                                       :Open Tram
 STR_NAME_SUFFIX_OPEN_TRUCK                                      :Open Truck
 STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Passenger Tram

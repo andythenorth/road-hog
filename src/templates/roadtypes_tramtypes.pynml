@@ -104,7 +104,7 @@ item(FEAT_TRAMTYPES, feldbahn, 2) {
     }
 }
 
-item(FEAT_TRAMTYPES, electric_feldbahn, 2) {
+item(FEAT_TRAMTYPES, electric_feldbahn, 3) {
     property {
         name: string(STR_NAME_FELDBAHN);
         label: "LAKE";
