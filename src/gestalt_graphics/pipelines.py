@@ -82,7 +82,7 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
                            self.base_offset,
                            graphics_constants.spritesheet_width,
                             self.base_offset + graphics_constants.spriterow_height)
-        vehicle_generic_spriterow_input_image = Image.open(self.input_path).crop(crop_box_source)
+        vehicle_generic_spriterow_input_image = self.vehicle_source_image.copy().crop(crop_box_source)
         # vehicle_generic_spriterow_input_image.show() # comment in to see the image when debugging
         vehicle_generic_spriterow_input_as_spritesheet = self.make_spritesheet_from_image(vehicle_generic_spriterow_input_image)
         crop_box_dest = (0,
@@ -100,7 +100,7 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
                            self.base_offset,
                            graphics_constants.spritesheet_width,
                             self.base_offset + graphics_constants.spriterow_height)
-        vehicle_livery_only_spriterow_input_image = Image.open(self.input_path).crop(crop_box_source)
+        vehicle_livery_only_spriterow_input_image = self.vehicle_source_image.copy().crop(crop_box_source)
         # vehicle_generic_spriterow_input_image.show() # comment in to see the image when debugging
         vehicle_livery_only_spriterow_input_as_spritesheet = self.make_spritesheet_from_image(vehicle_livery_only_spriterow_input_image)
 
@@ -118,7 +118,7 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
                            self.base_offset,
                            graphics_constants.spritesheet_width,
                            self.base_offset + cargo_group_row_height)
-        vehicle_bulk_cargo_input_image = Image.open(self.input_path).crop(crop_box_source)
+        vehicle_bulk_cargo_input_image = self.vehicle_source_image.copy().crop(crop_box_source)
         #vehicle_bulk_cargo_input_image.show() # comment in to see the image when debugging
         vehicle_bulk_cargo_input_as_spritesheet = self.make_spritesheet_from_image(vehicle_bulk_cargo_input_image)
         crop_box_dest = (0,
@@ -150,7 +150,7 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
                            self.base_offset,
                            graphics_constants.spritesheet_width,
                            self.base_offset + graphics_constants.spriterow_height)
-        vehicle_cargo_loc_image = Image.open(self.input_path).crop(crop_box_vehicle_cargo_loc_row)
+        vehicle_cargo_loc_image = self.vehicle_source_image.copy().crop(crop_box_vehicle_cargo_loc_row)
         # get the loc points
         loc_points = [pixel for pixel in pixascan(vehicle_cargo_loc_image) if pixel[2] == 226]
         # two cargo rows needed, so extend the loc points list
@@ -161,13 +161,13 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
                            self.cur_vehicle_empty_row_offset,
                            graphics_constants.spritesheet_width,
                            self.cur_vehicle_empty_row_offset + graphics_constants.spriterow_height)
-        vehicle_base_image = Image.open(self.input_path).crop(crop_box_vehicle_base)
+        vehicle_base_image = self.vehicle_source_image.copy().crop(crop_box_vehicle_base)
         #vehicle_base_image.show()
         crop_box_mask = (0,
                          self.base_offset + graphics_constants.spriterow_height,
                          graphics_constants.spritesheet_width,
                          self.base_offset + (2 * graphics_constants.spriterow_height))
-        vehicle_mask = Image.open(self.input_path).crop(crop_box_mask).point(lambda i: 255 if i == 226 else 0).convert("1")
+        vehicle_mask = self.vehicle_source_image.copy().crop(crop_box_mask).point(lambda i: 255 if i == 226 else 0).convert("1")
         #vehicle_mask.show()
         #mask and empty state will need pasting once for each of two cargo rows, so two crop boxes needed
         crop_box_comp_dest_1 = (0,
@@ -238,6 +238,8 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
     def render(self, consist, global_constants):
         self.units = [] # graphics units not same as consist units ! confusing overlap of terminology :(
         self.consist = consist
+
+        self.vehicle_source_image = Image.open(self.input_path)
 
         # the cumulative_input_spriterow_count updates per processed group of spriterows, and is key to making this work
         cumulative_input_spriterow_count = 0
