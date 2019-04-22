@@ -415,7 +415,7 @@ class TrackTypeMixinCake(TrackTypeMixinBase):
         Keep this simple, don't use an __init__, it gets tricky with super.
         Just use class attrs.
     """
-    base_track_type = "CAKE" # !! fix the label later, JFDI
+    base_track_type = "LOLZ" # !! fix the label later, JFDI
     # TE bonus assuming rubber tyres, much higher than the OpenTTD default of 0.3
     tractive_effort_coefficient = 0.7
     name_suffix_vehicle_type = "_TRUCK" # !! possibly wrong?

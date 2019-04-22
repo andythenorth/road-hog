@@ -10,7 +10,7 @@
 // -----------
 
 roadtypetable {
- 	ROAD, HAUL, CAKE, HEQS
+ 	ROAD, HAUL, LOLZ, HEQS
 }
 
 // tram is light rail so copy existing railtype labels where appropriate (for ease, no new thinking required)
@@ -46,7 +46,7 @@ item(FEAT_ROADTYPES, heavy_haul_road, 0) {
 item(FEAT_ROADTYPES, cake_road, 1) {
     property {
         name: string(STR_NAME_HEAVY_HAUL_ROAD);
-        label: "CAKE";
+        label: "LOLZ";
         powered_roadtype_list: ["HEQS", "HAUL", "ROAD"];
         toolbar_caption: string(STR_TOOLBAR_CAPTION_HEAVY_HAUL_ROAD);
         menu_text: string(STR_MENU_TEXT_HEAVY_HAUL_ROAD);
