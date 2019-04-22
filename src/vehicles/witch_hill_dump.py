@@ -1,14 +1,14 @@
-from road_vehicle import DumpTruck, DieselRoadVehicle
+from road_vehicle import DumpHEQS, DieselRoadVehicle
 
-consist = DumpTruck(id='witch_hill_dump',
-                    base_numeric_id=500,
-                    name='Witch Hill',
-                    power=900,
-                    speed=50,  # dibbled up above RL for game balance
-                    type_base_running_cost_points=30,  # dibble running costs for game balance
-                    vehicle_life=40,
-                    gen=4,
-                    intro_date_offset=17)  # introduce later than gen epoch by design
+consist = DumpHEQS(id='witch_hill_dump',
+                   base_numeric_id=500,
+                   name='Witch Hill',
+                   power=900,
+                   speed=50,  # dibbled up above RL for game balance
+                   type_base_running_cost_points=30,  # dibble running costs for game balance
+                   vehicle_life=40,
+                   gen=4,
+                   intro_date_offset=17)  # introduce later than gen epoch by design
 
 consist.add_unit(type=DieselRoadVehicle,
                  capacity=85,  # much bigger is not much better here

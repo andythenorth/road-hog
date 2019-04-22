@@ -755,6 +755,14 @@ class DumpFeldbahn(DumpHaulerBase, TrackTypeMixinFeldbahn):
         super().__init__(**kwargs)
 
 
+class DumpHEQS(DumpHaulerBase, TrackTypeMixinHEQS):
+    """
+    Dump HEQS.
+    """
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+
 class DumpTram(DumpHaulerBase, TrackTypeMixinTram):
     """
     Dump tram.
@@ -981,7 +989,7 @@ class MetalHaulerBase(Consist):
         self.loading_speed_multiplier = 2
 
 
-class MetalTruck(MetalHaulerBase, TrackTypeMixinTruckBusCoach):
+class MetalHEQS(MetalHaulerBase, TrackTypeMixinHEQS):
     """
     Metal truck.
     """
