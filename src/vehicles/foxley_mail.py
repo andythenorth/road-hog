@@ -11,5 +11,4 @@ consist = MailTram(id='foxley_mail',
 consist.add_unit(type=ElectricRoadVehicle,
                  capacity=15,
                  vehicle_length=4,
-                 effects=['EFFECT_SPRITE_ELECTRIC, 0, 0, 10'],
                  repeat=2)

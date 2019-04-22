@@ -10,5 +10,4 @@ consist = RefrigeratedTram(id='sparkford_refrigerated',
 consist.add_unit(type=ElectricRoadVehicle,
                  capacity=36,
                  vehicle_length=8,
-                 effects=['EFFECT_SPRITE_ELECTRIC, 0, 0, 10'],
                  repeat=2)
