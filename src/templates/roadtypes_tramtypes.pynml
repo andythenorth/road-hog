@@ -106,14 +106,14 @@ item(FEAT_TRAMTYPES, feldbahn, 2) {
 
 item(FEAT_TRAMTYPES, electric_feldbahn, 3) {
     property {
-        name: string(STR_NAME_FELDBAHN);
+        name: string(STR_NAME_ELECTRIC_FELDBAHN);
         label: "LAKE";
         powered_tramtype_list: [];
-        toolbar_caption: string(STR_TOOLBAR_CAPTION_FELDBAHN);
-        menu_text: string(STR_MENU_TEXT_FELDBAHN);
-        build_window_caption: string(STR_BUILD_WINDOW_CAPTION_FELDBAHN);
-        autoreplace_text: string(STR_AUTOREPLACE_TEXT_FELDBAHN);
-        new_engine_text: string(STR_NEW_ENGINE_TEXT_FELDBAHN);
+        toolbar_caption: string(STR_TOOLBAR_CAPTION_ELECTRIC_FELDBAHN);
+        menu_text: string(STR_MENU_TEXT_ELECTRIC_FELDBAHN);
+        build_window_caption: string(STR_BUILD_WINDOW_CAPTION_ELECTRIC_FELDBAHN);
+        autoreplace_text: string(STR_AUTOREPLACE_TEXT_ELECTRIC_FELDBAHN);
+        new_engine_text: string(STR_NEW_ENGINE_TEXT_ELECTRIC_FELDBAHN);
         tramtype_flags: bitmask(TRAMTYPE_FLAG_CATENARY);
     }
 }

@@ -35,6 +35,12 @@ STR_MENU_TEXT_FELDBAHN                                          :Feldbahn constr
 STR_BUILD_WINDOW_CAPTION_FELDBAHN                               :New Feldbahn vehicles
 STR_AUTOREPLACE_TEXT_FELDBAHN                                   :Feldbahn vehicles
 STR_NEW_ENGINE_TEXT_FELDBAHN                                    :feldbahn
+STR_NAME_ELECTRIC_FELDBAHN                                      :Electric Feldbahn
+STR_TOOLBAR_CAPTION_ELECTRIC_FELDBAHN                           :Electric Feldbahn Construction
+STR_MENU_TEXT_ELECTRIC_FELDBAHN                                 :Electric Feldbahn construction
+STR_BUILD_WINDOW_CAPTION_ELECTRIC_FELDBAHN                      :New Electric Feldbahn vehicles
+STR_AUTOREPLACE_TEXT_ELECTRIC_FELDBAHN                          :Electric Feldbahn vehicles
+STR_NEW_ENGINE_TEXT_ELECTRIC_FELDBAHN                           :electric feldbahn
 
 # keep these alphabetised, easier
 STR_NAME_SUFFIX_DIESEL                                          :Diesel
