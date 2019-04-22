@@ -35,7 +35,6 @@ from vehicles import (acton_pax_express,
                       goldmire_mail,
 #                      gravelhead_dump,
                       greenscoe_tanker,
-                      griff_log,
                       hake_lake_dump,
                       hawkmoor_dump,
                       highgate_pax,
@@ -103,20 +102,20 @@ roster = Roster(id = 'brit',
                 numeric_id = 1,
                 # default intro dates per generation, can be over-ridden if needed by setting intro_date kw on consist
                 intro_dates = {'ROAD': [1860, 1920, 1945, 1970, 1995, 2020], # gen 1 is long, then after 1920, quite aggressive 25 year gaps for trucks / buses
-                               'HEQS': [1870, 1910, 1950, 1990, 2030], # !! 40 year gaps (might reduce??)
+                               'CAKE': [1860, 1920, 1945, 1970, 1995, 2020], # keep matched to ROAD
+                               'HEQS': [1925, 1945, 1965, 1985, 2015, 2035], # very aggressive 20 year gaps to reflect rapid development + overtake feldbahn
                                'RAIL': [1860, 1900, 1930, 1960, 1990, 2020], # 30 year gaps for trams
-                               'CAKE': [1860, 1920, 1955, 1990, 2025], # !! 35 year gaps (might reduce??)
-                               'HAKE': [1860, 1900, 1930, 1960, 1990, 2020]}, # !! 30 year gaps for feldbahn?? (increase??)
+                               'HAKE': [1860, 1900, 1950, 2000]}, # only a few generations of feldbahn, then replaced by trucks
                 speeds = {'ROAD': [25, 40, 55, 70, 80, 80],
                           'CAKE': [25, 40, 55, 70, 80, 80], # match to ROAD otherwise CAKE vehicles cause road blocks
-                          'HEQS': [25, 35, 45, 55, 60, 65],
+                          'HEQS': [25, 30, 40, 50, 60, 60],
                           'RAIL': [25, 35, 45, 55, 65, 65],
-                          'HAKE': [25, 35, 45, 55, 60, 65]},
+                          'HAKE': [25, 35, 45, 55]},
                 power_bands = {'ROAD': [100, 150, 250, 450, 650, 750],
                                'CAKE': [100, 150, 250, 450, 650, 750],
                                'HEQS': [100, 150, 250, 450, 650, 750], # more likely to be over-ridden eh?
                                'RAIL': [240, 480, 720, 960, 1200, 1440], # tram power is excessive compare to RL, otherwise the OpenTTD physics model spanks the trams
-                               'HAKE': [240, 480, 720, 960, 1200, 1440]},
+                               'HAKE': [240, 480, 720, 960]},
                 vehicles = [leyburn_pax,
                             thunder_pax,
                             highgate_pax,
@@ -210,7 +209,6 @@ roster = Roster(id = 'brit',
                             bahn_face_open,
                             hake_lake_dump,
                             # off-highway
-                            griff_log,
                             trefell_log,
                             knockdown_log,
                             buff_log,
