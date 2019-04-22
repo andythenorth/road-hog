@@ -110,7 +110,7 @@ roster = Roster(id = 'brit',
                           'LOLZ': [25, 40, 55, 70, 80, 80], # match to ROAD otherwise LOLZ vehicles cause road blocks
                           'HEQS': [25, 30, 40, 50, 60, 60],
                           'RAIL': [25, 35, 45, 55, 65, 65],
-                          'HAKE': [25, 35, 45, 55]},
+                          'HAKE': [20, 30, 40, 40]},
                 power_bands = {'ROAD': [100, 150, 250, 450, 650, 750],
                                'LOLZ': [100, 150, 250, 450, 650, 750],
                                'HEQS': [100, 150, 250, 450, 650, 750], # more likely to be over-ridden eh?
