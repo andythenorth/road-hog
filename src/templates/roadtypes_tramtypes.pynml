@@ -47,7 +47,7 @@ item(FEAT_ROADTYPES, cake_road, 1) {
     property {
         name: string(STR_NAME_HEAVY_HAUL_ROAD);
         label: "CAKE";
-        powered_roadtype_list: ["HAUL", "ROAD"];
+        powered_roadtype_list: ["HEQS", "HAUL", "ROAD"];
         toolbar_caption: string(STR_TOOLBAR_CAPTION_HEAVY_HAUL_ROAD);
         menu_text: string(STR_MENU_TEXT_HEAVY_HAUL_ROAD);
         build_window_caption: string(STR_BUILD_WINDOW_CAPTION_HEAVY_HAUL_ROAD);
