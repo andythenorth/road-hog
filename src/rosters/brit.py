@@ -102,13 +102,13 @@ from vehicles import (acton_pax_express,
 roster = Roster(id = 'brit',
                 numeric_id = 1,
                 # default intro dates per generation, can be over-ridden if needed by setting intro_date kw on consist
-                intro_dates = {'ROAD': [1860, 1910, 1939, 1968, 1997, 2026], # gen 1 is long, then after 1910, 29 year gaps for trucks / buses
+                intro_dates = {'ROAD': [1860, 1920, 1945, 1970, 1995, 2020], # gen 1 is long, then after 1920, quite aggressive 25 year gaps for trucks / buses
                                'HEQS': [1870, 1910, 1950, 1990, 2030], # !! 40 year gaps (might reduce??)
                                'RAIL': [1860, 1900, 1930, 1960, 1990, 2020], # 30 year gaps for trams
                                'CAKE': [1860, 1920, 1955, 1990, 2025], # !! 35 year gaps (might reduce??)
                                'HAKE': [1860, 1900, 1930, 1960, 1990, 2020]}, # !! 30 year gaps for feldbahn?? (increase??)
                 speeds = {'ROAD': [25, 40, 55, 70, 80, 80],
-                          'CAKE': [25, 40, 55, 70, 80, 80], # match to ROAD otherwise blocks
+                          'CAKE': [25, 40, 55, 70, 80, 80], # match to ROAD otherwise CAKE vehicles cause road blocks
                           'HEQS': [25, 35, 45, 55, 60, 65],
                           'RAIL': [25, 35, 45, 55, 65, 65],
                           'HAKE': [25, 35, 45, 55, 60, 65]},
