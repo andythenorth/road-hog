@@ -28,7 +28,7 @@ class Pipeline(object):
         return spritesheet
 
     @property
-    def input_path(self):
+    def vehicle_source_input_path(self):
         # convenience method to get the vehicle template image
         # I considered having this return the Image, not just the path, but it's not saving much, and is less obvious what it does when used
         return os.path.join(currentdir, 'src', 'graphics', self.consist.roster_id, self.consist.id + '.png')
@@ -59,7 +59,7 @@ class PassThroughPipeline(Pipeline):
     def render(self, consist, global_constants):
         self.units = []
         self.consist = consist
-        input_image = Image.open(self.input_path)
+        input_image = Image.open(self.vehicle_source_input_path)
         result = self.render_common(self.consist, input_image, self.units)
         return result
 
@@ -239,7 +239,7 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
         self.units = [] # graphics units not same as consist units ! confusing overlap of terminology :(
         self.consist = consist
 
-        self.vehicle_source_image = Image.open(self.input_path)
+        self.vehicle_source_image = Image.open(self.vehicle_source_input_path)
 
         # the cumulative_input_spriterow_count updates per processed group of spriterows, and is key to making this work
         cumulative_input_spriterow_count = 0
