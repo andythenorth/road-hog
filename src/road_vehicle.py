@@ -290,17 +290,9 @@ class Consist(object):
     def model_life(self):
         similar_consists = []
         for consist in self.roster.consists:
+            # in Hog we can rely on the class of the vehicle to encapsulate the road_type or tram_type, so we can reliably use it for comparison
             if type(consist) == type(self):
-                # the order of if statements here is specific and to split tram / road vehicles reliably
-                if self.roadveh_flag_tram:
-                    if consist.roadveh_flag_tram:
-                        # all trams are currently considered compatible, unless/until new tram_types are added
-                        similar_consists.append(consist)
-                else:
-                    if not consist.roadveh_flag_tram:
-                        if consist.road_type == self.road_type:
-                            # all road_types are currently considered to require exact match, unless/until new road_types are added
-                            similar_consists.append(consist)
+                similar_consists.append(consist)
         replacement_consist = None
         for consist in sorted(similar_consists, key=lambda consist: consist.intro_date):
             if consist.intro_date > self.intro_date:
@@ -309,9 +301,7 @@ class Consist(object):
         if replacement_consist is None:
             return 'VEHICLE_NEVER_EXPIRES'
         else:
-            # see comments for retire_early
-            # model life based on replacement date + 17 for max random intro date of replacement
-            return replacement_consist.intro_date - self.intro_date + 17
+            return replacement_consist.intro_date - self.intro_date
 
     @property
     def retire_early(self):
