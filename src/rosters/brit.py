@@ -107,13 +107,15 @@ roster = Roster(id = 'brit',
                                'CAKE': [1860, 1920, 1955, 1990, 2025], # !! 35 year gaps (might reduce??)
                                'HAKE': [1860, 1900, 1930, 1960, 1990, 2020]}, # !! 30 year gaps for feldbahn?? (increase??)
                 speeds = {'ROAD': [25, 40, 55, 70, 80, 80],
-                          'CAKE': [25, 40, 55, 70, 80, 80],
+                          'CAKE': [25, 40, 55, 70, 80, 80], # match to ROAD otherwise blocks
                           'HEQS': [25, 35, 45, 55, 60, 65],
                           'RAIL': [25, 35, 45, 55, 60, 65],
                           'HAKE': [25, 35, 45, 55, 60, 65]},
-                truck_power_bands = {0: 100, 1905: 150, 1935: 250, 1965: 450, 1985: 700},
-                # tram power is excessive compare to RL, otherwise the OpenTTD physics model spanks the trams
-                tram_power_bands = {0: 240, 1900: 480, 1930: 720, 1960: 960, 1990: 1200},
+                power_bands = {'ROAD': [100, 150, 250, 450, 650, 750],
+                               'CAKE': [100, 150, 250, 450, 650, 750],
+                               'HEQS': [100, 150, 250, 450, 650, 750], # more likely to be over-ridden eh?
+                               'RAIL': [240, 480, 720, 960, 1200, 1440], # tram power is excessive compare to RL, otherwise the OpenTTD physics model spanks the trams
+                               'HAKE': [240, 480, 720, 960, 1200, 1440]},
                 vehicles = [leyburn_pax,
                             thunder_pax,
                             highgate_pax,

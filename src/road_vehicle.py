@@ -272,6 +272,7 @@ class Consist(object):
 
     @property
     def speed(self):
+        # speed can be over-ridden on a per vehicle basis, otherwise from roster
         if self._speed:
             return self._speed
         else:
@@ -279,16 +280,11 @@ class Consist(object):
 
     @property
     def power(self):
-        # only trucks have standard power bands, trams are custom
-        if self._power is None:
-            if self.roadveh_flag_tram is True:
-                power_bands = self.roster.default_tram_power_bands
-            else:
-                power_bands = self.roster.default_truck_power_bands
-            power = power_bands[max([year for year in power_bands if self.intro_date >= year])]
-            return power
-        else:
+        # speed can be over-ridden on a per vehicle basis, otherwise from roster
+        if self._power:
             return self._power
+        else:
+            return self.roster.power_bands[self.base_track_type][self.gen - 1]
 
     @property
     def model_life(self):
