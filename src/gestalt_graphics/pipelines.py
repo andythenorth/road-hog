@@ -52,6 +52,9 @@ class Pipeline(object):
 
 
 class PassThroughPipeline(Pipeline):
+    """
+    Solely opens the input image and saves it, this more of a theoretical case, there's no actual reason to use this.
+    """
     def __init__(self):
         # this should be sparse, don't store any consist info in Pipelines, pass at render time
         super(PassThroughPipeline, self).__init__("pass_through_pipeline")
@@ -128,7 +131,7 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
             self.units.append(AppendToSpritesheet(vehicle_bulk_cargo_input_as_spritesheet, crop_box_dest))
             self.units.append(SimpleRecolour(recolour_map))
 
-    def add_piece_cargo_spriterows(self, vehicle, global_constants):
+    def add_piece_cargo_spriterows(self, global_constants):
         # !! this could possibly be optimised by slicing all the cargos once, globally, instead of per-unit
         cargo_group_output_row_height = 2 * graphics_constants.spriterow_height
         # Cargo spritesheets provide multiple lengths, using a specific format of rows
@@ -196,7 +199,7 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
                 # cargo sprites are assumed to be symmetrical, only 4 angles are needed
                 # for cargos with 8 angles (e.g. bulldozers), provide those manually as custom cargos?
                 # loading states are first 4 sprites, loaded are second 4, all in one list
-                for bboxes in cargo_spritesheet_bounding_boxes[vehicle.cargo_length]:
+                for bboxes in cargo_spritesheet_bounding_boxes[self.vehicle_unit.cargo_length]:
                     for i in bboxes:
                         cargo_sprite = cargo_sprites_input_image.copy()
                         cargo_sprite = cargo_sprite.crop(i)
@@ -243,6 +246,10 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
         # the cumulative_input_spriterow_count updates per processed group of spriterows, and is key to making this work
         cumulative_input_spriterow_count = 0
         for vehicle_counter, vehicle_rows in enumerate(consist.get_spriterows_for_consist_or_subpart(consist.unique_units)):
+            # 'vehicle_unit' not 'unit' to avoid conflating with graphics processor 'unit'
+            # !!  this is ugly hax, I didn't want to refactor the iterator above to contain the vehicle, also in Horse
+            self.vehicle_unit = self.consist.unique_units[vehicle_counter]
+
             self.cur_vehicle_empty_row_offset = 10 + cumulative_input_spriterow_count * graphics_constants.spriterow_height
             for spriterow_data in vehicle_rows:
                 spriterow_type = spriterow_data[0]
@@ -258,7 +265,7 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
                     self.add_bulk_cargo_spriterows()
                 elif spriterow_type == 'piece_cargo':
                     input_spriterow_count = 2
-                    self.add_piece_cargo_spriterows(consist.unique_units[vehicle_counter], global_constants)
+                    self.add_piece_cargo_spriterows(global_constants)
                 cumulative_input_spriterow_count += input_spriterow_count
 
         # for this pipeline, input_image is just blank white 10px high image, to which the vehicle sprites are then appended
