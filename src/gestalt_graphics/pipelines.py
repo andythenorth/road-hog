@@ -91,7 +91,6 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
                          graphics_constants.spriterow_height)
         self.units.append(AppendToSpritesheet(vehicle_generic_spriterow_input_as_spritesheet, crop_box_dest))
 
-
     def add_livery_only_spriterows(self, recolour_map):
         # this might be extensible for containers when needed, using simple conditionals
         # or because containers include random options it might need reworking,
