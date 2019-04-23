@@ -493,6 +493,8 @@ class RoadVehicle(object):
         # for cases where the template handles cargo, but some units in the consist might not show cargo, e.g. tractor units etc
         # can also be used to suppress compile failures during testing when spritesheet is unfinished (missing rows etc)
         self.always_use_same_spriterow = kwargs.get('always_use_same_spriterow', False)
+        # optional - only set if the graphics processor generates the vehicle chassis
+        self.chassis = kwargs.get('chassis', 'test')
         # only set if the graphics processor requires it to generate cargo sprites
         # defines the size of cargo sprite to use
         # if the vehicle cargo area is not an OTTD unit length, use the next size up and the masking will sort it out

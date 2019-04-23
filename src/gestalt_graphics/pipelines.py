@@ -33,6 +33,11 @@ class Pipeline(object):
         # I considered having this return the Image, not just the path, but it's not saving much, and is less obvious what it does when used
         return os.path.join(currentdir, 'src', 'graphics', self.consist.roster_id, self.consist.id + '.png')
 
+    @property
+    def chassis_input_path(self):
+        # convenience method to get the path for the chassis image
+        return os.path.join(currentdir, 'src', 'graphics', 'chassis', self.vehicle_unit.chassis + '.png')
+
     def render_common(self, consist, input_image, units):
         # expects to be passed a PIL Image object
         # units is a list of objects, with their config data already baked in (don't have to pass anything to units except the spritesheet)
