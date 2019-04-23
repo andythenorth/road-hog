@@ -131,7 +131,7 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
             self.units.append(AppendToSpritesheet(vehicle_bulk_cargo_input_as_spritesheet, crop_box_dest))
             self.units.append(SimpleRecolour(recolour_map))
 
-    def add_piece_cargo_spriterows(self, global_constants):
+    def add_piece_cargo_spriterows(self):
         # !! this could possibly be optimised by slicing all the cargos once, globally, instead of per-unit
         cargo_group_output_row_height = 2 * graphics_constants.spriterow_height
         # Cargo spritesheets provide multiple lengths, using a specific format of rows
@@ -211,7 +211,7 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
                 vehicle_comped_image = vehicle_cargo_rows_image.copy()
                 for pixel in loc_points:
                     angle_num = 0
-                    for counter, bbox in enumerate(global_constants.spritesheet_bounding_boxes):
+                    for counter, bbox in enumerate(self.global_constants.spritesheet_bounding_boxes):
                         if pixel[0] >= bbox[0]:
                             angle_num = counter
                     # clamp angle_num to 4, cargo sprites are symmetrical, only 4 angles provided
@@ -240,6 +240,7 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
     def render(self, consist, global_constants):
         self.units = [] # graphics units not same as consist units ! confusing overlap of terminology :(
         self.consist = consist
+        self.global_constants = global_constants
 
         self.vehicle_source_image = Image.open(self.vehicle_source_input_path)
 
@@ -265,7 +266,7 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
                     self.add_bulk_cargo_spriterows()
                 elif spriterow_type == 'piece_cargo':
                     input_spriterow_count = 2
-                    self.add_piece_cargo_spriterows(global_constants)
+                    self.add_piece_cargo_spriterows()
                 cumulative_input_spriterow_count += input_spriterow_count
 
         # for this pipeline, input_image is just blank white 10px high image, to which the vehicle sprites are then appended
