@@ -86,6 +86,7 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
         super(ExtendSpriterowsForCompositedCargosPipeline, self).__init__("extend_spriterows_for_composited_cargos_pipeline")
 
     def comp_chassis_and_body(self, body_image):
+        # chassis sprites also include cabs / locomotives as needed
         if self.vehicle_unit.chassis is None:
             return body_image
 
