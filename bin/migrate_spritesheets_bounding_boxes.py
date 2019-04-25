@@ -21,8 +21,8 @@ DOS_PALETTE = Image.open('palette_key.png').palette
 chassis_names = ['4_axle_feldbahn_16px', 'feldbahn_1']
 
 def get_legacy_bounding_boxes(y=0):
-    return [[60,  y, 12, 24], [92,  y, 26, 20], [124, y, 36, 16], [172, y, 26, 20],
-            [204, y, 12, 24], [236, y, 26, 20], [268, y, 36, 16], [316, y, 26, 20]]
+    return [[60,  y, 12, 24], [92,  y, 26, 20], [124, y, 33, 16], [172, y, 26, 20],
+            [204, y, 12, 24], [236, y, 26, 20], [268, y, 33, 16], [316, y, 26, 20]]
 
 
 def new_legacy_bounding_boxes(y=0):

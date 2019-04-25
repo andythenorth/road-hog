@@ -25,8 +25,8 @@ semi_truck_offset_jank = ((0, 1), (-2, 1), (-5, 0), (-2, 1), (0, 0), (-2, 1), (-
 
 # spritesheet bounding boxes, each defined by a 3 tuple (left x, width, height);
 # upper y is determined by spritesheet row position, so isn't defined as a constant
-spritesheet_bounding_boxes = ((60, 12, 24), (92, 26, 20), (124, 36, 16), (172, 26, 20),
-                              (204, 12, 24), (236, 26, 20), (268, 36, 16), (316, 26, 20))
+spritesheet_bounding_boxes = ((60, 12, 24), (77, 26, 20), (107, 33, 16), (147, 26, 20),
+                              (180, 12, 24), (197, 26, 20), (227, 33, 16), (267, 26, 20))
 
 # rather than total spritesheet width, we often need to know the max x extent that actually contains sprites
 # this is calculated from bounding boxes
