@@ -26,8 +26,8 @@ def get_legacy_bounding_boxes(y=0):
 
 
 def new_legacy_bounding_boxes(y=0):
-    return [[60,  y, 12, 29], [77,  y, 26, 24], [107, y, 33, 16], [147, y, 26, 24],
-            [180, y, 12, 29], [197, y, 26, 24], [227, y, 33, 16], [267, y, 26, 24]]
+    return [[60,  y+5, 12, 24], [77,  y, 26, 24], [107, y, 33, 16], [147, y, 26, 24],
+            [180, y+5, 12, 24], [197, y, 26, 24], [227, y, 33, 16], [267, y, 26, 24]]
 
 def recomp_rows(spritesheet, rows_with_valid_content, spritesheet_name):
     #migrated_spriterow = base_template_spritesheet.crop((0, 10, 400, 40))
@@ -43,6 +43,8 @@ def recomp_rows(spritesheet, rows_with_valid_content, spritesheet_name):
             #if spritesheet_name == 'amblecote_box':
                 #sprite.show()
             col_insert_loc = new_legacy_bounding_boxes(10 + row_count * spriterow_height)[col_count]
+            if col_count == 0 or col_count == 4:
+                fill.rectangle([col_insert_loc[0], col_insert_loc[1]-5, col_insert_loc[0]+12, col_insert_loc[1]-5+28], fill=0, outline=None)
             spritesheet.paste(sprite, (col_insert_loc[0], col_insert_loc[1]))
     return spritesheet
 
