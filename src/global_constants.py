@@ -28,6 +28,10 @@ semi_truck_offset_jank = ((0, 1), (-2, 1), (-5, 0), (-2, 1), (0, 0), (-2, 1), (-
 spritesheet_bounding_boxes = ((60, 12, 24), (92, 26, 20), (124, 36, 16), (172, 26, 20),
                               (204, 12, 24), (236, 26, 20), (268, 36, 16), (316, 26, 20))
 
+# rather than total spritesheet width, we often need to know the max x extent that actually contains sprites
+# this is calculated from bounding boxes
+sprites_max_x_extent = spritesheet_bounding_boxes[7][0] + spritesheet_bounding_boxes[7][1]
+
 buy_menu_sprite_width = 36 # 36 is correct, but some spritesheets might have wrong widths due to copy-pasteo etc
 buy_menu_sprite_height = 16
 

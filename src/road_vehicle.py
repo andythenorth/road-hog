@@ -236,6 +236,7 @@ class Consist(object):
         consist_weight = mult * self.total_capacities[1]
         if consist_weight > 63:
             utils.echo_message("Error: consist weight is " + str(consist_weight) + "t for " + self.id + "; must be < 63t")
+            utils.echo_message("Reimplement weight property as callback (cb36 isn't capped to 63.75t)")
         return min(consist_weight, 63)
 
     @property
@@ -494,7 +495,7 @@ class RoadVehicle(object):
         # can also be used to suppress compile failures during testing when spritesheet is unfinished (missing rows etc)
         self.always_use_same_spriterow = kwargs.get('always_use_same_spriterow', False)
         # optional - only set if the graphics processor generates the vehicle chassis
-        self.chassis = kwargs.get('chassis', 'test')
+        self.chassis = kwargs.get('chassis', None)
         # only set if the graphics processor requires it to generate cargo sprites
         # defines the size of cargo sprite to use
         # if the vehicle cargo area is not an OTTD unit length, use the next size up and the masking will sort it out
