@@ -4,7 +4,7 @@ currentdir = os.curdir
 from PIL import Image
 
 import polar_fox
-from polar_fox.graphics_units import SimpleRecolour, AppendToSpritesheet
+from polar_fox.graphics_units import SimpleRecolour, AppendToSpritesheet, AddCargoLabel, AddBuyMenuSprite
 from polar_fox.pixa import Spritesheet, pixascan
 from gestalt_graphics import graphics_constants
 
@@ -148,6 +148,9 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
                          graphics_constants.spritesheet_width,
                          graphics_constants.spriterow_height)
         self.units.append(AppendToSpritesheet(vehicle_generic_spriterow_input_as_spritesheet, crop_box_dest))
+        self.units.append(AddCargoLabel(label='EMPTY',
+                                        x_offset=self.sprites_max_x_extent + 5,
+                                        y_offset= -1 * graphics_constants.spriterow_height))
 
     def add_livery_only_spriterows(self, recolour_map):
         # this might be extensible for containers when needed, using simple conditionals
@@ -168,6 +171,9 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
                              graphics_constants.spriterow_height)
             self.units.append(AppendToSpritesheet(vehicle_livery_only_spriterow_input_as_spritesheet, crop_box_dest))
             self.units.append(SimpleRecolour(recolour_map))
+            self.units.append(AddCargoLabel(label=label,
+                                            x_offset=self.sprites_max_x_extent + 5,
+                                            y_offset= -1 * graphics_constants.spriterow_height))
 
     def add_bulk_cargo_spriterows(self):
         crop_box_source_1 = (0,
@@ -209,6 +215,9 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
         for label, recolour_map in polar_fox.constants.bulk_cargo_recolour_maps:
             self.units.append(AppendToSpritesheet(bulk_cargo_rows_image_as_spritesheet, crop_box_dest))
             self.units.append(SimpleRecolour(recolour_map))
+            self.units.append(AddCargoLabel(label=label,
+                                            x_offset=self.sprites_max_x_extent + 5,
+                                            y_offset=  -1 * cargo_group_row_height))
 
     def add_piece_cargo_spriterows(self):
         # !! this could possibly be optimised by slicing all the cargos once, globally, instead of per-unit
@@ -321,6 +330,9 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
                 #vehicle_comped_image.show()
                 vehicle_comped_image_as_spritesheet = self.make_spritesheet_from_image(vehicle_comped_image)
                 self.units.append(AppendToSpritesheet(vehicle_comped_image_as_spritesheet, crop_box_dest))
+                self.units.append(AddCargoLabel(label=cargo_filename,
+                                                x_offset=self.sprites_max_x_extent + 5,
+                                                y_offset= -1 * cargo_group_output_row_height))
 
     def render(self, consist, global_constants):
         self.units = [] # graphics units not same as consist units ! confusing overlap of terminology :(
