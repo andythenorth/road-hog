@@ -38,6 +38,25 @@ class Pipeline(object):
         # convenience method to get the path for the chassis image
         return os.path.join(currentdir, 'src', 'graphics', 'chassis', self.vehicle_unit.chassis + '.png')
 
+    def get_arbitrary_angles(self, input_image, bounding_boxes):
+        # given an image and a list of arbitrary bounding boxes...
+        # ...return a list of two tuples with sprite and mask
+        # this can then be used for compositing
+        # note the arbitrary order of sprites which makes this very flexible
+        result = []
+        for bounding_box in bounding_boxes:
+            sprite = input_image.copy()
+            sprite = sprite.crop(bounding_box)
+            mask = sprite.copy()
+            # !! .point is noticeably slow although not signifcantly so with only 3 cargo types
+            # !! check this again if optimisation is a concern - can cargos be processed once and passed to the pipeline?
+            # !! as of Oct 2018, I tested commenting out *all* piece cargo processing, including calls to this method
+            # !! that cut only 1s from an 11s graphics processing run on single CPU
+            # !! so optimising this is TMWFTLB currently; instead simply using multiprocessing cuts graphics run to 2s
+            mask = mask.point(lambda i: 0 if i == 0 else 255).convert("1")
+            result.append((sprite, mask))
+        return result
+
     def render_common(self, consist, input_image, units):
         # expects to be passed a PIL Image object
         # units is a list of objects, with their config data already baked in (don't have to pass anything to units except the spritesheet)
@@ -194,6 +213,7 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
     def add_piece_cargo_spriterows(self):
         # !! this could possibly be optimised by slicing all the cargos once, globally, instead of per-unit
         cargo_group_output_row_height = 2 * graphics_constants.spriterow_height
+
         # Cargo spritesheets provide multiple lengths, using a specific format of rows
         # given a base set, find the bounding boxes for the rows per length
         cargo_spritesheet_bounding_boxes = {}
@@ -201,8 +221,9 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
             bb_result = []
             for y_offset in [0, 20]:
                 bb_y_offset = (counter * 40) + y_offset
-                bb_result.append(tuple([(i[0], i[1] + bb_y_offset, i[2], i[3] + bb_y_offset) for i in polar_fox.constants.cargo_spritesheet_bounding_boxes_base]))
+                bb_result.extend(tuple([(i[0], i[1] + bb_y_offset, i[2], i[3] + bb_y_offset) for i in polar_fox.constants.cargo_spritesheet_bounding_boxes_base]))
             cargo_spritesheet_bounding_boxes[length] = bb_result
+
         # Overview
         # 2 spriterows for the vehicle loading / loaded states, with pink loc points for cargo
         # a mask row for the vehicle, with pink mask area, which is converted to black and white mask image
@@ -260,28 +281,19 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
                          self.sprites_max_x_extent,
                          cargo_group_output_row_height)
 
+        # !! convert to use piece_vehicle_type_to_sprites_maps per Iron Horse ??
         for cargo_labels, cargo_filenames in self.consist.gestalt_graphics.piece_cargo_maps:
             for cargo_filename in cargo_filenames:
+                # get a list, with a two-tuple (cargo_sprite, mask) for each of 4 angles
+                # cargo sprites are assumed to be symmetrical, only 4 angles are needed
+                # cargos with 8 angles (e.g. bulldozers) aren't handled here, assume heavy_items_cargo should handle those (might need extended)
+                # loading states are first 4 sprites, loaded are second 4, all in one list, just pick them out as needed
                 cargo_sprites_input_path = os.path.join(currentdir, 'src', 'polar_fox', 'cargo_graphics', cargo_filename + '.png')
                 cargo_sprites_input_image = Image.open(cargo_sprites_input_path)
-                cargo_sprites = []
-                # build a list, with a two-tuple (cargo_sprite, mask) for each of 4 angles
-                # cargo sprites are assumed to be symmetrical, only 4 angles are needed
-                # for cargos with 8 angles (e.g. bulldozers), provide those manually as custom cargos?
-                # loading states are first 4 sprites, loaded are second 4, all in one list
-
-                # !!! replace with get_arbitrary_angles() from Iron Horse pipelines
-                for bboxes in cargo_spritesheet_bounding_boxes[self.vehicle_unit.cargo_length]:
-                    for i in bboxes:
-                        cargo_sprite = cargo_sprites_input_image.copy()
-                        cargo_sprite = cargo_sprite.crop(i)
-                        cargo_mask = cargo_sprite.copy()
-                        # !! .point is noticeably slow although not signifcantly so with only 3 cargo types
-                        # !! check this again if optimisation is a concern - can cargos be processed once and passed to the pipeline?
-                        cargo_mask = cargo_mask.point(lambda i: 0 if i == 0 else 255).convert("1")
-                        cargo_sprites.append((cargo_sprite, cargo_mask))
+                cargo_sprites = self.get_arbitrary_angles(cargo_sprites_input_image, cargo_spritesheet_bounding_boxes[self.vehicle_unit.cargo_length])
 
                 vehicle_comped_image = piece_cargo_rows_image.copy()
+
                 for pixel in loc_points:
                     angle_num = 0
                     for counter, bbox in enumerate(self.global_constants.spritesheet_bounding_boxes):
