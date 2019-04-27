@@ -9,7 +9,7 @@
             <table class="table table-striped tablesorter">
                 <thead>
                     <tr>
-                        <td><!--! empty cell --></td>
+                        <td colspan="2"><!--! empty cell --></td>
                         <th>Vehicle Name</th>
                         <th>Type</th>
                         <th class="number">Intro Date</th>
@@ -23,8 +23,15 @@
                         <tr tal:condition="consist.base_track_type == base_track_type"
                             tal:define="consist_name_dict doc_helper.unpack_name_string(consist)"
                             id="${consist.id}">
-                            <td style="vertical-align:middle; width:${2 * global_constants.buy_menu_sprite_width};">
-                                <img src="static/img/${consist.id}.png"
+                            <td class="vehicle-image"
+                                style="width:${2 * global_constants.buy_menu_sprite_width};">
+                                <img src="static/img/${consist.id}_blue.png"
+                                     width="${2 * global_constants.buy_menu_sprite_width}"
+                                     height="${2 * global_constants.buy_menu_sprite_height}" />
+                            </td>
+                            <td class="vehicle-image"
+                                style="width:${2 * global_constants.buy_menu_sprite_width};">
+                                <img src="static/img/${consist.id}_red.png"
                                      width="${2 * global_constants.buy_menu_sprite_width}"
                                      height="${2 * global_constants.buy_menu_sprite_height}" />
                             </td>
