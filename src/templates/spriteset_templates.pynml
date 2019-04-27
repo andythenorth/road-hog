@@ -19,7 +19,7 @@ template spriteset_template_purchase_${vehicle.id}() {
     [60,    10, 1, 1, 0, 0, ANIM]
     [60,    10, 1, 1, 0, 0, ANIM]
     [60,    10, 1, 1, 0, 0, ANIM]
-    [370,   10, ${consist.buy_menu_width}, ${global_constants.buy_menu_sprite_height}, -${int(consist.buy_menu_width / 2)}, -9, ANIM]
+    [360,   10, ${consist.buy_menu_width}, ${global_constants.buy_menu_sprite_height}, -${int(consist.buy_menu_width / 2)}, -9, ANIM]
     [60,    10, 1, 1, 0, 0, ANIM]
 }
 

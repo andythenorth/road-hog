@@ -69,9 +69,9 @@ class Pipeline(object):
             # !! consist has a buy_menu_width prop which caps to 64 which could be used (+1px overlap)
             unit_length_in_pixels = 4 * unit.vehicle_length
             unit_spriterow_offset = unit.spriterow_num * graphics_constants.spriterow_height
-            crop_box_src = (224,
+            crop_box_src = (227,
                             10 + unit_spriterow_offset,
-                            224 + unit_length_in_pixels + 1, # allow for 1px coupler / corrider overhang
+                            227 + unit_length_in_pixels + 1, # allow for 1px coupler / corrider overhang
                             26 + unit_spriterow_offset)
             crop_box_dest = (360 + x_offset,
                              10,
