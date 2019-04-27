@@ -10,8 +10,8 @@ class GestaltGraphics(object):
          - cargo graphics (if any)
     """
     def __init__(self):
-        # no graphics processing by default
-        self.pipeline = None
+        # by default, check for buy menu only
+        self.pipelines = pipelines.get_pipelines(['check_buy_menu_only'])
 
     @property
     def nml_template(self):
@@ -42,7 +42,7 @@ class GestaltGraphicsVisibleCargo(GestaltGraphics):
     def __init__(self, **kwargs):
         super().__init__()
         # as of Jan 2018 only one pipeline is used, but support is in place for alternative pipelines
-        self.pipeline = pipelines.get_pipeline('extend_spriterows_for_composited_cargos_pipeline')
+        self.pipelines = pipelines.get_pipelines(['extend_spriterows_for_composited_sprites_pipeline'])
         # default body recolour to CC1, pass param to over-ride as needed
         self.body_recolour_map = kwargs.get('body_recolour_map', graphics_constants.body_recolour_CC1)
         # cargo flags
@@ -124,7 +124,7 @@ class GestaltGraphicsLiveryOnly(GestaltGraphics):
     def __init__(self, recolour_maps, **kwargs):
         super().__init__()
         # as of Jan 2018 only one pipeline is used, but support is in place for alternative pipelines
-        self.pipeline = pipelines.get_pipeline('extend_spriterows_for_composited_cargos_pipeline')
+        self.pipelines = pipelines.get_pipelines(['extend_spriterows_for_composited_sprites_pipeline'])
         # recolour_maps map cargo labels to liveries, use 'DFLT' as the labe in the case of just one livery
         self.recolour_maps = recolour_maps
 
@@ -164,7 +164,7 @@ class GestaltGraphicsCustom(GestaltGraphics):
     """
     def __init__(self, _cargo_row_map, _nml_template, generic_rows):
         super().__init__()
-        self.pipeline = pipelines.get_pipeline('pass_through_pipeline')
+        self.pipelines = pipelines.get_pipelines(['pass_through_pipeline'])
         # options
         self._nml_template = _nml_template
         self._cargo_row_map = _cargo_row_map

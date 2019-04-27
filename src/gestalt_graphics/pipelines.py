@@ -18,9 +18,10 @@ As of Jan 2018 there is just one complex pipeline for vehicles, which handles bo
 
 
 class Pipeline(object):
-    def __init__(self, name):
+    def __init__(self):
         # this should be sparse, don't store any consist info in Pipelines, pass at render time
-        self.name = name
+        # actually, there's nothing to do eh :P
+        pass
 
     def make_spritesheet_from_image(self, input_image):
         spritesheet = Spritesheet(width=input_image.size[0], height=input_image.size[1] , palette=DOS_PALETTE)
@@ -85,12 +86,12 @@ class Pipeline(object):
                 print(self.consist.id)
         return spritesheet
 
-    def render_common(self, consist, input_image, units):
+    def render_common(self, input_image, units):
         # expects to be passed a PIL Image object
         # units is a list of objects, with their config data already baked in (don't have to pass anything to units except the spritesheet)
         # each unit is then called in order, passing in and returning a pixa SpriteSheet
         # finally the spritesheet is saved
-        output_path = os.path.join(currentdir, 'generated', 'graphics', consist.id + '.png')
+        output_path = os.path.join(currentdir, 'generated', 'graphics', self.consist.id + '.png')
         spritesheet = self.make_spritesheet_from_image(input_image)
 
         for unit in units:
@@ -109,20 +110,41 @@ class PassThroughPipeline(Pipeline):
     """
     def __init__(self):
         # this should be sparse, don't store any consist info in Pipelines, pass at render time
-        super(PassThroughPipeline, self).__init__("pass_through_pipeline")
+        super().__init__()
 
     def render(self, consist, global_constants):
         self.units = []
         self.consist = consist
         input_image = Image.open(self.vehicle_source_input_path)
-        result = self.render_common(self.consist, input_image, self.units)
+        result = self.render_common(input_image, self.units)
         return result
 
 
-class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
+class CheckBuyMenuOnlyPipeline(Pipeline):
+    """
+    Opens the input image, inserts a custom buy menu if required, then saves with no other changes.
+    """
+    def __init__(self):
+        # this should be sparse, don't store any consist info in Pipelines, pass at render time
+        super().__init__()
+
+    def render(self, consist, global_constants):
+        self.units = []
+        self.consist = consist
+
+        if self.consist.buy_menu_x_loc == 360:
+            # !! this currently will cause the vehicle spritesheet buy menu sprites to be copied to the pans spritesheet,
+            # !! it needs pixels from the pans spritesheet, but automated buy menu sprites need providing first
+            self.units.append(AddBuyMenuSprite(self.process_buy_menu_sprite))
+
+        input_image = Image.open(self.vehicle_source_input_path)
+        result = self.render_common(input_image, self.units)
+        return result
+
+
+class ExtendSpriterowsForCompositedSpritesPipeline(Pipeline):
     """"
-        Extends a cargo carrier spritesheet with variations on cargo colours.
-        Became convoluted - was copied from Iron Horse where the case is simple, always just 1 wagon.
+        Extends a vehicle spritesheet with composited vehicle parts, cargo variations etc.
         In Road Hog, has to handle variations on single-unit trucks, wagon+drags, and trucks where some units don't show cargo (artics).
         There are various options that have to be set per truck to achieve the flexibility.
         Those are as minimal as possible, but unavoidable.
@@ -130,7 +152,7 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
     def __init__(self):
         # this should be sparse, don't store any consist info in Pipelines, pass at render time
         # initing things here is proven to have unexpected results, as the processor will be shared across multiple vehicles
-        super(ExtendSpriterowsForCompositedCargosPipeline, self).__init__("extend_spriterows_for_composited_cargos_pipeline")
+        super().__init__()
 
     def comp_chassis_and_body(self, body_image):
         # chassis sprites also include cabs / locomotives as needed
@@ -400,17 +422,18 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
         # for this pipeline, input_image is just blank white 10px high image, to which the vehicle sprites are then appended
         input_image = Image.new("P", (graphics_constants.spritesheet_width, 10), 255)
         input_image.putpalette(DOS_PALETTE)
-        result = self.render_common(consist, input_image, self.units)
+        result = self.render_common(input_image, self.units)
         return result
 
-def get_pipeline(pipeline_name):
-    # return a pipeline by name;
+def get_pipelines(pipeline_names):
     # add pipelines here when creating new ones
-    for pipeline in [PassThroughPipeline(),
-                     ExtendSpriterowsForCompositedCargosPipeline()]:
-        if pipeline_name == pipeline.name:
-            return pipeline
-    raise Exception("Pipeline not found: " + pipeline_name) # should never get to here
+    # this is a bit hokey, there's probably a simpler way to do this but eh
+    # looks like it could be replaced by a simple dict lookup directly from gestalt_graphics, but eh, I tried, it's faff
+    pipelines = {"pass_through_pipeline": PassThroughPipeline,
+                 "check_buy_menu_only": CheckBuyMenuOnlyPipeline,
+                 "extend_spriterows_for_composited_sprites_pipeline": ExtendSpriterowsForCompositedSpritesPipeline}
+    return [pipelines[pipeline_name]() for pipeline_name in pipeline_names]
+
 
 def main():
     print("yeah, pipelines.main() does nothing")
