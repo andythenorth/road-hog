@@ -81,6 +81,8 @@ class Pipeline(object):
             spritesheet.sprites.paste(custom_buy_menu_sprite, crop_box_dest)
             # increment x offset for pasting in next vehicle
             x_offset += unit_length_in_pixels
+            if self.consist.id == 'trefell_log':
+                print(self.consist.id)
         return spritesheet
 
     def render_common(self, consist, input_image, units):
@@ -135,7 +137,6 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
         if self.vehicle_unit.chassis is None:
             return body_image
 
-        print(self.chassis_input_path, self.consist.id)
         crop_box_input_1 = (0,
                             10,
                             self.sprites_max_x_extent,
