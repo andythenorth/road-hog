@@ -57,6 +57,32 @@ class Pipeline(object):
             result.append((sprite, mask))
         return result
 
+    def process_buy_menu_sprite(self, spritesheet):
+        # this function is passed (uncalled) into the pipeline, and then called at render time
+        # this is so that it has the processed spritesheet available, which is essential for creating buy menu sprites
+        # n.b if buy menu sprite processing has conditions by vehicle type, could pass a dedicated function for each type of processing
+
+        # hard-coded positions for buy menu sprite (if used - it's optional)
+        x_offset = 0
+        for counter, unit in enumerate(self.consist.units):
+            # !! currently no cap on purchase menu sprite width
+            # !! consist has a buy_menu_width prop which caps to 64 which could be used (+1px overlap)
+            unit_length_in_pixels = 4 * unit.vehicle_length
+            unit_spriterow_offset = unit.spriterow_num * graphics_constants.spriterow_height
+            crop_box_src = (224,
+                            10 + unit_spriterow_offset,
+                            224 + unit_length_in_pixels + 1, # allow for 1px coupler / corrider overhang
+                            26 + unit_spriterow_offset)
+            crop_box_dest = (360 + x_offset,
+                             10,
+                             360 + x_offset + unit_length_in_pixels + 1, # allow for 1px coupler / corrider overhang
+                             26)
+            custom_buy_menu_sprite = spritesheet.sprites.copy().crop(crop_box_src)
+            spritesheet.sprites.paste(custom_buy_menu_sprite, crop_box_dest)
+            # increment x offset for pasting in next vehicle
+            x_offset += unit_length_in_pixels
+        return spritesheet
+
     def render_common(self, consist, input_image, units):
         # expects to be passed a PIL Image object
         # units is a list of objects, with their config data already baked in (don't have to pass anything to units except the spritesheet)
@@ -366,6 +392,9 @@ class ExtendSpriterowsForCompositedCargosPipeline(Pipeline):
                     input_spriterow_count = 2
                     self.add_piece_cargo_spriterows()
                 cumulative_input_spriterow_count += input_spriterow_count
+
+        if self.consist.buy_menu_x_loc == 360:
+            self.units.append(AddBuyMenuSprite(self.process_buy_menu_sprite))
 
         # for this pipeline, input_image is just blank white 10px high image, to which the vehicle sprites are then appended
         input_image = Image.new("P", (graphics_constants.spritesheet_width, 10), 255)

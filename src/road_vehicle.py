@@ -339,6 +339,16 @@ class Consist(object):
             return self.default_sound_effect
 
     @property
+    def buy_menu_x_loc(self):
+        # automatic buy menu sprite if single-unit consist
+        # extend this to check an auto_buy_menu_sprite property if manual over-rides are needed in future
+        if len(self.units) > 1:
+            return 360  # custom buy menu sprite
+        else:
+            # default to just using 6th angle of vehicle
+            return global_constants.spritesheet_bounding_boxes[6][0]
+
+    @property
     def buy_menu_width (self):
         # max sensible width in buy menu is 64px, but RH templates currently drawn at 36px - legacy stuff
         consist_length = 4 * sum([unit.vehicle_length for unit in self.units])
