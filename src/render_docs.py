@@ -154,10 +154,20 @@ def render_docs_images():
     for consist in consists:
         vehicle_spritesheet = Image.open(os.path.join(vehicle_graphics_src, consist.id + '.png'))
 
-        source_vehicle_image = vehicle_spritesheet.crop(box=(consist.buy_menu_x_loc,
-                                                             10,
-                                                             consist.buy_menu_x_loc + global_constants.buy_menu_sprite_width,
-                                                             10 + global_constants.buy_menu_sprite_height))
+        # these 'source' var names for images are misleading
+        source_vehicle_image = Image.new("P", (global_constants.buy_menu_sprite_width, global_constants.buy_menu_sprite_height), 255)
+        source_vehicle_image.putpalette(Image.open('palette_key.png').palette)
+
+        source_vehicle_image_tmp = vehicle_spritesheet.crop(box=(consist.buy_menu_x_loc,
+                                                                 10,
+                                                                 consist.buy_menu_x_loc + global_constants.buy_menu_sprite_width,
+                                                                 10 + global_constants.buy_menu_sprite_height))
+
+        crop_box_dest = (0,
+                         0,
+                         global_constants.buy_menu_sprite_width,
+                         global_constants.buy_menu_sprite_height)
+        source_vehicle_image.paste(source_vehicle_image_tmp.crop(crop_box_dest), crop_box_dest)
 
         # recolour to more pleasing CC combos
         cc_remap_1 = {198: 179, 199: 180, 200: 181, 201: 182, 202: 183, 203: 164, 204: 165, 205: 166,
