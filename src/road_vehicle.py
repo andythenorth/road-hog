@@ -180,11 +180,12 @@ class Consist(object):
             utils.echo_message("Consist " + self.id + " has intro_date > 2030, which is too much")
         date_cost_points = max((self.intro_date - 1870), 0) / 8
 
-        # Up to 20 points for capacity. 1 point per 8t.
-        # Capacity capped at 160, this isn't a hard limit, but raise a warning
-        if self.total_capacities[1] > 160:
-            utils.echo_message("Consist " + self.id + " has capacity > 160, which is too much")
-        consist_capacity_points = min(self.total_capacities[1], 160)
+        # Up to 20 points for capacity. 1 point per 12.75t.
+        # !! this seems to lack any divisor?  Bug??
+        # Capacity capped at 255, this isn't a hard limit, but is a design limit, so raise a warning
+        if self.total_capacities[1] > 255:
+            utils.echo_message("Consist " + self.id + " has capacity > 255, which is too much")
+        consist_capacity_points = min(self.total_capacities[1], 255)
 
         return power_cost_points + speed_cost_points + date_cost_points + consist_capacity_points
 
