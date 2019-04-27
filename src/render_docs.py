@@ -153,9 +153,10 @@ def render_docs_images():
     vehicle_graphics_src = os.path.join(currentdir, 'generated', 'graphics')
     for consist in consists:
         vehicle_spritesheet = Image.open(os.path.join(vehicle_graphics_src, consist.id + '.png'))
-        processed_vehicle_image = vehicle_spritesheet.crop(box=(360,
+
+        processed_vehicle_image = vehicle_spritesheet.crop(box=(consist.buy_menu_x_loc,
                                                                 10,
-                                                                360 + global_constants.buy_menu_sprite_width,
+                                                                consist.buy_menu_x_loc + global_constants.buy_menu_sprite_width,
                                                                 10 + global_constants.buy_menu_sprite_height))
         # oversize the images to account for how browsers interpolate the images on retina / HDPI screens
         processed_vehicle_image = processed_vehicle_image.resize((4 * global_constants.buy_menu_sprite_width, 4 * global_constants.buy_menu_sprite_height),
