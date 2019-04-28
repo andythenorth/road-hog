@@ -24,15 +24,15 @@
                             tal:define="consist_name_dict doc_helper.unpack_name_string(consist)"
                             id="${consist.id}">
                             <td class="vehicle-image"
-                                style="width:${2 * global_constants.buy_menu_sprite_width};">
+                                style="width:${2 * 2 * global_constants.buy_menu_sprite_width};">
                                 <img src="static/img/${consist.id}_blue.png"
-                                     width="${2 * global_constants.buy_menu_sprite_width}"
+                                     width="${2 * 2 * global_constants.buy_menu_sprite_width}"
                                      height="${2 * global_constants.buy_menu_sprite_height}" />
                             </td>
                             <td class="vehicle-image"
-                                style="width:${2 * global_constants.buy_menu_sprite_width};">
+                                style="width:${2 * 2 * global_constants.buy_menu_sprite_width};">
                                 <img src="static/img/${consist.id}_red.png"
-                                     width="${2 * global_constants.buy_menu_sprite_width}"
+                                     width="${2 * 2 * global_constants.buy_menu_sprite_width}"
                                      height="${2 * global_constants.buy_menu_sprite_height}" />
                             </td>
                             <td style="vertical-align:middle;">
