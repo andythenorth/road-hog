@@ -491,7 +491,8 @@ class RoadVehicle(object):
 
         # setup properties for this road vehicle
         self.numeric_id = kwargs.get('numeric_id', None)
-        self.vehicle_length = kwargs.get('vehicle_length', None)
+        # vehicle_length is either derived from chassis length or similar, or needs to be set explicitly as kwarg
+        self._vehicle_length = kwargs.get('vehicle_length', None)
         self.semi_truck_shift_offset_jank = kwargs.get('semi_truck_shift_offset_jank', None)
         # capacities variable by parameter
         self.capacities = self.get_capacity_variations(kwargs.get('capacity', 0))
@@ -516,6 +517,23 @@ class RoadVehicle(object):
         self._effect_spawn_model = kwargs.get('effect_spawn_model', None)
         self.effects = kwargs.get('effects', []) # default for effects is an empty list
         self.default_effect_sprite = None # default is no effect sprite
+
+    @property
+    def vehicle_length(self):
+        # length of this unit, either derived from from chassis length, or set explicitly via keyword
+        # first guard that one and only one of these props is set
+        if self._vehicle_length is not None and self.chassis is not None:
+            utils.echo_message(self.consist.id + ' has units with both chassis and length properties set')
+        if self._vehicle_length is None and self.chassis is None:
+            utils.echo_message(self.consist.id + ' has units with neither chassis nor length properties set')
+
+        if self.chassis is not None:
+            # assume that chassis name format is 'foo_bar_ham_eggs_24px' or similar - true as of April 2019
+            # if chassis name format changes / varies in future, just update the string slice accordingly, safe enough
+            result = (int(self.chassis[-4:-2]))
+            return int(result / 4)
+        else:
+            return self._vehicle_length
 
     def get_capacity_variations(self, capacity):
         # capacity is variable, controlled by a newgrf parameter

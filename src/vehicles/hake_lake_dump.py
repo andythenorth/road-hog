@@ -8,11 +8,9 @@ consist = DumpFeldbahn(id='hake_lake_dump',
 
 consist.add_unit(type=ElectricRoadVehicle,
                  capacity=0,
-                 vehicle_length=4,
-                 chassis='feldbahn_1',
+                 chassis='feldbahn_1_16px',
                  always_use_same_spriterow=True)
 
 consist.add_unit(capacity=28,
-                 vehicle_length=4,
                  chassis='4_axle_feldbahn_16px',
                  repeat=7)
