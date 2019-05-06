@@ -30,7 +30,7 @@ STR_NAME_SUFFIX_BOX_TRUCK                                       :박스 트럭
 STR_NAME_SUFFIX_BUS                                             :버스
 STR_NAME_SUFFIX_COACH                                           :객차
 STR_NAME_SUFFIX_COVERED_HOPPER_TRAM                             :유개 트램
-STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :유개(덮개가 있는) 트럭
+STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :유개 트럭
 STR_NAME_SUFFIX_DUMP_TRAM                                       :덤프 트램
 STR_NAME_SUFFIX_DUMP_TRUCK                                      :덤프 트럭
 STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM                             :식품 수송 트램
