@@ -123,90 +123,14 @@ base_refits_by_class = {
 
 # generally we want to allow refit on classes, and disallow on labels (see disallowed_refits_by_label)
 # BUT for _some_ specialist vehicle types, it's simpler to just allow refit by label
-allowed_refits_by_label = {
-    "box_freight": [
-        "MAIL",
-        "GRAI",
-        "WHEA",
-        "MAIZ",
-        "FRUT",
-        "BEAN",
-        "NITR",
-        "CMNT",
-    ],  # box cars get some extended cargos
-    "chemicals": [
-        "ACID",
-        "RFPR",
-        "CHLO",
-    ],  # seems to be used by intermodal, otherwise chemicals tankers are deprecated in favour of product tankers
-    "cold_metal": ["STEL", "METL", "STCB", "STAL", "STST", "COPR", "STSH", "STWR", "ALUM"],
-    "covered_hoppers": [
-        "GRAI",
-        "WHEA",
-        "MAIZ",
-        "SUGR",
-        "FMSP",
-        "RFPR",
-        "CLAY",
-        "BDMT",
-        "BEAN",
-        "NITR",
-        "RUBR",
-        "SAND",
-        "POTA",
-        "QLME",
-        "SASH",
-        "CMNT",
-        "KAOL",
-        "FERT",
-        "SALT",
-        "PLAS",
-        "PHOS",
-        "BAKE",
-    ],  # not CBLK, gets dedicated vehicles or box
-    "cryo_gases": ["CHLO", "O2__", "NH3_"],
-    "edible_liquids": ["MILK", "WATR", "BEER", "FOOD", "EOIL"],
-    "farm_products": [
-        "BEAN",
-        "CASS",
-        "CERE",
-        "FERT",
-        "FMSP",
-        "FRUT",
-        "GRAI",
-        "JAVA",
-        "MAIZ",
-        "NUTS",
-        "OLSD",
-        "SEED",
-        "SGBT",
-        "TATO",
-        "WHEA",
-    ],
-    "long_products": [
-        "STEL",
-        "METL",
-        "STCB",
-        "STAL",
-        "STST",
-        "COPR",
-        "STSH",
-        "STSE",
-        "STWR",
-        "WOOD",
-        "WDPR",
-        "BDMT",
-        "ALUM",
-        "PIPE",
-        "ZINC",
-        "ENSP",
-    ],  # for bolster wagon
-    "reefer": [
-        "FOOD",
-        "FRUT",
-        "FISH",
-    ],  # hax for intermodal container sprite selection - reefer car refits work just fine using CC_REFRIGERATED
-}
+allowed_refits_by_label = {'edible_liquids': ['MILK', 'WATR', 'BEER', 'FOOD', 'EOIL'],
+                           'box_freight': ['MAIL', 'GRAI', 'WHEA', 'MAIZ', 'FRUT', 'BEAN', 'NITR'], # box cars get some extended cargos
+                           'covered_hoppers': ['GRAI', 'WHEA', 'MAIZ', 'SUGR', 'FMSP', 'RFPR', 'CLAY', 'BDMT',
+                                               'BEAN', 'NITR', 'RUBR', 'SAND', 'POTA', 'QLME', 'SASH', 'CMNT',
+                                               'KAOL', 'FERT', 'SALT', 'CBLK', 'PLAS'],
+                           'cryo_gases': ['CHLO', 'O2__'],
+                           'fruit_veg': ['FRUT', 'BEAN', 'CASS', 'JAVA', 'NUTS'],
+                           'cold_metal': ['STEL', 'METL', 'STCB', 'STAL', 'STST', 'COPR']}
 
 # rather than using disallowed classes (can cause breakage), specific labels are disallowed
 disallowed_refits_by_label = {'non_dump_bulk': ['WOOD', 'SGCN', 'FICR', 'BDMT', 'WDPR', 'GRAI', 'WHEA', 'CERE', 'MAIZ', 'FRUT', 'BEAN', 'CMNT',
@@ -224,13 +148,14 @@ disallowed_refits_by_label = {'non_dump_bulk': ['WOOD', 'SGCN', 'FICR', 'BDMT', 
 # don't conflate this with general refittability, they're different concerns ;)
 # vehicle classes can also just provide their own list locally, using this is convenient, not obligatory
 default_cargos = {'box': ['GOOD', 'VPTS', 'FOOD'],
+                  'coal_hopper': ['COAL', 'COKE', 'NITR', 'KAOL'],
                   'covered_hopper': ['GRAI', 'KAOL'],
-                  'dump': ['IORE', 'MNO2', 'NITR'],
+                  'dump': ['IORE', 'MNO2', 'NITR', 'PHOS'],
                   'edibles_tank': ['WATR', 'MILK', 'BEER'],
                   'express': ['ENSP', 'FMSP', 'GOOD', 'FOOD', 'MAIL'],
                   'flat': ['STEL', 'STCB', 'COPR', 'METL'],
                   'fruit_veg': ['FRUT', 'BEAN', 'CASS', 'JAVA', 'NUTS'],
-                  'hopper': ['COAL', 'CORE', 'PORE'],
+                  'hopper': ['LIME', 'GRVL', 'SAND', 'PORE', 'SALT', 'IORE', 'CORE'],
                   # no intermodal, uses box
                   'silo': ['CMNT', 'BDMT', 'RFPR', 'QLME', 'FMSP'],
                   'stake': ['WOOD'],
@@ -342,41 +267,20 @@ piece_vehicle_type_to_sprites_maps = {
 # cargo labels can be repeated for different sprites, they'll be used selectively by vehicle types and/or randomised as appropriate
 # keep alphabetised for general quality-of-life
 # DFLT label is a hack to support cargos with no specific sprites (including unknown cargos), and should not be added to cargo translation table
-piece_sprites_to_cargo_labels_maps = {
-    "barrels_silver_1": [
-        "BEER",
-        "DYES",
-        "EOIL",
-        "MILK",
-        "OIL_",
-        "PETR",
-        "RFPR",
-        "WATR",
-    ],
-    "coffee_1": ["JAVA"],
-    "copper_coils_eye_longitudinal_1": ["COPR"],
-    "copper_coils_eye_to_sky_1": ["COPR"],
-    "crates_1": ["GOOD"],
-    "fruit_1": ["FRUT"],
-    "ingots_1": ["ALUM", "ZINC"],
-    "logs_1": ["WOOD"],
-    "logs_2": [
-        "DFLT"
-    ],  # logs_2 is intended for vehicles that *only* use the log sprite, so just provide DFLT to avoid duplicate warnings from nmlc
-    "lumber_planks_1": ["WDPR"],
-    "nuts_1": ["NUTS"],
-    "paper_coils_eye_to_sky_1": ["PAPR"],
-    "pipes_1": ["PIPE"],
-    "sugarcane_1": ["SGCN"],
-    "steel_coils_eye_longitudinal_1": ["STEL", "METL", "STAL", "STCB", "STST", "STSH"],
-    "steel_coils_eye_to_sky_1": ["STEL", "METL", "STSH"],
-    "steel_slab_1": ["STAL", "STCB", "STST"],
-    "steel_wire_rod_1": ["STWR"],
-    "tarps_blue_1": ["FMSP"],
-    "tarps_gold_1": ["ENSP"],
-    "tarps_red_1": ["BDMT"],
-    "tarps_grey_1": ["DFLT"],  # see note on use of DFLT above
-}
+piece_sprites_to_cargo_labels_maps = {'barrels_silver': ['BEER', 'DYES', 'EOIL', 'MILK', 'OIL_', 'PETR', 'RFPR', 'WATR'],
+                                      'coffee': ['JAVA'],
+                                      'copper_coils': ['COPR'],
+                                      'crates_1': ['GOOD'],
+                                      'fruit': ['FRUT'],
+                                      'logs': ['WOOD'],
+                                      'lumber_planks': ['WDPR'],
+                                      'nuts': ['NUTS'],
+                                      'paper_coils': ['PAPR'],
+                                      'steel_coils': ['STEL', 'METL'],
+                                      'tarps_blue_1': ['FMSP'],
+                                      'tarps_gold_1': ['ENSP'],
+                                      'tarps_red_1': ['BDMT'],
+                                      'tarps_2cc_1': ['DFLT']}  # see note on use of DFLT above
 
 # Tanker recolour maps
 # DFLT label is a hack to support cargos with no specific sprites (including unknown cargos), and should not be added to cargo translation table
