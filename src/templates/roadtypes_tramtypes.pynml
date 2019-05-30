@@ -74,6 +74,7 @@ item(FEAT_TRAMTYPES, tramway, 0) {
         build_window_caption: string(STR_BUILD_WINDOW_CAPTION_TRAMWAY);
         autoreplace_text: string(STR_AUTOREPLACE_TEXT_TRAMWAY);
         new_engine_text: string(STR_NEW_ENGINE_TEXT_TRAMWAY);
+        sort_order: 0;
     }
 }
 
@@ -88,6 +89,7 @@ item(FEAT_TRAMTYPES, electric_tramway, 1) {
         autoreplace_text: string(STR_AUTOREPLACE_TEXT_ELECTRIC_TRAMWAY);
         new_engine_text: string(STR_NEW_ENGINE_TEXT_ELECTRIC_TRAMWAY);
         tramtype_flags: bitmask(TRAMTYPE_FLAG_CATENARY);
+        sort_order: 1;
     }
 }
 
@@ -101,6 +103,7 @@ item(FEAT_TRAMTYPES, feldbahn, 2) {
         build_window_caption: string(STR_BUILD_WINDOW_CAPTION_FELDBAHN);
         autoreplace_text: string(STR_AUTOREPLACE_TEXT_FELDBAHN);
         new_engine_text: string(STR_NEW_ENGINE_TEXT_FELDBAHN);
+        sort_order: 2;
     }
 }
 
@@ -115,6 +118,7 @@ item(FEAT_TRAMTYPES, electric_feldbahn, 3) {
         autoreplace_text: string(STR_AUTOREPLACE_TEXT_ELECTRIC_FELDBAHN);
         new_engine_text: string(STR_NEW_ENGINE_TEXT_ELECTRIC_FELDBAHN);
         tramtype_flags: bitmask(TRAMTYPE_FLAG_CATENARY);
+        sort_order: 3;
     }
 }
 
