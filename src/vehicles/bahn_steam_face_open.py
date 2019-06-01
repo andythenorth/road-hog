@@ -1,6 +1,6 @@
-from road_vehicle import OpenFeldbahn, SteamRoadVehicle
+from road_vehicle import OpenFeldbahnConsist, SteamRoadVehicle
 
-consist = OpenFeldbahn(id='bahn_steam_face_open',
+consist = OpenFeldbahnConsist(id='bahn_steam_face_open',
                        base_numeric_id=970,
                        name='Bahn Steam Face',
                        vehicle_life=40,

@@ -1,6 +1,6 @@
-from road_vehicle import DumpFeldbahn, ElectricRoadVehicle
+from road_vehicle import DumpFeldbahnConsist, ElectricRoadVehicle
 
-consist = DumpFeldbahn(id='hake_lake_dump',
+consist = DumpFeldbahnConsist(id='hake_lake_dump',
                        base_numeric_id=620,
                        name='Hake Lake',
                        vehicle_life=40,

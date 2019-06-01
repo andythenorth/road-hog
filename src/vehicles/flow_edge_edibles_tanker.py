@@ -1,6 +1,6 @@
-from road_vehicle import EdiblesTankerTruck, SteamRoadVehicle
+from road_vehicle import EdiblesTankerTruckConsist, SteamRoadVehicle
 
-consist = EdiblesTankerTruck(id='flow_edge_edibles_tanker',
+consist = EdiblesTankerTruckConsist(id='flow_edge_edibles_tanker',
                              base_numeric_id=930,
                              name='Flow Edge',
                              vehicle_life=40,

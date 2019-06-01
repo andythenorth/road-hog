@@ -1,6 +1,6 @@
-from road_vehicle import BoxTram, ElectricRoadVehicle
+from road_vehicle import BoxTramConsist, ElectricRoadVehicle
 
-consist = BoxTram(id='rakeway_box',
+consist = BoxTramConsist(id='rakeway_box',
                   base_numeric_id=870,
                   name='Rakeway',
                   vehicle_life=40,

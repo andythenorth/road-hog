@@ -1,6 +1,6 @@
-from road_vehicle import EdiblesTankerTruck, DieselRoadVehicle
+from road_vehicle import EdiblesTankerTruckConsist, DieselRoadVehicle
 
-consist = EdiblesTankerTruck(id='beerwoods_edibles_tanker',
+consist = EdiblesTankerTruckConsist(id='beerwoods_edibles_tanker',
                              base_numeric_id=420,
                              name='Beerwoods',
                              vehicle_life=40,

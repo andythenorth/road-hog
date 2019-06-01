@@ -1,6 +1,6 @@
-from road_vehicle import RefrigeratedTruck, DieselRoadVehicle
+from road_vehicle import RefrigeratedTruckConsist, DieselRoadVehicle
 
-consist = RefrigeratedTruck(id='fortiscue_refrigerated',
+consist = RefrigeratedTruckConsist(id='fortiscue_refrigerated',
                             base_numeric_id=180,
                             name='Fortiscue',
                             vehicle_life=40,

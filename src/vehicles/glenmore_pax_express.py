@@ -1,9 +1,9 @@
-from road_vehicle import PaxExpressCoach, DieselRoadVehicle
+from road_vehicle import PaxExpressCoachConsist, DieselRoadVehicle
 
 # for each generation, bus and coach variants have same power and intro date
 # coaches faster, lower capacity than equivalent bus
 
-consist = PaxExpressCoach(id='glenmore_pax_express',
+consist = PaxExpressCoachConsist(id='glenmore_pax_express',
                           base_numeric_id=50,
                           name='Glenmore',
                           power=160,

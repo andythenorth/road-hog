@@ -1,6 +1,6 @@
-from road_vehicle import MailTruck, DieselRoadVehicle
+from road_vehicle import MailTruckConsist, DieselRoadVehicle
 
-consist = MailTruck(id='goldmire_mail',
+consist = MailTruckConsist(id='goldmire_mail',
                     base_numeric_id=200,
                     name='Goldmire',
                     power=250,  # custom power

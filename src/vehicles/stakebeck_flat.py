@@ -1,6 +1,6 @@
-from road_vehicle import FlatbedTram, SteamRoadVehicle
+from road_vehicle import FlatbedTramConsist, SteamRoadVehicle
 
-consist = FlatbedTram(id='stakebeck_flat',
+consist = FlatbedTramConsist(id='stakebeck_flat',
                       base_numeric_id=750,
                       name='Stakebeck',
                          vehicle_life=40,

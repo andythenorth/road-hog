@@ -1,6 +1,6 @@
-from road_vehicle import PaxLocalTram, ElectricRoadVehicle
+from road_vehicle import PaxLocalTramConsist, ElectricRoadVehicle
 
-consist = PaxLocalTram(id='northbeach_pax',
+consist = PaxLocalTramConsist(id='northbeach_pax',
                        base_numeric_id=690,
                        name='Northbeach',
                        vehicle_life=40,

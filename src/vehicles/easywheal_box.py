@@ -1,6 +1,6 @@
-from road_vehicle import BoxTruck, DieselRoadVehicle
+from road_vehicle import BoxTruckConsist, DieselRoadVehicle
 
-consist = BoxTruck(id='easywheal_box',
+consist = BoxTruckConsist(id='easywheal_box',
                    base_numeric_id=160,
                    name='Easywheal',
                    semi_truck_so_redistribute_capacity=True,

@@ -1,6 +1,6 @@
-from road_vehicle import MailTram, ElectricRoadVehicle
+from road_vehicle import MailTramConsist, ElectricRoadVehicle
 
-consist = MailTram(id='singing_river_mail',
+consist = MailTramConsist(id='singing_river_mail',
                    base_numeric_id=850,
                    name='Singing River',
                    power=600,

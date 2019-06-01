@@ -1,6 +1,6 @@
-from road_vehicle import LivestockTram, ElectricRoadVehicle
+from road_vehicle import LivestockTramConsist, ElectricRoadVehicle
 
-consist = LivestockTram(id='shotover_livestock',
+consist = LivestockTramConsist(id='shotover_livestock',
                         base_numeric_id=370,
                         name='Shotover',
                         vehicle_life=40,

@@ -1,6 +1,6 @@
-from road_vehicle import BoxTruck, SteamRoadVehicle
+from road_vehicle import BoxTruckConsist, SteamRoadVehicle
 
-consist = BoxTruck(id='runwell_box',
+consist = BoxTruckConsist(id='runwell_box',
                    base_numeric_id=890,
                    name='Runwell',
                    semi_truck_so_redistribute_capacity=True,

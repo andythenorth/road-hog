@@ -1,7 +1,7 @@
-from road_vehicle import SuppliesCake, SteamRoadVehicle
+from road_vehicle import SuppliesCakeConsist, SteamRoadVehicle
 # 'inspired by' Scammell 100t low loader, but much smaller
 
-consist = SuppliesCake(id='crime_rigg_supplies',
+consist = SuppliesCakeConsist(id='crime_rigg_supplies',
                        base_numeric_id=530,
                        name='Crime Rigg',
                        power=360,

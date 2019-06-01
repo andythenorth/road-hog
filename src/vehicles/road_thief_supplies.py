@@ -1,6 +1,6 @@
-from road_vehicle import SuppliesCake, DieselRoadVehicle
+from road_vehicle import SuppliesCakeConsist, DieselRoadVehicle
 
-consist = SuppliesCake(id='road_thief_supplies',
+consist = SuppliesCakeConsist(id='road_thief_supplies',
                        base_numeric_id=560,
                        name='Road Thief',
                        power=720,

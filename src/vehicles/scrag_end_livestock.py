@@ -1,6 +1,6 @@
-from road_vehicle import LivestockTram, SteamRoadVehicle
+from road_vehicle import LivestockTramConsist, SteamRoadVehicle
 
-consist = LivestockTram(id='scrag_end_livestock',
+consist = LivestockTramConsist(id='scrag_end_livestock',
                         base_numeric_id=710,
                         name='Scrag End',
                              vehicle_life=40,

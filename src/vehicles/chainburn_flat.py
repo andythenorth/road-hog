@@ -1,6 +1,6 @@
-from road_vehicle import FlatbedTruck, SteamRoadVehicle
+from road_vehicle import FlatbedTruckConsist, SteamRoadVehicle
 
-consist = FlatbedTruck(id='chainburn_flat',
+consist = FlatbedTruckConsist(id='chainburn_flat',
                        base_numeric_id=630,
                        name='Chainburn',
                        vehicle_life=40,

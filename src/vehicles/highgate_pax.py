@@ -1,9 +1,9 @@
-from road_vehicle import PaxLocalBus, DieselRoadVehicle
+from road_vehicle import PaxLocalBusConsist, DieselRoadVehicle
 
 # for each generation, bus and coach variants have same power and intro date
 # coaches faster, lower capacity than equivalent bus
 
-consist = PaxLocalBus(id='highgate_pax',
+consist = PaxLocalBusConsist(id='highgate_pax',
                       base_numeric_id=590,
                       name='Highgate',
                       power=240,

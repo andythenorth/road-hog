@@ -1,6 +1,6 @@
-from road_vehicle import DumpTram, ElectricRoadVehicle
+from road_vehicle import DumpTramConsist, ElectricRoadVehicle
 
-consist = DumpTram(id='hawkmoor_dump',
+consist = DumpTramConsist(id='hawkmoor_dump',
                    base_numeric_id=760,
                    name='Hawkmoor',
                    vehicle_life=40,

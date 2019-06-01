@@ -1,6 +1,6 @@
-from road_vehicle import RefrigeratedTruck, DieselRoadVehicle
+from road_vehicle import RefrigeratedTruckConsist, DieselRoadVehicle
 
-consist = RefrigeratedTruck(id='coldfall_refrigerated',
+consist = RefrigeratedTruckConsist(id='coldfall_refrigerated',
                             base_numeric_id=150,
                             name='Coldfall',
                             semi_truck_so_redistribute_capacity=True,

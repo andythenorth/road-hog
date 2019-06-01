@@ -1,6 +1,6 @@
-from road_vehicle import DumpHEQS, DieselRoadVehicle
+from road_vehicle import DumpHEQSConsist, DieselRoadVehicle
 
-consist = DumpHEQS(id='witch_hill_dump',
+consist = DumpHEQSConsist(id='witch_hill_dump',
                    base_numeric_id=500,
                    name='Witch Hill',
                    power=900,

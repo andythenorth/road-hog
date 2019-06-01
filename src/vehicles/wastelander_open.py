@@ -1,6 +1,6 @@
-from road_vehicle import OpenTruck
+from road_vehicle import OpenTruckConsist
 
-consist = OpenTruck(id='wastelander_open',
+consist = OpenTruckConsist(id='wastelander_open',
                     base_numeric_id=1010,
                     name='Wastelander',
                     roadveh_flag_tram=True,

@@ -1,6 +1,6 @@
-from road_vehicle import FruitVegTram, ElectricRoadVehicle
+from road_vehicle import FruitVegTramConsist, ElectricRoadVehicle
 
-consist = FruitVegTram(id='nutbrook_fruit_veg',
+consist = FruitVegTramConsist(id='nutbrook_fruit_veg',
                        base_numeric_id=960,
                        name='Nutbrook',
                        vehicle_life=40,

@@ -1,6 +1,6 @@
-from road_vehicle import DumpTram, SteamRoadVehicle
+from road_vehicle import DumpTramConsist, SteamRoadVehicle
 
-consist = DumpTram(id='scrooby_top_dump',
+consist = DumpTramConsist(id='scrooby_top_dump',
                    base_numeric_id=700,
                    name='Scrooby Top',
                    vehicle_life=40,

@@ -1,6 +1,6 @@
-from road_vehicle import LogHEQS, SteamRoadVehicle
+from road_vehicle import LogHEQSConsist, SteamRoadVehicle
 
-consist = LogHEQS(id='trefell_log',
+consist = LogHEQSConsist(id='trefell_log',
                   base_numeric_id=480,
                   name='Trefell',
                   power=100,  # custom power

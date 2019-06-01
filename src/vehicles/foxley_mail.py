@@ -1,6 +1,6 @@
-from road_vehicle import MailTram, ElectricRoadVehicle
+from road_vehicle import MailTramConsist, ElectricRoadVehicle
 
-consist = MailTram(id='foxley_mail',
+consist = MailTramConsist(id='foxley_mail',
                    base_numeric_id=190,
                    name='Foxley',
                    power=240,  # custom HP

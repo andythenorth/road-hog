@@ -1,6 +1,6 @@
-from road_vehicle import DumpTruck
+from road_vehicle import DumpTruckConsist
 
-consist = DumpTruck(id='gravelhead_dump',
+consist = DumpTruckConsist(id='gravelhead_dump',
                     base_numeric_id=580,
                     name='Gravelhead',
                     power=130,

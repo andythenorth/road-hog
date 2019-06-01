@@ -1,6 +1,6 @@
-from road_vehicle import CoveredHopperTram, ElectricRoadVehicle
+from road_vehicle import CoveredHopperTramConsist, ElectricRoadVehicle
 
-consist = CoveredHopperTram(id='thurlbear_covered_hopper',
+consist = CoveredHopperTramConsist(id='thurlbear_covered_hopper',
                             base_numeric_id=460,
                             name='Thurlbear',
                             vehicle_life=40,

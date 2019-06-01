@@ -1,6 +1,6 @@
-from road_vehicle import IntermodalHauler
+from road_vehicle import IntermodalHaulerConsist
 
-consist = IntermodalHauler(id='foreshore',
+consist = IntermodalHaulerConsist(id='foreshore',
                            base_numeric_id=970,
                            name='Foreshore',
                            power=950,

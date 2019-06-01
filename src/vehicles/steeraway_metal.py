@@ -1,6 +1,6 @@
-from road_vehicle import MetalHEQS, DieselRoadVehicle
+from road_vehicle import MetalHEQSBase, DieselRoadVehicle
 
-consist = MetalHEQS(id='steeraway_metal',
+consist = MetalHEQSBase(id='steeraway_metal',
                     base_numeric_id=520,
                     name='Steeraway',
                     power=500,

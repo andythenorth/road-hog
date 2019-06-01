@@ -1,6 +1,6 @@
-from road_vehicle import DumpTram, ElectricRoadVehicle
+from road_vehicle import DumpTramConsist, ElectricRoadVehicle
 
-consist = DumpTram(id='nettlebridge_dump',
+consist = DumpTramConsist(id='nettlebridge_dump',
                    base_numeric_id=310,
                    name='Nettlebridge',
                    vehicle_life=40,

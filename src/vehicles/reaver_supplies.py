@@ -1,6 +1,6 @@
-from road_vehicle import SuppliesCake, SteamRoadVehicle
+from road_vehicle import SuppliesCakeConsist, SteamRoadVehicle
 
-consist = SuppliesCake(id='reaver_supplies',
+consist = SuppliesCakeConsist(id='reaver_supplies',
                        base_numeric_id=550,
                        name='Reaver',
                        power=240,  # custom power

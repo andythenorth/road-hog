@@ -1,7 +1,7 @@
-from road_vehicle import SuppliesCake, DieselRoadVehicle
+from road_vehicle import SuppliesCakeConsist, DieselRoadVehicle
 # equiv. Scammell Highwayman or Explorer with dolly low loader trailer - not huge
 
-consist = SuppliesCake(id='brigand_supplies',
+consist = SuppliesCakeConsist(id='brigand_supplies',
                        base_numeric_id=540,
                        name='Brigand',
                        power=480,

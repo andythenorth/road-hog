@@ -1,6 +1,6 @@
-from road_vehicle import OpenTram, ElectricRoadVehicle
+from road_vehicle import OpenTramConsist, ElectricRoadVehicle
 
-consist = OpenTram(id='portland_open',
+consist = OpenTramConsist(id='portland_open',
                    base_numeric_id=860,
                    name='Portland',
                    vehicle_life=40,

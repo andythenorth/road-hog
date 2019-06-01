@@ -1,6 +1,6 @@
-from road_vehicle import OpenTruck, DieselRoadVehicle
+from road_vehicle import OpenTruckConsist, DieselRoadVehicle
 
-consist = OpenTruck(id='rattlebrook_open',
+consist = OpenTruckConsist(id='rattlebrook_open',
                     base_numeric_id=670,
                     name='Rattlebrook',
                     vehicle_life=40,

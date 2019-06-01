@@ -1,6 +1,6 @@
-from road_vehicle import FlatbedTruck, DieselRoadVehicle
+from road_vehicle import FlatbedTruckConsist, DieselRoadVehicle
 
-consist = FlatbedTruck(id='towerhouse_flat',
+consist = FlatbedTruckConsist(id='towerhouse_flat',
                        base_numeric_id=650,
                        name='Towerhouse',
                        semi_truck_so_redistribute_capacity=True,

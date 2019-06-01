@@ -1,6 +1,6 @@
-from road_vehicle import LivestockTruck, DieselRoadVehicle
+from road_vehicle import LivestockTruckConsist, DieselRoadVehicle
 
-consist = LivestockTruck(id='stungun_livestock',
+consist = LivestockTruckConsist(id='stungun_livestock',
                          base_numeric_id=430,
                          name='Stungun',
                          semi_truck_so_redistribute_capacity=True,

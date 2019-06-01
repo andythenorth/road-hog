@@ -1,6 +1,6 @@
-from road_vehicle import RefrigeratedTram, ElectricRoadVehicle
+from road_vehicle import RefrigeratedTramConsist, ElectricRoadVehicle
 
-consist = RefrigeratedTram(id='winterfold_refrigerated',
+consist = RefrigeratedTramConsist(id='winterfold_refrigerated',
                            base_numeric_id=770,
                            name='Winterfold',
                               vehicle_life=40,

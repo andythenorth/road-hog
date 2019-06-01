@@ -1,6 +1,6 @@
-from road_vehicle import DumpTruck, DieselRoadVehicle
+from road_vehicle import DumpTruckConsist, DieselRoadVehicle
 
-consist = DumpTruck(id='powerstock_dump',
+consist = DumpTruckConsist(id='powerstock_dump',
                     base_numeric_id=340,
                     name='Powerstock',
                     semi_truck_so_redistribute_capacity=True,

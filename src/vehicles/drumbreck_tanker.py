@@ -1,6 +1,6 @@
-from road_vehicle import TankerTram, SteamRoadVehicle
+from road_vehicle import TankerTramConsist, SteamRoadVehicle
 
-consist = TankerTram(id='drumbreck_tanker',
+consist = TankerTramConsist(id='drumbreck_tanker',
                      base_numeric_id=800,
                      name='Drumbreck',
                      vehicle_life=40,

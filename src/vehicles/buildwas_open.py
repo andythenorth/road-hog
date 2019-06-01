@@ -1,6 +1,6 @@
-from road_vehicle import OpenTram, SteamRoadVehicle
+from road_vehicle import OpenTramConsist, SteamRoadVehicle
 
-consist = OpenTram(id='buildwas_open',
+consist = OpenTramConsist(id='buildwas_open',
                    base_numeric_id=120,
                    name='Buildwas',
                    vehicle_life=40,

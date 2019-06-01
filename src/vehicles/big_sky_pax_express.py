@@ -1,10 +1,10 @@
-from road_vehicle import PaxExpressCoach, DieselRoadVehicle
+from road_vehicle import PaxExpressCoachConsist, DieselRoadVehicle
 
 # !! unused ??
 # for each generation, bus and coach variants have same power and intro date
 # coaches faster, lower capacity than equivalent bus
 
-consist = PaxExpressCoach(id='big_sky_pax_express',
+consist = PaxExpressCoachConsist(id='big_sky_pax_express',
                           base_numeric_id=620,
                           name='Big Sky',
                           power=220,

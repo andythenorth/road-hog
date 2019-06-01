@@ -1,6 +1,6 @@
-from road_vehicle import FlatbedTruck, DieselRoadVehicle
+from road_vehicle import FlatbedTruckConsist, DieselRoadVehicle
 
-consist = FlatbedTruck(id='windergill_flat',
+consist = FlatbedTruckConsist(id='windergill_flat',
                        base_numeric_id=640,
                        name='Windergill',
                        vehicle_life=40,

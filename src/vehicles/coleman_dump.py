@@ -1,6 +1,6 @@
-from road_vehicle import DumpTruck, SteamRoadVehicle
+from road_vehicle import DumpTruckConsist, SteamRoadVehicle
 
-consist = DumpTruck(id='coleman_dump',
+consist = DumpTruckConsist(id='coleman_dump',
                     base_numeric_id=910,
                     name='Coleman',
                     semi_truck_so_redistribute_capacity=True,

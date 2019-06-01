@@ -698,7 +698,7 @@ class ElectricRoadVehicle(RoadVehicle):
         self.consist.default_sound_effect = 'SOUND_ELECTRIC_SPARK'
 
 
-class BoxHaulerBase(Consist):
+class BoxHaulerConsistBase(Consist):
     """
     Base consist for box haulers. Refits express, piece goods cargos, other selected cargos.
     """
@@ -713,7 +713,7 @@ class BoxHaulerBase(Consist):
         self.weight_multiplier = 0.45
 
 
-class BoxTram(BoxHaulerBase, TrackTypeMixinTram):
+class BoxTramConsist(BoxHaulerConsistBase, TrackTypeMixinTram):
     """
     Box tram.
     """
@@ -721,7 +721,7 @@ class BoxTram(BoxHaulerBase, TrackTypeMixinTram):
         super().__init__(**kwargs)
 
 
-class BoxTruck(BoxHaulerBase, TrackTypeMixinTruckBusCoach):
+class BoxTruckConsist(BoxHaulerConsistBase, TrackTypeMixinTruckBusCoach):
     """
     Box truck.
     """
@@ -729,7 +729,7 @@ class BoxTruck(BoxHaulerBase, TrackTypeMixinTruckBusCoach):
         super().__init__(**kwargs)
 
 
-class CoveredHopperHaulerBase(Consist):
+class CoveredHopperHaulerConsistBase(Consist):
     """
     Consist base for covered hopper hauler.  Refits bulk powder cargos.
     """
@@ -745,7 +745,7 @@ class CoveredHopperHaulerBase(Consist):
         self.weight_multiplier = 0.45
 
 
-class CoveredHopperTram(CoveredHopperHaulerBase, TrackTypeMixinTram):
+class CoveredHopperTramConsist(CoveredHopperHaulerConsistBase, TrackTypeMixinTram):
     """
     Covered hopper tram.
     """
@@ -753,7 +753,7 @@ class CoveredHopperTram(CoveredHopperHaulerBase, TrackTypeMixinTram):
         super().__init__(**kwargs)
 
 
-class CoveredHopperTruck(CoveredHopperHaulerBase, TrackTypeMixinTruckBusCoach):
+class CoveredHopperTruckConsist(CoveredHopperHaulerConsistBase, TrackTypeMixinTruckBusCoach):
     """
     Covered hopper truck.
     """
@@ -761,7 +761,7 @@ class CoveredHopperTruck(CoveredHopperHaulerBase, TrackTypeMixinTruckBusCoach):
         super().__init__(**kwargs)
 
 
-class DumpHaulerBase(Consist):
+class DumpHaulerConsistBase(Consist):
     """
     Base consist for dump hauler. Limited set of bulk (mineral) cargos.
     """
@@ -779,7 +779,7 @@ class DumpHaulerBase(Consist):
         self.gestalt_graphics = GestaltGraphicsVisibleCargo(bulk=True)
 
 
-class DumpFeldbahn(DumpHaulerBase, TrackTypeMixinFeldbahn):
+class DumpFeldbahnConsist(DumpHaulerConsistBase, TrackTypeMixinFeldbahn):
     """
     Dump feldbahn.
     """
@@ -787,7 +787,7 @@ class DumpFeldbahn(DumpHaulerBase, TrackTypeMixinFeldbahn):
         super().__init__(**kwargs)
 
 
-class DumpHEQS(DumpHaulerBase, TrackTypeMixinHEQS):
+class DumpHEQSConsist(DumpHaulerConsistBase, TrackTypeMixinHEQS):
     """
     Dump HEQS.
     """
@@ -795,7 +795,7 @@ class DumpHEQS(DumpHaulerBase, TrackTypeMixinHEQS):
         super().__init__(**kwargs)
 
 
-class DumpTram(DumpHaulerBase, TrackTypeMixinTram):
+class DumpTramConsist(DumpHaulerConsistBase, TrackTypeMixinTram):
     """
     Dump tram.
     """
@@ -803,7 +803,7 @@ class DumpTram(DumpHaulerBase, TrackTypeMixinTram):
         super().__init__(**kwargs)
 
 
-class DumpTruck(DumpHaulerBase, TrackTypeMixinTruckBusCoach):
+class DumpTruckConsist(DumpHaulerConsistBase, TrackTypeMixinTruckBusCoach):
     """
     Dump truck.
     """
@@ -811,7 +811,7 @@ class DumpTruck(DumpHaulerBase, TrackTypeMixinTruckBusCoach):
         super().__init__(**kwargs)
 
 
-class EdiblesTankerBase(Consist):
+class EdiblesTankerConsistBase(Consist):
     """
     Base consist for edibles tankers. Wine, milk, water etc.
     """
@@ -828,7 +828,7 @@ class EdiblesTankerBase(Consist):
         self.weight_multiplier = 0.5
 
 
-class EdiblesTankerTram(EdiblesTankerBase, TrackTypeMixinTram):
+class EdiblesTankerTramConsist(EdiblesTankerConsistBase, TrackTypeMixinTram):
     """
     Edibles tanker tram.
     """
@@ -836,7 +836,7 @@ class EdiblesTankerTram(EdiblesTankerBase, TrackTypeMixinTram):
         super().__init__(**kwargs)
 
 
-class EdiblesTankerTruck(EdiblesTankerBase, TrackTypeMixinTruckBusCoach):
+class EdiblesTankerTruckConsist(EdiblesTankerConsistBase, TrackTypeMixinTruckBusCoach):
     """
     Edibles tanker truck.
     """
@@ -844,7 +844,7 @@ class EdiblesTankerTruck(EdiblesTankerBase, TrackTypeMixinTruckBusCoach):
         super().__init__(**kwargs)
 
 
-class FlatbedHaulerBase(Consist):
+class FlatbedHaulerConsistBase(Consist):
     """
     Base consist for flatbed hauler. Refits most cargos, not bulk.
     """
@@ -860,7 +860,7 @@ class FlatbedHaulerBase(Consist):
         self.gestalt_graphics = GestaltGraphicsVisibleCargo(piece='flat')
 
 
-class FlatbedTram(FlatbedHaulerBase, TrackTypeMixinTram):
+class FlatbedTramConsist(FlatbedHaulerConsistBase, TrackTypeMixinTram):
     """
     Flatbed tram.
     """
@@ -868,7 +868,7 @@ class FlatbedTram(FlatbedHaulerBase, TrackTypeMixinTram):
         super().__init__(**kwargs)
 
 
-class FlatbedTruck(FlatbedHaulerBase, TrackTypeMixinTruckBusCoach):
+class FlatbedTruckConsist(FlatbedHaulerConsistBase, TrackTypeMixinTruckBusCoach):
     """
     Flatbed truck.
     """
@@ -876,7 +876,7 @@ class FlatbedTruck(FlatbedHaulerBase, TrackTypeMixinTruckBusCoach):
         super().__init__(**kwargs)
 
 
-class FruitVegHaulerBase(Consist):
+class FruitVegHaulerConsistBase(Consist):
     """
     Consist base class for fruit and vegetables hauler.
     """
@@ -892,7 +892,7 @@ class FruitVegHaulerBase(Consist):
         self.weight_multiplier = 0.45
 
 
-class FruitVegTram(FruitVegHaulerBase, TrackTypeMixinTram):
+class FruitVegTramConsist(FruitVegHaulerConsistBase, TrackTypeMixinTram):
     """
     Fruit and vegetables tram.  No FruitVegTruck yet as of April 2019.
     """
@@ -900,7 +900,7 @@ class FruitVegTram(FruitVegHaulerBase, TrackTypeMixinTram):
         super().__init__(**kwargs)
 
 
-class IntermodalHauler(Consist):
+class IntermodalHaulerConsist(Consist):
     """
     Specialist intermodal (container) truck, limited range of cargos.  Keep same refit and speeds as BoxHauler
     """
@@ -915,7 +915,7 @@ class IntermodalHauler(Consist):
         self.loading_speed_multiplier = 2
 
 
-class LivestockHaulerBase(Consist):
+class LivestockHaulerConsistBase(Consist):
     """
     Consist base class for livestock Hauler
     """
@@ -931,7 +931,7 @@ class LivestockHaulerBase(Consist):
         self.weight_multiplier = 0.45
 
 
-class LivestockTram(LivestockHaulerBase, TrackTypeMixinTram):
+class LivestockTramConsist(LivestockHaulerConsistBase, TrackTypeMixinTram):
     """
     Livestock tram.
     """
@@ -939,7 +939,7 @@ class LivestockTram(LivestockHaulerBase, TrackTypeMixinTram):
         super().__init__(**kwargs)
 
 
-class LivestockTruck(LivestockHaulerBase, TrackTypeMixinTruckBusCoach):
+class LivestockTruckConsist(LivestockHaulerConsistBase, TrackTypeMixinTruckBusCoach):
     """
     Livestock truck.
     """
@@ -947,7 +947,7 @@ class LivestockTruck(LivestockHaulerBase, TrackTypeMixinTruckBusCoach):
         super().__init__(**kwargs)
 
 
-class LogHaulerBase(Consist):
+class LogHaulerConsistBase(Consist):
     """
     Base consist for log hauler.  Wood.
     """
@@ -966,7 +966,7 @@ class LogHaulerBase(Consist):
                                                 generic_rows = [0])
 
 
-class LogHEQS(LogHaulerBase, TrackTypeMixinHEQS):
+class LogHEQSConsist(LogHaulerConsistBase, TrackTypeMixinHEQS):
     """
     Log hauling heavy equipment.
     """
@@ -974,7 +974,7 @@ class LogHEQS(LogHaulerBase, TrackTypeMixinHEQS):
         super().__init__(**kwargs)
 
 
-class MailHaulerBase(Consist):
+class MailHaulerConsistBase(Consist):
     """
     Consist base class for mail hauler.  Valuables, express cargos etc.
     """
@@ -989,7 +989,7 @@ class MailHaulerBase(Consist):
         self.weight_multiplier = 0.2
 
 
-class MailTram(MailHaulerBase, TrackTypeMixinTram):
+class MailTramConsist(MailHaulerConsistBase, TrackTypeMixinTram):
     """
     Mail tram.
     """
@@ -997,7 +997,7 @@ class MailTram(MailHaulerBase, TrackTypeMixinTram):
         super().__init__(**kwargs)
 
 
-class MailTruck(MailHaulerBase, TrackTypeMixinTruckBusCoach):
+class MailTruckConsist(MailHaulerConsistBase, TrackTypeMixinTruckBusCoach):
     """
     Mail truck.
     """
@@ -1005,7 +1005,7 @@ class MailTruck(MailHaulerBase, TrackTypeMixinTruckBusCoach):
         super().__init__(**kwargs)
 
 
-class MetalHaulerBase(Consist):
+class MetalHaulerConsistBase(Consist):
     """
     Base consist for specialist heavy hauler, e.g. multiwheel platform, steel mill hauler etc.
     High capacity, not very fast, refits to small subset of finished metal cargos.
@@ -1021,7 +1021,7 @@ class MetalHaulerBase(Consist):
         self.loading_speed_multiplier = 2
 
 
-class MetalHEQS(MetalHaulerBase, TrackTypeMixinHEQS):
+class MetalHEQSBase(MetalHaulerConsistBase, TrackTypeMixinHEQS):
     """
     Metal truck.
     """
@@ -1029,7 +1029,7 @@ class MetalHEQS(MetalHaulerBase, TrackTypeMixinHEQS):
         super().__init__(**kwargs)
 
 
-class OpenHaulerBase(Consist):
+class OpenHaulerConsistBase(Consist):
     """
     Base consist for general cargo hauler. Refits everything except mail, pax.
     """
@@ -1046,7 +1046,7 @@ class OpenHaulerBase(Consist):
                                                             piece='open')
 
 
-class OpenFeldbahn(OpenHaulerBase, TrackTypeMixinFeldbahn):
+class OpenFeldbahnConsist(OpenHaulerConsistBase, TrackTypeMixinFeldbahn):
     """
     Open feldbahn.
     """
@@ -1054,7 +1054,7 @@ class OpenFeldbahn(OpenHaulerBase, TrackTypeMixinFeldbahn):
         super().__init__(**kwargs)
 
 
-class OpenTram(OpenHaulerBase, TrackTypeMixinTram):
+class OpenTramConsist(OpenHaulerConsistBase, TrackTypeMixinTram):
     """
     Open tram.
     """
@@ -1062,7 +1062,7 @@ class OpenTram(OpenHaulerBase, TrackTypeMixinTram):
         super().__init__(**kwargs)
 
 
-class OpenTruck(OpenHaulerBase, TrackTypeMixinTruckBusCoach):
+class OpenTruckConsist(OpenHaulerConsistBase, TrackTypeMixinTruckBusCoach):
     """
     Open truck.
     """
@@ -1070,7 +1070,7 @@ class OpenTruck(OpenHaulerBase, TrackTypeMixinTruckBusCoach):
         super().__init__(**kwargs)
 
 
-class PaxHaulerBase(Consist):
+class PaxHaulerConsistBase(Consist):
     """
     Common base class for pax vehicles.
     """
@@ -1083,7 +1083,7 @@ class PaxHaulerBase(Consist):
         self.default_cargos = global_constants.default_cargos['pax']
 
 
-class PaxHaulerLocalBase(PaxHaulerBase):
+class PaxHaulerLocalConsistBase(PaxHaulerConsistBase):
     """
     Base subclass for fast loading passenger tram or bus.
     """
@@ -1093,7 +1093,7 @@ class PaxHaulerLocalBase(PaxHaulerBase):
         self.weight_multiplier = 0.17
 
 
-class PaxLocalBus(PaxHaulerLocalBase, TrackTypeMixinTruckBusCoach):
+class PaxLocalBusConsist(PaxHaulerLocalConsistBase, TrackTypeMixinTruckBusCoach):
     """
     Local passenger bus.
     """
@@ -1109,7 +1109,7 @@ class PaxLocalBus(PaxHaulerLocalBase, TrackTypeMixinTruckBusCoach):
         return "STR_NAME_SUFFIX_BUS"
 
 
-class PaxLocalTram(PaxHaulerLocalBase, TrackTypeMixinTram):
+class PaxLocalTramConsist(PaxHaulerLocalConsistBase, TrackTypeMixinTram):
     """
     Local passenger tram.
     """
@@ -1124,7 +1124,7 @@ class PaxLocalTram(PaxHaulerLocalBase, TrackTypeMixinTram):
         return "STR_NAME_SUFFIX_PASSENGER_TRAM"
 
 
-class PaxExpressCoach(PaxHaulerBase, TrackTypeMixinTruckBusCoach):
+class PaxExpressCoachConsist(PaxHaulerConsistBase, TrackTypeMixinTruckBusCoach):
     """
     Express coach for pax. Express tram wasn't defined as of April 2019.  Split a PaxExpressBase subclass if needed
     """
@@ -1141,7 +1141,7 @@ class PaxExpressCoach(PaxHaulerBase, TrackTypeMixinTruckBusCoach):
         return "STR_NAME_SUFFIX_COACH"
 
 
-class RefrigeratedHaulerBase(Consist):
+class RefrigeratedHaulerConsistBase(Consist):
     """
     Base consist for Refrigerated hauler.
     Refits to limited range of refrigerated cargos, with 'improved' cargo decay rate.
@@ -1158,7 +1158,7 @@ class RefrigeratedHaulerBase(Consist):
         self.weight_multiplier = 0.5
 
 
-class RefrigeratedTram(RefrigeratedHaulerBase, TrackTypeMixinTram):
+class RefrigeratedTramConsist(RefrigeratedHaulerConsistBase, TrackTypeMixinTram):
     """
     Refrigerated tram.
     """
@@ -1166,7 +1166,7 @@ class RefrigeratedTram(RefrigeratedHaulerBase, TrackTypeMixinTram):
         super().__init__(**kwargs)
 
 
-class RefrigeratedTruck(RefrigeratedHaulerBase, TrackTypeMixinTruckBusCoach):
+class RefrigeratedTruckConsist(RefrigeratedHaulerConsistBase, TrackTypeMixinTruckBusCoach):
     """
     Refrigerated truck.
     """
@@ -1174,7 +1174,7 @@ class RefrigeratedTruck(RefrigeratedHaulerBase, TrackTypeMixinTruckBusCoach):
         super().__init__(**kwargs)
 
 
-class SuppliesHaulerBase(Consist):
+class SuppliesHaulerConsistBase(Consist):
     """
     Base consist for specialist hauler with flatbed + crane or similar, for supplies.
     """
@@ -1194,7 +1194,7 @@ class SuppliesHaulerBase(Consist):
                                                        generic_rows = [0])
 
 
-class SuppliesCake(SuppliesHaulerBase, TrackTypeMixinCake):
+class SuppliesCakeConsist(SuppliesHaulerConsistBase, TrackTypeMixinCake):
     """
     Supplies hauler (multi-roadtype).  No supplies trams yet as of April 2019.
     """
@@ -1202,7 +1202,7 @@ class SuppliesCake(SuppliesHaulerBase, TrackTypeMixinCake):
         super().__init__(**kwargs)
 
 
-class TankerBase(Consist):
+class TankerConsistBase(Consist):
     """
     Ronseal ("does what it says on the tin", for those without extensive knowledge of UK advertising).
     """
@@ -1223,7 +1223,7 @@ class TankerBase(Consist):
         self.gestalt_graphics = GestaltGraphicsLiveryOnly(recolour_maps=polar_fox.constants.tanker_livery_recolour_maps)
 
 
-class TankerTram(TankerBase, TrackTypeMixinTram):
+class TankerTramConsist(TankerConsistBase, TrackTypeMixinTram):
     """
     Tanker tram.
     """
@@ -1231,7 +1231,7 @@ class TankerTram(TankerBase, TrackTypeMixinTram):
         super().__init__(**kwargs)
 
 
-class TankerTruck(TankerBase, TrackTypeMixinTruckBusCoach):
+class TankerTruckConsist(TankerConsistBase, TrackTypeMixinTruckBusCoach):
     """
     Tanker truck.
     """

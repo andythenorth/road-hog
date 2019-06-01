@@ -1,9 +1,9 @@
-from road_vehicle import PaxLocalBus, DieselRoadVehicle
+from road_vehicle import PaxLocalBusConsist, DieselRoadVehicle
 
 # for each generation, bus and coach variants have same power and intro date
 # coaches faster, lower capacity than equivalent bus
 
-consist = PaxLocalBus(id='topley_pax',
+consist = PaxLocalBusConsist(id='topley_pax',
                       base_numeric_id=60,
                       name='Topley',
                       power=360,

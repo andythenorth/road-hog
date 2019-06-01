@@ -1,6 +1,6 @@
-from road_vehicle import CoveredHopperTruck, DieselRoadVehicle
+from road_vehicle import CoveredHopperTruckConsist, DieselRoadVehicle
 
-consist = CoveredHopperTruck(id='mcdowell_covered_hopper',
+consist = CoveredHopperTruckConsist(id='mcdowell_covered_hopper',
                              base_numeric_id=280,
                              name='McDowell',
                              semi_truck_so_redistribute_capacity=True,
