@@ -4,6 +4,7 @@ from vehicles import (acton_pax_express,
                       amblecote_box,
                       applethwaite_fruit_veg,
                       bahn_face_open,
+                      bahn_steam_face_open,
                       beerwoods_edibles_tanker,
                       big_rigg_flat,
                       # big_sky_pax_express, #deprecated
@@ -206,6 +207,7 @@ roster = Roster(id = 'brit',
                             applethwaite_fruit_veg,
                             nutbrook_fruit_veg,
                             # feldbahn
+                            bahn_steam_face_open,
                             bahn_face_open,
                             hake_lake_dump,
                             # off-highway
