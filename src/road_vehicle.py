@@ -19,7 +19,10 @@ from gestalt_graphics.gestalt_graphics import GestaltGraphics, GestaltGraphicsVi
 import gestalt_graphics.graphics_constants as graphics_constants
 
 from rosters import registered_rosters
+from base_platforms import base_platforms
 from vehicles import numeric_id_defender
+
+print(base_platforms['open_wagon_gen_1'])
 
 class Consist(object):
     """
