@@ -19,10 +19,7 @@ from gestalt_graphics.gestalt_graphics import GestaltGraphics, GestaltGraphicsVi
 import gestalt_graphics.graphics_constants as graphics_constants
 
 from rosters import registered_rosters
-from base_platforms import base_platforms
 from vehicles import numeric_id_defender
-
-print(base_platforms['open_wagon_gen_1'])
 
 class Consist(object):
     """
@@ -84,6 +81,14 @@ class Consist(object):
         # how many unique units? (units can be repeated, we are using count for numerid ID, so we want uniques)
         count = len(set(self.units))
 
+        # pseudo-factory that uses base_platforms to configure/reconfigure the keyword args for the unit
+        base_platform = kwargs.get('base_platform', None)
+        if base_platform is not None:
+            base_platform = base_platform() # init the base_platform, so we have an instance, not a class name
+            # have the base_platform reconfigure the kwargs, this is a bit sketchy, but eh
+            kwargs = base_platform.configure_unit_args(**kwargs)
+
+        # now create the unit
         if kwargs.get('type', None) is not None:
             unit = kwargs['type'](consist=self, **kwargs)
         else:
@@ -491,9 +496,10 @@ class RoadVehicle(object):
     """Base class for all types of road vehicles"""
     def __init__(self, **kwargs):
         self.consist = kwargs.get('consist')
-
         # setup properties for this road vehicle
         self.numeric_id = kwargs.get('numeric_id', None)
+        # if there's a base platform, keep that around (n.b consist.add_unit will already have used it to create this unit in a pseudo factory)
+        self.base_platform = kwargs.get('base_platform', None)
         # vehicle_length is either derived from chassis length or similar, or needs to be set explicitly as kwarg
         self._vehicle_length = kwargs.get('vehicle_length', None)
         self.semi_truck_shift_offset_jank = kwargs.get('semi_truck_shift_offset_jank', None)

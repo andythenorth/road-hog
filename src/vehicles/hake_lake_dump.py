@@ -1,4 +1,5 @@
 from road_vehicle import DumpFeldbahnConsist, ElectricRoadVehicle
+from base_platforms.feldbahn import OpenWagonFeldbahnGen3
 
 consist = DumpFeldbahnConsist(id='hake_lake_dump',
                        base_numeric_id=620,
@@ -11,6 +12,5 @@ consist.add_unit(type=ElectricRoadVehicle,
                  chassis='feldbahn_1_16px',
                  always_use_same_spriterow=True)
 
-consist.add_unit(capacity=28,
-                 chassis='4_axle_feldbahn_16px',
+consist.add_unit(base_platform=OpenWagonFeldbahnGen3,
                  repeat=7)

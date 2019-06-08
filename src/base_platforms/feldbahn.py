@@ -1,13 +1,40 @@
 from base_platform import BasePlatform
+from road_vehicle import DieselRoadVehicle, SteamRoadVehicle
 
-# open wagon gen 1
-open_wagon_gen_1 = BasePlatform()
 
-# open wagon gen 2
+class SteamEngineFeldbahn1(BasePlatform):
+    type = SteamRoadVehicle
+    vehicle_length = 4
+    capacity = 0
+    always_use_same_spriterow = True
 
-# open wagon gen 3
 
-# open wagon gen 4
+class DieselEngineFeldbahn1(BasePlatform):
+    type = DieselRoadVehicle
+    vehicle_length = 4
+    capacity = 0
+    always_use_same_spriterow = True
 
-base_platforms = {'open_wagon_gen_1': open_wagon_gen_1,
-                  'open_wagon_gen_1': open_wagon_gen_1}
+
+class OpenWagonFeldbahnGen1(BasePlatform):
+    vehicle_length = 4
+    cargo_length = 3
+    capacity = 28
+
+
+class OpenWagonFeldbahnGen2(BasePlatform):
+    vehicle_length = 4
+    cargo_length = 3
+    capacity = 28
+
+
+class OpenWagonFeldbahnGen3(BasePlatform):
+    vehicle_length = 4
+    cargo_length = 3
+    capacity = 28
+
+
+class OpenWagonFeldbahnGen4(BasePlatform):
+    vehicle_length = 4
+    cargo_length = 3
+    capacity = 28

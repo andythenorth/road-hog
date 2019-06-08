@@ -30,7 +30,6 @@ class Pipeline(object):
 
     @property
     def vehicle_source_input_path(self):
-        # convenience method to get the vehicle template image
         # I considered having this return the Image, not just the path, but it's not saving much, and is less obvious what it does when used
         return os.path.join(currentdir, 'src', 'graphics', self.consist.roster_id, self.consist.id + '.png')
 
@@ -395,6 +394,7 @@ class ExtendSpriterowsForCompositedSpritesPipeline(Pipeline):
         self.vehicle_source_image = Image.open(self.vehicle_source_input_path)
 
         # the cumulative_input_spriterow_count updates per processed group of spriterows, and is key to making this work
+        # !! input_spriterow_count looks a bit weird though; I tried moving it to gestalts, but didn't really work
         cumulative_input_spriterow_count = 0
         for vehicle_counter, vehicle_rows in enumerate(consist.get_spriterows_for_consist_or_subpart(consist.unique_units)):
             # 'vehicle_unit' not 'unit' to avoid conflating with graphics processor 'unit'
