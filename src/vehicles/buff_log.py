@@ -1,4 +1,4 @@
-from road_vehicle import LogHEQSConsist, DieselRoadVehicle
+from road_vehicle import LogHEQSConsist, DieselVehicleUnit
 
 consist = LogHEQSConsist(id='buff_log',
                   base_numeric_id=110,
@@ -8,7 +8,7 @@ consist = LogHEQSConsist(id='buff_log',
                   vehicle_life=40,
                   gen=4)
 
-consist.add_unit(type=DieselRoadVehicle,
+consist.add_unit(type=DieselVehicleUnit,
                  capacity=40,
                  vehicle_length=7)
 

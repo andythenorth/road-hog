@@ -1,4 +1,4 @@
-from road_vehicle import MailTramConsist, ElectricRoadVehicle
+from road_vehicle import MailTramConsist, ElectricVehicleUnit
 
 consist = MailTramConsist(id='stagrun_mail',
                    base_numeric_id=840,
@@ -8,7 +8,7 @@ consist = MailTramConsist(id='stagrun_mail',
                    gen=3,
                    intro_date_offset=2)  # introduce later than gen epoch by design
 
-consist.add_unit(type=ElectricRoadVehicle,
+consist.add_unit(type=ElectricVehicleUnit,
                  capacity=18,
                  vehicle_length=4,
                  repeat=2)

@@ -1,4 +1,4 @@
-from road_vehicle import TankerTruckConsist, SteamRoadVehicle
+from road_vehicle import TankerTruckConsist, SteamVehicleUnit
 
 consist = TankerTruckConsist(id='boilingwell_tanker',
                       base_numeric_id=920,
@@ -8,7 +8,7 @@ consist = TankerTruckConsist(id='boilingwell_tanker',
                       gen=2,
                       intro_date_offset=5)  # introduce later than gen epoch by design
 
-consist.add_unit(type=SteamRoadVehicle,
+consist.add_unit(type=SteamVehicleUnit,
                  capacity=0,
                  vehicle_length=2,
                  semi_truck_shift_offset_jank=2,

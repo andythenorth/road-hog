@@ -1,4 +1,4 @@
-from road_vehicle import MailTruckConsist, DieselRoadVehicle
+from road_vehicle import MailTruckConsist, DieselVehicleUnit
 
 consist = MailTruckConsist(id='tallyho_mail',
                     base_numeric_id=450,
@@ -8,6 +8,6 @@ consist = MailTruckConsist(id='tallyho_mail',
                     gen=2,
                     intro_date_offset=-1)  # introduce earlier than gen epoch by design
 
-consist.add_unit(type=DieselRoadVehicle,
+consist.add_unit(type=DieselVehicleUnit,
                  capacity=15,
                  vehicle_length=6)

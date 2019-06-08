@@ -1,4 +1,4 @@
-from road_vehicle import MetalHEQSBase, DieselRoadVehicle
+from road_vehicle import MetalHEQSBase, DieselVehicleUnit
 
 consist = MetalHEQSBase(id='steeraway_metal',
                     base_numeric_id=520,
@@ -9,7 +9,7 @@ consist = MetalHEQSBase(id='steeraway_metal',
                     gen=3,
                     intro_date_offset=10)  # introduce later than gen epoch by design
 
-consist.add_unit(type=DieselRoadVehicle,
+consist.add_unit(type=DieselVehicleUnit,
                  capacity=0,
                  vehicle_length=6)
 

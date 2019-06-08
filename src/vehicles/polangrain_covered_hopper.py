@@ -1,4 +1,4 @@
-from road_vehicle import CoveredHopperTramConsist, ElectricRoadVehicle
+from road_vehicle import CoveredHopperTramConsist, ElectricVehicleUnit
 
 consist = CoveredHopperTramConsist(id='polangrain_covered_hopper',
                             base_numeric_id=790,
@@ -6,7 +6,7 @@ consist = CoveredHopperTramConsist(id='polangrain_covered_hopper',
                             vehicle_life=40,
                             gen=2)
 
-consist.add_unit(type=ElectricRoadVehicle,
+consist.add_unit(type=ElectricVehicleUnit,
                  capacity=30,
                  vehicle_length=8,
                  repeat=2)

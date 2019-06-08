@@ -1,4 +1,4 @@
-from road_vehicle import DumpTruckConsist, DieselRoadVehicle
+from road_vehicle import DumpTruckConsist, DieselVehicleUnit
 
 consist = DumpTruckConsist(id='honister_dump',
                     base_numeric_id=230,
@@ -7,7 +7,7 @@ consist = DumpTruckConsist(id='honister_dump',
                     gen=3,
                     intro_date_offset=7)  # introduce later than gen epoch by design
 
-consist.add_unit(type=DieselRoadVehicle,
+consist.add_unit(type=DieselVehicleUnit,
                  capacity=15,
                  vehicle_length=5,
                  effects=['EFFECT_SPRITE_DIESEL, -2, 1, 10'])

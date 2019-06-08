@@ -1,4 +1,4 @@
-from road_vehicle import PaxLocalBusConsist, DieselRoadVehicle
+from road_vehicle import PaxLocalBusConsist, DieselVehicleUnit
 
 # for each generation, bus and coach variants have same power and intro date
 # coaches faster, lower capacity than equivalent bus
@@ -12,6 +12,6 @@ consist = PaxLocalBusConsist(id='topley_pax',
                       gen=5,
                       intro_date_offset=-7)  # introduce earlier than gen epoch by design
 
-consist.add_unit(type=DieselRoadVehicle,
+consist.add_unit(type=DieselVehicleUnit,
                  capacity=72,
                  vehicle_length=7)

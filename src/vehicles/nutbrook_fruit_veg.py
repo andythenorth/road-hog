@@ -1,4 +1,4 @@
-from road_vehicle import FruitVegTramConsist, ElectricRoadVehicle
+from road_vehicle import FruitVegTramConsist, ElectricVehicleUnit
 
 consist = FruitVegTramConsist(id='nutbrook_fruit_veg',
                        base_numeric_id=960,
@@ -6,7 +6,7 @@ consist = FruitVegTramConsist(id='nutbrook_fruit_veg',
                        vehicle_life=40,
                        gen=3)
 
-consist.add_unit(type=ElectricRoadVehicle,
+consist.add_unit(type=ElectricVehicleUnit,
                  capacity=36,
                  vehicle_length=8,
                  repeat=2)

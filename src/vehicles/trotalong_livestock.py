@@ -1,4 +1,4 @@
-from road_vehicle import LivestockTramConsist, ElectricRoadVehicle
+from road_vehicle import LivestockTramConsist, ElectricVehicleUnit
 
 consist = LivestockTramConsist(id='trotalong_livestock',
                         base_numeric_id=720,
@@ -7,7 +7,7 @@ consist = LivestockTramConsist(id='trotalong_livestock',
                         gen=2,
                         intro_date_offset=1)  # introduce later than gen epoch by design
 
-consist.add_unit(type=ElectricRoadVehicle,
+consist.add_unit(type=ElectricVehicleUnit,
                  capacity=30,
                  vehicle_length=8,
                  repeat=2)

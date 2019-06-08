@@ -1,4 +1,4 @@
-from road_vehicle import DumpTramConsist, ElectricRoadVehicle
+from road_vehicle import DumpTramConsist, ElectricVehicleUnit
 
 consist = DumpTramConsist(id='hawkmoor_dump',
                    base_numeric_id=760,
@@ -7,7 +7,7 @@ consist = DumpTramConsist(id='hawkmoor_dump',
                    gen=2,
                    intro_date_offset=2)  # introduce later than gen epoch by design
 
-consist.add_unit(type=ElectricRoadVehicle,
+consist.add_unit(type=ElectricVehicleUnit,
                  capacity=30,
                  vehicle_length=8,
                  repeat=2)

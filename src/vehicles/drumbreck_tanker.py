@@ -1,4 +1,4 @@
-from road_vehicle import TankerTramConsist, SteamRoadVehicle
+from road_vehicle import TankerTramConsist, SteamVehicleUnit
 
 consist = TankerTramConsist(id='drumbreck_tanker',
                      base_numeric_id=800,
@@ -7,7 +7,7 @@ consist = TankerTramConsist(id='drumbreck_tanker',
                      gen=1,
                      intro_date_offset=4)  # introduce later than gen epoch by design
 
-consist.add_unit(type=SteamRoadVehicle,
+consist.add_unit(type=SteamVehicleUnit,
                  vehicle_length=4,
                  always_use_same_spriterow=True)
 

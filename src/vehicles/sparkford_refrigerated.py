@@ -1,4 +1,4 @@
-from road_vehicle import RefrigeratedTramConsist, ElectricRoadVehicle
+from road_vehicle import RefrigeratedTramConsist, ElectricVehicleUnit
 
 consist = RefrigeratedTramConsist(id='sparkford_refrigerated',
                            base_numeric_id=390,
@@ -7,7 +7,7 @@ consist = RefrigeratedTramConsist(id='sparkford_refrigerated',
                            gen=3,
                            intro_date_offset=10)  # introduce later than gen epoch by design
 
-consist.add_unit(type=ElectricRoadVehicle,
+consist.add_unit(type=ElectricVehicleUnit,
                  capacity=36,
                  vehicle_length=8,
                  repeat=2)

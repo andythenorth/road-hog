@@ -669,7 +669,7 @@ class RoadVehicle(object):
         return nml_result
 
 
-class SteamRoadVehicle(RoadVehicle):
+class SteamVehicleUnit(RoadVehicle):
     """
     Unit for a steam vehicle, with over-rideable smoke
     """
@@ -681,7 +681,7 @@ class SteamRoadVehicle(RoadVehicle):
         self.consist.default_sound_effect = 'SOUND_FACTORY_WHISTLE'
 
 
-class DieselRoadVehicle(RoadVehicle):
+class DieselVehicleUnit(RoadVehicle):
     """
     Unit for a diesel vehicle, with over-rideable smoke
     """
@@ -694,7 +694,7 @@ class DieselRoadVehicle(RoadVehicle):
         self.consist.default_sound_effect = 'SOUND_BUS_START_PULL_AWAY' # sound effect mis-named, original base set uses this for trucks
 
 
-class ElectricRoadVehicle(RoadVehicle):
+class ElectricVehicleUnit(RoadVehicle):
     """
     Unit for an electric vehicle, with over-rideable sparks
     """

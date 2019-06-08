@@ -1,4 +1,4 @@
-from road_vehicle import EdiblesTankerTruckConsist, DieselRoadVehicle
+from road_vehicle import EdiblesTankerTruckConsist, DieselVehicleUnit
 
 consist = EdiblesTankerTruckConsist(id='beerwoods_edibles_tanker',
                              base_numeric_id=420,
@@ -7,7 +7,7 @@ consist = EdiblesTankerTruckConsist(id='beerwoods_edibles_tanker',
                              gen=3,
                              intro_date_offset=4)  # introduce later than gen epoch by design
 
-consist.add_unit(type=DieselRoadVehicle,
+consist.add_unit(type=DieselVehicleUnit,
                  capacity=15,
                  vehicle_length=5)
 

@@ -1,4 +1,4 @@
-from road_vehicle import RefrigeratedTruckConsist, DieselRoadVehicle
+from road_vehicle import RefrigeratedTruckConsist, DieselVehicleUnit
 
 consist = RefrigeratedTruckConsist(id='coldfall_refrigerated',
                             base_numeric_id=150,
@@ -8,7 +8,7 @@ consist = RefrigeratedTruckConsist(id='coldfall_refrigerated',
                             gen=5,
                             intro_date_offset=1)  # introduce later than gen epoch by design
 
-consist.add_unit(type=DieselRoadVehicle,
+consist.add_unit(type=DieselVehicleUnit,
                  capacity=0,
                  vehicle_length=2,
                  semi_truck_shift_offset_jank=2,

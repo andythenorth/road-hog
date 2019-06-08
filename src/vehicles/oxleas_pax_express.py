@@ -1,4 +1,4 @@
-from road_vehicle import PaxExpressCoachConsist, DieselRoadVehicle
+from road_vehicle import PaxExpressCoachConsist, DieselVehicleUnit
 
 # for each generation, bus and coach variants have same power and intro date
 # coaches faster, lower capacity than equivalent bus
@@ -12,6 +12,6 @@ consist = PaxExpressCoachConsist(id='oxleas_pax_express',
                           gen=4,
                           intro_date_offset=-4)  # introduce earlier than gen epoch by design
 
-consist.add_unit(type=DieselRoadVehicle,
+consist.add_unit(type=DieselVehicleUnit,
                  capacity=40,
                  vehicle_length=7)

@@ -1,4 +1,4 @@
-from road_vehicle import PaxExpressCoachConsist, DieselRoadVehicle
+from road_vehicle import PaxExpressCoachConsist, DieselVehicleUnit
 
 # !! unused ??
 # for each generation, bus and coach variants have same power and intro date
@@ -13,6 +13,6 @@ consist = PaxExpressCoachConsist(id='big_sky_pax_express',
                           gen=4,
                           intro_date=1990)
 
-consist.add_unit(type=DieselRoadVehicle,
+consist.add_unit(type=DieselVehicleUnit,
                  capacity=40,  # coaches never need high capacity
                  vehicle_length=7)

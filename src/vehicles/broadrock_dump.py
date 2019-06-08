@@ -1,4 +1,4 @@
-from road_vehicle import DumpHEQSConsist, DieselRoadVehicle
+from road_vehicle import DumpHEQSConsist, DieselVehicleUnit
 
 consist = DumpHEQSConsist(id='broadrock_dump',
                    base_numeric_id=100,
@@ -11,7 +11,7 @@ consist = DumpHEQSConsist(id='broadrock_dump',
                    gen=3,
                    intro_date_offset=-3)  # introduce earlier than gen epoch by design
 
-consist.add_unit(type=DieselRoadVehicle,
+consist.add_unit(type=DieselVehicleUnit,
                  capacity=0,
                  vehicle_length=2,
                  semi_truck_shift_offset_jank=3,

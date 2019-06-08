@@ -1,16 +1,16 @@
 from base_platform import BasePlatform
-from road_vehicle import DieselRoadVehicle, SteamRoadVehicle
+from road_vehicle import DieselVehicleUnit, SteamVehicleUnit
 
 
 class SteamEngineFeldbahn1(BasePlatform):
-    type = SteamRoadVehicle
+    type = SteamVehicleUnit
     vehicle_length = 4
     capacity = 0
     always_use_same_spriterow = True
 
 
 class DieselEngineFeldbahn1(BasePlatform):
-    type = DieselRoadVehicle
+    type = DieselVehicleUnit
     vehicle_length = 4
     capacity = 0
     always_use_same_spriterow = True

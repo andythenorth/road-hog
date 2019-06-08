@@ -1,4 +1,4 @@
-from road_vehicle import BoxTruckConsist, SteamRoadVehicle
+from road_vehicle import BoxTruckConsist, SteamVehicleUnit
 
 consist = BoxTruckConsist(id='runwell_box',
                    base_numeric_id=890,
@@ -7,7 +7,7 @@ consist = BoxTruckConsist(id='runwell_box',
                    vehicle_life=40,
                    gen=2)
 
-consist.add_unit(type=SteamRoadVehicle,
+consist.add_unit(type=SteamVehicleUnit,
                  capacity=0,
                  vehicle_length=2,
                  semi_truck_shift_offset_jank=2,

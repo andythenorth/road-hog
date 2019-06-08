@@ -1,4 +1,4 @@
-from road_vehicle import SuppliesCakeConsist, DieselRoadVehicle
+from road_vehicle import SuppliesCakeConsist, DieselVehicleUnit
 
 consist = SuppliesCakeConsist(id='road_thief_supplies',
                        base_numeric_id=560,
@@ -7,7 +7,7 @@ consist = SuppliesCakeConsist(id='road_thief_supplies',
                        vehicle_life=40,
                        gen=4)
 
-consist.add_unit(type=DieselRoadVehicle,
+consist.add_unit(type=DieselVehicleUnit,
                  capacity=0,
                  vehicle_length=7,
                  always_use_same_spriterow=True)

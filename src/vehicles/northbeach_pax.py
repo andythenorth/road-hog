@@ -1,4 +1,4 @@
-from road_vehicle import PaxLocalTramConsist, ElectricRoadVehicle
+from road_vehicle import PaxLocalTramConsist, ElectricVehicleUnit
 
 consist = PaxLocalTramConsist(id='northbeach_pax',
                        base_numeric_id=690,
@@ -7,7 +7,7 @@ consist = PaxLocalTramConsist(id='northbeach_pax',
                        gen=4,
                        intro_date_offset=1)  # introduce later than gen epoch by design
 
-consist.add_unit(type=ElectricRoadVehicle,
+consist.add_unit(type=ElectricVehicleUnit,
                  capacity=60,
                  vehicle_length=8,
                  effects=['EFFECT_SPRITE_ELECTRIC, 0, 0, 12'],

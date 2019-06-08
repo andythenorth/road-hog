@@ -1,4 +1,4 @@
-from road_vehicle import CoveredHopperTruckConsist, DieselRoadVehicle
+from road_vehicle import CoveredHopperTruckConsist, DieselVehicleUnit
 
 consist = CoveredHopperTruckConsist(id='mcdowell_covered_hopper',
                              base_numeric_id=280,
@@ -8,7 +8,7 @@ consist = CoveredHopperTruckConsist(id='mcdowell_covered_hopper',
                              gen=5,
                              intro_date_offset=10)  # introduce later than gen epoch by design
 
-consist.add_unit(type=DieselRoadVehicle,
+consist.add_unit(type=DieselVehicleUnit,
                  capacity=0,
                  vehicle_length=2,
                  semi_truck_shift_offset_jank=2,

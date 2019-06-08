@@ -1,4 +1,4 @@
-from road_vehicle import DumpTruckConsist, SteamRoadVehicle
+from road_vehicle import DumpTruckConsist, SteamVehicleUnit
 
 consist = DumpTruckConsist(id='coleman_dump',
                     base_numeric_id=910,
@@ -8,7 +8,7 @@ consist = DumpTruckConsist(id='coleman_dump',
                     gen=2,
                     intro_date_offset=7)  # introduce later than gen epoch by design
 
-consist.add_unit(type=SteamRoadVehicle,
+consist.add_unit(type=SteamVehicleUnit,
                  capacity=0,
                  vehicle_length=2,
                  semi_truck_shift_offset_jank=2,

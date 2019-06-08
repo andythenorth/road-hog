@@ -1,4 +1,4 @@
-from road_vehicle import BoxTruckConsist, DieselRoadVehicle
+from road_vehicle import BoxTruckConsist, DieselVehicleUnit
 
 consist = BoxTruckConsist(id='easywheal_box',
                    base_numeric_id=160,
@@ -7,7 +7,7 @@ consist = BoxTruckConsist(id='easywheal_box',
                    vehicle_life=40,
                    gen=3)
 
-consist.add_unit(type=DieselRoadVehicle,
+consist.add_unit(type=DieselVehicleUnit,
                  capacity=0,
                  vehicle_length=2,
                  semi_truck_shift_offset_jank=2,

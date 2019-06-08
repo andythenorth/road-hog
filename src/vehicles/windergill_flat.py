@@ -1,4 +1,4 @@
-from road_vehicle import FlatbedTruckConsist, DieselRoadVehicle
+from road_vehicle import FlatbedTruckConsist, DieselVehicleUnit
 
 consist = FlatbedTruckConsist(id='windergill_flat',
                        base_numeric_id=640,
@@ -6,7 +6,7 @@ consist = FlatbedTruckConsist(id='windergill_flat',
                        vehicle_life=40,
                        gen=3)
 
-consist.add_unit(type=DieselRoadVehicle,
+consist.add_unit(type=DieselVehicleUnit,
                  capacity=15,
                  vehicle_length=5,
                  cargo_length=3)

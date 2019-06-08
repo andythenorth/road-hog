@@ -1,4 +1,4 @@
-from road_vehicle import LivestockTruckConsist, DieselRoadVehicle
+from road_vehicle import LivestockTruckConsist, DieselVehicleUnit
 
 consist = LivestockTruckConsist(id='swineshead_livestock',
                          base_numeric_id=440,
@@ -7,7 +7,7 @@ consist = LivestockTruckConsist(id='swineshead_livestock',
                          gen=4,
                          intro_date_offset=2)  # introduce later than gen epoch by design
 
-consist.add_unit(type=DieselRoadVehicle,
+consist.add_unit(type=DieselVehicleUnit,
                  capacity=25,
                  vehicle_length=6)
 

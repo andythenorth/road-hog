@@ -1,4 +1,4 @@
-from road_vehicle import FruitVegTramConsist, SteamRoadVehicle
+from road_vehicle import FruitVegTramConsist, SteamVehicleUnit
 
 consist = FruitVegTramConsist(id='plumley_fruit_veg',
                        base_numeric_id=950,
@@ -7,7 +7,7 @@ consist = FruitVegTramConsist(id='plumley_fruit_veg',
                        gen=1,
                        intro_date_offset=1)  # introduce later than gen epoch by design
 
-consist.add_unit(type=SteamRoadVehicle,
+consist.add_unit(type=SteamVehicleUnit,
                  capacity=0,
                  vehicle_length=4,
                  effects=['EFFECT_SPRITE_STEAM, -2, 0, 14'],
