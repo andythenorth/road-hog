@@ -114,7 +114,7 @@ class Consist(object):
                     # guard against unintended application of this to anything except first trailer
                     utils.echo_message("Error: " + self.id + ".  Semi-truck cannot repeat first trailer in consist")
                 unit._capacity = int(math.floor(0.5 * unit._capacity))
-                self.units[0]._capacity = int(math.ceil(0.5 * self.units[0]._capacity))
+                self.units[0]._capacity = unit._capacity
 
         for repeat_num in range(repeat):
             unit.unit_position_in_consist = count + repeat_num
