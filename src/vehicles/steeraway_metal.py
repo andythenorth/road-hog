@@ -13,6 +13,6 @@ consist.add_unit(type=DieselVehicleUnit,
                  capacity=0,
                  vehicle_length=6)
 
-consist.add_unit(capacity=50,
+consist.add_unit(#capacity=50,
                  vehicle_length=7,
                  repeat=2)

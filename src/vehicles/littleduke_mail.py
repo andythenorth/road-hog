@@ -10,5 +10,4 @@ consist = MailTruckConsist(id='littleduke_mail',
                     intro_date_offset=1)  # introduce later than gen epoch by design
 
 consist.add_unit(type=DieselVehicleUnit,
-                 capacity=25,
                  vehicle_length=6)

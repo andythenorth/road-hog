@@ -8,5 +8,5 @@ consist = IntermodalHaulerConsist(id='foreshore',
                            gen=4,
                            intro_date=1959)
 
-consist.add_unit(capacity=50,
+consist.add_unit(#capacity=50,
                  vehicle_length=7)

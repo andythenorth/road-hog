@@ -12,5 +12,5 @@ consist.add_unit(type=DieselVehicleUnit,
                  vehicle_length=7,
                  always_use_same_spriterow=True)
 
-consist.add_unit(capacity=45,
+consist.add_unit(#capacity=45,
                  vehicle_length=7)

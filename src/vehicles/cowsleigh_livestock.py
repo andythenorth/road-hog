@@ -8,9 +8,7 @@ consist = LivestockTruckConsist(id='cowsleigh_livestock',
                          intro_date_offset=1)  # introduce later than gen epoch by design
 
 consist.add_unit(type=SteamVehicleUnit,
-                 capacity=14,
                  vehicle_length=6,
                  effects=['EFFECT_SPRITE_STEAM, -5, 0, 12'])
 
-consist.add_unit(capacity=10,
-                 vehicle_length=4)
+consist.add_unit(vehicle_length=4)

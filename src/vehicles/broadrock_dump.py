@@ -18,5 +18,5 @@ consist.add_unit(type=DieselVehicleUnit,
                           'EFFECT_SPRITE_AIRCRAFT_BREAKDOWN_SMOKE, -2, -1, 10'],
                  always_use_same_spriterow=True)
 
-consist.add_unit(capacity=55,  # much bigger is not much better here
+consist.add_unit(#capacity=55,  # much bigger is not much better here
                  vehicle_length=6)

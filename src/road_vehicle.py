@@ -1083,7 +1083,7 @@ class RoadVehicle(object):
         if self._capacity is not None:
             base_capacity = self._capacity
             if base_capacity != 0:
-                print(self.consist.id)
+                print('capacity is set for', self.consist.id)
         else:
             base_capacity = self.consist.roster.unit_capacity_per_vehicle_type[self.consist.vehicle_role][self.consist.gen - 1]
         if self.consist.semi_truck_so_redistribute_capacity:

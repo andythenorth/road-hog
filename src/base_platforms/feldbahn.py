@@ -19,22 +19,18 @@ class DieselEngineFeldbahn1(BasePlatform):
 class OpenWagonFeldbahnGen1(BasePlatform):
     vehicle_length = 4
     cargo_length = 3
-    capacity = 28
 
 
 class OpenWagonFeldbahnGen2(BasePlatform):
     vehicle_length = 4
     cargo_length = 3
-    capacity = 28
 
 
 class OpenWagonFeldbahnGen3(BasePlatform):
     vehicle_length = 4
     cargo_length = 3
-    capacity = 28
 
 
 class OpenWagonFeldbahnGen4(BasePlatform):
     vehicle_length = 4
     cargo_length = 3
-    capacity = 28
