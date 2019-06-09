@@ -4,7 +4,7 @@ consist = DumpHEQSConsist(id='broadrock_dump',
                    base_numeric_id=100,
                    name='Broadrock',
                    power=400,
-                   semi_truck_so_redistribute_capacity=True,
+                   #semi_truck_so_redistribute_capacity=True,
                    speed=40,  # dibbled up above RL for game balance
                    type_base_running_cost_points=20,  # dibble running costs for game balance
                    gen=3,

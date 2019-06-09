@@ -4,7 +4,6 @@ from base_platforms.trucks import DieselCaboverSemiTractorTruckGen4A
 consist = CoveredHopperTruckConsist(id='ribble_covered_hopper',
                              base_numeric_id=360,
                              name='Ribble',
-                             semi_truck_so_redistribute_capacity=True,
                              gen=4,
                              intro_date_offset=10)  # introduce later than gen epoch by design
 

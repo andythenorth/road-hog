@@ -3,7 +3,7 @@ from road_vehicle import BoxTruckConsist, SteamVehicleUnit
 consist = BoxTruckConsist(id='runwell_box',
                    base_numeric_id=890,
                    name='Runwell',
-                   semi_truck_so_redistribute_capacity=True,
+                   #semi_truck_so_redistribute_capacity=True,
                    gen=2)
 
 consist.add_unit(type=SteamVehicleUnit,
