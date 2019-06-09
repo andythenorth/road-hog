@@ -12,7 +12,7 @@ class SteamCaboverSemiTractorTruckGen2A(SemiTractorTruckBase):
     type = SteamVehicleUnit
     vehicle_length = 2
     semi_truck_shift_offset_jank = 2
-    effects = ['EFFECT_SPRITE_STEAM, -3, 0, 12'],
+    effects = ['EFFECT_SPRITE_STEAM, -3, 0, 12']
 
 
 class DieselCaboverSemiTractorTruckGen3A(SemiTractorTruckBase):
