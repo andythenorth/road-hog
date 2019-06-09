@@ -100,22 +100,6 @@ class Consist(object):
             unit.id = self.id + '_' + str(count)
         unit.numeric_id = self.get_and_verify_numeric_id(count)
 
-        # !! this could be done when .capacity is called, not in the factory
-        if self.semi_truck_so_redistribute_capacity:
-            print('semi_truck capaciity should not need handled in add_unit, should be possible in capacity()')
-            if count == 0 and kwargs.get('capacity', 0) != 0:
-                # guard against lead unit having capacity set in declared props (won't break, just wrong)
-                utils.echo_message("Error: " + self.id + ".  First unit of semi-truck must have capacity 0")
-            if count == 1:
-                # semi-trucks need some capacity moved to lead unit to gain sufficient TE
-                # this automagically does that, allowing capacities to be defined simply on the trailer in the vehicle definition
-                # sometimes a greater good requires a small evil, although this will probably go wrong eh?
-                if repeat != 1:
-                    # guard against unintended application of this to anything except first trailer
-                    utils.echo_message("Error: " + self.id + ".  Semi-truck cannot repeat first trailer in consist")
-                unit._capacity = int(math.floor(0.5 * unit._capacity))
-                self.units[0]._capacity = unit._capacity
-
         for repeat_num in range(repeat):
             unit.unit_position_in_consist = count + repeat_num
             self.units.append(unit)
@@ -1087,7 +1071,17 @@ class RoadVehicle(object):
 
     @property
     def capacity(self):
-        return self._capacity
+        if self.consist.semi_truck_so_redistribute_capacity:
+            if self.unit_position_in_consist == 0 and self._capacity != 0:
+                # guard against lead unit having capacity set in declared props (won't break, just wrong)
+                utils.echo_message("Error: " + self.id + ".  First unit of semi-truck must have capacity 0")
+            # semi-trucks need some capacity moved to lead unit to gain sufficient TE
+            # this automagically does that, by splitting the capacity of first trailer 50:50 to tractor and trailer
+            # sometimes a greater good requires a small evil, although this will probably go wrong eh?
+            result = int(math.floor(0.5 * self.consist.units[1]._capacity)) # !! this won't work once capacity is derived, nor can it be circular eh !!
+        else:
+            result = self._capacity
+        return result
 
     def get_loading_speed(self, cargo_type, capacity_multiplier):
         # ottd vehicles load at different rates depending on type,
