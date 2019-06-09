@@ -100,6 +100,7 @@ class Consist(object):
             unit.id = self.id + '_' + str(count)
         unit.numeric_id = self.get_and_verify_numeric_id(count)
 
+        # !! this could be done when .capacity is called, not in the factory
         if self.semi_truck_so_redistribute_capacity:
             if count == 0 and kwargs.get('capacity', 0) != 0:
                 # guard against lead unit having capacity set in declared props (won't break, just wrong)
@@ -111,9 +112,8 @@ class Consist(object):
                 if repeat != 1:
                     # guard against unintended application of this to anything except first trailer
                     utils.echo_message("Error: " + self.id + ".  Semi-truck cannot repeat first trailer in consist")
-                specified_capacities = unit.capacities
-                unit.capacities = [int(math.floor(0.5 * capacity)) for capacity in specified_capacities]
-                self.units[0].capacities = [int(math.ceil(0.5 * capacity)) for capacity in specified_capacities]
+                unit._capacity = int(math.floor(0.5 * unit._capacity))
+                self.units[0]._capacity = int(math.ceil(0.5 * self.units[0]._capacity))
 
         for repeat_num in range(repeat):
             self.units.append(unit)
@@ -191,9 +191,9 @@ class Consist(object):
         # Up to 20 points for capacity. 1 point per 12.75t.
         # !! this seems to lack any divisor?  Bug??
         # Capacity capped at 255, this isn't a hard limit, but is a design limit, so raise a warning
-        if self.total_capacities[1] > 255:
+        if self.total_capacity > 255:
             utils.echo_message("Consist " + self.id + " has capacity > 255, which is too much")
-        consist_capacity_points = min(self.total_capacities[1], 255)
+        consist_capacity_points = min(self.total_capacity, 255)
 
         return power_cost_points + speed_cost_points + date_cost_points + consist_capacity_points
 
@@ -242,27 +242,21 @@ class Consist(object):
         # trams are 10% heavier per capacity
         if self.roadveh_flag_tram:
             mult = mult + 0.1
-        consist_weight = mult * self.total_capacities[1]
+        consist_weight = mult * self.total_capacity
         if consist_weight > 63:
             utils.echo_message("Error: consist weight is " + str(consist_weight) + "t for " + self.id + "; must be < 63t")
             utils.echo_message("Reimplement weight property as callback (cb36 isn't capped to 63.75t)")
         return min(consist_weight, 63)
 
     @property
-    def total_capacities(self):
-        # total capacity of consist, summed from vehicles (with variants for capacity multipler param)
+    def total_capacity(self):
+        # total capacity of consist, summed from vehicles
         # convenience function used only when the total consist capacity is needed rather than per-unit
-        result = []
-        for i in range(3):
-            consist_capacity = 0
-            for unit in self.units:
-                # possibly fragile assumption that mail vehicles will always have to put mail first in default cargo list
-                if self.default_cargos[0] == 'MAIL':
-                    consist_capacity += int(global_constants.mail_multiplier * unit.capacities[i])
-                else:
-                    consist_capacity += unit.capacities[i]
-            result.append(consist_capacity)
-        return result
+        consist_capacity = sum([unit.capacity for unit in self.units])
+        # possibly fragile assumption that mail vehicles will always have to put mail first in default cargo list
+        if self.default_cargos[0] == 'MAIL':
+            consist_capacity = int(global_constants.mail_multiplier * consist_capacity)
+        return consist_capacity
 
     @property
     def refittable_classes(self):
@@ -1044,8 +1038,9 @@ class RoadVehicle(object):
         # vehicle_length is either derived from chassis length or similar, or needs to be set explicitly as kwarg
         self._vehicle_length = kwargs.get('vehicle_length', None)
         self.semi_truck_shift_offset_jank = kwargs.get('semi_truck_shift_offset_jank', None)
-        # capacities variable by parameter
-        self.capacities = self.get_capacity_variations(kwargs.get('capacity', 0))
+        # capacity derived from vehicle length, type and generation, or can be over-ridden by setting explicitly in kwarg
+        self._capacity = kwargs.get('capacity', 0)
+        print('_capacity should default to None not 0, WIP')
         # optional - some consists have sequences like A1-B-A2, where A1 and A2 look the same but have different IDs for implementation reasons
         # avoid duplicating sprites on the spritesheet by forcing A2 to use A1's spriterow_num, fiddly eh?
         # ugly, but eh.  Zero-indexed, based on position in units[]
@@ -1087,15 +1082,12 @@ class RoadVehicle(object):
 
     @property
     def capacity(self):
-        return 40
-
-    def get_capacity_variations(self, capacity):
-        # capacity is variable, controlled by a newgrf parameter
-        # we cache the available variations on the vehicle instead of working them out every time - easier
-        # allow that integer maths is needed for newgrf cb results; round up for safety
-        return [int(math.ceil(capacity * multiplier)) for multiplier in global_constants.capacity_multipliers]
+        return 20
 
     def get_loading_speed(self, cargo_type, capacity_param):
+        print('get_loading_speed needs updated to allow for capacity reimplementation')
+        return 1
+        """
         # ottd vehicles load at different rates depending on type,
         # normalise default loading time for this set to 240 ticks, regardless of capacity
         # openttd loading rates vary by transport type, look them up in wiki to find value to use here to normalise loading time to 240 ticks
@@ -1105,6 +1097,7 @@ class RoadVehicle(object):
             capacity = int(global_constants.mail_multiplier * capacity)
         result = int(self.consist.loading_speed_multiplier * math.ceil(capacity / transport_type_rate))
         return max(result, 1)
+        """
 
     @property
     def availability(self):

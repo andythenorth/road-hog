@@ -10,7 +10,7 @@ switch (FEAT_ROADVEHS, SELF, ${vehicle.id}_create_visual_effect, ${vehicle.get_e
 item(FEAT_ROADVEHS, ${vehicle.id}, ${vehicle.numeric_id}) {
     property {
         name:                           ${consist.name};
-        cargo_capacity:                 ${vehicle.capacities[0]};
+        cargo_capacity:                 ${vehicle.capacity};
         sprite_id:                      SPRITE_ID_NEW_ROADVEH; //enable new graphics - nml constant
         <!--! insert either road_type or  track_type as appropriate to the vehicle type -->
         ${consist.get_expression_for_road_or_tram_type}

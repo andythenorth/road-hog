@@ -28,7 +28,6 @@ class BasePlatform(object):
 
         self.semi_truck_shift_offset_jank = kwargs.get('semi_truck_shift_offset_jank', None)
         # capacities variable by parameter
-        self.capacities = self.get_capacity_variations(kwargs.get('capacity', 0))
         # optional - some consists have sequences like A1-B-A2, where A1 and A2 look the same but have different IDs for implementation reasons
         # avoid duplicating sprites on the spritesheet by forcing A2 to use A1's spriterow_num, fiddly eh?
         # ugly, but eh.  Zero-indexed, based on position in units[]
