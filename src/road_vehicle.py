@@ -492,221 +492,6 @@ class TrackTypeMixinTruckBusCoach(TrackTypeMixinBase):
     name_suffix_vehicle_type = "_TRUCK" # default to truck, over-ride in consist subclasses for bus or coach
 
 
-class RoadVehicle(object):
-    """Base class for all types of road vehicles"""
-    def __init__(self, **kwargs):
-        self.consist = kwargs.get('consist')
-        # setup properties for this road vehicle
-        self.numeric_id = kwargs.get('numeric_id', None)
-        # if there's a base platform, keep that around (n.b consist.add_unit will already have used it to create this unit in a pseudo factory)
-        self.base_platform = kwargs.get('base_platform', None)
-        # vehicle_length is either derived from chassis length or similar, or needs to be set explicitly as kwarg
-        self._vehicle_length = kwargs.get('vehicle_length', None)
-        self.semi_truck_shift_offset_jank = kwargs.get('semi_truck_shift_offset_jank', None)
-        # capacities variable by parameter
-        self.capacities = self.get_capacity_variations(kwargs.get('capacity', 0))
-        # optional - some consists have sequences like A1-B-A2, where A1 and A2 look the same but have different IDs for implementation reasons
-        # avoid duplicating sprites on the spritesheet by forcing A2 to use A1's spriterow_num, fiddly eh?
-        # ugly, but eh.  Zero-indexed, based on position in units[]
-        # watch out for repeated vehicles in the consist when calculating the value for this)
-        # !! I don't really like this solution, might be better to have the graphics processor duplicate this?, with a simple map of [source:duplicate_to]
-        self.unit_num_providing_spriterow_num = kwargs.get('unit_num_providing_spriterow_num', None)
-        # optional - force always using same spriterow
-        # for cases where the template handles cargo, but some units in the consist might not show cargo, e.g. tractor units etc
-        # can also be used to suppress compile failures during testing when spritesheet is unfinished (missing rows etc)
-        self.always_use_same_spriterow = kwargs.get('always_use_same_spriterow', False)
-        # optional - only set if the graphics processor generates the vehicle chassis
-        self.chassis = kwargs.get('chassis', None)
-        # only set if the graphics processor requires it to generate cargo sprites
-        # defines the size of cargo sprite to use
-        # if the vehicle cargo area is not an OTTD unit length, use the next size up and the masking will sort it out
-        # some longer vehicles may place multiple shorter cargo sprites, e.g. 7/8 vehicle, 2 * 4/8 cargo sprites (with some overlapping)
-        self.cargo_length = kwargs.get('cargo_length', None)
-        # effects can be specified in detail per vehicle, or fall back to those defined by RoadVehicle subclass
-        self._effect_spawn_model = kwargs.get('effect_spawn_model', None)
-        self.effects = kwargs.get('effects', []) # default for effects is an empty list
-        self.default_effect_sprite = None # default is no effect sprite
-
-    @property
-    def vehicle_length(self):
-        # length of this unit, either derived from from chassis length, or set explicitly via keyword
-        # first guard that one and only one of these props is set
-        if self._vehicle_length is not None and self.chassis is not None:
-            utils.echo_message(self.consist.id + ' has units with both chassis and length properties set')
-        if self._vehicle_length is None and self.chassis is None:
-            utils.echo_message(self.consist.id + ' has units with neither chassis nor length properties set')
-
-        if self.chassis is not None:
-            # assume that chassis name format is 'foo_bar_ham_eggs_24px' or similar - true as of April 2019
-            # if chassis name format changes / varies in future, just update the string slice accordingly, safe enough
-            result = (int(self.chassis[-4:-2]))
-            return int(result / 4)
-        else:
-            return self._vehicle_length
-
-    def get_capacity_variations(self, capacity):
-        # capacity is variable, controlled by a newgrf parameter
-        # we cache the available variations on the vehicle instead of working them out every time - easier
-        # allow that integer maths is needed for newgrf cb results; round up for safety
-        return [int(math.ceil(capacity * multiplier)) for multiplier in global_constants.capacity_multipliers]
-
-    def get_loading_speed(self, cargo_type, capacity_param):
-        # ottd vehicles load at different rates depending on type,
-        # normalise default loading time for this set to 240 ticks, regardless of capacity
-        # openttd loading rates vary by transport type, look them up in wiki to find value to use here to normalise loading time to 240 ticks
-        transport_type_rate = 12 # this is (240 / loading frequency in ticks for transport type) from wiki
-        capacity = self.capacities[capacity_param]
-        if cargo_type == 'mail':
-            capacity = int(global_constants.mail_multiplier * capacity)
-        result = int(self.consist.loading_speed_multiplier * math.ceil(capacity / transport_type_rate))
-        return max(result, 1)
-
-    @property
-    def availability(self):
-        # only show vehicle in buy menu if it is first vehicle in consist
-        if self.is_lead_unit_of_consist:
-            return "ALL_CLIMATES"
-        else:
-            return "NO_CLIMATE"
-
-    @property
-    def effect_spawn_model(self):
-        # effect spawn model is set per unit in RoadVehicle subclasses
-        # can also be over-ridden per vehicle but that shouldn't be needed
-        if self._effect_spawn_model:
-            return self._effect_spawn_model
-        else:
-            # handle the possible case that the subclass hasn't defined effect spawn model
-            # !! by design, this shouldn't be reached, and can probably be removed, and any non=compliant cases fixed, but TMWFTLB right now
-            if self.consist.requires_electricity_supply == True:
-                return 'EFFECT_SPAWN_MODEL_ELECTRIC'
-            else:
-                return 'EFFECT_SPAWN_MODEL_DIESEL'
-
-    @property
-    def is_lead_unit_of_consist(self):
-        # could be refactored - 'if self.consist.units.index(self.id) == 0:'
-        if self.numeric_id == self.consist.base_numeric_id:
-            return True
-        else:
-            return False
-
-    @property
-    def special_flags(self):
-        special_flags = ['ROADVEH_FLAG_2CC']
-        if self.consist.autorefit == True:
-            special_flags.append('ROADVEH_FLAG_AUTOREFIT')
-        if self.consist.roadveh_flag_tram == True:
-            special_flags.append('ROADVEH_FLAG_TRAM')
-        return ','.join(special_flags)
-
-    @property
-    def offsets(self):
-        if self.semi_truck_shift_offset_jank:
-            result = []
-            for i in range (0, 8):
-                base_offsets = global_constants.default_road_vehicle_offsets[str(self.vehicle_length)][i]
-                offset_deltas = [self.semi_truck_shift_offset_jank * offset for offset in global_constants.semi_truck_offset_jank[i]]
-                result.append([base_offsets[0] + offset_deltas[0], base_offsets[1] + offset_deltas[1]])
-            return result
-        else:
-            return global_constants.default_road_vehicle_offsets[str(self.vehicle_length)]
-
-    @property
-    def spriterow_num(self):
-        # ugly forcing of over-ride for out-of-sequence repeating vehicles
-        if self.unit_num_providing_spriterow_num is not None:
-            return self.unit_num_providing_spriterow_num
-
-        preceding_spriterows = self.consist.get_spriterows_for_consist_or_subpart(self.consist.units[0:self.consist.units.index(self)])
-        result = []
-        for unit_rows in preceding_spriterows:
-            result.append(sum([unit_row[1] for unit_row in unit_rows]))
-        return sum(result)
-
-    @property
-    def vehicle_nml_template(self):
-        if not self.always_use_same_spriterow:
-            if self.consist.gestalt_graphics.nml_template:
-                return self.consist.gestalt_graphics.nml_template
-        # default case
-        return 'vehicle_default.pynml'
-
-    def get_cargo_suffix(self):
-        return 'string(' + self.cargo_units_refit_menu + ')'
-
-    def assert_cargo_labels(self, cargo_labels):
-        for i in cargo_labels:
-            if i not in global_constants.cargo_labels:
-                utils.echo_message("Warning: vehicle " + self.id + " references cargo label " + i + " which is not defined in the cargo table")
-
-    def get_effects(self):
-        # provides part of nml switch for effects (smoke), or none if no effects defined in vehicle or RoadVehicle subclass
-        result = []
-        if len(self.effects) > 0:
-            for index, effect in enumerate(self.effects):
-                 result.append('STORE_TEMP(create_effect(' + effect + '), 0x10' + str(index) + ')')
-        elif self.default_effect_sprite is not None:
-            result.append('STORE_TEMP(create_effect(' + self.default_effect_sprite + ', -2, 0, 10), 0x100)')
-        # only return a list if there's a list to return :P
-        if len(result) > 0:
-            return ['[' + ','.join(result) + ']', len(result)]
-        else:
-            return [0, 0]
-
-    def get_nml_expression_for_cargo_variant_random_switch(self, cargo_id=None):
-        switch_id = self.id + "_switch_graphics" + ('_' + str(cargo_id) if cargo_id is not None else '')
-        return "SELF," + switch_id + ", bitmask(TRIGGER_VEHICLE_ANY_LOAD)"
-
-    def render(self):
-        # integrity tests
-        self.assert_cargo_labels(self.consist.label_refits_allowed)
-        self.assert_cargo_labels(self.consist.label_refits_disallowed)
-        # templating
-        template_name = self.vehicle_nml_template
-        template = templates[template_name]
-        nml_result = template(vehicle=self, consist=self.consist, global_constants=global_constants)
-        return nml_result
-
-
-class SteamVehicleUnit(RoadVehicle):
-    """
-    Unit for a steam vehicle, with over-rideable smoke
-    """
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self._effect_spawn_model = 'EFFECT_SPAWN_MODEL_STEAM'
-        self.default_effect_sprite = 'EFFECT_SPRITE_STEAM'
-        self.consist._power_type_suffix = 'STEAM'
-        self.consist.default_sound_effect = 'SOUND_FACTORY_WHISTLE'
-
-
-class DieselVehicleUnit(RoadVehicle):
-    """
-    Unit for a diesel vehicle, with over-rideable smoke
-    """
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self._effect_spawn_model = 'EFFECT_SPAWN_MODEL_DIESEL'
-        self.default_effect_sprite = 'EFFECT_SPRITE_DIESEL'
-        self.consist._power_type_suffix = 'DIESEL'
-        # this can be over-ridden in consist subclasses for e.g. buses using consist._sound_effect
-        self.consist.default_sound_effect = 'SOUND_BUS_START_PULL_AWAY' # sound effect mis-named, original base set uses this for trucks
-
-
-class ElectricVehicleUnit(RoadVehicle):
-    """
-    Unit for an electric vehicle, with over-rideable sparks
-    """
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.consist.requires_electricity_supply = True
-        self._effect_spawn_model = 'EFFECT_SPAWN_MODEL_ELECTRIC'
-        self.default_effect_sprite = 'EFFECT_SPRITE_ELECTRIC'
-        self.consist._power_type_suffix = 'ELECTRIC'
-        self.consist.default_sound_effect = 'SOUND_ELECTRIC_SPARK'
-
-
 class BoxHaulerConsistBase(Consist):
     """
     Base consist for box haulers. Refits express, piece goods cargos, other selected cargos.
@@ -1247,4 +1032,222 @@ class TankerTruckConsist(TankerConsistBase, TrackTypeMixinTruckBusCoach):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
+
+class RoadVehicle(object):
+    """Base class for all types of road vehicles"""
+    def __init__(self, **kwargs):
+        self.consist = kwargs.get('consist')
+        # setup properties for this road vehicle
+        self.numeric_id = kwargs.get('numeric_id', None)
+        # if there's a base platform, keep that around (n.b consist.add_unit will already have used it to create this unit in a pseudo factory)
+        self.base_platform = kwargs.get('base_platform', None)
+        # vehicle_length is either derived from chassis length or similar, or needs to be set explicitly as kwarg
+        self._vehicle_length = kwargs.get('vehicle_length', None)
+        self.semi_truck_shift_offset_jank = kwargs.get('semi_truck_shift_offset_jank', None)
+        # capacities variable by parameter
+        self.capacities = self.get_capacity_variations(kwargs.get('capacity', 0))
+        # optional - some consists have sequences like A1-B-A2, where A1 and A2 look the same but have different IDs for implementation reasons
+        # avoid duplicating sprites on the spritesheet by forcing A2 to use A1's spriterow_num, fiddly eh?
+        # ugly, but eh.  Zero-indexed, based on position in units[]
+        # watch out for repeated vehicles in the consist when calculating the value for this)
+        # !! I don't really like this solution, might be better to have the graphics processor duplicate this?, with a simple map of [source:duplicate_to]
+        self.unit_num_providing_spriterow_num = kwargs.get('unit_num_providing_spriterow_num', None)
+        # optional - force always using same spriterow
+        # for cases where the template handles cargo, but some units in the consist might not show cargo, e.g. tractor units etc
+        # can also be used to suppress compile failures during testing when spritesheet is unfinished (missing rows etc)
+        self.always_use_same_spriterow = kwargs.get('always_use_same_spriterow', False)
+        # optional - only set if the graphics processor generates the vehicle chassis
+        self.chassis = kwargs.get('chassis', None)
+        # only set if the graphics processor requires it to generate cargo sprites
+        # defines the size of cargo sprite to use
+        # if the vehicle cargo area is not an OTTD unit length, use the next size up and the masking will sort it out
+        # some longer vehicles may place multiple shorter cargo sprites, e.g. 7/8 vehicle, 2 * 4/8 cargo sprites (with some overlapping)
+        self.cargo_length = kwargs.get('cargo_length', None)
+        # effects can be specified in detail per vehicle, or fall back to those defined by RoadVehicle subclass
+        self._effect_spawn_model = kwargs.get('effect_spawn_model', None)
+        self.effects = kwargs.get('effects', []) # default for effects is an empty list
+        self.default_effect_sprite = None # default is no effect sprite
+
+    @property
+    def vehicle_length(self):
+        # length of this unit, either derived from from chassis length, or set explicitly via keyword
+        # first guard that one and only one of these props is set
+        if self._vehicle_length is not None and self.chassis is not None:
+            utils.echo_message(self.consist.id + ' has units with both chassis and length properties set')
+        if self._vehicle_length is None and self.chassis is None:
+            utils.echo_message(self.consist.id + ' has units with neither chassis nor length properties set')
+
+        if self.chassis is not None:
+            # assume that chassis name format is 'foo_bar_ham_eggs_24px' or similar - true as of April 2019
+            # if chassis name format changes / varies in future, just update the string slice accordingly, safe enough
+            result = (int(self.chassis[-4:-2]))
+            return int(result / 4)
+        else:
+            return self._vehicle_length
+
+    @property
+    def capacity(self):
+        return 40
+
+    def get_capacity_variations(self, capacity):
+        # capacity is variable, controlled by a newgrf parameter
+        # we cache the available variations on the vehicle instead of working them out every time - easier
+        # allow that integer maths is needed for newgrf cb results; round up for safety
+        return [int(math.ceil(capacity * multiplier)) for multiplier in global_constants.capacity_multipliers]
+
+    def get_loading_speed(self, cargo_type, capacity_param):
+        # ottd vehicles load at different rates depending on type,
+        # normalise default loading time for this set to 240 ticks, regardless of capacity
+        # openttd loading rates vary by transport type, look them up in wiki to find value to use here to normalise loading time to 240 ticks
+        transport_type_rate = 12 # this is (240 / loading frequency in ticks for transport type) from wiki
+        capacity = self.capacities[capacity_param]
+        if cargo_type == 'mail':
+            capacity = int(global_constants.mail_multiplier * capacity)
+        result = int(self.consist.loading_speed_multiplier * math.ceil(capacity / transport_type_rate))
+        return max(result, 1)
+
+    @property
+    def availability(self):
+        # only show vehicle in buy menu if it is first vehicle in consist
+        if self.is_lead_unit_of_consist:
+            return "ALL_CLIMATES"
+        else:
+            return "NO_CLIMATE"
+
+    @property
+    def effect_spawn_model(self):
+        # effect spawn model is set per unit in RoadVehicle subclasses
+        # can also be over-ridden per vehicle but that shouldn't be needed
+        if self._effect_spawn_model:
+            return self._effect_spawn_model
+        else:
+            # handle the possible case that the subclass hasn't defined effect spawn model
+            # !! by design, this shouldn't be reached, and can probably be removed, and any non=compliant cases fixed, but TMWFTLB right now
+            if self.consist.requires_electricity_supply == True:
+                return 'EFFECT_SPAWN_MODEL_ELECTRIC'
+            else:
+                return 'EFFECT_SPAWN_MODEL_DIESEL'
+
+    @property
+    def is_lead_unit_of_consist(self):
+        # could be refactored - 'if self.consist.units.index(self.id) == 0:'
+        if self.numeric_id == self.consist.base_numeric_id:
+            return True
+        else:
+            return False
+
+    @property
+    def special_flags(self):
+        special_flags = ['ROADVEH_FLAG_2CC']
+        if self.consist.autorefit == True:
+            special_flags.append('ROADVEH_FLAG_AUTOREFIT')
+        if self.consist.roadveh_flag_tram == True:
+            special_flags.append('ROADVEH_FLAG_TRAM')
+        return ','.join(special_flags)
+
+    @property
+    def offsets(self):
+        if self.semi_truck_shift_offset_jank:
+            result = []
+            for i in range (0, 8):
+                base_offsets = global_constants.default_road_vehicle_offsets[str(self.vehicle_length)][i]
+                offset_deltas = [self.semi_truck_shift_offset_jank * offset for offset in global_constants.semi_truck_offset_jank[i]]
+                result.append([base_offsets[0] + offset_deltas[0], base_offsets[1] + offset_deltas[1]])
+            return result
+        else:
+            return global_constants.default_road_vehicle_offsets[str(self.vehicle_length)]
+
+    @property
+    def spriterow_num(self):
+        # ugly forcing of over-ride for out-of-sequence repeating vehicles
+        if self.unit_num_providing_spriterow_num is not None:
+            return self.unit_num_providing_spriterow_num
+
+        preceding_spriterows = self.consist.get_spriterows_for_consist_or_subpart(self.consist.units[0:self.consist.units.index(self)])
+        result = []
+        for unit_rows in preceding_spriterows:
+            result.append(sum([unit_row[1] for unit_row in unit_rows]))
+        return sum(result)
+
+    @property
+    def vehicle_nml_template(self):
+        if not self.always_use_same_spriterow:
+            if self.consist.gestalt_graphics.nml_template:
+                return self.consist.gestalt_graphics.nml_template
+        # default case
+        return 'vehicle_default.pynml'
+
+    def get_cargo_suffix(self):
+        return 'string(' + self.cargo_units_refit_menu + ')'
+
+    def assert_cargo_labels(self, cargo_labels):
+        for i in cargo_labels:
+            if i not in global_constants.cargo_labels:
+                utils.echo_message("Warning: vehicle " + self.id + " references cargo label " + i + " which is not defined in the cargo table")
+
+    def get_effects(self):
+        # provides part of nml switch for effects (smoke), or none if no effects defined in vehicle or RoadVehicle subclass
+        result = []
+        if len(self.effects) > 0:
+            for index, effect in enumerate(self.effects):
+                 result.append('STORE_TEMP(create_effect(' + effect + '), 0x10' + str(index) + ')')
+        elif self.default_effect_sprite is not None:
+            result.append('STORE_TEMP(create_effect(' + self.default_effect_sprite + ', -2, 0, 10), 0x100)')
+        # only return a list if there's a list to return :P
+        if len(result) > 0:
+            return ['[' + ','.join(result) + ']', len(result)]
+        else:
+            return [0, 0]
+
+    def get_nml_expression_for_cargo_variant_random_switch(self, cargo_id=None):
+        switch_id = self.id + "_switch_graphics" + ('_' + str(cargo_id) if cargo_id is not None else '')
+        return "SELF," + switch_id + ", bitmask(TRIGGER_VEHICLE_ANY_LOAD)"
+
+    def render(self):
+        # integrity tests
+        self.assert_cargo_labels(self.consist.label_refits_allowed)
+        self.assert_cargo_labels(self.consist.label_refits_disallowed)
+        # templating
+        template_name = self.vehicle_nml_template
+        template = templates[template_name]
+        nml_result = template(vehicle=self, consist=self.consist, global_constants=global_constants)
+        return nml_result
+
+
+class SteamVehicleUnit(RoadVehicle):
+    """
+    Unit for a steam vehicle, with over-rideable smoke
+    """
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self._effect_spawn_model = 'EFFECT_SPAWN_MODEL_STEAM'
+        self.default_effect_sprite = 'EFFECT_SPRITE_STEAM'
+        self.consist._power_type_suffix = 'STEAM'
+        self.consist.default_sound_effect = 'SOUND_FACTORY_WHISTLE'
+
+
+class DieselVehicleUnit(RoadVehicle):
+    """
+    Unit for a diesel vehicle, with over-rideable smoke
+    """
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self._effect_spawn_model = 'EFFECT_SPAWN_MODEL_DIESEL'
+        self.default_effect_sprite = 'EFFECT_SPRITE_DIESEL'
+        self.consist._power_type_suffix = 'DIESEL'
+        # this can be over-ridden in consist subclasses for e.g. buses using consist._sound_effect
+        self.consist.default_sound_effect = 'SOUND_BUS_START_PULL_AWAY' # sound effect mis-named, original base set uses this for trucks
+
+
+class ElectricVehicleUnit(RoadVehicle):
+    """
+    Unit for an electric vehicle, with over-rideable sparks
+    """
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.consist.requires_electricity_supply = True
+        self._effect_spawn_model = 'EFFECT_SPAWN_MODEL_ELECTRIC'
+        self.default_effect_sprite = 'EFFECT_SPRITE_ELECTRIC'
+        self.consist._power_type_suffix = 'ELECTRIC'
+        self.consist.default_sound_effect = 'SOUND_ELECTRIC_SPARK'
 

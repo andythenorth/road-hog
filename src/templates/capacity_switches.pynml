@@ -1,11 +1,14 @@
 // -- capacity determined according to specific labels that might need to be handled, and otherwise cargo class -- //
-<tal:capacity repeat="param_value python:range(3)">
-    switch (FEAT_ROADVEHS, SELF, ${vehicle.id}_switch_cargo_capacity_by_cargo_${param_value}, cargo_classes & bitmask(CC_MAIL, CC_ARMOURED)) {
-        bitmask(CC_MAIL): return ${int(global_constants.mail_multiplier * vehicle.capacities[param_value])};
-        bitmask(CC_ARMOURED): return ${int(global_constants.mail_multiplier * vehicle.capacities[param_value])};
-        return ${vehicle.capacities[param_value]};
-    }
-</tal:capacity>
+<tal:capacity_variations repeat="capacity_multiplier global_constants.capacity_multipliers">
+    <tal:capacity define="math import: math;
+                          capacity python:int(math.ceil(vehicle.capacity * capacity_multiplier))">
+        switch (FEAT_ROADVEHS, SELF, ${vehicle.id}_switch_cargo_capacity_by_cargo_${repeat.capacity_multiplier.index}, cargo_classes & bitmask(CC_MAIL, CC_ARMOURED)) {
+            bitmask(CC_MAIL): return ${int(global_constants.mail_multiplier * capacity)};
+            bitmask(CC_ARMOURED): return ${int(global_constants.mail_multiplier * capacity)};
+            return ${capacity};
+        }
+    </tal:capacity>
+</tal:capacity_variations>
 
 switch (FEAT_ROADVEHS, SELF, ${vehicle.id}_switch_cargo_capacity, param_adjust_vehicle_capacity) {
     0: ${vehicle.id}_switch_cargo_capacity_by_cargo_0;
@@ -14,13 +17,13 @@ switch (FEAT_ROADVEHS, SELF, ${vehicle.id}_switch_cargo_capacity, param_adjust_v
 }
 
 // -- loading speed also determined by capacity, which varies by cargo -- //
-<tal:capacity repeat="param_value python:range(3)">
-    switch (FEAT_ROADVEHS, SELF, ${vehicle.id}_switch_loading_speed_by_cargo_${param_value}, cargo_classes & bitmask(CC_MAIL, CC_ARMOURED)) {
-        bitmask(CC_MAIL): return ${vehicle.get_loading_speed('mail', param_value)};
-        bitmask(CC_ARMOURED): return ${vehicle.get_loading_speed('mail', param_value)};
-        return ${vehicle.get_loading_speed(None, param_value)};
+<tal:capacity_variations repeat="capacity_variation_num range(3)">
+    switch (FEAT_ROADVEHS, SELF, ${vehicle.id}_switch_loading_speed_by_cargo_${capacity_variation_num}, cargo_classes & bitmask(CC_MAIL, CC_ARMOURED)) {
+        bitmask(CC_MAIL): return ${vehicle.get_loading_speed('mail', capacity_variation_num)};
+        bitmask(CC_ARMOURED): return ${vehicle.get_loading_speed('mail', capacity_variation_num)};
+        return ${vehicle.get_loading_speed(None, capacity_variation_num)};
     }
-</tal:capacity>
+</tal:capacity_variations>
 
 switch (FEAT_ROADVEHS, SELF, ${vehicle.id}_switch_loading_speed, param_adjust_vehicle_capacity) {
     0: ${vehicle.id}_switch_loading_speed_by_cargo_0;
