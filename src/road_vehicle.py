@@ -1082,7 +1082,7 @@ class RoadVehicle(object):
 
     @property
     def capacity(self):
-        return 20
+        return self._capacity
 
     def get_loading_speed(self, cargo_type, capacity_param):
         print('get_loading_speed needs updated to allow for capacity reimplementation')
