@@ -102,6 +102,7 @@ class Consist(object):
 
         # !! this could be done when .capacity is called, not in the factory
         if self.semi_truck_so_redistribute_capacity:
+            print('semi_truck capaciity should not need handled in add_unit, should be possible in capacity()')
             if count == 0 and kwargs.get('capacity', 0) != 0:
                 # guard against lead unit having capacity set in declared props (won't break, just wrong)
                 utils.echo_message("Error: " + self.id + ".  First unit of semi-truck must have capacity 0")
@@ -116,6 +117,7 @@ class Consist(object):
                 self.units[0]._capacity = int(math.ceil(0.5 * self.units[0]._capacity))
 
         for repeat_num in range(repeat):
+            unit.unit_position_in_consist = count + repeat_num
             self.units.append(unit)
 
     @property
@@ -1032,7 +1034,10 @@ class RoadVehicle(object):
     def __init__(self, **kwargs):
         self.consist = kwargs.get('consist')
         # setup properties for this road vehicle
-        self.numeric_id = kwargs.get('numeric_id', None)
+        self.numeric_id = kwargs.get('numeric_id') # this is required, fail if not passed
+        # we sometimes need the position of the unit in the consist, that needs stored here (can't be looked up from index as units can repeat)
+        # this has to be set explicitly by add_unit, it can't be set when the vehicle __init__ is called
+        self.unit_position_in_consist = None
         # if there's a base platform, keep that around (n.b consist.add_unit will already have used it to create this unit in a pseudo factory)
         self.base_platform = kwargs.get('base_platform', None)
         # vehicle_length is either derived from chassis length or similar, or needs to be set explicitly as kwarg
