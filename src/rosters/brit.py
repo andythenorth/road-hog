@@ -119,6 +119,7 @@ roster = Roster(id = 'brit',
                                'HAKE': [240, 480, 720, 960]},
                 # note that a few of these will only be used by singleton vehicles
                 # but it's convenient to have one and only one standard way to do this (excepting local _capacity over-rides for joker cases)
+                # !! might be better to do it per consist, and then divide that over vehicles in capacity(), with allocation of remainders
                 unit_capacity_per_vehicle_type = {'bus': [1, 44, 50, 60, 72],
                                                   'coach': [1, 2, 30, 40, 40],
                                                   'feldbahn': [1, 2, 3, 4, 5, 6],
