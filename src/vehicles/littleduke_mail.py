@@ -5,7 +5,6 @@ consist = MailTruckConsist(id='littleduke_mail',
                     name='Littleduke',
                     power=380,
                     speed=90,
-                    vehicle_life=40,
                     gen=5,
                     intro_date_offset=1)  # introduce later than gen epoch by design
 

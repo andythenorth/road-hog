@@ -5,7 +5,6 @@ consist = LogHEQSConsist(id='knockdown_log',
                   name='Knockdown',
                   power=250,  # custom power
                   speed=50,
-                  vehicle_life=40,
                   gen=3)
 
 consist.add_unit(type=DieselVehicleUnit,

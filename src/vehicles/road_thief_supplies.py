@@ -4,7 +4,6 @@ consist = SuppliesCakeConsist(id='road_thief_supplies',
                        base_numeric_id=560,
                        name='Road Thief',
                        power=720,
-                       vehicle_life=40,
                        gen=4)
 
 consist.add_unit(type=DieselVehicleUnit,

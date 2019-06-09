@@ -8,7 +8,6 @@ consist = PaxLocalBusConsist(id='leyburn_pax',
                       name='Leyburn',
                       power=100,  # custom power
                       speed=40,
-                      vehicle_life=40,
                       gen=2,
                       intro_date_offset=-1)  # introduce earlier than gen epoch by design
 

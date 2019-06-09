@@ -7,7 +7,6 @@ consist = DumpHEQSConsist(id='broadrock_dump',
                    semi_truck_so_redistribute_capacity=True,
                    speed=40,  # dibbled up above RL for game balance
                    type_base_running_cost_points=20,  # dibble running costs for game balance
-                   vehicle_life=40,
                    gen=3,
                    intro_date_offset=-3)  # introduce earlier than gen epoch by design
 

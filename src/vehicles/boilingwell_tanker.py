@@ -4,7 +4,6 @@ consist = TankerTruckConsist(id='boilingwell_tanker',
                       base_numeric_id=920,
                       name='Boilingwell',
                       semi_truck_so_redistribute_capacity=True,
-                      vehicle_life=40,
                       gen=2,
                       intro_date_offset=5)  # introduce later than gen epoch by design
 

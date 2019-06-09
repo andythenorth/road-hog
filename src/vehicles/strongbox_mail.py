@@ -4,7 +4,6 @@ consist = MailTramConsist(id='strongbox_mail',
                    base_numeric_id=830,
                    name='Strongbox',
                    power=480,  # custom power
-                   vehicle_life=40,
                    gen=4,
                    intro_date_offset=1)  # introduce later than gen epoch by design
 

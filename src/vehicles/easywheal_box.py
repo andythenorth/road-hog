@@ -4,7 +4,6 @@ consist = BoxTruckConsist(id='easywheal_box',
                    base_numeric_id=160,
                    name='Easywheal',
                    semi_truck_so_redistribute_capacity=True,
-                   vehicle_life=40,
                    gen=3)
 
 consist.add_unit(type=DieselVehicleUnit,

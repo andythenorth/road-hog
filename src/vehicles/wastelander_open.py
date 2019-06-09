@@ -5,7 +5,6 @@ consist = OpenTruckConsist(id='wastelander_open',
                     name='Wastelander',
                     roadveh_flag_tram=True,
                     power=90,
-                    vehicle_life=40,
                     gen=4,
                     intro_date=1870)
 

@@ -3,7 +3,6 @@ from road_vehicle import BoxTramConsist, SteamVehicleUnit
 consist = BoxTramConsist(id='amblecote_box',
                   base_numeric_id=80,
                   name='Amblecote',
-                  vehicle_life=40,
                   gen=1)
 
 consist.add_unit(type=SteamVehicleUnit,

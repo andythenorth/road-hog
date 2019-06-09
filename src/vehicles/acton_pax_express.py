@@ -8,7 +8,6 @@ consist = PaxExpressCoachConsist(id='acton_pax_express',
                           name='Acton',
                           power=360,
                           speed=90,
-                          vehicle_life=40,
                           gen=5,
                           intro_date_offset=-7)  # introduce earlier than gen epoch by design
 

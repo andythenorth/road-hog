@@ -3,7 +3,6 @@ from road_vehicle import PaxLocalTramConsist, ElectricVehicleUnit
 consist = PaxLocalTramConsist(id='fairlop_pax',
                        base_numeric_id=10,
                        name='Fairlop',
-                       vehicle_life=40,
                        gen=2,
                        intro_date_offset=3)  # introduce later than gen epoch by design
 

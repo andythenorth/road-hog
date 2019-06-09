@@ -4,7 +4,6 @@ consist = OpenTruckConsist(id='yeoman_open',
                     base_numeric_id=170,
                     name='Yeoman',
                     semi_truck_so_redistribute_capacity=True,
-                    vehicle_life=40,
                     gen=4)
 
 consist.add_unit(type=DieselVehicleUnit,

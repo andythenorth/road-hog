@@ -4,7 +4,6 @@ from base_platforms.feldbahn import OpenWagonFeldbahnGen3
 consist = DumpFeldbahnConsist(id='hake_lake_dump',
                        base_numeric_id=620,
                        name='Hake Lake',
-                       vehicle_life=40,
                        gen=3)
 
 consist.add_unit(type=ElectricVehicleUnit,

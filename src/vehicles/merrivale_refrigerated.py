@@ -4,8 +4,7 @@ consist = RefrigeratedTruckConsist(id='merrivale_refrigerated',
                             base_numeric_id=300,
                             name='Merrivale',
                             semi_truck_so_redistribute_capacity=True,
-                            vehicle_life=40,
-                            gen=3,
+                              gen=3,
                             intro_date_offset=10)  # introduce later than gen epoch by design
 
 consist.add_unit(type=DieselVehicleUnit,

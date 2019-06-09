@@ -4,7 +4,6 @@ consist = BoxTruckConsist(id='runwell_box',
                    base_numeric_id=890,
                    name='Runwell',
                    semi_truck_so_redistribute_capacity=True,
-                   vehicle_life=40,
                    gen=2)
 
 consist.add_unit(type=SteamVehicleUnit,

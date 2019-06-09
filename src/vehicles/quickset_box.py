@@ -4,7 +4,6 @@ consist = BoxTruckConsist(id='quickset_box',
                    base_numeric_id=350,
                    name='Quickset',
                    semi_truck_so_redistribute_capacity=True,
-                   vehicle_life=40,
                    gen=4)
 
 consist.add_unit(type=DieselVehicleUnit,

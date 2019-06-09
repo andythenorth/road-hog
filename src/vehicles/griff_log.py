@@ -4,7 +4,6 @@ consist = LogHEQSConsist(id='griff_log',
                   base_numeric_id=220,
                   name='Griff',
                   power=100,  # custom power
-                  vehicle_life=40,
                   gen=1,
                   intro_date_offset=10)  # introduce later than gen epoch by design
 

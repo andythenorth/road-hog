@@ -3,8 +3,7 @@ from road_vehicle import EdiblesTankerTruckConsist, DieselVehicleUnit
 consist = EdiblesTankerTruckConsist(id='waterperry_edibles_tanker',
                              base_numeric_id=470,
                              name='Waterperry',
-                             vehicle_life=40,
-                             gen=4,
+                                gen=4,
                              intro_date_offset=4)  # introduce later than gen epoch by design
 
 consist.add_unit(type=DieselVehicleUnit,

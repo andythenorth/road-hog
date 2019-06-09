@@ -9,7 +9,6 @@ consist = PaxExpressCoachConsist(id='big_sky_pax_express',
                           name='Big Sky',
                           power=220,
                           speed=90,
-                          vehicle_life=40,
                           gen=4,
                           intro_date=1990)
 

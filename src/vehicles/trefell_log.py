@@ -4,7 +4,6 @@ consist = LogHEQSConsist(id='trefell_log',
                   base_numeric_id=480,
                   name='Trefell',
                   power=100,  # custom power
-                  vehicle_life=40,
                   gen=3)
 
 consist.add_unit(type=SteamVehicleUnit,

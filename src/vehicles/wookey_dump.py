@@ -4,7 +4,6 @@ consist = DumpTruckConsist(id='wookey_dump',
                     base_numeric_id=490,
                     name='Wookey',
                     semi_truck_so_redistribute_capacity=True,
-                    vehicle_life=40,
                     gen=4,
                     intro_date_offset=6)  # introduce later than gen epoch by design
 

@@ -5,7 +5,6 @@ consist = LogHEQSConsist(id='buff_log',
                   name='Buff',
                   power=550,
                   speed=60,
-                  vehicle_life=40,
                   gen=4)
 
 consist.add_unit(type=DieselVehicleUnit,

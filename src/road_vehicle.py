@@ -45,7 +45,7 @@ class Consist(object):
         self._gen = kwargs.get('gen', None)
         # if gen is used, the calculated intro date can be adjusted with +ve or -ve offset
         self.intro_date_offset = kwargs.get('intro_date_offset', None)
-        self.vehicle_life = kwargs.get('vehicle_life', None)
+        self.vehicle_life = kwargs.get('vehicle_life', 40)
         self._power = kwargs.get('power', None)
         # default sound effects are set by the unit classes, but can be over-ridden in consist subclasses as needed
         self._sound_effect = None

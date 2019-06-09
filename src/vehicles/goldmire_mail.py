@@ -5,7 +5,6 @@ consist = MailTruckConsist(id='goldmire_mail',
                     name='Goldmire',
                     power=250,  # custom power
                     speed=75,
-                    vehicle_life=40,
                     gen=4,
                     intro_date_offset=1)  # introduce later than gen epoch by design
 

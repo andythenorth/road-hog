@@ -5,7 +5,6 @@ consist = SuppliesCakeConsist(id='brigand_supplies',
                        base_numeric_id=540,
                        name='Brigand',
                        power=480,
-                       vehicle_life=40,
                        gen=3)
 
 consist.add_unit(type=DieselVehicleUnit,

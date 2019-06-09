@@ -3,7 +3,6 @@ from road_vehicle import DumpTramConsist, SteamVehicleUnit
 consist = DumpTramConsist(id='scrooby_top_dump',
                    base_numeric_id=700,
                    name='Scrooby Top',
-                   vehicle_life=40,
                    gen=1,
                    intro_date_offset=10)  # introduce later than gen epoch by design
 

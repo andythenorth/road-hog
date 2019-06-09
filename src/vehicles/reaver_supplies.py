@@ -4,7 +4,6 @@ consist = SuppliesCakeConsist(id='reaver_supplies',
                        base_numeric_id=550,
                        name='Reaver',
                        power=240,  # custom power
-                       vehicle_life=40,
                        gen=1,
                        intro_date_offset=15)  # introduce later than gen epoch by design
 

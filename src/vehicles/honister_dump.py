@@ -3,7 +3,6 @@ from road_vehicle import DumpTruckConsist, DieselVehicleUnit
 consist = DumpTruckConsist(id='honister_dump',
                     base_numeric_id=230,
                     name='Honister',
-                    vehicle_life=40,
                     gen=3,
                     intro_date_offset=7)  # introduce later than gen epoch by design
 

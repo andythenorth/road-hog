@@ -3,7 +3,6 @@ from road_vehicle import OpenTramConsist, SteamVehicleUnit
 consist = OpenTramConsist(id='buildwas_open',
                    base_numeric_id=120,
                    name='Buildwas',
-                   vehicle_life=40,
                    gen=1)
 
 consist.add_unit(type=SteamVehicleUnit,

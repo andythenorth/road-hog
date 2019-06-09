@@ -3,8 +3,7 @@ from road_vehicle import FlatbedTramConsist, ElectricVehicleUnit
 consist = FlatbedTramConsist(id='rackwood_flat',
                       base_numeric_id=740,
                       name='Rackwood',
-                         vehicle_life=40,
-                      gen=2)
+                        gen=2)
 
 consist.add_unit(type=ElectricVehicleUnit,
                  vehicle_length=8,

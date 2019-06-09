@@ -4,7 +4,6 @@ consist = MailTramConsist(id='tin_hatch_mail',
                    base_numeric_id=820,
                    name='Tin Hatch',
                    power=120,  # custom power
-                   vehicle_life=40,
                    gen=1)
 
 consist.add_unit(type=SteamVehicleUnit,

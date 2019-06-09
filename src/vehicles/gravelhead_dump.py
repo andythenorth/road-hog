@@ -4,7 +4,6 @@ consist = DumpTruckConsist(id='gravelhead_dump',
                     base_numeric_id=580,
                     name='Gravelhead',
                     power=130,
-                    vehicle_life=40,
                     gen=4,
                     intro_date=1920)
 

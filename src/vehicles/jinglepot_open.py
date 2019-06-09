@@ -3,7 +3,6 @@ from road_vehicle import OpenTruckConsist, SteamVehicleUnit
 consist = OpenTruckConsist(id='jinglepot_open',
                     base_numeric_id=240,
                     name='Jinglepot',
-                    vehicle_life=40,
                     gen=2)
 
 consist.add_unit(type=SteamVehicleUnit,

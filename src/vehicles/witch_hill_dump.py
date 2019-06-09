@@ -6,7 +6,6 @@ consist = DumpHEQSConsist(id='witch_hill_dump',
                    power=900,
                    speed=50,  # dibbled up above RL for game balance
                    type_base_running_cost_points=30,  # dibble running costs for game balance
-                   vehicle_life=40,
                    gen=4,
                    intro_date_offset=17)  # introduce later than gen epoch by design
 

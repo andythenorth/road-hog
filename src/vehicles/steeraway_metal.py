@@ -5,7 +5,6 @@ consist = MetalHEQSBase(id='steeraway_metal',
                     name='Steeraway',
                     power=500,
                     speed=45,
-                    vehicle_life=80,
                     gen=3,
                     intro_date_offset=10)  # introduce later than gen epoch by design
 

@@ -3,7 +3,6 @@ from road_vehicle import FruitVegTramConsist, SteamVehicleUnit
 consist = FruitVegTramConsist(id='plumley_fruit_veg',
                        base_numeric_id=950,
                        name='Plumley',
-                       vehicle_life=40,
                        gen=1,
                        intro_date_offset=1)  # introduce later than gen epoch by design
 

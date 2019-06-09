@@ -3,7 +3,6 @@ from road_vehicle import OpenTruckConsist, DieselVehicleUnit
 consist = OpenTruckConsist(id='capo_open',
                     base_numeric_id=680,
                     name='Capo',
-                    vehicle_life=40,
                     gen=5)
 
 consist.add_unit(type=DieselVehicleUnit,

@@ -4,7 +4,6 @@ consist = DumpTruckConsist(id='powerstock_dump',
                     base_numeric_id=340,
                     name='Powerstock',
                     semi_truck_so_redistribute_capacity=True,
-                    vehicle_life=40,
                     gen=5,
                     intro_date_offset=4)  # introduce later than gen epoch by design
 
