@@ -13,5 +13,4 @@ consist = PaxLocalBusConsist(id='thunder_pax',
                       intro_date_offset=-4)  # introduce earlier than gen epoch by design
 
 consist.add_unit(type=DieselVehicleUnit,
-                 capacity=50,
                  vehicle_length=7)

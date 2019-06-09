@@ -13,5 +13,4 @@ consist = PaxExpressCoachConsist(id='acton_pax_express',
                           intro_date_offset=-7)  # introduce earlier than gen epoch by design
 
 consist.add_unit(type=DieselVehicleUnit,
-                 capacity=40,  # coaches never need high capacity
                  vehicle_length=7)

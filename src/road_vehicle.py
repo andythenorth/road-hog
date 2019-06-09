@@ -881,6 +881,7 @@ class PaxLocalBusConsist(PaxHaulerLocalConsistBase, TrackTypeMixinTruckBusCoach)
         # over-ride the default sound effect set by parent subclasses
         # this assumes diesel, and will fail if non-diesel local buses are added
         self._sound_effect = 'SOUND_BUS_START_PULL_AWAY_WITH_HORN'
+        self.vehicle_role = 'bus'
 
     @property
     def name_type_suffix(self):
@@ -914,6 +915,7 @@ class PaxExpressCoachConsist(PaxHaulerConsistBase, TrackTypeMixinTruckBusCoach):
         # over-ride the default sound effect set by parent subclasses
         # this assumes diesel, and will fail if non-diesel express coaches are added
         self._sound_effect = 'SOUND_TRUCK_START_2'
+        self.vehicle_role = 'coach'
 
     @property
     def name_type_suffix(self):

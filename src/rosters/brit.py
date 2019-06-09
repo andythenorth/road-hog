@@ -117,8 +117,8 @@ roster = Roster(id = 'brit',
                                'HEQS': [100, 150, 250, 450, 650, 750], # more likely to be over-ridden eh?
                                'RAIL': [240, 480, 720, 960, 1200, 1440], # tram power is excessive compare to RL, otherwise the OpenTTD physics model spanks the trams
                                'HAKE': [240, 480, 720, 960]},
-                unit_capacity_per_vehicle_type = {'bus': [1, 2, 3, 4, 5, 6],
-                                                  'coach': [1, 2, 3, 4, 5, 6],
+                unit_capacity_per_vehicle_type = {'bus': [1, 44, 50, 60, 72],
+                                                  'coach': [1, 2, 30, 40, 40],
                                                   'courier_truck': [1, 2, 3, 4, 5, 6],
                                                   'feldbahn': [1, 2, 3, 4, 5, 6],
                                                   'freight_tram': [16, 30, 36],

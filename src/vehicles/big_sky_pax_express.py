@@ -14,5 +14,4 @@ consist = PaxExpressCoachConsist(id='big_sky_pax_express',
                           intro_date=1990)
 
 consist.add_unit(type=DieselVehicleUnit,
-                 capacity=40,  # coaches never need high capacity
                  vehicle_length=7)
