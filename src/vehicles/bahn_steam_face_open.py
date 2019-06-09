@@ -1,4 +1,4 @@
-from road_vehicle import OpenFeldbahnConsist, SteamVehicleUnit
+from road_vehicle import OpenFeldbahnConsist
 from base_platforms.feldbahn import SteamEngineFeldbahn1, OpenWagonFeldbahnGen2
 
 consist = OpenFeldbahnConsist(id='bahn_steam_face_open',

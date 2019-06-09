@@ -9,7 +9,7 @@ class BasePlatform(object):
 
     def configure_unit_args(self, **kwargs):
         # pull the class attrs off using a list, this keeps the attribute declarations ni subclasses of BasePlatforms
-        for key in ['always_use_same_spriterow', 'capacity', 'cargo_length', 'type', 'vehicle_length']:
+        for key in ['always_use_same_spriterow', 'capacity', 'cargo_length', 'effects', 'semi_truck_shift_offset_jank', 'type', 'vehicle_length']:
             value = getattr(self, key, False)
             if value:
                 kwargs[key] = value
