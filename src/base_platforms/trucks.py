@@ -7,6 +7,14 @@ class SemiTractorTruckBase(BasePlatform):
     always_use_same_spriterow = True
     semi_truck_so_redistribute_capacity = True
 
+
+class SteamCaboverSemiTractorTruckGen2A(SemiTractorTruckBase):
+    type = SteamVehicleUnit
+    vehicle_length = 2
+    semi_truck_shift_offset_jank = 2
+    effects = ['EFFECT_SPRITE_STEAM, -3, 0, 12'],
+
+
 class DieselCaboverSemiTractorTruckGen3A(SemiTractorTruckBase):
     type = DieselVehicleUnit
     vehicle_length = 2

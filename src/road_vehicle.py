@@ -1206,6 +1206,8 @@ class RoadVehicle(object):
         return "SELF," + switch_id + ", bitmask(TRIGGER_VEHICLE_ANY_LOAD)"
 
     def render(self):
+        if self.base_platform is None and self.unit_position_in_consist == 0:
+            print(self.consist.id, 'has no base_platform')
         # integrity tests
         self.assert_cargo_labels(self.consist.label_refits_allowed)
         self.assert_cargo_labels(self.consist.label_refits_disallowed)
