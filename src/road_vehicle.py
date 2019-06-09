@@ -897,6 +897,7 @@ class PaxLocalTramConsist(PaxHaulerLocalConsistBase, TrackTypeMixinTram):
         super().__init__(**kwargs)
         # over-ride the default sound effect set by RoadVehicle subclass
         self._sound_effect = 'SOUND_LEVEL_CROSSING'
+        self.vehicle_role = 'pax_tram'
 
     @property
     def name_type_suffix(self):

@@ -7,6 +7,5 @@ consist = PaxLocalTramConsist(id='twinhills_pax',
                        gen=5)
 
 consist.add_unit(type=ElectricVehicleUnit,
-                 capacity=70,
                  vehicle_length=8,
                  repeat=2)

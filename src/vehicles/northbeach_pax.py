@@ -8,7 +8,6 @@ consist = PaxLocalTramConsist(id='northbeach_pax',
                        intro_date_offset=1)  # introduce later than gen epoch by design
 
 consist.add_unit(type=ElectricVehicleUnit,
-                 capacity=60,
                  vehicle_length=8,
                  effects=['EFFECT_SPRITE_ELECTRIC, 0, 0, 12'],
                  repeat=2)
