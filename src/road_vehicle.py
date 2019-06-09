@@ -1089,20 +1089,16 @@ class RoadVehicle(object):
     def capacity(self):
         return self._capacity
 
-    def get_loading_speed(self, cargo_type, capacity_param):
-        print('get_loading_speed needs updated to allow for capacity reimplementation')
-        return 1
-        """
+    def get_loading_speed(self, cargo_type, capacity_multiplier):
         # ottd vehicles load at different rates depending on type,
         # normalise default loading time for this set to 240 ticks, regardless of capacity
         # openttd loading rates vary by transport type, look them up in wiki to find value to use here to normalise loading time to 240 ticks
         transport_type_rate = 12 # this is (240 / loading frequency in ticks for transport type) from wiki
-        capacity = self.capacities[capacity_param]
+        capacity = self.capacity * capacity_multiplier
         if cargo_type == 'mail':
             capacity = int(global_constants.mail_multiplier * capacity)
         result = int(self.consist.loading_speed_multiplier * math.ceil(capacity / transport_type_rate))
         return max(result, 1)
-        """
 
     @property
     def availability(self):
