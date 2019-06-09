@@ -405,7 +405,7 @@ class TrackTypeMixinBase(object):
     roadveh_flag_tram = False
     tractive_effort_coefficient = None # set in subclass to float (0..1); fail if not set explicitly
     name_suffix_vehicle_type = None # set in subclass to string; fail if not set explicitly
-    vehicle_role_id = None # set in subclass, use to look up things like capacity, sprites etc, over-ride in consist subclass as needed
+    vehicle_role = None # set in subclass, use to look up things like capacity, sprites etc, over-ride in consist subclass as needed
 
 
 class TrackTypeMixinCake(TrackTypeMixinBase):
@@ -420,7 +420,7 @@ class TrackTypeMixinCake(TrackTypeMixinBase):
     # TE bonus assuming rubber tyres, much higher than the OpenTTD default of 0.3
     tractive_effort_coefficient = 0.7
     name_suffix_vehicle_type = "_TRUCK" # !! possibly wrong?
-    vehicle_role_id = 'lolz'
+    vehicle_role = 'lolz'
 
 class TrackTypeMixinFeldbahn(TrackTypeMixinBase):
     """
@@ -433,7 +433,7 @@ class TrackTypeMixinFeldbahn(TrackTypeMixinBase):
     # steel wheel on steel rail, leave as OpenTTD default
     tractive_effort_coefficient = 0.3
     name_suffix_vehicle_type = "_FELDBAHN"
-    vehicle_role_id = 'feldbahn'
+    vehicle_role = 'feldbahn'
 
 
 class TrackTypeMixinHEQS(TrackTypeMixinBase):
@@ -446,7 +446,7 @@ class TrackTypeMixinHEQS(TrackTypeMixinBase):
     # TE bonus assuming rubber tyres, much higher than the OpenTTD default of 0.3
     tractive_effort_coefficient = 0.7
     name_suffix_vehicle_type = "_TRUCK" # !! wrong, should be ???? - JFDI
-    vehicle_role_id = 'freight_truck'
+    vehicle_role = 'freight_truck'
 
 
 class TrackTypeMixinTram(TrackTypeMixinBase):
@@ -460,7 +460,7 @@ class TrackTypeMixinTram(TrackTypeMixinBase):
     # small TE bonus for trams versus trains, assuming all wheels powered or similar
     tractive_effort_coefficient = 0.4
     name_suffix_vehicle_type = "_TRAM"
-    vehicle_role_id = 'freight_tram'
+    vehicle_role = 'freight_tram'
 
 
 class TrackTypeMixinTruckBusCoach(TrackTypeMixinBase):
@@ -474,7 +474,7 @@ class TrackTypeMixinTruckBusCoach(TrackTypeMixinBase):
     # TE bonus assuming rubber tyres, much higher than the OpenTTD default of 0.3
     tractive_effort_coefficient = 0.7
     name_suffix_vehicle_type = "_TRUCK" # default to truck, over-ride in consist subclasses for bus or coach
-    vehicle_role_id = 'freight_truck' # default to truck, over-ride in consist subclasses for bus or coach
+    vehicle_role = 'freight_truck' # default to truck, over-ride in consist subclasses for bus or coach
 
 
 class BoxHaulerConsistBase(Consist):
@@ -1080,7 +1080,7 @@ class RoadVehicle(object):
             if base_capacity != 0:
                 print(self.consist.id)
         else:
-            base_capacity = self.consist.roster.unit_capacity_per_vehicle_type[self.consist.vehicle_role_id][self.consist.gen - 1]
+            base_capacity = self.consist.roster.unit_capacity_per_vehicle_type[self.consist.vehicle_role][self.consist.gen - 1]
         if self.consist.semi_truck_so_redistribute_capacity:
             if self.unit_position_in_consist == 0:
                 if self._capacity != None:
