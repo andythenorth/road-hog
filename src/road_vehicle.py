@@ -774,6 +774,7 @@ class MailTramConsist(MailHaulerConsistBase, TrackTypeMixinTram):
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        self.vehicle_role = 'mail_tram'
 
 
 class MailTruckConsist(MailHaulerConsistBase, TrackTypeMixinTruckBusCoach):
@@ -782,6 +783,7 @@ class MailTruckConsist(MailHaulerConsistBase, TrackTypeMixinTruckBusCoach):
     """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        self.vehicle_role = 'mail_truck'
 
 
 class MetalHaulerConsistBase(Consist):

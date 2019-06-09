@@ -121,12 +121,13 @@ roster = Roster(id = 'brit',
                 # but it's convenient to have one and only one standard way to do this (excepting local _capacity over-rides for joker cases)
                 unit_capacity_per_vehicle_type = {'bus': [1, 44, 50, 60, 72],
                                                   'coach': [1, 2, 30, 40, 40],
-                                                  'courier_truck': [1, 2, 3, 4, 5, 6],
                                                   'feldbahn': [1, 2, 3, 4, 5, 6],
-                                                  'freight_tram': [16, 30, 36],
-                                                  'pax_tram': [20, 27, 50, 60, 70],
+                                                  'freight_tram': [16, 30, 36], # num units varies between generations, so eh :x
+                                                  'freight_truck': [1, 12, 15, 20, 20, 20],
                                                   'lolz': [1, 2, 3, 4, 5, 6],
-                                                  'freight_truck': [1, 12, 15, 20, 20, 20]},
+                                                  'mail_tram': [24, 15, 18, 36, 36], # num units varies between generations, so eh :x
+                                                  'mail_truck': [1, 12, 15, 25, 25],
+                                                  'pax_tram': [20, 27, 50, 60, 70]},
                 vehicles = [leyburn_pax,
                             thunder_pax,
                             highgate_pax,

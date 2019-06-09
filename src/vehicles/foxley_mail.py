@@ -9,6 +9,5 @@ consist = MailTramConsist(id='foxley_mail',
                    intro_date_offset=3)  # introduce later than gen epoch by design
 
 consist.add_unit(type=ElectricVehicleUnit,
-                 capacity=15,
                  vehicle_length=4,
                  repeat=2)
