@@ -7,11 +7,9 @@ consist = OpenTruckConsist(id='capo_open',
                     gen=5)
 
 consist.add_unit(type=DieselVehicleUnit,
-                 capacity=20,
                  vehicle_length=5,
                  cargo_length=3,
                  effects=['EFFECT_SPRITE_DIESEL, -2, 1, 10'])
 
-consist.add_unit(capacity=20,
-                 vehicle_length=4,
+consist.add_unit(vehicle_length=4,
                  cargo_length=3)

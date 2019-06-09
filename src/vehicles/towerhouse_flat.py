@@ -12,6 +12,5 @@ consist.add_unit(type=DieselVehicleUnit,
                  semi_truck_shift_offset_jank=2,
                  always_use_same_spriterow=True)
 
-consist.add_unit(capacity=40,
-                 vehicle_length=7,
+consist.add_unit(vehicle_length=7,
                  cargo_length=4)  # some cargo overlap eh?

@@ -11,7 +11,6 @@ consist.add_unit(type=ElectricVehicleUnit,
                  vehicle_length=4,
                  always_use_same_spriterow=True)
 
-consist.add_unit(capacity=36,
-                 vehicle_length=6,
+consist.add_unit(vehicle_length=6,
                  cargo_length=3,
                  repeat=2)

@@ -7,6 +7,5 @@ consist = CoveredHopperTramConsist(id='thurlbear_covered_hopper',
                             gen=3)
 
 consist.add_unit(type=ElectricVehicleUnit,
-                 capacity=36,
                  vehicle_length=8,
                  repeat=2)

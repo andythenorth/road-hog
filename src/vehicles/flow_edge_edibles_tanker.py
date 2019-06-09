@@ -8,8 +8,6 @@ consist = EdiblesTankerTruckConsist(id='flow_edge_edibles_tanker',
                              intro_date_offset=2)  # introduce later than gen epoch by design
 
 consist.add_unit(type=SteamVehicleUnit,
-                 capacity=12,
                  vehicle_length=5)
 
-consist.add_unit(capacity=12,
-                 vehicle_length=4)
+consist.add_unit(vehicle_length=4)

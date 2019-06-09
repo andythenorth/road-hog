@@ -7,10 +7,8 @@ consist = FlatbedTruckConsist(id='big_rigg_flat',
                        gen=5)
 
 consist.add_unit(type=DieselVehicleUnit,
-                 capacity=20,
                  vehicle_length=5,
                  cargo_length=3)
 
-consist.add_unit(capacity=20,
-                 vehicle_length=4,
+consist.add_unit(vehicle_length=4,
                  cargo_length=4)

@@ -7,11 +7,9 @@ consist = OpenTruckConsist(id='jinglepot_open',
                     gen=2)
 
 consist.add_unit(type=SteamVehicleUnit,
-                 capacity=12,
                  vehicle_length=5,
                  cargo_length=3,
                  effects=['EFFECT_SPRITE_STEAM, -3, 0, 12'])
 
-consist.add_unit(capacity=12,
-                 vehicle_length=4,
+consist.add_unit(vehicle_length=4,
                  cargo_length=4)

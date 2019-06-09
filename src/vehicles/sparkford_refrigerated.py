@@ -8,6 +8,5 @@ consist = RefrigeratedTramConsist(id='sparkford_refrigerated',
                            intro_date_offset=10)  # introduce later than gen epoch by design
 
 consist.add_unit(type=ElectricVehicleUnit,
-                 capacity=36,
                  vehicle_length=8,
                  repeat=2)

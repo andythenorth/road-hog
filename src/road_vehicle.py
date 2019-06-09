@@ -405,6 +405,7 @@ class TrackTypeMixinBase(object):
     roadveh_flag_tram = False
     tractive_effort_coefficient = None # set in subclass to float (0..1); fail if not set explicitly
     name_suffix_vehicle_type = None # set in subclass to string; fail if not set explicitly
+    vehicle_role_id = None # set in subclass, use to look up things like capacity, sprites etc, over-ride in consist subclass as needed
 
 
 class TrackTypeMixinCake(TrackTypeMixinBase):
@@ -419,7 +420,7 @@ class TrackTypeMixinCake(TrackTypeMixinBase):
     # TE bonus assuming rubber tyres, much higher than the OpenTTD default of 0.3
     tractive_effort_coefficient = 0.7
     name_suffix_vehicle_type = "_TRUCK" # !! possibly wrong?
-
+    vehicle_role_id = 'lolz'
 
 class TrackTypeMixinFeldbahn(TrackTypeMixinBase):
     """
@@ -432,6 +433,7 @@ class TrackTypeMixinFeldbahn(TrackTypeMixinBase):
     # steel wheel on steel rail, leave as OpenTTD default
     tractive_effort_coefficient = 0.3
     name_suffix_vehicle_type = "_FELDBAHN"
+    vehicle_role_id = 'feldbahn'
 
 
 class TrackTypeMixinHEQS(TrackTypeMixinBase):
@@ -444,6 +446,7 @@ class TrackTypeMixinHEQS(TrackTypeMixinBase):
     # TE bonus assuming rubber tyres, much higher than the OpenTTD default of 0.3
     tractive_effort_coefficient = 0.7
     name_suffix_vehicle_type = "_TRUCK" # !! wrong, should be ???? - JFDI
+    vehicle_role_id = 'freight_truck'
 
 
 class TrackTypeMixinTram(TrackTypeMixinBase):
@@ -457,6 +460,7 @@ class TrackTypeMixinTram(TrackTypeMixinBase):
     # small TE bonus for trams versus trains, assuming all wheels powered or similar
     tractive_effort_coefficient = 0.4
     name_suffix_vehicle_type = "_TRAM"
+    vehicle_role_id = 'freight_tram'
 
 
 class TrackTypeMixinTruckBusCoach(TrackTypeMixinBase):
@@ -470,6 +474,7 @@ class TrackTypeMixinTruckBusCoach(TrackTypeMixinBase):
     # TE bonus assuming rubber tyres, much higher than the OpenTTD default of 0.3
     tractive_effort_coefficient = 0.7
     name_suffix_vehicle_type = "_TRUCK" # default to truck, over-ride in consist subclasses for bus or coach
+    vehicle_role_id = 'freight_truck' # default to truck, over-ride in consist subclasses for bus or coach
 
 
 class BoxHaulerConsistBase(Consist):
@@ -1028,8 +1033,7 @@ class RoadVehicle(object):
         self._vehicle_length = kwargs.get('vehicle_length', None)
         self.semi_truck_shift_offset_jank = kwargs.get('semi_truck_shift_offset_jank', None)
         # capacity derived from vehicle length, type and generation, or can be over-ridden by setting explicitly in kwarg
-        self._capacity = kwargs.get('capacity', 0)
-        print('_capacity should default to None not 0, WIP')
+        self._capacity = kwargs.get('capacity', None)
         # optional - some consists have sequences like A1-B-A2, where A1 and A2 look the same but have different IDs for implementation reasons
         # avoid duplicating sprites on the spritesheet by forcing A2 to use A1's spriterow_num, fiddly eh?
         # ugly, but eh.  Zero-indexed, based on position in units[]
@@ -1071,17 +1075,21 @@ class RoadVehicle(object):
 
     @property
     def capacity(self):
-        if self.consist.semi_truck_so_redistribute_capacity:
-            if self.unit_position_in_consist == 0 and self._capacity != 0:
-                # guard against lead unit having capacity set in declared props (won't break, just wrong)
-                utils.echo_message("Error: " + self.id + ".  First unit of semi-truck must have capacity 0")
-            # semi-trucks need some capacity moved to lead unit to gain sufficient TE
-            # this automagically does that, by splitting the capacity of first trailer 50:50 to tractor and trailer
-            # sometimes a greater good requires a small evil, although this will probably go wrong eh?
-            result = int(math.floor(0.5 * self.consist.units[1]._capacity)) # !! this won't work once capacity is derived, nor can it be circular eh !!
+        if self._capacity is not None:
+            base_capacity = self._capacity
+            if base_capacity != 0:
+                print(self.consist.id)
         else:
-            result = self._capacity
-        return result
+            base_capacity = self.consist.roster.unit_capacity_per_vehicle_type[self.consist.vehicle_role_id][self.consist.gen - 1]
+        if self.consist.semi_truck_so_redistribute_capacity:
+            if self.unit_position_in_consist == 0:
+                if self._capacity != None:
+                    # guard against lead unit having capacity set in declared props (won't break, just wrong)
+                    utils.echo_message("Error: " + self.id + ".  First unit of semi-truck must not have explicit capacity set")
+                # automagically set the lead unit capacity same as the trailer, this is so that the correct loaded weight is applied to lead unit
+                # in cases with explicit capacity declared, set the first trailer capacity to 50% of the combined capacity for first two units
+                base_capacity = self.consist.units[1].capacity
+        return base_capacity
 
     def get_loading_speed(self, cargo_type, capacity_multiplier):
         # ottd vehicles load at different rates depending on type,

@@ -8,10 +8,8 @@ consist = BoxTruckConsist(id='easywheal_box',
                    gen=3)
 
 consist.add_unit(type=DieselVehicleUnit,
-                 capacity=0,
                  vehicle_length=2,
                  semi_truck_shift_offset_jank=2,
                  always_use_same_spriterow=True)
 
-consist.add_unit(capacity=30,
-                 vehicle_length=5)
+consist.add_unit(vehicle_length=5)

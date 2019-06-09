@@ -7,6 +7,5 @@ consist = BoxTramConsist(id='colbiggan_box',
                   gen=3)
 
 consist.add_unit(type=ElectricVehicleUnit,
-                 capacity=36,
                  vehicle_length=8,
                  repeat=2)

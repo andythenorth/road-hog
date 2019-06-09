@@ -13,6 +13,5 @@ consist.add_unit(type=SteamVehicleUnit,
                  effects=['EFFECT_SPRITE_STEAM, -3, 0, 12'],
                  always_use_same_spriterow=True)
 
-consist.add_unit(capacity=12,
-                 vehicle_length=3,
+consist.add_unit(vehicle_length=3,
                  repeat=4)

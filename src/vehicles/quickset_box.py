@@ -8,10 +8,8 @@ consist = BoxTruckConsist(id='quickset_box',
                    gen=4)
 
 consist.add_unit(type=DieselVehicleUnit,
-                 capacity=0,
                  vehicle_length=2,
                  semi_truck_shift_offset_jank=2,
                  effects=['EFFECT_SPRITE_DIESEL, -2, 1, 10'])
 
-consist.add_unit(capacity=40,
-                 vehicle_length=7)
+consist.add_unit(vehicle_length=7)

@@ -13,6 +13,8 @@ class Roster(object):
         self.speeds = kwargs.get('speeds')
         self.power_bands = kwargs.get('power_bands')
         self.consists = []
+        self.unit_capacity_per_vehicle_type = kwargs.get('unit_capacity_per_vehicle_type')
+
         for vehicle in kwargs.get('vehicles'):
             consist = vehicle.consist
             consist.roster_id = self.id

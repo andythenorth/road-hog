@@ -7,7 +7,6 @@ consist = FlatbedTramConsist(id='stancliffe_flat',
                       gen=3)
 
 consist.add_unit(type=ElectricVehicleUnit,
-                 capacity=36,
                  vehicle_length=8,
                  cargo_length=3,
                  repeat=2)

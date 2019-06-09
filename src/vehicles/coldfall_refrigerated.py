@@ -9,10 +9,8 @@ consist = RefrigeratedTruckConsist(id='coldfall_refrigerated',
                             intro_date_offset=1)  # introduce later than gen epoch by design
 
 consist.add_unit(type=DieselVehicleUnit,
-                 capacity=0,
                  vehicle_length=2,
                  semi_truck_shift_offset_jank=2,
                  effects=['EFFECT_SPRITE_DIESEL, -2, 1, 10'])
 
-consist.add_unit(capacity=40,
-                 vehicle_length=8)
+consist.add_unit(vehicle_length=8)

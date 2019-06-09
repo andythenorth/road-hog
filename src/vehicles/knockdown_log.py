@@ -9,8 +9,6 @@ consist = LogHEQSConsist(id='knockdown_log',
                   gen=3)
 
 consist.add_unit(type=DieselVehicleUnit,
-                 capacity=30,
                  vehicle_length=7)
 
-consist.add_unit(capacity=30,
-                 vehicle_length=6)
+consist.add_unit(vehicle_length=6)
