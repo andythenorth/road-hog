@@ -5,7 +5,7 @@ from road_vehicle import DieselVehicleUnit, SteamVehicleUnit
 class SemiTractorTruckBase(BasePlatform):
     capacity = 0
     always_use_same_spriterow = True
-    semi_truck_so_redistribute_capacity = True
+    unit_is_semi_tractor = True
 
 
 class SteamCaboverSemiTractorTruckGen2A(SemiTractorTruckBase):

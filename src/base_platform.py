@@ -14,7 +14,7 @@ class BasePlatform(object):
                     'cargo_length',
                     'effects',
                     'semi_truck_shift_offset_jank',
-                    'semi_truck_so_redistribute_capacity',
+                    'unit_is_semi_tractor',
                     'type',
                     'vehicle_length']:
             value = getattr(self, key, False)

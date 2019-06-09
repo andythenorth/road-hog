@@ -1032,12 +1032,11 @@ class RoadVehicle(object):
         self.unit_position_in_consist = None
         # if there's a base platform, keep that around (n.b consist.add_unit will already have used it to create this unit in a pseudo factory)
         self.base_platform = kwargs.get('base_platform', None)
+        # we sometimes need to know if this is a semi-truck
+        self.unit_is_semi_tractor = kwargs.get('unit_is_semi_tractor', False)
         # vehicle_length is either derived from chassis length or similar, or needs to be set explicitly as kwarg
         self._vehicle_length = kwargs.get('vehicle_length', None)
         self.semi_truck_shift_offset_jank = kwargs.get('semi_truck_shift_offset_jank', None)
-        # semi-trucks need some redistribution of capacity to get correct TE (don't use this for other magic, bad idea)
-        # !! possibly this could just be dropped, it's not essential as correct capacity will simply be assigned in most cases if _capacity is not 0
-        self.semi_truck_so_redistribute_capacity = kwargs.get('semi_truck_so_redistribute_capacity', False)
         # capacity derived from vehicle length, type and generation, or can be over-ridden by setting explicitly in kwarg
         self._capacity = kwargs.get('capacity', None)
         # optional - some consists have sequences like A1-B-A2, where A1 and A2 look the same but have different IDs for implementation reasons
@@ -1087,7 +1086,7 @@ class RoadVehicle(object):
                 print('capacity is set for', self.consist.id)
         else:
             base_capacity = self.consist.roster.unit_capacity_per_vehicle_type[self.consist.vehicle_role][self.consist.gen - 1]
-        if self.semi_truck_so_redistribute_capacity:
+        if self.unit_is_semi_tractor:
             if self.unit_position_in_consist == 0:
                 if self._capacity != None:
                     # guard against lead unit having capacity set in declared props (won't break, just wrong)
