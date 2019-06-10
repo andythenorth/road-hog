@@ -9,4 +9,5 @@ consist = DumpTruckConsist(id='coleman_dump',
 
 consist.add_unit(base_platform=SteamCaboverSemiTractorTruckGen2A)
 
-consist.add_unit(vehicle_length=5)
+consist.add_unit(base_platform=None,
+                 vehicle_length=5)

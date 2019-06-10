@@ -10,5 +10,6 @@ consist.add_unit(type=SteamVehicleUnit,
                  cargo_length=3,
                  effects=['EFFECT_SPRITE_STEAM, -3, 0, 12'])
 
-consist.add_unit(vehicle_length=4,
+consist.add_unit(base_platform=None,
+                 vehicle_length=4,
                  cargo_length=4)

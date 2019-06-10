@@ -7,16 +7,19 @@ consist = SuppliesCakeConsist(id='reaver_supplies',
                        gen=1,
                        intro_date_offset=15)  # introduce later than gen epoch by design
 
-consist.add_unit(type=SteamVehicleUnit,
+consist.add_unit(base_platform=None, # no base platform by design currently
+                 type=SteamVehicleUnit,
                  capacity=0,
                  vehicle_length=4,
                  effects=['EFFECT_SPRITE_STEAM, -5, 0, 12'],
                  always_use_same_spriterow=True)
 
-consist.add_unit(#capacity=45,
+consist.add_unit(base_platform=None, # no base platform by design currently
+                 #capacity=45,
                  vehicle_length=7)
 
-consist.add_unit(type=SteamVehicleUnit,
+consist.add_unit(base_platform=None, # no base platform by design currently
+                 type=SteamVehicleUnit,
                  capacity=0,
                  vehicle_length=4,
                  effects=['EFFECT_SPRITE_STEAM, -5, 0, 12'],

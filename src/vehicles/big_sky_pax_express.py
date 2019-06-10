@@ -12,5 +12,6 @@ consist = PaxExpressCoachConsist(id='big_sky_pax_express',
                           gen=4,
                           intro_date=1990)
 
-consist.add_unit(type=DieselVehicleUnit,
+consist.add_unit(base_platform=None, # coaches have no base platform by design currently
+                 type=DieselVehicleUnit,
                  vehicle_length=7)

@@ -7,16 +7,19 @@ consist = SuppliesCakeConsist(id='crime_rigg_supplies',
                        power=360,
                        gen=2)
 
-consist.add_unit(type=SteamVehicleUnit,
+consist.add_unit(base_platform=None, # no base platform by design currently
+                 type=SteamVehicleUnit,
                  capacity=0,
                  vehicle_length=5,
                  effects=['EFFECT_SPRITE_STEAM, -3, 0, 12'],
                  always_use_same_spriterow=True)
 
-consist.add_unit(#capacity=45,
+consist.add_unit(base_platform=None, # no base platform by design currently
+                 #capacity=45,
                  vehicle_length=7)
 
-consist.add_unit(type=SteamVehicleUnit,
+consist.add_unit(base_platform=None, # no base platform by design currently
+                 type=SteamVehicleUnit,
                  capacity=0,
                  vehicle_length=5,
                  effects=['EFFECT_SPRITE_STEAM, -5, 0, 12'],

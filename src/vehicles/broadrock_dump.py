@@ -12,5 +12,6 @@ consist = DumpHEQSConsist(id='broadrock_dump',
 
 consist.add_unit(base_platform=DieselConventionalCabSemiTractorHaulerGen3A)
 
-consist.add_unit(#capacity=55,  # much bigger is not much better here
+consist.add_unit(base_platform=None,
+                 #capacity=55,  # much bigger is not much better here
                  vehicle_length=6)

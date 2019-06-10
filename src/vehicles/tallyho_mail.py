@@ -7,5 +7,6 @@ consist = MailTruckConsist(id='tallyho_mail',
                     gen=2,
                     intro_date_offset=-1)  # introduce earlier than gen epoch by design
 
-consist.add_unit(type=DieselVehicleUnit,
+consist.add_unit(base_platform=None, # mail trucks have no base platform by design currently
+                 type=DieselVehicleUnit,
                  vehicle_length=6)

@@ -10,4 +10,5 @@ consist.add_unit(type=DieselVehicleUnit,
                  vehicle_length=5,
                  effects=['EFFECT_SPRITE_DIESEL, -2, 1, 10'])
 
-consist.add_unit(vehicle_length=4)
+consist.add_unit(base_platform=None,
+                 vehicle_length=4)

@@ -7,7 +7,9 @@ consist = LogHEQSConsist(id='knockdown_log',
                   speed=50,
                   gen=3)
 
-consist.add_unit(type=DieselVehicleUnit,
+consist.add_unit(base_platform=None, # no base platform by design currently
+                 type=DieselVehicleUnit,
                  vehicle_length=7)
 
-consist.add_unit(vehicle_length=6)
+consist.add_unit(base_platform=None, # no base platform by design currently
+                 vehicle_length=6)

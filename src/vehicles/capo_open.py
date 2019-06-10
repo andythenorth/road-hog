@@ -8,5 +8,6 @@ consist = OpenTruckConsist(id='capo_open',
 
 consist.add_unit(base_platform=DieselCaboverRigidTruckGen5A)
 
-consist.add_unit(vehicle_length=4,
+consist.add_unit(base_platform=None,
+                 vehicle_length=4,
                  cargo_length=3)

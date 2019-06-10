@@ -9,4 +9,5 @@ consist = RefrigeratedTruckConsist(id='coldfall_refrigerated',
 
 consist.add_unit(base_platform=DieselCaboverSemiTractorTruckGen5A)
 
-consist.add_unit(vehicle_length=8)
+consist.add_unit(base_platform=None,
+                 vehicle_length=8)

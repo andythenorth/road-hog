@@ -11,5 +11,6 @@ consist = PaxExpressCoachConsist(id='acton_pax_express',
                           gen=5,
                           intro_date_offset=-7)  # introduce earlier than gen epoch by design
 
-consist.add_unit(type=DieselVehicleUnit,
+consist.add_unit(base_platform=None, # coaches have no base platform by design currently
+                 type=DieselVehicleUnit,
                  vehicle_length=7)

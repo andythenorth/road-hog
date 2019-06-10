@@ -9,4 +9,5 @@ consist = CoveredHopperTruckConsist(id='limebreach_covered_hopper',
 
 consist.add_unit(base_platform=DieselCaboverSemiTractorTruckGen3A)
 
-consist.add_unit(vehicle_length=5)
+consist.add_unit(base_platform=None,
+                 vehicle_length=5)

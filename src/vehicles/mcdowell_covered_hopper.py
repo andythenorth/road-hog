@@ -9,4 +9,5 @@ consist = CoveredHopperTruckConsist(id='mcdowell_covered_hopper',
 
 consist.add_unit(base_platform=DieselCaboverSemiTractorTruckGen5A)
 
-consist.add_unit(vehicle_length=7)
+consist.add_unit(base_platform=None,
+                 vehicle_length=7)

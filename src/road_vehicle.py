@@ -80,7 +80,12 @@ class Consist(object):
         count = len(set(self.units))
 
         # pseudo-factory that uses base_platforms to configure/reconfigure the keyword args for the unit
-        base_platform = kwargs.get('base_platform', None)
+        base_platform = kwargs.get('base_platform', False)
+        if base_platform is False:
+            if self.base_track_type == 'ROAD':
+                print(self.id, count, 'has no base_platform')
+            base_platform = None
+
         if base_platform is not None:
             base_platform = base_platform() # init the base_platform, so we have an instance, not a class name
             # have the base_platform reconfigure the kwargs, this is a bit sketchy, but eh
@@ -1205,8 +1210,6 @@ class RoadVehicle(object):
         return "SELF," + switch_id + ", bitmask(TRIGGER_VEHICLE_ANY_LOAD)"
 
     def render(self):
-        if self.base_platform is None and self.unit_position_in_consist == 0:
-            print(self.consist.id, 'has no base_platform')
         # integrity tests
         self.assert_cargo_labels(self.consist.label_refits_allowed)
         self.assert_cargo_labels(self.consist.label_refits_disallowed)

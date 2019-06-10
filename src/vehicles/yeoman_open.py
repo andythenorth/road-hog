@@ -8,5 +8,6 @@ consist = OpenTruckConsist(id='yeoman_open',
 
 consist.add_unit(base_platform=DieselConventionalCabSemiTractorTruckGen4A)
 
-consist.add_unit(vehicle_length=7,
+consist.add_unit(base_platform=None,
+                 vehicle_length=7,
                  cargo_length=7)

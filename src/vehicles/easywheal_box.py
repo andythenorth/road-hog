@@ -8,4 +8,5 @@ consist = BoxTruckConsist(id='easywheal_box',
 
 consist.add_unit(base_platform=DieselConventionalCabSemiTractorTruckGen4A)
 
-consist.add_unit(vehicle_length=5)
+consist.add_unit(base_platform=None,
+                 vehicle_length=5)

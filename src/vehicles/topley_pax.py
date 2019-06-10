@@ -11,5 +11,6 @@ consist = PaxLocalBusConsist(id='topley_pax',
                       gen=5,
                       intro_date_offset=-7)  # introduce earlier than gen epoch by design
 
-consist.add_unit(type=DieselVehicleUnit,
+consist.add_unit(base_platform=None, # buses have no base platform by design currently
+                 type=DieselVehicleUnit,
                  vehicle_length=7)

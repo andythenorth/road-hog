@@ -13,4 +13,5 @@ consist.add_unit(type=SteamVehicleUnit,
                  effects=['EFFECT_SPRITE_AIRCRAFT_BREAKDOWN_SMOKE, -5, 0, 12'],
                  always_use_same_spriterow=True)
 
-consist.add_unit(vehicle_length=6)
+consist.add_unit(base_platform=None,
+                 vehicle_length=6)

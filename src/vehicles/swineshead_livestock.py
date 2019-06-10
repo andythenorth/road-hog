@@ -9,4 +9,5 @@ consist = LivestockTruckConsist(id='swineshead_livestock',
 
 consist.add_unit(base_platform=DieselCaboverRigidTruckGen4B)
 
-consist.add_unit(vehicle_length=4)
+consist.add_unit(base_platform=None,
+                 vehicle_length=4)

@@ -9,4 +9,5 @@ consist = EdiblesTankerTruckConsist(id='flow_edge_edibles_tanker',
 consist.add_unit(type=SteamVehicleUnit,
                  vehicle_length=5)
 
-consist.add_unit(vehicle_length=4)
+consist.add_unit(base_platform=None,
+                 vehicle_length=4)

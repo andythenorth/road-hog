@@ -6,7 +6,8 @@ consist = MailTramConsist(id='tin_hatch_mail',
                    power=120,  # custom power
                    gen=1)
 
-consist.add_unit(type=SteamVehicleUnit,
+consist.add_unit(base_platform=None, # mail trams have no base platform by design currently
+                 type=SteamVehicleUnit,
                  capacity=0,
                  vehicle_length=3,
                  effects=['EFFECT_SPRITE_STEAM, -3, 0, 12'],

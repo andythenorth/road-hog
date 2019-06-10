@@ -9,4 +9,5 @@ consist = EdiblesTankerTruckConsist(id='waterperry_edibles_tanker',
 
 consist.add_unit(base_platform=DieselCaboverRigidTruckGen4A)
 
-consist.add_unit(vehicle_length=4)
+consist.add_unit(base_platform=None,
+                 vehicle_length=4)
