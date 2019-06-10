@@ -1,14 +1,12 @@
 from road_vehicle import OpenTruckConsist, SteamVehicleUnit
+from base_platforms.trucks import SteamCaboverRigidTruckGen2A
 
 consist = OpenTruckConsist(id='jinglepot_open',
                     base_numeric_id=240,
                     name='Jinglepot',
                     gen=2)
 
-consist.add_unit(type=SteamVehicleUnit,
-                 vehicle_length=5,
-                 cargo_length=3,
-                 effects=['EFFECT_SPRITE_STEAM, -3, 0, 12'])
+consist.add_unit(base_platform=SteamCaboverRigidTruckGen2A)
 
 consist.add_unit(base_platform=None,
                  vehicle_length=4,
