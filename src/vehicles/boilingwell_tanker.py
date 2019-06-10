@@ -1,4 +1,4 @@
-from road_vehicle import TankerTruckConsist, SteamVehicleUnit
+from road_vehicle import TankerTruckConsist
 from base_platforms.trucks import SteamCaboverSemiTractorTruckGen2A
 
 consist = TankerTruckConsist(id='boilingwell_tanker',

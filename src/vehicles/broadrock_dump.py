@@ -1,4 +1,4 @@
-from road_vehicle import DumpHEQSConsist, DieselVehicleUnit
+from road_vehicle import DumpHEQSConsist
 from base_platforms.heqs import DieselConventionalCabSemiTractorHaulerGen3A
 
 consist = DumpHEQSConsist(id='broadrock_dump',

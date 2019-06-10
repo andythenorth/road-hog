@@ -1,4 +1,4 @@
-from road_vehicle import BoxTruckConsist, SteamVehicleUnit
+from road_vehicle import BoxTruckConsist
 from base_platforms.trucks import SteamCaboverSemiTractorTruckGen2A
 
 consist = BoxTruckConsist(id='runwell_box',

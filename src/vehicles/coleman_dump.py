@@ -1,4 +1,4 @@
-from road_vehicle import DumpTruckConsist, SteamVehicleUnit
+from road_vehicle import DumpTruckConsist
 from base_platforms.trucks import SteamCaboverSemiTractorTruckGen2A
 
 consist = DumpTruckConsist(id='coleman_dump',
