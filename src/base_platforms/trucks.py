@@ -50,6 +50,20 @@ class DieselConventionalCabSemiTractorTruckGen4A(SemiTractorTruckBase):
     effects = ['EFFECT_SPRITE_DIESEL, -2, 1, 10']
 
 
+class DieselCaboverRigidTruckGen4A(BasePlatform):
+    type = DieselVehicleUnit
+    vehicle_length = 5
+    cargo_length = 3
+    effects = ['EFFECT_SPRITE_DIESEL, -2, 1, 10']
+
+
+class DieselCaboverRigidTruckGen4B(BasePlatform):
+    type = DieselVehicleUnit
+    vehicle_length = 6
+    cargo_length = 4
+    effects = ['EFFECT_SPRITE_DIESEL, -2, 1, 10']
+
+
 class DieselCaboverRigidTruckGen5A(BasePlatform):
     type = DieselVehicleUnit
     vehicle_length = 5
