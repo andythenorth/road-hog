@@ -6,7 +6,8 @@ consist = DumpTruckConsist(id='honister_dump',
                     gen=3,
                     intro_date_offset=7)  # introduce later than gen epoch by design
 
-consist.add_unit(type=DieselVehicleUnit,
+consist.add_unit(base_platform=None, # only one instance of this one currently
+                 type=DieselVehicleUnit,
                  vehicle_length=5,
                  effects=['EFFECT_SPRITE_DIESEL, -2, 1, 10'])
 

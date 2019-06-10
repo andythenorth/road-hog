@@ -6,7 +6,8 @@ consist = LivestockTruckConsist(id='pigstick_livestock',
                            gen=3,
                          intro_date_offset=2)  # introduce later than gen epoch by design
 
-consist.add_unit(type=DieselVehicleUnit,
+consist.add_unit(base_platform=None, # only one instance of this one currently
+                 type=DieselVehicleUnit,
                  vehicle_length=6)
 
 consist.add_unit(base_platform=None,
