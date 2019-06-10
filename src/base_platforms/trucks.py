@@ -48,3 +48,10 @@ class DieselConventionalCabSemiTractorTruckGen4A(SemiTractorTruckBase):
     vehicle_length = 2
     semi_truck_shift_offset_jank = 2
     effects = ['EFFECT_SPRITE_DIESEL, -2, 1, 10']
+
+
+class DieselCaboverRigidTruckGen5A(BasePlatform):
+    type = DieselVehicleUnit
+    vehicle_length = 5
+    cargo_length = 3
+    effects = ['EFFECT_SPRITE_DIESEL, -2, 1, 10', 'EFFECT_SPRITE_DIESEL, -2, -1, 10']
