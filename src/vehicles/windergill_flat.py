@@ -1,4 +1,4 @@
-from road_vehicle import FlatbedTruckConsist, DieselVehicleUnit
+from road_vehicle import FlatbedTruckConsist
 from base_platforms.trucks import DieselCaboverRigidTruckGen3A
 
 consist = FlatbedTruckConsist(id='windergill_flat',

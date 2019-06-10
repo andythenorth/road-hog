@@ -1,4 +1,4 @@
-from road_vehicle import OpenTruckConsist, DieselVehicleUnit
+from road_vehicle import OpenTruckConsist
 from base_platforms.trucks import DieselCaboverRigidTruckGen3A
 
 consist = OpenTruckConsist(id='rattlebrook_open',

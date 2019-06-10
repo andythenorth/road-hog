@@ -1,4 +1,4 @@
-from road_vehicle import RefrigeratedTruckConsist, DieselVehicleUnit
+from road_vehicle import RefrigeratedTruckConsist
 from base_platforms.trucks import DieselCaboverRigidTruckGen4B
 
 consist = RefrigeratedTruckConsist(id='fortiscue_refrigerated',
