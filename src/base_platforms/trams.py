@@ -12,3 +12,8 @@ class EngineTramBase(BasePlatform):
 class SteamEngineTram1(EngineTramBase):
     type = SteamVehicleUnit
     vehicle_length = 4
+
+
+class SteamEngineTram2(EngineTramBase):
+    type = SteamVehicleUnit
+    vehicle_length = 4
