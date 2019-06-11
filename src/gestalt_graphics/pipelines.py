@@ -67,7 +67,14 @@ class Pipeline(object):
         for counter, unit in enumerate(self.consist.units):
             # !! currently no cap on purchase menu sprite width
             # !! consist has a buy_menu_width prop which caps to 64 which could be used (+1px overlap)
-            unit_length_in_pixels = 4 * unit.vehicle_length
+
+            # !! handle semitractors, where we need to crop the full vehicle, but the x-offset is the length of the cab
+            if unit.unit_is_semi_tractor:
+                unit_length_in_pixels = 6 * (unit.vehicle_length + unit.semi_truck_shift_offset_jank) # !! hax
+                x_offset_increment = 6 * unit.vehicle_length # !! hax
+            else:
+                unit_length_in_pixels = 4 * unit.vehicle_length
+                x_offset_increment = unit_length_in_pixels
             unit_spriterow_offset = unit.spriterow_num * graphics_constants.spriterow_height
             crop_box_src = (227,
                             10 + unit_spriterow_offset,
@@ -78,9 +85,12 @@ class Pipeline(object):
                              360 + x_offset + unit_length_in_pixels + 1, # allow for 1px coupler / corrider overhang
                              26)
             custom_buy_menu_sprite = spritesheet.sprites.copy().crop(crop_box_src)
-            spritesheet.sprites.paste(custom_buy_menu_sprite, crop_box_dest)
+            # create a mask so that we paste only the vehicle pixels (no blue pixels)
+            buy_menu_sprite_mask = custom_buy_menu_sprite.copy()
+            buy_menu_sprite_mask = buy_menu_sprite_mask.point(lambda i: 0 if i == 0 else 255).convert("1") # the inversion here of blue and white looks a bit odd, but potato / potato
+            spritesheet.sprites.paste(custom_buy_menu_sprite, crop_box_dest, buy_menu_sprite_mask)
             # increment x offset for pasting in next vehicle
-            x_offset += unit_length_in_pixels
+            x_offset += x_offset_increment
             if self.consist.id == 'trefell_log':
                 print(self.consist.id)
         return spritesheet
