@@ -5,11 +5,13 @@ consist = OpenTramConsist(id='brightling_open',
                    name='Brightling',
                    gen=3)
 
-consist.add_unit(type=ElectricVehicleUnit,
+consist.add_unit(base_platform=None, # no base platform by design currently
+                 type=ElectricVehicleUnit,
                  capacity=0,
                  vehicle_length=4,
                  always_use_same_spriterow=True)
 
-consist.add_unit(vehicle_length=6,
+consist.add_unit(base_platform=None, # no base platform by design currently
+                 vehicle_length=6,
                  cargo_length=3,
                  repeat=2)

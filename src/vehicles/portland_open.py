@@ -5,7 +5,8 @@ consist = OpenTramConsist(id='portland_open',
                    name='Portland',
                    gen=2)
 
-consist.add_unit(type=ElectricVehicleUnit,
+consist.add_unit(base_platform=None, # no base platform by design currently
+                 type=ElectricVehicleUnit,
                  vehicle_length=8,
                  cargo_length=3,
                  repeat=2)

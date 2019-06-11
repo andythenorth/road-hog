@@ -13,4 +13,5 @@ consist.add_unit(base_platform=None, # mail trams have no base platform by desig
                  effects=['EFFECT_SPRITE_STEAM, -3, 0, 12'],
                  always_use_same_spriterow=True)
 
-consist.add_unit(vehicle_length=5)
+consist.add_unit(base_platform=None, # no base platform by design currently
+                 vehicle_length=5)

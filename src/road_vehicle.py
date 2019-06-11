@@ -82,8 +82,7 @@ class Consist(object):
         # pseudo-factory that uses base_platforms to configure/reconfigure the keyword args for the unit
         base_platform = kwargs.get('base_platform', False)
         if base_platform is False:
-            if self.base_track_type == 'RAIL':
-                print(self.id, count, 'has no base_platform')
+            print(self.id, count, 'has no base_platform')
             base_platform = None
 
         if base_platform is not None:
