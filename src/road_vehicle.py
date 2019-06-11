@@ -81,9 +81,9 @@ class Consist(object):
 
         # pseudo-factory that uses base_platforms to configure/reconfigure the keyword args for the unit
         base_platform = kwargs.get('base_platform', False)
-        if base_platform is False:
-            print(self.id, count, 'has no base_platform')
-            base_platform = None
+        # require base_platform to be a value, or None
+        # usually I would allow args to be implicitly dropped but I want it to be explictly specified if the unit doesn't use a base_platform
+        assert(base_platform != False), "%s unit %s is missing base_platform kwarg; set it to a base platform id, or 'None'" % (self.id, count)
 
         if base_platform is not None:
             base_platform = base_platform() # init the base_platform, so we have an instance, not a class name
