@@ -12,6 +12,7 @@ class BasePlatform(object):
         for key in ['always_use_same_spriterow',
                     'capacity',
                     'cargo_length',
+                    'chassis',
                     'effects',
                     'semi_truck_shift_offset_jank',
                     'unit_is_semi_tractor',

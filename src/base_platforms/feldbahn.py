@@ -1,5 +1,5 @@
 from base_platform import BasePlatform
-from road_vehicle import DieselVehicleUnit, SteamVehicleUnit
+from road_vehicle import DieselVehicleUnit, ElectricVehicleUnit, SteamVehicleUnit
 
 
 class EngineFeldbahnBase(BasePlatform):
@@ -17,6 +17,11 @@ class SteamEngineFeldbahn1(EngineFeldbahnBase):
 class DieselEngineFeldbahn1(EngineFeldbahnBase):
     type = DieselVehicleUnit
     vehicle_length = 4
+
+
+class ElectricEngineFeldbahn1(EngineFeldbahnBase):
+    type = ElectricVehicleUnit
+    chassis = 'feldbahn_1_16px'
 
 
 # wagons

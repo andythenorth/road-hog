@@ -1,4 +1,4 @@
-from road_vehicle import OpenTruckConsist, SteamVehicleUnit
+from road_vehicle import OpenTruckConsist
 from base_platforms.trucks import SteamCaboverRigidTruckGen2A
 
 consist = OpenTruckConsist(id='jinglepot_open',

@@ -1,4 +1,4 @@
-from road_vehicle import PaxLocalTramConsist, SteamVehicleUnit
+from road_vehicle import PaxLocalTramConsist
 from base_platforms.trams import SteamEngineTram2
 
 consist = PaxLocalTramConsist(id='ladycross_pax',
