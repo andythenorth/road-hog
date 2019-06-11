@@ -7,6 +7,8 @@ class EngineFeldbahnBase(BasePlatform):
     always_use_same_spriterow = True
 
 
+# engines
+
 class SteamEngineFeldbahn1(EngineFeldbahnBase):
     type = SteamVehicleUnit
     vehicle_length = 4
@@ -15,9 +17,9 @@ class SteamEngineFeldbahn1(EngineFeldbahnBase):
 class DieselEngineFeldbahn1(EngineFeldbahnBase):
     type = DieselVehicleUnit
     vehicle_length = 4
-    capacity = 0
-    always_use_same_spriterow = True
 
+
+# wagons
 
 class OpenWagonFeldbahnGen1(BasePlatform):
     vehicle_length = 4
