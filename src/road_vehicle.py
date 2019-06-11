@@ -334,7 +334,7 @@ class Consist(object):
         # automatic buy menu sprite if single-unit consist
         # extend this to check an auto_buy_menu_sprite property if manual over-rides are needed in future
         if len(self.units) > 1:
-            return 360  # custom buy menu sprite
+            return global_constants.custom_buy_menu_x_loc # custom buy menu sprite
         else:
             # default to just using 6th angle of vehicle
             return global_constants.spritesheet_bounding_boxes[6][0]
@@ -343,10 +343,10 @@ class Consist(object):
     def buy_menu_width (self):
         # max sensible width in buy menu is 64px, but RH templates currently drawn at 36px - legacy stuff
         consist_length = 4 * sum([unit.vehicle_length for unit in self.units])
-        if consist_length < global_constants.buy_menu_sprite_width:
+        if consist_length < global_constants.buy_menu_sprite_max_width:
             return consist_length
         else:
-            return global_constants.buy_menu_sprite_width
+            return global_constants.buy_menu_sprite_max_width
 
     @property
     def roster(self):

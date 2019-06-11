@@ -61,6 +61,9 @@ class Pipeline(object):
         # this function is passed (uncalled) into the pipeline, and then called at render time
         # this is so that it has the processed spritesheet available, which is essential for creating buy menu sprites
         # n.b if buy menu sprite processing has conditions by vehicle type, could pass a dedicated function for each type of processing
+        # these 'source' var names for images are misleading
+        buy_menu_image = Image.new("P", (self.consist.buy_menu_width, self.global_constants.buy_menu_sprite_height), 0)
+        buy_menu_image.putpalette(Image.open('palette_key.png').palette)
 
         # hard-coded positions for buy menu sprite (if used - it's optional)
         x_offset = 0
@@ -75,24 +78,28 @@ class Pipeline(object):
             else:
                 unit_length_in_pixels = 4 * unit.vehicle_length
                 x_offset_increment = unit_length_in_pixels
+
             unit_spriterow_offset = unit.spriterow_num * graphics_constants.spriterow_height
             crop_box_src = (227,
                             10 + unit_spriterow_offset,
                             227 + unit_length_in_pixels + 1, # allow for 1px coupler / corrider overhang
                             26 + unit_spriterow_offset)
-            crop_box_dest = (360 + x_offset,
-                             10,
-                             360 + x_offset + unit_length_in_pixels + 1, # allow for 1px coupler / corrider overhang
-                             26)
+            crop_box_dest = (x_offset,
+                             0,
+                             x_offset + unit_length_in_pixels + 1, # allow for 1px coupler / corrider overhang
+                             self.global_constants.buy_menu_sprite_height)
             custom_buy_menu_sprite = spritesheet.sprites.copy().crop(crop_box_src)
             # create a mask so that we paste only the vehicle pixels (no blue pixels)
             buy_menu_sprite_mask = custom_buy_menu_sprite.copy()
             buy_menu_sprite_mask = buy_menu_sprite_mask.point(lambda i: 0 if i == 0 else 255).convert("1") # the inversion here of blue and white looks a bit odd, but potato / potato
-            spritesheet.sprites.paste(custom_buy_menu_sprite, crop_box_dest, buy_menu_sprite_mask)
+            buy_menu_image.paste(custom_buy_menu_sprite, crop_box_dest, buy_menu_sprite_mask)
             # increment x offset for pasting in next vehicle
             x_offset += x_offset_increment
-            if self.consist.id == 'trefell_log':
-                print(self.consist.id)
+        crop_box_dest = (self.consist.buy_menu_x_loc,
+                         10,
+                         self.consist.buy_menu_x_loc + buy_menu_image.size[0],
+                         26)
+        spritesheet.sprites.paste(buy_menu_image, crop_box_dest)
         return spritesheet
 
     def render_common(self, input_image, units):
@@ -140,11 +147,12 @@ class CheckBuyMenuOnlyPipeline(Pipeline):
     def render(self, consist, global_constants):
         self.units = []
         self.consist = consist
+        self.global_constants = global_constants
 
         if self.consist.id == 'oxleas_pax_express':
             print(self.consist.id, self.consist.buy_menu_x_loc)
 
-        if self.consist.buy_menu_x_loc == 360:
+        if self.consist.buy_menu_x_loc == global_constants.custom_buy_menu_x_loc:
             # !! this currently will cause the vehicle spritesheet buy menu sprites to be copied to the pans spritesheet,
             # !! it needs pixels from the pans spritesheet, but automated buy menu sprites need providing first
             self.units.append(AddBuyMenuSprite(self.process_buy_menu_sprite))
@@ -429,7 +437,7 @@ class ExtendSpriterowsForCompositedSpritesPipeline(Pipeline):
                     self.add_piece_cargo_spriterows()
                 cumulative_input_spriterow_count += input_spriterow_count
 
-        if self.consist.buy_menu_x_loc == 360:
+        if self.consist.buy_menu_x_loc == global_constants.custom_buy_menu_x_loc:
             self.units.append(AddBuyMenuSprite(self.process_buy_menu_sprite))
 
         # for this pipeline, input_image is just blank white 10px high image, to which the vehicle sprites are then appended

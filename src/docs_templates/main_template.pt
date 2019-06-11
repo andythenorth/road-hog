@@ -63,7 +63,7 @@
                     var random_image = images.splice(index, 1);
                     document.write('<a href="road_vehicles.html#' + random_image + '" style="display:block; margin-bottom: 20px;"> \
                                         <img src="static/img/'+ random_image + '.png" \
-                                             width="${4 * global_constants.buy_menu_sprite_width}" \
+                                             width="${4 * global_constants.buy_menu_sprite_max_width}" \
                                              height="${4 * global_constants.buy_menu_sprite_height}"> \
                                     </a>')
                     return true;

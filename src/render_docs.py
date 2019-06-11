@@ -155,17 +155,16 @@ def render_docs_images():
         vehicle_spritesheet = Image.open(os.path.join(vehicle_graphics_src, consist.id + '.png'))
 
         # these 'source' var names for images are misleading
-        source_vehicle_image = Image.new("P", (2 * global_constants.buy_menu_sprite_width, global_constants.buy_menu_sprite_height), 255)
+        source_vehicle_image = Image.new("P", (consist.buy_menu_width, global_constants.buy_menu_sprite_height), 255)
         source_vehicle_image.putpalette(Image.open('palette_key.png').palette)
 
         source_vehicle_image_tmp = vehicle_spritesheet.crop(box=(consist.buy_menu_x_loc,
                                                                  10,
-                                                                 consist.buy_menu_x_loc + (2 * global_constants.buy_menu_sprite_width),
+                                                                 consist.buy_menu_x_loc + consist.buy_menu_width,
                                                                  10 + global_constants.buy_menu_sprite_height))
-
         crop_box_dest = (0,
                          0,
-                         2 * global_constants.buy_menu_sprite_width,
+                         consist.buy_menu_width,
                          global_constants.buy_menu_sprite_height)
         source_vehicle_image.paste(source_vehicle_image_tmp.crop(crop_box_dest), crop_box_dest)
 

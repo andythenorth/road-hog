@@ -32,8 +32,9 @@ spritesheet_bounding_boxes = ((60, 12, 29), (77, 26, 20), (107, 33, 16), (147, 2
 # this is calculated from bounding boxes
 sprites_max_x_extent = spritesheet_bounding_boxes[7][0] + spritesheet_bounding_boxes[7][1]
 
-buy_menu_sprite_width = 36 # 36 is correct, but some spritesheets might have wrong widths due to copy-pasteo etc
+buy_menu_sprite_max_width = 64 # cap how wide a buy_menu sprite can be, as some consists are long
 buy_menu_sprite_height = 16
+custom_buy_menu_x_loc = 320
 
 # shared global constants via Polar Fox library - import at end to make the this project's constants easier to work with
 # done this way so we don't have to pass Polar Fox to templates, we can just pass global_constants
