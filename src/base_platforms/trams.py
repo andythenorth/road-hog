@@ -3,6 +3,7 @@ from road_vehicle import DieselVehicleUnit, ElectricVehicleUnit, SteamVehicleUni
 
 
 class EngineTramBase(BasePlatform):
+    # an engine, with no cargo capacity or cargo sprites
     capacity = 0
     always_use_same_spriterow = True
 
@@ -21,24 +22,24 @@ class SteamEngineTram2(EngineTramBase):
 
 # motors (body with cabs at both end)
 
-class ElectricMotorTram1(EngineTramBase):
+class ElectricMotorTram1(BasePlatform):
     type = ElectricVehicleUnit
     vehicle_length = 8
 
 
-class ElectricMotorTram2(EngineTramBase):
-    type = ElectricVehicleUnit
-    vehicle_length = 8
-    cargo_length = 3
-
-
-class ElectricMotorTram3(EngineTramBase):
+class ElectricMotorTram2(BasePlatform):
     type = ElectricVehicleUnit
     vehicle_length = 8
     cargo_length = 3
 
 
-class ElectricMotorTram4(EngineTramBase):
+class ElectricMotorTram3(BasePlatform):
+    type = ElectricVehicleUnit
+    vehicle_length = 8
+    cargo_length = 3
+
+
+class ElectricMotorTram4(BasePlatform):
     type = ElectricVehicleUnit
     vehicle_length = 8
     cargo_length = 3
