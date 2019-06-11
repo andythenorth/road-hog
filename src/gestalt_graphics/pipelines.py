@@ -149,9 +149,6 @@ class CheckBuyMenuOnlyPipeline(Pipeline):
         self.consist = consist
         self.global_constants = global_constants
 
-        if self.consist.id == 'oxleas_pax_express':
-            print(self.consist.id, self.consist.buy_menu_x_loc)
-
         if self.consist.buy_menu_x_loc == global_constants.custom_buy_menu_x_loc:
             # !! this currently will cause the vehicle spritesheet buy menu sprites to be copied to the pans spritesheet,
             # !! it needs pixels from the pans spritesheet, but automated buy menu sprites need providing first
