@@ -3,7 +3,6 @@ from road_vehicle import DieselVehicleUnit
 
 
 class SemiTractorHaulerBase(BasePlatform):
-    capacity = 0
     always_use_same_spriterow = True
     unit_is_semi_tractor = True
 

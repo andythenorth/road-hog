@@ -19,7 +19,7 @@ class BasePlatform(object):
                     'type',
                     'vehicle_length']:
             value = getattr(self, key, False)
-            if value:
+            if value is not False:
                 kwargs[key] = value
         kwargs['base_platform'] = self # replace the class name with this class instance
         return kwargs

@@ -9,4 +9,4 @@ consist = DumpFeldbahnConsist(id='eidsborg_dump',
 consist.add_unit(base_platform=DieselEngineFeldbahn1)
 
 consist.add_unit(base_platform=OpenWagonFeldbahnGen3,
-                 repeat=7)
+                 repeat=3)
