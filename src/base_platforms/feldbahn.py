@@ -14,7 +14,17 @@ class SteamEngineFeldbahn1(EngineFeldbahnBase):
     vehicle_length = 4
 
 
+class SteamEngineFeldbahn2(EngineFeldbahnBase):
+    type = SteamVehicleUnit
+    vehicle_length = 4
+
+
 class DieselEngineFeldbahn1(EngineFeldbahnBase):
+    type = DieselVehicleUnit
+    vehicle_length = 4
+
+
+class DieselEngineFeldbahn2(EngineFeldbahnBase):
     type = DieselVehicleUnit
     vehicle_length = 4
 

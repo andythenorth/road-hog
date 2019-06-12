@@ -156,6 +156,7 @@ class GestaltGraphicsLiveryOnly(GestaltGraphics):
 
 class GestaltGraphicsCustom(GestaltGraphics):
     """
+        This would be better deprecated, it's not really needed, all worthwhile cases can be met by generation.
         Used to handle (rare) cases with hand-drawn cargo (no pixa-generated cargos).
         There is currently no graphics processing for this:
         - just a simple pass-through, and an interface to the nml templates
@@ -164,7 +165,8 @@ class GestaltGraphicsCustom(GestaltGraphics):
     """
     def __init__(self, _cargo_row_map, _nml_template, generic_rows):
         super().__init__()
-        self.pipelines = pipelines.get_pipelines(['pass_through_pipeline'])
+        # this attempts to use the buy menu generation pipeline, if that doesn't work, then it's probably time to sack off this gestalt type tbh
+        self.pipelines = pipelines.get_pipelines(['check_buy_menu_only'])
         # options
         self._nml_template = _nml_template
         self._cargo_row_map = _cargo_row_map
