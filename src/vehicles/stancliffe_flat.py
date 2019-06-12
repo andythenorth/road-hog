@@ -1,4 +1,4 @@
-from road_vehicle import FlatbedTramConsist, ElectricVehicleUnit
+from road_vehicle import FlatbedTramConsist
 from base_platforms.trams import ElectricMotorTram4
 
 consist = FlatbedTramConsist(id='stancliffe_flat',

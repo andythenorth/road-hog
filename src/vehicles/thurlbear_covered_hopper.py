@@ -1,4 +1,4 @@
-from road_vehicle import CoveredHopperTramConsist, ElectricVehicleUnit
+from road_vehicle import CoveredHopperTramConsist
 from base_platforms.trams import ElectricMotorTram4
 
 consist = CoveredHopperTramConsist(id='thurlbear_covered_hopper',
