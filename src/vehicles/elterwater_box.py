@@ -1,9 +1,9 @@
-from road_vehicle import DumpFeldbahnConsist
+from road_vehicle import BoxFeldbahnConsist
 from base_platforms.feldbahn import DieselEngineFeldbahn1, OpenWagonFeldbahnGen3
 
-consist = DumpFeldbahnConsist(id='eidsborg_dump',
-                       base_numeric_id=140,
-                       name='Eidsborg',
+consist = BoxFeldbahnConsist(id='elterwater_box',
+                       base_numeric_id=970,
+                       name='Elterwater',
                        gen=3)
 
 consist.add_unit(base_platform=DieselEngineFeldbahn1)

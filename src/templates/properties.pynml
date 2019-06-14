@@ -10,25 +10,25 @@ switch (FEAT_ROADVEHS, SELF, ${vehicle.id}_create_visual_effect, ${vehicle.get_e
 item(FEAT_ROADVEHS, ${vehicle.id}, ${vehicle.numeric_id}) {
     property {
         name:                           ${consist.name};
-        cargo_capacity:                 ${vehicle.capacity};
+        cargo_capacity:                 ${vehicle.capacity}; // use CB to set this, avoids limited size of action 0 property
         sprite_id:                      SPRITE_ID_NEW_ROADVEH; //enable new graphics - nml constant
         <!--! insert either road_type or  track_type as appropriate to the vehicle type -->
         ${consist.get_expression_for_road_or_tram_type}
-        <tal:lead_unit_props condition="vehicle.is_lead_unit_of_consist">
+        <tal:lead_unit_only condition="vehicle.is_lead_unit_of_consist">
             introduction_date:              date(${consist.intro_date},01,01); // consist just supplies intro year - openttd randomises intro dates a bit anyway
             power:                          ${consist.power}hp;
             speed:                          ${consist.speed}mph;
             weight:                         ${consist.weight}ton;
             tractive_effort_coefficient:    ${consist.tractive_effort_coefficient};
             cost_factor:                    ${consist.buy_cost};
+            running_cost_factor:            0; // use CB to set this, avoids limited size of action 0 property
             running_cost_base:              RUNNING_COST_ROADVEH;
-            running_cost_factor:            ${consist.running_cost};
             model_life:                     ${consist.model_life};
             vehicle_life:                   ${consist.vehicle_life};
             reliability_decay:              20; // default value
             retire_early:                   ${consist.retire_early};
             sound_effect:                   ${consist.sound_effect};
-        </tal:lead_unit_props>
+        </tal:lead_unit_only>
         refit_cost:                     0; // this needs to be 0 if we want autorefit without using cb
         refittable_cargo_classes:       bitmask(${consist.refittable_classes});
         non_refittable_cargo_classes:   bitmask(); // don't set non-refittable classes, increases likelihood of breaking cargo support
@@ -50,9 +50,10 @@ item(FEAT_ROADVEHS, ${vehicle.id}, ${vehicle.numeric_id}) {
         purchase:                       ${vehicle.id}_sg_purchase;
         create_effect:                  ${vehicle.id}_create_visual_effect;
         <!--! no buy menu extra text in this grf by design; extra text is associated with BAD FEATURES -->
-        <tal:add_articulated_parts condition="vehicle.is_lead_unit_of_consist and len(consist.units) > 1">
-            articulated_part: ${consist.id}_articulated_cb_switch;
-        </tal:add_articulated_parts>
+        <tal:lead_unit_only condition="vehicle.is_lead_unit_of_consist and len(consist.units) > 1">
+            articulated_part:               ${consist.id}_articulated_cb_switch;
+            running_cost_factor:            return ${consist.running_cost};
+        </tal:lead_unit_only>
     }
 }
 

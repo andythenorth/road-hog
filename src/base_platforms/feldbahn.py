@@ -21,7 +21,7 @@ class SteamEngineFeldbahn2(EngineFeldbahnBase):
 
 class DieselEngineFeldbahn1(EngineFeldbahnBase):
     type = DieselVehicleUnit
-    vehicle_length = 4
+    vehicle_length = 3
 
 
 class DieselEngineFeldbahn2(EngineFeldbahnBase):
@@ -47,7 +47,7 @@ class OpenWagonFeldbahnGen2(BasePlatform):
 
 
 class OpenWagonFeldbahnGen3(BasePlatform):
-    vehicle_length = 4
+    vehicle_length = 3
     cargo_length = 3
 
 

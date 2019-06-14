@@ -193,8 +193,9 @@ class Consist(object):
 
     @property
     def running_cost(self):
-        # type_base_running_cost_points is an arbitrary adjustment that can be applied on a type-by-type basis,
-        return self.get_engine_cost_points()  + self.type_base_running_cost_points
+        # type_base_running_cost_points is an arbitrary adjustment that can be applied on a type-by-type basis
+        # cap to int for nml reasons
+        return int(self.get_engine_cost_points()  + self.type_base_running_cost_points)
 
     @property
     def intro_date(self):
@@ -494,6 +495,14 @@ class BoxHaulerConsistBase(Consist):
         self.weight_multiplier = 0.45
 
 
+class BoxFeldbahnConsist(BoxHaulerConsistBase, TrackTypeMixinFeldbahn):
+    """
+    Box Feldbahn.
+    """
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+
 class BoxTramConsist(BoxHaulerConsistBase, TrackTypeMixinTram):
     """
     Box tram.
@@ -639,6 +648,14 @@ class FlatbedHaulerConsistBase(Consist):
         self.default_cargos = global_constants.default_cargos['flat']
         # Graphics configuration
         self.gestalt_graphics = GestaltGraphicsVisibleCargo(piece='flat')
+
+
+class FlatFeldbahnConsist(FlatbedHaulerConsistBase, TrackTypeMixinFeldbahn):
+    """
+    Flatbed feldbahn.
+    """
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
 
 
 class FlatbedTramConsist(FlatbedHaulerConsistBase, TrackTypeMixinTram):

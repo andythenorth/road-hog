@@ -47,6 +47,7 @@ STR_NAME_SUFFIX_DIESEL                                          :Diesel
 STR_NAME_SUFFIX_ELECTRIC                                        :Electric
 STR_NAME_SUFFIX_STEAM                                           :Steam
 
+STR_NAME_SUFFIX_BOX_FELDBAHN                                    :Box Feldbahn
 STR_NAME_SUFFIX_BOX_TRAM                                        :Box Tram
 STR_NAME_SUFFIX_BOX_TRUCK                                       :Box Truck
 STR_NAME_SUFFIX_BUS                                             :Bus
@@ -58,6 +59,7 @@ STR_NAME_SUFFIX_DUMP_TRAM                                       :Dump Tram
 STR_NAME_SUFFIX_DUMP_TRUCK                                      :Dump Truck
 STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM                             :Edibles Tanker Tram
 STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK                            :Edibles Tanker Truck
+STR_NAME_SUFFIX_FLATBED_FELDBAHN                                :Flatbed Feldbahn
 STR_NAME_SUFFIX_FLATBED_TRAM                                    :Flatbed Tram
 STR_NAME_SUFFIX_FLATBED_TRUCK                                   :Flatbed Truck
 STR_NAME_SUFFIX_FRUIT_VEG_TRAM                                  :Fruit & Vegetables Tram

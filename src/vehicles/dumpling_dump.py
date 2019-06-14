@@ -9,4 +9,4 @@ consist = DumpFeldbahnConsist(id='dumpling_dump',
 consist.add_unit(base_platform=SteamEngineFeldbahn1)
 
 consist.add_unit(base_platform=OpenWagonFeldbahnGen3,
-                 repeat=3)
+                 repeat=11)
