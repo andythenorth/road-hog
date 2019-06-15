@@ -57,7 +57,6 @@ STR_NAME_SUFFIX_MAIL_TRAM                                       :Tramway postal
 STR_NAME_SUFFIX_MAIL_TRUCK                                      :Camion postal
 STR_NAME_SUFFIX_METAL_TRAM                                      :Tramway transporteur de fonte
 STR_NAME_SUFFIX_METAL_TRUCK                                     :Transporteur de fonte
-STR_NAME_SUFFIX_MINING_TRAM                                     :Tram minier
 STR_NAME_SUFFIX_MINING_TRUCK                                    :Camion de mine
 STR_NAME_SUFFIX_OPEN_TRAM                                       :Tram-tombereau
 STR_NAME_SUFFIX_OPEN_TRUCK                                      :Camion ouvert

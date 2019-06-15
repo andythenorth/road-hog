@@ -27,7 +27,6 @@ STR_NAME_SUFFIX_FLATBED_TRUCK                                   :Avolavakuorma-a
 STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Konttirekka
 STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :Karjaraitiovaunu
 STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :Karjarekka
-STR_NAME_SUFFIX_MINING_TRAM                                     :Mineraaliraitiovaunu
 STR_NAME_SUFFIX_MINING_TRUCK                                    :Kaivoskuorma-auto
 STR_NAME_SUFFIX_OPEN_TRAM                                       :Avolavaraitiovaunu
 STR_NAME_SUFFIX_OPEN_TRUCK                                      :Avolavakuorma-auto

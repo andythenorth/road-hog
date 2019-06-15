@@ -62,8 +62,10 @@ STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK                            :Edibles Tanker 
 STR_NAME_SUFFIX_FLATBED_FELDBAHN                                :Flatbed Feldbahn
 STR_NAME_SUFFIX_FLATBED_TRAM                                    :Flatbed Tram
 STR_NAME_SUFFIX_FLATBED_TRUCK                                   :Flatbed Truck
+STR_NAME_SUFFIX_FRUIT_VEG_FELDBAHN                              :Fruit & Vegetables Feldbahn
 STR_NAME_SUFFIX_FRUIT_VEG_TRAM                                  :Fruit & Vegetables Tram
 STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Intermodal Hauler
+STR_NAME_SUFFIX_LIVESTOCK_FELDBAHN                              :Livestock Feldbahn
 STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :Livestock Tram
 STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :Livestock Truck
 STR_NAME_SUFFIX_LOG_TRUCK                                       :Logging Truck
@@ -71,7 +73,6 @@ STR_NAME_SUFFIX_MAIL_TRAM                                       :Courier Tram
 STR_NAME_SUFFIX_MAIL_TRUCK                                      :Courier Truck
 STR_NAME_SUFFIX_METAL_TRAM                                      :Foundry Tram
 STR_NAME_SUFFIX_METAL_TRUCK                                     :Foundry Hauler
-STR_NAME_SUFFIX_MINING_TRAM                                     :Mining Tram
 STR_NAME_SUFFIX_MINING_TRUCK                                    :Mining Truck
 STR_NAME_SUFFIX_OPEN_FELDBAHN                                   :Open Feldbahn
 STR_NAME_SUFFIX_OPEN_TRAM                                       :Open Tram
@@ -81,6 +82,7 @@ STR_NAME_SUFFIX_REEFER_TRAM                                     :Refrigerated Tr
 STR_NAME_SUFFIX_REEFER_TRUCK                                    :Refrigerated Truck
 STR_NAME_SUFFIX_SUPPLIES_TRAM                                   :Supplies Tram
 STR_NAME_SUFFIX_SUPPLIES_TRUCK                                  :Supplies Truck
+STR_NAME_SUFFIX_TANKER_FELDBAHN                                 :Tanker Feldbahn
 STR_NAME_SUFFIX_TANKER_TRAM                                     :Tanker Tram
 STR_NAME_SUFFIX_TANKER_TRUCK                                    :Tanker Truck
 
