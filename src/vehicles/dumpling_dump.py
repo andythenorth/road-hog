@@ -1,5 +1,5 @@
 from road_vehicle import DumpFeldbahnConsist
-from base_platforms.feldbahn import SteamEngineFeldbahn1, OpenWagonFeldbahnGen3
+from base_platforms.feldbahn import SteamEngineFeldbahn1, OpenWagonFeldbahnGen1
 
 consist = DumpFeldbahnConsist(id='dumpling_dump',
                        base_numeric_id=980,
@@ -8,5 +8,5 @@ consist = DumpFeldbahnConsist(id='dumpling_dump',
 
 consist.add_unit(base_platform=SteamEngineFeldbahn1)
 
-consist.add_unit(base_platform=OpenWagonFeldbahnGen3,
-                 repeat=11)
+consist.add_unit(base_platform=OpenWagonFeldbahnGen1,
+                 repeat=5)

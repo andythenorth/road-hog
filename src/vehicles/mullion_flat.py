@@ -4,7 +4,7 @@ from base_platforms.feldbahn import DieselEngineFeldbahn1, OpenWagonFeldbahnGen3
 consist = FlatFeldbahnConsist(id='mullion_flat',
                        base_numeric_id=1040,
                        name='Mullion',
-                       gen=3)
+                       gen=1)
 
 consist.add_unit(base_platform=DieselEngineFeldbahn1)
 

@@ -11,7 +11,7 @@ class EngineFeldbahnBase(BasePlatform):
 
 class SteamEngineFeldbahn1(EngineFeldbahnBase):
     type = SteamVehicleUnit
-    vehicle_length = 4
+    vehicle_length = 3
 
 
 class SteamEngineFeldbahn2(EngineFeldbahnBase):

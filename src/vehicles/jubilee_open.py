@@ -10,4 +10,4 @@ consist.add_unit(base_platform=DieselEngineFeldbahn1)
 
 
 consist.add_unit(base_platform=OpenWagonFeldbahnGen3,
-                 repeat=3)
+                 repeat=5)
