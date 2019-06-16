@@ -690,6 +690,14 @@ class FruitVegHaulerConsistBase(Consist):
         self.weight_multiplier = 0.45
 
 
+class FruitVegFeldbahnConsist(FruitVegHaulerConsistBase, TrackTypeMixinFeldbahn):
+    """
+    Fruit and vegetables feldbahn.
+    """
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+
 class FruitVegTramConsist(FruitVegHaulerConsistBase, TrackTypeMixinTram):
     """
     Fruit and vegetables tram.  No FruitVegTruck yet as of April 2019.
@@ -727,6 +735,14 @@ class LivestockHaulerConsistBase(Consist):
         self.default_cargos = ['LVST'] # no need for fallbacks, only one cargo
         self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
         self.weight_multiplier = 0.45
+
+
+class LivestockFeldbahnConsist(LivestockHaulerConsistBase, TrackTypeMixinFeldbahn):
+    """
+    Livestock feldbahn.
+    """
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
 
 
 class LivestockTramConsist(LivestockHaulerConsistBase, TrackTypeMixinTram):
@@ -1024,6 +1040,14 @@ class TankerConsistBase(Consist):
         self.weight_multiplier = 0.45
         # Graphics configuration
         self.gestalt_graphics = GestaltGraphicsLiveryOnly(recolour_maps=polar_fox.constants.tanker_livery_recolour_maps)
+
+
+class TankerFeldbahnConsist(TankerConsistBase, TrackTypeMixinFeldbahn):
+    """
+    Tanker feldbahn.
+    """
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
 
 
 class TankerTramConsist(TankerConsistBase, TrackTypeMixinTram):

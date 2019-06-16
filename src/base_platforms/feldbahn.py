@@ -37,20 +37,15 @@ class ElectricEngineFeldbahn1(EngineFeldbahnBase):
 # wagons
 
 class OpenWagonFeldbahnGen1(BasePlatform):
-    vehicle_length = 4
+    vehicle_length = 3
     cargo_length = 3
 
 
 class OpenWagonFeldbahnGen2(BasePlatform):
-    vehicle_length = 4
+    vehicle_length = 3
     cargo_length = 3
 
 
 class OpenWagonFeldbahnGen3(BasePlatform):
     vehicle_length = 3
-    cargo_length = 3
-
-
-class OpenWagonFeldbahnGen4(BasePlatform):
-    vehicle_length = 4
     cargo_length = 3

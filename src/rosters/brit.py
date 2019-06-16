@@ -119,7 +119,7 @@ roster = Roster(id = 'brit',
                                'LOLZ': [1860, 1920, 1945, 1970, 1995, 2020], # keep matched to ROAD
                                'HEQS': [1925, 1945, 1965, 1985, 2015, 2035], # very aggressive 20 year gaps to reflect rapid development + overtake feldbahn
                                'RAIL': [1860, 1900, 1930, 1960, 1990, 2020], # 30 year gaps for trams
-                               'HAKE': [1860, 1900, 1950, 2000]}, # only a few generations of feldbahn, then replaced by trucks
+                               'HAKE': [1860, 1910, 1960]}, # only a few generations of feldbahn, then replaced by trucks
                 speeds = {'ROAD': [25, 40, 55, 70, 80, 80],
                           'LOLZ': [25, 40, 55, 70, 80, 80], # match to ROAD otherwise LOLZ vehicles cause road blocks
                           'HEQS': [25, 30, 40, 50, 60, 60],

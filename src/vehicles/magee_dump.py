@@ -4,7 +4,7 @@ from base_platforms.feldbahn import DieselEngineFeldbahn2, OpenWagonFeldbahnGen3
 consist = DumpFeldbahnConsist(id='magee_dump',
                        base_numeric_id=1020,
                        name='Magee',
-                       gen=4)
+                       gen=3)
 
 consist.add_unit(base_platform=DieselEngineFeldbahn2)
 
