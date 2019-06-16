@@ -9,22 +9,27 @@ class EngineFeldbahnBase(BasePlatform):
 
 # engines
 
-class SteamEngineFeldbahn1(EngineFeldbahnBase):
+class SteamEngineFeldbahnGen1A(EngineFeldbahnBase):
     type = SteamVehicleUnit
     vehicle_length = 3
 
 
-class SteamEngineFeldbahn2(EngineFeldbahnBase):
+class SteamEngineFeldbahnGen2A(EngineFeldbahnBase):
+    type = SteamVehicleUnit
+    vehicle_length = 3
+
+
+class SteamEngineFeldbahnGen2B(EngineFeldbahnBase):
     type = SteamVehicleUnit
     vehicle_length = 4
 
 
-class DieselEngineFeldbahn1(EngineFeldbahnBase):
+class DieselEngineFeldbahnGen3A(EngineFeldbahnBase):
     type = DieselVehicleUnit
     vehicle_length = 3
 
 
-class DieselEngineFeldbahn2(EngineFeldbahnBase):
+class DieselEngineFeldbahnGen3B(EngineFeldbahnBase):
     type = DieselVehicleUnit
     vehicle_length = 4
 
@@ -36,16 +41,6 @@ class ElectricEngineFeldbahn1(EngineFeldbahnBase):
 
 # wagons
 
-class OpenWagonFeldbahnGen1(BasePlatform):
-    vehicle_length = 3
-    cargo_length = 3
-
-
-class OpenWagonFeldbahnGen2(BasePlatform):
-    vehicle_length = 3
-    cargo_length = 3
-
-
-class OpenWagonFeldbahnGen3(BasePlatform):
+class WagonFeldbahnA(BasePlatform):
     vehicle_length = 3
     cargo_length = 3
