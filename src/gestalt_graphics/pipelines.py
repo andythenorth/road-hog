@@ -422,15 +422,15 @@ class ExtendSpriterowsForCompositedSpritesPipeline(Pipeline):
 
         self.consist_source_image = Image.open(self.vehicle_source_input_path)
 
-        # the cumulative_input_spriterow_count updates per processed group of spriterows, and is key to making this work
-        # !! input_spriterow_count looks a bit weird though; I tried moving it to gestalts, but didn't really work
-        cumulative_input_spriterow_count = 0
+        # the consist_cumulative_source_spriterow_count updates per processed group of spriterows, and is key to making this work
+        # !! source_spriterow_count looks a bit weird though; I tried moving it to gestalts, but didn't really work
+        consist_cumulative_source_spriterow_count = 0
         for vehicle_counter, vehicle_rows in enumerate(consist.get_spriterows_for_consist_or_subpart(consist.unique_units)):
+            # !! ^ this is ugly hax, I didn't want to refactor the iterator above to contain the vehicle, also in Horse
             # 'vehicle_unit' not 'unit' to avoid conflating with graphics processor 'unit'
-            # !!  this is ugly hax, I didn't want to refactor the iterator above to contain the vehicle, also in Horse
             self.vehicle_unit = self.consist.unique_units[vehicle_counter]
             self.cabbage_offset = 0
-            self.base_empty_row_input_yoffs = 10 + (graphics_constants.spriterow_height * cumulative_input_spriterow_count)
+            self.base_empty_row_input_yoffs = 10 + (graphics_constants.spriterow_height * consist_cumulative_source_spriterow_count)
             if self.base_platform_input_path is not None:
                 self.vehicle_unit_source_image = Image.open(self.base_platform_input_path)
             else:
@@ -442,23 +442,23 @@ class ExtendSpriterowsForCompositedSpritesPipeline(Pipeline):
                     self.source_row_base_yoffs = 10 + (self.cabbage_offset * graphics_constants.spriterow_height)
                     self.empty_row_input_yoffs = 10
                 else:
-                    self.source_row_base_yoffs = 10 + (graphics_constants.spriterow_height * cumulative_input_spriterow_count)
+                    self.source_row_base_yoffs = 10 + (graphics_constants.spriterow_height * consist_cumulative_source_spriterow_count)
                     self.empty_row_input_yoffs = self.base_empty_row_input_yoffs
 
                 if spriterow_type == 'always_use_same_spriterow' or spriterow_type == 'empty':
-                    input_spriterow_count = 1
+                    source_spriterow_count = 1
                     self.add_generic_spriterow()
                 elif spriterow_type == 'livery_only':
-                    input_spriterow_count = 1
+                    source_spriterow_count = 1
                     self.add_livery_only_spriterows(consist.gestalt_graphics.recolour_maps)
                 elif spriterow_type == 'bulk_cargo':
-                    input_spriterow_count = 2
+                    source_spriterow_count = 2
                     self.add_bulk_cargo_spriterows()
                 elif spriterow_type == 'piece_cargo':
-                    input_spriterow_count = 2
+                    source_spriterow_count = 2
                     self.add_piece_cargo_spriterows()
-                cumulative_input_spriterow_count += input_spriterow_count
-                self.cabbage_offset += input_spriterow_count
+                consist_cumulative_source_spriterow_count += source_spriterow_count
+                self.cabbage_offset += source_spriterow_count
 
         if self.consist.buy_menu_x_loc == global_constants.custom_buy_menu_x_loc:
             self.units.append(AddBuyMenuSprite(self.process_buy_menu_sprite))
