@@ -231,11 +231,7 @@ class Consist(object):
         # trams are 10% heavier per capacity
         if self.roadveh_flag_tram:
             mult = mult + 0.1
-        consist_weight = mult * self.total_capacity
-        if consist_weight > 63:
-            utils.echo_message("Error: consist weight is " + str(consist_weight) + "t for " + self.id + "; must be < 63t")
-            utils.echo_message("Reimplement weight property as callback (cb36 isn't capped to 63.75t)")
-        return min(consist_weight, 63)
+        return mult * self.total_capacity
 
     @property
     def total_capacity(self):

@@ -18,7 +18,6 @@ item(FEAT_ROADVEHS, ${vehicle.id}, ${vehicle.numeric_id}) {
             introduction_date:              date(${consist.intro_date},01,01); // consist just supplies intro year - openttd randomises intro dates a bit anyway
             power:                          ${consist.power}hp;
             speed:                          ${consist.speed}mph;
-            weight:                         ${consist.weight}ton;
             tractive_effort_coefficient:    ${consist.tractive_effort_coefficient};
             cost_factor:                    ${consist.buy_cost};
             running_cost_factor:            0; // use CB to set this, avoids limited size of action 0 property
@@ -50,9 +49,12 @@ item(FEAT_ROADVEHS, ${vehicle.id}, ${vehicle.numeric_id}) {
         purchase:                       ${vehicle.id}_sg_purchase;
         create_effect:                  ${vehicle.id}_create_visual_effect;
         <!--! no buy menu extra text in this grf by design; extra text is associated with BAD FEATURES -->
-        <tal:lead_unit_only condition="vehicle.is_lead_unit_of_consist and len(consist.units) > 1">
-            articulated_part:               ${consist.id}_articulated_cb_switch;
+        <tal:lead_unit_only condition="vehicle.is_lead_unit_of_consist">
+            <tal:articulated condition="len(consist.units) > 1">
+                articulated_part:               ${consist.id}_articulated_cb_switch;
+            </tal:articulated>
             running_cost_factor:            return ${consist.running_cost};
+            weight:                         return ${int(4 * consist.weight)};
         </tal:lead_unit_only>
     }
 }
