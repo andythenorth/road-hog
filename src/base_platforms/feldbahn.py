@@ -44,3 +44,4 @@ class ElectricEngineFeldbahn1(EngineFeldbahnBase):
 class WagonFeldbahnA(BasePlatform):
     vehicle_length = 3
     cargo_length = 3
+    base_platform_spritesheet_name = 'open_wagon_feldbhan_gen_1'
