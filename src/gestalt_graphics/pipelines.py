@@ -216,10 +216,10 @@ class ExtendSpriterowsForCompositedSpritesPipeline(Pipeline):
 
     def add_generic_spriterow(self):
         crop_box_source = (0,
-                           self.cargo_input_row_yoffs,
+                           self.source_row_base_yoffs,
                            self.sprites_max_x_extent,
-                           self.cargo_input_row_yoffs + graphics_constants.spriterow_height)
-        vehicle_generic_spriterow_input_image = self.comp_chassis_and_body(self.consist_source_image.copy().crop(crop_box_source))
+                           self.source_row_base_yoffs + graphics_constants.spriterow_height)
+        vehicle_generic_spriterow_input_image = self.comp_chassis_and_body(self.vehicle_unit_source_image.copy().crop(crop_box_source))
         # vehicle_generic_spriterow_input_image.show() # comment in to see the image when debugging
         vehicle_generic_spriterow_input_as_spritesheet = self.make_spritesheet_from_image(vehicle_generic_spriterow_input_image)
         crop_box_dest = (0,
@@ -236,9 +236,9 @@ class ExtendSpriterowsForCompositedSpritesPipeline(Pipeline):
         # or because containers include random options it might need reworking,
         # to be more similar to piece cargo handling, but using recolour not actual sprites
         crop_box_source = (0,
-                           self.cargo_input_row_yoffs,
+                           self.source_row_base_yoffs,
                            self.sprites_max_x_extent,
-                           self.cargo_input_row_yoffs + graphics_constants.spriterow_height)
+                           self.source_row_base_yoffs + graphics_constants.spriterow_height)
         vehicle_livery_only_spriterow_input_image = self.comp_chassis_and_body(self.vehicle_unit_source_image.copy().crop(crop_box_source))
         # vehicle_generic_spriterow_input_image.show() # comment in to see the image when debugging
         vehicle_livery_only_spriterow_input_as_spritesheet = self.make_spritesheet_from_image(vehicle_livery_only_spriterow_input_image)
@@ -256,13 +256,13 @@ class ExtendSpriterowsForCompositedSpritesPipeline(Pipeline):
 
     def add_bulk_cargo_spriterows(self):
         crop_box_source_1 = (0,
-                             self.cargo_input_row_yoffs,
+                             self.source_row_base_yoffs,
                              self.sprites_max_x_extent,
-                             self.cargo_input_row_yoffs + graphics_constants.spriterow_height)
+                             self.source_row_base_yoffs + graphics_constants.spriterow_height)
         crop_box_source_2 = (0,
-                             self.cargo_input_row_yoffs + graphics_constants.spriterow_height,
+                             self.source_row_base_yoffs + graphics_constants.spriterow_height,
                              self.sprites_max_x_extent,
-                             self.cargo_input_row_yoffs + (2 * graphics_constants.spriterow_height))
+                             self.source_row_base_yoffs + (2 * graphics_constants.spriterow_height))
         vehicle_bulk_cargo_input_image_1 = self.comp_chassis_and_body(self.consist_source_image.copy().crop(crop_box_source_1))
         vehicle_bulk_cargo_input_image_2 = self.comp_chassis_and_body(self.consist_source_image.copy().crop(crop_box_source_2))
         #vehicle_bulk_cargo_input_image.show() # comment in to see the image when debugging
@@ -318,9 +318,9 @@ class ExtendSpriterowsForCompositedSpritesPipeline(Pipeline):
         # an overlay for the vehicle, created from the vehicle empty state spriterow, and comped with the mask after each cargo has been placed
         # there is a case not handled, where long cargo sprites will cabbed vehicles in / direction with cab at N end, hard to solve
         crop_box_vehicle_cargo_loc_row = (0,
-                                          self.cargo_input_row_yoffs,
+                                          self.source_row_base_yoffs,
                                           graphics_constants.spritesheet_width,
-                                          self.cargo_input_row_yoffs + graphics_constants.spriterow_height)
+                                          self.source_row_base_yoffs + graphics_constants.spriterow_height)
 
         vehicle_cargo_loc_image = self.vehicle_unit_source_image.copy().crop(crop_box_vehicle_cargo_loc_row)
         # get the loc points
@@ -337,9 +337,9 @@ class ExtendSpriterowsForCompositedSpritesPipeline(Pipeline):
         vehicle_base_image = self.comp_chassis_and_body(self.vehicle_unit_source_image.copy().crop(crop_box_vehicle_body))
 
         crop_box_mask_source = (0,
-                                self.cargo_input_row_yoffs + graphics_constants.spriterow_height,
+                                self.source_row_base_yoffs + graphics_constants.spriterow_height,
                                 self.sprites_max_x_extent,
-                                self.cargo_input_row_yoffs + (2 * graphics_constants.spriterow_height))
+                                self.source_row_base_yoffs + (2 * graphics_constants.spriterow_height))
         crop_box_mask_dest = (0,
                               0,
                               self.sprites_max_x_extent,
@@ -439,10 +439,10 @@ class ExtendSpriterowsForCompositedSpritesPipeline(Pipeline):
             for spriterow_data in vehicle_rows:
                 spriterow_type = spriterow_data[0]
                 if self.base_platform_input_path is not None:
-                    self.cargo_input_row_yoffs = 10 + (self.cabbage_offset * graphics_constants.spriterow_height)
+                    self.source_row_base_yoffs = 10 + (self.cabbage_offset * graphics_constants.spriterow_height)
                     self.empty_row_input_yoffs = 10
                 else:
-                    self.cargo_input_row_yoffs = 10 + (graphics_constants.spriterow_height * cumulative_input_spriterow_count)
+                    self.source_row_base_yoffs = 10 + (graphics_constants.spriterow_height * cumulative_input_spriterow_count)
                     self.empty_row_input_yoffs = self.base_empty_row_input_yoffs
 
                 if spriterow_type == 'always_use_same_spriterow' or spriterow_type == 'empty':
