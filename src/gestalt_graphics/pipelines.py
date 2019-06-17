@@ -45,8 +45,9 @@ class Pipeline(object):
         if self.vehicle_unit.base_platform is None:
             return None
         else:
-            if self.vehicle_unit.base_platform.base_platform_spritesheet_name is not None:
-                return os.path.join(currentdir, 'src', 'graphics', 'base_platforms', self.vehicle_unit.base_platform.base_platform_spritesheet_name + '.png')
+            base_platform_spritesheet_name = self.vehicle_unit.base_platform.get_base_platform_spritesheet_name(self.consist)
+            if base_platform_spritesheet_name is not None:
+                return os.path.join(currentdir, 'src', 'graphics', 'base_platforms', base_platform_spritesheet_name + '.png')
             else:
                 return None
 
@@ -302,9 +303,10 @@ class ExtendSpriterowsForCompositedSpritesPipeline(Pipeline):
             piece_cargo_vehicle_source_image = Image.open(self.base_platform_input_path)
             # !! hard-coded hax, this needs to be better to handle mixed bulk / piece input spritesheets correctly
             input_rows_vertical_offset = 10 + (self.cabbage_offset * graphics_constants.spriterow_height)
-            if 'intake' in self.consist.id:
+            if 'mullion' in self.consist.id:
                 #piece_cargo_vehicle_source_image.show()
                 print('self.cabbage_offset:', self.cabbage_offset)
+                print(self.consist.name_suffix_consist_type.lower())
         else:
             piece_cargo_vehicle_source_image = self.vehicle_source_image
             input_rows_vertical_offset = self.base_offset

@@ -26,6 +26,13 @@ class BasePlatform(object):
         kwargs['base_platform'] = self # replace the class name with this class instance
         return kwargs
 
+    def get_base_platform_spritesheet_name(self, consist):
+        if self.base_platform_spritesheet_name is None:
+            return None
+        else:
+            return consist.name_suffix_consist_type.lower() + '_wagon_feldbahn_gen_1'
+
+
     """
     def __init__(self, **kwargs):
         self.consist = kwargs.get('consist')
