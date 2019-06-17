@@ -38,6 +38,18 @@ class Pipeline(object):
         # convenience method to get the path for the chassis image
         return os.path.join(currentdir, 'src', 'graphics', 'chassis', self.vehicle_unit.chassis + '.png')
 
+    @property
+    def base_platform_input_path(self):
+        # figure out if there is a base platform and if it provides sprites, if so return the path to spritesheet, otherwise None
+        # can only be called if self.vehicle_unit is in scope (should be in valid cases)
+        if self.vehicle_unit.base_platform is None:
+            return None
+        else:
+            if self.vehicle_unit.base_platform.base_platform_spritesheet_name is not None:
+                return os.path.join(currentdir, 'src', 'graphics', 'base_platforms', self.vehicle_unit.base_platform.base_platform_spritesheet_name + '.png')
+            else:
+                return None
+
     def get_arbitrary_angles(self, input_image, bounding_boxes):
         # given an image and a list of arbitrary bounding boxes...
         # ...return a list of two tuples with sprite and mask
@@ -286,6 +298,17 @@ class ExtendSpriterowsForCompositedSpritesPipeline(Pipeline):
                                             y_offset=  -1 * cargo_group_row_height))
 
     def add_piece_cargo_spriterows(self):
+        if self.base_platform_input_path is not None:
+            piece_cargo_vehicle_source_image = Image.open(self.base_platform_input_path)
+            # !! hard-coded hax, this needs to be better to handle mixed bulk / piece input spritesheets correctly
+            input_rows_vertical_offset = 10 + (self.cabbage_offset * graphics_constants.spriterow_height)
+            if 'intake' in self.consist.id:
+                #piece_cargo_vehicle_source_image.show()
+                print('self.cabbage_offset:', self.cabbage_offset)
+        else:
+            piece_cargo_vehicle_source_image = self.vehicle_source_image
+            input_rows_vertical_offset = self.base_offset
+
         # !! this could possibly be optimised by slicing all the cargos once, globally, instead of per-unit
         cargo_group_output_row_height = 2 * graphics_constants.spriterow_height
 
@@ -305,10 +328,11 @@ class ExtendSpriterowsForCompositedSpritesPipeline(Pipeline):
         # an overlay for the vehicle, created from the vehicle empty state spriterow, and comped with the mask after each cargo has been placed
         # there is a case not handled, where long cargo sprites will cabbed vehicles in / direction with cab at N end, hard to solve
         crop_box_vehicle_cargo_loc_row = (0,
-                                          self.base_offset,
+                                          input_rows_vertical_offset,
                                           graphics_constants.spritesheet_width,
-                                          self.base_offset + graphics_constants.spriterow_height)
-        vehicle_cargo_loc_image = self.vehicle_source_image.copy().crop(crop_box_vehicle_cargo_loc_row)
+                                          input_rows_vertical_offset + graphics_constants.spriterow_height)
+
+        vehicle_cargo_loc_image = piece_cargo_vehicle_source_image.copy().crop(crop_box_vehicle_cargo_loc_row)
         # get the loc points
         loc_points = [pixel for pixel in pixascan(vehicle_cargo_loc_image) if pixel[2] == 226]
         # two cargo rows needed, so extend the loc points list
@@ -320,18 +344,18 @@ class ExtendSpriterowsForCompositedSpritesPipeline(Pipeline):
                                  self.cur_vehicle_empty_row_offset,
                                  self.sprites_max_x_extent,
                                  self.cur_vehicle_empty_row_offset + graphics_constants.spriterow_height)
-        vehicle_base_image = self.comp_chassis_and_body(self.vehicle_source_image.copy().crop(crop_box_vehicle_body))
+        vehicle_base_image = self.comp_chassis_and_body(piece_cargo_vehicle_source_image.copy().crop(crop_box_vehicle_body))
 
         crop_box_mask_source = (0,
-                                self.base_offset + graphics_constants.spriterow_height,
+                                input_rows_vertical_offset + graphics_constants.spriterow_height,
                                 self.sprites_max_x_extent,
-                                self.base_offset + (2 * graphics_constants.spriterow_height))
+                                input_rows_vertical_offset + (2 * graphics_constants.spriterow_height))
         crop_box_mask_dest = (0,
                               0,
                               self.sprites_max_x_extent,
                               graphics_constants.spriterow_height)
         # !! this will need a composited mask, combining the chassis mask with the body mask
-        vehicle_mask_source = self.vehicle_source_image.copy().crop(crop_box_mask_source).point(lambda i: 255 if i == 226 else 0).convert("1")
+        vehicle_mask_source = piece_cargo_vehicle_source_image.copy().crop(crop_box_mask_source).point(lambda i: 255 if i == 226 else 0).convert("1")
         vehicle_mask = Image.new("1", (self.sprites_max_x_extent, graphics_constants.spriterow_height), 0)
         vehicle_mask.paste(vehicle_mask_source, crop_box_mask_dest)
         #vehicle_mask.show()
@@ -416,6 +440,8 @@ class ExtendSpriterowsForCompositedSpritesPipeline(Pipeline):
             # !!  this is ugly hax, I didn't want to refactor the iterator above to contain the vehicle, also in Horse
             self.vehicle_unit = self.consist.unique_units[vehicle_counter]
 
+            self.cabbage_offset = 0
+
             self.cur_vehicle_empty_row_offset = 10 + cumulative_input_spriterow_count * graphics_constants.spriterow_height
             for spriterow_data in vehicle_rows:
                 spriterow_type = spriterow_data[0]
@@ -433,6 +459,7 @@ class ExtendSpriterowsForCompositedSpritesPipeline(Pipeline):
                     input_spriterow_count = 2
                     self.add_piece_cargo_spriterows()
                 cumulative_input_spriterow_count += input_spriterow_count
+                self.cabbage_offset += input_spriterow_count
 
         if self.consist.buy_menu_x_loc == global_constants.custom_buy_menu_x_loc:
             self.units.append(AddBuyMenuSprite(self.process_buy_menu_sprite))

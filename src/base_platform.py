@@ -5,6 +5,8 @@ class BasePlatform(object):
     - a complete locomotive, wagon, semi-tractor etc
     - a chassis and cab to which the body is composited
     """
+    base_platform_spritesheet_name = None # over-ride in subclasses as needed
+
     # no init needed, BasePlatform subclasses use only class attrs
 
     def configure_unit_args(self, **kwargs):
