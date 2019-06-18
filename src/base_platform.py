@@ -5,7 +5,6 @@ class BasePlatform(object):
     - a complete locomotive, wagon, semi-tractor etc
     - a chassis and cab to which the body is composited
     """
-    base_platform_spritesheet_name = None # over-ride in subclasses as needed
 
     # no init needed, BasePlatform subclasses use only class attrs
 
@@ -27,11 +26,8 @@ class BasePlatform(object):
         return kwargs
 
     def get_base_platform_spritesheet_name(self, consist):
-        if self.base_platform_spritesheet_name is None:
-            return None
-        else:
-            return consist.name_suffix_consist_type.lower() + '_wagon_feldbahn_gen_1'
-
+        # over-ride this in subclasses to provide spritesheet names according to arbitrary rules per platform type
+        return None
 
     """
     def __init__(self, **kwargs):
