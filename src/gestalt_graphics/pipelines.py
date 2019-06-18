@@ -430,7 +430,7 @@ class ExtendSpriterowsForCompositedSpritesPipeline(Pipeline):
             # 'vehicle_unit' not 'unit' to avoid conflating with graphics processor 'unit'
             self.vehicle_unit = self.consist.unique_units[vehicle_counter]
             vehicle_unit_cumulative_source_spriterow_count = 0
-            self.vehicle_unit_source_base_yoffs = 10 + (graphics_constants.spriterow_height * consist_cumulative_source_spriterow_count)
+            vehicle_unit_source_base_yoffs = 10 + (graphics_constants.spriterow_height * consist_cumulative_source_spriterow_count)
             if self.base_platform_input_path is not None:
                 self.vehicle_unit_source_image = Image.open(self.base_platform_input_path)
             else:
@@ -443,7 +443,7 @@ class ExtendSpriterowsForCompositedSpritesPipeline(Pipeline):
                     self.empty_row_input_yoffs = 10
                 else:
                     self.vehicle_unit_source_row_yoffs = 10 + (graphics_constants.spriterow_height * consist_cumulative_source_spriterow_count)
-                    self.empty_row_input_yoffs = self.vehicle_unit_source_base_yoffs
+                    self.empty_row_input_yoffs = vehicle_unit_source_base_yoffs
 
                 if spriterow_type == 'always_use_same_spriterow' or spriterow_type == 'empty':
                     source_spriterow_count = 1
