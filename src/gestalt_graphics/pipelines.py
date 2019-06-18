@@ -263,8 +263,8 @@ class ExtendSpriterowsForCompositedSpritesPipeline(Pipeline):
                              self.vehicle_unit_source_row_yoffs + graphics_constants.spriterow_height,
                              self.sprites_max_x_extent,
                              self.vehicle_unit_source_row_yoffs + (2 * graphics_constants.spriterow_height))
-        vehicle_bulk_cargo_input_image_1 = self.comp_chassis_and_body(self.consist_source_image.copy().crop(crop_box_source_1))
-        vehicle_bulk_cargo_input_image_2 = self.comp_chassis_and_body(self.consist_source_image.copy().crop(crop_box_source_2))
+        vehicle_bulk_cargo_input_image_1 = self.comp_chassis_and_body(self.vehicle_unit_source_image.copy().crop(crop_box_source_1))
+        vehicle_bulk_cargo_input_image_2 = self.comp_chassis_and_body(self.vehicle_unit_source_image.copy().crop(crop_box_source_2))
         #vehicle_bulk_cargo_input_image.show() # comment in to see the image when debugging
 
         cargo_group_row_height = 2 * graphics_constants.spriterow_height
@@ -420,7 +420,7 @@ class ExtendSpriterowsForCompositedSpritesPipeline(Pipeline):
         self.global_constants = global_constants
         self.sprites_max_x_extent = self.global_constants.sprites_max_x_extent
 
-        self.consist_source_image = Image.open(self.vehicle_source_input_path)
+        consist_source_image = Image.open(self.vehicle_source_input_path)
 
         # the consist_cumulative_source_spriterow_count updates per processed group of spriterows, and is key to making this work
         # !! source_spriterow_count looks a bit weird though; I tried moving it to gestalts, but didn't really work
@@ -434,7 +434,7 @@ class ExtendSpriterowsForCompositedSpritesPipeline(Pipeline):
             if self.base_platform_input_path is not None:
                 self.vehicle_unit_source_image = Image.open(self.base_platform_input_path)
             else:
-                self.vehicle_unit_source_image = self.consist_source_image
+                self.vehicle_unit_source_image = consist_source_image
 
             for spriterow_data in vehicle_rows:
                 spriterow_type = spriterow_data[0]
