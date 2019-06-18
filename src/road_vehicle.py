@@ -489,6 +489,9 @@ class BoxHaulerConsistBase(Consist):
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label['non_freight_special_cases']
         self.default_cargos = global_constants.default_cargos['box']
         self.weight_multiplier = 0.45
+        # Graphics configuration
+        # !! this is hax as there is no opening doors pipeline for RVs currently - see Horse version
+        self.gestalt_graphics = GestaltGraphicsLiveryOnly(recolour_maps=polar_fox.constants.tanker_livery_recolour_maps)
 
 
 class BoxFeldbahnConsist(BoxHaulerConsistBase, TrackTypeMixinFeldbahn):
