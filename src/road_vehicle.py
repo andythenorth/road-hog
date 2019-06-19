@@ -687,6 +687,9 @@ class FruitVegHaulerConsistBase(Consist):
         self.default_cargos = global_constants.default_cargos['fruit_veg']
         self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
         self.weight_multiplier = 0.45
+        # Graphics configuration
+        # !! this is hax as there is no opening doors pipeline for RVs currently - see Horse version
+        self.gestalt_graphics = GestaltGraphicsLiveryOnly(recolour_maps=graphics_constants.livestock_livery_recolour_maps)
 
 
 class FruitVegFeldbahnConsist(FruitVegHaulerConsistBase, TrackTypeMixinFeldbahn):
