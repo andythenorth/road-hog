@@ -8,7 +8,8 @@ consist = LivestockTruckConsist(id='pigstick_livestock',
 
 consist.add_unit(base_platform=None, # only one instance of this one currently
                  type=DieselVehicleUnit,
-                 vehicle_length=6)
+                 vehicle_length=6,
+                 always_use_same_spriterow = True) # !! because livestock gestalt only has one spriterow - could be done better??
 
 consist.add_unit(base_platform=None,
                  vehicle_length=4)

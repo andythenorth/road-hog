@@ -734,6 +734,9 @@ class LivestockHaulerConsistBase(Consist):
         self.default_cargos = ['LVST'] # no need for fallbacks, only one cargo
         self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
         self.weight_multiplier = 0.45
+        # Graphics configuration
+        # !! this is hax as there is no opening doors pipeline for RVs currently - see Horse version
+        self.gestalt_graphics = GestaltGraphicsLiveryOnly(recolour_maps=graphics_constants.livestock_livery_recolour_maps)
 
 
 class LivestockFeldbahnConsist(LivestockHaulerConsistBase, TrackTypeMixinFeldbahn):
