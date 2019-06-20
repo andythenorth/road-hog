@@ -428,7 +428,8 @@ class ExtendSpriterowsForCompositedSpritesPipeline(Pipeline):
 
             for spriterow_data in vehicle_rows:
                 spriterow_type = spriterow_data[0]
-                if self.vehicle_source_input_path is not None:
+                # this is sketchy guess at there being a base platform, and will probably break in future
+                if 'base_platforms' in self.vehicle_source_input_path:
                     self.vehicle_unit_source_row_yoffs = 10 + (vehicle_unit_cumulative_source_spriterow_count * graphics_constants.spriterow_height)
                     self.empty_row_input_yoffs = 10
                 else:
