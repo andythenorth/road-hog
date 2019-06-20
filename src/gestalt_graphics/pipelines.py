@@ -45,7 +45,6 @@ class Pipeline(object):
         # convenience method to get the path for the chassis image
         return os.path.join(currentdir, 'src', 'graphics', 'chassis', self.vehicle_unit.chassis + '.png')
 
-
     def get_arbitrary_angles(self, input_image, bounding_boxes):
         # given an image and a list of arbitrary bounding boxes...
         # ...return a list of two tuples with sprite and mask
