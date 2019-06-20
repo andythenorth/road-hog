@@ -30,26 +30,20 @@ class Pipeline(object):
 
     @property
     def vehicle_source_input_path(self):
-        # I considered having this return the Image, not just the path, but it's not saving much, and is less obvious what it does when used
-        return os.path.join(currentdir, 'src', 'graphics', self.consist.roster_id, self.consist.id + '.png')
+        # figure out if there is a base platform and if it provides sprites, if so return the path to spritesheet, otherwise None
+        input_path = os.path.join(currentdir, 'src', 'graphics', self.consist.roster_id, self.consist.id + '.png')
+        if hasattr(self, 'vehicle_unit'):
+            if self.vehicle_unit.base_platform is not None:
+                spritesheet_name = self.vehicle_unit.base_platform.get_spritesheet_name_body_or_complete_vehicle(self.consist)
+                if spritesheet_name is not None:
+                    input_path = os.path.join(currentdir, 'src', 'graphics', 'base_platforms', spritesheet_name + '.png')
+        return input_path
 
     @property
     def chassis_input_path(self):
         # convenience method to get the path for the chassis image
         return os.path.join(currentdir, 'src', 'graphics', 'chassis', self.vehicle_unit.chassis + '.png')
 
-    @property
-    def base_platform_input_path_body_or_complete_vehicle(self):
-        # figure out if there is a base platform and if it provides sprites, if so return the path to spritesheet, otherwise None
-        # can only be called if self.vehicle_unit is in scope (should be in valid cases)
-        if self.vehicle_unit.base_platform is None:
-            return None
-        else:
-            spritesheet_name = self.vehicle_unit.base_platform.get_spritesheet_name_body_or_complete_vehicle(self.consist)
-            if spritesheet_name is not None:
-                return os.path.join(currentdir, 'src', 'graphics', 'base_platforms', spritesheet_name + '.png')
-            else:
-                return None
 
     def get_arbitrary_angles(self, input_image, bounding_boxes):
         # given an image and a list of arbitrary bounding boxes...
@@ -420,8 +414,6 @@ class ExtendSpriterowsForCompositedSpritesPipeline(Pipeline):
         self.global_constants = global_constants
         self.sprites_max_x_extent = self.global_constants.sprites_max_x_extent
 
-        consist_source_image = Image.open(self.vehicle_source_input_path)
-
         # the consist_cumulative_source_spriterow_count updates per processed group of spriterows, and is key to making this work
         # !! source_spriterow_count looks a bit weird though; I tried moving it to gestalts, but didn't really work
         consist_cumulative_source_spriterow_count = 0
@@ -431,14 +423,12 @@ class ExtendSpriterowsForCompositedSpritesPipeline(Pipeline):
             self.vehicle_unit = self.consist.unique_units[vehicle_counter]
             vehicle_unit_cumulative_source_spriterow_count = 0
             vehicle_unit_source_base_yoffs = 10 + (graphics_constants.spriterow_height * consist_cumulative_source_spriterow_count)
-            if self.base_platform_input_path_body_or_complete_vehicle is not None:
-                self.vehicle_unit_source_image = Image.open(self.base_platform_input_path_body_or_complete_vehicle)
-            else:
-                self.vehicle_unit_source_image = consist_source_image
+            # it's ok to open spritesheets multiple times, the IO is not too bad in my tests
+            self.vehicle_unit_source_image = Image.open(self.vehicle_source_input_path)
 
             for spriterow_data in vehicle_rows:
                 spriterow_type = spriterow_data[0]
-                if self.base_platform_input_path_body_or_complete_vehicle is not None:
+                if self.vehicle_source_input_path is not None:
                     self.vehicle_unit_source_row_yoffs = 10 + (vehicle_unit_cumulative_source_spriterow_count * graphics_constants.spriterow_height)
                     self.empty_row_input_yoffs = 10
                 else:
