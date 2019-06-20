@@ -39,15 +39,15 @@ class Pipeline(object):
         return os.path.join(currentdir, 'src', 'graphics', 'chassis', self.vehicle_unit.chassis + '.png')
 
     @property
-    def base_platform_input_path(self):
+    def base_platform_input_path_body_or_complete_vehicle(self):
         # figure out if there is a base platform and if it provides sprites, if so return the path to spritesheet, otherwise None
         # can only be called if self.vehicle_unit is in scope (should be in valid cases)
         if self.vehicle_unit.base_platform is None:
             return None
         else:
-            base_platform_spritesheet_name = self.vehicle_unit.base_platform.get_base_platform_spritesheet_name(self.consist)
-            if base_platform_spritesheet_name is not None:
-                return os.path.join(currentdir, 'src', 'graphics', 'base_platforms', base_platform_spritesheet_name + '.png')
+            spritesheet_name = self.vehicle_unit.base_platform.get_spritesheet_name_body_or_complete_vehicle(self.consist)
+            if spritesheet_name is not None:
+                return os.path.join(currentdir, 'src', 'graphics', 'base_platforms', spritesheet_name + '.png')
             else:
                 return None
 
@@ -431,14 +431,14 @@ class ExtendSpriterowsForCompositedSpritesPipeline(Pipeline):
             self.vehicle_unit = self.consist.unique_units[vehicle_counter]
             vehicle_unit_cumulative_source_spriterow_count = 0
             vehicle_unit_source_base_yoffs = 10 + (graphics_constants.spriterow_height * consist_cumulative_source_spriterow_count)
-            if self.base_platform_input_path is not None:
-                self.vehicle_unit_source_image = Image.open(self.base_platform_input_path)
+            if self.base_platform_input_path_body_or_complete_vehicle is not None:
+                self.vehicle_unit_source_image = Image.open(self.base_platform_input_path_body_or_complete_vehicle)
             else:
                 self.vehicle_unit_source_image = consist_source_image
 
             for spriterow_data in vehicle_rows:
                 spriterow_type = spriterow_data[0]
-                if self.base_platform_input_path is not None:
+                if self.base_platform_input_path_body_or_complete_vehicle is not None:
                     self.vehicle_unit_source_row_yoffs = 10 + (vehicle_unit_cumulative_source_spriterow_count * graphics_constants.spriterow_height)
                     self.empty_row_input_yoffs = 10
                 else:

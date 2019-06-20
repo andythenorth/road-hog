@@ -6,7 +6,7 @@ class EngineFeldbahnBase(BasePlatform):
     capacity = 0
     always_use_same_spriterow = True
 
-    def get_base_platform_spritesheet_name(self, consist):
+    def get_spritesheet_name_body_or_complete_vehicle(self, consist):
         # transform class name to spritesheet ID - somewhat hax
         class_name_split = [char for char in type(self).__name__]
         result = []
@@ -60,5 +60,5 @@ class WagonFeldbahnA(BasePlatform):
     vehicle_length = 3
     cargo_length = 3
 
-    def get_base_platform_spritesheet_name(self, consist):
+    def get_spritesheet_name_body_or_complete_vehicle(self, consist):
         return consist.name_suffix_consist_type.lower() + '_wagon_feldbahn_gen_1'

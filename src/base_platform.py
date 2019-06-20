@@ -25,7 +25,7 @@ class BasePlatform(object):
         kwargs['base_platform'] = self # replace the class name with this class instance
         return kwargs
 
-    def get_base_platform_spritesheet_name(self, consist):
+    def get_spritesheet_name_body_or_complete_vehicle(self, consist):
         # over-ride this in subclasses to provide spritesheet names according to arbitrary rules per platform type
         return None
 
