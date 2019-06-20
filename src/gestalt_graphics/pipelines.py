@@ -30,7 +30,8 @@ class Pipeline(object):
 
     @property
     def vehicle_source_input_path(self):
-        # figure out if there is a base platform and if it provides sprites, if so return the path to spritesheet, otherwise None
+        # figure out if there is a base platform and if it provides sprites, if so return the path to spritesheet
+        # otherwise return the default vehicle spritesheet using consist id
         input_path = os.path.join(currentdir, 'src', 'graphics', self.consist.roster_id, self.consist.id + '.png')
         if hasattr(self, 'vehicle_unit'):
             if self.vehicle_unit.base_platform is not None:
