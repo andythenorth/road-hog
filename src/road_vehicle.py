@@ -532,6 +532,8 @@ class CoveredHopperHaulerConsistBase(Consist):
         self.default_cargos = global_constants.default_cargos['covered_hopper']
         self.loading_speed_multiplier = 2
         self.weight_multiplier = 0.45
+        # !! this is hax as there is no opening doors pipeline for RVs currently - see Horse version
+        self.gestalt_graphics = GestaltGraphicsLiveryOnly(recolour_maps=graphics_constants.livestock_livery_recolour_maps)
 
 
 class CoveredHopperTramConsist(CoveredHopperHaulerConsistBase, TrackTypeMixinTram):
@@ -980,6 +982,8 @@ class RefrigeratedHaulerConsistBase(Consist):
         self.default_cargos = global_constants.default_cargos['reefer']
         self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
         self.weight_multiplier = 0.5
+        # !! this is hax as there is no opening doors pipeline for RVs currently - see Horse version
+        self.gestalt_graphics = GestaltGraphicsLiveryOnly(recolour_maps=graphics_constants.livestock_livery_recolour_maps)
 
 
 class RefrigeratedTramConsist(RefrigeratedHaulerConsistBase, TrackTypeMixinTram):
