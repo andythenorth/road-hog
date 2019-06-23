@@ -44,7 +44,7 @@ def run_pipelines(consist):
     else:
         # run pipelines, obvs
         for pipeline in consist.gestalt_graphics.pipelines:
-            result = pipeline.render(consist, global_constants)
+            pipeline.render(consist, global_constants)
 
 # wrapped in a main() function so this can be called explicitly, because unexpected multiprocessing fork bombs are bad
 def main():

@@ -1,5 +1,5 @@
 from base_platform import BasePlatform
-from road_vehicle import DieselVehicleUnit, ElectricVehicleUnit, SteamVehicleUnit
+from road_vehicle import ElectricVehicleUnit, SteamVehicleUnit
 
 
 class EngineTramBase(BasePlatform):
