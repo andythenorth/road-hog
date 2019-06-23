@@ -7,7 +7,8 @@ consist = RefrigeratedTruckConsist(id='fortiscue_refrigerated',
                               gen=4,
                             intro_date_offset=4)  # introduce later than gen epoch by design
 
-consist.add_unit(base_platform=DieselCaboverRigidTruckGen4B)
+consist.add_unit(base_platform=DieselCaboverRigidTruckGen4B,
+                 always_use_same_spriterow = True)
 
 consist.add_unit(base_platform=None,
                  vehicle_length=4)
