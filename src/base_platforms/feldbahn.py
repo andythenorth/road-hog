@@ -7,21 +7,8 @@ class EngineFeldbahnBase(BasePlatform):
     always_use_same_spriterow = True
 
     def get_spritesheet_name_body_or_complete_vehicle(self, consist):
-        # transform class name to spritesheet ID - somewhat hax
-        class_name_split = [char for char in type(self).__name__]
-        result = []
-        # drop the gen chars, split remainder on uppercase, makes lowercase and adds underscores
-        for char in class_name_split[0:-2]:
-            if char.isupper():
-                result.append('_' + char.lower())
-            else:
-                result.append(char)
-        # put the gen chars back, keeping case
-        result.append('_' + ''.join(class_name_split[-2:]))
-        result = ''.join(result)
-        # drop an extraneous leading underscore
-        result = result[1:]
-        return result
+        return self._get_spritesheet_name_from_class_name(consist)
+
 
 # engines
 

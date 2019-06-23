@@ -6,6 +6,15 @@ class SemiTractorTruckBase(BasePlatform):
     always_use_same_spriterow = True
     unit_is_semi_tractor = True
 
+    def get_spritesheet_name_body_or_complete_vehicle(self, consist):
+        foo = self._get_spritesheet_name_from_class_name(consist)
+        if foo == 'diesel_conventional_cab_semi_tractor_truck_gen_4A':
+            print(consist.id)
+            return foo
+        else:
+            return None
+
+
 # semi-trucks
 
 class SteamCaboverSemiTractorTruckGen2A(SemiTractorTruckBase):

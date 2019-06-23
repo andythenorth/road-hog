@@ -25,7 +25,26 @@ class BasePlatform(object):
         kwargs['base_platform'] = self # replace the class name with this class instance
         return kwargs
 
+    def _get_spritesheet_name_from_class_name(self, consist):
+        # transform class name to spritesheet ID - somewhat hax
+        # intended to be called via get_spritesheet_name_body_or_complete_vehicle adapter
+        class_name_split = [char for char in type(self).__name__]
+        result = []
+        # drop the gen chars, split remainder on uppercase, makes lowercase and adds underscores
+        for char in class_name_split[0:-2]:
+            if char.isupper():
+                result.append('_' + char.lower())
+            else:
+                result.append(char)
+        # put the gen chars back, keeping case
+        result.append('_' + ''.join(class_name_split[-2:]))
+        result = ''.join(result)
+        # drop an extraneous leading underscore
+        result = result[1:]
+        return result
+
     def get_spritesheet_name_body_or_complete_vehicle(self, consist):
+        # intended to be called from graphics pipeline
         # over-ride this in subclasses to provide spritesheet names according to arbitrary rules per platform type
         return None
 
