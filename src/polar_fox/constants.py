@@ -167,7 +167,7 @@ default_cargos = {'box': ['GOOD', 'VPTS', 'FOOD'],
                   'pax': ['PASS'],
                   'reefer': ['FOOD'],
                   'supplies': ['ENSP'],
-                  'tank': ['OIL_', 'KAOL', 'RUBR'],
+                  'tank': ['OIL_', 'CTAR', 'KAOL', 'RUBR'],
 
                   }
 
@@ -273,7 +273,7 @@ piece_sprites_to_cargo_labels_maps = {'barrels_silver': ['BEER', 'DYES', 'EOIL',
                                       'lumber_planks': ['WDPR'],
                                       'nuts': ['NUTS'],
                                       'paper_coils': ['PAPR'],
-                                      'steel_coils': ['STEL', 'METL'],
+                                      'steel_coils': ['STEL', 'METL', 'STAL', 'STCB', 'STST'],
                                       'tarps_blue_1': ['FMSP'],
                                       'tarps_gold_1': ['ENSP'],
                                       'tarps_red_1': ['BDMT'],
