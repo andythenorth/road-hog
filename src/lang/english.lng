@@ -29,43 +29,26 @@ STR_MENU_TEXT_ELECTRIC_TRAMWAY                                  :Electric tramwa
 STR_BUILD_WINDOW_CAPTION_ELECTRIC_TRAMWAY                       :New Electric Trams
 STR_AUTOREPLACE_TEXT_ELECTRIC_TRAMWAY                           :Electric Trams
 STR_NEW_ENGINE_TEXT_ELECTRIC_TRAMWAY                            :electric tram
-STR_NAME_FELDBAHN                                               :Industrial Rail
-STR_TOOLBAR_CAPTION_FELDBAHN                                    :Industrial Rail Construction
-STR_MENU_TEXT_FELDBAHN                                          :Industrial Rail construction
-STR_BUILD_WINDOW_CAPTION_FELDBAHN                               :New Industrial Rail vehicles
-STR_AUTOREPLACE_TEXT_FELDBAHN                                   :Industrial Rail vehicles
-STR_NEW_ENGINE_TEXT_FELDBAHN                                    :industrial rail
-STR_NAME_ELECTRIC_FELDBAHN                                      :Electric Industrial Rail
-STR_TOOLBAR_CAPTION_ELECTRIC_FELDBAHN                           :Electric Industrial Rail Construction
-STR_MENU_TEXT_ELECTRIC_FELDBAHN                                 :Electric Industrial Rail construction
-STR_BUILD_WINDOW_CAPTION_ELECTRIC_FELDBAHN                      :New Electric Industrial Rail vehicles
-STR_AUTOREPLACE_TEXT_ELECTRIC_FELDBAHN                          :Electric Industrial Rail vehicles
-STR_NEW_ENGINE_TEXT_ELECTRIC_FELDBAHN                           :electric industrial rail
 
 # keep these alphabetised, easier
 STR_NAME_SUFFIX_DIESEL                                          :Diesel
 STR_NAME_SUFFIX_ELECTRIC                                        :Electric
 STR_NAME_SUFFIX_STEAM                                           :Steam
 
-STR_NAME_SUFFIX_BOX_FELDBAHN                                    :Box Industrial Train
 STR_NAME_SUFFIX_BOX_TRAM                                        :Box Tram
 STR_NAME_SUFFIX_BOX_TRUCK                                       :Box Truck
 STR_NAME_SUFFIX_BUS                                             :Bus
 STR_NAME_SUFFIX_COACH                                           :Coach
 STR_NAME_SUFFIX_COVERED_HOPPER_TRAM                             :Covered Hopper Tram
 STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK                            :Covered Hopper Truck
-STR_NAME_SUFFIX_DUMP_FELDBAHN                                   :Dump Industrial Train
 STR_NAME_SUFFIX_DUMP_TRAM                                       :Dump Tram
 STR_NAME_SUFFIX_DUMP_TRUCK                                      :Dump Truck
 STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM                             :Edibles Tanker Tram
 STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK                            :Edibles Tanker Truck
-STR_NAME_SUFFIX_FLATBED_FELDBAHN                                :Flatbed Industrial Train
 STR_NAME_SUFFIX_FLATBED_TRAM                                    :Flatbed Tram
 STR_NAME_SUFFIX_FLATBED_TRUCK                                   :Flatbed Truck
-STR_NAME_SUFFIX_FRUIT_VEG_FELDBAHN                              :Fruit & Vegetables Industrial Train
 STR_NAME_SUFFIX_FRUIT_VEG_TRAM                                  :Fruit & Vegetables Tram
 STR_NAME_SUFFIX_INTERMODAL_HAULER                               :Intermodal Hauler
-STR_NAME_SUFFIX_LIVESTOCK_FELDBAHN                              :Livestock Industrial Train
 STR_NAME_SUFFIX_LIVESTOCK_TRAM                                  :Livestock Tram
 STR_NAME_SUFFIX_LIVESTOCK_TRUCK                                 :Livestock Truck
 STR_NAME_SUFFIX_LOG_TRUCK                                       :Logging Truck
@@ -74,7 +57,6 @@ STR_NAME_SUFFIX_MAIL_TRUCK                                      :Courier Truck
 STR_NAME_SUFFIX_METAL_TRAM                                      :Foundry Tram
 STR_NAME_SUFFIX_METAL_TRUCK                                     :Foundry Hauler
 STR_NAME_SUFFIX_MINING_TRUCK                                    :Mining Truck
-STR_NAME_SUFFIX_OPEN_FELDBAHN                                   :Open Industrial Train
 STR_NAME_SUFFIX_OPEN_TRAM                                       :Open Tram
 STR_NAME_SUFFIX_OPEN_TRUCK                                      :Open Truck
 STR_NAME_SUFFIX_PASSENGER_TRAM                                  :Passenger Tram
@@ -82,7 +64,6 @@ STR_NAME_SUFFIX_REEFER_TRAM                                     :Refrigerated Tr
 STR_NAME_SUFFIX_REEFER_TRUCK                                    :Refrigerated Truck
 STR_NAME_SUFFIX_SUPPLIES_TRAM                                   :Supplies Tram
 STR_NAME_SUFFIX_SUPPLIES_TRUCK                                  :Supplies Truck
-STR_NAME_SUFFIX_TANKER_FELDBAHN                                 :Tanker Industrial Train
 STR_NAME_SUFFIX_TANKER_TRAM                                     :Tanker Tram
 STR_NAME_SUFFIX_TANKER_TRUCK                                    :Tanker Truck
 
