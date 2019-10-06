@@ -421,8 +421,9 @@ class TrackTypeMixinCake(TrackTypeMixinBase):
     vehicle_role = 'lolz'
 
 class TrackTypeMixinFeldbahn(TrackTypeMixinBase):
+    # !! this may just need folded into tram, they do the same thing now, as feldbahn roadtype was consolidated into tram
     """
-        Feldbahn (industrial trains with tiny gauge, 600mm and similar)
+        Feldbahn (industrial tramway vehicles)
         Keep this simple, don't use an __init__, it gets tricky with super.
         Just use class attrs.
     """
@@ -430,7 +431,7 @@ class TrackTypeMixinFeldbahn(TrackTypeMixinBase):
     roadveh_flag_tram = True # feldbahn uses tram newgrf spec
     # steel wheel on steel rail, leave as OpenTTD default
     tractive_effort_coefficient = 0.3
-    name_suffix_vehicle_type = "_FELDBAHN"
+    name_suffix_vehicle_type = "_TRAM"
     vehicle_role = 'feldbahn'
 
 
@@ -449,7 +450,7 @@ class TrackTypeMixinHEQS(TrackTypeMixinBase):
 
 class TrackTypeMixinTram(TrackTypeMixinBase):
     """
-        Trams (short rail vehicles, suitable for street running, roughly standard gauge).
+        Trams (short rail vehicles, suitable for street running).
         Keep this simple, don't use an __init__, it gets tricky with super.
         Just use class attrs.
     """
