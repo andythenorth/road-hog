@@ -16,7 +16,7 @@ roadtypetable {
 // tram is light rail so copy existing railtype labels where appropriate (for ease, no new thinking required)
 // as per https://newgrf-specs.tt-wiki.net/wiki/RailtypeLabels
 tramtypetable {
- 	RAIL, ELRL, HAKE, LAKE
+ 	RAIL, ELRL, HAKE, LAKE,
  }
 
 
@@ -90,35 +90,6 @@ item(FEAT_TRAMTYPES, electric_tramway, 1) {
         new_engine_text: string(STR_NEW_ENGINE_TEXT_ELECTRIC_TRAMWAY);
         tramtype_flags: bitmask(TRAMTYPE_FLAG_CATENARY);
         sort_order: 1;
-    }
-}
-
-item(FEAT_TRAMTYPES, feldbahn, 2) {
-    property {
-        name: string(STR_NAME_FELDBAHN);
-        label: "HAKE";
-        powered_tramtype_list: ["LAKE"];
-        toolbar_caption: string(STR_TOOLBAR_CAPTION_FELDBAHN);
-        menu_text: string(STR_MENU_TEXT_FELDBAHN);
-        build_window_caption: string(STR_BUILD_WINDOW_CAPTION_FELDBAHN);
-        autoreplace_text: string(STR_AUTOREPLACE_TEXT_FELDBAHN);
-        new_engine_text: string(STR_NEW_ENGINE_TEXT_FELDBAHN);
-        sort_order: 2;
-    }
-}
-
-item(FEAT_TRAMTYPES, electric_feldbahn, 3) {
-    property {
-        name: string(STR_NAME_ELECTRIC_FELDBAHN);
-        label: "LAKE";
-        powered_tramtype_list: [];
-        toolbar_caption: string(STR_TOOLBAR_CAPTION_ELECTRIC_FELDBAHN);
-        menu_text: string(STR_MENU_TEXT_ELECTRIC_FELDBAHN);
-        build_window_caption: string(STR_BUILD_WINDOW_CAPTION_ELECTRIC_FELDBAHN);
-        autoreplace_text: string(STR_AUTOREPLACE_TEXT_ELECTRIC_FELDBAHN);
-        new_engine_text: string(STR_NEW_ENGINE_TEXT_ELECTRIC_FELDBAHN);
-        tramtype_flags: bitmask(TRAMTYPE_FLAG_CATENARY);
-        sort_order: 3;
     }
 }
 

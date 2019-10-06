@@ -304,8 +304,7 @@ class Consist(object):
         # are you sure you don't want base_track_type instead?
         # track_type handles converting base_track_type to ELRL, ELNG etc as needed for electric engines
         # it's often more convenient to use base_track_type prop, which treats ELRL and RAIL as same (for example)
-        eltrack_type_mapping = {'RAIL': 'ELRL',
-                                'HAKE': 'LAKE'}
+        eltrack_type_mapping = {'RAIL': 'ELRL'}
         if self.requires_electricity_supply:
             return eltrack_type_mapping[self.base_track_type]
         else:
@@ -427,7 +426,7 @@ class TrackTypeMixinFeldbahn(TrackTypeMixinBase):
         Keep this simple, don't use an __init__, it gets tricky with super.
         Just use class attrs.
     """
-    base_track_type = "HAKE" # !! fix the label later, JFDI
+    base_track_type = "RAIL" # !! fix the label later, JFDI
     roadveh_flag_tram = True # feldbahn uses tram newgrf spec
     # steel wheel on steel rail, leave as OpenTTD default
     tractive_effort_coefficient = 0.3
