@@ -371,7 +371,7 @@ class ExtendSpriterowsForCompositedSpritesPipeline(Pipeline):
                 # cargo sprites are assumed to be symmetrical, only 4 angles are needed
                 # cargos with 8 angles (e.g. bulldozers) aren't handled here, assume heavy_items_cargo should handle those (might need extended)
                 # loading states are first 4 sprites, loaded are second 4, all in one list, just pick them out as needed
-                cargo_sprites_input_path = os.path.join(currentdir, 'src', 'polar_fox', 'cargo_graphics', cargo_filename + '.png')
+                cargo_sprites_input_path = os.path.join(currentdir, 'src', 'polar_fox', 'graphics', 'piece_cargos', cargo_filename + '.png')
                 cargo_sprites_input_image = Image.open(cargo_sprites_input_path)
                 cargo_sprites = self.get_arbitrary_angles(cargo_sprites_input_image, cargo_spritesheet_bounding_boxes[self.vehicle_unit.cargo_length])
 
