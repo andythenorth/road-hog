@@ -117,6 +117,30 @@ class AppendToSpritesheet(ProcessingUnit):
         return spritesheet
 
 
+class TransposeAsymmetricSprites(ProcessingUnit):
+    """ TransposeAsymmetricSprites """
+    """ Provides column 1 sprites for asymmetric vehicles.  Maps from column 2 sprites."""
+    def __init__(self, spriterow_height, bboxes, row_map):
+        self.spriterow_height = spriterow_height
+        self.bboxes = bboxes # spriteset bounding boxes, usually in global_constants
+        self.row_map = row_map # mapping of {row num to provide in col 1: row num to copy from in col 2}
+
+    def render(self, spritesheet):
+        source =  spritesheet.sprites.copy()
+        for dest_row, source_row in self.row_map.items():
+            source_row_y_loc = 10 + ((source_row - 1) * self.spriterow_height)
+            content = source.copy().crop((self.bboxes[4][0],
+                                          source_row_y_loc,
+                                          self.bboxes[7][0] + self.bboxes[7][1],
+                                          source_row_y_loc + self.spriterow_height))
+            dest_row_y_loc = 10 + ((dest_row - 1) * self.spriterow_height)
+            spritesheet.sprites.paste(content, (self.bboxes[0][0],
+                                                dest_row_y_loc,
+                                                self.bboxes[3][0] + self.bboxes[3][1],
+                                                dest_row_y_loc + self.spriterow_height))
+        return spritesheet
+
+
 class AddBuyMenuSprite(ProcessingUnit):
     """ AddBuyMenuSprite """
     """ Inserts a (custom) buy menu sprite for articulated vehicles etc. """
