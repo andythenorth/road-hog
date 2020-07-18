@@ -98,7 +98,10 @@ cargo_labels = ['PASS', # pax first
                 'TYRE',
                 'VBOD',
                 'VENG',
-                'NH3_',
+                'FECR',
+                'GLAS',
+                'POWR',
+                'STSH',
                 #
                 'NULL']
 
@@ -130,14 +133,14 @@ base_refits_by_class = {
 # BUT for _some_ specialist vehicle types, it's simpler to just allow refit by label
 allowed_refits_by_label = {'edible_liquids': ['MILK', 'WATR', 'BEER', 'FOOD', 'EOIL'],
                            'box_freight': ['MAIL', 'GRAI', 'WHEA', 'MAIZ', 'FRUT', 'BEAN', 'NITR'], # box cars get some extended cargos
-                           'chemicals': ['ACID', 'RFPR', 'CHLO'],
+                           'chemicals': ['ACID', 'RFPR', 'CHLO'], # seems to be used by intermodal, otherwise chemicals tankers are deprecated in favour of product tankers
                            'covered_hoppers': ['GRAI', 'WHEA', 'MAIZ', 'SUGR', 'FMSP', 'RFPR', 'CLAY', 'BDMT',
                                                'BEAN', 'NITR', 'RUBR', 'SAND', 'POTA', 'QLME', 'SASH', 'CMNT',
-                                               'KAOL', 'FERT', 'SALT', 'CBLK', 'PLAS'],
-                           'cryo_gases': ['CHLO', 'O2__', 'NH3_'],
+                                               'KAOL', 'FERT', 'SALT', 'PLAS'], # not CBLK, gets dedicated vehicles or box
+                           'cryo_gases': ['CHLO', 'O2__'],
                            'reefer': ['FOOD', 'FRUT', 'FISH'], # hax for intermodal container sprite selection - reefer car refits work just fine using CC_REFRIGERATED
                            'fruit_veg': ['FRUT', 'BEAN', 'CASS', 'JAVA', 'NUTS'],
-                           'cold_metal': ['STEL', 'METL', 'STCB', 'STAL', 'STST', 'COPR']}
+                           'cold_metal': ['STEL', 'METL', 'STCB', 'STAL', 'STST', 'COPR', 'STSH']}
 
 # rather than using disallowed classes (can cause breakage), specific labels are disallowed
 disallowed_refits_by_label = {'non_dump_bulk': ['WOOD', 'SGCN', 'FICR', 'BDMT', 'WDPR', 'GRAI', 'WHEA', 'CERE', 'MAIZ', 'FRUT', 'BEAN', 'CMNT',
@@ -155,31 +158,32 @@ disallowed_refits_by_label = {'non_dump_bulk': ['WOOD', 'SGCN', 'FICR', 'BDMT', 
 # don't conflate this with general refittability, they're different concerns ;)
 # vehicle classes can also just provide their own list locally, using this is convenient, not obligatory
 default_cargos = {'box': ['GOOD', 'VPTS', 'FOOD'],
-                  'chemicals_tank': ['ACID', 'RFPR', 'CHLO'],
-                  'coal_hopper': ['COAL', 'COKE', 'NITR', 'KAOL'],
-                  'cryo_gases': ['O2__', 'CHLO', 'NH3_'],
-                  'covered_hopper': ['GRAI', 'KAOL'],
-                  'dump': ['IORE', 'MNO2', 'NITR', 'PHOS'],
-                  'dump_high_sides': ['COKE', 'SCMT', 'PEAT', 'COAL'],
+                  'coal_hopper': ['COAL', 'COKE', 'NITR', 'POTA'],
+                  'cryo_gases': ['O2__', 'CHLO'],
+                  'covered_hopper': ['SAND', 'KAOL', 'PLAS'],
+                  'dump': ['MNO2', 'FECR', 'NITR', 'PHOS', 'SAND', 'GRVL'],
+                  'dump_high_sides': ['COKE', 'PEAT', 'COAL'],
+                  'dump_scrap': ['SCMT', 'COAL'],
                   'edibles_tank': ['WATR', 'MILK', 'BEER'],
-                  'express': ['ENSP', 'FMSP', 'GOOD', 'FOOD', 'MAIL'],
+                  'express': ['MAIL', 'ENSP', 'FMSP', 'GOOD', 'FOOD'], # ENSP was tried as default, but confusing when attached express cars for mail to pax trains
                   'flat': ['STEL', 'STCB', 'COPR', 'METL'],
                   'fruit_veg': ['FRUT', 'BEAN', 'CASS', 'JAVA', 'NUTS'],
+                  'grain_hopper': ['GRAI', 'PLAS'],
                   'hopper': ['LIME', 'GRVL', 'SAND', 'PORE', 'SALT', 'IORE', 'CORE'],
                   # intermodal, uses box
-                  'silo': ['CMNT', 'BDMT', 'RFPR', 'QLME', 'FMSP'],
-                  'stake': ['WOOD'],
                   'mail': ['MAIL'],
                   'metal': ['STEL', 'COPR'],
                   'open': ['GOOD'],
+                  'ore_hopper': ['IORE', 'CORE', 'PORE', 'PHOS', 'COKE'],
                   'pax': ['PASS'],
                   'plate': ['IRON', 'CSTI', 'ZINC', 'METL'],
+                  'product_tank': ['ACID', 'RFPR', 'CHLO'],
                   'reefer': ['FOOD'],
+                  'silo': ['CMNT', 'BDMT', 'RFPR', 'QLME', 'FMSP'],
+                  'stake': ['WOOD'],
                   'supplies': ['ENSP'],
-                  'tank': ['OIL_', 'CTAR', 'KAOL', 'RUBR'],
+                  'tank': ['OIL_', 'CTAR', 'SULP', 'KAOL', 'RUBR'],
                   }
-
-
 
 
 # chameleon templating goes faster if a cache dir is used; this specifies which dir is cache dir
