@@ -52,6 +52,7 @@ BUNDLE_DIR = bundle_dir
 default: html_docs grf
 bundle_tar: tar
 bundle_zip: $(ZIP_FILE)
+release: bundle_tar copy_docs_to_grf_farm
 graphics: $(GRAPHICS_DIR)
 lang: $(LANG_DIR)
 nml: $(NML_FILE)
@@ -110,6 +111,10 @@ bundle_src: $(MD5_FILE)
 	$(SED) -i -e 's/^EXPORTED = no/EXPORTED = yes/' $(BUNDLE_DIR)/src/Makefile
 	$(MK_ARCHIVE) --tar --output=$(SOURCE_NAME).tar --base=$(SOURCE_NAME) \
 		`$(FIND_FILES) $(BUNDLE_DIR)/src` $(MD5_FILE)
+
+# this expects to find a '../../grf.farm' path relative to the project, and will fail otherwise
+copy_docs_to_grf_farm:
+	$(_V) $(PYTHON3) src/polar_fox/grf_farm.py $(PROJECT_NAME)
 
 # this is a macOS-specifc install location; the pre-2017 Makefile handled multiple platforms, that could be restored if needed
 install: $(GRF_FILE)
