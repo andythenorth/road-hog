@@ -529,7 +529,7 @@ class CoveredHopperHaulerConsistBase(Consist):
         self.class_refit_groups = ['covered_hopper_freight']
         self.label_refits_allowed = global_constants.allowed_refits_by_label['covered_hoppers']
         self.label_refits_disallowed = []
-        self.default_cargos = global_constants.default_cargos['covered_hopper']
+        self.default_cargos = global_constants.default_cargos['covered_mineral']
         self.loading_speed_multiplier = 2
         self.weight_multiplier = 0.45
         # !! this is hax as there is no opening doors pipeline for RVs currently - see Horse version
@@ -684,9 +684,9 @@ class FruitVegHaulerConsistBase(Consist):
         self.name_suffix_consist_type = "FRUIT_VEG"
         self.autorefit = True
         self.class_refit_groups = [] # no classes, use explicit labels
-        self.label_refits_allowed = global_constants.allowed_refits_by_label['fruit_veg']
+        self.label_refits_allowed = global_constants.allowed_refits_by_label['farm_products']
         self.label_refits_disallowed = []
-        self.default_cargos = global_constants.default_cargos['fruit_veg']
+        self.default_cargos = global_constants.default_cargos['farm_products_box']
         self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
         self.weight_multiplier = 0.45
         # Graphics configuration
