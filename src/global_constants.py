@@ -1,7 +1,7 @@
 # capacity multipliers for capacity parameter
 capacity_multipliers = (0.67, 1, 1.33)
 
-grfid = r"\97\87\EA\FE"
+grfid = r"\97\87\EA\FF"
 
 # cargo aging constant - OTTD default is 185
 CARGO_AGE_PERIOD = 185
