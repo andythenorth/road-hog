@@ -16,10 +16,12 @@ MK_ARCHIVE = bin/mk-archive
 # Project details
 PROJECT_NAME = road-hog
 
+-include Makefile.local
+
 GRAPHICS_DIR = generated/graphics
 LANG_DIR = generated/lang
 NML_FILE = generated/road-hog.nml
-NML_FLAGS =-c -l $(LANG_DIR)
+NML_FLAGS =-c -l $(LANG_DIR) --no-optimisation-warning
 
 EXPORTED = no
 ifeq ($(strip $(EXPORTED)),no)
