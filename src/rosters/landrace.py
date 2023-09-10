@@ -1,135 +1,135 @@
 from roster import Roster
 
-from vehicles import (acton_pax_express,
-                      amblecote_box,
-                      applethwaite_fruit_veg,
-                      beerwoods_edibles_tanker,
-                      big_rigg_flat,
-                      # big_sky_pax_express, #deprecated
-                      boilingwell_tanker,
-                      bottlebrook_edibles_tanker,
-                      brass_monkey_mail,
-                      brigand_supplies,
-                      brightling_open,
-                      broadrock_dump,
-                      buff_log,
-                      buildwas_open,
-                      capo_open,
-                      catchcan_tanker,
-                      cattlegrid_livestock,
-                      chainburn_flat,
-                      chophouse_livestock,
-                      cloud_hill_tanker,
-                      colbiggan_box,
-                      coldfall_refrigerated,
-                      coleman_dump,
-                      cowsleigh_livestock,
-                      crawshot_livestock,
-                      crime_rigg_supplies,
-                      dewsnap_fruit_veg,
-                      dinkum_open,
-                      dora_flat,
-                      dreadnought_box,
-                      drumbreck_tanker,
-                      dry_fork_tanker,
-                      dugout_dump,
-                      dumpling_dump,
-                      easdale_box,
-                      easywheal_box,
-                      eidsborg_dump,
-                      elterwater_box,
-                      fairlop_pax,
-                      flow_edge_edibles_tanker,
-#                      foreshore_intermodal, # deprecated, pending decision on container trucks being in or out
-                      fortiscue_refrigerated,
-                      foxley_mail,
-                      glenmore_pax_express,
-                      goldmire_mail,
-#                      gravelhead_dump,
-                      greenscoe_tanker,
-                      greenleaf_fruit_veg,
-                      hawkmoor_dump,
-                      highgate_pax,
-                      hogsback_livestock,
-                      honister_dump,
-                      hopping_pipe_tanker,
-                      imperial_open,
-                      ingleby_box,
-                      intake_open,
-                      irvine_tanker,
-                      jinglepot_open,
-                      jubilee_open,
-                      jumbo_dump,
-                      kedge_flat,
-                      knockdown_log,
-                      ladycross_pax,
-                      leyburn_pax,
-                      limebreach_covered_hopper,
-                      limpet_open,
-                      littleduke_mail,
-                      loggan_box,
-                      magee_dump,
-                      mcdowell_covered_hopper,
-                      meethball_livestock,
-                      meriden_tanker,
-                      merrivale_refrigerated,
-                      mullion_flat,
-                      nettlebridge_dump,
-                      newbiggin_flat,
-                      newbold_pax,
-                      northbeach_pax,
-                      nutbrook_fruit_veg,
-                      oxleas_pax_express,
-                      oylbarral_tanker,
-                      pigstick_livestock,
-                      pippin_fruit_veg,
-                      plumley_fruit_veg,
-                      polangrain_covered_hopper,
-                      poptop_edibles_tanker,
-                      portland_open,
-                      powerstock_dump,
-                      quickset_box,
-                      rackwood_flat,
-                      rakeway_box,
-                      rattlebrook_open,
-                      reaver_supplies,
-                      redbeet_fruit_veg,
-                      redoil_tanker,
-                      ribble_covered_hopper,
-                      road_thief_supplies,
-                      runwell_box,
-                      scrag_end_livestock,
-                      scrooby_top_dump,
-                      shotover_livestock,
-                      silvertop_edibles_tanker,
-                      singing_river_mail,
-                      sparkford_refrigerated,
-                      speedwell_box,
-                      spud_fruit_veg,
-                      stagrun_mail,
-                      stakebeck_flat,
-                      stancliffe_flat,
-                      stawell_flat,
-                      steeraway_metal,
-                      strongbox_mail,
-                      stungun_livestock,
-                      swineshead_livestock,
-                      tallyho_mail,
-                      tankard_tanker,
-                      thunder_pax,
-                      thurlbear_covered_hopper,
-                      tin_hatch_mail,
-                      topley_pax,
-                      towerhouse_flat,
-                      trefell_log,
-                      trotalong_livestock,
-                      twinhills_pax,
-                      waterperry_edibles_tanker,
-                      windergill_flat,
-                      winterfold_refrigerated,
-                      witch_hill_dump,
-                      wookey_dump,
-                      yeoman_open)
+from vehicles import acton_pax_express
+from vehicles import amblecote_box
+from vehicles import applethwaite_fruit_veg
+from vehicles import beerwoods_edibles_tanker
+from vehicles import big_rigg_flat
+#from vehicles import big_sky_pax_express, #deprecated
+from vehicles import boilingwell_tanker
+from vehicles import bottlebrook_edibles_tanker
+from vehicles import brass_monkey_mail
+from vehicles import brigand_supplies
+from vehicles import brightling_open
+from vehicles import broadrock_dump
+from vehicles import buff_log
+from vehicles import buildwas_open
+from vehicles import capo_open
+from vehicles import catchcan_tanker
+from vehicles import cattlegrid_livestock
+from vehicles import chainburn_flat
+from vehicles import chophouse_livestock
+from vehicles import cloud_hill_tanker
+from vehicles import colbiggan_box
+from vehicles import coldfall_refrigerated
+from vehicles import coleman_dump
+from vehicles import cowsleigh_livestock
+from vehicles import crawshot_livestock
+from vehicles import crime_rigg_supplies
+from vehicles import dewsnap_fruit_veg
+from vehicles import dinkum_open
+from vehicles import dora_flat
+from vehicles import dreadnought_box
+from vehicles import drumbreck_tanker
+from vehicles import dry_fork_tanker
+from vehicles import dugout_dump
+from vehicles import dumpling_dump
+from vehicles import easdale_box
+from vehicles import easywheal_box
+from vehicles import eidsborg_dump
+from vehicles import elterwater_box
+from vehicles import fairlop_pax
+from vehicles import flow_edge_edibles_tanker
+#from vehicles import foreshore_intermodal # deprecated, pending decision on container trucks being in or out
+from vehicles import fortiscue_refrigerated
+from vehicles import foxley_mail
+from vehicles import glenmore_pax_express
+from vehicles import goldmire_mail
+#from vehicles import gravelhead_dump
+from vehicles import greenscoe_tanker
+from vehicles import greenleaf_fruit_veg
+from vehicles import hawkmoor_dump
+from vehicles import highgate_pax
+from vehicles import hogsback_livestock
+from vehicles import honister_dump
+from vehicles import hopping_pipe_tanker
+from vehicles import imperial_open
+from vehicles import ingleby_box
+from vehicles import intake_open
+from vehicles import irvine_tanker
+from vehicles import jinglepot_open
+from vehicles import jubilee_open
+from vehicles import jumbo_dump
+from vehicles import kedge_flat
+from vehicles import knockdown_log
+from vehicles import ladycross_pax
+from vehicles import leyburn_pax
+from vehicles import limebreach_covered_hopper
+from vehicles import limpet_open
+from vehicles import littleduke_mail
+from vehicles import loggan_box
+from vehicles import magee_dump
+from vehicles import mcdowell_covered_hopper
+from vehicles import meethball_livestock
+from vehicles import meriden_tanker
+from vehicles import merrivale_refrigerated
+from vehicles import mullion_flat
+from vehicles import nettlebridge_dump
+from vehicles import newbiggin_flat
+from vehicles import newbold_pax
+from vehicles import northbeach_pax
+from vehicles import nutbrook_fruit_veg
+from vehicles import oxleas_pax_express
+from vehicles import oylbarral_tanker
+from vehicles import pigstick_livestock
+from vehicles import pippin_fruit_veg
+from vehicles import plumley_fruit_veg
+from vehicles import polangrain_covered_hopper
+from vehicles import poptop_edibles_tanker
+from vehicles import portland_open
+from vehicles import powerstock_dump
+from vehicles import quickset_box
+from vehicles import rackwood_flat
+from vehicles import rakeway_box
+from vehicles import rattlebrook_open
+from vehicles import reaver_supplies
+from vehicles import redbeet_fruit_veg
+from vehicles import redoil_tanker
+from vehicles import ribble_covered_hopper
+from vehicles import road_thief_supplies
+from vehicles import runwell_box
+from vehicles import scrag_end_livestock
+from vehicles import scrooby_top_dump
+from vehicles import shotover_livestock
+from vehicles import silvertop_edibles_tanker
+from vehicles import singing_river_mail
+from vehicles import sparkford_refrigerated
+from vehicles import speedwell_box
+from vehicles import spud_fruit_veg
+from vehicles import stagrun_mail
+from vehicles import stakebeck_flat
+from vehicles import stancliffe_flat
+from vehicles import stawell_flat
+from vehicles import steeraway_metal
+from vehicles import strongbox_mail
+from vehicles import stungun_livestock
+from vehicles import swineshead_livestock
+from vehicles import tallyho_mail
+from vehicles import tankard_tanker
+from vehicles import thunder_pax
+from vehicles import thurlbear_covered_hopper
+from vehicles import tin_hatch_mail
+from vehicles import topley_pax
+from vehicles import towerhouse_flat
+from vehicles import trefell_log
+from vehicles import trotalong_livestock
+from vehicles import twinhills_pax
+from vehicles import waterperry_edibles_tanker
+from vehicles import windergill_flat
+from vehicles import winterfold_refrigerated
+from vehicles import witch_hill_dump
+from vehicles import wookey_dump
+from vehicles import yeoman_open
 
 roster = Roster(id = 'landrace',
                 numeric_id = 1,

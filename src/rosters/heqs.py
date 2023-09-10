@@ -1,6 +1,6 @@
 from roster import Roster
 
-from vehicles import (catchcan)
+from vehicles import catchcan
 
 roster = Roster(id = 'heqs',
                 numeric_id = 1,
