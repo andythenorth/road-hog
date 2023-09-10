@@ -133,6 +133,9 @@ from vehicles import yeoman_open
 
 roster = Roster(id = 'landrace',
                 numeric_id = 1,
+                grf_name="road-hog",
+                grfid=r"\97\87\EA\FF",
+                str_grf_name="Road Hog",
                 # note that the grf name is Road Hog, but we're in a multiple-grf compile with Road Hog and other grfs, where the word 'hog' is used in the compile also
                 # so to avoid overloading 'hog', we use `landrace` as the id for Road Hog, this is easily find-and-replaced if we need to
                 # default intro dates per generation, can be over-ridden if needed by setting intro_date kw on consist

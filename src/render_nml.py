@@ -25,10 +25,12 @@ generated_files_path = road_hog.generated_files_path
 
 def render_header_item_nml(header_item, consists):
     template = templates[header_item + '.pynml']
+    # !! shim roster - needs roster manager providing, then roster should be a keyword arg here, as per Horse
+    roster = registered_rosters[0]
     return utils.unescape_chameleon_output(template(consists=consists,
                                                     global_constants=global_constants,
                                                     utils=utils,
-                                                    registered_rosters=registered_rosters,
+                                                    roster=roster,
                                                     makefile_args=makefile_args))
 
 def render_consist_nml(consist):

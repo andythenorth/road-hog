@@ -9,6 +9,9 @@ class Roster(object):
     def __init__(self, **kwargs):
         self.id = kwargs.get('id')
         self.numeric_id = kwargs.get('numeric_id')
+        self.grf_name = kwargs.get("grf_name")
+        self.grfid = kwargs.get("grfid")
+        self.str_grf_name = kwargs.get("str_grf_name")
         self.intro_dates = kwargs.get('intro_dates')
         self.speeds = kwargs.get('speeds')
         self.power_bands = kwargs.get('power_bands')

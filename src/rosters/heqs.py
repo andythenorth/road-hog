@@ -3,7 +3,10 @@ from roster import Roster
 from vehicles import catchcan
 
 roster = Roster(id = 'heqs',
-                numeric_id = 1,
+                numeric_id = 2,
+                grf_name="heqs",
+                grfid=r"41\50\12\03",
+                str_grf_name="HEQS",
                 # keep dates for power and speeds matched
                 truck_speeds = {0: 25, 1905: 40, 1935: 55, 1965: 70, 1985: 80},
                 tram_speeds = {0: 25, 1900: 35, 1930: 45, 1960: 55, 1990: 65},

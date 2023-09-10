@@ -1,6 +1,6 @@
 // define the newgrf
 grf {
-	grfid: "${global_constants.grfid}";
+	grfid: "${roster.grfid}";
 	name: string(STR_GRF_NAME);
 	desc: string(STR_GRF_DESCRIPTION);
 	version: ${makefile_args.repo_revision};
