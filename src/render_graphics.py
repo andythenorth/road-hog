@@ -23,6 +23,7 @@ if num_pool_workers == 0:
     use_multiprocessing = False
     print('Multiprocessing disabled: (PW=0)') # just print, no need for a coloured echo_message
 else:
+    raise BaseException("PW is not 0, this is unsupported as of September 2023 because the compile fails with use_multiprocessing - needs fixed")
     use_multiprocessing = True
     print('Multiprocessing enabled: (PW=' + str(num_pool_workers) + ')') # just print, no need for a coloured echo_message
 
