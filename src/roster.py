@@ -19,8 +19,7 @@ class Roster(object):
         self.unit_capacity_per_vehicle_type = kwargs.get('unit_capacity_per_vehicle_type')
 
         for vehicle in kwargs.get('vehicles'):
-            consist = vehicle.consist
-            consist.roster_id = self.id
+            consist = vehicle.main(self.id)
             self.consists.append(consist)
 
     @property

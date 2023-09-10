@@ -26,8 +26,14 @@ class Consist(object):
         self.id = kwargs.get('id', None)
         self.vehicle_module_path = inspect.stack()[2][1]
         # setup properties for this consist (props either shared for all vehicles, or placed on lead vehicle of consist)
+        # private var, used to store a name substr for engines, composed into name with other strings as needed
         self._name = kwargs.get('name', None) # private as 'name' is an @property method to add type substring
         self.base_numeric_id = kwargs.get('base_numeric_id', None)
+        # roster is set when the vehicle is registered to a roster, only one roster per vehicle
+        # persist roster id for lookups, not roster obj directly, because of multiprocessing problems with object references
+        self.base_numeric_id = kwargs.get("base_numeric_id", None)
+        # roster ID must be passed, it's chained in via the calling roster, slightly convoluted but there are reasons
+        self.roster_id = kwargs["roster_id"]
         self.road_type = kwargs.get('road_type', None)
         self.tram_type = kwargs.get('tram_type', None)
         if self.road_type is not None and self.tram_type is not None:
@@ -68,9 +74,6 @@ class Consist(object):
         self.units = []
         # create a structure for cargo /livery graphics options
         self.gestalt_graphics = GestaltGraphics()
-        # roster is set when the vehicle is registered to a roster, only one roster per vehicle
-        self.roster_id = None
-        print("how is roster_id being used - port to Horse methods??")
         # aids 'project management'
         self.sprites_complete = kwargs.get("sprites_complete", False)
         self.sprites_additional_liveries_potential = kwargs.get(
