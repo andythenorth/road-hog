@@ -924,7 +924,7 @@ class PaxLocalBusConsist(PaxHaulerLocalConsistBase, TrackTypeMixinTruckBusCoach)
         super().__init__(**kwargs)
         # over-ride the default sound effect set by parent subclasses
         # this assumes diesel, and will fail if non-diesel local buses are added
-        self._sound_effect = 'SOUND_BUS_START_PULL_AWAY_WITH_HORN'
+        self._sound_effect = 'SOUND_DEPARTURE_OLD_RV_1'
         self.vehicle_role = 'bus'
 
     @property
@@ -959,7 +959,7 @@ class PaxExpressCoachConsist(PaxHaulerConsistBase, TrackTypeMixinTruckBusCoach):
         self.weight_multiplier = 0.2
         # over-ride the default sound effect set by parent subclasses
         # this assumes diesel, and will fail if non-diesel express coaches are added
-        self._sound_effect = 'SOUND_TRUCK_START_2'
+        self._sound_effect = 'SOUND_DEPARTURE_OLD_BUS'
         self.vehicle_role = 'coach'
 
     @property
@@ -1278,7 +1278,7 @@ class SteamVehicleUnit(RoadVehicle):
         self._effect_spawn_model = 'EFFECT_SPAWN_MODEL_STEAM'
         self.default_effect_sprite = 'EFFECT_SPRITE_STEAM'
         self.consist._power_type_suffix = 'STEAM'
-        self.consist.default_sound_effect = 'SOUND_FACTORY_WHISTLE'
+        self.consist.default_sound_effect = 'SOUND_FACTORY'
 
 
 class DieselVehicleUnit(RoadVehicle):
@@ -1291,7 +1291,7 @@ class DieselVehicleUnit(RoadVehicle):
         self.default_effect_sprite = 'EFFECT_SPRITE_DIESEL'
         self.consist._power_type_suffix = 'DIESEL'
         # this can be over-ridden in consist subclasses for e.g. buses using consist._sound_effect
-        self.consist.default_sound_effect = 'SOUND_BUS_START_PULL_AWAY' # sound effect mis-named, original base set uses this for trucks
+        self.consist.default_sound_effect = 'SOUND_DEPARTURE_OLD_RV_1' # sound effect mis-named, original base set uses this for trucks
 
 
 class ElectricVehicleUnit(RoadVehicle):
@@ -1304,5 +1304,5 @@ class ElectricVehicleUnit(RoadVehicle):
         self._effect_spawn_model = 'EFFECT_SPAWN_MODEL_ELECTRIC'
         self.default_effect_sprite = 'EFFECT_SPRITE_ELECTRIC'
         self.consist._power_type_suffix = 'ELECTRIC'
-        self.consist.default_sound_effect = 'SOUND_ELECTRIC_SPARK'
+        self.consist.default_sound_effect = 'SOUND_POWER_STATION'
 
