@@ -131,7 +131,7 @@ from vehicles import (acton_pax_express,
                       wookey_dump,
                       yeoman_open)
 
-roster = Roster(id = 'brit',
+roster = Roster(id = 'hog',
                 numeric_id = 1,
                 # default intro dates per generation, can be over-ridden if needed by setting intro_date kw on consist
                 intro_dates = {'ROAD': [1860, 1920, 1945, 1970, 1995, 2020], # gen 1 is long, then after 1920, quite aggressive 25 year gaps for trucks / buses

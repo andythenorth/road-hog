@@ -9,7 +9,6 @@ STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_1                      :놀라운
 STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2                      :과도한
 STR_PARAM_ROSTER                                                :종류
 STR_PARAM_ROSTER_DESC                                           :어떤 종류의 차량 세트를 쓸 것인지 고르십시오.
-STR_PARAM_ROSTER_OPTION_0                                       :정어리
 STR_PARAM_ROSTER_OPTION_1                                       :황무지
 
 STR_MENU_TEXT_TRAMWAY                                           :트램 선로 건설

@@ -23,8 +23,8 @@ if not os.path.exists(generated_files_path):
 
 from rosters import registered_rosters
 
-from rosters import brit
-brit.roster.register()
+from rosters import hog
+hog.roster.register()
 
 #from rosters import test
 #test.roster.register()

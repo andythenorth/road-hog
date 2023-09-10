@@ -8,7 +8,6 @@ STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_1                      :Uskomaton
 STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2                      :Yletön
 STR_PARAM_ROSTER                                                :Valikoimat
 STR_PARAM_ROSTER_DESC                                           :Valitse, mitä ajoneuvovalikoimaa käytetään.
-STR_PARAM_ROSTER_OPTION_0                                       :Britti
 
 
 # keep these alphabetised, easier
