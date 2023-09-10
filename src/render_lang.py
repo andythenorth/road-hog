@@ -2,6 +2,7 @@ print("[RENDER LANG] render_lang.py")
 
 import road_hog
 import utils
+from polar_fox import git_info
 
 import shutil
 import os
@@ -16,9 +17,6 @@ import codecs # used for writing files - more unicode friendly than standard ope
 from chameleon import PageTemplateLoader # chameleon used in most template cases
 # setup the places we look for templates
 templates = PageTemplateLoader(os.path.join(currentdir, 'src', 'templates'))
-
-# get args passed by makefile
-makefile_args = utils.get_makefile_args(sys)
 
 lang_src = os.path.join(currentdir, 'src', 'lang')
 lang_dst = os.path.join(road_hog.generated_files_path, 'lang', 'road-hog') # !! road-hog suffix is JFDI hax to get multi-grf compile compiling
@@ -55,7 +53,7 @@ def main():
         src_file = codecs.open(os.path.join(lang_src, i + '.lng'), 'r','utf8')
         dst_file = codecs.open(os.path.join(lang_dst, i + '.lng'), 'w','utf8')
         lang_content = src_file.read()
-        lang_content = lang_content + lang_template(consists=consists, makefile_args=makefile_args)
+        lang_content = lang_content + lang_template(consists=consists, git_info=git_info, roster=roster)
         dst_file.write(lang_content)
         dst_file.close()
     # eh, how long does this take anyway?

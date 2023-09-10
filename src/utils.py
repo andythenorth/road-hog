@@ -59,23 +59,6 @@ def get_docs_url():
     return "/".join(result)
 
 
-def get_makefile_args(sys):
-    print(
-        "get_makefile_args called - deprecated, update caller to use get_command_line_args"
-    )
-    # get args passed by makefile
-    if len(sys.argv) > 1:
-        makefile_args = {
-            "repo_revision": sys.argv[1],
-            "repo_version": 999, # ! shim
-            "num_pool_workers": 0, # ! shim
-            "roster": "*", # ! shim
-        }
-    else:  # provide some defaults so templates don't explode when testing python script without command line args
-        makefile_args = {"repo_revision": 0, "repo_version": 0}
-    return makefile_args
-
-
 def parse_base_lang():
     # expose base lang strings to python - for reuse in docs
     base_lang_file = codecs.open(
