@@ -7,10 +7,6 @@ sys.path.append(os.path.join('src')) # add to the module search path
 import math
 import inspect # only used for deprecated attempt at partial compiles, remove (and vehicle_module_path var)
 
-from chameleon import PageTemplateLoader # chameleon used in most template cases
-# setup the places we look for templates
-templates = PageTemplateLoader(os.path.join(currentdir, 'src', 'templates'))
-
 import polar_fox
 import global_constants # expose all constants for easy passing to templates
 import utils
@@ -368,7 +364,7 @@ class Consist(object):
                 result = 'cargotype_available("' + cargo + '")?' + cargo + ':' + result
             return result
 
-    def render_articulated_switch(self):
+    def render_articulated_switch(self, templates):
         if len(self.units) > 1:
             template = templates["articulated_parts.pynml"]
             nml_result = template(consist=self, global_constants=global_constants)
@@ -376,12 +372,12 @@ class Consist(object):
         else:
             return ''
 
-    def render(self):
+    def render(self, templates, graphics_path):
         # templating
         nml_result = ''
-        nml_result = nml_result + self.render_articulated_switch()
+        nml_result = nml_result + self.render_articulated_switch(templates)
         for unit in set(self.units):
-            nml_result = nml_result + unit.render()
+            nml_result = nml_result + unit.render(templates)
         return nml_result
 
 
@@ -1258,7 +1254,7 @@ class RoadVehicle(object):
         switch_id = self.id + "_switch_graphics" + ('_' + str(cargo_id) if cargo_id is not None else '')
         return "SELF," + switch_id + ", bitmask(TRIGGER_VEHICLE_ANY_LOAD)"
 
-    def render(self):
+    def render(self, templates):
         # integrity tests
         self.assert_cargo_labels(self.consist.label_refits_allowed)
         self.assert_cargo_labels(self.consist.label_refits_disallowed)

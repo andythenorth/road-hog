@@ -51,7 +51,18 @@ metadata['repo_url'] = 'http://dev.openttdcoop.org/projects/road-hog/repository'
 metadata['issue_tracker'] = 'http://dev.openttdcoop.org/projects/road-hog/issues'
 metadata['eints_url'] = 'https://translator.openttdcoop.org/project/road-hog'
 
-consists = road_hog.get_consists_in_buy_menu_order()
+"""
+roster = road_hog.roster_manager.active_roster
+"""
+# expect Exception failures if there is no active roster, don't bother explicitly handling that case
+# !! shim roster - needs roster manager providing, then roster should be a keyword arg here, as per Horse
+road_hog.main() # should be done in this module's main, but shim !!
+from rosters import (
+    registered_rosters,
+)  # Road Hog has support for compiling only active roster, copy if/when needed
+
+roster = registered_rosters[0]
+consists = roster.consists_in_buy_menu_order
 # default sort for docs is by intro date
 consists = sorted(consists, key=lambda consist: consist.intro_date)
 dates = sorted([i.intro_date for i in consists])

@@ -1,3 +1,4 @@
+import argparse
 import os.path
 import codecs  # used for writing files - more unicode friendly than standard open() module
 from polar_fox.utils import echo_message as echo_message
@@ -9,14 +10,53 @@ from polar_fox.utils import (
 )
 
 
+def get_command_line_args():
+    argparser = argparse.ArgumentParser()
+    argparser.add_argument(
+        "-pw",
+        "--pool_workers",
+        type=int,
+        default=0,
+        dest="num_pool_workers",
+        help="The number of pool workers to use in multiprocessing pools [default: 0] (multiprocessing disabled unless explicitly enabled)",
+    )
+    argparser.add_argument(
+        "-gn",
+        "--grf-name",
+        dest="grf_name",
+        required=True,
+        help="The grf to build",
+        # manually extend the list if more rosters are added
+        choices=["road-hog", "heqs", "id-report-only"],
+    )
+    argparser.add_argument(
+        "-sc",
+        "--suppress-cargo-sprites",
+        action=argparse.BooleanOptionalAction,
+        dest="suppress_cargo_sprites",
+        help="Optionally suppress visible cargo sprites in the grf output, can save substantial compile time",
+    )
+    argparser.add_argument(
+        "-sd",
+        "--suppress-docs",
+        action=argparse.BooleanOptionalAction,
+        dest="suppress_docs",
+        help="Optionally suppress docs, can save some compile time",
+    )
+    return argparser.parse_args()
+
+
 def get_makefile_args(sys):
+    print(
+        "get_makefile_args called - deprecated, update caller to use get_command_line_args"
+    )
     # get args passed by makefile
     if len(sys.argv) > 1:
         makefile_args = {
             "repo_revision": sys.argv[1],
-            "repo_version": sys.argv[2],
-            "num_pool_workers": int(sys.argv[3]),
-            "roster": sys.argv[4],
+            "repo_version": 999, # ! shim
+            "num_pool_workers": 0, # ! shim
+            "roster": "*", # ! shim
         }
     else:  # provide some defaults so templates don't explode when testing python script without command line args
         makefile_args = {"repo_revision": 0, "repo_version": 0}

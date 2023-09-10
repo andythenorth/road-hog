@@ -48,9 +48,21 @@ def run_pipelines(consist):
             pipeline.render(consist, global_constants)
 
 # wrapped in a main() function so this can be called explicitly, because unexpected multiprocessing fork bombs are bad
+# !!! compare this with render_graphics in Horse
 def main():
     start = time()
-    consists = road_hog.get_consists_in_buy_menu_order()
+    road_hog.main()
+
+    """
+    roster = road_hog.roster_manager.active_roster
+    """
+    # expect Exception failures if there is no active roster, don't bother explicitly handling that case
+    # !! shim roster - needs roster manager providing, then roster should be a keyword arg here, as per Horse
+    from rosters import (
+        registered_rosters,
+    )  # Road Hog has support for compiling only active roster, copy if/when needed
+    roster = registered_rosters[0] # !! shim
+    consists = roster.consists_in_buy_menu_order
 
     if use_multiprocessing == False:
         for consist in consists:

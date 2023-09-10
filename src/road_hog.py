@@ -22,15 +22,7 @@ if not os.path.exists(generated_files_path):
     os.mkdir(generated_files_path)
 
 from rosters import registered_rosters
-
 from rosters import landrace
-landrace.roster.register()
-
-#from rosters import test
-#test.roster.register()
-
-#from rosters import wasteland
-#wasteland.roster.register()
 
 from vehicles import numeric_id_defender
 
@@ -67,3 +59,6 @@ def vacant_numeric_ids_formatted():
         if id not in numeric_id_defender:
             id_gaps.append(str(id))
     return "Vacant numeric ID slots: " + ', '.join(id_gaps) + (" and from " if len(id_gaps) > 0 else '') + str(max_id + 10) + " onwards"
+
+def main():
+    landrace.roster.register()

@@ -32,7 +32,20 @@ hint_file.close()
 
 def main():
     start = time()
-    consists = road_hog.get_consists_in_buy_menu_order()
+    road_hog.main()
+
+    """
+    roster = road_hog.roster_manager.active_roster
+    """
+    # expect Exception failures if there is no active roster, don't bother explicitly handling that case
+    # !! shim roster - needs roster manager providing, then roster should be a keyword arg here, as per Horse
+    road_hog.main() # should be done in this module's main, but shim !!
+    from rosters import (
+        registered_rosters,
+    )  # Road Hog has support for compiling only active roster, copy if/when needed
+    roster = registered_rosters[0] # !! shim
+    consists = roster.consists_in_buy_menu_order
+
     languages_with_generation = ('english',)
 
     for i in languages_with_generation:
