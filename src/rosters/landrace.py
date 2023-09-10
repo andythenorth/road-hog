@@ -131,8 +131,10 @@ from vehicles import (acton_pax_express,
                       wookey_dump,
                       yeoman_open)
 
-roster = Roster(id = 'hog',
+roster = Roster(id = 'landrace',
                 numeric_id = 1,
+                # note that the grf name is Road Hog, but we're in a multiple-grf compile with Road Hog and other grfs, where the word 'hog' is used in the compile also
+                # so to avoid overloading 'hog', we use `landrace` as the id for Road Hog, this is easily find-and-replaced if we need to
                 # default intro dates per generation, can be over-ridden if needed by setting intro_date kw on consist
                 intro_dates = {'ROAD': [1860, 1920, 1945, 1970, 1995, 2020], # gen 1 is long, then after 1920, quite aggressive 25 year gaps for trucks / buses
                                'LOLZ': [1860, 1920, 1945, 1970, 1995, 2020], # keep matched to ROAD

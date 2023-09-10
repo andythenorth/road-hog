@@ -2,7 +2,7 @@ from roster import Roster
 
 from vehicles import (catchcan)
 
-roster = Roster(id = 'test',
+roster = Roster(id = 'heqs',
                 numeric_id = 1,
                 # keep dates for power and speeds matched
                 truck_speeds = {0: 25, 1905: 40, 1935: 55, 1965: 70, 1985: 80},
