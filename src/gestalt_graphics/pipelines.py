@@ -135,9 +135,10 @@ class PassThroughPipeline(Pipeline):
         # this should be sparse, don't store any consist info in Pipelines, pass at render time
         super().__init__()
 
-    def render(self, consist, global_constants):
+    def render(self, consist, global_constants, graphics_output_path):
         self.units = []
         self.consist = consist
+        self.graphics_output_path = graphics_output_path
         input_image = Image.open(self.vehicle_source_input_path)
         result = self.render_common(input_image, self.units)
         return result
@@ -151,10 +152,11 @@ class CheckBuyMenuOnlyPipeline(Pipeline):
         # this should be sparse, don't store any consist info in Pipelines, pass at render time
         super().__init__()
 
-    def render(self, consist, global_constants):
+    def render(self, consist, global_constants, graphics_output_path):
         self.units = []
         self.consist = consist
         self.global_constants = global_constants
+        self.graphics_output_path = graphics_output_path
 
         if self.consist.buy_menu_x_loc == global_constants.custom_buy_menu_x_loc:
             # !! this currently will cause the vehicle spritesheet buy menu sprites to be copied to the pans spritesheet,
@@ -408,10 +410,11 @@ class ExtendSpriterowsForCompositedSpritesPipeline(Pipeline):
                                                 x_offset=self.sprites_max_x_extent + 5,
                                                 y_offset= -1 * cargo_group_output_row_height))
 
-    def render(self, consist, global_constants):
+    def render(self, consist, global_constants, graphics_output_path):
         self.units = [] # graphics units not same as consist units ! confusing overlap of terminology :(
         self.consist = consist
         self.global_constants = global_constants
+        self.graphics_output_path = graphics_output_path
         self.sprites_max_x_extent = self.global_constants.sprites_max_x_extent
 
         # the consist_cumulative_source_spriterow_count updates per processed group of spriterows, and is key to making this work

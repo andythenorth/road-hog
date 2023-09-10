@@ -132,7 +132,7 @@ class DocHelper(object):
     def get_base_track_types(self):
         result = []
         for consist in consists:
-            result.append(consist.base_track_type)
+            result.append(consist.base_track_type_name)
         return sorted(set(result))
 
 def render_docs(doc_list, file_type, use_markdown=False):

@@ -4,8 +4,8 @@
     <div class="span12">
         <h2>${len(consists)} road vehicles and trams for OpenTTD</h2>
         <hr />
-        <tal:base_track_type repeat="base_track_type doc_helper.get_base_track_types()">
-            <h3 id="${base_track_type}">${base_track_type}</h3>
+        <tal:base_track_type_name repeat="base_track_type_name doc_helper.get_base_track_types()">
+            <h3 id="${base_track_type_name}">${base_track_type_name}</h3>
             <table class="table table-striped tablesorter">
                 <thead>
                     <tr>
@@ -20,7 +20,7 @@
                 </thead>
                 <tbody>
                     <tal:consists_list repeat="consist consists">
-                        <tr tal:condition="consist.base_track_type == base_track_type"
+                        <tr tal:condition="consist.base_track_type_name == base_track_type_name"
                             tal:define="consist_name_dict doc_helper.unpack_name_string(consist)"
                             id="${consist.id}">
                             <td class="vehicle-image"
@@ -49,7 +49,7 @@
                     </tal:consists_list>
                 </tbody>
             </table>
-        </tal:base_track_type>
+        </tal:base_track_type_name>
     </div>
 
 </div>

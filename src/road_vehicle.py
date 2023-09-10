@@ -32,7 +32,7 @@ class Consist(object):
         self.tram_type = kwargs.get('tram_type', None)
         if self.road_type is not None and self.tram_type is not None:
             utils.echo_message("Error: " + self.id + ". Vehicles must not have both road_type and tram_type properties set.  Set one of these only")
-        # modify base_track_type for electric vehicles when writing out the actual road or tram type
+        # modify base_track_type_name for electric vehicles when writing out the actual road or tram type
         # without this, RAIL and ELRL etc have to be specially handled whenever a list of compatible consists is wanted
         # this *does* need a specific flag, can't rely on unit visual effect or unit engine type props - they are used for other things
         self.requires_electricity_supply = False # set by unit subclasses as needed, not a kwarg
@@ -70,6 +70,11 @@ class Consist(object):
         self.gestalt_graphics = GestaltGraphics()
         # roster is set when the vehicle is registered to a roster, only one roster per vehicle
         self.roster_id = None
+        # aids 'project management'
+        self.sprites_complete = kwargs.get("sprites_complete", False)
+        self.sprites_additional_liveries_potential = kwargs.get(
+            "sprites_additional_liveries_potential", False
+        )
 
     def add_unit(self, repeat=1, **kwargs):
         # how many unique units? (units can be repeated, we are using count for numerid ID, so we want uniques)
@@ -202,7 +207,7 @@ class Consist(object):
             return self._intro_date
         else:
             assert(self._gen != None), "%s consist has neither gen nor intro_date set, which is incorrect" % self.id
-            result = self.roster.intro_dates[self.base_track_type][self.gen - 1]
+            result = self.roster.intro_dates[self.base_track_type_name][self.gen - 1]
             if self.intro_date_offset is not None:
                 result = result + self.intro_date_offset
             return result
@@ -215,11 +220,11 @@ class Consist(object):
             return self._gen
         else:
             assert(self._intro_date != None), "%s consist has neither gen nor intro_date set, which is incorrect" % self.id
-            for gen_counter, intro_date in enumerate(self.roster.intro_dates[self.base_track_type]):
+            for gen_counter, intro_date in enumerate(self.roster.intro_dates[self.base_track_type_name]):
                 if self.intro_date < intro_date:
                     return gen_counter
             # if no result is found in list, it's last gen
-            return len(self.roster.intro_dates[self.base_track_type])
+            return len(self.roster.intro_dates[self.base_track_type_name])
 
     @property
     def weight(self):
@@ -261,7 +266,7 @@ class Consist(object):
         if self._speed:
             return self._speed
         else:
-            return self.roster.speeds[self.base_track_type][self.gen - 1]
+            return self.roster.speeds[self.base_track_type_name][self.gen - 1]
 
     @property
     def power(self):
@@ -269,7 +274,7 @@ class Consist(object):
         if self._power:
             return self._power
         else:
-            return self.roster.power_bands[self.base_track_type][self.gen - 1]
+            return self.roster.power_bands[self.base_track_type_name][self.gen - 1]
 
     @property
     def model_life(self):
@@ -297,14 +302,14 @@ class Consist(object):
 
     @property
     def track_type(self):
-        # are you sure you don't want base_track_type instead?
-        # track_type handles converting base_track_type to ELRL, ELNG etc as needed for electric engines
-        # it's often more convenient to use base_track_type prop, which treats ELRL and RAIL as same (for example)
+        # are you sure you don't want base_track_type_name instead?
+        # track_type handles converting base_track_type_name to ELRL, ELNG etc as needed for electric engines
+        # it's often more convenient to use base_track_type_name prop, which treats ELRL and RAIL as same (for example)
         eltrack_type_mapping = {'RAIL': 'ELRL'}
         if self.requires_electricity_supply:
-            return eltrack_type_mapping[self.base_track_type]
+            return eltrack_type_mapping[self.base_track_type_name]
         else:
-            return self.base_track_type
+            return self.base_track_type_name
 
     @property
     def get_expression_for_road_or_tram_type(self):
@@ -364,6 +369,23 @@ class Consist(object):
                 result = 'cargotype_available("' + cargo + '")?' + cargo + ':' + result
             return result
 
+    def freeze_cross_roster_lookups(self):
+        # graphics processing can't depend on roster object reliably, as it blows up multiprocessing (can't pickle roster), for reasons I never figured out
+        # this freezes any necessary roster items in place
+        self.frozen_roster_items = {}
+        """
+        if self.is_randomised_wagon_type:
+            wagon_randomisation_candidates = []
+            for buyable_variant in self.buyable_variants:
+                wagon_randomisation_candidates.append(
+                    self.roster.get_wagon_randomisation_candidates(buyable_variant)
+                )
+            self.frozen_roster_items[
+                "wagon_randomisation_candidates"
+            ] = wagon_randomisation_candidates
+        """
+        # no return
+
     def render_articulated_switch(self, templates):
         if len(self.units) > 1:
             template = templates["articulated_parts.pynml"]
@@ -384,7 +406,7 @@ class Consist(object):
 class TrackTypeMixinBase(object):
     """
         Base class for mixins that set:
-        * base_track_type, from which road_type or tram_type are derived using power type set on units
+        * base_track_type_name, from which road_type or tram_type are derived using power type set on units
         * roadveh_flag_tram if needed
         * tractive effort co-efficient for the type, which can be over-ridden as needed
         * name_suffix_vehicle_type, use to derive 'Tram', 'Truck' etc in name strings
@@ -395,7 +417,7 @@ class TrackTypeMixinBase(object):
         Keep this simple, don't use an __init__, it adds faff with super() about order of calls.
         Just use class attrs.
     """
-    base_track_type = None # set this in subclass as a label; fail if not set explicitly
+    base_track_type_name = None # set this in subclass as a label; fail if not set explicitly
     roadveh_flag_tram = False
     tractive_effort_coefficient = None # set in subclass to float (0..1); fail if not set explicitly
     name_suffix_vehicle_type = None # set in subclass to string; fail if not set explicitly
@@ -410,7 +432,7 @@ class TrackTypeMixinCake(TrackTypeMixinBase):
         Keep this simple, don't use an __init__, it gets tricky with super.
         Just use class attrs.
     """
-    base_track_type = "LOLZ" # !! fix the label later, JFDI
+    base_track_type_name = "LOLZ" # !! fix the label later, JFDI
     # TE bonus assuming rubber tyres, much higher than the OpenTTD default of 0.3
     tractive_effort_coefficient = 0.7
     name_suffix_vehicle_type = "_TRUCK" # !! possibly wrong?
@@ -423,7 +445,7 @@ class TrackTypeMixinFeldbahn(TrackTypeMixinBase):
         Keep this simple, don't use an __init__, it gets tricky with super.
         Just use class attrs.
     """
-    base_track_type = "RAIL" # !! fix the label later, JFDI
+    base_track_type_name = "RAIL" # !! fix the label later, JFDI
     roadveh_flag_tram = True # feldbahn uses tram newgrf spec
     # steel wheel on steel rail, leave as OpenTTD default
     tractive_effort_coefficient = 0.3
@@ -437,7 +459,7 @@ class TrackTypeMixinHEQS(TrackTypeMixinBase):
         Keep this simple, don't use an __init__, it gets tricky with super.
         Just use class attrs.
     """
-    base_track_type = "HEQS"
+    base_track_type_name = "HEQS"
     # TE bonus assuming rubber tyres, much higher than the OpenTTD default of 0.3
     tractive_effort_coefficient = 0.7
     name_suffix_vehicle_type = "_TRUCK" # !! wrong, should be ???? - JFDI
@@ -450,7 +472,7 @@ class TrackTypeMixinTram(TrackTypeMixinBase):
         Keep this simple, don't use an __init__, it gets tricky with super.
         Just use class attrs.
     """
-    base_track_type = "RAIL"
+    base_track_type_name = "RAIL"
     roadveh_flag_tram = True # tram uses tram newgrf spec
     # small TE bonus for trams versus trains, assuming all wheels powered or similar
     tractive_effort_coefficient = 0.4
@@ -465,7 +487,7 @@ class TrackTypeMixinTruckBusCoach(TrackTypeMixinBase):
         Keep this simple, don't use an __init__, it gets tricky with super.
         Just use class attrs.
     """
-    base_track_type = "ROAD"
+    base_track_type_name = "ROAD"
     # TE bonus assuming rubber tyres, much higher than the OpenTTD default of 0.3
     tractive_effort_coefficient = 0.7
     name_suffix_vehicle_type = "_TRUCK" # default to truck, over-ride in consist subclasses for bus or coach

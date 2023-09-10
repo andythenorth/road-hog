@@ -12,6 +12,9 @@ class GestaltGraphics(object):
     def __init__(self):
         # by default, check for buy menu only
         self.pipelines = pipelines.get_pipelines(['check_buy_menu_only'])
+        # sometimes processing may depend on another generated vehicle spritesheet, so there are multiple processing priorities, 1 = highest
+        # see Horse for how this can be set to other values as needed
+        self.processing_priority = 1
 
     @property
     def nml_template(self):
