@@ -1,5 +1,8 @@
 ##grflangid 0x01
 ##plural 0
+STR_GRF_NAME_VERSIONED                                          :CABBAGE - NEEDS METHOD COPIED FROM HORSE
+STR_GRF_DOCS_URL                                                :CABBAGE - NEEDS METHOD COPIED FROM HORSE
+
 STR_GRF_DESCRIPTION                                             :License: {SILVER}GPL v2{}{BLACK}
 
 STR_PARAM_ADJUST_VEHICLE_CAPACITY                               :Road Vehicle capacity

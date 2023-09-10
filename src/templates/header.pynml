@@ -1,8 +1,9 @@
 // define the newgrf
 grf {
 	grfid: "${roster.grfid}";
-	name: string(STR_GRF_NAME);
+	name: string(STR_GRF_NAME_VERSIONED);
 	desc: string(STR_GRF_DESCRIPTION);
+	url: string(STR_GRF_DOCS_URL);
 	version: ${git_info.get_revision()};
 	min_compatible_version: 1176;
 	param 0 {

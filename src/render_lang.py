@@ -21,7 +21,7 @@ templates = PageTemplateLoader(os.path.join(currentdir, 'src', 'templates'))
 makefile_args = utils.get_makefile_args(sys)
 
 lang_src = os.path.join(currentdir, 'src', 'lang')
-lang_dst = os.path.join(road_hog.generated_files_path, 'lang')
+lang_dst = os.path.join(road_hog.generated_files_path, 'lang', 'road-hog') # !! road-hog suffix is JFDI hax to get multi-grf compile compiling
 
 if os.path.exists(lang_dst):
     shutil.rmtree(lang_dst)
