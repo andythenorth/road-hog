@@ -1,0 +1,102 @@
+[GLOBAL_PRAGMA]
+grflangid = "0x00"
+plural = "0"
+
+[STR_GRF_DESCRIPTION]
+base = "License: {SILVER}GPL v2{}{BLACK}"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY]
+base = "Road Vehicle Capacity"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_0]
+base = "Puny"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_1]
+base = "Marvelous"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2]
+base = "Excessive"
+
+[STR_PARAM_ROSTER]
+base = "Roster"
+
+[STR_PARAM_ROSTER_DESC]
+base = "Choose which set of vehicles to use."
+
+[STR_PARAM_ROSTER_OPTION_1]
+base = "Wasteland"
+
+[STR_NAME_SUFFIX_BOX_TRAM]
+base = "Box Tram"
+
+[STR_NAME_SUFFIX_BOX_TRUCK]
+base = "Box Truck"
+
+[STR_NAME_SUFFIX_BUS]
+base = "Bus"
+
+[STR_NAME_SUFFIX_COACH]
+base = "Coach"
+
+[STR_NAME_SUFFIX_COVERED_HOPPER_TRAM]
+base = "Covered Hopper Tram"
+
+[STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK]
+base = "Covered Hopper Truck"
+
+[STR_NAME_SUFFIX_DUMP_TRAM]
+base = "Dump Tram"
+
+[STR_NAME_SUFFIX_DUMP_TRUCK]
+base = "Dump Truck"
+
+[STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM]
+base = "Edibles Tanker Tram"
+
+[STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK]
+base = "Edibles Tanker Truck"
+
+[STR_NAME_SUFFIX_FLATBED_TRAM]
+base = "Flatbed Tram"
+
+[STR_NAME_SUFFIX_FLATBED_TRUCK]
+base = "Flatbed Truck"
+
+[STR_NAME_SUFFIX_INTERMODAL_HAULER]
+base = "Intermodal Hauler"
+
+[STR_NAME_SUFFIX_LIVESTOCK_TRAM]
+base = "Livestock Tram"
+
+[STR_NAME_SUFFIX_LIVESTOCK_TRUCK]
+base = "Livestock Truck"
+
+[STR_NAME_SUFFIX_MINING_TRUCK]
+base = "Mining Truck"
+
+[STR_NAME_SUFFIX_OPEN_TRAM]
+base = "Open Tram"
+
+[STR_NAME_SUFFIX_OPEN_TRUCK]
+base = "Open Truck"
+
+[STR_NAME_SUFFIX_PASSENGER_TRAM]
+base = "Passenger Tram"
+
+[STR_NAME_SUFFIX_REEFER_TRAM]
+base = "Refrigerated Tram"
+
+[STR_NAME_SUFFIX_REEFER_TRUCK]
+base = "Refrigerated Truck"
+
+[STR_NAME_SUFFIX_SUPPLIES_TRAM]
+base = "Supplies Tram"
+
+[STR_NAME_SUFFIX_SUPPLIES_TRUCK]
+base = "Supplies Truck"
+
+[STR_NAME_SUFFIX_TANKER_TRAM]
+base = "Tanker Tram"
+
+[STR_NAME_SUFFIX_TANKER_TRUCK]
+base = "Tanker Truck"

@@ -1,0 +1,190 @@
+[GLOBAL_PRAGMA]
+grflangid = "0x03"
+plural = "2"
+gender = "m m2 f"
+
+[STR_GRF_DESCRIPTION]
+base = "Licence{NBSP}: {SILVER}GPL v2{}{BLACK}"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY]
+base = "Capacité des véhicules routiers"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_0]
+base = "Dérisoire"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_1]
+base = "Merveilleuse"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2]
+base = "Excessive"
+
+[STR_PARAM_ROSTER]
+base = "Catalogue"
+
+[STR_PARAM_ROSTER_DESC]
+base = "Choix des véhicules à utiliser."
+
+[STR_PARAM_ROSTER_OPTION_1]
+base = "Wasteland"
+
+[STR_NAME_HEAVY_HAUL_ROAD]
+base = "Route pour transport lourd"
+
+[STR_TOOLBAR_CAPTION_HEAVY_HAUL_ROAD]
+base = "Construction de route pour transport lourd"
+
+[STR_MENU_TEXT_HEAVY_HAUL_ROAD]
+base = "Construction de route pour transport lourd"
+
+[STR_BUILD_WINDOW_CAPTION_HEAVY_HAUL_ROAD]
+base = "Nouveaux véhicules pour transport lourd"
+
+[STR_AUTOREPLACE_TEXT_HEAVY_HAUL_ROAD]
+base = "Véhicule pour transport lourd"
+
+[STR_NEW_ENGINE_TEXT_HEAVY_HAUL_ROAD]
+base = "véhicule pour transport lourd"
+
+[STR_NAME_TRAMWAY]
+base = "Tram"
+
+[STR_TOOLBAR_CAPTION_TRAMWAY]
+base = "Construction de voie de tram"
+
+[STR_MENU_TEXT_TRAMWAY]
+base = "Construction de voie de tramway"
+
+[STR_BUILD_WINDOW_CAPTION_TRAMWAY]
+base = "Nouveaux trams"
+
+[STR_AUTOREPLACE_TEXT_TRAMWAY]
+base = "Trams"
+
+[STR_NEW_ENGINE_TEXT_TRAMWAY]
+base = "tram"
+
+[STR_NAME_ELECTRIC_TRAMWAY]
+base = "Tram électrique"
+
+[STR_TOOLBAR_CAPTION_ELECTRIC_TRAMWAY]
+base = "Construction de voie de tram électrique"
+
+[STR_MENU_TEXT_ELECTRIC_TRAMWAY]
+base = "Construction de voie de tramway électrique"
+
+[STR_BUILD_WINDOW_CAPTION_ELECTRIC_TRAMWAY]
+base = "Nouveaux trams électriques"
+
+[STR_AUTOREPLACE_TEXT_ELECTRIC_TRAMWAY]
+base = "Tramways électriques"
+
+[STR_NEW_ENGINE_TEXT_ELECTRIC_TRAMWAY]
+base = "tram électrique"
+
+[STR_NAME_SUFFIX_DIESEL]
+base = "Diesel"
+
+[STR_NAME_SUFFIX_ELECTRIC]
+base = "Électrique"
+
+[STR_NAME_SUFFIX_STEAM]
+base = "Vapeur"
+
+[STR_NAME_SUFFIX_BOX_TRAM]
+base = "Tram à caisse"
+
+[STR_NAME_SUFFIX_BOX_TRUCK]
+base = "Camion-caisse"
+
+[STR_NAME_SUFFIX_BUS]
+base = "Autobus"
+
+[STR_NAME_SUFFIX_COACH]
+base = "Autocar"
+
+[STR_NAME_SUFFIX_COVERED_HOPPER_TRAM]
+base = "Tram-tombereau couvert"
+
+[STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK]
+base = "Camion-tombereau couvert"
+
+[STR_NAME_SUFFIX_DUMP_TRAM]
+base = "Tram-benne"
+
+[STR_NAME_SUFFIX_DUMP_TRUCK]
+base = "Camion-benne"
+
+[STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM]
+base = "Tram citerne alimentaire"
+
+[STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK]
+base = "Camion citerne alimentaire"
+
+[STR_NAME_SUFFIX_FLATBED_TRAM]
+base = "Tram-plateau"
+
+[STR_NAME_SUFFIX_FLATBED_TRUCK]
+base = "Camion-plateau"
+
+[STR_NAME_SUFFIX_FRUIT_VEG_TRAM]
+base = "Tramway pour fruits & végétaux"
+
+[STR_NAME_SUFFIX_INTERMODAL_HAULER]
+base = "Camion intermodal"
+
+[STR_NAME_SUFFIX_LIVESTOCK_TRAM]
+base = "Tram-bétaillère"
+
+[STR_NAME_SUFFIX_LIVESTOCK_TRUCK]
+base = "Bétaillère"
+
+[STR_NAME_SUFFIX_LOG_TRUCK]
+base = "Camion grumier"
+
+[STR_NAME_SUFFIX_MAIL_TRAM]
+base = "Tramway postal"
+
+[STR_NAME_SUFFIX_MAIL_TRUCK]
+base = "Camion postal"
+
+[STR_NAME_SUFFIX_METAL_TRAM]
+base = "Tramway transporteur de fonte"
+
+[STR_NAME_SUFFIX_METAL_TRUCK]
+base = "Transporteur de fonte"
+
+[STR_NAME_SUFFIX_MINING_TRUCK]
+base = "Camion de mine"
+
+[STR_NAME_SUFFIX_OPEN_TRAM]
+base = "Tram-tombereau"
+
+[STR_NAME_SUFFIX_OPEN_TRUCK]
+base = "Camion ouvert"
+
+[STR_NAME_SUFFIX_PASSENGER_TRAM]
+base = "Tramway de passagers"
+
+[STR_NAME_SUFFIX_REEFER_TRAM]
+base = "Tram frigorifique"
+
+[STR_NAME_SUFFIX_REEFER_TRUCK]
+base = "Camion frigorifique"
+
+[STR_NAME_SUFFIX_SUPPLIES_TRAM]
+base = "Tram de ravitaillement"
+
+[STR_NAME_SUFFIX_SUPPLIES_TRUCK]
+base = "Camion de ravitallement"
+
+[STR_NAME_SUFFIX_TANKER_TRAM]
+base = "Tram-citerne"
+
+[STR_NAME_SUFFIX_TANKER_TRUCK]
+base = "Camion-citerne"
+
+[STR_COASTER]
+base = "Une alumette prend feu. Pscht. (pas encore fini)"
+
+[STR_DOGTRACK]
+base = "Ça le fait, des fois"

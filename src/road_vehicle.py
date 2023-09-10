@@ -147,7 +147,7 @@ class Consist(object):
 
     @property
     def name(self):
-        return "string(STR_NAME_CONSIST, string(STR_NAME_" + self.id + "), string(" + self.name_type_suffix + "), string(" + self.power_type_suffix +"))"
+        return "string(STR_NAME_CONSIST, string(STR_NAME_" + self.id.upper() + "), string(" + self.name_type_suffix + "), string(" + self.power_type_suffix +"))"
 
     def get_spriterows_for_consist_or_subpart(self, units):
         # pass either list of all units in consist, or a slice of the consist starting from front (arbitrary slices not useful)

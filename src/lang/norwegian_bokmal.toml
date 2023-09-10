@@ -1,0 +1,110 @@
+[GLOBAL_PRAGMA]
+grflangid = "0x2f"
+plural = "0"
+gender = "feminine masculine neuter"
+case = "small"
+
+[STR_GRF_DESCRIPTION]
+base = "Lisens: {SILVER}GPL v2{}{BLACK}"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY]
+base = "Kjøretøykapasitet"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_0]
+base = "Fislete"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_1]
+base = "Fabelaktig"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2]
+base = "Ekstremt"
+
+[STR_PARAM_ROSTER]
+base = "Utvalg"
+
+[STR_PARAM_ROSTER_DESC]
+base = "Velg hvilket kjøretøysett du vil bruke"
+
+[STR_PARAM_ROSTER_OPTION_1]
+base = "Wasteland"
+
+[STR_NAME_SUFFIX_BOX_TRAM]
+base = "Kassetrikk"
+
+[STR_NAME_SUFFIX_BOX_TRUCK]
+base = "Kassebil"
+
+[STR_NAME_SUFFIX_BUS]
+base = "Buss"
+
+[STR_NAME_SUFFIX_COACH]
+base = "Turistbuss"
+
+[STR_NAME_SUFFIX_COVERED_HOPPER_TRAM]
+base = "Tildekket trautrikk"
+
+[STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK]
+base = "Tildekket traubil"
+
+[STR_NAME_SUFFIX_DUMP_TRAM]
+base = "Dumptrikk"
+
+[STR_NAME_SUFFIX_DUMP_TRUCK]
+base = "Dumpbil"
+
+[STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM]
+base = "Tanktrikk for matvarer"
+
+[STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK]
+base = "Tankbil for matvarer"
+
+[STR_NAME_SUFFIX_FLATBED_TRAM]
+base = "Flatvogntrikk"
+
+[STR_NAME_SUFFIX_FLATBED_TRUCK]
+base = "Flatvognbil"
+
+[STR_NAME_SUFFIX_INTERMODAL_HAULER]
+base = "Containerbil"
+
+[STR_NAME_SUFFIX_LIVESTOCK_TRAM]
+base = "Buskapstrikk"
+
+[STR_NAME_SUFFIX_LIVESTOCK_TRUCK]
+base = "Buskapsbil"
+
+[STR_NAME_SUFFIX_MINING_TRUCK]
+base = "Gruvebil"
+
+[STR_NAME_SUFFIX_OPEN_TRAM]
+base = "Åpen trikk"
+
+[STR_NAME_SUFFIX_OPEN_TRUCK]
+base = "Åpen bil"
+
+[STR_NAME_SUFFIX_PASSENGER_TRAM]
+base = "Passasjertrikk"
+
+[STR_NAME_SUFFIX_REEFER_TRAM]
+base = "Kjølevogntrikk"
+
+[STR_NAME_SUFFIX_REEFER_TRUCK]
+base = "Kjølevognbil"
+
+[STR_NAME_SUFFIX_SUPPLIES_TRAM]
+base = "Utstyrstrikk"
+
+[STR_NAME_SUFFIX_SUPPLIES_TRUCK]
+base = "Utstyrsbil"
+
+[STR_NAME_SUFFIX_TANKER_TRAM]
+base = "Tanktrikk"
+
+[STR_NAME_SUFFIX_TANKER_TRUCK]
+base = "Tankbil"
+
+[STR_COASTER]
+base = "Kua hoppet over månen (dette er en påminnelse om at ikke alt er ferdig)"
+
+[STR_DOGTRACK]
+base = "Hunder er brune iblant"

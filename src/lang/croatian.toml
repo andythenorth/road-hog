@@ -1,0 +1,191 @@
+[GLOBAL_PRAGMA]
+grflangid = "0x38"
+plural = "6"
+gender = "male female middle"
+case = "aku dat gen ins lok nom vok"
+
+[STR_GRF_DESCRIPTION]
+base = "Licenca: {SILVER}GPL v2{}{BLACK}"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY]
+base = "Kapacitet cestovnog vozila"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_0]
+base = "Slabašan"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_1]
+base = "Izvrstan"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2]
+base = "Pretjeran"
+
+[STR_PARAM_ROSTER]
+base = "Lista"
+
+[STR_PARAM_ROSTER_DESC]
+base = "Odaberite koji set vozila želite koristiti."
+
+[STR_PARAM_ROSTER_OPTION_1]
+base = "Pustoš"
+
+[STR_NAME_HEAVY_HAUL_ROAD]
+base = "Cesta za teške terete"
+
+[STR_TOOLBAR_CAPTION_HEAVY_HAUL_ROAD]
+base = "Izgradnja ceste za teške terete"
+
+[STR_MENU_TEXT_HEAVY_HAUL_ROAD]
+base = "Izgradnja ceste za teške terete"
+
+[STR_BUILD_WINDOW_CAPTION_HEAVY_HAUL_ROAD]
+base = "Nova cestovna vozila za teške terete"
+
+[STR_AUTOREPLACE_TEXT_HEAVY_HAUL_ROAD]
+base = "Cestovna vozila za teške terete"
+
+[STR_NEW_ENGINE_TEXT_HEAVY_HAUL_ROAD]
+base = "vozilo za teške terete"
+
+[STR_NAME_TRAMWAY]
+base = "Tramvajska pruga"
+
+[STR_TOOLBAR_CAPTION_TRAMWAY]
+base = "Izgradnja tramvajske pruge"
+
+[STR_MENU_TEXT_TRAMWAY]
+base = "Izgradnja tramvajske pruge"
+
+[STR_BUILD_WINDOW_CAPTION_TRAMWAY]
+base = "Novi tramvaji"
+
+[STR_AUTOREPLACE_TEXT_TRAMWAY]
+base = "Tramvaji"
+
+[STR_NEW_ENGINE_TEXT_TRAMWAY]
+base = "tramvaj"
+
+[STR_NAME_ELECTRIC_TRAMWAY]
+base = "Električna tramvajska pruga"
+
+[STR_TOOLBAR_CAPTION_ELECTRIC_TRAMWAY]
+base = "Izgradnja električne tramvajske pruge"
+
+[STR_MENU_TEXT_ELECTRIC_TRAMWAY]
+base = "Izgradnja električne tramvajske pruge"
+
+[STR_BUILD_WINDOW_CAPTION_ELECTRIC_TRAMWAY]
+base = "Novi električni tramvaji"
+
+[STR_AUTOREPLACE_TEXT_ELECTRIC_TRAMWAY]
+base = "Električni tramvaji"
+
+[STR_NEW_ENGINE_TEXT_ELECTRIC_TRAMWAY]
+base = "električni tramvaj"
+
+[STR_NAME_SUFFIX_DIESEL]
+base = "Dizel"
+
+[STR_NAME_SUFFIX_ELECTRIC]
+base = "Električni"
+
+[STR_NAME_SUFFIX_STEAM]
+base = "Para"
+
+[STR_NAME_SUFFIX_BOX_TRAM]
+base = "Zatvoreni teretni tramvaj"
+
+[STR_NAME_SUFFIX_BOX_TRUCK]
+base = "Zatvoreni teretni kamion"
+
+[STR_NAME_SUFFIX_BUS]
+base = "Autobus"
+
+[STR_NAME_SUFFIX_COACH]
+base = "Autobus"
+
+[STR_NAME_SUFFIX_COVERED_HOPPER_TRAM]
+base = "Tramvaj za rasuti teret (pokriveni)"
+
+[STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK]
+base = "Kamion za rasuti teret (pokriveni)"
+
+[STR_NAME_SUFFIX_DUMP_TRAM]
+base = "Kiper"
+
+[STR_NAME_SUFFIX_DUMP_TRUCK]
+base = "Kiper"
+
+[STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM]
+base = "Tramvaj-cisterna za prehrambene proizvode"
+
+[STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK]
+base = "Kamion-cisterna za prehrambene proizvode"
+
+[STR_NAME_SUFFIX_FLATBED_TRAM]
+base = "Tramvaj sa ravnom površinom"
+
+[STR_NAME_SUFFIX_FLATBED_TRUCK]
+base = "Kamion sa ravnom površinom"
+
+[STR_NAME_SUFFIX_FRUIT_VEG_TRAM]
+base = "Tramvaj za voće i povrće"
+
+[STR_NAME_SUFFIX_INTERMODAL_HAULER]
+base = "Kamion za intermodalni prijevoz"
+
+[STR_NAME_SUFFIX_LIVESTOCK_TRAM]
+base = "Tramvaj za stoku"
+
+[STR_NAME_SUFFIX_LIVESTOCK_TRUCK]
+base = "Kamion za stoku"
+
+[STR_NAME_SUFFIX_LOG_TRUCK]
+base = "Kamion za drvene trupce"
+
+[STR_NAME_SUFFIX_MAIL_TRAM]
+base = "Tramvaj za pošiljke"
+
+[STR_NAME_SUFFIX_MAIL_TRUCK]
+base = "Kamion za pošiljke"
+
+[STR_NAME_SUFFIX_METAL_TRAM]
+base = "Tramvaj za talioničke proizvode"
+
+[STR_NAME_SUFFIX_METAL_TRUCK]
+base = "Kamion za talioničke proizvode"
+
+[STR_NAME_SUFFIX_MINING_TRUCK]
+base = "Rudarski kamion"
+
+[STR_NAME_SUFFIX_OPEN_TRAM]
+base = "Otvoreni teretni tramvaj"
+
+[STR_NAME_SUFFIX_OPEN_TRUCK]
+base = "Otvoreni teretni kamion"
+
+[STR_NAME_SUFFIX_PASSENGER_TRAM]
+base = "Putnički tramvaj"
+
+[STR_NAME_SUFFIX_REEFER_TRAM]
+base = "Tramvaj-hladnjača"
+
+[STR_NAME_SUFFIX_REEFER_TRUCK]
+base = "Kamion-hladnjača"
+
+[STR_NAME_SUFFIX_SUPPLIES_TRAM]
+base = "Tramvaj za opskrbu"
+
+[STR_NAME_SUFFIX_SUPPLIES_TRUCK]
+base = "Kamion za dostavu"
+
+[STR_NAME_SUFFIX_TANKER_TRAM]
+base = "Tramvaj-cisterna"
+
+[STR_NAME_SUFFIX_TANKER_TRUCK]
+base = "Kamion-cisterna"
+
+[STR_COASTER]
+base = "Krava je preskočila mjesec (ovo nije gotov podsjetnik)"
+
+[STR_DOGTRACK]
+base = "Psi su smeđi, ponekad"

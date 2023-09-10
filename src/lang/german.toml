@@ -1,0 +1,115 @@
+[GLOBAL_PRAGMA]
+grflangid = "0x02"
+plural = "0"
+gender = "m w n p"
+
+[STR_GRF_DESCRIPTION]
+base = "Lizenz: {SILVER}GPL v2{}{BLACK}"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY]
+base = "Fahrzeugkapazität"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_0]
+base = "Mickrig"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_1]
+base = "Großartig"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2]
+base = "Übermäßig"
+
+[STR_PARAM_ROSTER]
+base = "Liste"
+
+[STR_PARAM_ROSTER_DESC]
+base = "Suche aus welche Fahrzeuge verwendet werden sollen."
+
+[STR_PARAM_ROSTER_OPTION_1]
+base = "Brachland"
+
+[STR_BUILD_WINDOW_CAPTION_TRAMWAY]
+base = "Neue Straßenbahnen"
+
+[STR_NAME_SUFFIX_BOX_TRAM]
+base = "Tram mit Kastenaufbau"
+
+[STR_NAME_SUFFIX_BOX_TRUCK]
+base = "Kastenwagen"
+
+[STR_NAME_SUFFIX_BUS]
+base = "Bus"
+
+[STR_NAME_SUFFIX_COACH]
+base = "Anhänger"
+
+[STR_NAME_SUFFIX_COVERED_HOPPER_TRAM]
+base = "Gedeckte Schüttgut-Tram"
+
+[STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK]
+base = "Gedeckter Schüttgut-LKW"
+
+[STR_NAME_SUFFIX_DUMP_TRAM]
+base = "Straßenbahn für Schüttgüter"
+
+[STR_NAME_SUFFIX_DUMP_TRUCK]
+base = "Muldenkipper"
+
+[STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM]
+base = "Straßenbahn für flüssige Nahrungsmittel"
+
+[STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK]
+base = "Nahrungsmittel-Laster"
+
+[STR_NAME_SUFFIX_FLATBED_TRAM]
+base = "Straßenbahn mit Pritsche"
+
+[STR_NAME_SUFFIX_FLATBED_TRUCK]
+base = "Pritschenlaster"
+
+[STR_NAME_SUFFIX_FRUIT_VEG_TRAM]
+base = "Straßenbahn für Obst und Gemüse"
+
+[STR_NAME_SUFFIX_INTERMODAL_HAULER]
+base = "Container-Laster"
+
+[STR_NAME_SUFFIX_LIVESTOCK_TRAM]
+base = "Viehtransporter"
+
+[STR_NAME_SUFFIX_LIVESTOCK_TRUCK]
+base = "Viehtransporter"
+
+[STR_NAME_SUFFIX_MINING_TRUCK]
+base = "Grubenlaster"
+
+[STR_NAME_SUFFIX_OPEN_TRAM]
+base = "Offene Straßenbahn"
+
+[STR_NAME_SUFFIX_OPEN_TRUCK]
+base = "Pritschenlaster"
+
+[STR_NAME_SUFFIX_PASSENGER_TRAM]
+base = "Straßenbahn (Passagiere)"
+
+[STR_NAME_SUFFIX_REEFER_TRAM]
+base = "Kühlwagen-Tram"
+
+[STR_NAME_SUFFIX_REEFER_TRUCK]
+base = "Kühltransporter"
+
+[STR_NAME_SUFFIX_SUPPLIES_TRAM]
+base = "Straßenbahn für Bedarfsgüter"
+
+[STR_NAME_SUFFIX_SUPPLIES_TRUCK]
+base = "Lastkraftwagen für Bedarfsgüter"
+
+[STR_NAME_SUFFIX_TANKER_TRAM]
+base = "Tankwagen-Tram"
+
+[STR_NAME_SUFFIX_TANKER_TRUCK]
+base = "Tanklaster"
+
+[STR_COASTER]
+base = "Lalelu, nur der Mann im Mond schaut zu... (Erinnerung, dass dies noch nicht fertig ist)"
+
+[STR_DOGTRACK]
+base = "Hunde sind braun. Manchmal."

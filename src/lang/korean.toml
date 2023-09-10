@@ -1,0 +1,145 @@
+[GLOBAL_PRAGMA]
+grflangid = "0x3a"
+plural = "11"
+gender = "m f"
+
+[STR_GRF_DESCRIPTION]
+base = "라이선스: {SILVER}GPL v2{}{BLACK}"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY]
+base = "도로 차량(버스,전차) 수송량"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_0]
+base = "매우 작은"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_1]
+base = "놀라운"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2]
+base = "과도한"
+
+[STR_PARAM_ROSTER]
+base = "종류"
+
+[STR_PARAM_ROSTER_DESC]
+base = "어떤 종류의 차량 세트를 쓸 것인지 고르십시오."
+
+[STR_PARAM_ROSTER_OPTION_1]
+base = "황무지"
+
+[STR_MENU_TEXT_TRAMWAY]
+base = "트램 선로 건설"
+
+[STR_BUILD_WINDOW_CAPTION_TRAMWAY]
+base = "신규 트램"
+
+[STR_NEW_ENGINE_TEXT_TRAMWAY]
+base = "트램"
+
+[STR_TOOLBAR_CAPTION_ELECTRIC_TRAMWAY]
+base = "전기 트램 선로 건설"
+
+[STR_MENU_TEXT_ELECTRIC_TRAMWAY]
+base = "전기 트램 선로 건설"
+
+[STR_BUILD_WINDOW_CAPTION_ELECTRIC_TRAMWAY]
+base = "신규 전기 트램"
+
+[STR_AUTOREPLACE_TEXT_ELECTRIC_TRAMWAY]
+base = "전기 트램"
+
+[STR_NEW_ENGINE_TEXT_ELECTRIC_TRAMWAY]
+base = "전기 트램"
+
+[STR_NAME_SUFFIX_DIESEL]
+base = "디젤"
+
+[STR_NAME_SUFFIX_ELECTRIC]
+base = "전기"
+
+[STR_NAME_SUFFIX_BOX_TRAM]
+base = "박스 트럭"
+
+[STR_NAME_SUFFIX_BOX_TRUCK]
+base = "박스 트럭"
+
+[STR_NAME_SUFFIX_BUS]
+base = "버스"
+
+[STR_NAME_SUFFIX_COACH]
+base = "객차"
+
+[STR_NAME_SUFFIX_COVERED_HOPPER_TRAM]
+base = "유개 트램"
+
+[STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK]
+base = "유개 트럭"
+
+[STR_NAME_SUFFIX_DUMP_TRAM]
+base = "덤프 트램"
+
+[STR_NAME_SUFFIX_DUMP_TRUCK]
+base = "덤프 트럭"
+
+[STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM]
+base = "식품 수송 트램"
+
+[STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK]
+base = "식품 수송 트럭"
+
+[STR_NAME_SUFFIX_FLATBED_TRAM]
+base = "평판 트램"
+
+[STR_NAME_SUFFIX_FLATBED_TRUCK]
+base = "평판 트럭"
+
+[STR_NAME_SUFFIX_FRUIT_VEG_TRAM]
+base = "과일 수송 트램"
+
+[STR_NAME_SUFFIX_INTERMODAL_HAULER]
+base = "다중 수송 트럭"
+
+[STR_NAME_SUFFIX_LIVESTOCK_TRAM]
+base = "가축 수송 트램"
+
+[STR_NAME_SUFFIX_LIVESTOCK_TRUCK]
+base = "가축 트럭"
+
+[STR_NAME_SUFFIX_METAL_TRAM]
+base = "철 수송 트램"
+
+[STR_NAME_SUFFIX_MINING_TRUCK]
+base = "광석 수송 트럭"
+
+[STR_NAME_SUFFIX_OPEN_TRAM]
+base = "무개 트램"
+
+[STR_NAME_SUFFIX_OPEN_TRUCK]
+base = "무개 트럭"
+
+[STR_NAME_SUFFIX_PASSENGER_TRAM]
+base = "승객 트램"
+
+[STR_NAME_SUFFIX_REEFER_TRAM]
+base = "냉장 트램"
+
+[STR_NAME_SUFFIX_REEFER_TRUCK]
+base = "냉장 트럭"
+
+[STR_NAME_SUFFIX_SUPPLIES_TRAM]
+base = "공급품 수송 트램"
+
+[STR_NAME_SUFFIX_SUPPLIES_TRUCK]
+base = "공급품 수송 트럭"
+
+[STR_NAME_SUFFIX_TANKER_TRAM]
+base = "유조 전차"
+
+[STR_NAME_SUFFIX_TANKER_TRUCK]
+base = "탱크로리"
+
+[STR_COASTER]
+base = "소가 달을 뛰어 넘었다네 (나머지는 아직 안 끝났지)"
+
+[STR_DOGTRACK]
+base = "어떤 때는, 개들은 갈색입니다."

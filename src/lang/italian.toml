@@ -1,0 +1,110 @@
+[GLOBAL_PRAGMA]
+grflangid = "0x27"
+plural = "0"
+gender = "m ma f"
+case = "fp fs mp ms"
+
+[STR_GRF_DESCRIPTION]
+base = "Licenza: {SILVER}GPL v2{}{BLACK}"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY]
+base = "Capacità dei veicoli"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_0]
+base = "Orrenda"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_1]
+base = "Meravigliosa"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2]
+base = "Eccessiva"
+
+[STR_PARAM_ROSTER]
+base = "Lista"
+
+[STR_PARAM_ROSTER_DESC]
+base = "Selezionate quale tipo di veicoli volete usare."
+
+[STR_PARAM_ROSTER_OPTION_1]
+base = "Deserto"
+
+[STR_NAME_SUFFIX_BOX_TRAM]
+base = "Tram a cassone chiuso"
+
+[STR_NAME_SUFFIX_BOX_TRUCK]
+base = "Camion chiuso"
+
+[STR_NAME_SUFFIX_BUS]
+base = "Autobus"
+
+[STR_NAME_SUFFIX_COACH]
+base = "Corriera"
+
+[STR_NAME_SUFFIX_COVERED_HOPPER_TRAM]
+base = "Tram a tramoggia coperto"
+
+[STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK]
+base = "Camion a tramoggia coperto"
+
+[STR_NAME_SUFFIX_DUMP_TRAM]
+base = "Camion a tramoggia"
+
+[STR_NAME_SUFFIX_DUMP_TRUCK]
+base = "Camion a tramoggia"
+
+[STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM]
+base = "Tram cisterna per alimentari"
+
+[STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK]
+base = "Autobotte per alimentari"
+
+[STR_NAME_SUFFIX_FLATBED_TRAM]
+base = "Tram pianale"
+
+[STR_NAME_SUFFIX_FLATBED_TRUCK]
+base = "Camion pianale"
+
+[STR_NAME_SUFFIX_INTERMODAL_HAULER]
+base = "Automezzo intermodale"
+
+[STR_NAME_SUFFIX_LIVESTOCK_TRAM]
+base = "Tram per bestiame"
+
+[STR_NAME_SUFFIX_LIVESTOCK_TRUCK]
+base = "Camion per bestiame"
+
+[STR_NAME_SUFFIX_MINING_TRUCK]
+base = "Automezzo di miniera"
+
+[STR_NAME_SUFFIX_OPEN_TRAM]
+base = "Tram a cassone aperto"
+
+[STR_NAME_SUFFIX_OPEN_TRUCK]
+base = "Camion a cassone aperto"
+
+[STR_NAME_SUFFIX_PASSENGER_TRAM]
+base = "Tram passeggeri"
+
+[STR_NAME_SUFFIX_REEFER_TRAM]
+base = "Tram refrigerato"
+
+[STR_NAME_SUFFIX_REEFER_TRUCK]
+base = "Camion refrigerato"
+
+[STR_NAME_SUFFIX_SUPPLIES_TRAM]
+base = "Tram per forniture"
+
+[STR_NAME_SUFFIX_SUPPLIES_TRUCK]
+base = "Camion per forniture"
+
+[STR_NAME_SUFFIX_TANKER_TRAM]
+base = "Tram cisterna"
+
+[STR_NAME_SUFFIX_TANKER_TRUCK]
+base = "Autobotte"
+
+[STR_COASTER]
+base = "La mucca ha saltato sopra la luna (questo é un promemoria non finito)"
+
+[STR_DOGTRACK]
+base = "I cani sono marroni, a volte"

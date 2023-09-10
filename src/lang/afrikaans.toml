@@ -1,0 +1,109 @@
+[GLOBAL_PRAGMA]
+grflangid = "0x1b"
+plural = "0"
+gender = "male"
+
+[STR_GRF_DESCRIPTION]
+base = "Lisensie: {SILVER}GPL v2{}{BLACK}"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY]
+base = "Pad Voertuig kapasiteit"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_0]
+base = "Bietjie"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_1]
+base = "Wonderlik"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2]
+base = "Uitermatig"
+
+[STR_PARAM_ROSTER]
+base = "Rooster"
+
+[STR_PARAM_ROSTER_DESC]
+base = "Kies watter stel voertue om te gebruik"
+
+[STR_PARAM_ROSTER_OPTION_1]
+base = "Woestyn"
+
+[STR_NAME_SUFFIX_BOX_TRAM]
+base = "Boks Trem"
+
+[STR_NAME_SUFFIX_BOX_TRUCK]
+base = "Boks Vragmotor"
+
+[STR_NAME_SUFFIX_BUS]
+base = "Bus"
+
+[STR_NAME_SUFFIX_COACH]
+base = "Koets"
+
+[STR_NAME_SUFFIX_COVERED_HOPPER_TRAM]
+base = "Bedekte Laai Trem"
+
+[STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK]
+base = "Bedekte Laai Vragmotor"
+
+[STR_NAME_SUFFIX_DUMP_TRAM]
+base = "Vullistram"
+
+[STR_NAME_SUFFIX_DUMP_TRUCK]
+base = "Vullistrok"
+
+[STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM]
+base = "Eetbare Tenkwa Trem"
+
+[STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK]
+base = "Eetbare Tenkwa Vragmotor"
+
+[STR_NAME_SUFFIX_FLATBED_TRAM]
+base = "Flatbed Trem"
+
+[STR_NAME_SUFFIX_FLATBED_TRUCK]
+base = "Flatbed Vragmotor"
+
+[STR_NAME_SUFFIX_INTERMODAL_HAULER]
+base = "Intermodale Vragmotor"
+
+[STR_NAME_SUFFIX_LIVESTOCK_TRAM]
+base = "Lewendehawe Trem"
+
+[STR_NAME_SUFFIX_LIVESTOCK_TRUCK]
+base = "Lewendehawe Vragmotor"
+
+[STR_NAME_SUFFIX_MINING_TRUCK]
+base = "Myn Vragmotor"
+
+[STR_NAME_SUFFIX_OPEN_TRAM]
+base = "Oop Trem"
+
+[STR_NAME_SUFFIX_OPEN_TRUCK]
+base = "Oop Vragmotor"
+
+[STR_NAME_SUFFIX_PASSENGER_TRAM]
+base = "Passasier Trem"
+
+[STR_NAME_SUFFIX_REEFER_TRAM]
+base = "Verkoelde Trem"
+
+[STR_NAME_SUFFIX_REEFER_TRUCK]
+base = "Verkoelde Vragmotor"
+
+[STR_NAME_SUFFIX_SUPPLIES_TRAM]
+base = "Voorraad Trem"
+
+[STR_NAME_SUFFIX_SUPPLIES_TRUCK]
+base = "Voorraad Vragmotor"
+
+[STR_NAME_SUFFIX_TANKER_TRAM]
+base = "Tenkwa Trem"
+
+[STR_NAME_SUFFIX_TANKER_TRUCK]
+base = "Tenkwa"
+
+[STR_COASTER]
+base = "Die Koei het oor die maan gespring (Die is 'n herrinering)"
+
+[STR_DOGTRACK]
+base = "Honde is bruin, somtyds"

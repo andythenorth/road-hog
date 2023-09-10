@@ -1,0 +1,189 @@
+[GLOBAL_PRAGMA]
+grflangid = "0x01"
+plural = "0"
+
+[STR_GRF_DESCRIPTION]
+base = "License: {SILVER}GPL v2{}{BLACK}"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY]
+base = "Road Vehicle capacity"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_0]
+base = "Puny"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_1]
+base = "Marvellous"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2]
+base = "Excessive"
+
+[STR_PARAM_ROSTER]
+base = "Roster"
+
+[STR_PARAM_ROSTER_DESC]
+base = "Choose which set of vehicles to use."
+
+[STR_PARAM_ROSTER_OPTION_1]
+base = "Wasteland"
+
+[STR_NAME_HEAVY_HAUL_ROAD]
+base = "Heavy Haul Road"
+
+[STR_TOOLBAR_CAPTION_HEAVY_HAUL_ROAD]
+base = "Heavy Haul Road Construction"
+
+[STR_MENU_TEXT_HEAVY_HAUL_ROAD]
+base = "Heavy haul road construction"
+
+[STR_BUILD_WINDOW_CAPTION_HEAVY_HAUL_ROAD]
+base = "New Heavy Haul Road Vehicles"
+
+[STR_AUTOREPLACE_TEXT_HEAVY_HAUL_ROAD]
+base = "Heavy Haul Road Vehicles"
+
+[STR_NEW_ENGINE_TEXT_HEAVY_HAUL_ROAD]
+base = "heavy haul road vehicle"
+
+[STR_NAME_TRAMWAY]
+base = "Tramway"
+
+[STR_TOOLBAR_CAPTION_TRAMWAY]
+base = "Tramway Construction"
+
+[STR_MENU_TEXT_TRAMWAY]
+base = "Tramway construction"
+
+[STR_BUILD_WINDOW_CAPTION_TRAMWAY]
+base = "New Trams"
+
+[STR_AUTOREPLACE_TEXT_TRAMWAY]
+base = "Trams"
+
+[STR_NEW_ENGINE_TEXT_TRAMWAY]
+base = "tram"
+
+[STR_NAME_ELECTRIC_TRAMWAY]
+base = "Electric Tramway"
+
+[STR_TOOLBAR_CAPTION_ELECTRIC_TRAMWAY]
+base = "Electric Tramway Construction"
+
+[STR_MENU_TEXT_ELECTRIC_TRAMWAY]
+base = "Electric tramway construction"
+
+[STR_BUILD_WINDOW_CAPTION_ELECTRIC_TRAMWAY]
+base = "New Electric Trams"
+
+[STR_AUTOREPLACE_TEXT_ELECTRIC_TRAMWAY]
+base = "Electric Trams"
+
+[STR_NEW_ENGINE_TEXT_ELECTRIC_TRAMWAY]
+base = "electric tram"
+
+[STR_NAME_SUFFIX_DIESEL]
+base = "Diesel"
+
+[STR_NAME_SUFFIX_ELECTRIC]
+base = "Electric"
+
+[STR_NAME_SUFFIX_STEAM]
+base = "Steam"
+
+[STR_NAME_SUFFIX_BOX_TRAM]
+base = "Box Tram"
+
+[STR_NAME_SUFFIX_BOX_TRUCK]
+base = "Box Truck"
+
+[STR_NAME_SUFFIX_BUS]
+base = "Bus"
+
+[STR_NAME_SUFFIX_COACH]
+base = "Coach"
+
+[STR_NAME_SUFFIX_COVERED_HOPPER_TRAM]
+base = "Covered Hopper Tram"
+
+[STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK]
+base = "Covered Hopper Truck"
+
+[STR_NAME_SUFFIX_DUMP_TRAM]
+base = "Dump Tram"
+
+[STR_NAME_SUFFIX_DUMP_TRUCK]
+base = "Dump Truck"
+
+[STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM]
+base = "Edibles Tanker Tram"
+
+[STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK]
+base = "Edibles Tanker Truck"
+
+[STR_NAME_SUFFIX_FLATBED_TRAM]
+base = "Flatbed Tram"
+
+[STR_NAME_SUFFIX_FLATBED_TRUCK]
+base = "Flatbed Truck"
+
+[STR_NAME_SUFFIX_FRUIT_VEG_TRAM]
+base = "Fruit & Vegetables Tram"
+
+[STR_NAME_SUFFIX_INTERMODAL_HAULER]
+base = "Intermodal Hauler"
+
+[STR_NAME_SUFFIX_LIVESTOCK_TRAM]
+base = "Livestock Tram"
+
+[STR_NAME_SUFFIX_LIVESTOCK_TRUCK]
+base = "Livestock Truck"
+
+[STR_NAME_SUFFIX_LOG_TRUCK]
+base = "Logging Truck"
+
+[STR_NAME_SUFFIX_MAIL_TRAM]
+base = "Courier Tram"
+
+[STR_NAME_SUFFIX_MAIL_TRUCK]
+base = "Courier Truck"
+
+[STR_NAME_SUFFIX_METAL_TRAM]
+base = "Foundry Tram"
+
+[STR_NAME_SUFFIX_METAL_TRUCK]
+base = "Foundry Hauler"
+
+[STR_NAME_SUFFIX_MINING_TRUCK]
+base = "Mining Truck"
+
+[STR_NAME_SUFFIX_OPEN_TRAM]
+base = "Open Tram"
+
+[STR_NAME_SUFFIX_OPEN_TRUCK]
+base = "Open Truck"
+
+[STR_NAME_SUFFIX_PASSENGER_TRAM]
+base = "Passenger Tram"
+
+[STR_NAME_SUFFIX_REEFER_TRAM]
+base = "Refrigerated Tram"
+
+[STR_NAME_SUFFIX_REEFER_TRUCK]
+base = "Refrigerated Truck"
+
+[STR_NAME_SUFFIX_SUPPLIES_TRAM]
+base = "Supplies Tram"
+
+[STR_NAME_SUFFIX_SUPPLIES_TRUCK]
+base = "Supplies Truck"
+
+[STR_NAME_SUFFIX_TANKER_TRAM]
+base = "Tanker Tram"
+
+[STR_NAME_SUFFIX_TANKER_TRUCK]
+base = "Tanker Truck"
+
+[STR_COASTER]
+base = "The Cow Jumped Over the Moon (this is not finished reminder)"
+
+[STR_DOGTRACK]
+base = "Dogs are brown, sometime"

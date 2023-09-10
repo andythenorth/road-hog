@@ -1,0 +1,189 @@
+[GLOBAL_PRAGMA]
+grflangid = "0x1f"
+plural = "0"
+
+[STR_GRF_DESCRIPTION]
+base = "Licentie: {SILVER}GPL v2{}{BLACK}"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY]
+base = "Wegvoertuigcapaciteit"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_0]
+base = "Miezerig"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_1]
+base = "Geweldig"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2]
+base = "Buitensporig"
+
+[STR_PARAM_ROSTER]
+base = "Schema"
+
+[STR_PARAM_ROSTER_DESC]
+base = "Kies de te gebruiken set voertuigen"
+
+[STR_PARAM_ROSTER_OPTION_1]
+base = "Woestenij"
+
+[STR_NAME_HEAVY_HAUL_ROAD]
+base = "Weg voor zware vracht"
+
+[STR_TOOLBAR_CAPTION_HEAVY_HAUL_ROAD]
+base = "Wegenbouw voor zware vracht"
+
+[STR_MENU_TEXT_HEAVY_HAUL_ROAD]
+base = "Wegenbouw voor zware vracht"
+
+[STR_BUILD_WINDOW_CAPTION_HEAVY_HAUL_ROAD]
+base = "Nieuwe zware vrachtwagens"
+
+[STR_AUTOREPLACE_TEXT_HEAVY_HAUL_ROAD]
+base = "Zware vrachtwagens"
+
+[STR_NEW_ENGINE_TEXT_HEAVY_HAUL_ROAD]
+base = "zware vrachtwagen"
+
+[STR_NAME_TRAMWAY]
+base = "Tramspoor"
+
+[STR_TOOLBAR_CAPTION_TRAMWAY]
+base = "Tramspoorbouw"
+
+[STR_MENU_TEXT_TRAMWAY]
+base = "Tramspoorbouw"
+
+[STR_BUILD_WINDOW_CAPTION_TRAMWAY]
+base = "Nieuwe trams"
+
+[STR_AUTOREPLACE_TEXT_TRAMWAY]
+base = "Trams"
+
+[STR_NEW_ENGINE_TEXT_TRAMWAY]
+base = "tram"
+
+[STR_NAME_ELECTRIC_TRAMWAY]
+base = "Elektrisch tramspoor"
+
+[STR_TOOLBAR_CAPTION_ELECTRIC_TRAMWAY]
+base = "Elektrische-tramspoorbouw"
+
+[STR_MENU_TEXT_ELECTRIC_TRAMWAY]
+base = "Elektrische-tramspoorbouw"
+
+[STR_BUILD_WINDOW_CAPTION_ELECTRIC_TRAMWAY]
+base = "Nieuwe elektrische trams"
+
+[STR_AUTOREPLACE_TEXT_ELECTRIC_TRAMWAY]
+base = "Elektrische trams"
+
+[STR_NEW_ENGINE_TEXT_ELECTRIC_TRAMWAY]
+base = "elektrische tram"
+
+[STR_NAME_SUFFIX_DIESEL]
+base = "Diesel"
+
+[STR_NAME_SUFFIX_ELECTRIC]
+base = "Elektrisch"
+
+[STR_NAME_SUFFIX_STEAM]
+base = "Stoom"
+
+[STR_NAME_SUFFIX_BOX_TRAM]
+base = "Baktram"
+
+[STR_NAME_SUFFIX_BOX_TRUCK]
+base = "Bakwagen"
+
+[STR_NAME_SUFFIX_BUS]
+base = "Bus"
+
+[STR_NAME_SUFFIX_COACH]
+base = "Wagon"
+
+[STR_NAME_SUFFIX_COVERED_HOPPER_TRAM]
+base = "Afgedekte stortgoedtram"
+
+[STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK]
+base = "Afgedekte stortgoedtruck"
+
+[STR_NAME_SUFFIX_DUMP_TRAM]
+base = "Kieptram"
+
+[STR_NAME_SUFFIX_DUMP_TRUCK]
+base = "Kiepwagen"
+
+[STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM]
+base = "Voedseltanktram"
+
+[STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK]
+base = "Voedseltankwagen"
+
+[STR_NAME_SUFFIX_FLATBED_TRAM]
+base = "Semi-diepladertram"
+
+[STR_NAME_SUFFIX_FLATBED_TRUCK]
+base = "Semi-diepladertruck"
+
+[STR_NAME_SUFFIX_FRUIT_VEG_TRAM]
+base = "Fruit-en-groententram"
+
+[STR_NAME_SUFFIX_INTERMODAL_HAULER]
+base = "Containertruck"
+
+[STR_NAME_SUFFIX_LIVESTOCK_TRAM]
+base = "Veetram"
+
+[STR_NAME_SUFFIX_LIVESTOCK_TRUCK]
+base = "Veetruck"
+
+[STR_NAME_SUFFIX_LOG_TRUCK]
+base = "Boomstammenwagen"
+
+[STR_NAME_SUFFIX_MAIL_TRAM]
+base = "Koerierstram"
+
+[STR_NAME_SUFFIX_MAIL_TRUCK]
+base = "Koerierswagen"
+
+[STR_NAME_SUFFIX_METAL_TRAM]
+base = "Metaaltram"
+
+[STR_NAME_SUFFIX_METAL_TRUCK]
+base = "Metaalvrachtwagen"
+
+[STR_NAME_SUFFIX_MINING_TRUCK]
+base = "Mijnbouwtruck"
+
+[STR_NAME_SUFFIX_OPEN_TRAM]
+base = "Open tram"
+
+[STR_NAME_SUFFIX_OPEN_TRUCK]
+base = "Open vrachtwagen"
+
+[STR_NAME_SUFFIX_PASSENGER_TRAM]
+base = "Passagierstram"
+
+[STR_NAME_SUFFIX_REEFER_TRAM]
+base = "Koeltram"
+
+[STR_NAME_SUFFIX_REEFER_TRUCK]
+base = "Koelvrachtwagen"
+
+[STR_NAME_SUFFIX_SUPPLIES_TRAM]
+base = "Materialentram"
+
+[STR_NAME_SUFFIX_SUPPLIES_TRUCK]
+base = "Materialenwagen"
+
+[STR_NAME_SUFFIX_TANKER_TRAM]
+base = "Tanktram"
+
+[STR_NAME_SUFFIX_TANKER_TRUCK]
+base = "Tankwagen"
+
+[STR_COASTER]
+base = "De koe sprong over de maan (herinnering dat dit nog niet af is)"
+
+[STR_DOGTRACK]
+base = "Honden zijn bruin. Soms toch."

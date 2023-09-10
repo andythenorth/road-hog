@@ -1,0 +1,109 @@
+[GLOBAL_PRAGMA]
+grflangid = "0x22"
+plural = "0"
+gender = "Masculin Femenin"
+
+[STR_GRF_DESCRIPTION]
+base = "Llicència: {SILVER}GPL v2{}{BLACK}"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY]
+base = "Capacitat dels vehicles de carretera"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_0]
+base = "Diminuta"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_1]
+base = "Fantàstica"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2]
+base = "Excessiva"
+
+[STR_PARAM_ROSTER]
+base = "Llistat a emprar"
+
+[STR_PARAM_ROSTER_DESC]
+base = "Selecciona quin conjunt de vehicles de carretera emprar."
+
+[STR_PARAM_ROSTER_OPTION_1]
+base = "Terres ermes"
+
+[STR_NAME_SUFFIX_BOX_TRAM]
+base = "Tramvia contenidor"
+
+[STR_NAME_SUFFIX_BOX_TRUCK]
+base = "Camió contenidor"
+
+[STR_NAME_SUFFIX_BUS]
+base = "Autobús"
+
+[STR_NAME_SUFFIX_COACH]
+base = "Autobús"
+
+[STR_NAME_SUFFIX_COVERED_HOPPER_TRAM]
+base = "Tramvia cobert amb tremuja"
+
+[STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK]
+base = "Camió cobert amb tremuja"
+
+[STR_NAME_SUFFIX_DUMP_TRAM]
+base = "Tramvia d'escombraries"
+
+[STR_NAME_SUFFIX_DUMP_TRUCK]
+base = "Camió d'escombraries"
+
+[STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM]
+base = "Tramvia cisterna per a comestibles"
+
+[STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK]
+base = "Camió cisterna per a comestibles"
+
+[STR_NAME_SUFFIX_FLATBED_TRAM]
+base = "Tramvia plataforma"
+
+[STR_NAME_SUFFIX_FLATBED_TRUCK]
+base = "Camió plataforma"
+
+[STR_NAME_SUFFIX_INTERMODAL_HAULER]
+base = "Camió intermodal"
+
+[STR_NAME_SUFFIX_LIVESTOCK_TRAM]
+base = "Tramvia per a bestiar"
+
+[STR_NAME_SUFFIX_LIVESTOCK_TRUCK]
+base = "Camió per a bestiar"
+
+[STR_NAME_SUFFIX_MINING_TRUCK]
+base = "Tràiler per a mineria"
+
+[STR_NAME_SUFFIX_OPEN_TRAM]
+base = "Tramvia obert"
+
+[STR_NAME_SUFFIX_OPEN_TRUCK]
+base = "Camió obert"
+
+[STR_NAME_SUFFIX_PASSENGER_TRAM]
+base = "Tramvia de passatgers"
+
+[STR_NAME_SUFFIX_REEFER_TRAM]
+base = "Tramvia refrigerat"
+
+[STR_NAME_SUFFIX_REEFER_TRUCK]
+base = "Camió refrigerat"
+
+[STR_NAME_SUFFIX_SUPPLIES_TRAM]
+base = "Tramvia de subministraments"
+
+[STR_NAME_SUFFIX_SUPPLIES_TRUCK]
+base = "Camió de subministraments"
+
+[STR_NAME_SUFFIX_TANKER_TRAM]
+base = "Tramvia cisterna"
+
+[STR_NAME_SUFFIX_TANKER_TRUCK]
+base = "Camió cisterna"
+
+[STR_COASTER]
+base = "La vaca saltà per damunt de la Lluna (recodatori de que encara no està acabat)"
+
+[STR_DOGTRACK]
+base = "Els gossos són de color marró, a vegades"

@@ -1,0 +1,102 @@
+[GLOBAL_PRAGMA]
+grflangid = "0x35"
+plural = "0"
+
+[STR_GRF_DESCRIPTION]
+base = "Lisenssi: {SILVER}GPL v2{}{BLACK}"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY]
+base = "Ajoneuvon kapasiteetti"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_0]
+base = "Mitätön"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_1]
+base = "Uskomaton"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2]
+base = "Yletön"
+
+[STR_PARAM_ROSTER]
+base = "Valikoimat"
+
+[STR_PARAM_ROSTER_DESC]
+base = "Valitse, mitä ajoneuvovalikoimaa käytetään."
+
+[STR_NAME_SUFFIX_BOX_TRAM]
+base = "Umpikoriraitiovaunu"
+
+[STR_NAME_SUFFIX_BOX_TRUCK]
+base = "Umpikoriauto"
+
+[STR_NAME_SUFFIX_BUS]
+base = "Linja-auto"
+
+[STR_NAME_SUFFIX_COVERED_HOPPER_TRAM]
+base = "Katettu Suppiloraitiovaunu"
+
+[STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK]
+base = "Katettu Suppiloauto"
+
+[STR_NAME_SUFFIX_DUMP_TRAM]
+base = "Maansiirtoraitiovaunu"
+
+[STR_NAME_SUFFIX_DUMP_TRUCK]
+base = "Maansiirtokuorma-auto"
+
+[STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM]
+base = "Syömäkelpoisten Nesteiden Säiliöraitiovaunu"
+
+[STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK]
+base = "Syömäkelpoisten Nesteiden Säiliöauto"
+
+[STR_NAME_SUFFIX_FLATBED_TRAM]
+base = "Avolavaraitiovaunu"
+
+[STR_NAME_SUFFIX_FLATBED_TRUCK]
+base = "Avolavakuorma-auto"
+
+[STR_NAME_SUFFIX_INTERMODAL_HAULER]
+base = "Konttirekka"
+
+[STR_NAME_SUFFIX_LIVESTOCK_TRAM]
+base = "Karjaraitiovaunu"
+
+[STR_NAME_SUFFIX_LIVESTOCK_TRUCK]
+base = "Karjarekka"
+
+[STR_NAME_SUFFIX_MINING_TRUCK]
+base = "Kaivoskuorma-auto"
+
+[STR_NAME_SUFFIX_OPEN_TRAM]
+base = "Avolavaraitiovaunu"
+
+[STR_NAME_SUFFIX_OPEN_TRUCK]
+base = "Avolavakuorma-auto"
+
+[STR_NAME_SUFFIX_PASSENGER_TRAM]
+base = "Matkustajaraitiovaunu"
+
+[STR_NAME_SUFFIX_REEFER_TRAM]
+base = "Kylmäraitiovaunu"
+
+[STR_NAME_SUFFIX_REEFER_TRUCK]
+base = "Kylmäkuorma-auto"
+
+[STR_NAME_SUFFIX_SUPPLIES_TRAM]
+base = "Tarvikeraitiovaunu"
+
+[STR_NAME_SUFFIX_SUPPLIES_TRUCK]
+base = "Tarvikekuorma-auto"
+
+[STR_NAME_SUFFIX_TANKER_TRAM]
+base = "Säiliöraitiovaunu"
+
+[STR_NAME_SUFFIX_TANKER_TRUCK]
+base = "Säiliöauto"
+
+[STR_COASTER]
+base = "Vesihiisi sihisi hississä (tämä ei ole valmis -muistutus)"
+
+[STR_DOGTRACK]
+base = "Koirat ovat ruskeita, joskus"

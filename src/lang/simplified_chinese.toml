@@ -1,0 +1,108 @@
+[GLOBAL_PRAGMA]
+grflangid = "0x56"
+plural = "1"
+
+[STR_GRF_DESCRIPTION]
+base = "License: {SILVER}GPL v2{}{BLACK}"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY]
+base = "公路车具容量"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_0]
+base = "很少"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_1]
+base = "很多"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2]
+base = "极多"
+
+[STR_PARAM_ROSTER]
+base = "选项"
+
+[STR_PARAM_ROSTER_DESC]
+base = "车辆类型的选择"
+
+[STR_PARAM_ROSTER_OPTION_1]
+base = "废土"
+
+[STR_NAME_SUFFIX_BOX_TRAM]
+base = "厢式电车"
+
+[STR_NAME_SUFFIX_BOX_TRUCK]
+base = "厢式卡车"
+
+[STR_NAME_SUFFIX_BUS]
+base = "公交"
+
+[STR_NAME_SUFFIX_COACH]
+base = "长途大巴"
+
+[STR_NAME_SUFFIX_COVERED_HOPPER_TRAM]
+base = "带棚自卸电车"
+
+[STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK]
+base = "带蓬自卸卡车"
+
+[STR_NAME_SUFFIX_DUMP_TRAM]
+base = "自卸电车"
+
+[STR_NAME_SUFFIX_DUMP_TRUCK]
+base = "自卸卡车"
+
+[STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM]
+base = "食品罐电车"
+
+[STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK]
+base = "食品罐卡车"
+
+[STR_NAME_SUFFIX_FLATBED_TRAM]
+base = "平板电车"
+
+[STR_NAME_SUFFIX_FLATBED_TRUCK]
+base = "平板卡车"
+
+[STR_NAME_SUFFIX_INTERMODAL_HAULER]
+base = "多级拖挂车"
+
+[STR_NAME_SUFFIX_LIVESTOCK_TRAM]
+base = "牲畜电车"
+
+[STR_NAME_SUFFIX_LIVESTOCK_TRUCK]
+base = "牲畜运输车"
+
+[STR_NAME_SUFFIX_MINING_TRUCK]
+base = "采矿车"
+
+[STR_NAME_SUFFIX_OPEN_TRAM]
+base = "敞篷卡车"
+
+[STR_NAME_SUFFIX_OPEN_TRUCK]
+base = "敞篷卡车"
+
+[STR_NAME_SUFFIX_PASSENGER_TRAM]
+base = "旅客电车"
+
+[STR_NAME_SUFFIX_REEFER_TRAM]
+base = "冷藏电车"
+
+[STR_NAME_SUFFIX_REEFER_TRUCK]
+base = "冷藏卡车"
+
+[STR_NAME_SUFFIX_SUPPLIES_TRAM]
+base = "救援电车"
+
+[STR_NAME_SUFFIX_SUPPLIES_TRUCK]
+base = "救援卡车"
+
+[STR_NAME_SUFFIX_TANKER_TRAM]
+base = "罐车电车"
+
+[STR_NAME_SUFFIX_TANKER_TRUCK]
+base = "油罐车"
+
+[STR_COASTER]
+base = "奶牛跳过了月亮（这是未完成的提示）"
+
+[STR_DOGTRACK]
+base = "棕狗，有时如此。"

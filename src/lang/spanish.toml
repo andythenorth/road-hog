@@ -1,0 +1,109 @@
+[GLOBAL_PRAGMA]
+grflangid = "0x04"
+plural = "0"
+gender = "m f"
+
+[STR_GRF_DESCRIPTION]
+base = "Licencia: {SILVER}GPL v2{}{BLACK}"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY]
+base = "Capacidad de los vehículos de carretera"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_0]
+base = "Insignificante"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_1]
+base = "Maravillosa"
+
+[STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2]
+base = "Excesiva"
+
+[STR_PARAM_ROSTER]
+base = "Lista a usar"
+
+[STR_PARAM_ROSTER_DESC]
+base = "Selecciona el grupo de vehículos que se usarán."
+
+[STR_PARAM_ROSTER_OPTION_1]
+base = "Tierras baldías"
+
+[STR_NAME_SUFFIX_BOX_TRAM]
+base = "Tranvía furgón cerrado"
+
+[STR_NAME_SUFFIX_BOX_TRUCK]
+base = "Camión furgón cerrado"
+
+[STR_NAME_SUFFIX_BUS]
+base = "Autobús"
+
+[STR_NAME_SUFFIX_COACH]
+base = "Autobús"
+
+[STR_NAME_SUFFIX_COVERED_HOPPER_TRAM]
+base = "Tranvía Tolva cubierto"
+
+[STR_NAME_SUFFIX_COVERED_HOPPER_TRUCK]
+base = "Camión Tolva cubierto"
+
+[STR_NAME_SUFFIX_DUMP_TRAM]
+base = "Tranvía Volquete"
+
+[STR_NAME_SUFFIX_DUMP_TRUCK]
+base = "Camión Volquete"
+
+[STR_NAME_SUFFIX_EDIBLES_TANKER_TRAM]
+base = "Tranvía cisterna de/para comestibles"
+
+[STR_NAME_SUFFIX_EDIBLES_TANKER_TRUCK]
+base = "Camión cisterna de/para comestibles"
+
+[STR_NAME_SUFFIX_FLATBED_TRAM]
+base = "Tranvía plataforma"
+
+[STR_NAME_SUFFIX_FLATBED_TRUCK]
+base = "Camión plataforma"
+
+[STR_NAME_SUFFIX_INTERMODAL_HAULER]
+base = "Camión Intermodal"
+
+[STR_NAME_SUFFIX_LIVESTOCK_TRAM]
+base = "Tranvía de ganado"
+
+[STR_NAME_SUFFIX_LIVESTOCK_TRUCK]
+base = "Camión de ganado"
+
+[STR_NAME_SUFFIX_MINING_TRUCK]
+base = "Camión Minero"
+
+[STR_NAME_SUFFIX_OPEN_TRAM]
+base = "Tranvía furgón abierto"
+
+[STR_NAME_SUFFIX_OPEN_TRUCK]
+base = "Camión furgón abierto"
+
+[STR_NAME_SUFFIX_PASSENGER_TRAM]
+base = "Tranvía de pasajeros"
+
+[STR_NAME_SUFFIX_REEFER_TRAM]
+base = "Tranvía frigorífico"
+
+[STR_NAME_SUFFIX_REEFER_TRUCK]
+base = "Camión frigorífico"
+
+[STR_NAME_SUFFIX_SUPPLIES_TRAM]
+base = "Tranvía de suministros"
+
+[STR_NAME_SUFFIX_SUPPLIES_TRUCK]
+base = "Camión de suministros"
+
+[STR_NAME_SUFFIX_TANKER_TRAM]
+base = "Tranvía cisterna"
+
+[STR_NAME_SUFFIX_TANKER_TRUCK]
+base = "Camión cisterna"
+
+[STR_COASTER]
+base = "La vaca salta sobre la luna (esto no es sino un recordatorio de que este NewGRF está sin acabar)"
+
+[STR_DOGTRACK]
+base = "Los perros son marrones, alguna vez"
