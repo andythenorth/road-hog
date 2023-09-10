@@ -70,6 +70,7 @@ class Consist(object):
         self.gestalt_graphics = GestaltGraphics()
         # roster is set when the vehicle is registered to a roster, only one roster per vehicle
         self.roster_id = None
+        print("how is roster_id being used - port to Horse methods??")
         # aids 'project management'
         self.sprites_complete = kwargs.get("sprites_complete", False)
         self.sprites_additional_liveries_potential = kwargs.get(
