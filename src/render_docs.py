@@ -38,16 +38,9 @@ def render_docs(
     use_markdown=False,
     source_is_repo_root=False,
 ):
-    """
+
     roster = road_hog.roster_manager.active_roster
     # expect Exception failures if there is no active roster, don't bother explicitly handling that case
-    """
-    # !! shim roster - needs roster manager providing, then roster should be a keyword arg here, as per Horse
-    from rosters import (
-        registered_rosters,
-    )  # Road Hog has support for compiling only active roster, copy if/when needed
-
-    roster = registered_rosters[0]  # !! shim
 
     if source_is_repo_root:
         doc_path = os.path.join(currentdir)
@@ -369,16 +362,9 @@ def main():
     start = time()
     # don't init road_hog on import of this module, do it explicitly inside main()
     road_hog.main()
-    """
+
     roster = road_hog.roster_manager.active_roster
     # expect Exception failures if there is no active roster, don't bother explicitly handling that case
-    """
-    # !! shim roster - needs roster manager providing, then roster should be a keyword arg here, as per Horse
-    from rosters import (
-        registered_rosters,
-    )  # Road Hog has support for compiling only active roster, copy if/when needed
-
-    roster = registered_rosters[0]  # !! shim
 
     # can't pass roster in to DocHelper at init, multiprocessing fails as it can't pickle the roster object
     doc_helper = DocHelper(lang_strings=roster.get_lang_data("english")["lang_strings"])

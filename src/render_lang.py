@@ -62,16 +62,8 @@ def main():
     start = time()
     road_hog.main()
 
-    """
     roster = road_hog.roster_manager.active_roster
-    """
     # expect Exception failures if there is no active roster, don't bother explicitly handling that case
-    # !! shim roster - needs roster manager providing, then roster should be a keyword arg here, as per Horse
-    from rosters import (
-        registered_rosters,
-    )  # Road Hog has support for compiling only active roster, copy if/when needed
-
-    roster = registered_rosters[0]
 
     lang_dst = os.path.join(
         road_hog.generated_files_path, "lang", command_line_args.grf_name

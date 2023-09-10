@@ -88,15 +88,7 @@ def main():
         # just print, no need for a coloured echo_message
         print("Multiprocessing enabled: (PW=" + str(num_pool_workers) + ")")
 
-    """
     roster = road_hog.roster_manager.active_roster
-    """
-    # expect Exception failures if there is no active roster, don't bother explicitly handling that case
-    # !! shim roster - needs roster manager providing, then roster should be a keyword arg here, as per Horse
-    from rosters import (
-        registered_rosters,
-    )  # Road Hog has support for compiling only active roster, copy if/when needed
-    roster = registered_rosters[0] # !! shim
 
     graphics_input_path = os.path.join(currentdir, "src", "graphics")
     graphics_output_path = os.path.join(

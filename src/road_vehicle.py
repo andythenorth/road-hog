@@ -14,8 +14,7 @@ import utils
 from gestalt_graphics.gestalt_graphics import GestaltGraphics, GestaltGraphicsVisibleCargo, GestaltGraphicsLiveryOnly, GestaltGraphicsCustom
 import gestalt_graphics.graphics_constants as graphics_constants
 
-from rosters import registered_rosters
-from vehicles import numeric_id_defender
+import road_hog
 
 class Consist(object):
     """
@@ -31,8 +30,6 @@ class Consist(object):
         self.base_numeric_id = kwargs.get('base_numeric_id', None)
         # roster is set when the vehicle is registered to a roster, only one roster per vehicle
         # persist roster id for lookups, not roster obj directly, because of multiprocessing problems with object references
-        self.base_numeric_id = kwargs.get("base_numeric_id", None)
-        # roster ID must be passed, it's chained in via the calling roster, slightly convoluted but there are reasons
         self.roster_id = kwargs["roster_id"]
         self.road_type = kwargs.get('road_type', None)
         self.tram_type = kwargs.get('tram_type', None)
@@ -122,15 +119,11 @@ class Consist(object):
         return unique_units
 
     def get_and_verify_numeric_id(self, offset):
+        # !! this is handled differently in Horse due to variants etc
         numeric_id = self.base_numeric_id + offset
         # guard against the ID being too large to build in an articulated consist
         if numeric_id > 16383:
             utils.echo_message("Error: numeric_id " + str(numeric_id) + " for " + self.id + " can't be used (16383 is max ID for articulated vehicles)")
-        # non-blocking guard on duplicate IDs
-        for id in numeric_id_defender:
-            if id == numeric_id:
-                utils.echo_message("Error: consist " + self.id + " unit id collides (" + str(numeric_id) + ") with units in another consist")
-        numeric_id_defender.append(numeric_id)
         return numeric_id
 
     @property
@@ -357,9 +350,7 @@ class Consist(object):
 
     @property
     def roster(self):
-        for roster in registered_rosters:
-            if roster.id == self.roster_id:
-                return roster
+        return road_hog.roster_manager.get_roster_by_id(self.roster_id)
 
     def get_expression_for_roster(self):
         # the working definition is one and only one roster per vehicle
