@@ -1,6 +1,8 @@
 import argparse
 import os.path
 import codecs  # used for writing files - more unicode friendly than standard open() module
+import global_constants
+from polar_fox import git_info
 from polar_fox.utils import echo_message as echo_message
 from polar_fox.utils import dos_palette_to_rgb as dos_palette_to_rgb
 from polar_fox.utils import unescape_chameleon_output as unescape_chameleon_output
@@ -44,6 +46,17 @@ def get_command_line_args():
         help="Optionally suppress docs, can save some compile time",
     )
     return argparser.parse_args()
+
+
+def get_docs_url():
+    # not convinced this belongs in utils, but I can't find anywhere better to put it
+    # could be in polar fox - method will be common to all grfs? - pass the project name as a var?
+    # not convinced it's big enough to bother centralising TBH, too much close coupling has costs
+    result = [global_constants.metadata["docs_url"]]
+    if git_info.get_tag_exact_match() != "undefined":
+        result.append(git_info.get_monorepo_tag_parts()[1])
+    result.append("index.html")
+    return "/".join(result)
 
 
 def get_makefile_args(sys):

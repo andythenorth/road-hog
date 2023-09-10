@@ -1,6 +1,12 @@
 # capacity multipliers for capacity parameter
 capacity_multipliers = (0.67, 1, 1.33)
 
+metadata = {
+    "dev_thread_url": "http://www.tt-forums.net/viewtopic.php?f=26&t=70241",
+    "repo_url": "https://github.com/andythenorth/road-hog",
+    "docs_url": "https://grf.farm/road-hog",
+}
+
 # cargo aging constant - OTTD default is 185
 CARGO_AGE_PERIOD = 185
 
@@ -30,6 +36,7 @@ spritesheet_bounding_boxes = ((60, 12, 29), (77, 26, 20), (107, 33, 16), (147, 2
 # this is calculated from bounding boxes
 sprites_max_x_extent = spritesheet_bounding_boxes[7][0] + spritesheet_bounding_boxes[7][1]
 
+# !! possibly deprecated - moved to graphics constants?  Horse doesn't have these constants
 buy_menu_sprite_max_width = 64 # cap how wide a buy_menu sprite can be, as some consists are long
 buy_menu_sprite_height = 16
 custom_buy_menu_x_loc = 320
@@ -48,3 +55,4 @@ generated_files_dir = polar_fox.constants.generated_files_dir
 graphics_path = polar_fox.constants.graphics_path
 mail_multiplier = polar_fox.constants.mail_multiplier
 max_game_date = polar_fox.constants.max_game_date
+company_colour_maps = polar_fox.constants.company_colour_maps

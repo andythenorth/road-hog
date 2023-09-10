@@ -44,9 +44,6 @@
                     </li>
                 </ul>
                 <ul class="nav pull-right">
-                    <li class="${doc_helper.get_active_nav(doc_name, 'translations')}">
-                        <a href="${metadata['eints_url']}"><i class="icon-globe icon-white"></i> Help Translate Road Hog</a>
-                    </li>
                     <li>
                         <a href="${metadata['dev_thread_url']}"><i class="icon-comment icon-white"></i> Discuss at TT-Forums.net</a>
                     </li>

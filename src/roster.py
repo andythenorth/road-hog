@@ -39,5 +39,10 @@ class Roster(object):
                 raise
         return result
 
+    def get_lang_data(self, lang):
+        # !!! hax shim - see get_lang_data in Horse for proper version, which is updated for TOML lang
+        lang_strings = utils.parse_base_lang()
+        return {"lang_strings": lang_strings}
+
     def register(roster):
         registered_rosters.append(roster)

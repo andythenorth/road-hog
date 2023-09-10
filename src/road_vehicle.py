@@ -203,6 +203,12 @@ class Consist(object):
         return int(self.get_engine_cost_points()  + self.type_base_running_cost_points)
 
     @property
+    def intro_year(self):
+        # !! shim to make multi-grf compile copied from Horse work
+        # !! see Horse intro_year for how this needs finished
+        return 999
+
+    @property
     def intro_date(self):
         # automatic intro_date, but can over-ride by passing in kwargs for consist
         if self._intro_date:

@@ -1,12 +1,21 @@
 # JFDI module to help do some doc formatting
 
 import global_constants
+import utils
 
 class DocHelper(object):
-    # dirty class to help do some doc formatting
+    # Some constants
+    palette = utils.dos_palette_to_rgb()
+
+    # these only used in docs as of April 2018
+    buy_menu_sprite_max_width = 65  # up to 2 units eh + 1 extra pixel to accomodate couplers on trams
+    buy_menu_sprite_height = 16
 
     def __init__(self, lang_strings):
         self.lang_strings = lang_strings
+
+    def buy_menu_sprite_width(self, consist):
+        return min((consist.buy_menu_width + 1), self.buy_menu_sprite_max_width)
 
     def get_vehicles_by_subclass(self, consists):
         vehicles_by_subclass = {}
@@ -71,3 +80,17 @@ class DocHelper(object):
         for consist in consists:
             result.append(consist.base_track_type_name)
         return sorted(set(result))
+
+    def remap_company_colours(self, remap):
+        result = {}
+        input_colours = {"CC1": 198, "CC2": 80}
+        for input_colour, output_colour in remap.items():
+            for i in range(0, 8):
+                result[
+                    input_colours[input_colour] + i
+                ] = self.get_palette_index_for_company_colour(output_colour, i)
+        return result
+
+    def get_palette_index_for_company_colour(self, company_colour, offset):
+        return global_constants.company_colour_maps[company_colour][offset]
+
