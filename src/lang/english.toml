@@ -5,6 +5,11 @@ plural = "0"
 [STR_GRF_DESCRIPTION]
 base = "License: {SILVER}GPL v2{}{BLACK}"
 
+[STR_GRF_SUBHEAD]
+base = ""
+landrace = "A Big Fat Road Vehicle Set"
+heqs = "The Heavy Equipment Set"
+
 [STR_PARAM_ADJUST_VEHICLE_CAPACITY]
 base = "Road Vehicle capacity"
 

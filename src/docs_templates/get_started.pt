@@ -4,10 +4,10 @@
         <div class="span3">
             <ul class="nav nav-list well">
                 <li class="nav-header">Get Started</li>
-                <li><a href="#download-fish">Download Road Hog</a></li>
-                <li><a href="#setting-up">Setting up a Game with Road Hog</a></li>
+                <li><a href="#download-fish">Download ${roster.str_grf_name}</a></li>
+                <li><a href="#setting-up">Setting up a Game with ${roster.str_grf_name}</a></li>
                 <li><a href="#what-next">What Next?</a></li>
-                <li><a href="#fish-changes">Road Hog Changes</a></li>
+                <li><a href="#fish-changes">${roster.str_grf_name} Changes</a></li>
             </ul>
         </div>
         <div class="span9">
@@ -24,26 +24,26 @@
                 </ul>
             </div>
             <div id="download-fish">
-                <h2>1. Download Road Hog</h2>
+                <h2>1. Download ${roster.str_grf_name}</h2>
                 <p class="lead">
-                    Road Hog is available from the content service in OpenTTD, as a zip for manual installation,
+                    ${roster.str_grf_name} is available from the content service in OpenTTD, as a zip for manual installation,
                     or as a source checkout for compiling locally (requires mercurial and various python dependencies).
                 </p>
                 <div class="row">
                     <div class="span3">
                         <h3>Download in OpenTTD</h3>
-                        <p><strong>Easiest</strong>: get Road Hog from the OpenTTD content service.</p>
+                        <p><strong>Easiest</strong>: get ${roster.str_grf_name} from the OpenTTD content service.</p>
                         <a class="btn btn-primary" href="http://wiki.openttd.org/Content_downloading">Instructions</a>
                     </div>
                     <div class="span3">
                         <h3>Download Zip</h3>
-                        <p>Get the latest Road Hog release for <a href="http://wiki.openttd.org/Newgrf#Manual_install">manual install</a>.</p>
-                        <a class="btn btn-info" href="http://bundles.openttdcoop.org/road-hog/releases/LATEST/">Download Road Hog</a>
+                        <p>Get the latest ${roster.str_grf_name} release for <a href="http://wiki.openttd.org/Newgrf#Manual_install">manual install</a>.</p>
+                        <a class="btn btn-info" href="http://bundles.openttdcoop.org/road-hog/releases/LATEST/">Download ${roster.str_grf_name}</a>
                     </div>
                     <div class="span3">
                         <h3>Download Source</h3>
-                        <p>Checkout source code and <a href="code_reference.html">compile your own Road Hog</a>.</p>
-                        <a class="btn" href="${metadata['repo_url']}">Road Hog Source Repo</a>
+                        <p>Checkout source code and <a href="code_reference.html">compile your own ${roster.str_grf_name}</a>.</p>
+                        <a class="btn" href="${metadata['repo_url']}">${roster.str_grf_name} Source Repo</a>
                     </div>
                 </div>
             </div>
@@ -52,12 +52,12 @@
             <br />
             <div id="setting-up">
 
-                <h2>2. Setting Up a Game with Road Hog</h2>
+                <h2>2. Setting Up a Game with ${roster.str_grf_name}</h2>
                 <p class="lead">
-                    A few things to know before setting up a Road Hog game...
+                    A few things to know before setting up a ${roster.str_grf_name} game...
                 </p>
                 <h3>Default Vehicles</h3>
-                <p>Road Hog will disable all the default OpenTTD vehicles.</p>
+                <p>${roster.str_grf_name} will disable all the default OpenTTD vehicles.</p>
 
                 <h3>Capacity Parameter</h3>
                 <p>
@@ -66,7 +66,7 @@
                 </p>
 
                 <h3>Conflicts with other NewGRF sets.</h3>
-                <p>There are no known conflicts between Road Hog and other NewGRF sets.</p>
+                <p>There are no known conflicts between ${roster.str_grf_name} and other NewGRF sets.</p>
 
                 <h3>Vehicle introduction dates</h3>
                 <p>
@@ -75,7 +75,7 @@
                 </p>
 
                 <h3>Cargo Support</h3>
-                <p>Every cargo in the game should be supported by at least one vehicle in Road Hog (from 1860 onwards).  Report back if it doesn't.</p>
+                <p>Every cargo in the game should be supported by at least one vehicle in ${roster.str_grf_name} (from 1860 onwards).  Report back if it doesn't.</p>
                 <p>For certain cargos, some vehicles will show accurate cargo graphics or different liveries.</p>
 
             </div>
@@ -85,16 +85,16 @@
             <div id="what-next">
                 <h2>3. What Next?</h2>
 
-                <p class="lead">Find out more about Road Hog.  Or try it out in OpenTTD!</p>
+                <p class="lead">Find out more about ${roster.str_grf_name}.  Or try it out in OpenTTD!</p>
                 <a class="btn btn-large btn-primary" href="road_vehicles.html">List of Road Vehicles</a>
                 <a class="btn btn-large" href="code_reference.html">Code Reference</a>
             </div>
             <hr />
             <br />
             <div id="fish-changes">
-                <h2>4. Changes in Road Hog</h2>
-                <p class="lead">Road Hog is updated and improved quite often.</p>
-                <p>The <a href="changelog.html"><strong>Road Hog changelog</strong></a> keeps track of changes, including new features, bug fixes and updates to translations.</p>
+                <h2>4. Changes in ${roster.str_grf_name}</h2>
+                <p class="lead">${roster.str_grf_name} is updated and improved quite often.</p>
+                <p>The <a href="changelog.html"><strong>${roster.str_grf_name} changelog</strong></a> keeps track of changes, including new features, bug fixes and updates to translations.</p>
             </div>
             <br />
             <br />
