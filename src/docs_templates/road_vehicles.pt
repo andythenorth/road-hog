@@ -4,7 +4,7 @@
     <div class="span12">
         <h2>${len(consists)} road vehicles and trams for OpenTTD</h2>
         <hr />
-        <tal:base_track_type_name repeat="base_track_type_name doc_helper.get_base_track_types()">
+        <tal:base_track_type_name repeat="base_track_type_name doc_helper.get_base_track_types(consists)">
             <h3 id="${base_track_type_name}">${base_track_type_name}</h3>
             <table class="table table-striped tablesorter">
                 <thead>

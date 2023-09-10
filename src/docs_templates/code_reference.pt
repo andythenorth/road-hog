@@ -4,8 +4,8 @@
         <h2>Code Reference</h2>
         <h3>${len(consists)} road vehicles and trams</h3>
         <hr />
-        <tal:subclasses repeat="subclass doc_helper.get_vehicles_by_subclass()">
-            <tal:props_for_subclass define="props_to_print doc_helper.get_props_to_print_in_code_reference(subclass)">
+        <tal:subclasses repeat="subclass doc_helper.get_vehicles_by_subclass(consists)">
+            <tal:props_for_subclass define="props_to_print doc_helper.get_props_to_print_in_code_reference(subclass, consists)">
                 <h4>${subclass.__name__} <small>Subclass</small></h4>
                 <p>${subclass.__doc__}</p>
                 <table style="font-size:84%;" class="table table-striped table-condensed table-bordered tablesorter">
@@ -17,7 +17,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tal:vehicles repeat="vehicle doc_helper.get_vehicles_by_subclass()[subclass]">
+                        <tal:vehicles repeat="vehicle doc_helper.get_vehicles_by_subclass(consists)[subclass]">
                             <tr>
                                 <tal:props repeat="prop_name props_to_print[subclass]">
                                     <td>${props_to_print[vehicle][prop_name]}</td>

@@ -61,4 +61,5 @@ def vacant_numeric_ids_formatted():
     return "Vacant numeric ID slots: " + ', '.join(id_gaps) + (" and from " if len(id_gaps) > 0 else '') + str(max_id + 10) + " onwards"
 
 def main():
+    print("road_hog.py needs a roster manager class copied over from Horse")
     landrace.roster.register()
