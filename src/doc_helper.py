@@ -9,16 +9,17 @@ class DocHelper(object):
     palette = utils.dos_palette_to_rgb()
 
     # these only used in docs as of April 2018
-    buy_menu_sprite_max_width = (
+    docs_sprite_max_width = (
         65  # up to 2 units eh + 1 extra pixel to accomodate couplers on trams
     )
-    buy_menu_sprite_height = 16
+    docs_sprite_height = 16
 
     def __init__(self, lang_strings):
         self.lang_strings = lang_strings
 
-    def buy_menu_sprite_width(self, consist):
-        return min((consist.buy_menu_width + 1), self.buy_menu_sprite_max_width)
+    def docs_sprite_width(self, consist):
+        # !! might want to add 1 here if trams get extra 1px for couplings, but eh, we'll see
+        return min((consist.buy_menu_width), self.docs_sprite_max_width)
 
     def get_vehicles_by_subclass(self, consists):
         vehicles_by_subclass = {}

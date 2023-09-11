@@ -95,7 +95,7 @@ class Pipeline(object):
         # these 'source' var names for images are misleading
         buy_menu_image = Image.new(
             "P",
-            (self.consist.buy_menu_width, self.global_constants.buy_menu_sprite_height),
+            (self.consist.buy_menu_width, self.global_constants.docs_sprite_height),
             0,
         )
         buy_menu_image.putpalette(Image.open("palette_key.png").palette)
@@ -133,7 +133,7 @@ class Pipeline(object):
                 x_offset
                 + unit_length_in_pixels
                 + 1,  # allow for 1px coupler / corrider overhang
-                self.global_constants.buy_menu_sprite_height,
+                self.global_constants.docs_sprite_height,
             )
             custom_buy_menu_sprite = spritesheet.sprites.copy().crop(crop_box_src)
             # create a mask so that we paste only the vehicle pixels (no blue pixels)

@@ -130,10 +130,10 @@ sprites_max_x_extent = (
 )
 
 # !! possibly deprecated - moved to graphics constants?  Horse doesn't have these constants
-buy_menu_sprite_max_width = (
+docs_sprite_max_width = (
     64  # cap how wide a buy_menu sprite can be, as some consists are long
 )
-buy_menu_sprite_height = 16
+docs_sprite_height = 16
 custom_buy_menu_x_loc = 320
 
 # articulated parts must have a value less than 8192 (13 bit value)

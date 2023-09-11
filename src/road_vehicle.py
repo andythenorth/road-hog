@@ -426,10 +426,10 @@ class Consist(object):
     def buy_menu_width(self):
         # max sensible width in buy menu is 64px, but RH templates currently drawn at 36px - legacy stuff
         consist_length = 4 * sum([unit.vehicle_length for unit in self.units])
-        if consist_length < global_constants.buy_menu_sprite_max_width:
+        if consist_length < global_constants.docs_sprite_max_width:
             return consist_length
         else:
-            return global_constants.buy_menu_sprite_max_width
+            return global_constants.docs_sprite_max_width
 
     @property
     def roster(self):
