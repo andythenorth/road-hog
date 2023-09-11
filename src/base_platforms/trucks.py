@@ -12,79 +12,82 @@ class SemiTractorTruckBase(BasePlatform):
 
 # semi-trucks
 
+
 class SteamCaboverSemiTractorTruckGen2A(SemiTractorTruckBase):
     type = SteamVehicleUnit
     vehicle_length = 2
     semi_truck_shift_offset_jank = 2
-    effects = ['EFFECT_SPRITE_STEAM, -3, 0, 12']
+    effects = ["EFFECT_SPRITE_STEAM, -3, 0, 12"]
 
 
 class DieselCaboverSemiTractorTruckGen3A(SemiTractorTruckBase):
     type = DieselVehicleUnit
     vehicle_length = 2
     semi_truck_shift_offset_jank = 2
-    effects = ['EFFECT_SPRITE_DIESEL, -2, 1, 10']
+    effects = ["EFFECT_SPRITE_DIESEL, -2, 1, 10"]
 
 
 class DieselCaboverSemiTractorTruckGen4A(SemiTractorTruckBase):
     type = DieselVehicleUnit
     vehicle_length = 2
     semi_truck_shift_offset_jank = 2
-    effects = ['EFFECT_SPRITE_DIESEL, -2, 1, 10']
+    effects = ["EFFECT_SPRITE_DIESEL, -2, 1, 10"]
 
 
 class DieselCaboverSemiTractorTruckGen5A(SemiTractorTruckBase):
     type = DieselVehicleUnit
     vehicle_length = 2
     semi_truck_shift_offset_jank = 2
-    effects = ['EFFECT_SPRITE_DIESEL, -2, 1, 10', 'EFFECT_SPRITE_DIESEL, -2, -1, 10']
+    effects = ["EFFECT_SPRITE_DIESEL, -2, 1, 10", "EFFECT_SPRITE_DIESEL, -2, -1, 10"]
 
 
 class DieselConventionalCabSemiTractorTruckGen3A(SemiTractorTruckBase):
     type = DieselVehicleUnit
     vehicle_length = 2
     semi_truck_shift_offset_jank = 2
-    effects = ['EFFECT_SPRITE_DIESEL, -2, 1, 10']
+    effects = ["EFFECT_SPRITE_DIESEL, -2, 1, 10"]
 
 
 class DieselConventionalCabSemiTractorTruckGen4A(SemiTractorTruckBase):
     type = DieselVehicleUnit
     vehicle_length = 2
     semi_truck_shift_offset_jank = 2
-    effects = ['EFFECT_SPRITE_DIESEL, -2, 1, 10']
+    effects = ["EFFECT_SPRITE_DIESEL, -2, 1, 10"]
+
 
 # rigid trucks
+
 
 class SteamCaboverRigidTruckGen2A(BasePlatform):
     type = SteamVehicleUnit
     vehicle_length = 5
     cargo_length = 3
-    effects = ['EFFECT_SPRITE_STEAM, -3, 0, 12']
+    effects = ["EFFECT_SPRITE_STEAM, -3, 0, 12"]
 
 
 class DieselCaboverRigidTruckGen3A(BasePlatform):
     type = DieselVehicleUnit
     vehicle_length = 5
     cargo_length = 3
-    effects = ['EFFECT_SPRITE_DIESEL, -2, 1, 10']
+    effects = ["EFFECT_SPRITE_DIESEL, -2, 1, 10"]
 
 
 class DieselCaboverRigidTruckGen4A(BasePlatform):
     type = DieselVehicleUnit
     vehicle_length = 5
     cargo_length = 3
-    effects = ['EFFECT_SPRITE_DIESEL, -2, 1, 10']
+    effects = ["EFFECT_SPRITE_DIESEL, -2, 1, 10"]
 
 
 class DieselCaboverRigidTruckGen4B(BasePlatform):
     type = DieselVehicleUnit
     vehicle_length = 6
     cargo_length = 4
-    effects = ['EFFECT_SPRITE_DIESEL, -2, 1, 10']
+    effects = ["EFFECT_SPRITE_DIESEL, -2, 1, 10"]
 
 
 class DieselCaboverRigidTruckGen5A(BasePlatform):
     type = DieselVehicleUnit
     vehicle_length = 5
     cargo_length = 3
-    effects = ['EFFECT_SPRITE_DIESEL, -2, 1, 10', 'EFFECT_SPRITE_DIESEL, -2, -1, 10']
+    effects = ["EFFECT_SPRITE_DIESEL, -2, 1, 10", "EFFECT_SPRITE_DIESEL, -2, -1, 10"]

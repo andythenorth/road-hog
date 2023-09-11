@@ -2,29 +2,34 @@ import copy
 import os
 import pickle
 import tomllib
+
 currentdir = os.curdir
 
 import global_constants
 import utils
 
+
 class Roster(object):
     """
     Rosters compose a set of consists (vehicles) which is complete for gameplay.
     """
+
     def __init__(self, **kwargs):
-        self.id = kwargs.get('id')
-        self.numeric_id = kwargs.get('numeric_id')
+        self.id = kwargs.get("id")
+        self.numeric_id = kwargs.get("numeric_id")
         self.grf_name = kwargs.get("grf_name")
         self.grfid = kwargs.get("grfid")
         self.str_grf_name = kwargs.get("str_grf_name")
-        self.intro_dates = kwargs.get('intro_dates')
-        self.speeds = kwargs.get('speeds')
-        self.power_bands = kwargs.get('power_bands')
+        self.intro_dates = kwargs.get("intro_dates")
+        self.speeds = kwargs.get("speeds")
+        self.power_bands = kwargs.get("power_bands")
         # consists_uninitialised only used once at __init__ time, it's a list of modules, not the actual consists
         # init of consists has to happen in post_init_actions, otherwise consists can't get the roster
-        self.consists_uninitialised = kwargs.get('vehicles')
+        self.consists_uninitialised = kwargs.get("vehicles")
         self.consists = []
-        self.unit_capacity_per_vehicle_type = kwargs.get('unit_capacity_per_vehicle_type')
+        self.unit_capacity_per_vehicle_type = kwargs.get(
+            "unit_capacity_per_vehicle_type"
+        )
 
     def post_init_actions(self):
         # init of consists has to happen after the roster is registered with RosterManager, otherwise consists can't get the roster

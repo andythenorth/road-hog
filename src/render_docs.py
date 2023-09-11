@@ -38,7 +38,6 @@ def render_docs(
     use_markdown=False,
     source_is_repo_root=False,
 ):
-
     roster = road_hog.roster_manager.active_roster
     # expect Exception failures if there is no active roster, don't bother explicitly handling that case
 
@@ -150,7 +149,7 @@ def render_docs_images(consist, static_dir_dst, generated_graphics_path, doc_hel
     """
 
     vehicle_spritesheet = Image.open(
-        os.path.join('generated', 'graphics', consist.id + ".png")
+        os.path.join("generated", "graphics", consist.id + ".png")
     )
 
     # these 'source' var names for images are misleading
@@ -166,17 +165,28 @@ def render_docs_images(consist, static_dir_dst, generated_graphics_path, doc_hel
     # ===== legacy Hog docs image code ===== #
 
     # these 'source' var names for images are misleading
-    source_vehicle_image_tmp = vehicle_spritesheet.crop(box=(consist.buy_menu_x_loc,
-                                                             10,
-                                                             consist.buy_menu_x_loc + consist.buy_menu_width,
-                                                             10 + global_constants.buy_menu_sprite_height))
-    crop_box_dest = (0,
-                     0,
-                     consist.buy_menu_width,
-                     global_constants.buy_menu_sprite_height)
-    source_vehicle_image.paste(source_vehicle_image_tmp.crop(crop_box_dest), crop_box_dest)
+    source_vehicle_image_tmp = vehicle_spritesheet.crop(
+        box=(
+            consist.buy_menu_x_loc,
+            10,
+            consist.buy_menu_x_loc + consist.buy_menu_width,
+            10 + global_constants.buy_menu_sprite_height,
+        )
+    )
+    crop_box_dest = (
+        0,
+        0,
+        consist.buy_menu_width,
+        global_constants.buy_menu_sprite_height,
+    )
+    source_vehicle_image.paste(
+        source_vehicle_image_tmp.crop(crop_box_dest), crop_box_dest
+    )
 
-    variant = {"cc_remaps": {'CC1': 'COLOUR_BLUE', 'CC2': 'COLOUR_BLUE'}, "livery_name": "blue_blue"}
+    variant = {
+        "cc_remaps": {"CC1": "COLOUR_BLUE", "CC2": "COLOUR_BLUE"},
+        "livery_name": "blue_blue",
+    }
     docs_image_variants.append(
         [
             source_vehicle_image.copy(),

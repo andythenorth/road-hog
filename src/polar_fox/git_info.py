@@ -54,29 +54,40 @@ def get_monorepo_tag_parts(repr_type=None):
     elif get_version() != "undefined":
         tag = get_version()
     else:
-        raise BaseException("Nothing we can use as a tag or tag proxy here: " + get_version())
+        raise BaseException(
+            "Nothing we can use as a tag or tag proxy here: " + get_version()
+        )
 
     parts = tag.split("/")
     if len(parts) == 1:
         # it's not a monorepo tag
-        parts.append('not-a-monorepo')
+        parts.append("not-a-monorepo")
         parts.reverse()
         # it's a monorepo tag in the expected format
     elif len(parts) != 2:
-        raise BaseException("Tag or tag proxy has multiple / chars, this isn't supported. " + get_version())
+        raise BaseException(
+            "Tag or tag proxy has multiple / chars, this isn't supported. "
+            + get_version()
+        )
     if repr_type == "shell":
         # for use in makefile
         # not actual shell formatting, just joined on spaces
         # if this turns out to be insufficient, try a shell arg formatter or something
-        return ' '.join(parts)
+        return " ".join(parts)
     else:
         return parts
+
 
 def run():
     # for the default case we just print the results, this is used by e.g. Makefiles
     # for python cases, use the get_foo methods directly
     # note that we print the leading and trailing parts of the tag in the monorepo case (baked-in assumption that only 2 parts exist)
-    print(get_revision(), get_version(), get_tag_exact_match(), get_monorepo_tag_parts(repr_type="shell"))
+    print(
+        get_revision(),
+        get_version(),
+        get_tag_exact_match(),
+        get_monorepo_tag_parts(repr_type="shell"),
+    )
 
 
 if __name__ == "__main__":

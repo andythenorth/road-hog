@@ -156,6 +156,7 @@ class AddBuyMenuSprite(ProcessingUnit):
     """AddBuyMenuSprite"""
 
     """ Inserts a (custom) buy menu sprite for articulated vehicles etc. """
+
     # to create the buy menu sprite, we need the *processed* vehicle sprites
     # to do that, we use this unit at or near the end of the pipeline
     # it requires a function to be passed, which can process the buy menu sprite, and isn't called until the pipeline is rendered

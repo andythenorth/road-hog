@@ -12,6 +12,7 @@ class EngineFeldbahnBase(BasePlatform):
 
 # engines
 
+
 class SteamEngineFeldbahnGen1A(EngineFeldbahnBase):
     type = SteamVehicleUnit
     vehicle_length = 3
@@ -43,9 +44,10 @@ class ElectricEngineFeldbahn1(EngineFeldbahnBase):
 
 # wagons
 
+
 class WagonFeldbahnA(BasePlatform):
     vehicle_length = 3
     cargo_length = 3
 
     def get_spritesheet_name_body_or_complete_vehicle(self, consist):
-        return consist.name_suffix_consist_type.lower() + '_wagon_feldbahn_gen_1'
+        return consist.name_suffix_consist_type.lower() + "_wagon_feldbahn_gen_1"

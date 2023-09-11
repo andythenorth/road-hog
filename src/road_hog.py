@@ -19,6 +19,7 @@ os.makedirs(generated_files_path, exist_ok=True)
 from rosters import landrace
 from rosters import heqs
 
+
 class RosterManager(list):
     """
     Sometimes we want to conveniently expose attributes that span active rosters.
@@ -67,8 +68,10 @@ class RosterManager(list):
         else:
             raise Exception("RosterManager: no roster found for ", roster_id)
 
+
 # declared outside of main, got bored trying to figure out how to otherwise put it in the module scope
 roster_manager = RosterManager()
+
 
 def main():
     # rosters

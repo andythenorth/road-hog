@@ -16,28 +16,123 @@ FUEL_RUN_COST = 10.0
 
 # standard offsets for vehicle
 # 3/8, 4/8, 5/8, 6/8, 7/8 and 8/8 were adjusted June 2016, tested, all looked correct
-default_road_vehicle_offsets = {'1': ((-6, -23), (0, -17), (12, -10), (6, -11), (-6, -12), (-14, -10), (-14, -10), (-8, -16)), # may need fix
-                                '2': ((-6, -23), (-2, -16), (8, -10), (4, -11), (-6, -12), (-14, -10), (-16, -10), (-8, -14)),
-                                '3': ((-6, -22), (-4, -15), (2, -10), (2, -11), (-6, -15), (-14, -10), (-14, -10), (-8, -15)),
-                                '4': ((-6, -20), (-6, -14), (0, -10), (0, -11), (-6, -12), (-14, -10), (-14, -10), (-8, -14)),
-                                '5': ((-6, -17), (-8, -13), (-6, -10), (-2, -11), (-6, -12), (-14, -10), (-14, -10), (-8, -13)),
-                                '6': ((-6, -16), (-10, -12), (-8, -10), (-4, -11), (-6, -15), (-14, -10), (-14, -10), (-8, -12)),
-                                '7': ((-6, -15), (-12, -11), (-14, -10), (-6, -11), (-6, -15), (-14, -10), (-14, -10), (-8, -11)),
-                                '8': ((-6, -13), (-14, -10), (-18, -10), (-8, -11), (-6, -13), (-14, -10), (-14, -10), (-8, -10))}
+default_road_vehicle_offsets = {
+    "1": (
+        (-6, -23),
+        (0, -17),
+        (12, -10),
+        (6, -11),
+        (-6, -12),
+        (-14, -10),
+        (-14, -10),
+        (-8, -16),
+    ),  # may need fix
+    "2": (
+        (-6, -23),
+        (-2, -16),
+        (8, -10),
+        (4, -11),
+        (-6, -12),
+        (-14, -10),
+        (-16, -10),
+        (-8, -14),
+    ),
+    "3": (
+        (-6, -22),
+        (-4, -15),
+        (2, -10),
+        (2, -11),
+        (-6, -15),
+        (-14, -10),
+        (-14, -10),
+        (-8, -15),
+    ),
+    "4": (
+        (-6, -20),
+        (-6, -14),
+        (0, -10),
+        (0, -11),
+        (-6, -12),
+        (-14, -10),
+        (-14, -10),
+        (-8, -14),
+    ),
+    "5": (
+        (-6, -17),
+        (-8, -13),
+        (-6, -10),
+        (-2, -11),
+        (-6, -12),
+        (-14, -10),
+        (-14, -10),
+        (-8, -13),
+    ),
+    "6": (
+        (-6, -16),
+        (-10, -12),
+        (-8, -10),
+        (-4, -11),
+        (-6, -15),
+        (-14, -10),
+        (-14, -10),
+        (-8, -12),
+    ),
+    "7": (
+        (-6, -15),
+        (-12, -11),
+        (-14, -10),
+        (-6, -11),
+        (-6, -15),
+        (-14, -10),
+        (-14, -10),
+        (-8, -11),
+    ),
+    "8": (
+        (-6, -13),
+        (-14, -10),
+        (-18, -10),
+        (-8, -11),
+        (-6, -13),
+        (-14, -10),
+        (-14, -10),
+        (-8, -10),
+    ),
+}
 
-semi_truck_offset_jank = ((0, 1), (-2, 1), (-5, 0), (-2, 1), (0, 0), (-2, 1), (-1, 0), (-1, 1))
+semi_truck_offset_jank = (
+    (0, 1),
+    (-2, 1),
+    (-5, 0),
+    (-2, 1),
+    (0, 0),
+    (-2, 1),
+    (-1, 0),
+    (-1, 1),
+)
 
 # spritesheet bounding boxes, each defined by a 3 tuple (left x, width, height);
 # upper y is determined by spritesheet row position, so isn't defined as a constant
-spritesheet_bounding_boxes = ((60, 12, 29), (77, 26, 20), (107, 33, 16), (147, 26, 20),
-                              (180, 12, 29), (197, 26, 20), (227, 33, 16), (267, 26, 20))
+spritesheet_bounding_boxes = (
+    (60, 12, 29),
+    (77, 26, 20),
+    (107, 33, 16),
+    (147, 26, 20),
+    (180, 12, 29),
+    (197, 26, 20),
+    (227, 33, 16),
+    (267, 26, 20),
+)
 
 # rather than total spritesheet width, we often need to know the max x extent that actually contains sprites
 # this is calculated from bounding boxes
-sprites_max_x_extent = spritesheet_bounding_boxes[7][0] + spritesheet_bounding_boxes[7][1]
+sprites_max_x_extent = (
+    spritesheet_bounding_boxes[7][0] + spritesheet_bounding_boxes[7][1]
+)
 
 # !! possibly deprecated - moved to graphics constants?  Horse doesn't have these constants
-buy_menu_sprite_max_width = 64 # cap how wide a buy_menu sprite can be, as some consists are long
+buy_menu_sprite_max_width = (
+    64  # cap how wide a buy_menu sprite can be, as some consists are long
+)
 buy_menu_sprite_height = 16
 custom_buy_menu_x_loc = 320
 
@@ -48,6 +143,7 @@ max_articulated_id = 16383
 # done this way so we don't have to pass Polar Fox to templates, we can just pass global_constants
 # assignments are clunky - they exist to stop pyflakes tripping on 'unused' imports
 import polar_fox.constants
+
 base_refits_by_class = polar_fox.constants.base_refits_by_class
 cargo_labels = polar_fox.constants.cargo_labels
 chameleon_cache_dir = polar_fox.constants.chameleon_cache_dir

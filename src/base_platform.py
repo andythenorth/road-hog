@@ -10,19 +10,23 @@ class BasePlatform(object):
 
     def configure_unit_args(self, **kwargs):
         # pull the class attrs off using a list, this keeps the attribute declarations ni subclasses of BasePlatforms
-        for key in ['always_use_same_spriterow',
-                    'capacity',
-                    'cargo_length',
-                    'chassis',
-                    'effects',
-                    'semi_truck_shift_offset_jank',
-                    'unit_is_semi_tractor',
-                    'type',
-                    'vehicle_length']:
+        for key in [
+            "always_use_same_spriterow",
+            "capacity",
+            "cargo_length",
+            "chassis",
+            "effects",
+            "semi_truck_shift_offset_jank",
+            "unit_is_semi_tractor",
+            "type",
+            "vehicle_length",
+        ]:
             value = getattr(self, key, False)
             if value is not False:
                 kwargs[key] = value
-        kwargs['base_platform'] = self # replace the class name with this class instance
+        kwargs[
+            "base_platform"
+        ] = self  # replace the class name with this class instance
         return kwargs
 
     def _get_spritesheet_name_from_class_name(self, consist):
@@ -33,12 +37,12 @@ class BasePlatform(object):
         # drop the gen chars, split remainder on uppercase, makes lowercase and adds underscores
         for char in class_name_split[0:-2]:
             if char.isupper():
-                result.append('_' + char.lower())
+                result.append("_" + char.lower())
             else:
                 result.append(char)
         # put the gen chars back, keeping case
-        result.append('_' + ''.join(class_name_split[-2:]))
-        result = ''.join(result)
+        result.append("_" + "".join(class_name_split[-2:]))
+        result = "".join(result)
         # drop an extraneous leading underscore
         result = result[1:]
         return result

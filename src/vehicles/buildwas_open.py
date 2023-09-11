@@ -4,7 +4,11 @@ from base_platforms.trams import SteamEngineTram1
 
 def main(roster_id):
     consist = OpenTramConsist(
-        roster_id=roster_id, id="buildwas_open", base_numeric_id=120, name="Buildwas", gen=1
+        roster_id=roster_id,
+        id="buildwas_open",
+        base_numeric_id=120,
+        name="Buildwas",
+        gen=1,
     )
 
     consist.add_unit(base_platform=SteamEngineTram1)

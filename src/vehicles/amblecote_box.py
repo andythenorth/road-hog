@@ -4,7 +4,11 @@ from base_platforms.trams import SteamEngineTram1
 
 def main(roster_id):
     consist = BoxTramConsist(
-        roster_id=roster_id, id="amblecote_box", base_numeric_id=80, name="Amblecote", gen=1
+        roster_id=roster_id,
+        id="amblecote_box",
+        base_numeric_id=80,
+        name="Amblecote",
+        gen=1,
     )
 
     consist.add_unit(base_platform=SteamEngineTram1)

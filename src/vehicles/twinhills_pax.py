@@ -3,7 +3,11 @@ from road_vehicle import PaxLocalTramConsist, ElectricVehicleUnit
 
 def main(roster_id):
     consist = PaxLocalTramConsist(
-        roster_id=roster_id, id="twinhills_pax", base_numeric_id=70, name="Twinhills", gen=5
+        roster_id=roster_id,
+        id="twinhills_pax",
+        base_numeric_id=70,
+        name="Twinhills",
+        gen=5,
     )
 
     consist.add_unit(

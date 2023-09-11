@@ -11,5 +11,7 @@ class DieselConventionalCabSemiTractorHaulerGen3A(SemiTractorHaulerBase):
     type = DieselVehicleUnit
     vehicle_length = 2
     semi_truck_shift_offset_jank = 3
-    effects = ['EFFECT_SPRITE_AIRCRAFT_BREAKDOWN_SMOKE, -2, 1, 10',
-               'EFFECT_SPRITE_AIRCRAFT_BREAKDOWN_SMOKE, -2, -1, 10']
+    effects = [
+        "EFFECT_SPRITE_AIRCRAFT_BREAKDOWN_SMOKE, -2, 1, 10",
+        "EFFECT_SPRITE_AIRCRAFT_BREAKDOWN_SMOKE, -2, -1, 10",
+    ]

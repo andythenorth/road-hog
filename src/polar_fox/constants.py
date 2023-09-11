@@ -341,7 +341,18 @@ default_cargos = {
     "box_intermodal": ["POWR", "GOOD", "PAPR"],
     "box_sliding_wall": ["VENG", "BOOM", "PAPR", "JAVA", "GOOD"],
     "box_vehicle_parts": ["VPTS", "PAPR", "RUBR", "STEL", "WOOL", "GOOD"],
-    "bulkhead": ["STSL", "STBL", "STCB", "PIPE", "STPP", "WDPR", "ALUM", "ZINC", "STEL", "COPR"],
+    "bulkhead": [
+        "STSL",
+        "STBL",
+        "STCB",
+        "PIPE",
+        "STPP",
+        "WDPR",
+        "ALUM",
+        "ZINC",
+        "STEL",
+        "COPR",
+    ],
     "coil": ["STSH", "STWR", "STST", "STAL", "STEL"],
     "coil_covered": ["STSH", "STWR", "STEL"],
     "covered_ag": ["GRAI", "MAIZ", "BEAN", "NUTS", "FERT", "QLME"],
@@ -363,7 +374,7 @@ default_cargos = {
         "FMSP",
         "GOOD",
         "FOOD",
-        "HWAR", # because delivered to towns
+        "HWAR",  # because delivered to towns
     ],
     "farm_products_box": ["FRUT", "BEAN", "CASS", "JAVA", "NUTS", "FOOD"],
     "farm_products_hopper": [
@@ -538,7 +549,7 @@ piece_sprites_to_cargo_labels_maps = {
     "sugarcane_1": ["SGCN"],
     "steel_coils_eye_longitudinal_1": ["METL", "STAL", "STCB", "STEL", "STST", "STSH"],
     "steel_coils_eye_to_sky_1": ["STEL", "STSH", "METL"],
-    "steel_slab_1": [ "STAL", "STBL", "STCB", "STSL", "STSE", "STST"],
+    "steel_slab_1": ["STAL", "STBL", "STCB", "STSL", "STSE", "STST"],
     "steel_wire_rod_1": ["RBAR", "STWR", "TYCO"],
     "tarps_blue_1": ["FMSP"],
     "tarps_gold_1": ["ENSP"],
