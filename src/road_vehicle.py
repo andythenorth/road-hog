@@ -600,7 +600,7 @@ class BoxHaulerConsistBase(Consist):
         super().__init__(**kwargs)
         self.name_suffix_consist_type = "BOX"
         self.autorefit = True
-        self.class_refit_groups = ["packaged_freight"]
+        self.class_refit_groups = [] # ["packaged_freight"] # CABBAGE NERFED
         self.label_refits_allowed = [
             "MAIL",
             "GRAI",
@@ -611,7 +611,7 @@ class BoxHaulerConsistBase(Consist):
             "NITR",
         ]  # Iron Horse compatibility
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label[
-            "non_freight_special_cases"
+            "legacy_disallowed_express"
         ]
         self.default_cargos = global_constants.default_cargos["box"]
         self.weight_multiplier = 0.45
@@ -658,11 +658,28 @@ class CoveredHopperHaulerConsistBase(Consist):
         super().__init__(**kwargs)
         self.name_suffix_consist_type = "COVERED_HOPPER"
         self.autorefit = True
-        self.class_refit_groups = ["covered_hopper_freight"]
-        self.label_refits_allowed = global_constants.allowed_refits_by_label[
-            "covered_hoppers"
+        self.class_refit_groups = [] # ["covered_hopper_freight"] # CABBAGE NERF
+        # covered hopper specifically needs to combine 3 lists, this isn't common, and is a combination of legacy support, and some details that are too fine-grained for classes
+        self.label_refits_allowed = list(
+            set(
+                polar_fox.constants.allowed_refits_by_label[
+                    "legacy_allowed_covered_hoppers_any_non_food"
+                ]
+            )
+            | set(
+                polar_fox.constants.allowed_refits_by_label[
+                    "legacy_allowed_covered_hoppers_non_mineral_non_food"
+                ]
+            )
+            | set(
+                polar_fox.constants.allowed_refits_by_label[
+                    "allowed_farm_food_products"
+                ]
+            )
+        )
+        self.label_refits_disallowed = polar_fox.constants.disallowed_refits_by_label[
+            "legacy_disallowed_covered_hoppers_all_types"
         ]
-        self.label_refits_disallowed = []
         self.default_cargos = global_constants.default_cargos["covered_mineral"]
         self.loading_speed_multiplier = 2
         self.weight_multiplier = 0.45
@@ -701,10 +718,10 @@ class DumpHaulerConsistBase(Consist):
         super().__init__(**kwargs)
         self.name_suffix_consist_type = "DUMP"
         self.autorefit = True
-        self.class_refit_groups = ["dump_freight"]
-        self.label_refits_allowed = []  # no specific labels needed
-        self.label_refits_disallowed = global_constants.disallowed_refits_by_label[
-            "non_dump_bulk"
+        self.class_refit_groups = [] # ["dump_freight"] # CABBAGE NERF
+        self.label_refits_allowed = []
+        self.label_refits_disallowed = polar_fox.constants.disallowed_refits_by_label[
+            "legacy_disallowed_open_bulk"
         ]
         self.default_cargos = global_constants.default_cargos["dump"]
         self.loading_speed_multiplier = 2
@@ -759,10 +776,12 @@ class EdiblesTankerConsistBase(Consist):
         self.name_suffix_consist_type = "EDIBLES_TANKER"
         self.autorefit = True
         self.class_refit_groups = []  # no classes, use explicit labels
-        self.label_refits_allowed = global_constants.allowed_refits_by_label[
-            "edible_liquids"
+        self.label_refits_allowed = polar_fox.constants.allowed_refits_by_label[
+            "legacy_allowed_food_grade_liquid_bulk"
         ]
-        self.label_refits_disallowed = []
+        self.label_refits_disallowed = polar_fox.constants.disallowed_refits_by_label[
+            "legacy_disallowed_food_grade_liquid_bulk"
+        ]
         self.default_cargos = global_constants.default_cargos["edibles_tank"]
         self.loading_speed_multiplier = 2
         self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
@@ -796,11 +815,11 @@ class FlatbedHaulerConsistBase(Consist):
         super().__init__(**kwargs)
         self.name_suffix_consist_type = "FLATBED"
         self.autorefit = True
-        self.class_refit_groups = ["flatbed_freight"]
-        self.label_refits_allowed = ["GOOD"]
-        self.label_refits_disallowed = global_constants.disallowed_refits_by_label[
-            "non_flatbed_freight"
+        self.class_refit_groups = [] # ["flatbed_freight"] # CABBAGE NERFED
+        self.label_refits_allowed = polar_fox.constants.allowed_refits_by_label[
+            "legacy_allowed_flatbed"
         ]
+        self.label_refits_disallowed = []
         self.default_cargos = global_constants.default_cargos["flat"]
         # Graphics configuration
         self.gestalt_graphics = GestaltGraphicsVisibleCargo(piece="flat")
@@ -843,10 +862,12 @@ class FruitVegHaulerConsistBase(Consist):
         self.name_suffix_consist_type = "FRUIT_VEG"
         self.autorefit = True
         self.class_refit_groups = []  # no classes, use explicit labels
-        self.label_refits_allowed = global_constants.allowed_refits_by_label[
-            "farm_products"
+        self.label_refits_allowed = polar_fox.constants.allowed_refits_by_label[
+            "allowed_farm_food_products"
         ]
-        self.label_refits_disallowed = []
+        self.label_refits_disallowed = polar_fox.constants.disallowed_refits_by_label[
+            "legacy_disallowed_farm_food_products"
+        ]
         self.default_cargos = global_constants.default_cargos["farm_products_box"]
         self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
         self.weight_multiplier = 0.45
@@ -884,12 +905,12 @@ class IntermodalHaulerConsist(Consist):
         super().__init__(**kwargs)
         self.name_suffix_consist_type = "INTERMODAL"
         self.autorefit = True
-        self.class_refit_groups = ["packaged_freight"]
+        self.class_refit_groups = [] # ["packaged_freight"] # CABBAGE NERFED
         self.label_refits_allowed = global_constants.allowed_refits_by_label[
             "box_freight"
         ]
         self.label_refits_disallowed = global_constants.disallowed_refits_by_label[
-            "non_freight_special_cases"
+            "legacy_disallowed_express"
         ]
         self.default_cargos = global_constants.default_cargos["box"]
         self.loading_speed_multiplier = 2
@@ -982,7 +1003,7 @@ class MailHaulerConsistBase(Consist):
         super().__init__(**kwargs)
         self.name_suffix_consist_type = "MAIL"
         self.autorefit = True
-        self.class_refit_groups = ["mail", "express_freight"]
+        self.class_refit_groups = [] # ["mail", "express_freight"] # CABBAGE NERFED
         self.label_refits_allowed = []  # no specific labels needed
         self.label_refits_disallowed = ["TOUR"]
         self.default_cargos = global_constants.default_cargos["mail"]
@@ -1044,7 +1065,7 @@ class OpenHaulerConsistBase(Consist):
         super().__init__(**kwargs)
         self.name_suffix_consist_type = "OPEN"
         self.autorefit = True
-        self.class_refit_groups = ["all_freight"]
+        self.class_refit_groups = [] # ["all_freight"] # CABBAGE NERFED
         self.label_refits_allowed = []  # no specific labels needed
         self.label_refits_disallowed = ["TOUR"]
         self.default_cargos = global_constants.default_cargos["open"]
@@ -1087,7 +1108,7 @@ class PaxHaulerConsistBase(Consist):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.autorefit = True
-        self.class_refit_groups = ["pax"]
+        self.class_refit_groups = [] # ["pax"] # CABBAGE NERFED
         self.label_refits_allowed = []
         self.label_refits_disallowed = []
         self.default_cargos = global_constants.default_cargos["pax"]
@@ -1168,7 +1189,7 @@ class RefrigeratedHaulerConsistBase(Consist):
         super().__init__(**kwargs)
         self.name_suffix_consist_type = "REEFER"
         self.autorefit = True
-        self.class_refit_groups = ["refrigerated_freight"]
+        self.class_refit_groups = [] # ["refrigerated_freight"] # CABBAGE NERFED
         self.label_refits_allowed = (
             []
         )  # no specific labels needed, refits all cargos that have refrigerated class
@@ -1246,10 +1267,12 @@ class TankerConsistBase(Consist):
         # Pikka: if people complain that it's unrealistic, tell them "don't do it then"
         # they also change livery at stations if refitted between certain cargo types <shrug>
         self.autorefit = True
-        self.class_refit_groups = ["liquids"]
-        self.label_refits_allowed = []
-        self.label_refits_disallowed = global_constants.disallowed_refits_by_label[
-            "non_generic_liquids"
+        self.class_refit_groups = [] # ["liquids"] # CABBAGE NERF
+        self.label_refits_allowed = polar_fox.constants.allowed_refits_by_label[
+            "allowed_tanker_products"
+        ]
+        self.label_refits_disallowed = polar_fox.constants.disallowed_refits_by_label[
+            "legacy_disallowed_liquid_bulk"
         ]
         self.default_cargos = global_constants.default_cargos["tank"]
         self.loading_speed_multiplier = 2
