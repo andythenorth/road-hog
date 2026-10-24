@@ -1,13 +1,13 @@
 // buy menu graphics
-spriteset(${vehicle.id}_ss_purchase, "${global_constants.graphics_path}${consist.id}.png") {
-  spriteset_template_purchase_${vehicle.id}()
+spriteset(${unit.id}_ss_purchase, "${global_constants.graphics_path}${model_variant.model_def.model_id}.png") {
+  spriteset_template_purchase_${unit.id}()
 }
 
-spritegroup ${vehicle.id}_sg_purchase {
+spritegroup ${unit.id}_sg_purchase {
     loaded:  [
-        ${vehicle.id}_ss_purchase,
+        ${unit.id}_ss_purchase,
     ];
     loading: [
-        ${vehicle.id}_ss_purchase,
+        ${unit.id}_ss_purchase,
     ];
 }

@@ -32,9 +32,27 @@ class Roster(object):
 
     def post_init_actions(self):
         # init of consists has to happen after the roster is registered with RosterManager, otherwise consists can't get the roster
+        from road_vehicle.model_def import ModelDef
+        from road_vehicle.catalogue import Catalogue
+
         for vehicle in self.consists_uninitialised:
-            consist = vehicle.main(self.id)
-            self.consists.append(consist)
+            # CABBAGE When all vehicle files return ModelDef lists this legacy
+            # CABBAGE single-consist branch can be removed.
+            result = vehicle.main(roster_id=self.id)
+            if isinstance(result, list):
+                for model_def in result:
+                    if not isinstance(model_def, ModelDef):
+                        raise TypeError(
+                            f"{vehicle.__name__}.main returned a non-ModelDef item"
+                        )
+                    # Catalogue owns the model/variant/unit IDs. The roster
+                    # only requests produced variants and keeps their order.
+                    catalogue = Catalogue(model_def, roster_id=self.id)
+                    self.consists.extend(
+                        catalogue.produce(entry) for entry in catalogue
+                    )
+            else:
+                self.consists.append(result)
 
     @property
     def buy_menu_sort_order(self):

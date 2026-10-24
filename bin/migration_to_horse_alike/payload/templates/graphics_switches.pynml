@@ -1,0 +1,13 @@
+// buy menu graphics
+spriteset(${unit.id}_ss_purchase, "${global_constants.graphics_path}${model_variant.model_def.model_id}.png") {
+  spriteset_template_purchase_${unit.id}()
+}
+
+spritegroup ${unit.id}_sg_purchase {
+    loaded:  [
+        ${unit.id}_ss_purchase,
+    ];
+    loading: [
+        ${unit.id}_ss_purchase,
+    ];
+}

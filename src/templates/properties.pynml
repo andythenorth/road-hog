@@ -1,68 +1,68 @@
 // -- some switches are common to all vehicles so included with properties -- //
 
 // -- smoke -- //
-switch (FEAT_ROADVEHS, SELF, ${vehicle.id}_create_visual_effect, ${vehicle.get_effects()[0]}) {
-    return ${vehicle.get_effects()[1]};
+switch (FEAT_ROADVEHS, SELF, ${unit.id}_create_visual_effect, ${unit.get_effects()[0]}) {
+    return ${unit.get_effects()[1]};
 }
 
 
 // -- props -- //
-item(FEAT_ROADVEHS, ${vehicle.id}, ${vehicle.numeric_id}) {
+item(FEAT_ROADVEHS, ${unit.id}, ${unit.numeric_id}) {
     property {
-        name:                           ${consist.name};
-        cargo_capacity:                 ${vehicle.capacity}; // use CB to set this, avoids limited size of action 0 property
+        name:                           ${model_variant.name};
+        cargo_capacity:                 ${unit.capacity}; // use CB to set this, avoids limited size of action 0 property
         sprite_id:                      SPRITE_ID_NEW_ROADVEH; //enable new graphics - nml constant
-        <!--! insert either road_type or  track_type as appropriate to the vehicle type -->
-        ${consist.get_expression_for_road_or_tram_type}
-        <tal:lead_unit_only condition="vehicle.is_lead_unit_of_consist">
-            introduction_date:              date(${consist.intro_date},01,01); // consist just supplies intro year - openttd randomises intro dates a bit anyway
-            power:                          ${consist.power}hp;
-            speed:                          ${consist.speed}mph;
-            tractive_effort_coefficient:    ${consist.tractive_effort_coefficient};
-            cost_factor:                    ${consist.buy_cost};
+        <!--! insert either road_type or  track_type as appropriate to the unit type -->
+        ${model_variant.get_expression_for_road_or_tram_type}
+        <tal:lead_unit_only condition="unit.is_lead_unit_of_consist">
+            introduction_date:              date(${model_variant.intro_date},01,01); // model_variant just supplies intro year - openttd randomises intro dates a bit anyway
+            power:                          ${model_variant.power}hp;
+            speed:                          ${model_variant.speed}mph;
+            tractive_effort_coefficient:    ${model_variant.tractive_effort_coefficient};
+            cost_factor:                    ${model_variant.buy_cost};
             running_cost_factor:            0; // use CB to set this, avoids limited size of action 0 property
             running_cost_base:              RUNNING_COST_ROADVEH;
-            model_life:                     ${consist.model_life};
-            vehicle_life:                   ${consist.vehicle_life};
+            model_life:                     ${model_variant.model_life};
+            vehicle_life:                   ${model_variant.vehicle_life};
             reliability_decay:              20; // default value
-            retire_early:                   ${consist.retire_early};
-            sound_effect:                   ${consist.sound_effect};
+            retire_early:                   ${model_variant.retire_early};
+            sound_effect:                   ${model_variant.sound_effect};
         </tal:lead_unit_only>
         refit_cost:                     0; // this needs to be 0 if we want autorefit without using cb
-        refittable_cargo_classes:       bitmask(${consist.refittable_classes});
+        refittable_cargo_classes:       bitmask(${model_variant.refittable_classes});
         non_refittable_cargo_classes:   bitmask(); // don't set non-refittable classes, increases likelihood of breaking cargo support
-        cargo_allow_refit:              [${consist.get_label_refits_allowed()}];
-        cargo_disallow_refit:           [${consist.get_label_refits_disallowed()}];
-        <tal:default_cargo condition="len(consist.default_cargos) > 0">
-            default_cargo_type:             ${consist.get_nml_expression_for_default_cargos()};
+        cargo_allow_refit:              [${model_variant.get_label_refits_allowed()}];
+        cargo_disallow_refit:           [${model_variant.get_label_refits_disallowed()}];
+        <tal:default_cargo condition="len(model_variant.default_cargos) > 0">
+            default_cargo_type:             ${model_variant.get_nml_expression_for_default_cargos()};
         </tal:default_cargo>
-        cargo_age_period:               ${consist.cargo_age_period};
-        misc_flags:                     bitmask(${vehicle.special_flags}); // nml constants
-        length:                         ${vehicle.vehicle_length};
-        effect_spawn_model:             ${vehicle.effect_spawn_model};
+        cargo_age_period:               ${model_variant.cargo_age_period};
+        misc_flags:                     bitmask(${unit.special_flags}); // nml constants
+        length:                         ${unit.vehicle_length};
+        effect_spawn_model:             ${unit.effect_spawn_model};
     }
     graphics {
-        cargo_capacity:                 ${vehicle.id}_switch_cargo_capacity;
-        purchase_cargo_capacity:        ${vehicle.id}_switch_cargo_capacity;
-        loading_speed:                  ${vehicle.id}_switch_loading_speed;
-        default:                        ${vehicle.id}_switch_graphics;
-        purchase:                       ${vehicle.id}_sg_purchase;
-        create_effect:                  ${vehicle.id}_create_visual_effect;
+        cargo_capacity:                 ${unit.id}_switch_cargo_capacity;
+        purchase_cargo_capacity:        ${unit.id}_switch_cargo_capacity;
+        loading_speed:                  ${unit.id}_switch_loading_speed;
+        default:                        ${unit.id}_switch_graphics;
+        purchase:                       ${unit.id}_sg_purchase;
+        create_effect:                  ${unit.id}_create_visual_effect;
         <!--! no buy menu extra text in this grf by design; extra text is associated with BAD FEATURES -->
-        <tal:lead_unit_only condition="vehicle.is_lead_unit_of_consist">
-            <tal:articulated condition="len(consist.units) > 1">
-                articulated_part:               ${consist.id}_articulated_cb_switch;
+        <tal:lead_unit_only condition="unit.is_lead_unit_of_consist">
+            <tal:articulated condition="len(model_variant.units) > 1">
+                articulated_part:               ${model_variant.id}_articulated_cb_switch;
             </tal:articulated>
-            running_cost_factor:            return ${consist.running_cost};
-            weight:                         return ${int(4 * consist.weight)};
+            running_cost_factor:            return ${model_variant.running_cost};
+            weight:                         return ${int(4 * model_variant.weight)};
         </tal:lead_unit_only>
     }
 }
 
-if (${consist.get_expression_for_roster()}) {
-    item(FEAT_ROADVEHS, ${vehicle.id}, ${vehicle.numeric_id}) {
+if (${model_variant.get_expression_for_roster()}) {
+    item(FEAT_ROADVEHS, ${unit.id}, ${unit.numeric_id}) {
         property {
-            climates_available:             ${vehicle.availability};
+            climates_available:             ${unit.availability};
         }
     }
 }

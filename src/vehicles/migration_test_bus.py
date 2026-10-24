@@ -1,26 +1,24 @@
-"""One existing-equivalent vehicle for testing the migration factory path.
+"""Leyburn bus for testing the new model path.
 
-Retain the original Leyburn IDs and graphics lookup until the new framework
-is wired up. This definition is deliberately in Road Hog's legacy format.
+CABBAGE This is a test vehicle, not the converter for the rest of Road Hog.
 """
+from road_vehicle.model_def import ModelDef
 
-from road_vehicle import PaxLocalBusConsist, DieselVehicleUnit
 
-
-def main(roster_id):
-    consist = PaxLocalBusConsist(
-        roster_id=roster_id,
-        id="leyburn_pax",
+def main(**kwargs):
+    model_def = ModelDef(
+        schema_name="Bus",
+        model_id="leyburn_pax",
         base_numeric_id=20,
         name="Leyburn",
-        power=100,
-        speed=40,
         gen=2,
-        intro_date_offset=-1,
+        sprites_complete=True,
+        speed=40,
+        power_by_power_source={"DIESEL": 100},
+        intro_year_offset=-1,
     )
-    consist.add_unit(
-        base_platform=None,
-        type=DieselVehicleUnit,
+    model_def.add_unit_def(
+        unit_cls_name="DieselVehicleUnit",
         vehicle_length=7,
     )
-    return consist
+    return [model_def]

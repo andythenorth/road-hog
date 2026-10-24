@@ -1,0 +1,27 @@
+<!--! this is the default template for vehicles that don't supply their own template -->
+
+<tal:include metal:use-macro="load: spriteset_templates.pynml" />
+
+spriteset(${unit.id}_ss, "${global_constants.graphics_path}${model_variant.model_def.model_id}.png") {
+  spriteset_template_${unit.id}(10 + ${unit.spriterow_num * 30})
+}
+
+spritegroup ${unit.id}_sg {
+    loaded:  [
+        ${unit.id}_ss,
+    ];
+    loading: [
+        ${unit.id}_ss,
+    ];
+}
+// always include a switch to get to spritegroups even if it does nothing - the random switches need to route to it
+switch (FEAT_ROADVEHS, SELF, ${unit.id}_switch_graphics, 0) {
+    0: return ${unit.id}_sg;
+    return ${unit.id}_sg;
+}
+
+<tal:include metal:use-macro="load: graphics_switches.pynml" />
+
+<tal:include metal:use-macro="load: capacity_switches.pynml" />
+
+<tal:include metal:use-macro="load: properties.pynml" />

@@ -1,17 +1,17 @@
 // STANDARD GRAPHICS
 // -----------------
 
-template spriteset_template_${vehicle.id}(y) {
+template spriteset_template_${unit.id}(y) {
     <tal:sprite repeat="bounding_box global_constants.spritesheet_bounding_boxes">
         //[left_x,  upper_y,    width,      height,     offset_x,      offset_y]
-        [${bounding_box[0]}, y, ${bounding_box[1]}, ${bounding_box[2]}, ${vehicle.offsets[repeat.bounding_box.index][0]}, ${vehicle.offsets[repeat.bounding_box.index][1]}, ANIM]
+        [${bounding_box[0]}, y, ${bounding_box[1]}, ${bounding_box[2]}, ${unit.offsets[repeat.bounding_box.index][0]}, ${unit.offsets[repeat.bounding_box.index][1]}, ANIM]
     </tal:sprite>
 }
 
 // PURCHASE MENU
 // -------------
 
-template spriteset_template_purchase_${vehicle.id}() {
+template spriteset_template_purchase_${unit.id}() {
     //[left_x,  upper_y,    width,      height,     offset_x,      offset_y]
     [60,    10, 1, 1, 0, 0, ANIM]
     [60,    10, 1, 1, 0, 0, ANIM]
@@ -19,14 +19,14 @@ template spriteset_template_purchase_${vehicle.id}() {
     [60,    10, 1, 1, 0, 0, ANIM]
     [60,    10, 1, 1, 0, 0, ANIM]
     [60,    10, 1, 1, 0, 0, ANIM]
-    [${consist.buy_menu_x_loc},   10, ${consist.buy_menu_width}, ${global_constants.docs_sprite_height}, -${int(consist.buy_menu_width / 2)}, -9, ANIM]
+    [${model_variant.buy_menu_x_loc},   10, ${model_variant.buy_menu_width}, ${global_constants.docs_sprite_height}, -${int(model_variant.buy_menu_width / 2)}, -9, ANIM]
     [60,    10, 1, 1, 0, 0, ANIM]
 }
 
 // DEPOT VIEW
 // ----------
 
-<!--!template spriteset_template_depot_${vehicle.id}(y) {
+<!--!template spriteset_template_depot_${unit.id}(y) {
     //[left_x,  upper_y,    width,      height,     offset_x,      offset_y]
     [60,    10, 1, 1, 0, 0, ANIM]
     [60,    10, 1, 1, 0, 0, ANIM]
@@ -34,6 +34,6 @@ template spriteset_template_purchase_${vehicle.id}() {
     [60,    10, 1, 1, 0, 0, ANIM]
     [60,    10, 1, 1, 0, 0, ANIM]
     [60,    10, 1, 1, 0, 0, ANIM]
-    [235,   y, ${consist.depot_width}, 15, -${int(consist.depot_width / 2)}, -6, ANIM]
+    [235,   y, ${model_variant.depot_width}, 15, -${int(model_variant.depot_width / 2)}, -6, ANIM]
     [60,    10, 1, 1, 0, 0, ANIM]
 }-->

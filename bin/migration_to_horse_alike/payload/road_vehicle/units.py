@@ -1,0 +1,1417 @@
+import math
+from functools import cached_property
+
+# python builtin templater might be used in some utility cases
+from string import Template
+
+import polar_fox
+import global_constants  # expose all constants for easy passing to templates
+import utils
+
+
+class UnitBase(object):
+    """
+    Base class for all types of units
+    """
+
+    def __init__(self, *, model_variant, unit_def, id, numeric_id):
+        self.unit_def = unit_def
+        self.model_variant = model_variant
+        self.id = id
+        self.numeric_id = numeric_id
+        self.autorefit = True
+        # nml constant (STEAM is sane default)
+        self.engine_class = "ENGINE_CLASS_STEAM"
+        self.default_effect_z_offset = (
+            12  # optimised for Pony diesel and electric trains
+        )
+        # 'symmetric' or 'asymmetric'?
+        # defaults to symmetric, override in subclasses or per vehicle as needed
+        self._symmetry_type = "symmetric"
+        # optional - a switch name to trigger re-randomising vehicle random bits - override as need in subclasses
+        self.random_trigger_switch = None
+
+    @property
+    def unit_index_in_model_variant(self):
+        # note this won't work reliabily until all units have been added to model_variant.unique_units
+        # not 100% certain if this should be unique_units, or units, but previous code was using unique_units, so continued that when refactoring
+        return self.model_variant.unique_units.index(self)
+
+    @property
+    def unit_id_from_common_model_id(self):
+        return f"{self.model_variant.model_id}_unit_{self.unit_index_in_model_variant}"
+
+    @property
+    def unit_id_from_default_model_variant_id(self):
+        # for the case where we want to target a specific unit in the default model variant
+        return f"{self.model_variant.catalogue.default_model_variant_from_roster.id}_unit_{self.unit_index_in_model_variant}"
+
+    @property
+    def tail_light_switch_id(self):
+        # tail lights may be
+        # - unique to the vehicle and automatically provided, if the template supports it
+        # - mapped to an explicitly defined global tail light type
+        if getattr(self.model_variant.gestalt_graphics, "tail_light_from_vehicle_sprites", False) and self.unit_def.tail_light is not None:
+            print(self.id, "defines both explicit tail light, and auto-tail-light")
+        if self.unit_def.tail_light is not None:
+            # explicit global type
+            return f"switch_graphics_layer_tail_light_{self.unit_def.tail_light}"
+        elif getattr(self.model_variant.gestalt_graphics, "tail_light_from_vehicle_sprites", False):
+            # automatically provisioned
+            return f"{self.id}_switch_graphics_vehicle"
+        else:
+            utils.echo_message(f"{self.id} - no tail light definition found")
+            return f"switch_graphics_layer_tail_light_empty"
+
+    @property
+    def effects(self):
+        # empty by default, set in subtypes as needed
+        return {}
+
+    @cached_property
+    def rel_spriterow_index(self):
+        if self.unit_def.rel_spriterow_index is not None:
+            return self.unit_def.rel_spriterow_index
+        else:
+            return 0
+
+    @cached_property
+    def capacity(self):
+        if self.unit_def.capacity is not None:
+            return self.unit_def.capacity
+        else:
+            return 0
+
+    def get_capacity_variations(self, capacity):
+        # capacity is variable, controlled by a newgrf parameter
+        # allow that integer maths is needed for newgrf cb results; round up for safety
+        try:
+            result = [
+                int(math.ceil(capacity * multiplier))
+                for multiplier in global_constants.capacity_multipliers
+            ]
+        except:
+            raise Exception(
+                "get_capacity_variations" + " " + self.id + " " + self.model_variant.id
+            )
+        return result
+
+    @cached_property
+    def capacities(self):
+        return self.get_capacity_variations(self.capacity)
+
+    @cached_property
+    def default_cargo_capacity(self):
+        return self.capacities[2]
+
+    @cached_property
+    def has_cargo_capacity(self):
+        if self.default_cargo_capacity != 0:
+            return True
+        else:
+            return False
+
+    def get_pax_car_capacity(self):
+        # magic to set capacity subject to length
+        base_capacity = self.model_variant.roster.pax_car_capacity_per_unit_length[
+            self.model_variant.base_track_type
+        ][self.model_variant.gen - 1]
+        result = int(
+            self.vehicle_length
+            * base_capacity
+            * self.model_variant.pax_car_capacity_type["multiplier"]
+        )
+        return result
+
+    def get_mail_car_capacity(self):
+        result = (
+            int(self.get_freight_car_capacity()) / polar_fox.constants.mail_multiplier
+        )
+        return result
+
+    def get_freight_car_capacity(self):
+        # magic to set capacity subject to length
+        base_capacity = self.model_variant.roster.freight_car_capacity_per_unit_length[
+            self.model_variant.base_track_type
+        ][self.model_variant.gen - 1]
+        result = int(self.vehicle_length * base_capacity)
+        return result
+
+    @cached_property
+    def weight(self):
+        # weight can be set explicitly via unit_def or by methods on subclasses
+        return self.unit_def.weight
+
+    @cached_property
+    def vehicle_length(self):
+        # length of this unit, either derived from from chassis length, or set explicitly via keyword
+        # first guard that one and only one of these props is set
+        if (
+            self.unit_def.vehicle_length is not None
+            and self.unit_def.chassis is not None
+        ):
+            utils.echo_message(
+                self.model_variant.id
+                + " has units with both chassis and length properties set"
+            )
+        if self.unit_def.vehicle_length is None and self.unit_def.chassis is None:
+            utils.echo_message(
+                self.model_variant.id
+                + " has units with neither chassis nor length properties set"
+            )
+
+        if self.unit_def.chassis is not None:
+            # assume that chassis name format is 'foo_bar_ham_eggs_24px' or similar - true as of Nov 2020
+            # if chassis name format changes / varies in future, just update the string slice accordingly, safe enough
+            # splits on _, then takes last entry, then slices to remove 'px'
+            result = int(self.unit_def.chassis.split("_")[-1][0:-2])
+            return int(result / 4)
+        else:
+            return self.unit_def.vehicle_length
+
+    @property
+    def availability(self):
+        # only show vehicle in buy menu if it is first vehicle in model_variant
+        if self.is_trailing_part:
+            return "ALL_CLIMATES"
+        else:
+            return "NO_CLIMATE"
+
+    @cached_property
+    def is_not_trailing_part(self):
+        return not self.is_trailing_part
+
+    @cached_property
+    def is_trailing_part(self):
+        if self.model_variant.units.index(self) == 0:
+            return False
+        else:
+            return True
+
+    @property
+    def symmetry_type(self):
+        if self.unit_def.symmetry_type is not None:
+            symmetry_type = self.unit_def.symmetry_type
+        else:
+            symmetry_type = self._symmetry_type
+        assert symmetry_type in [
+            "symmetric",
+            "asymmetric",
+        ], "symmetry_type '%s' is invalid in %s" % (
+            symmetry_type,
+            self.model_variant.id,
+        )
+        return symmetry_type
+
+    @property
+    def misc_flags(self):
+        # note that there are both misc_flags and extra_flags, for grf_spec reasons
+        misc_flags = ["TRAIN_FLAG_2CC", "TRAIN_FLAG_SPRITE_STACK"]
+        if self.autorefit:
+            misc_flags.append("TRAIN_FLAG_AUTOREFIT")
+        if self.model_variant.tilt_bonus:
+            misc_flags.append("TRAIN_FLAG_TILT")
+        if self.model_variant.train_flag_mu:
+            misc_flags.append("TRAIN_FLAG_MU")
+        return ",".join(misc_flags)
+
+    @property
+    def extra_flags(self):
+        # on the unit for consistency with misc_flags
+        extra_flags = []
+        if self.model_variant.variant_group is not None:
+            # some of these aren't needed for wagons or articulated trailing parts, but eh, probably fine?
+            # disable news and exclusive preview for all variants except the default
+            if self.model_variant.variant_group_as_nml_prop is not None:
+                extra_flags.append("VEHICLE_FLAG_DISABLE_NEW_VEHICLE_MESSAGE")
+                if self.model_variant.catalogue.cab_engine_model is None:
+                    # only disable exclusive preview if there's no cab engine
+                    extra_flags.append("VEHICLE_FLAG_DISABLE_EXCLUSIVE_PREVIEW")
+            extra_flags.append("VEHICLE_FLAG_SYNC_VARIANT_EXCLUSIVE_PREVIEW")
+            extra_flags.append("VEHICLE_FLAG_SYNC_VARIANT_RELIABILITY")
+        # optional flag for wagons that have a driving cab, to allow driving backwards (all engines have cabs)
+        if self.model_variant.catalogue.wagon_quacker.quack:
+            if self.model_variant.flag_has_cab:
+                extra_flags.append("VEHICLE_FLAG_TRAIN_HAS_CAB")
+        return ",".join(extra_flags)
+
+    def get_cargo_classes_as_nml_prop(self, allow_disallow_key):
+        result = []
+        # maps lists of allowed classes.  No equivalent for disallowed classes, that's overly restrictive and damages the viability of class-based refitting
+        if hasattr(self, "articulated_unit_different_class_refit_groups"):
+            # in *rare* cases an articulated unit might need different refit classes to its parent model_variant
+            class_refit_groups = self.articulated_unit_different_class_refit_groups
+        else:
+            # by default get the refit classes from the model_variant
+            class_refit_groups = self.model_variant.class_refit_groups
+        for class_refit_group in class_refit_groups:
+            for cargo_class in global_constants.base_refits_by_class[class_refit_group][
+                allow_disallow_key
+            ]:
+                result.append(cargo_class)
+        # !! this does not currently support train prop 0x32 (filter allowed classes)
+        # !! if that's needed, then branch on allow_disallow_key == "allowed":
+        return "bitmask(" + ",".join(result) + ")"
+
+    @property
+    def loading_speed(self):
+        # ottd vehicles load at different rates depending on type, train default is 5
+        # Iron Horse uses 5 as default, with some vehicle types adjusting that up or down
+        return int(5 * self.model_variant.loading_speed_multiplier)
+
+    @property
+    def running_cost_base(self):
+        # all engines use the same RUNNING_COST_STEAM, and Iron Horse provides the variation between steam/electric/diesel
+        # this will break base cost mod grfs, but "Pikka says it's ok"
+        # wagons will use RUNNING_COST_DIESEL - set in wagon subclass
+        return "RUNNING_COST_STEAM"
+
+    @property
+    def roof(self):
+        # fetch spritesheet name to use for roof when generating graphics
+        if self.model_variant.roof_type is not None:
+            if self.model_variant.base_track_type == "NG":
+                ng_prefix = "ng_"
+            else:
+                ng_prefix = ""
+            return (
+                str(4 * self.vehicle_length)
+                + "px_"
+                + ng_prefix
+                + self.model_variant.roof_type
+            )
+        else:
+            return None
+
+    @cached_property
+    def requires_colour_mapping_cb(self):
+        # bit weird and janky, various conditions to consider eh
+        if getattr(self.model_variant, "use_colour_randomisation_strategies", False):
+            return "use_colour_randomisation_strategies"
+        elif (
+            getattr(self.model_variant.gestalt_graphics, "colour_mapping_switch", None)
+            is not None
+        ):
+            if self.model_variant.gestalt_graphics.colour_mapping_with_purchase:
+                return "colour_mapping_switch_with_purchase"
+        else:
+            return None
+
+    @property
+    def effects_vary_by_power_source(self):
+        # simple check if more than one type of effect is defined
+        return len(self.effects) > 1
+
+    @property
+    def default_effect_offsets(self):
+        # override this in subclasses as needed (e.g. to move steam engine smoke to front by default
+        # vehicles can also override this via _unit_def
+        return [(0, 0)]
+
+    def get_nml_expression_for_effects(self, railtype="default"):
+        # provides part of nml switch for effects (smoke)
+
+        # effects can be over-ridden per vehicle, or use a default from the vehicle subclass
+        if self.unit_def.effect_offsets is not None:
+            effect_offsets = self.unit_def.effect_offsets
+        else:
+            effect_offsets = self.default_effect_offsets
+
+        # z offset is handled independently to x, y for simplicity, option to override z offset default per vehicle
+        if self.unit_def.effect_z_offset is not None:
+            z_offset = self.unit_def.effect_z_offset
+        else:
+            z_offset = self.default_effect_z_offset
+
+        # changing sprite by railtype is supported, changing position is *not* as of August 2019
+        effect_sprite = self.effects[railtype][1]
+
+        result = []
+        for index, offset_pair in enumerate(effect_offsets):
+            items = [
+                effect_sprite,
+                str(offset_pair[0]),
+                str(offset_pair[1]),
+                str(z_offset),
+            ]
+            result.append(
+                "STORE_TEMP(create_effect("
+                + ",".join(items)
+                + "), 0x10"
+                + str(index)
+                + ")"
+            )
+        return [
+            "[" + ",".join(result) + "]",
+            str(len(result)) + " + CB_RESULT_CREATE_EFFECT_CENTER",
+        ]
+
+    def get_nml_expression_for_grfid_of_neighbouring_unit(self, unit_offset):
+        expression_template = Template(
+            "[STORE_TEMP(${unit_offset}, 0x10F), var[0x61, 0, 0xFFFFFFFF, 0x25]]"
+        )
+        return expression_template.substitute(unit_offset=unit_offset)
+
+    def get_nml_expression_for_id_of_neighbouring_unit(self, unit_offset):
+        # best used with the check for same grfid, but eh
+        expression_template = Template(
+            "[STORE_TEMP(${unit_offset}, 0x10F), var[0x61, 0, 0x0000FFFF, 0xC6]]"
+        )
+        return expression_template.substitute(unit_offset=unit_offset)
+
+    @property
+    def graphics_switch_entry_point_stem(self):
+        if (
+            self.model_variant.gestalt_graphics.variants_use_common_graphics_switch_chain
+        ):
+            return self.unit_id_from_common_model_id
+        else:
+            return self.id
+
+    def get_spriteset_template_name(self, reversed, y):
+        template_name = "_".join(
+            [
+                "spriteset_template",
+                self.symmetry_type,
+                reversed,
+                str(self.vehicle_length),
+                "8",
+            ]
+        )
+        anim_flag = (
+            "ANIM" if self.model_variant.suppress_animated_pixel_warnings else "NOANIM"
+        )
+        args = ",".join([str(y), anim_flag])
+        return template_name + "(" + args + ")"
+
+    def get_tail_light_spriteset_template_name(self, lights_position, y):
+        template_name = "_".join(
+            [
+                "spriteset_template_tail_light",
+                lights_position,
+                str(self.vehicle_length),
+                "8",
+            ]
+        )
+        args = ",".join([str(y)])
+        return template_name + "(" + args + ")"
+
+    def get_cargo_suffix(self):
+        return "string(" + self.cargo_units_refit_menu + ")"
+
+    def assert_random_reverse(self):
+        # some templates don't support the random_reverse (by design, they're symmetrical sprites, and reversing bloats the template)
+        if self.model_variant.random_reverse:
+            if hasattr(self.model_variant, "gestalt_graphics"):
+                for nml_template in [
+                    "vehicle_box_car_with_opening_doors.pynml",
+                    "vehicle_with_cargo_specific_liveries.pynml",
+                    "vehicle_formation_position_dependent.pynml",
+                ]:
+                    assert (
+                        self.model_variant.gestalt_graphics.nml_template != nml_template
+                    ), (
+                        "%s has 'random_reverse set True, which isn't supported by nml_template %s"
+                        % (self.model_variant.id, nml_template)
+                    )
+
+    def validate(self):
+        # integrity tests
+        self.assert_random_reverse()
+
+
+class BatteryHybridEngineUnit(UnitBase):
+    """
+    Unit for a battery hybrid engine.
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.engine_class = "ENGINE_CLASS_DIESEL"
+        # most battery hybrid engines are asymmetric, override per vehicle as needed
+        self._symmetry_type = kwargs.get("symmetry_type", "asymmetric")
+
+    @property
+    def effects(self):
+        return {"default": ["EFFECT_SPAWN_MODEL_DIESEL", "EFFECT_SPRITE_STEAM"]}
+
+
+class CabCarDVTUnit(UnitBase):
+    """
+    Unit for a DVT / Cab car (driving cab with mail capacity)
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.engine_class = "ENGINE_CLASS_DIESEL"  # probably fine?
+        self._symmetry_type = "asymmetric"
+
+    @property
+    def effects(self):
+        return {}
+
+    @cached_property
+    def capacity(self):
+        return self.get_mail_car_capacity()
+
+
+class CabControlPaxCarUnit(UnitBase):
+    """
+    Unit for a cab control car (driving cab with pax capacity)
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.engine_class = "ENGINE_CLASS_DIESEL"  # probably fine?
+        self._symmetry_type = "asymmetric"
+
+    @property
+    def effects(self):
+        return {}
+
+    @cached_property
+    def capacity(self):
+        return self.get_pax_car_capacity()
+
+
+class CombineUnitMailBase(UnitBase):
+    """
+    Mail unit for a combine vehicle (articulated vehicle with mail + pax capacity)
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        # usually refit classes come from model_variant, but we special case to the unit for this combine coach
+        self.articulated_unit_different_class_refit_groups = [
+            "mail"
+        ]  # note mail only, no other express cargos
+
+    @cached_property
+    def capacity(self):
+        # 0.75 is to account for some pax capacity 'on' this unit (implemented on adjacent pax unit)
+        return 0.75 * self.get_mail_car_capacity()
+
+
+class CombineUnitPaxBase(UnitBase):
+    """
+    Pax unit for a combine vehicle (articulated vehicle with mail + pax capacity)
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        # usually refit classes come from model_variant, but we special case to the unit for this combine coach
+        self.articulated_unit_different_class_refit_groups = ["pax"]
+
+    @cached_property
+    def capacity(self):
+        return self.get_pax_car_capacity()
+
+
+class AutoCoachCombineUnitMail(CombineUnitMailBase):
+    """
+    Mail unit for a combine auto coach (articulated driving cab vehicle with mail + pax capacity)
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.engine_class = "ENGINE_CLASS_STEAM"
+        self._symmetry_type = "asymmetric"
+
+    @property
+    def effects(self):
+        return {}
+
+
+class AutoCoachCombineUnitPax(CombineUnitPaxBase):
+    """
+    Pax unit for a combine auto coach (articulated driving cab vehicle with mail + pax capacity)
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.engine_class = "ENGINE_CLASS_STEAM"
+        self._symmetry_type = "asymmetric"
+
+    @property
+    def effects(self):
+        return {}
+
+
+class DieselRailcarCombineUnitMail(CombineUnitMailBase):
+    """
+    Mail unit for a combine diesel railcar (articulated vehicle with mail + pax capacity)
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.engine_class = "ENGINE_CLASS_DIESEL"
+        self._symmetry_type = "asymmetric"
+
+    @property
+    def effects(self):
+        return {"default": ["EFFECT_SPAWN_MODEL_DIESEL", "EFFECT_SPRITE_DIESEL"]}
+
+
+class DieselRailcarCombineUnitPax(CombineUnitPaxBase):
+    """
+    Pax unit for a combine diesel railcar (articulated vehicle with mail + pax capacity)
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.engine_class = "ENGINE_CLASS_DIESEL"
+        self._symmetry_type = "asymmetric"
+
+    @property
+    def effects(self):
+        return {"default": ["EFFECT_SPAWN_MODEL_DIESEL", "EFFECT_SPRITE_DIESEL"]}
+
+
+class DieselEngineUnit(UnitBase):
+    """
+    Unit for a diesel engine.
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.engine_class = "ENGINE_CLASS_DIESEL"
+        # most diesel engines are asymmetric, override per vehicle as needed
+        self._symmetry_type = kwargs.get("symmetry_type", "asymmetric")
+
+    @property
+    def effects(self):
+        return {"default": ["EFFECT_SPAWN_MODEL_DIESEL", "EFFECT_SPRITE_DIESEL"]}
+
+
+class DieselRailcarBaseUnit(DieselEngineUnit):
+    """
+    Unit for a diesel railcar.  Just a sparse subclass to set symmetry.  Capacity set in subclasses
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        # the cab magic won't work unless it's asymmetric eh? :)
+        self._symmetry_type = kwargs.get("symmetry_type", "asymmetric")
+        # note that railcar effects are left in default position, no attempt to move them to end of vehicle, or double them (tried, looks weird)
+
+
+class DieselRailcarFreightUnit(DieselRailcarBaseUnit):
+    """
+    Unit for a freight diesel railcar.  Just a sparse subclass to set symmetry.  Capacity set in subclasses
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.random_trigger_switch = f"switch_spritelayer_cargos_unreversed_intermodal_containers_{self.model_variant.gestalt_graphics.spritelayer_cargo_layers[0]}_{4 * self.vehicle_length}px"
+
+    @cached_property
+    def capacity(self):
+        return self.get_freight_car_capacity()
+
+
+class DieselExpressRailcarPaxUnit(DieselRailcarBaseUnit):
+    """
+    Unit for a pax diesel express railcar.  Just a sparse subclass to set capacity and effects.
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        # effects
+        self.engine_class = "ENGINE_CLASS_DIESEL"
+
+    @property
+    def effects(self):
+        return {"default": ["EFFECT_SPAWN_MODEL_DIESEL", "EFFECT_SPRITE_DIESEL"]}
+
+    @cached_property
+    def capacity(self):
+        return self.get_pax_car_capacity()
+
+
+class DieselRailcarMailUnit(DieselRailcarBaseUnit):
+    """
+    Unit for a mail diesel railcar.  Just a sparse subclass to set capacity.
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+    @cached_property
+    def capacity(self):
+        return self.get_mail_car_capacity()
+
+
+class DieselRailcarPaxUnit(DieselRailcarBaseUnit):
+    """
+    Unit for a pax diesel railcar.  Just a sparse subclass to set capacity.
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+    @cached_property
+    def capacity(self):
+        return self.get_pax_car_capacity()
+
+
+class ElectricEngineUnit(UnitBase):
+    """
+    Unit for an electric engine.
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.engine_class = "ENGINE_CLASS_ELECTRIC"
+        # almost all electric engines are asymmetric, override per vehicle as needed
+        self._symmetry_type = kwargs.get("symmetry_type", "asymmetric")
+
+    @property
+    def effects(self):
+        # option to suppress default effects here via unit_def
+        if self.unit_def.effects is not None:
+            return self.unit_def.effects
+        else:
+            return {
+                "default": ["EFFECT_SPAWN_MODEL_ELECTRIC", "EFFECT_SPRITE_ELECTRIC"]
+            }
+
+
+class ElectricHighSpeedUnitBase(UnitBase):
+    """
+    Unit for high-speed, high-power electric train
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.engine_class = "ENGINE_CLASS_ELECTRIC"
+        self._symmetry_type = "asymmetric"
+
+    @property
+    def effects(self):
+        # option to suppress default effects here via unit_def
+        if self.unit_def.effects is not None:
+            return self.unit_def.effects
+        else:
+            return {
+                "default": ["EFFECT_SPAWN_MODEL_ELECTRIC", "EFFECT_SPRITE_ELECTRIC"]
+            }
+
+
+class ElectricHighSpeedMailUnit(ElectricHighSpeedUnitBase):
+    """
+    Mail unit for high-speed, high-power electric train
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+    @cached_property
+    def capacity(self):
+        return self.get_mail_car_capacity()
+
+
+class ElectricHighSpeedPaxUnit(ElectricHighSpeedUnitBase):
+    """
+    Passenger unit for high-speed, high-power electric train
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+    @cached_property
+    def capacity(self):
+        # this won't work with double deck high speed in future, extend a class for that then if needed
+        return self.get_pax_car_capacity()
+
+
+class ElectroDieselEngineUnit(UnitBase):
+    """
+    Unit for a bi-mode Locomotive - operates on electrical power or diesel.
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.engine_class = "ENGINE_CLASS_DIESEL"
+        # electro-diesels are complex eh?
+        self.model_variant.electro_diesel_buy_cost_malus = 1  # will get same buy cost factor as electric engine of same gen (blah balancing)
+        # almost all electro-diesel engines are asymmetric, override per vehicle as needed
+        self._symmetry_type = kwargs.get("symmetry_type", "asymmetric")
+
+    @property
+    def effects(self):
+        return {
+            "default": ["EFFECT_SPAWN_MODEL_DIESEL", "EFFECT_SPRITE_DIESEL"],
+            "electrified": ["EFFECT_SPAWN_MODEL_ELECTRIC", "EFFECT_SPRITE_ELECTRIC"],
+        }
+
+
+class ElectroDieselRailcarBaseUnit(UnitBase):
+    """
+    Unit for a bi-mode railcar - operates on electrical power or diesel.
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.engine_class = "ENGINE_CLASS_DIESEL"
+        # electro-diesels are complex eh?
+        self.model_variant.electro_diesel_buy_cost_malus = 1.15  # will get higher buy cost factor than electric railcar of same gen (blah balancing)
+        # the cab magic won't work unless it's asymmetrical eh? :P
+        self._symmetry_type = "asymmetric"
+
+    @property
+    def effects(self):
+        return {
+            "default": ["EFFECT_SPAWN_MODEL_DIESEL", "EFFECT_SPRITE_DIESEL"],
+            "electrified": ["EFFECT_SPAWN_MODEL_ELECTRIC", "EFFECT_SPRITE_ELECTRIC"],
+        }
+
+
+class ElectroDieselRailcarMailUnit(ElectroDieselRailcarBaseUnit):
+    """
+    Unit for a mail electro-diesel railcar.  Just a sparse subclass to set capacity.
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+    @cached_property
+    def capacity(self):
+        return self.get_mail_car_capacity()
+
+
+class ElectroDieselExpressRailcarPaxUnit(ElectroDieselRailcarBaseUnit):
+    """
+    Unit for a pax electro-diesel express railcar.  Just a sparse subclass to set and effects.
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        # effects
+        self.engine_class = "ENGINE_CLASS_DIESEL"
+
+    @property
+    def effects(self):
+        return {
+            "default": ["EFFECT_SPAWN_MODEL_DIESEL", "EFFECT_SPRITE_DIESEL"],
+            "electrified": ["EFFECT_SPAWN_MODEL_ELECTRIC", "EFFECT_SPRITE_ELECTRIC"],
+        }
+
+    @cached_property
+    def capacity(self):
+        return self.get_pax_car_capacity()
+
+
+class ElectricRailcarBaseUnit(UnitBase):
+    """
+    Unit for an electric railcar.  Capacity set in subclasses
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.engine_class = "ENGINE_CLASS_ELECTRIC"
+        # the cab magic won't work unless it's asymmetrical eh? :P
+        self._symmetry_type = "asymmetric"
+
+    @property
+    def effects(self):
+        return {"default": ["EFFECT_SPAWN_MODEL_ELECTRIC", "EFFECT_SPRITE_ELECTRIC"]}
+
+
+class ElectricExpressRailcarPaxUnit(ElectricRailcarBaseUnit):
+    """
+    Unit for a express pax electric railcar.  Just a sparse subclass to set capacity.
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+    @cached_property
+    def capacity(self):
+        return self.get_pax_car_capacity()
+
+
+class ElectricRailcarMailUnit(ElectricRailcarBaseUnit):
+    """
+    Unit for a mail electric railcar.  Just a sparse subclass to set capacity.
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+    @cached_property
+    def capacity(self):
+        return self.get_mail_car_capacity()
+
+
+class ElectricRailcarPaxUnit(ElectricRailcarBaseUnit):
+    """
+    Unit for a pax electric railcar.  Just a sparse subclass to set capacity and force the second livery to be used via dubious means.
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+    @cached_property
+    def capacity(self):
+        return self.get_pax_car_capacity()
+
+
+class MetroUnit(UnitBase):
+    """
+    Unit for an electric metro train, with high loading speed.
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.engine_class = "ENGINE_CLASS_ELECTRIC"
+        self.default_effect_z_offset = (
+            1  # optimised for Pony diesel and electric trains
+        )
+        # the cab magic won't work unless it's asymmetrical eh? :P
+        self._symmetry_type = "asymmetric"
+
+    @property
+    def effects(self):
+        return {"default": ["EFFECT_SPAWN_MODEL_ELECTRIC", "EFFECT_SPRITE_ELECTRIC"]}
+
+    @cached_property
+    def capacity(self):
+        if self.unit_def.capacity is not None:
+            return self.unit_def.capacity
+        else:
+            return 0
+
+
+class SnowploughUnit(UnitBase):
+    """
+    Unit for a snowplough.  Snowploughs have express cargo capacity, so they can actually be useful. :P
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.engine_class = "ENGINE_CLASS_DIESEL"  # !! needs changing??
+        self._symmetry_type = "asymmetric"
+
+    @property
+    def effects(self):
+        return {}
+
+    @cached_property
+    def capacity(self):
+        return self.get_mail_car_capacity()
+
+
+class SteamEnginePoweredUnit(UnitBase):
+    """
+    Unit for a steam engine, with smoke
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.engine_class = "ENGINE_CLASS_STEAM"
+        self.default_effect_z_offset = 13  # optimised for Pony steam trains
+        self._symmetry_type = "asymmetric"  # assume all steam engines are asymmetric
+
+    @property
+    def effects(self):
+        return {"default": ["EFFECT_SPAWN_MODEL_STEAM", "EFFECT_SPRITE_STEAM"]}
+
+    @property
+    def default_effect_offsets(self):
+        # force steam engine smoke to front by default, can also override per unit for more precise positioning
+        return [(1 + int(math.floor(-0.5 * self.vehicle_length)), 0)]
+
+
+class SteamEngineTenderUnit(UnitBase):
+    """
+    Unit for a steam engine tender.
+    Arguably this class is pointless, as it is just passthrough.
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        # assume all steam engine tenders are asymmetric
+        self._symmetry_type = "asymmetric"
+
+
+# alphabetised (mostly) non-CarUnitBase subclasses of UnitBase above here
+# then CarUnitBase subclasses below here, also alphabetised
+
+
+class CarUnitBase(UnitBase):
+    """
+    Intermediate class for actual cars (wagons) to subclass from, provides some common properties.
+    This class should be sparse - only declare the most limited set of properties common to wagons.
+    Most props should be declared by UnitBase with useful defaults.
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        # most wagons are symmetric, override per vehicle or subclass as needed
+        self._symmetry_type = kwargs.get("symmetry_type", "symmetric")
+
+    @property
+    def tail_light_switch_id(self):
+        # all wagons use auto tail-lights based on length
+        # override in subclass if needed
+        return f"switch_graphics_layer_tail_light_{str(self.vehicle_length * 4)}px"
+
+    @property
+    def running_cost_base(self):
+        # all wagons use the same RUNNING_COST_DIESEL, this is nerfed down to give appropriate increments for low wagon run costs
+        # this will break base cost mod grfs, but "Pikka says it's ok"
+        # engines will all use RUNNING_COST_STEAM
+        return "RUNNING_COST_DIESEL"
+
+    @cached_property
+    def weight(self):
+        # set weight based on capacity  * a multiplier from model_variant * roster gen factor
+        return int(
+            self.model_variant.weight_factor
+            * self.default_cargo_capacity
+            * self.model_variant.roster.train_car_weight_factors[
+                self.model_variant.gen - 1
+            ]
+        )
+
+
+class AlignmentCarUnit(CarUnitBase):
+    """
+    Alignment Car, for debugging sprite positions
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self._symmetry_type = "asymmetric"
+
+
+class CabooseCarUnit(CarUnitBase):
+    """
+    Caboose Car. This subclass only exists to set asymmetry and weight in absence of cargo capacity, in other respects it's just a standard wagon.
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        # caboose cars may be asymmetric, they are also user-flippable as of August 2022
+        self._symmetry_type = "asymmetric"
+
+    @cached_property
+    def weight(self):
+        # special handling of weight
+        weight_factor = 3 if self.model_variant.base_track_type == "NG" else 5
+        return weight_factor * self.vehicle_length
+
+    @property
+    def capacity(self):
+        return 0
+
+
+class SpacerCarUnit(CarUnitBase):
+    """
+    Spacer Car. This subclass only exists to set weight in absence of cargo capacity, in other respects it's just a standard wagon.
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+    @cached_property
+    def weight(self):
+        # special handling of weight
+        weight_factor = 1 if self.model_variant.base_track_type == "NG" else 2
+        return weight_factor * self.vehicle_length
+
+    @property
+    def capacity(self):
+        return 0
+
+
+class PaxCarUnit(CarUnitBase):
+    """
+    Pax wagon. This subclass only exists to set capacity and symmetry_type.
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        # pax wagons may be asymmetric, there is magic in the graphics processing to make this work
+        self._symmetry_type = "asymmetric"
+
+    @cached_property
+    def capacity(self):
+        return self.get_pax_car_capacity()
+
+
+class PaxRailcarTrailerCarUnit(PaxCarUnit):
+    """
+    Railcar (or railbus) unpowered pax trailer. This subclass only exists to set tail light
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+    @property
+    def tail_light_switch_id(self):
+        # tail lights may be
+        # - unique to the vehicle and automatically provided, if the template supports it
+        # - mapped to an explicitly defined global tail light type
+        if getattr(self.model_variant.gestalt_graphics, "tail_light_from_vehicle_sprites", False) and self.unit_def.tail_light is not None:
+            print(self.id, "defines both explicit tail light, and auto-tail-light")
+        if self.unit_def.tail_light is not None:
+            # explicit global type
+            return f"switch_graphics_layer_tail_light_{self.unit_def.tail_light}"
+        elif getattr(self.model_variant.gestalt_graphics, "tail_light_from_vehicle_sprites", False):
+            # automatically provisioned
+            return f"{self.id}_switch_graphics_vehicle"
+        else:
+            utils.echo_message(f"{self.id} - no tail light definition found")
+            return f"switch_graphics_layer_tail_light_empty"
+
+
+class PaxRestaurantCarUnit(PaxCarUnit):
+    """
+    Restaurant (special) pax wagon. This subclass only exists to set special weight handling
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        # restaurant cars may be asymmetric, there is magic in the graphics processing to make this work
+        self._symmetry_type = "asymmetric"
+
+    @cached_property
+    def weight(self):
+        # special handling of weight - let's just use 37 + gen for Pony, split that later for other rosters if needed
+        return 37 + self.model_variant.gen
+
+
+class ExpressCarUnit(CarUnitBase):
+    """
+    Express freight car.
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+    @cached_property
+    def capacity(self):
+        return self.get_mail_car_capacity()
+
+
+class ExpressIntermodalCarUnit(ExpressCarUnit):
+    """
+    Express container car, subclassed from express car.  This subclass only exists to symmetry_type and random trigger.
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        # express intermodal cars may be asymmetric, there is magic in the graphics processing to make this work
+        self._symmetry_type = "asymmetric"
+        self.random_trigger_switch = f"switch_spritelayer_cargos_unreversed_intermodal_containers_{self.model_variant.gestalt_graphics.spritelayer_cargo_layers[0]}_{4 * self.vehicle_length}px"
+
+
+class ExpressIntermodalCarRandomisedUnit(ExpressCarUnit):
+    """
+    Express intermodal Car. This subclass only exists to symmetry_type, random trigger and colour mapping switches.
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        # intermodal cars may be asymmetric, there is magic in the graphics processing to make this work
+        self._symmetry_type = "asymmetric"
+        self.random_trigger_switch = (
+            "switch_spritelayer_cargos_unreversed_intermodal_containers_"
+            f"default_{4 * self.vehicle_length}px"
+        )
+
+
+class ExpressMailCarUnit(ExpressCarUnit):
+    """
+    Mail wagon, subclassed from express car.  Only exists to set symmetry_type.
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        # mail wagons may be asymmetric, there is magic in the graphics processing to make symmetric pax/mail sprites also work with this
+        self._symmetry_type = "asymmetric"
+
+
+class MailRailcarTrailerCarUnit(ExpressCarUnit):
+    """
+    Railcar (or railbus) unpowered mail trailer. This subclass only exists to set tail light and symmetry type.
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self._symmetry_type = "asymmetric"
+
+    @property
+    def tail_light_switch_id(self):
+        # tail lights may be
+        # - unique to the vehicle and automatically provided, if the template supports it
+        # - mapped to an explicitly defined global tail light type
+        if getattr(self.model_variant.gestalt_graphics, "tail_light_from_vehicle_sprites", False) and self.unit_def.tail_light is not None:
+            print(self.id, "defines both explicit tail light, and auto-tail-light")
+        if self.unit_def.tail_light is not None:
+            # explicit global type
+            return f"switch_graphics_layer_tail_light_{self.unit_def.tail_light}"
+        elif getattr(self.model_variant.gestalt_graphics, "tail_light_from_vehicle_sprites", False):
+            # automatically provisioned
+            return f"{self.id}_switch_graphics_vehicle"
+        else:
+            utils.echo_message(f"{self.id} - no tail light definition found")
+            return f"switch_graphics_layer_tail_light_empty"
+
+
+class AutomobileCarAsymmetricUnit(ExpressCarUnit):
+    """
+    Automobile (cars, trucks, tractors) transporter car, subclassed from express car.
+    This subclass exists to set symmetry_type and random trigger.
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        # some vehicle transporter cars are asymmetric
+        self._symmetry_type = "asymmetric"
+        if len(self.model_variant.gestalt_graphics.spritelayer_cargo_layers) > 0:
+            # this will only handle first layer of a double deck auto carrier
+            # but that might not might matter, as it's vehicle bits we're randomising, not layers
+            self.random_trigger_switch = f"switch_spritelayer_cargos_unreversed_automobiles_{self.model_variant.gestalt_graphics.spritelayer_cargo_layers[0]}_{4 * self.vehicle_length}px"
+
+
+class AutomobileCarSymmetricUnit(ExpressCarUnit):
+    """
+    Automobile (cars, trucks, tractors) transporter car, subclassed from express car.
+    This subclass exists to set symmetry_type and random trigger.
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        # some vehicle transporter cars are symmetric
+        self._symmetry_type = "symmetric"
+        # this branches into the first layer, whereas vehicles can have multiple layers
+        # but that appears to not matter, as it's vehicle bits we're randomising, not layers
+        self.random_trigger_switch = f"switch_spritelayer_cargos_unreversed_automobiles_{self.model_variant.gestalt_graphics.spritelayer_cargo_layers[0]}_{4 * self.vehicle_length}px"
+
+
+class AutomobileCarRandomisedUnit(ExpressCarUnit):
+    """
+    Automobile (cars, trucks, tractors) transporter car, subclassed from express car.
+    This subclass exists to set symmetry_type and random trigger.
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self._symmetry_type = "asymmetric"
+        # randomised wagons don't have spritelayer_cargo_layers on their gestalt, so use the default cargo layer
+        self.random_trigger_switch = (
+            "switch_spritelayer_cargos_unreversed_automobiles_"
+            f"default_{4 * self.vehicle_length}px"
+        )
+
+
+class MetroCarUnitBase(CarUnitBase):
+    """
+    Metro pax/mail wagon base. Sets weight handling.
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        # metro pax/mail wagons may be asymmetric, there is magic in the graphics processing to make this work
+        self._symmetry_type = "asymmetric"
+
+    @cached_property
+    def weight(self):
+        # set weight based on length * a multiplier from model_variant * roster gen factor
+        return int(
+            self.model_variant.weight_factor
+            * (8 * self.vehicle_length)
+            * self.model_variant.roster.train_car_weight_factors[
+                self.model_variant.gen - 1
+            ]
+        )
+
+
+class MailMetroCarUnit(MetroCarUnitBase):
+    """
+    Metro mail wagon.
+    """
+
+    @cached_property
+    def capacity(self):
+        return int(1.25 * self.get_mail_car_capacity())
+
+
+class PaxMetroCarUnit(MetroCarUnitBase):
+    """
+    Metro pax wagon.
+    """
+
+    @cached_property
+    def capacity(self):
+        return self.get_pax_car_capacity()
+
+
+class FreightCarUnit(CarUnitBase):
+    """
+    Freight wagon.
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+    @cached_property
+    def capacity(self):
+        if self.unit_def.capacity is not None:
+            print(
+                self.model_variant.id,
+                self.id,
+                " has a capacity set in init - possibly incorrect",
+                self.unit_def.capacity,
+            )
+        # magic to set freight car capacity subject to length
+        base_capacity = self.model_variant.roster.freight_car_capacity_per_unit_length[
+            self.model_variant.base_track_type
+        ][self.model_variant.gen - 1]
+        return self.vehicle_length * base_capacity
+
+
+class BinCarUnit(FreightCarUnit):
+    """
+    Peat wagon, cane bin car. This subclass only exists to set the capacity.
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+    @cached_property
+    def capacity(self):
+        # just double whatever is set by the init, what could go wrong? :)
+        return 2 * self.get_freight_car_capacity()
+
+
+class CoilBuggyCarUnit(FreightCarUnit):
+    """
+    Coil buggy car. This subclass only exists to set the capacity.
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+    @cached_property
+    def capacity(self):
+        # just double whatever is set by the init, what could go wrong? :)
+        return 2 * self.get_freight_car_capacity()
+
+
+class CoilCarAsymmetricUnit(FreightCarUnit):
+    """
+    Asymmetric coil car. This subclass sets the symmetry_type to asymmetric.
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self._symmetry_type = "asymmetric"
+
+
+class MachineryCarAsymmetricUnit(FreightCarUnit):
+    """
+    Drop centre flat car. This subclass only exists to set the symmetry_type to asymmetric.
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self._symmetry_type = "asymmetric"
+
+
+class HeavyDutyCarUnit(FreightCarUnit):
+    """
+    Heavy duty car. This subclass only exists to set the capacity.
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+    @cached_property
+    def capacity(self):
+        # just double whatever is set by the init, what could go wrong? :)
+        return 2 * self.get_freight_car_capacity()
+
+
+class IngotCarUnit(FreightCarUnit):
+    """
+    Ingot car. This subclass only exists to set the capacity.
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+    @cached_property
+    def capacity(self):
+        # just double whatever is set by the init, what could go wrong? :)
+        return 2 * self.get_freight_car_capacity()
+
+
+class IntermodalCarUnit(FreightCarUnit):
+    """
+    Intermodal Car. This subclass only exists to symmetry_type and random trigger switches.
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        # intermodal cars may be asymmetric, there is magic in the graphics processing to make this work
+        self._symmetry_type = "asymmetric"
+        self.random_trigger_switch = f"switch_spritelayer_cargos_unreversed_intermodal_containers_{self.model_variant.gestalt_graphics.spritelayer_cargo_layers[0]}_{4 * self.vehicle_length}px"
+
+
+class IntermodalCarRandomisedUnit(FreightCarUnit):
+    """
+    Intermodal Car. This subclass only exists to symmetry_type and random trigger switches.
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        # intermodal cars may be asymmetric, there is magic in the graphics processing to make this work
+        self._symmetry_type = "asymmetric"
+        # randomised wagons don't have spritelayer_cargo_layers on their gestalt, so use the default cargo layer
+        self.random_trigger_switch = (
+            "switch_spritelayer_cargos_unreversed_intermodal_containers_"
+            f"default_{4 * self.vehicle_length}px"
+        )
+
+
+class OreDumpCarUnit(FreightCarUnit):
+    """
+    Ore dump car. This subclass sets the symmetry_type to asymmetric.
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self._symmetry_type = "asymmetric"
+
+
+class SlagLadleCarUnit(FreightCarUnit):
+    """
+    Slag ladle car. This subclass only exists to set the capacity.
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+    @cached_property
+    def capacity(self):
+        # just double whatever is set by the init, what could go wrong? :)
+        return 2 * self.get_freight_car_capacity()
+
+
+class TorpedoCarUnit(FreightCarUnit):
+    """
+    Torpedo car. This subclass sets the symmetry_type to asymmetric.
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self._symmetry_type = "asymmetric"
+
+    @cached_property
+    def capacity(self):
+        # capacity bonus is solely to support using small stations in Steeltown where space between industries is constrained
+        # just multiply whatever is set by the init, what could go wrong? :)
+        return 1.5 * self.get_freight_car_capacity()
