@@ -10,12 +10,6 @@ Don't make changes here, make them in the Polar Fox project and redistribute.
 Any changes made here are liable to be over-written.
 """
 
-"""
-This file is generated from the Polar Fox project.
-Don't make changes here, make them in the Polar Fox project and redistribute.
-Any changes made here are liable to be over-written.
-"""
-
 # used to construct the cargo table automatically
 # ! order is significant ! - openttd will cascade through default cargos in the order specified by the cargo table
 cargo_labels = [
@@ -137,196 +131,340 @@ cargo_labels = [
     "STTB",
     "TYCO",
     "HWAR",
+    "STBR",
+    "STSW",
+    "STPL",
+    "CHEM",
+    "LYE_",
+    "NUKF",
+    "NUKW",
+    "INCA",
+    "ENUM",
+    "MOLA",
     #
     "NULL",
 ]
 
 # shared lists of allowed classes, shared across multiple vehicle types
+# !! CABBAGE PARTLY UPDATED OCT 2024 UNFINISHED
+# !! DO WE NEED TO APPLY `any_grade` name for cases where there's no disallowed classes?  Just to be explicit?
+# !! OR is there a uniformity with the lists of specific labels?
 base_refits_by_class = {
-    "all_freight": [
-        "CC_BULK",
-        "CC_PIECE_GOODS",
-        "CC_EXPRESS",
-        "CC_LIQUID",
-        "CC_ARMOURED",
-        "CC_REFRIGERATED",
-        "CC_COVERED",
-        "CC_NON_POURABLE",
-    ],
-    "covered_hopper_freight": [],  # explicit allowal by label instead
-    "dump_freight": ["CC_BULK"],
-    "empty": [],
-    "express_freight": ["CC_EXPRESS", "CC_ARMOURED"],
-    "flatbed_freight": ["CC_PIECE_GOODS"],
-    "liquids": ["CC_LIQUID"],
-    "mail": ["CC_MAIL"],
-    "packaged_freight": ["CC_PIECE_GOODS", "CC_EXPRESS", "CC_ARMOURED", "CC_LIQUID"],
-    "pax": ["CC_PASSENGERS"],
-    "refrigerated_freight": ["CC_REFRIGERATED"],
+    "all_freight": {
+        "allowed": [
+            "CC_ARMOURED",
+            "CC_COVERED_BULK",
+            "CC_EXPRESS",
+            "CC_FLATBED",
+            "CC_GAS_BULK",
+            "CC_LIQUID_BULK",
+            "CC_OPEN_BULK",
+            "CC_PIECE_GOODS",
+            "CC_POWDER_BULK",
+            "CC_REFRIGERATED",
+            "CC_WEIRD",
+        ],
+        "disallowed": [],
+    },
+    "covered_hopper_freight_any_grade": {
+        "allowed": [
+            "CC_COVERED_BULK",
+        ],
+        "disallowed": [],
+    },
+    "covered_hopper_freight_food_grade": {
+        "allowed": [
+            "CC_COVERED_BULK",
+        ],
+        "disallowed": [
+            "CC_NON_POTABLE",
+        ],
+    },
+    "covered_hopper_freight_non_food_grade": {
+        "allowed": [
+            "CC_COVERED_BULK",
+        ],
+        "disallowed": [
+            "CC_POTABLE",
+        ],
+    },
+    "cryo_gases": {"allowed": ["CC_GAS_BULK"], "disallowed": []},
+    "open_bulk_non_food_grade": {
+        "allowed": ["CC_OPEN_BULK"],
+        "disallowed": ["CC_POTABLE"],
+    },
+    "empty": {"allowed": [], "disallowed": []},
+    "express_freight": {"allowed": ["CC_EXPRESS", "CC_ARMOURED"], "disallowed": []},
+    "flatbed_freight": {"allowed": ["CC_FLATBED"], "disallowed": []},
+    "liquids_non_food_grade": {
+        "allowed": ["CC_LIQUID_BULK"],
+        "disallowed": ["CC_POTABLE"],
+    },
+    "liquids_food_grade": {
+        "allowed": ["CC_LIQUID_BULK"],
+        "disallowed": ["CC_NON_POTABLE"],
+    },
+    "mail": {"allowed": ["CC_MAIL"], "disallowed": []},
+    # includes mail
+    "packaged_freight": {
+        "allowed": ["CC_PIECE_GOODS", "CC_EXPRESS", "CC_MAIL"],
+        "disallowed": ["CC_WEIRD"],  # weird covered in all_freight,
+    },
+    "pax": {"allowed": ["CC_PASSENGERS"], "disallowed": []},
+    "refrigerated_freight": {
+        "allowed": ["CC_REFRIGERATED"],
+        "disallowed": ["CC_NON_POTABLE"],
+    },
+    "silo_powders": {"allowed": ["CC_POWDER_BULK"], "disallowed": []},
 }
 
 # generally we want to allow refit on classes, and disallow on labels (see disallowed_refits_by_label)
-# BUT for _some_ specialist vehicle types, it's simpler to just allow refit by label
+# as of Jan 2026 FRAX classes make that more reliable, where used
+# but there are still special cases where allowed labels offer better specificity
+# allowed labels also provide the option for tidier legacy support of non-FRAX industry grfs
 allowed_refits_by_label = {
-    # box cars get some extended cargos
-    "box_freight": [
-        "MAIL",
-        "GRAI",
-        "WHEA",
-        "MAIZ",
-        "FRUT",
-        "BEAN",
-        "NITR",
-        "CMNT",
-    ],
-    # seems to be used by intermodal, otherwise chemicals tankers are deprecated in favour of product tankers
-    "chemicals": [
-        "ACID",
-        "RFPR",
-        "CHLO",
-    ],
-    "metal_coil": [
-        "STEL",
-        "METL",
-        "STCB",
-        "STAL",
-        "STST",
-        "COPR",
-        "STSH",
-        "STWR",
+    # these are used for dedicated metal carrying vehicles (mostly steel-industry specific)
+    # there are no classes that can pick this out, so this list is valid and required
+    "allowed_metal_products": [
         "ALUM",
+        "COPR",
+        "METL",
         "RBAR",
+        "STAL",
+        "STBL",
+        "STBR",
+        "STCB",
+        "STEL",
+        "STIG",
+        "STPL",
+        "STSE",
+        "STSH",
+        "STSL",
+        "STST",
+        "STSW",
+        "STWR",
+        "TYCO",
+        "ZINC",
     ],
-    "covered_hoppers": [
-        "GRAI",
-        "WHEA",
-        "MAIZ",
-        "SUGR",
-        "FMSP",
-        "RFPR",
-        "CLAY",
-        "BDMT",
-        "BEAN",
-        "NITR",
-        "RUBR",
-        "SAND",
-        "POTA",
-        "QLME",
-        "SASH",
-        "CMNT",
-        "KAOL",
-        "FERT",
-        "SALT",
-        "PLAS",
-        "PHOS",
+    # some food grade cargos have non-food uses and can also be transported by non-food tankers
+    "allowed_tanker_products": [
+        "MOLA",
+    ],
+    # this covers all of
+    # - farm covered hoppers
+    # - food covered hoppers
+    # - farm box cars
+    # - combo cars of all the above
+    # - inevitably some unrealism is accepted in favour of consistent refittability across these types
+    # it's a judgement call whether this
+    # - *includes* a cargo that's not suitable for all types
+    # - or *excludes* the cargo even though some types could carry it
+    "allowed_farm_food_products": [
         "BAKE",
-        "ALO_",
-        "NHNO",
-        # not CBLK, gets dedicated vehicles or box
-    ],
-    "cryo_gases": ["CHLO", "O2__", "NH3_", "N7__", "WELD", "H2__", "N7__"],
-    "edible_liquids": ["MILK", "WATR", "BEER", "FOOD", "EOIL"],
-    "farm_products": [
         "BEAN",
-        "CASS",
         "CERE",
-        "FERT",
+        "ENUM",
         "FMSP",
         "FOOD",
         "FRUT",
         "GRAI",
         "JAVA",
         "MAIZ",
+        "MOLA",
         "NUTS",
         "OLSD",
         "SEED",
         "SGBT",
+        "SUGR",
         "TATO",
         "WHEA",
     ],
-    # for bolster wagon
-    "long_products": [
-        "STEL",
-        "METL",
-        "STCB",
-        "STAL",
-        "STST",
-        "COPR",
-        "STSH",
-        "STSE",
-        "STWR",
-        "WOOD",
-        "WDPR",
-        "BDMT",
-        "ALUM",
-        "PIPE",
-        "ZINC",
-        "ENSP",
-        "STSL",
-        "STBL",
-        "STIG",
+    # box cars get some extended cargos for older (pre-FRAX) cargos that don't set piece goods
+    "legacy_box_freight": [
+        "BEAN",
+        "CMNT",
+        "FRUT",
+        "GRAI",
+        "MAIL",
+        "MAIZ",
+        "NITR",
+        "WHEA",
     ],
-    # hax for intermodal container sprite selection - reefer car refits work just fine using CC_REFRIGERATED
+    # covered hoppers (excluding farm hoppers)
+    # two lists for legacy support
+    # - a longer list suitable for any non-food covered hopper
+    # - a shorter list suitable only for general covered hoppers (non-mineral, non-food)
+    #   - mostly 'clean' cargos that are not food-grade, but are definitely unsuitable for mineral hoppers (which are assumed to be dirtier and less protective of their cargos)
+    # there is also a non-legacy 'disallow' list for mineral covered hoppers, caution is needed to avoid making all these lists too faffy
+    # we then also permit allowed_farm_food_products on generic covered hoppers
+    "legacy_allowed_covered_hoppers_any_non_food": [
+        "ALO_",
+        "BDMT",
+        "CLAY",
+        "CMNT",
+        "FERT",
+        "FMSP",
+        "KAOL",
+        "NITR",
+        "PHOS",
+        "POTA",
+        "QLME",
+        "CHEM",
+        "SALT",
+        "SAND",
+        "SASH",
+    ],
+    "legacy_allowed_covered_hoppers_non_mineral_non_food": [
+        "CBLK",
+        "NHNO",
+        "PLAS",
+        "RUBR",
+    ],
+    "legacy_allowed_silo_powderised": [
+        "BDMT",
+        "CBLK",
+        "CHEM",
+        "CMNT",
+        "FMSP",
+        "QLME",
+        "SAND",
+        "SASH",
+        "SOAP",
+        "SUGR",
+    ],
+    # used for food tankers to refit to older cargos that don't set liquid bulk and potable bits
+    "legacy_allowed_food_grade_liquid_bulk": [
+        "FOOD",
+        "MILK",
+    ],
+    # used for flatbed to refit to older cargos that don't set flatbed bits (limited range, this doesn't try to be comprehensive)
+    "legacy_allowed_flatbed": [
+        "METL",
+        "PIPE",
+        "STEL",
+        "WDPR",
+        "WOOD",
+    ],
+    # !! CABBAGE THIS IS NOT ABOUT REFITS, THIS IS ABOUT MAPPING INTERMODAL CONTAINER SPRITES TO CARGO LABELS
+    # !! used internally in Polar Fox
+    # !! is it also used externally in consumers via `container_recolour_cargo_maps`?
+    # !! definitely a candidate for refactor, but doesn't relate to FRAX - didn't change as of Jan 2026
+    "chemicals": [
+        "ACID",
+        "CHLO",
+        "RFPR",
+    ],
+    # !! CABBAGE THIS IS NOT ABOUT REFITS, THIS IS ABOUT MAPPING INTERMODAL CONTAINER SPRITES TO CARGO LABELS
+    # !! used internally in Polar Fox
+    # !! is it also used externally in consumers via `container_recolour_cargo_maps`?
+    # !! definitely a candidate for refactor, but doesn't relate to FRAX - didn't change as of Jan 2026
     "reefer": [
+        "FISH",
         "FOOD",
         "FRUT",
-        "FISH",
     ],
+    "cryo_gases": [], # this really is just here to make the Polar Fox containers compile work as of Jan 2026, it's possibly a sign of unintentionally nerfed cryo container support, but eh
 }
 
-# rather than using disallowed classes (can cause breakage), specific labels are disallowed
+# these are maintained for legacy support with older industry grfs that don't use FRAX (or don't set potable / non-potable bits)
 disallowed_refits_by_label = {
-    "non_dump_bulk": [
-        "WOOD",
-        "SGCN",
-        "FICR",
-        "BDMT",
-        "WDPR",
-        "GRAI",
-        "WHEA",
-        "CERE",
-        "MAIZ",
-        "FRUT",
+    # used to exclude from open bulk vehicles older cargos that set 'bulk' bit (prior to FRAX) but should be covered bulk, powder bulk, piece godos or have a food grade exclusion
+    "legacy_disallowed_open_bulk": [
+        "BAKE",
         "BEAN",
+        "BDMT",
+        "CBLK",
+        "CERE",
         "CMNT",
         "CTCD",
         "FERT",
+        "FICR",
+        "FRUT",
+        "GRAI",
+        "MAIZ",
         "OLSD",
+        "PLAS",
+        "RFPR",
         "SUGR",
         "TOFF",
         "URAN",
-        "CBLK",
-        "PLAS",
+        "WDPR",
+        "WHEA",
+        "WOOD",
+    ],
+    # used to exclude from covered bulk vehicles older cargos that set 'covered' bit (prior to FRAX) but aren't covered bulk cargos
+    "legacy_disallowed_covered_hoppers_all_types": [
+        "RFPR", # mostly RFPR is liquids, instead use CHEM for generic chemicals
+        "WOOL",
+    ],
+    # used to exclude from covered bulk vehicles cargos that set 'covered' bit (prior to FRAX), but aren't suitable for mineral covered hoppers
+    # e.g. unsuitable for coarser, potentially dirtier covered hoppers
+    # note that this has to handle both
+    #   - *non-legacy* ('clean' cargos that can't be picked out with a class as there's no class fine-grained enough)
+    #   - and *legacy* cargos that set covered bit, but don't set potable bit, so can't be picked out by that class
+    # be cautious with these, as there's also an allowed list, and it can be faff when one cancels the other
+    "disallowed_covered_hoppers_mineral": [
         "BAKE",
-    ],
-    # used to exclude from standard tankers
-    "non_generic_liquids": [
-        "MILK",
-        "WATR",
-        "BEER",
-        "FOOD",
-        "EOIL",
-        "O2__",
-        "CHLO",
-        "N7__",
-    ],
-    "non_flatbed_freight": [
-        "FOOD",
-        "FISH",
-        "LVST",
-        "FRUT",
-        "BEER",
-        "MILK",
-        "JAVA",
-        "SUGR",
-        "NUTS",
-        "EOIL",
-        "BOOM",
-        "FERT",
-        "PLAS",
+        "BEAN",
         "CBLK",
+        "CERE",
+        "CTCD",
+        "FOOD",
+        "FRUT",
+        "GRAI",
+        "MAIZ",
+        "OLSD",
+        "PLAS",
+        "SUGR",
+        "TOFF",
     ],
-    "non_freight_special_cases": ["TOUR"],
+    # used to exclude from generic tankers older food and gas cargos that set 'liquid' bit (prior to FRAX)
+    "legacy_disallowed_liquid_bulk": [
+        "BEER",
+        "CHLO",
+        "EOIL",
+        "FOOD",
+        "MILK",
+        "N7__",
+        "O2__",
+        "WATR",
+    ],
+    # !! CABBAGE - THIS NEEDS FINISHING FOR FOOD TANKERS WITH E.G. FIRS 3
+    "legacy_disallowed_food_grade_liquid_bulk": [
+        "ACID",
+        "CHLO",
+        "DYES",
+        "KAOL",
+        "OIL_",
+        "PETR",
+        "PLAS",
+        "RFPR",
+        "RUBR",
+        "SULP",
+    ],
+    "legacy_disallowed_farm_food_products": [
+        "BDMT",
+        "CLAY",
+        "CMNT",
+        "KAOL",
+        "QLME",
+        "RFPR",
+        "SASH",
+        "SGBT", # Sugar beet is not food grade, and not suitable for farm covered hoppers or box cars
+        "SULP",
+        "WOOL", # Wool is not food grade, and also not suitable for farm covered hoppers
+    ],
+    # used to exclude from pressure tankers older cargos that used 'hazardous' bit (prior to FRAX)
+    "legacy_disallowed_gas_bulk": [
+        "ACID",
+        "BOOM",
+        "CTAR",
+        "LYE_",
+        "NUKF",
+        "NUKW",
+        "URAN",
+    ],
+    "legacy_disallowed_express": ["TOUR"],
 }
 
 # cascading lists of default cargos, if the first cargo(s) are not available, all will be tried in order
@@ -368,6 +506,7 @@ default_cargos = {
     "dump_scrap": ["SCMT", "COAL"],
     "edibles_tank": ["WATR", "MILK", "BEER"],
     # ENSP was tried as default for express, but confusing when attached express cars for mail to pax trains
+    # many of these cargos tend to have weight adjustments (1 unit != 1t), which can be annoying for refits and hp/ton, but eh, it is what it is
     "express": [
         "MAIL",
         "ENSP",
@@ -568,14 +707,14 @@ tanker_livery_recolour_maps_extended = (
         # second value is body recolour map for intermodal bulk containers
         "1CC",
         {136: 1, 137: 2, 138: 3, 139: 4, 140: 5, 141: 6, 142: 7, 143: 8},
-        # weathered variant
+        # weathered state
         {136: 104, 137: 1, 138: 2, 139: 3, 140: 4, 141: 5, 142: 6, 143: 7},
     ),
     (
         "CTAR",
         "1CC",
         {136: 104, 137: 1, 138: 2, 139: 3, 140: 4, 141: 5, 142: 6, 143: 7},
-        # weathered variant
+        # weathered state
         {136: 70, 137: 104, 138: 1, 139: 2, 140: 3, 141: 4, 142: 5, 143: 6},
     ),
     # see note on DFLT above
@@ -592,7 +731,7 @@ tanker_livery_recolour_maps_extended = (
             142: 204,
             143: 205,
         },
-        # weathered variant
+        # weathered state
         {
             136: 198,
             137: 199,
@@ -608,7 +747,7 @@ tanker_livery_recolour_maps_extended = (
         "SULP",
         "1CC",
         {136: 62, 137: 63, 138: 64, 139: 65, 140: 66, 141: 67, 142: 68, 143: 69},
-        # weathered variant
+        # weathered state
         {136: 62, 137: 63, 138: 64, 139: 193, 140: 194, 141: 50, 142: 51, 143: 52},
     ),
     # RFPR deliberately 2CC to allow combining with 1CC livery details
@@ -616,21 +755,21 @@ tanker_livery_recolour_maps_extended = (
         "RFPR",
         "1CC",
         {136: 80, 137: 81, 138: 82, 139: 83, 140: 84, 141: 85, 142: 86, 143: 87},
-        # weathered variant
+        # weathered state
         {136: 80, 137: 81, 138: 82, 139: 83, 140: 84, 141: 85, 142: 86, 143: 87},
     ),
     (
         "RUBR",
         "1CC",
         {136: 40, 137: 41, 138: 42, 139: 43, 140: 44, 141: 45, 142: 46, 143: 47},
-        # weathered variant
+        # weathered state
         {136: 71, 137: 72, 138: 73, 139: 43, 140: 44, 141: 76, 142: 77, 143: 47},
     ),
     (
         "PETR",
         "1CC",
         {136: 16, 137: 17, 138: 18, 139: 19, 140: 20, 141: 21, 142: 22, 143: 23},
-        # weathered variant
+        # weathered state
         {136: 16, 137: 5, 138: 6, 139: 8, 140: 9, 141: 21, 142: 22, 143: 23},
     ),
 )
@@ -641,7 +780,7 @@ tanker_livery_recolour_maps = [
 tanker_livery_recolour_maps_weathered = [
     (i[0], i[3]) for i in tanker_livery_recolour_maps_extended
 ]
-# drop the weathered variant for containers, the container handling expects a 3-tuple only (oof)
+# drop the weathered state for containers, the container handling expects a 3-tuple only (oof)
 tanker_livery_recolour_maps_containers = [
     (i[0], i[1], i[2]) for i in tanker_livery_recolour_maps_extended
 ]
@@ -690,6 +829,11 @@ bulk_cargo_recolour_maps_extended = (
     ("SCMT", "1CC", {170: 104, 171: 3, 172: 2, 173: 70, 174: 71, 175: 72, 176: 3}),
     ("SGBT", "1CC", {170: 60, 171: 53, 172: 54, 173: 55, 174: 56, 175: 57, 176: 58}),
     ("SLAG", "1CC", {170: 24, 171: 3, 172: 2, 173: 3, 174: 4, 175: 5, 176: 5}),
+    (
+        "SGCN",
+        "1CC",
+        {170: 104, 171: 53, 172: 54, 173: 55, 174: 56, 175: 58, 176: 59},
+    ),
     ("SULP", "1CC", {170: 65, 171: 67, 172: 66, 173: 67, 174: 68, 175: 69, 176: 69}),
     (
         "WDCH",
@@ -803,7 +947,7 @@ container_recolour_cargo_maps = (
             curtain_side_livery_recolour_maps,
         ),
     ),
-    ("edibles_tank", (allowed_refits_by_label["edible_liquids"], [])),
+    ("edibles_tank", (allowed_refits_by_label["legacy_allowed_food_grade_liquid_bulk"], [])),
     (
         "livestock",
         # one label only - extend if other livestock labels added in future
@@ -825,6 +969,16 @@ container_piece_cargo_maps = {
     "ingots_1": piece_sprites_to_cargo_labels_maps["ingots_1"],
     "pipes_1": piece_sprites_to_cargo_labels_maps["pipes_1"],
     "steel_slab_1": piece_sprites_to_cargo_labels_maps["steel_slab_1"],
+}
+
+# for containers (intermodal)
+# explicit control over contested cargo_labels, by specifying which container type should be used (there can only be one type for label based support)
+container_contested_cargo_labels = {
+    "CHLO": "cryo_tank",
+    "FOOD": "reefer",
+    "N7__": "cryo_tank",
+    "RFPR": "chemicals_tank",
+    "SULP": "tank",
 }
 
 # indexes into the DOS palette for a company colour name
