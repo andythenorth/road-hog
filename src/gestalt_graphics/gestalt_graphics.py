@@ -134,7 +134,7 @@ class GestaltGraphicsVisibleCargo(GestaltGraphics):
                 num_variants = len(cargo_filenames)
                 spriterow_nums = [counter + i for i in range(num_variants)]
                 for cargo_label in cargo_labels:
-                    result[cargo_label] = spriterow_nums
+                    result.setdefault(cargo_label, []).extend(spriterow_nums)
                 counter += num_variants
         return result
 
