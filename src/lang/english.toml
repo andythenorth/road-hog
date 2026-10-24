@@ -9,6 +9,7 @@ base = "License: {SILVER}GPL v2{}{BLACK}"
 base = ""
 landrace = "A Big Fat Road Vehicle Set"
 heqs = "The Heavy Equipment Set"
+migration_test = "Migration Test"
 
 [STR_PARAM_ADJUST_VEHICLE_CAPACITY]
 base = "Road Vehicle capacity"
