@@ -181,10 +181,8 @@ class RoadVehicleBase:
             if unit.id in seen:
                 continue
             seen.add(unit.id)
-            # CABBAGE PASS 1 TEMPLATE SHIM: temporarily force vehicle_default.pynml.
-            # CABBAGE FUTURE PASS: restore self.gestalt_graphics.nml_template selection;
-            # cargo-specific liveries and visible-cargo rendering remain deferred.
-            template = templates["vehicle_default.pynml"]
+            # Vehicle NML template selection belongs to GestaltGraphics.
+            template = templates[self.gestalt_graphics.nml_template]
             result.append(
                 template(
                     model_variant=self, unit=unit, global_constants=global_constants

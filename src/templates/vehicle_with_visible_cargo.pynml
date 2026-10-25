@@ -1,74 +1,74 @@
 <tal:include metal:use-macro="load: spriteset_templates.pynml" />
 
-spriteset(${vehicle.id}_ss_empty, "${global_constants.graphics_path}${consist.id}.png") {
-  spriteset_template_${vehicle.id}(${vehicle.spriterow_num * 30} + 10)
+spriteset(${unit.id}_ss_empty, "${global_constants.graphics_path}${model_variant.model_def.model_id}.png") {
+  spriteset_template_${unit.id}(${unit.spriterow_num * 30} + 10)
 }
 
-<tal:cargo_variants repeat="cargo_variant_num python:range(consist.gestalt_graphics.num_cargo_sprite_variants)">
-    spriteset(${vehicle.id}_ss_loading_${cargo_variant_num}, "${global_constants.graphics_path}${consist.id}.png") {
-      spriteset_template_${vehicle.id}(${vehicle.spriterow_num * 30} + ${cargo_variant_num * 60} + 40)
+<tal:cargo_variants repeat="cargo_variant_num python:range(model_variant.gestalt_graphics.num_cargo_sprite_variants)">
+    spriteset(${unit.id}_ss_loading_${cargo_variant_num}, "${global_constants.graphics_path}${model_variant.model_def.model_id}.png") {
+      spriteset_template_${unit.id}(${unit.spriterow_num * 30} + ${cargo_variant_num * 60} + 40)
     }
-    spriteset(${vehicle.id}_ss_loaded_${cargo_variant_num}, "${global_constants.graphics_path}${consist.id}.png") {
-      spriteset_template_${vehicle.id}(${vehicle.spriterow_num * 30} + ${cargo_variant_num * 60} + 70)
+    spriteset(${unit.id}_ss_loaded_${cargo_variant_num}, "${global_constants.graphics_path}${model_variant.model_def.model_id}.png") {
+      spriteset_template_${unit.id}(${unit.spriterow_num * 30} + ${cargo_variant_num * 60} + 70)
     }
 
-    spritegroup ${vehicle.id}_sg_empty_${cargo_variant_num} {
+    spritegroup ${unit.id}_sg_empty_${cargo_variant_num} {
         loaded:  [
-            ${vehicle.id}_ss_empty,
+            ${unit.id}_ss_empty,
         ];
         loading: [
-            ${vehicle.id}_ss_empty,
+            ${unit.id}_ss_empty,
         ];
     }
-    spritegroup ${vehicle.id}_sg_loading_${cargo_variant_num} {
+    spritegroup ${unit.id}_sg_loading_${cargo_variant_num} {
         loaded:  [
-            ${vehicle.id}_ss_loading_${cargo_variant_num},
+            ${unit.id}_ss_loading_${cargo_variant_num},
         ];
         loading: [
-            ${vehicle.id}_ss_loading_${cargo_variant_num},
+            ${unit.id}_ss_loading_${cargo_variant_num},
         ];
     }
-    spritegroup ${vehicle.id}_sg_loaded_${cargo_variant_num} {
+    spritegroup ${unit.id}_sg_loaded_${cargo_variant_num} {
         loaded:  [
-            ${vehicle.id}_ss_loaded_${cargo_variant_num},
+            ${unit.id}_ss_loaded_${cargo_variant_num},
         ];
         loading: [
-            ${vehicle.id}_ss_loaded_${cargo_variant_num},
+            ${unit.id}_ss_loaded_${cargo_variant_num},
         ];
     }
 
     <!--! March 2018 - experimental change of 'loading' threshold from 1% to 25%, and 'loaded from 99% to 90%, seems to look better
           Might have unwanted side effects, e.g. box cars not opening side doors?  Unverified. -->
-    switch (FEAT_ROADVEHS, SELF, ${vehicle.id}_switch_graphics_percent_loaded_${cargo_variant_num}, cargo_count*100/cargo_capacity) {
-            0..24: return ${vehicle.id}_sg_empty_${cargo_variant_num};
-            25..90: return ${vehicle.id}_sg_loading_${cargo_variant_num};
-        return ${vehicle.id}_sg_loaded_${cargo_variant_num};
+    switch (FEAT_ROADVEHS, SELF, ${unit.id}_switch_graphics_percent_loaded_${cargo_variant_num}, cargo_count*100/cargo_capacity) {
+            0..24: return ${unit.id}_sg_empty_${cargo_variant_num};
+            25..90: return ${unit.id}_sg_loading_${cargo_variant_num};
+        return ${unit.id}_sg_loaded_${cargo_variant_num};
     }
 </tal:cargo_variants>
 
-<tal:cargo_random_switches repeat="mapping consist.gestalt_graphics.cargo_row_map.items()">
+<tal:cargo_random_switches repeat="mapping model_variant.gestalt_graphics.cargo_row_map.items()">
     <tal:exclude_default_cargo condition="mapping[0] != 'DFLT'">
-        random_switch (FEAT_ROADVEHS, ${vehicle.get_nml_expression_for_cargo_variant_random_switch(mapping[0])}) {
+        random_switch (FEAT_ROADVEHS, SELF, ${unit.id}_switch_graphics_${mapping[0]}, bitmask(TRIGGER_VEHICLE_ANY_LOAD)) {
             <tal:random_graphics_variations repeat="spriterow_num mapping[1]">
-                1: return ${vehicle.id}_switch_graphics_percent_loaded_${spriterow_num};
+                1: return ${unit.id}_switch_graphics_percent_loaded_${spriterow_num};
             </tal:random_graphics_variations>
         }
     </tal:exclude_default_cargo>
 </tal:cargo_random_switches>
 
-random_switch (FEAT_ROADVEHS, ${vehicle.get_nml_expression_for_cargo_variant_random_switch('generic_cargos')}) {
-    <tal:random_graphics_variations repeat="spriterow_num consist.gestalt_graphics.generic_rows">
-        1: return ${vehicle.id}_switch_graphics_percent_loaded_${spriterow_num};
+random_switch (FEAT_ROADVEHS, SELF, ${unit.id}_switch_graphics_generic_cargos, bitmask(TRIGGER_VEHICLE_ANY_LOAD)) {
+    <tal:random_graphics_variations repeat="spriterow_num model_variant.gestalt_graphics.generic_rows">
+        1: return ${unit.id}_switch_graphics_percent_loaded_${spriterow_num};
     </tal:random_graphics_variations>
 }
 
-switch (FEAT_ROADVEHS, SELF, ${vehicle.id}_switch_graphics, cargo_type_in_veh) {
-    <tal:cargos repeat="mapping consist.gestalt_graphics.cargo_row_map.items()">
+switch (FEAT_ROADVEHS, SELF, ${unit.id}_switch_graphics, cargo_type_in_veh) {
+    <tal:cargos repeat="mapping model_variant.gestalt_graphics.cargo_row_map.items()">
         <tal:exclude_default_cargo condition="mapping[0] != 'DFLT'">
-            ${mapping[0]}: return ${vehicle.id}_switch_graphics_${mapping[0]};
+            ${mapping[0]}: return ${unit.id}_switch_graphics_${mapping[0]};
         </tal:exclude_default_cargo>
     </tal:cargos>
-    return ${vehicle.id}_switch_graphics_generic_cargos;
+    return ${unit.id}_switch_graphics_generic_cargos;
 }
 
 <tal:include metal:use-macro="load: graphics_switches.pynml" />
