@@ -236,7 +236,13 @@ def convert(path, available_schemas, available_units, model_keys, unit_keys):
     # Import belongs after existing imports so it does not violate __future__ imports.
     imports = [n for n in tree.body if isinstance(n, (ast.Import, ast.ImportFrom))]
     import_at = pos[imports[-1].end_lineno] if imports else 0
-    edits.append((import_at, import_at, '\nfrom road_vehicle.model_def import ModelDef\n'))
+    # CABBAGE: Retain deferred rendering scope beside each migrated vehicle.
+    # Stage 008 may restore originals after its trial; installed candidates keep it.
+    edits.append((import_at, import_at,
+        '\nfrom road_vehicle.model_def import ModelDef\n'
+        '# CABBAGE DEFERRED: Pass 1 supports only vehicle_default.pynml.\n'
+        '# CABBAGE FUTURE PASS: restore legacy template choice and cargo-specific\n'
+        '# spritegroups/liveries where present in this vehicle.\n'))
     edits.sort(key=lambda x: (x[0], x[1]), reverse=True)
     candidate = original
     next_end = len(original)+1
@@ -255,7 +261,10 @@ def convert(path, available_schemas, available_units, model_keys, unit_keys):
         old_comments.remove(retired_comment)
     new_comments = [c for c in comments(candidate) if not (
         c.startswith('# CABBAGE unit_num_providing_spriterow_num=') or
-        c.startswith('# CABBAGE type_base_running_cost_points='))]
+        c.startswith('# CABBAGE type_base_running_cost_points=') or
+        c.startswith('# CABBAGE DEFERRED: Pass 1 supports only vehicle_default.pynml.') or
+        c.startswith('# CABBAGE FUTURE PASS: restore legacy template choice and cargo-specific') or
+        c.startswith('# spritegroups/liveries where present in this vehicle.'))]
     if old_comments != new_comments: issues.append('comments_changed')
     # Existing legacy imports remain in candidates; importing from road_vehicle is
     # deliberately not treated as production-ready.
@@ -281,7 +290,7 @@ def main():
     model_class = next(n for n in model_tree.body if isinstance(n, ast.ClassDef) and n.name == 'ModelDef')
     sprites_fields = [n for n in model_class.body if isinstance(n, ast.AnnAssign) and isinstance(n.target, ast.Name) and n.target.id == 'sprites_complete']
     if len(sprites_fields) != 1 or not isinstance(sprites_fields[0].value, ast.Constant) or sprites_fields[0].value.value is not False:
-        raise SystemExit('Stage 010 required: sprites_complete must default to False before Stage 007')
+        raise SystemExit('Stage 001 required: sprites_complete must default to False before Stage 007')
     model_keys = model_fields(model_tree, 'ModelDef')
     if 'fixed_run_cost_points' not in model_keys:
         raise SystemExit('Iron Horse ModelDef fixed_run_cost_points field missing; foundation requires review')

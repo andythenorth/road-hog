@@ -223,6 +223,55 @@ def provision_power_units():
 
 
 
+def ensure_base_loading_speed_default(source):
+    """CABBAGE: Legacy Consist defaults this to 1; child schemas may override."""
+    tree = ast.parse(source)
+    base = next((n for n in tree.body if isinstance(n, ast.ClassDef)
+                 and n.name == 'RoadVehicleBase'), None)
+    if base is None:
+        raise RuntimeError('RoadVehicleBase missing')
+    init = next((n for n in base.body if isinstance(n, ast.FunctionDef)
+                 and n.name == '__init__'), None)
+    if init is None:
+        raise RuntimeError('RoadVehicleBase.__init__ missing')
+    assignments = []
+    for statement in init.body:
+        if isinstance(statement, (ast.Assign, ast.AnnAssign)):
+            targets = statement.targets if isinstance(statement, ast.Assign) else [statement.target]
+            if any(isinstance(target, ast.Attribute) and isinstance(target.value, ast.Name)
+                   and target.value.id == 'self' and target.attr == 'loading_speed_multiplier'
+                   for target in targets):
+                assignments.append(statement)
+    if assignments:
+        if len(assignments) != 1 or not isinstance(assignments[0].value, ast.Constant) or assignments[0].value.value != 1:
+            raise RuntimeError('Existing RoadVehicleBase loading-speed assignment differs from legacy default')
+        return source
+    # Insert inside __init__ at a bounded, source-verified anchor without reformatting.
+    lines = source.splitlines(keepends=True)
+    anchor_index = next((i for i in range(init.lineno - 1, init.end_lineno)
+                         if 'self.vehicle_life = 40' in lines[i]), None)
+    if anchor_index is None:
+        raise RuntimeError('Cannot locate RoadVehicleBase loading-speed default anchor')
+    lines.insert(anchor_index + 1,
+                 '        # CABBAGE MIGRATION SHIM: legacy Consist default; child schemas override as needed.\n'
+                 '        self.loading_speed_multiplier = 1\n')
+    result = ''.join(lines)
+    verify_base_loading_speed_default(result)
+    return result
+
+
+def verify_base_loading_speed_default(source):
+    tree = ast.parse(source)
+    base = next(n for n in tree.body if isinstance(n, ast.ClassDef) and n.name == 'RoadVehicleBase')
+    init = next(n for n in base.body if isinstance(n, ast.FunctionDef) and n.name == '__init__')
+    found = [n for n in init.body if isinstance(n, ast.Assign)
+             and any(isinstance(t, ast.Attribute) and isinstance(t.value, ast.Name)
+                     and t.value.id == 'self' and t.attr == 'loading_speed_multiplier'
+                     for t in n.targets)]
+    if len(found) != 1 or not isinstance(found[0].value, ast.Constant) or found[0].value.value != 1:
+        raise RuntimeError('Stage 005 failed to persist legacy loading-speed default')
+
+
 def main():
     old = LEGACY.read_text()
     target = TARGET.read_text()
@@ -237,6 +286,7 @@ def main():
         new = repair_existing_mixins(target, report['track_mixins'])
     else:
         new = target.rstrip()+'\n\n'+block
+    new = ensure_base_loading_speed_default(new)
     ast.parse(new, filename=str(TARGET))
     # Fail closed if existing name collisions would overwrite the validated bus.
     original = ast.parse(target.split(START,1)[0])
@@ -250,6 +300,7 @@ def main():
         print('UPDATED:', TARGET.relative_to(ROOT))
     else:
         print('UNCHANGED:', TARGET.relative_to(ROOT))
+    verify_base_loading_speed_default(TARGET.read_text())
     REPORT.parent.mkdir(parents=True,exist_ok=True)
     REPORT.write_text(json.dumps(report,indent=2)+'\n')
     print('PASS: schema initialisers provisioned; production vehicle definitions unchanged')

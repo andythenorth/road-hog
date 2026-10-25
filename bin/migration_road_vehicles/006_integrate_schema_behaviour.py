@@ -6,6 +6,7 @@ CABBAGE No vehicle files, legacy classes, or graphics code are touched.
 """
 import ast
 import json
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -217,13 +218,72 @@ def provision_sprite_row_migration_shims(source, legacy_classes):
     return result
 
 
+def provision_articulated_nml_order_shim(source, legacy_classes):
+    """CABBAGE MIGRATION SHIM: the callback must precede its NML references."""
+    legacy = methods(legacy_classes['Consist'])
+    if not {'render', 'render_articulated_switch'} <= set(legacy):
+        raise RuntimeError('Legacy articulated rendering contract changed')
+    base = class_nodes(ast.parse(source))['RoadVehicleBase']
+    render = methods(base).get('render')
+    if render is None:
+        raise RuntimeError('RoadVehicleBase.render missing')
+    # Verify exact AST structure before changing any lines. Formatting is immaterial.
+    body = render.body
+    callbacks = [n for n in body if isinstance(n, ast.If)
+                 and 'articulated_parts.pynml' in (ast.get_source_segment(source, n) or '')]
+    loops = [n for n in body if isinstance(n, ast.For)]
+    if len(callbacks) != 1 or len(loops) != 1:
+        raise RuntimeError('Unexpected RoadVehicleBase.render structure')
+    callback, loop = callbacks[0], loops[0]
+    if callback.lineno < loop.lineno:
+        return source
+    if callback.lineno < render.lineno or callback.end_lineno >= render.end_lineno:
+        raise RuntimeError('Unexpected articulated callback span')
+    lines = source.splitlines(keepends=True)
+    block = lines[callback.lineno - 1:callback.end_lineno]
+    if len(block) < 2 or not re.match(r'if\s+len\(self\.units\)\s*>\s*1\s*:', block[0].lstrip()):
+        raise RuntimeError('Expected two-line original articulated callback block')
+    # Insert before unique-unit iteration, immediately after result=[] initialization.
+    insertion_line = next((node.end_lineno for node in body if isinstance(node, ast.Assign)
+                           and any(isinstance(t, ast.Name) and t.id == 'result' for t in node.targets)), None)
+    if insertion_line is None or insertion_line >= loop.lineno:
+        raise RuntimeError('Cannot identify safe callback insertion point')
+    del lines[callback.lineno - 1:callback.end_lineno]
+    lines[insertion_line:insertion_line] = [
+        '        # CABBAGE MIGRATION SHIM: define articulated callback before unit property references.\n'.replace('\\n', '\n')
+    ] + block
+    result = ''.join(lines)
+    updated = methods(class_nodes(ast.parse(result))['RoadVehicleBase'])['render']
+    new_callbacks = [n for n in updated.body if isinstance(n, ast.If)
+                     and 'articulated_parts.pynml' in (ast.get_source_segment(result, n) or '')]
+    new_loops = [n for n in updated.body if isinstance(n, ast.For)]
+    if len(new_callbacks) != 1 or len(new_loops) != 1 or new_callbacks[0].lineno >= new_loops[0].lineno:
+        raise RuntimeError('Articulated callback placement verification failed')
+    return result
+
+
 def main():
     legacy_classes = validate_legacy(ast.parse(LEGACY.read_text()))
+    # CABBAGE: Stage 005 dependency; do not claim success on a partial base schema.
+    base_classes = class_nodes(ast.parse(SCHEMAS.read_text()))
+    base_init = methods(base_classes['RoadVehicleBase']).get('__init__')
+    if base_init is None or not any(
+        isinstance(node, ast.Assign)
+        and any(isinstance(target, ast.Attribute)
+                and isinstance(target.value, ast.Name)
+                and target.value.id == 'self'
+                and target.attr == 'loading_speed_multiplier'
+                for target in node.targets)
+        and isinstance(node.value, ast.Constant) and node.value.value == 1
+        for node in base_init.body
+    ):
+        raise RuntimeError('Stage 005 prerequisite missing: RoadVehicleBase.loading_speed_multiplier = 1')
     source = SCHEMAS.read_text()
     # The underlying ModelDef field already comes from the Iron Horse foundation.
     # Keep this additive: do not modify the existing Road Hog running-cost formula.
     source = provision_future_fixed_run_cost_property(source)
     source = provision_sprite_row_migration_shims(source, legacy_classes)
+    source = provision_articulated_nml_order_shim(source, legacy_classes)
     if source.count(START) != source.count(END) or source.count(START) > 1:
         raise RuntimeError('broken/duplicate Stage 006 markers')
     classes = class_nodes(ast.parse(source))
@@ -258,7 +318,9 @@ def main():
             if missing:
                 raise RuntimeError('Stage 006 post-write verification failed for '
                                    + cls_name + ': ' + ', '.join(sorted(missing)))
-        print('PASS: Stage 006 installed; required sprite-row migration shims verified')
+        if provision_articulated_nml_order_shim(SCHEMAS.read_text(), legacy_classes) != SCHEMAS.read_text():
+            raise RuntimeError('Stage 006 articulated NML ordering shim missing after write')
+        print('PASS: Stage 006 installed; required sprite-row and articulated-order shims verified')
         return
     # Do not replace user changes or accidentally generate competing methods.
     for name in ('track_type', 'sound_effect', 'name_type_suffix', 'name'):

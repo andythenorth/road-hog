@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Add the old base platform step to unit production. No fleet changes yet."""
+"""Provision base platform, unit interface and ModelDef compatibility defaults."""
 from pathlib import Path
 import ast
 
@@ -7,6 +7,132 @@ ROOT = Path(__file__).resolve().parents[2]
 MODEL = ROOT / 'src/road_vehicle/model_def.py'
 CATALOGUE = ROOT / 'src/road_vehicle/catalogue.py'
 UNITS = ROOT / 'src/road_vehicle/units.py'
+
+
+def only_class(source, name):
+    matches = [node for node in ast.parse(source).body
+               if isinstance(node, ast.ClassDef) and node.name == name]
+    if len(matches) != 1:
+        raise RuntimeError(f"Expected exactly one {name} class")
+    return matches[0]
+
+
+def modify_model(source):
+    cls = only_class(source, "ModelDef")
+    fields = {target.id for node in cls.body if isinstance(node, ast.AnnAssign)
+              for target in [node.target] if isinstance(target, ast.Name)}
+    if "power_by_power_source" not in fields:
+        raise RuntimeError("Existing ModelDef power_by_power_source field missing")
+    if "power" not in fields:
+        anchor = "    power_by_power_source: Optional[Dict[Any, Any]] = None\n"
+        if source.count(anchor) != 1:
+            raise RuntimeError("Cannot uniquely locate power_by_power_source field")
+        source = source.replace(anchor,
+            "    # CABBAGE Migration shim: legacy Road Hog scalar power remains supported.\n"
+            "    # Multi-source mapping is storage only until separately implemented.\n"
+            "    power: Optional[int] = None\n" + anchor)
+    cls = only_class(source, "ModelDef")
+    if not any(isinstance(n, ast.FunctionDef) and n.name == "__post_init__" for n in cls.body):
+        anchor = "    def add_unit_def(self, **kwargs):\n"
+        if source.count(anchor) != 1:
+            raise RuntimeError("Cannot uniquely locate ModelDef method insertion point")
+        source = source.replace(anchor,
+            "    def __post_init__(self):\n"
+            "        # CABBAGE Migration shim: two simultaneous power declarations are ambiguous.\n"
+            "        if self.power is not None and self.power_by_power_source is not None:\n"
+            "            raise ValueError('Specify power OR power_by_power_source, not both')\n\n" + anchor)
+    else:
+        cls = only_class(source, "ModelDef")
+        func = next(n for n in cls.body if isinstance(n, ast.FunctionDef) and n.name == "__post_init__")
+        snippet = ast.get_source_segment(source, func) or ""
+        if "power_by_power_source" not in snippet or "self.power" not in snippet:
+            raise RuntimeError("Custom ModelDef.__post_init__ requires manual integration")
+    ast.parse(source)
+    return source
+
+
+def modify_schemas(source):
+    cls = only_class(source, "RoadVehicleBase")
+    methods = [n for n in cls.body if isinstance(n, ast.FunctionDef) and n.name == "power"]
+    if len(methods) != 1:
+        raise RuntimeError("RoadVehicleBase.power has changed; refusing edit")
+    method = methods[0]
+    segment = ast.get_source_segment(source, method) or ""
+    target = "if self.model_def.power is not None:"
+    if target in segment:
+        return source
+    lines = source.splitlines(keepends=True)
+    body = method.body
+    if not body or not isinstance(body[0], ast.Assign):
+        raise RuntimeError("Unexpected RoadVehicleBase.power implementation")
+    expr = body[0]
+    if not (len(expr.targets) == 1 and isinstance(expr.targets[0], ast.Name)
+            and expr.targets[0].id == "powers"
+            and isinstance(expr.value, ast.Attribute)
+            and expr.value.attr == "power_by_power_source"):
+        raise RuntimeError("Power calculation does not use expected source mapping")
+    lines.insert(expr.lineno - 1,
+        "        # CABBAGE Migration shim: keep old scalar Road Hog power and costs exact.\n"
+        "        if self.model_def.power is not None:\n"
+        "            return self.model_def.power\n")
+    updated = "".join(lines)
+    ast.parse(updated)
+    return updated
+
+
+def default_sprites_incomplete(source):
+    tree = ast.parse(source)
+    classes = [n for n in tree.body if isinstance(n, ast.ClassDef) and n.name == "ModelDef"]
+    if len(classes) != 1:
+        raise RuntimeError("Expected exactly one ModelDef class")
+    fields = [n for n in classes[0].body if isinstance(n, ast.AnnAssign)
+              and isinstance(n.target, ast.Name) and n.target.id == "sprites_complete"]
+    if len(fields) != 1:
+        raise RuntimeError("Expected exactly one sprites_complete field")
+    field = fields[0]
+    if field.value is not None:
+        if isinstance(field.value, ast.Constant) and field.value.value is False:
+            return source
+        raise RuntimeError("sprites_complete already has a different default")
+    if not isinstance(field.annotation, ast.Name) or field.annotation.id != "bool":
+        raise RuntimeError("Unexpected sprites_complete type")
+    # Only replace the field's own line; keep surrounding comments and formatting.
+    lines = source.splitlines(keepends=True)
+    line = lines[field.lineno - 1]
+    if line.strip() != "sprites_complete: bool":
+        raise RuntimeError("Unexpected sprites_complete declaration format")
+    indent = line[:len(line) - len(line.lstrip())]
+    ending = "\r\n" if line.endswith("\r\n") else "\n"
+    lines[field.lineno - 1] = (
+        indent + "# CABBAGE: All existing Road Hog vehicles have incomplete sprites."
+        + ending + indent + "sprites_complete: bool = False" + ending
+    )
+    updated = "".join(lines)
+    ast.parse(updated)
+    return updated
+
+
+
+def mark_deferred_template_support(source):
+    """Keep the Pass 2 obligation in permanent ModelDef source, not a report."""
+    marker = "# CABBAGE DEFERRED: Pass 1 supports only vehicle_default.pynml."
+    if marker in source:
+        return source
+    cls = only_class(source, "ModelDef")
+    fields = [n for n in cls.body if isinstance(n, ast.AnnAssign)
+              and isinstance(n.target, ast.Name) and n.target.id == "sprites_complete"]
+    if len(fields) != 1:
+        raise RuntimeError("Cannot uniquely locate ModelDef.sprites_complete")
+    lines = source.splitlines(keepends=True)
+    line = lines[fields[0].lineno - 1]
+    indent = line[:len(line) - len(line.lstrip())]
+    lines.insert(fields[0].lineno - 1,
+        indent + marker + "\n"
+        + indent + "# CABBAGE FUTURE PASS: restore legacy per-vehicle template selection,\n"
+        + indent + "# cargo-specific spritegroups and livery behaviour; audit affected vehicles.\n")
+    result = "".join(lines)
+    ast.parse(result)
+    return result
 
 
 pending = {}
@@ -183,7 +309,25 @@ else:
     pending[UNITS] = units_text
     print('PLANNED:', UNITS.relative_to(ROOT), 'CABBAGE chassis property')
 
-print('PASS: platform support installed; no vehicle definitions or pipelines edited')
+# CABBAGE Infrastructure owner: scalar power + sprite completeness defaults.
+# Former standalone stages 009 and 010 are consolidated here. All source
+# guards execute before any source file is written.
+model_text = pending.get(MODEL, MODEL.read_text(encoding='utf-8'))
+model_text = mark_deferred_template_support(default_sprites_incomplete(modify_model(model_text)))
+if model_text != MODEL.read_text(encoding='utf-8'):
+    pending[MODEL] = model_text
+    print('PLANNED:', MODEL.relative_to(ROOT), 'power and sprites defaults')
+
+schemas_path = ROOT / 'src/road_vehicle/schemas.py'
+schemas_text = modify_schemas(schemas_path.read_text(encoding='utf-8'))
+if schemas_text != schemas_path.read_text(encoding='utf-8'):
+    pending[schemas_path] = schemas_text
+    print('PLANNED:', schemas_path.relative_to(ROOT), 'scalar power behaviour')
+
+for candidate in pending.values():
+    ast.parse(candidate)
+
+print('PASS: platform, scalar power and incomplete sprite defaults prepared; no fleet or graphics edits')
 
 # Write after all source guards have passed. Never leave a half-applied stage.
 for path, content in pending.items():
