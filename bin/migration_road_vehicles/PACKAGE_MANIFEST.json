@@ -1,0 +1,33 @@
+{
+  "files": {
+    "000_check_golden.py": "b52fe5bf7dd93e680b10a8321ed720c81ee5dec75bd83d66f8ff91671eb6e1d0",
+    "001_port_base_platform.py": "55bd88e0aca2fadd7eaac34dcdf37bd7fd716e273206381d4bc42894f24fc27a",
+    "002_verify_base_platform.py": "08b661eea97540721c32b232deb6af4e01443c7351ecef004ff7b8fd2765efe2",
+    "003_inventory_fleet.py": "7f51ead2abea990a7cc04fa5dea2def159cc4654ca9176bf0c4a3776c4020ddd",
+    "005_provision_schemas.py": "ac73864af06847c8dea2554df0c8dad80157cb611477a85d5a0eafb1ab4d8eb5",
+    "006_integrate_schema_behaviour.py": "d45093e201511baf343f5e2ca853f431f2115afeb0e4e483c5bfe465a77e2eee",
+    "007_attempt_fleet_cutover.py": "0285a5bac8c915a0ab48aef39ec69a56b47ffca7fbdc2e86b5da789b2773f7c7",
+    "008_trial_fleet_build.py": "bb9d26d714ef3792d59ba406c4988f859e8141fc91fd08dade631108b50445a0",
+    "009_model_power_compatibility.py": "0129c1b2b99b5c9b14ad342ea2416764e0316ae07570e0e97927ec44214229bb",
+    "010_default_sprites_incomplete.py": "3dcf59d1f7f3915ca19846c21401d1d5326b907cedb0d82973917a47c4cdaff4"
+  },
+  "stage_order": [
+    "000",
+    "001",
+    "002",
+    "003",
+    "005",
+    "006",
+    "009",
+    "010",
+    "007",
+    "008"
+  ],
+  "note": "Stage 005 provisions legacy power units; Stage 006 audits legacy methods; rerun owner stages after each trial-build failure.",
+  "stage_007_obsolete_sprite_row_callers": "Comment source-grounded legacy sprite-row override keywords as CABBAGE in generated candidates.",
+  "sprite_row_migration_shims": "Stage 006: CABBAGE unique_units and get_spriterows_for_consist_or_subpart; no graphics pipeline edits",
+  "sprite_row_shim_repair": {
+    "stage": "006_integrate_schema_behaviour.py",
+    "fix": "persist shims on marker-present path; post-write AST verification; idempotent"
+  }
+}
