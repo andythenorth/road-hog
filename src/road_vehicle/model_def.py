@@ -68,7 +68,7 @@ class ModelDef:
     def __post_init__(self):
         # CABBAGE Migration shim: two simultaneous power declarations are ambiguous.
         if self.power is not None and self.power_by_power_source is not None:
-            raise ValueError('Specify power OR power_by_power_source, not both')
+            raise ValueError("Specify power OR power_by_power_source, not both")
 
     def add_unit_def(self, **kwargs):
         self.unit_defs.append(UnitDef(**kwargs))

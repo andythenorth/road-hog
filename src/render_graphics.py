@@ -141,7 +141,9 @@ def main():
 
     # The graphics pipelines are unchanged. Only their file-name input differs
     # between old Consists and catalogue-produced model variants.
-    consists = [_graphics_input(vehicle) for vehicle in roster.consists_in_buy_menu_order]
+    consists = [
+        _graphics_input(vehicle) for vehicle in roster.consists_in_buy_menu_order
+    ]
 
     for consist in consists:
         # Legacy Consists freeze roster lookups before multiprocessing.

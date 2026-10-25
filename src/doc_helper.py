@@ -68,9 +68,7 @@ class DocHelper(object):
         # CABBAGE New schema has ModelDef; legacy Consist stores the name in _name.
         # Keep the original translated suffix handling. Do not guess English names.
         name = (
-            consist.model_def.name
-            if hasattr(consist, "model_def")
-            else consist._name
+            consist.model_def.name if hasattr(consist, "model_def") else consist._name
         )
         type_suffix = self.lang_strings[substrings[3][0:-3]]
         power_suffix = self.lang_strings[substrings[4][0:-2]]
@@ -115,9 +113,9 @@ class DocHelper(object):
         input_colours = {"CC1": 198, "CC2": 80}
         for input_colour, output_colour in remap.items():
             for i in range(0, 8):
-                result[
-                    input_colours[input_colour] + i
-                ] = self.get_palette_index_for_company_colour(output_colour, i)
+                result[input_colours[input_colour] + i] = (
+                    self.get_palette_index_for_company_colour(output_colour, i)
+                )
         return result
 
     def get_palette_index_for_company_colour(self, company_colour, offset):

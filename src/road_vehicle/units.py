@@ -130,5 +130,6 @@ class ElectricVehicleUnit(RoadVehicleUnit):
         self.default_effect_sprite = "EFFECT_SPRITE_ELECTRIC"
         self.model_variant._power_type_suffix = "ELECTRIC"
         self.model_variant.default_sound_effect = "SOUND_POWER_STATION"
-# CABBAGE END LEGACY UNIT TYPES STAGE 005
 
+
+# CABBAGE END LEGACY UNIT TYPES STAGE 005

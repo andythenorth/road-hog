@@ -24,9 +24,9 @@ class BasePlatform(object):
             value = getattr(self, key, False)
             if value is not False:
                 kwargs[key] = value
-        kwargs[
-            "base_platform"
-        ] = self  # replace the class name with this class instance
+        kwargs["base_platform"] = (
+            self  # replace the class name with this class instance
+        )
         return kwargs
 
     def _get_spritesheet_name_from_class_name(self, consist):

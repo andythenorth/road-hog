@@ -71,12 +71,17 @@ class ModelVariantProducer:
             # CABBAGE Keep old platform override order, including the legacy `type` field.
             # Resolve once per UnitDef; repeated physical units reuse the same object.
             from dataclasses import replace
+
             resolved_def = unit_def
             platform = None
             if unit_def.base_platform is not None:
                 platform = unit_def.base_platform()
                 configured = platform.configure_unit_args(
-                    **{key: value for key, value in vars(unit_def).items() if key != "base_platform"}
+                    **{
+                        key: value
+                        for key, value in vars(unit_def).items()
+                        if key != "base_platform"
+                    }
                 )
                 platform_unit_type = configured.pop("type", None)
                 configured.pop("base_platform", None)
