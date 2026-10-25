@@ -16,8 +16,8 @@ generated_files_path = os.path.join(currentdir, global_constants.generated_files
 os.makedirs(generated_files_path, exist_ok=True)
 
 # import rosters
-#from rosters import landrace
-#from rosters import heqs
+from rosters import landrace
+from rosters import heqs
 from rosters import migration_test
 
 class RosterManager(list):
@@ -77,8 +77,8 @@ def main():
     # rosters
     # in the rare case that an unfinished roster won't init cleanly, comment it out here and possibly also in the import
     # built-in support for disabled rosters was removed during the conversion to multi-grf, it was an unnecessary abstraction when only one roster is used per grf
-    #roster_manager.add_roster(landrace)
-    #roster_manager.add_roster(heqs)
+    roster_manager.add_roster(landrace)
+    roster_manager.add_roster(heqs)
     roster_manager.add_roster(migration_test)
 
     roster_manager.validate_vehicles()
