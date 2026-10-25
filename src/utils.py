@@ -1,6 +1,5 @@
 import argparse
 import os.path
-import codecs  # used for writing files - more unicode friendly than standard open() module
 import global_constants
 from polar_fox import git_info
 from polar_fox.utils import echo_message as echo_message
@@ -61,8 +60,8 @@ def get_docs_url():
 
 def parse_base_lang():
     # expose base lang strings to python - for reuse in docs
-    base_lang_file = codecs.open(
-        os.path.join("src", "lang", "english.lng"), "r", "utf8"
+    base_lang_file = open(
+        os.path.join("src", "lang", "english.lng"), "r", encoding="utf-8"
     )
     text = base_lang_file.readlines()
     # this is fragile, playing one line python is silly :)
