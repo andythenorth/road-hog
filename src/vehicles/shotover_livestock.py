@@ -2,13 +2,15 @@ from road_vehicle import LivestockTramConsist
 from base_platforms.trams import ElectricMotorTram4
 
 from road_vehicle.model_def import ModelDef
+
 # CABBAGE DEFERRED: Pass 1 supports only vehicle_default.pynml.
 # CABBAGE FUTURE PASS: restore legacy template choice and cargo-specific
 # spritegroups/liveries where present in this vehicle.
 
 
 def main(roster_id):
-    model_def = ModelDef(schema_name='LivestockTram', 
+    model_def = ModelDef(
+        schema_name="LivestockTram",
         model_id="shotover_livestock",
         base_numeric_id=370,
         name="Shotover",
@@ -16,6 +18,8 @@ def main(roster_id):
         intro_year_offset=1,
     )  # introduce later than gen epoch by design
 
-    model_def.add_unit_def(unit_cls_name='RoadVehicleUnit', base_platform=ElectricMotorTram4, repeat=2)
+    model_def.add_unit_def(
+        unit_cls_name="RoadVehicleUnit", base_platform=ElectricMotorTram4, repeat=2
+    )
 
     return [model_def]

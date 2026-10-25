@@ -1,6 +1,7 @@
 from road_vehicle import PaxExpressCoachConsist, DieselVehicleUnit
 
 from road_vehicle.model_def import ModelDef
+
 # CABBAGE DEFERRED: Pass 1 supports only vehicle_default.pynml.
 # CABBAGE FUTURE PASS: restore legacy template choice and cargo-specific
 # spritegroups/liveries where present in this vehicle.
@@ -10,7 +11,8 @@ from road_vehicle.model_def import ModelDef
 
 
 def main(roster_id):
-    model_def = ModelDef(schema_name='PaxExpressCoach', 
+    model_def = ModelDef(
+        schema_name="PaxExpressCoach",
         model_id="oxleas_pax_express",
         base_numeric_id=610,
         name="Oxleas",
@@ -22,7 +24,7 @@ def main(roster_id):
 
     model_def.add_unit_def(
         base_platform=None,  # coaches have no base platform by design currently
-        unit_cls_name='DieselVehicleUnit',
+        unit_cls_name="DieselVehicleUnit",
         vehicle_length=7,
     )
 

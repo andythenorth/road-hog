@@ -1,13 +1,15 @@
 from road_vehicle import DumpHEQSConsist, DieselVehicleUnit
 
 from road_vehicle.model_def import ModelDef
+
 # CABBAGE DEFERRED: Pass 1 supports only vehicle_default.pynml.
 # CABBAGE FUTURE PASS: restore legacy template choice and cargo-specific
 # spritegroups/liveries where present in this vehicle.
 
 
 def main(roster_id):
-    model_def = ModelDef(schema_name='DumpHEQS', 
+    model_def = ModelDef(
+        schema_name="DumpHEQS",
         model_id="witch_hill_dump",
         base_numeric_id=500,
         name="Witch Hill",
@@ -20,7 +22,7 @@ def main(roster_id):
 
     model_def.add_unit_def(
         base_platform=None,  # no base platform by design currently
-        unit_cls_name='DieselVehicleUnit',
+        unit_cls_name="DieselVehicleUnit",
         # capacity=85,  # much bigger is not much better here
         vehicle_length=7,
         effects=[
