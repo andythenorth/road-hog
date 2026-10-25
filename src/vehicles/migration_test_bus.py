@@ -2,6 +2,7 @@
 
 CABBAGE This is a test vehicle, not the converter for the rest of Road Hog.
 """
+
 from road_vehicle.model_def import ModelDef
 
 

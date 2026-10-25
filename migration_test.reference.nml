@@ -1,0 +1,513 @@
+// define the newgrf
+grf {
+	grfid: "\97\87\EA\FF";
+	name: string(STR_GRF_NAME_VERSIONED);
+	desc: string(STR_GRF_DESCRIPTION);
+	url: string(STR_GRF_DOCS_URL);
+	version: 1650;
+	min_compatible_version: 1176;
+	param 0 {
+        param_adjust_vehicle_capacity {
+            type:    int;
+            name:    string(STR_PARAM_ADJUST_VEHICLE_CAPACITY);
+            min_value: 0;
+            max_value: 2;
+            def_value: 1;
+            names: {
+                0: string(STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_0);
+                1: string(STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_1);
+                2: string(STR_PARAM_ADJUST_VEHICLE_CAPACITY_OPTION_2);
+            };
+        }
+    }
+}
+basecost {
+ 	PR_BUILD_VEHICLE_ROAD: 2;
+ 	PR_RUNNING_ROADVEH: 1;
+}
+// disable default road vehicles
+disable_item(FEAT_ROADVEHS, 00, 115);
+// sort order
+sort(FEAT_ROADVEHS, [20]);/*
+ * ********************************************
+ * Define cargo translation table and refits
+ * ********************************************
+ */
+cargotable {
+    PASS,
+    TOUR,
+    MAIL,
+    COAL,
+    IORE,
+    GRVL,
+    SAND,
+    AORE,
+    CORE,
+    CLAY,
+    SCMT,
+    WOOD,
+    LIME,
+    GOOD,
+    FOOD,
+    STEL,
+    FMSP,
+    ENSP,
+    BEER,
+    BDMT,
+    MNSP,
+    PAPR,
+    WDPR,
+    COPR,
+    DYES,
+    OIL_,
+    RFPR,
+    PETR,
+    PLAS,
+    WATR,
+    FISH,
+    CERE,
+    FICR,
+    FRVG,
+    FRUT,
+    GRAI,
+    LVST,
+    MAIZ,
+    MILK,
+    RUBR,
+    SGBT,
+    SGCN,
+    WHEA,
+    WOOL,
+    OLSD,
+    SUGR,
+    JAVA,
+    BEAN,
+    NITR,
+    VEHI,
+    EOIL,
+    NUTS,
+    CASS,
+    MNO2,
+    PHOS,
+    POTA,
+    PORE,
+    IRON,
+    NICK,
+    SLAG,
+    QLME,
+    BOOM,
+    METL,
+    SULP,
+    SASH,
+    CMNT,
+    COKE,
+    KAOL,
+    FERT,
+    PIPE,
+    SALT,
+    CBLK,
+    CHLO,
+    VPTS,
+    ACID,
+    ALUM,
+    CTCD,
+    TOFF,
+    URAN,
+    CTAR,
+    O2__,
+    STAL,
+    STCB,
+    STST,
+    CSTI,
+    PEAT,
+    ZINC,
+    TYRE,
+    VBOD,
+    VENG,
+    FECR,
+    GLAS,
+    POWR,
+    STSH,
+    STWR,
+    NH3_,
+    STSE,
+    SEED,
+    TATO,
+    WDCH,
+    BAKE,
+    N7__,
+    WELD,
+    RBAR,
+    STPP,
+    SOAP,
+    H2__,
+    ALO_,
+    NHNO,
+    STIG,
+    STBL,
+    STSL,
+    FEAL,
+    STTB,
+    TYCO,
+    HWAR,
+    STBR,
+    STSW,
+    STPL,
+    CHEM,
+    LYE_,
+    NUKF,
+    NUKW,
+    INCA,
+    ENUM,
+    MOLA,
+    NULL,
+}// Road Hog directly provides all the roadtypes and tramtypes that the vehicles in the set need
+// this is contrary to the established convention of providing separate grfs for vehicles and [route]types
+// My view is that:
+// 1. it's faff for players to add an extra grf
+// 2. there's no effective mechanism for players to discover they *need* an extra grf, or which one to use
+// 3. with route types missing, some/many vehicles may be missing; impairs design balance in the set
+// 4. the 'choice' aspects of providing route types separately are over-emphasised relative to the hassle
+// Type Tables
+// -----------
+roadtypetable {
+ 	ROAD, HAUL, LOLZ, HEQS
+}
+// tram is light rail so copy existing railtype labels where appropriate (for ease, no new thinking required)
+// as per https://newgrf-specs.tt-wiki.net/wiki/RailtypeLabels
+tramtypetable {
+ 	RAIL, ELRL, HAKE, LAKE,
+ }
+// Type Definitions
+// ----------------
+item(FEAT_ROADTYPES, heavy_haul_road, 0) {
+    property {
+        name: string(STR_NAME_HEAVY_HAUL_ROAD);
+        label: "HEQS";
+        powered_roadtype_list: ["HAUL"];
+        toolbar_caption: string(STR_TOOLBAR_CAPTION_HEAVY_HAUL_ROAD);
+        menu_text: string(STR_MENU_TEXT_HEAVY_HAUL_ROAD);
+        build_window_caption: string(STR_BUILD_WINDOW_CAPTION_HEAVY_HAUL_ROAD);
+        autoreplace_text: string(STR_AUTOREPLACE_TEXT_HEAVY_HAUL_ROAD);
+        new_engine_text: string(STR_NEW_ENGINE_TEXT_HEAVY_HAUL_ROAD);
+    }
+    graphics {
+        underlay: heavy_haul_underlay;
+        track_overlay: heavy_haul_track_overlay;
+        depots: heavy_haul_depots;
+        bridge_surfaces: heavy_haul_bridge_surfaces;
+        roadstops: heavy_haul_roadstops;
+    }
+}
+item(FEAT_ROADTYPES, cake_road, 1) {
+    property {
+        name: string(STR_NAME_HEAVY_HAUL_ROAD);
+        label: "LOLZ";
+        powered_roadtype_list: ["HEQS", "HAUL", "ROAD"];
+        toolbar_caption: string(STR_TOOLBAR_CAPTION_HEAVY_HAUL_ROAD);
+        menu_text: string(STR_MENU_TEXT_HEAVY_HAUL_ROAD);
+        build_window_caption: string(STR_BUILD_WINDOW_CAPTION_HEAVY_HAUL_ROAD);
+        autoreplace_text: string(STR_AUTOREPLACE_TEXT_HEAVY_HAUL_ROAD);
+        new_engine_text: string(STR_NEW_ENGINE_TEXT_HEAVY_HAUL_ROAD);
+        roadtype_flags: bitmask(ROADTYPE_FLAG_HIDDEN);
+    }
+    graphics {
+        underlay: heavy_haul_underlay;
+        track_overlay: heavy_haul_track_overlay;
+        depots: heavy_haul_depots;
+        bridge_surfaces: heavy_haul_bridge_surfaces;
+        roadstops: heavy_haul_roadstops;
+    }
+}
+item(FEAT_TRAMTYPES, tramway, 0) {
+    property {
+        name: string(STR_NAME_TRAMWAY);
+        label: "RAIL";
+        powered_tramtype_list: ["ELRL"];
+        toolbar_caption: string(STR_TOOLBAR_CAPTION_TRAMWAY);
+        menu_text: string(STR_MENU_TEXT_TRAMWAY);
+        build_window_caption: string(STR_BUILD_WINDOW_CAPTION_TRAMWAY);
+        autoreplace_text: string(STR_AUTOREPLACE_TEXT_TRAMWAY);
+        new_engine_text: string(STR_NEW_ENGINE_TEXT_TRAMWAY);
+        sort_order: 0;
+    }
+}
+item(FEAT_TRAMTYPES, electric_tramway, 1) {
+    property {
+        name: string(STR_NAME_ELECTRIC_TRAMWAY);
+        label: "ELRL";
+        powered_tramtype_list: [];
+        toolbar_caption: string(STR_TOOLBAR_CAPTION_ELECTRIC_TRAMWAY);
+        menu_text: string(STR_MENU_TEXT_ELECTRIC_TRAMWAY);
+        build_window_caption: string(STR_BUILD_WINDOW_CAPTION_ELECTRIC_TRAMWAY);
+        autoreplace_text: string(STR_AUTOREPLACE_TEXT_ELECTRIC_TRAMWAY);
+        new_engine_text: string(STR_NEW_ENGINE_TEXT_ELECTRIC_TRAMWAY);
+        tramtype_flags: bitmask(TRAMTYPE_FLAG_CATENARY);
+        sort_order: 1;
+    }
+}
+// Sprites
+// -------
+// Default ground tile template (re-use as needed)
+template ground_tile(x, y) { [x, y, 64, 31, -31, 0] }
+// Template for underlays; 2x straight road, 5x junctions, 4x corners, 4x slope, 4x half-tile road
+// Used for bridge surfaces also, therefore the template is split
+template tmpl_underlay_straight() {
+    ground_tile( 0, 0)
+    ground_tile(75, 0)
+}
+template tmpl_underlay_junctions() {
+    ground_tile(150, 0)
+    ground_tile(225, 0)
+    ground_tile(300, 0)
+    ground_tile(375, 0)
+    ground_tile(450, 0)
+}
+template tmpl_underlay_corners() {
+    ground_tile(  0, 40)
+    ground_tile( 75, 40)
+    ground_tile(150, 40)
+    ground_tile(225, 40)
+}
+template tmpl_underlay_slope() {
+    [300, 40, 64, 39, -31, -8]
+    [375, 40, 64, 23, -31, 0]
+    [450, 40, 64, 23, -31, 0]
+    [525, 40, 64, 39, -31, -8]
+}
+template tmpl_underlay_half_tiles() {
+    ground_tile(  0, 80)
+    ground_tile( 75, 80)
+    ground_tile(150, 80)
+    ground_tile(225, 80)
+}
+template tmpl_underlay_roadtypes() {
+    tmpl_underlay_straight()
+    tmpl_underlay_junctions()
+    tmpl_underlay_corners()
+    tmpl_underlay_slope()
+    tmpl_underlay_half_tiles()
+    /* X-crossing */
+    ground_tile(0, 120)
+    /* underlay for crossings w/o tracks */
+    ground_tile(  0, 80)
+    ground_tile(225, 80)
+    ground_tile(150, 80)
+    ground_tile( 75, 80)
+}
+spriteset(heavy_haul_underlay, "src/graphics/roadtypes/heavy_haul_road.png") {
+    tmpl_underlay_roadtypes()
+}
+// overlays
+template tmpl_overlay_roadtypes() {
+    [ 0, 0, 64, 31, -31, 0]
+    [75, 0, 64, 31, -31, 0]
+    [150, 0, 64, 31, -31, 0]
+    [225, 0, 64, 31, -31, 0]
+    [300, 0, 64, 31, -31, 0]
+    [375, 0, 64, 31, -31, 0]
+    [450, 0, 64, 31, -31, 0]
+    [  0, 40, 64, 31, -31, 0]
+    [ 75, 40, 64, 31, -31, 0]
+    [150, 40, 64, 31, -31, 0]
+    [225, 40, 64, 31, -31, 0]
+    [300, 40, 64, 39, -31, -8]
+    [375, 40, 64, 21, -31, 0]
+    [450, 40, 64, 21, -31, 0]
+    [525, 40, 64, 39, -31, -8]
+    [  0, 80, 64, 31, -31, 0]
+    [ 75, 80, 64, 31, -31, 0]
+    [150, 80, 64, 31, -31, 0]
+    [225, 80, 64, 31, -31, 0]
+}
+spriteset(heavy_haul_track_overlay, "src/graphics/roadtypes/heavy_haul_road.png") {
+    tmpl_overlay_roadtypes()
+}
+// Template for depot sprites
+template tmpl_depot() {
+    [300, 236, 18, 16,  13,   0]
+    [225, 236, 64, 64,  -1, -43]
+    [123, 236, 18, 16, -29,   0]
+    [150, 236, 64, 64, -61, -43]
+    [225, 160, 64, 64, -61, -43]
+    [150, 160, 64, 64,  -1, -43]
+}
+spriteset(heavy_haul_depots, "src/graphics/roadtypes/heavy_haul_road.png") {
+    tmpl_depot()
+}
+// Bridge surface, uses the same sprites as track underlays, but in a different order
+template tmpl_bridge_surfaces() {
+    tmpl_underlay_straight()
+    tmpl_underlay_slope()
+    tmpl_underlay_junctions()
+}
+spriteset(heavy_haul_bridge_surfaces, "src/graphics/roadtypes/heavy_haul_road.png") {
+    tmpl_bridge_surfaces()
+}
+// Roadstop sprites:
+template tmpl_underlay_roadstop() {
+    ground_tile(  0, 120)
+    ground_tile( 75, 120)
+    ground_tile(150, 120)
+    ground_tile(225, 120)
+}
+spriteset(heavy_haul_roadstops, "src/graphics/roadtypes/heavy_haul_road.png") {
+    tmpl_underlay_roadstop()
+}// STANDARD GRAPHICS
+// -----------------
+template spriteset_template_leyburn_pax(y) {
+        //[left_x,  upper_y,    width,      height,     offset_x,      offset_y]
+        [60, y, 12, 29, -6, -15, ANIM]
+        //[left_x,  upper_y,    width,      height,     offset_x,      offset_y]
+        [77, y, 26, 20, -12, -11, ANIM]
+        //[left_x,  upper_y,    width,      height,     offset_x,      offset_y]
+        [107, y, 33, 16, -14, -10, ANIM]
+        //[left_x,  upper_y,    width,      height,     offset_x,      offset_y]
+        [147, y, 26, 20, -6, -11, ANIM]
+        //[left_x,  upper_y,    width,      height,     offset_x,      offset_y]
+        [180, y, 12, 29, -6, -15, ANIM]
+        //[left_x,  upper_y,    width,      height,     offset_x,      offset_y]
+        [197, y, 26, 20, -14, -10, ANIM]
+        //[left_x,  upper_y,    width,      height,     offset_x,      offset_y]
+        [227, y, 33, 16, -14, -10, ANIM]
+        //[left_x,  upper_y,    width,      height,     offset_x,      offset_y]
+        [267, y, 26, 20, -8, -11, ANIM]
+}
+// PURCHASE MENU
+// -------------
+template spriteset_template_purchase_leyburn_pax() {
+    //[left_x,  upper_y,    width,      height,     offset_x,      offset_y]
+    [60,    10, 1, 1, 0, 0, ANIM]
+    [60,    10, 1, 1, 0, 0, ANIM]
+    [60,    10, 1, 1, 0, 0, ANIM]
+    [60,    10, 1, 1, 0, 0, ANIM]
+    [60,    10, 1, 1, 0, 0, ANIM]
+    [60,    10, 1, 1, 0, 0, ANIM]
+    [227,   10, 28, 16, -14, -9, ANIM]
+    [60,    10, 1, 1, 0, 0, ANIM]
+}
+// DEPOT VIEW
+// ----------
+spriteset(leyburn_pax_ss, "generated/graphics/leyburn_pax.png") {
+  spriteset_template_leyburn_pax(10 + 0)
+}
+spritegroup leyburn_pax_sg {
+    loaded:  [
+        leyburn_pax_ss,
+    ];
+    loading: [
+        leyburn_pax_ss,
+    ];
+}
+// always include a switch to get to spritegroups even if it does nothing - the random switches need to route to it
+switch (FEAT_ROADVEHS, SELF, leyburn_pax_switch_graphics, 0) {
+    0: return leyburn_pax_sg;
+    return leyburn_pax_sg;
+}
+// buy menu graphics
+spriteset(leyburn_pax_ss_purchase, "generated/graphics/leyburn_pax.png") {
+  spriteset_template_purchase_leyburn_pax()
+}
+spritegroup leyburn_pax_sg_purchase {
+    loaded:  [
+        leyburn_pax_ss_purchase,
+    ];
+    loading: [
+        leyburn_pax_ss_purchase,
+    ];
+}
+// -- capacity determined according to specific labels that might need to be handled, and otherwise cargo class -- //
+        switch (FEAT_ROADVEHS, SELF, leyburn_pax_switch_cargo_capacity_by_cargo_0, cargo_classes & bitmask(CC_MAIL, CC_ARMOURED)) {
+            bitmask(CC_MAIL): return 60;
+            bitmask(CC_ARMOURED): return 60;
+            return 30;
+        }
+        switch (FEAT_ROADVEHS, SELF, leyburn_pax_switch_cargo_capacity_by_cargo_1, cargo_classes & bitmask(CC_MAIL, CC_ARMOURED)) {
+            bitmask(CC_MAIL): return 88;
+            bitmask(CC_ARMOURED): return 88;
+            return 44;
+        }
+        switch (FEAT_ROADVEHS, SELF, leyburn_pax_switch_cargo_capacity_by_cargo_2, cargo_classes & bitmask(CC_MAIL, CC_ARMOURED)) {
+            bitmask(CC_MAIL): return 118;
+            bitmask(CC_ARMOURED): return 118;
+            return 59;
+        }
+switch (FEAT_ROADVEHS, SELF, leyburn_pax_switch_cargo_capacity, param_adjust_vehicle_capacity) {
+    0: leyburn_pax_switch_cargo_capacity_by_cargo_0;
+    1: leyburn_pax_switch_cargo_capacity_by_cargo_1;
+    2: leyburn_pax_switch_cargo_capacity_by_cargo_2;
+}
+// -- loading speed also determined by capacity, which varies by cargo -- //
+    switch (FEAT_ROADVEHS, SELF, leyburn_pax_switch_loading_speed_by_cargo_0, cargo_classes & bitmask(CC_MAIL, CC_ARMOURED)) {
+        bitmask(CC_MAIL): return 15;
+        bitmask(CC_ARMOURED): return 15;
+        return 9;
+    }
+    switch (FEAT_ROADVEHS, SELF, leyburn_pax_switch_loading_speed_by_cargo_1, cargo_classes & bitmask(CC_MAIL, CC_ARMOURED)) {
+        bitmask(CC_MAIL): return 24;
+        bitmask(CC_ARMOURED): return 24;
+        return 12;
+    }
+    switch (FEAT_ROADVEHS, SELF, leyburn_pax_switch_loading_speed_by_cargo_2, cargo_classes & bitmask(CC_MAIL, CC_ARMOURED)) {
+        bitmask(CC_MAIL): return 30;
+        bitmask(CC_ARMOURED): return 30;
+        return 15;
+    }
+switch (FEAT_ROADVEHS, SELF, leyburn_pax_switch_loading_speed, param_adjust_vehicle_capacity) {
+    0: leyburn_pax_switch_loading_speed_by_cargo_0;
+    1: leyburn_pax_switch_loading_speed_by_cargo_1;
+    2: leyburn_pax_switch_loading_speed_by_cargo_2;
+}
+// -- some switches are common to all vehicles so included with properties -- //
+// -- smoke -- //
+switch (FEAT_ROADVEHS, SELF, leyburn_pax_create_visual_effect, [STORE_TEMP(create_effect(EFFECT_SPRITE_DIESEL, -2, 0, 10), 0x100)]) {
+    return 1;
+}
+// -- props -- //
+item(FEAT_ROADVEHS, leyburn_pax, 20) {
+    property {
+        name:                           string(STR_NAME_CONSIST, string(STR_NAME_LEYBURN_PAX), string(STR_NAME_SUFFIX_BUS), string(STR_NAME_SUFFIX_DIESEL));
+        cargo_capacity:                 44; // use CB to set this, avoids limited size of action 0 property
+        sprite_id:                      SPRITE_ID_NEW_ROADVEH; //enable new graphics - nml constant
+        road_type:ROAD;
+            introduction_date:              date(1919,01,01); // consist just supplies intro year - openttd randomises intro dates a bit anyway
+            power:                          100hp;
+            speed:                          40mph;
+            tractive_effort_coefficient:    0.7;
+            cost_factor:                    32.22916666666667;
+            running_cost_factor:            0; // use CB to set this, avoids limited size of action 0 property
+            running_cost_base:              RUNNING_COST_ROADVEH;
+            model_life:                     VEHICLE_NEVER_EXPIRES;
+            vehicle_life:                   40;
+            reliability_decay:              20; // default value
+            retire_early:                   -10;
+            sound_effect:                   SOUND_DEPARTURE_OLD_RV_1;
+        refit_cost:                     0; // this needs to be 0 if we want autorefit without using cb
+        refittable_cargo_classes:       bitmask();
+        non_refittable_cargo_classes:   bitmask(); // don't set non-refittable classes, increases likelihood of breaking cargo support
+        cargo_allow_refit:              [];
+        cargo_disallow_refit:           [];
+            default_cargo_type:             PASS;
+        cargo_age_period:               185;
+        misc_flags:                     bitmask(ROADVEH_FLAG_2CC,ROADVEH_FLAG_AUTOREFIT); // nml constants
+        length:                         7;
+        effect_spawn_model:             EFFECT_SPAWN_MODEL_DIESEL;
+    }
+    graphics {
+        cargo_capacity:                 leyburn_pax_switch_cargo_capacity;
+        purchase_cargo_capacity:        leyburn_pax_switch_cargo_capacity;
+        loading_speed:                  leyburn_pax_switch_loading_speed;
+        default:                        leyburn_pax_switch_graphics;
+        purchase:                       leyburn_pax_sg_purchase;
+        create_effect:                  leyburn_pax_create_visual_effect;
+            running_cost_factor:            return 64;
+            weight:                         return 29;
+    }
+}
+if (param[1]==0) {
+    item(FEAT_ROADVEHS, leyburn_pax, 20) {
+        property {
+            climates_available:             ALL_CLIMATES;
+        }
+    }
+}
