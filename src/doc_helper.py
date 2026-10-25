@@ -65,7 +65,13 @@ class DocHelper(object):
 
     def unpack_name_string(self, consist):
         substrings = consist.name.split("string(")
-        name = consist._name
+        # CABBAGE New schema has ModelDef; legacy Consist stores the name in _name.
+        # Keep the original translated suffix handling. Do not guess English names.
+        name = (
+            consist.model_def.name
+            if hasattr(consist, "model_def")
+            else consist._name
+        )
         type_suffix = self.lang_strings[substrings[3][0:-3]]
         power_suffix = self.lang_strings[substrings[4][0:-2]]
         return {
@@ -76,7 +82,12 @@ class DocHelper(object):
         }
 
     def get_base_numeric_id(self, consist):
-        return consist.base_numeric_id
+        # Catalogue owns IDs for new models. This is the base ID for docs sorting.
+        return (
+            consist.model_def.base_numeric_id
+            if hasattr(consist, "model_def")
+            else consist.base_numeric_id
+        )
 
     def get_active_nav(self, doc_name, nav_link):
         return ("", "active")[doc_name == nav_link]

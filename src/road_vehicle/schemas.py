@@ -41,6 +41,13 @@ class RoadVehicleBase:
         self.type_base_running_cost_points = 0
         self.weight_multiplier = 0.17
 
+    # Docs use an intro year for the sort and the page date range.
+    # CABBAGE Old Road Hog returned 999 here as a shim. Use the real year now;
+    # check the docs ordering again when we move vehicles with exact intro dates.
+    @property
+    def intro_year(self):
+        return self.intro_date
+
     @property
     def roster(self):
         return road_hog.roster_manager.get_roster_by_id(self.roster_id)
