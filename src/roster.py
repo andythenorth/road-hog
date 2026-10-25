@@ -149,7 +149,17 @@ class Roster(object):
                     lang_strings[node_name] = node_value["base"]
 
         for consist in self.consists_in_buy_menu_order:
-            if consist._name is not None:
-                lang_strings["STR_NAME_" + consist.id.upper()] = consist._name
+            # Road Hog legacy vehicles own _name and id. New catalogue vehicles
+            # get their name and base model ID from ModelDef instead.
+            # CABBAGE Keep both paths until the old vehicle definitions are ported.
+            model_def = getattr(consist, "model_def", None)
+            if model_def is not None:
+                name = model_def.name
+                model_id = model_def.model_id
+            else:
+                name = consist._name
+                model_id = consist.id
+            if name is not None:
+                lang_strings["STR_NAME_" + model_id.upper()] = name
 
         return {"global_pragma": global_pragma, "lang_strings": lang_strings}
