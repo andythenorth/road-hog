@@ -1,8 +1,9 @@
 # Road Hog vehicle migration — consolidated pipeline
 
 This package contains the full current migration scripts, **not** production source.
-Landrace (`road-hog`) is the strict golden-parity target. HEQS is a build
-and compatibility diagnostic; HEQS reference parity is not an acceptance gate.
+Pass 1 acceptance is successful original Makefile compilation for BOTH road-hog
+and HEQS, followed by byte-for-byte source restoration and golden-reference protection.
+Landrace parity is diagnostic only and is not a Pass 1 acceptance gate.
 
 ## Clean baseline run
 
@@ -24,15 +25,13 @@ After all earlier stages pass, with `migration_state/stage_008_trial` absent:
 
 ```sh
 python3 bin/migration_road_vehicles/008_trial_fleet_build.py --build --retain
-python3 bin/migration_road_vehicles/008_verify_landrace_parity.py
+python3 bin/migration_road_vehicles/008_verify_pass1_scope.py
 python3 bin/migration_road_vehicles/008_audit_migration_bridges.py
 ```
 
-**Do not run the parity gate if Stage 008 failed.** The gate checks the fresh
-snapshot, successful build report and source restoration. It must fail if
-freshness cannot be established. Inspect the JSON reports in
-`migration_state/reports/`. Stage 008 itself only certifies compilation, not
-parity. Do not accept fleet cutover from compilation alone.
+**The Pass 1 gate requires both build reports, freshness and source restoration.**
+The independent `008_verify_landrace_parity.py` may be run for diagnostics,
+but its failure does not fail Pass 1. Inspect `migration_state/reports/`.
 
 ## Architecture / stage ownership
 
@@ -102,3 +101,45 @@ Stage 008 runs `make clean` before both in-place roster builds. This discards on
 Stage 008 parity pairs legacy `nml/<vehicle>.nml` with candidate `nml/<vehicle>_mv_0.nml` by vehicle name. It compares bytes exactly, reports any content differences, and counts renamed files separately. No NML identifier normalization or semantic parity waiver is performed. Missing or additional variant files still fail. The generated combined `road-hog.nml` is a build artifact, not a vehicle fragment.
 
 CABBAGE Stage 008 NML parity: legacy vehicle symbols are compared to `_mv_0_unit_0` variant/unit symbols; only the specific intro-year comment spelling is reconciled. Other content remains strict.
+
+
+## First-pass acceptance (stages 000–008 only)
+
+The acceptance criterion is compilation using the original Makefile, not Landrace
+feature parity. Stage 001 inserts a **CABBAGE** renderer-boundary shim that
+forces `vehicle_default.pynml` but retains schema-provisioned GestaltGraphics.
+Cargo-specific and visible-cargo templates are future migration work.
+
+Run Stage 008 with `--build` (required):
+
+```zsh
+python3 bin/migration_road_vehicles/008_trial_fleet_build.py --build
+python3 bin/migration_road_vehicles/008_verify_pass1_scope.py
+```
+
+Strict NML/PNG/language Landrace comparison may be run diagnostically, but is
+**not** the Pass 1 acceptance gate. Do not run stages 009–011 in this pass.
+Do not commit generated migrated `src/` as part of the migration-script commit.
+
+## Compile-only fleet cutover (explicit, reversible)
+
+After Stage 008 compile-only acceptance succeeds, Stage 008's trial restores all
+132 vehicle files. Permanently install exactly the validated Stage 007 candidates:
+
+```zsh
+python3 bin/migration_road_vehicles/008_apply_fleet_cutover.py --check
+python3 bin/migration_road_vehicles/008_apply_fleet_cutover.py --apply
+```
+
+This is a **CABBAGE** compile-only cutover, not parity approval. The cutover
+refuses stale source files and records original bytes under
+`migration_state/stage_008_cutover/originals/`, with a durable journal. If
+interrupted, use `--rollback` before touching source files or resetting Git.
+
+```zsh
+python3 bin/migration_road_vehicles/008_apply_fleet_cutover.py --rollback
+```
+
+Once applied, inspect `git diff` and perform a post-cutover Makefile build before
+committing migrated `src/`. The original Stage 008 trial remains read-only evidence;
+rerunning it after cutover requires new Stage 007 candidate inventory.

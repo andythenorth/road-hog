@@ -209,6 +209,10 @@ def main():
     if args.restore:
         restore_originals()
         return
+    if not args.build:
+        raise SystemExit('REFUSED: Stage 008 acceptance requires --build; dry installation is not a PASS')
+    if set(args.rosters) != {'road-hog', 'heqs'}:
+        raise SystemExit('REFUSED: Stage 008 acceptance requires road-hog and heqs builds')
     if TRIAL_DIR.exists():
         raise SystemExit(f'REFUSED: existing trial directory: {TRIAL_DIR}. '
                          'Use --restore if interrupted; otherwise remove it manually after verifying restoration.')
@@ -217,6 +221,12 @@ def main():
     candidates, report7 = prepare_candidates()
     REPORT_DIR.mkdir(parents=True, exist_ok=True)
     prepare_backups(candidates)
+    # CABBAGE: the golden reference must remain byte-identical throughout both builds.
+    reference_dir = ROOT / 'generated.reference'
+    if not reference_dir.is_dir():
+        raise SystemExit('REFUSED: missing generated.reference/')
+    reference_before_trial = {p.relative_to(reference_dir).as_posix(): sha(p.read_bytes())
+                              for p in reference_dir.rglob('*') if p.is_file()}
     summary = {
         'stage': 8, 'mode': 'in_place_trial',
         'candidate_count': len(candidates), 'production_vehicle_files_restored': False,
@@ -296,13 +306,19 @@ def main():
             # Logs and saved outputs remain as evidence; backing originals retained
             # for crash recovery and provenance. Remove trial directory manually.
             pass
+    reference_after_trial = {p.relative_to(reference_dir).as_posix(): sha(p.read_bytes())
+                             for p in reference_dir.rglob('*') if p.is_file()}
+    if reference_after_trial != reference_before_trial:
+        summary['generated_reference_modified'] = True
+        (REPORT_DIR / 'vehicle_stage_008.json').write_text(json.dumps(summary, indent=2) + '\n', encoding='utf8')
+        raise SystemExit('CRITICAL: generated.reference changed during Stage 008')
     if failed is not None:
         raise failed
     for item in summary['builds']:
         print('Build:', item['roster'], 'status', item['returncode'], 'log', item['log'], flush=True)
-    if args.build and (not summary['builds'] or any(x['returncode'] for x in summary['builds'])):
+    if len(summary['builds']) != 2 or any(x['returncode'] or not x['fresh_nml'] for x in summary['builds']):
         raise SystemExit('FAIL: in-place fleet trial; see per-roster logs (vehicle sources restored)')
-    print('PASS: original Makefile trial completed; vehicle sources restored; Landrace parity NOT YET VERIFIED')
+    print('PASS: road-hog and heqs Makefile builds; sources restored; golden reference preserved. Feature parity NOT VERIFIED')
 
 
 if __name__ == '__main__':

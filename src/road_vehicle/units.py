@@ -11,16 +11,24 @@ class RoadVehicleUnit:
     def __init__(self, model_variant, unit_def, id, numeric_id):
         self.model_variant = model_variant
         self.unit_def = unit_def
+        # The producer sets the resolved platform instance when there is one.
+        self.base_platform = None
+        self.always_use_same_spriterow = bool(unit_def.always_use_same_spriterow)
+        self.unit_is_semi_tractor = bool(unit_def.unit_is_semi_tractor)
+        self.semi_truck_shift_offset_jank = unit_def.semi_truck_shift_offset_jank
+        self.cargo_length = unit_def.cargo_length
         self.id = id
         self.numeric_id = numeric_id
         self.unit_position_in_consist = len(model_variant.units)
         self.effects = unit_def.effects or []
         self.default_effect_sprite = None
         self._effect_spawn_model = None
-        self.semi_truck_shift_offset_jank = None
         self.unit_num_providing_spriterow_num = None
-        self.always_use_same_spriterow = False
-        self.unit_is_semi_tractor = False
+
+    @property
+    def chassis(self):
+        # CABBAGE MIGRATION SHIM: legacy pipeline expects unit.chassis.
+        return self.unit_def.chassis
 
     @property
     def vehicle_length(self):
@@ -97,3 +105,30 @@ class DieselVehicleUnit(RoadVehicleUnit):
         super().__init__(*args, **kwargs)
         self._effect_spawn_model = "EFFECT_SPAWN_MODEL_DIESEL"
         self.default_effect_sprite = "EFFECT_SPRITE_DIESEL"
+        # CABBAGE Stage 005: restore legacy unit-originating model defaults.
+        self.model_variant._power_type_suffix = "DIESEL"
+        self.model_variant.default_sound_effect = "SOUND_DEPARTURE_OLD_RV_1"
+
+
+# CABBAGE BEGIN LEGACY UNIT TYPES STAGE 005
+# CABBAGE Port unit-originating effects and consist state, not unit aliases.
+# DieselVehicleUnit exists already; restore its missing model side effects.
+class SteamVehicleUnit(RoadVehicleUnit):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._effect_spawn_model = "EFFECT_SPAWN_MODEL_STEAM"
+        self.default_effect_sprite = "EFFECT_SPRITE_STEAM"
+        self.model_variant._power_type_suffix = "STEAM"
+        self.model_variant.default_sound_effect = "SOUND_FACTORY"
+
+
+class ElectricVehicleUnit(RoadVehicleUnit):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.model_variant.requires_electricity_supply = True
+        self._effect_spawn_model = "EFFECT_SPAWN_MODEL_ELECTRIC"
+        self.default_effect_sprite = "EFFECT_SPRITE_ELECTRIC"
+        self.model_variant._power_type_suffix = "ELECTRIC"
+        self.model_variant.default_sound_effect = "SOUND_POWER_STATION"
+# CABBAGE END LEGACY UNIT TYPES STAGE 005
+

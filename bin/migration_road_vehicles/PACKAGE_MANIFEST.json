@@ -1,21 +1,24 @@
 {
+  "scope": "stages_000_through_008_compile_only",
   "files": {
     "bin/migration_road_vehicles/000_check_golden.py": "b52fe5bf7dd93e680b10a8321ed720c81ee5dec75bd83d66f8ff91671eb6e1d0",
-    "bin/migration_road_vehicles/001_port_base_platform.py": "4179b920cbc43dd688e631e41a3b6373bf8f6b14a2c3f69a0557df05e6b21895",
+    "bin/migration_road_vehicles/001_port_base_platform.py": "ac675d06e4128bd032c2b3738c0bf6ae3882083db746f676100702a93c2b6328",
     "bin/migration_road_vehicles/002_verify_base_platform.py": "08b661eea97540721c32b232deb6af4e01443c7351ecef004ff7b8fd2765efe2",
     "bin/migration_road_vehicles/003_inventory_fleet.py": "7f51ead2abea990a7cc04fa5dea2def159cc4654ca9176bf0c4a3776c4020ddd",
     "bin/migration_road_vehicles/005_provision_schemas.py": "4c21ab844f16dd7e113496e6863519d286b21a356890c95bb2f2f77ff204532e",
     "bin/migration_road_vehicles/006_integrate_schema_behaviour.py": "6c69d70ddf752821ba4c0f3902f8d57cff2ade7be920197c29bcd8bcda495902",
     "bin/migration_road_vehicles/007_attempt_fleet_cutover.py": "c7f7188dd54f41ddee43098d2746e20447285c0f94f7dc054df394ed85ef8f8d",
     "bin/migration_road_vehicles/008_audit_migration_bridges.py": "6edfbad12961ebe97b19db9573390796d45f2e8bfeddd0ed5ae54d3218b7b01a",
-    "bin/migration_road_vehicles/008_trial_fleet_build.py": "af777b57c1631d6f53767a0b03abd92394f4266f415ecf4bb8bdec2105cbf9a2",
+    "bin/migration_road_vehicles/008_trial_fleet_build.py": "ac742ee75ff8f38c802bc7e514deeb6a9934b960a8fa2fc7f85bd46f8cbfeda4",
     "bin/migration_road_vehicles/008_verify_landrace_parity.py": "29a9d91722c76ad47ab26d539fe977c3869255254940eb99a63c891b5d36d405",
     "bin/migration_road_vehicles/008_verify_pass1_scope.py": "b7850e020b9252675f1d2b6b89bd9cb2cf6c5293b739d6b04272108b4f041bf6",
-    "bin/migration_road_vehicles/009_migrate_templates.py": "c3f33e3dfc39cef8a49d833ab43fb2bd52e721cf395e21497e635f598679aa60",
-    "bin/migration_road_vehicles/010_verify_templates.py": "cb1abcf1fa4669486bd3f694dbece7671160017d8a569658680b3a9cb90e09d2",
     "bin/migration_road_vehicles/CABBAGE_REVIEW.md": "279dcd6505a08463a98bdea507e51f8fe5638ffc600e09666813f39267c93e7f",
-    "bin/migration_road_vehicles/README.md": "2d8a863c8156a3e5bb8596c6457f81c29642dc7bc61af814e155d966d5c626a1",
-    "bin/migration_road_vehicles/stage009_templates/vehicle_with_cargo_specific_liveries.pynml": "aaba4e7923f4c04999891d42bd48e809a9fbd31d5ce67718fe29395a67c2dfe4",
-    "bin/migration_road_vehicles/stage009_templates/vehicle_with_visible_cargo.pynml": "7ca70e0cadf6a1f1852b744b7b2e8d24c99b88b247e3e25da1ae14727985973b"
-  }
+    "bin/migration_road_vehicles/README.md": "59b72180202bc4295409c822d886c48cb30a05d279d9e9cfa62997f806049d55",
+    "bin/migration_road_vehicles/008_apply_fleet_cutover.py": "191cedaf8158fc97150a71d9c10f54798717f56827509bde2759a14fe989a92a"
+  },
+  "deferred": [
+    "009_template_migration",
+    "010_template_parity",
+    "011_vehicle_graphics"
+  ]
 }

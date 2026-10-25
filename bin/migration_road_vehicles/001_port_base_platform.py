@@ -2,6 +2,7 @@
 """Provision base platform, unit interface and ModelDef compatibility defaults."""
 from pathlib import Path
 import ast
+import re
 
 ROOT = Path(__file__).resolve().parents[2]
 MODEL = ROOT / 'src/road_vehicle/model_def.py'
@@ -78,6 +79,27 @@ def modify_schemas(source):
     updated = "".join(lines)
     ast.parse(updated)
     return updated
+
+
+def force_default_render_template(source):
+    """CABBAGE: Pass 1 skips legacy template selection, not schema graphics provision."""
+    marker = '# CABBAGE PASS 1 TEMPLATE SHIM: temporarily force vehicle_default.pynml.'
+    if marker in source:
+        return source
+    # Require one actual renderer assignment; do not change unrelated template lookups.
+    selector = re.compile(r"(?m)^(?P<indent>[ \t]*)template\s*=\s*templates\s*\[\s*[\"\']vehicle_default\.pynml[\"\']\s*\][ \t]*$")
+    hits = list(selector.finditer(source))
+    if len(hits) != 1:
+        raise RuntimeError(f'Expected one default-template renderer selector, found {len(hits)}')
+    hit = hits[0]
+    indent = hit.group('indent')
+    snippet = (indent + marker + '\n'
+               + indent + '# CABBAGE FUTURE PASS: restore self.gestalt_graphics.nml_template selection;\n'
+               + indent + '# cargo-specific liveries and visible-cargo rendering remain deferred.\n'
+               + indent + 'template = templates["vehicle_default.pynml"]')
+    result = source[:hit.start()] + snippet + source[hit.end():]
+    ast.parse(result)
+    return result
 
 
 def default_sprites_incomplete(source):
@@ -319,7 +341,7 @@ if model_text != MODEL.read_text(encoding='utf-8'):
     print('PLANNED:', MODEL.relative_to(ROOT), 'power and sprites defaults')
 
 schemas_path = ROOT / 'src/road_vehicle/schemas.py'
-schemas_text = modify_schemas(schemas_path.read_text(encoding='utf-8'))
+schemas_text = force_default_render_template(modify_schemas(schemas_path.read_text(encoding='utf-8')))
 if schemas_text != schemas_path.read_text(encoding='utf-8'):
     pending[schemas_path] = schemas_text
     print('PLANNED:', schemas_path.relative_to(ROOT), 'scalar power behaviour')

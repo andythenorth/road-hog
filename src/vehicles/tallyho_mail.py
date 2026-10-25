@@ -1,21 +1,25 @@
 from road_vehicle import MailTruckConsist, DieselVehicleUnit
 
+from road_vehicle.model_def import ModelDef
+# CABBAGE DEFERRED: Pass 1 supports only vehicle_default.pynml.
+# CABBAGE FUTURE PASS: restore legacy template choice and cargo-specific
+# spritegroups/liveries where present in this vehicle.
+
 
 def main(roster_id):
-    consist = MailTruckConsist(
-        roster_id=roster_id,
-        id="tallyho_mail",
+    model_def = ModelDef(schema_name='MailTruck', 
+        model_id="tallyho_mail",
         base_numeric_id=450,
         name="Tallyho",
         power=90,
         gen=2,
-        intro_date_offset=-1,
+        intro_year_offset=-1,
     )  # introduce earlier than gen epoch by design
 
-    consist.add_unit(
+    model_def.add_unit_def(
         base_platform=None,  # mail trucks have no base platform by design currently
-        type=DieselVehicleUnit,
+        unit_cls_name='DieselVehicleUnit',
         vehicle_length=6,
     )
 
-    return consist
+    return [model_def]

@@ -16,7 +16,11 @@ class ModelDef:
     # Required fields (lexically sorted)
     schema_name: str
     gen: int
-    sprites_complete: bool
+    # CABBAGE: All existing Road Hog vehicles have incomplete sprites.
+    # CABBAGE DEFERRED: Pass 1 supports only vehicle_default.pynml.
+    # CABBAGE FUTURE PASS: restore legacy per-vehicle template selection,
+    # cargo-specific spritegroups and livery behaviour; audit affected vehicles.
+    sprites_complete: bool = False
 
     # Optional common fields (lexically sorted)
     additional_liveries: List[Any] = None
@@ -35,6 +39,9 @@ class ModelDef:
     name: Optional[str] = None
     pax_car_capacity_type: Optional[str] = None
     pantograph_type: Optional[str] = None
+    # CABBAGE Migration shim: legacy Road Hog scalar power remains supported.
+    # Multi-source mapping is storage only until separately implemented.
+    power: Optional[int] = None
     power_by_power_source: Optional[Dict[Any, Any]] = None
     random_reverse: bool = False
     replacement_model_id: Optional[str] = None
@@ -57,6 +64,11 @@ class ModelDef:
     clones: List[Any] = field(default_factory=list, init=False)
     clone_stats_adjustment_factor: Optional[float] = None
     unit_defs: List[Any] = field(default_factory=list, init=False)
+
+    def __post_init__(self):
+        # CABBAGE Migration shim: two simultaneous power declarations are ambiguous.
+        if self.power is not None and self.power_by_power_source is not None:
+            raise ValueError('Specify power OR power_by_power_source, not both')
 
     def add_unit_def(self, **kwargs):
         self.unit_defs.append(UnitDef(**kwargs))
@@ -84,7 +96,7 @@ class ModelDef:
 class UnitDef:
     """Simple wrapper obj to unpack/default required kwargs (the rest are arbitrary)"""
 
-    unit_cls_name: str
+    unit_cls_name: str = "RoadVehicleUnit"
     repeat: int = 1
     capacity: Optional[int] = None
     weight: Optional[int] = None
@@ -102,6 +114,13 @@ class UnitDef:
     force_spriterow_group_in_output_spritesheet: Optional[int] = 0
     # optional - we might want to force the sprites to reverse in some contexts, for example rear cabs of multiple-unit articulated railcars
     reverse_sprite_template: bool = False
+    # CABBAGE Road Hog platform classes are still the old source of shared tractor/chassis props.
+    base_platform: Optional[Any] = None
+    # BasePlatform has a few old unit fields that Horse UnitDef did not need.
+    always_use_same_spriterow: bool = False
+    cargo_length: Optional[int] = None
+    semi_truck_shift_offset_jank: Optional[int] = None
+    unit_is_semi_tractor: bool = False
 
 
 class ModelDefCloner:
