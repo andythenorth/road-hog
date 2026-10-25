@@ -6,6 +6,7 @@ CABBAGE Add more child schemas as the rest of the fleet is converted.
 import math
 import global_constants
 import road_hog
+from gestalt_graphics.gestalt_graphics import GestaltGraphics
 
 
 class RoadVehicleBase:
@@ -18,6 +19,14 @@ class RoadVehicleBase:
         self.roster_id = producer.catalogue.roster_id
         self.units = []
         self.id = catalogue_entry.model_variant_id
+        # The normal bus sprite pipeline just reads and writes the sprite sheet.
+        # Other graphics types can choose a different GestaltGraphics later.
+        self.gestalt_graphics = GestaltGraphics()
+        self.sprites_complete = bool(getattr(self.model_def, "sprites_complete", False))
+        self.sprites_additional_liveries_potential = False
+        # CABBAGE Sprite file names still use the base model id, not variant ids.
+        # Check this when model variants get different graphics/liveries.
+        self.graphics_file_id = self.model_def.model_id
         self.label_refits_allowed = []
         self.label_refits_disallowed = []
         self.class_refit_groups = []
