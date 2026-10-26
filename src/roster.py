@@ -32,27 +32,12 @@ class Roster(object):
 
     def post_init_actions(self):
         # init of consists has to happen after the roster is registered with RosterManager, otherwise consists can't get the roster
-        from road_vehicle.model_def import ModelDef
         from road_vehicle.catalogue import Catalogue
 
         for vehicle in self.consists_uninitialised:
-            # CABBAGE When all vehicle files return ModelDef lists this legacy
-            # CABBAGE single-consist branch can be removed.
-            result = vehicle.main(roster_id=self.id)
-            if isinstance(result, list):
-                for model_def in result:
-                    if not isinstance(model_def, ModelDef):
-                        raise TypeError(
-                            f"{vehicle.__name__}.main returned a non-ModelDef item"
-                        )
-                    # Catalogue owns the model/variant/unit IDs. The roster
-                    # only requests produced variants and keeps their order.
-                    catalogue = Catalogue(model_def, roster_id=self.id)
-                    self.consists.extend(
-                        catalogue.produce(entry) for entry in catalogue
-                    )
-            else:
-                self.consists.append(result)
+            for model_def in vehicle.main(roster_id=self.id):
+                catalogue = Catalogue(model_def, roster_id=self.id)
+                self.consists.extend(catalogue.produce(entry) for entry in catalogue)
 
     @property
     def buy_menu_sort_order(self):
@@ -149,17 +134,8 @@ class Roster(object):
                     lang_strings[node_name] = node_value["base"]
 
         for consist in self.consists_in_buy_menu_order:
-            # Road Hog legacy vehicles own _name and id. New catalogue vehicles
-            # get their name and base model ID from ModelDef instead.
-            # CABBAGE Keep both paths until the old vehicle definitions are ported.
-            model_def = getattr(consist, "model_def", None)
-            if model_def is not None:
-                name = model_def.name
-                model_id = model_def.model_id
-            else:
-                name = consist._name
-                model_id = consist.id
-            if name is not None:
-                lang_strings["STR_NAME_" + model_id.upper()] = name
+            model_def = consist.model_def
+            if model_def.name is not None:
+                lang_strings["STR_NAME_" + model_def.model_id.upper()] = model_def.name
 
         return {"global_pragma": global_pragma, "lang_strings": lang_strings}
