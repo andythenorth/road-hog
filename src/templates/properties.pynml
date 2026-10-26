@@ -29,8 +29,8 @@ item(FEAT_ROADVEHS, ${unit.id}, ${unit.numeric_id}) {
             sound_effect:                   ${model_variant.sound_effect};
         </tal:lead_unit_only>
         refit_cost:                     0; // this needs to be 0 if we want autorefit without using cb
-        refittable_cargo_classes:       bitmask(${model_variant.refittable_classes});
-        non_refittable_cargo_classes:   bitmask(); // don't set non-refittable classes, increases likelihood of breaking cargo support
+        refittable_cargo_classes:       ${unit.get_cargo_classes_as_nml_prop("allowed")};
+        non_refittable_cargo_classes:   ${unit.get_cargo_classes_as_nml_prop("disallowed")};
         cargo_allow_refit:              [${model_variant.get_label_refits_allowed()}];
         cargo_disallow_refit:           [${model_variant.get_label_refits_disallowed()}];
         <tal:default_cargo condition="len(model_variant.default_cargos) > 0">

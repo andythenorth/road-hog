@@ -25,6 +25,15 @@ class RoadVehicleUnit:
         self._effect_spawn_model = None
         self.unit_num_providing_spriterow_num = None
 
+    def get_cargo_classes_as_nml_prop(self, allow_disallow_key):
+        result = []
+        for class_refit_group in self.model_variant.class_refit_groups:
+            for cargo_class in global_constants.base_refits_by_class[
+                class_refit_group
+            ][allow_disallow_key]:
+                result.append(cargo_class)
+        return "bitmask(" + ",".join(result) + ")"
+
     @property
     def chassis(self):
         # CABBAGE MIGRATION SHIM: legacy pipeline expects unit.chassis.

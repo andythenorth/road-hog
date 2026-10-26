@@ -118,16 +118,6 @@ class RoadVehicleBase:
     def model_life(self):
         return "VEHICLE_NEVER_EXPIRES"
 
-    @property
-    def refittable_classes(self):
-        return ",".join(
-            set(
-                c
-                for group in self.class_refit_groups
-                for c in global_constants.base_refits_by_class[group]
-            )
-        )
-
     def get_label_refits_allowed(self):
         return ",".join(self.label_refits_allowed)
 
@@ -242,6 +232,9 @@ class PassengerVehicle(RoadVehicleBase):
 
     def __init__(self, producer, catalogue_entry):
         super().__init__(producer, catalogue_entry)
+        self.class_refit_groups = ['pax']
+        self.label_refits_allowed = []
+        self.label_refits_disallowed = []
         self.default_cargos = global_constants.default_cargos["pax"]
         self.autorefit = True
         self.loading_speed_multiplier = 3
@@ -326,19 +319,9 @@ class BoxHaulerConsistBase(RoadVehicleBase):
         super().__init__(producer, catalogue_entry)
         self.name_suffix_consist_type = "BOX"
         self.autorefit = True
-        self.class_refit_groups = []
-        self.label_refits_allowed = [
-            "MAIL",
-            "GRAI",
-            "WHEA",
-            "MAIZ",
-            "FRUT",
-            "BEAN",
-            "NITR",
-        ]
-        self.label_refits_disallowed = global_constants.disallowed_refits_by_label[
-            "legacy_disallowed_express"
-        ]
+        self.class_refit_groups = ['packaged_freight']
+        self.label_refits_allowed = global_constants.allowed_refits_by_label["legacy_box_freight"]
+        self.label_refits_disallowed = global_constants.disallowed_refits_by_label["legacy_disallowed_express"]
         self.default_cargos = global_constants.default_cargos["box"]
         self.weight_multiplier = 0.45
         self.gestalt_graphics = GestaltGraphicsLiveryOnly(
@@ -351,7 +334,7 @@ class CoveredHopperHaulerConsistBase(RoadVehicleBase):
         super().__init__(producer, catalogue_entry)
         self.name_suffix_consist_type = "COVERED_HOPPER"
         self.autorefit = True
-        self.class_refit_groups = []
+        self.class_refit_groups = ['covered_hopper_freight_any_grade']
         self.label_refits_allowed = list(
             set(
                 polar_fox.constants.allowed_refits_by_label[
@@ -385,7 +368,7 @@ class DumpHaulerConsistBase(RoadVehicleBase):
         super().__init__(producer, catalogue_entry)
         self.name_suffix_consist_type = "DUMP"
         self.autorefit = True
-        self.class_refit_groups = []
+        self.class_refit_groups = ['open_bulk_non_food_grade']
         self.label_refits_allowed = []
         self.label_refits_disallowed = polar_fox.constants.disallowed_refits_by_label[
             "legacy_disallowed_open_bulk"
@@ -401,7 +384,7 @@ class EdiblesTankerConsistBase(RoadVehicleBase):
         super().__init__(producer, catalogue_entry)
         self.name_suffix_consist_type = "EDIBLES_TANKER"
         self.autorefit = True
-        self.class_refit_groups = []
+        self.class_refit_groups = ['liquids_food_grade']
         self.label_refits_allowed = polar_fox.constants.allowed_refits_by_label[
             "legacy_allowed_food_grade_liquid_bulk"
         ]
@@ -419,7 +402,7 @@ class FlatbedHaulerConsistBase(RoadVehicleBase):
         super().__init__(producer, catalogue_entry)
         self.name_suffix_consist_type = "FLATBED"
         self.autorefit = True
-        self.class_refit_groups = []
+        self.class_refit_groups = ['flatbed_freight']
         self.label_refits_allowed = polar_fox.constants.allowed_refits_by_label[
             "legacy_allowed_flatbed"
         ]
@@ -484,9 +467,9 @@ class MailHaulerConsistBase(RoadVehicleBase):
         super().__init__(producer, catalogue_entry)
         self.name_suffix_consist_type = "MAIL"
         self.autorefit = True
-        self.class_refit_groups = []
+        self.class_refit_groups = ['mail', 'express_freight']
         self.label_refits_allowed = []
-        self.label_refits_disallowed = ["TOUR"]
+        self.label_refits_disallowed = global_constants.disallowed_refits_by_label["legacy_disallowed_express"]
         self.default_cargos = global_constants.default_cargos["mail"]
         self.weight_multiplier = 0.2
 
@@ -496,6 +479,7 @@ class MetalHaulerConsistBase(RoadVehicleBase):
         super().__init__(producer, catalogue_entry)
         self.name_suffix_consist_type = "METAL"
         self.autorefit = True
+        # CABBAGE: Consider consolidating specialist metal labels in Polar Fox.
         self.class_refit_groups = []
         self.label_refits_allowed = ["STEL", "COPR", "IRON", "SLAG"]
         self.label_refits_disallowed = []
@@ -508,9 +492,9 @@ class OpenHaulerConsistBase(RoadVehicleBase):
         super().__init__(producer, catalogue_entry)
         self.name_suffix_consist_type = "OPEN"
         self.autorefit = True
-        self.class_refit_groups = []
+        self.class_refit_groups = ['all_freight']
         self.label_refits_allowed = []
-        self.label_refits_disallowed = ["TOUR"]
+        self.label_refits_disallowed = global_constants.disallowed_refits_by_label["legacy_disallowed_express"]
         self.default_cargos = global_constants.default_cargos["open"]
         self.gestalt_graphics = GestaltGraphicsPrecompositedCargo(bulk=True, piece="open")
 
@@ -519,7 +503,7 @@ class PaxHaulerConsistBase(RoadVehicleBase):
     def __init__(self, producer, catalogue_entry):
         super().__init__(producer, catalogue_entry)
         self.autorefit = True
-        self.class_refit_groups = []
+        self.class_refit_groups = ['pax']
         self.label_refits_allowed = []
         self.label_refits_disallowed = []
         self.default_cargos = global_constants.default_cargos["pax"]
@@ -537,7 +521,7 @@ class RefrigeratedHaulerConsistBase(RoadVehicleBase):
         super().__init__(producer, catalogue_entry)
         self.name_suffix_consist_type = "REEFER"
         self.autorefit = True
-        self.class_refit_groups = []
+        self.class_refit_groups = ['refrigerated_freight']
         self.label_refits_allowed = []
         self.label_refits_disallowed = []
         self.default_cargos = global_constants.default_cargos["reefer"]
@@ -553,6 +537,7 @@ class SuppliesHaulerConsistBase(RoadVehicleBase):
         super().__init__(producer, catalogue_entry)
         self.name_suffix_consist_type = "SUPPLIES"
         self.autorefit = True
+        # CABBAGE: Consider consolidating specialist supplies labels in Polar Fox.
         self.class_refit_groups = []
         self.label_refits_allowed = ["ENSP", "FMSP", "VEHI", "BDMT"]
         self.label_refits_disallowed = []
@@ -571,7 +556,7 @@ class TankerConsistBase(RoadVehicleBase):
         super().__init__(producer, catalogue_entry)
         self.name_suffix_consist_type = "TANKER"
         self.autorefit = True
-        self.class_refit_groups = []
+        self.class_refit_groups = ['liquids_non_food_grade']
         self.label_refits_allowed = polar_fox.constants.allowed_refits_by_label[
             "allowed_tanker_products"
         ]
@@ -793,13 +778,9 @@ class IntermodalHauler(RoadVehicleBase):
         super().__init__(producer, catalogue_entry)
         self.name_suffix_consist_type = "INTERMODAL"
         self.autorefit = True
-        self.class_refit_groups = []
-        self.label_refits_allowed = global_constants.allowed_refits_by_label[
-            "box_freight"
-        ]
-        self.label_refits_disallowed = global_constants.disallowed_refits_by_label[
-            "legacy_disallowed_express"
-        ]
+        self.class_refit_groups = ['all_freight']
+        self.label_refits_allowed = []
+        self.label_refits_disallowed = global_constants.disallowed_refits_by_label["legacy_disallowed_express"]
         self.default_cargos = global_constants.default_cargos["box"]
         self.loading_speed_multiplier = 2
 
