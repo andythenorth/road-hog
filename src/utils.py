@@ -36,7 +36,7 @@ def get_command_line_args():
         required=True,
         help="The grf to build",
         # manually extend the list if more rosters are added
-        choices=["road-hog", "heqs", "migration_test", "id-report-only"],
+        choices=["road-hog", "heqs", "id-report-only"],
     )
     argparser.add_argument(
         "-sc",
