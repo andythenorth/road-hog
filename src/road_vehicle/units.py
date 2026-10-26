@@ -99,6 +99,13 @@ class RoadVehicleUnit:
             )
         return ["[" + ",".join(effects) + "]", len(effects)] if effects else [0, 0]
 
+    def get_spriteset_template_name(self, reversed, y):
+        # Road Hog spriteset templates are named by unit ID, not train symmetry.
+        # CABBAGE: migrate spriteset templates to the Iron Horse reusable symmetry-based approach.
+        # The current road template does not distinguish reversed variants.
+        return "spriteset_template_" + self.id + "(" + str(y) + ")"
+
+
 
 class DieselVehicleUnit(RoadVehicleUnit):
     def __init__(self, *args, **kwargs):

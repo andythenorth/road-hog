@@ -197,18 +197,6 @@ class RoadVehicleBase:
                 unique_units.append(unit)
         return unique_units
 
-    # CABBAGE MIGRATION SHIM: existing graphics pipelines use legacy sprite-row counts.
-    # CABBAGE Keep the original row-count semantics for incomplete sprites and cargo.
-    def get_spriterows_for_consist_or_subpart(self, units):
-        result = []
-        for unit in units:
-            unit_rows = []
-            if unit.always_use_same_spriterow:
-                unit_rows.append(("always_use_same_spriterow", 1))
-            else:
-                unit_rows.extend(self.gestalt_graphics.get_output_row_counts_by_type())
-            result.append(unit_rows)
-        return result
 
     @property
     def track_type(self):
@@ -281,7 +269,7 @@ class Bus(PassengerVehicle):
 import polar_fox
 import gestalt_graphics.graphics_constants as graphics_constants
 from gestalt_graphics.gestalt_graphics import (
-    GestaltGraphicsVisibleCargo,
+    GestaltGraphicsPrecompositedCargo,
     GestaltGraphicsLiveryOnly,
     GestaltGraphicsCustom,
 )
@@ -405,7 +393,7 @@ class DumpHaulerConsistBase(RoadVehicleBase):
         self.default_cargos = global_constants.default_cargos["dump"]
         self.loading_speed_multiplier = 2
         self.weight_multiplier = 0.45
-        self.gestalt_graphics = GestaltGraphicsVisibleCargo(bulk=True)
+        self.gestalt_graphics = GestaltGraphicsPrecompositedCargo(bulk=True)
 
 
 class EdiblesTankerConsistBase(RoadVehicleBase):
@@ -437,7 +425,7 @@ class FlatbedHaulerConsistBase(RoadVehicleBase):
         ]
         self.label_refits_disallowed = []
         self.default_cargos = global_constants.default_cargos["flat"]
-        self.gestalt_graphics = GestaltGraphicsVisibleCargo(piece="flat")
+        self.gestalt_graphics = GestaltGraphicsPrecompositedCargo(piece="flat")
 
 
 class FruitVegHaulerConsistBase(RoadVehicleBase):
@@ -487,7 +475,7 @@ class LogHaulerConsistBase(RoadVehicleBase):
         self.default_cargos = ["WOOD"]
         self.loading_speed_multiplier = 2
         self.gestalt_graphics = GestaltGraphicsCustom(
-            {"WOOD": [0]}, "vehicle_with_visible_cargo.pynml", generic_rows=[0]
+            {"WOOD": [0]}, "vehicle_with_precomposited_cargo.pynml", generic_rows=[0]
         )
 
 
@@ -524,7 +512,7 @@ class OpenHaulerConsistBase(RoadVehicleBase):
         self.label_refits_allowed = []
         self.label_refits_disallowed = ["TOUR"]
         self.default_cargos = global_constants.default_cargos["open"]
-        self.gestalt_graphics = GestaltGraphicsVisibleCargo(bulk=True, piece="open")
+        self.gestalt_graphics = GestaltGraphicsPrecompositedCargo(bulk=True, piece="open")
 
 
 class PaxHaulerConsistBase(RoadVehicleBase):
@@ -573,7 +561,7 @@ class SuppliesHaulerConsistBase(RoadVehicleBase):
         self.weight_multiplier = 0.5
         self.gestalt_graphics = GestaltGraphicsCustom(
             {"ENSP": [0], "FMSP": [0], "VEHI": [0]},
-            "vehicle_with_visible_cargo.pynml",
+            "vehicle_with_precomposited_cargo.pynml",
             generic_rows=[0],
         )
 

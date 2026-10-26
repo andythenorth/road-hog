@@ -15,7 +15,7 @@ import utils
 
 from gestalt_graphics.gestalt_graphics import (
     GestaltGraphics,
-    GestaltGraphicsVisibleCargo,
+    GestaltGraphicsPrecompositedCargo,
     GestaltGraphicsLiveryOnly,
     GestaltGraphicsCustom,
 )
@@ -727,7 +727,7 @@ class DumpHaulerConsistBase(Consist):
         self.loading_speed_multiplier = 2
         self.weight_multiplier = 0.45
         # Graphics configuration
-        self.gestalt_graphics = GestaltGraphicsVisibleCargo(bulk=True)
+        self.gestalt_graphics = GestaltGraphicsPrecompositedCargo(bulk=True)
 
 
 class DumpFeldbahnConsist(DumpHaulerConsistBase, TrackTypeMixinFeldbahn):
@@ -822,7 +822,7 @@ class FlatbedHaulerConsistBase(Consist):
         self.label_refits_disallowed = []
         self.default_cargos = global_constants.default_cargos["flat"]
         # Graphics configuration
-        self.gestalt_graphics = GestaltGraphicsVisibleCargo(piece="flat")
+        self.gestalt_graphics = GestaltGraphicsPrecompositedCargo(piece="flat")
 
 
 class FlatFeldbahnConsist(FlatbedHaulerConsistBase, TrackTypeMixinFeldbahn):
@@ -981,7 +981,7 @@ class LogHaulerConsistBase(Consist):
         self.loading_speed_multiplier = 2
         # Cargo graphics
         self.gestalt_graphics = GestaltGraphicsCustom(
-            {"WOOD": [0]}, "vehicle_with_visible_cargo.pynml", generic_rows=[0]
+            {"WOOD": [0]}, "vehicle_with_precomposited_cargo.pynml", generic_rows=[0]
         )
 
 
@@ -1070,7 +1070,7 @@ class OpenHaulerConsistBase(Consist):
         self.label_refits_disallowed = ["TOUR"]
         self.default_cargos = global_constants.default_cargos["open"]
         # Graphics configuration
-        self.gestalt_graphics = GestaltGraphicsVisibleCargo(bulk=True, piece="open")
+        self.gestalt_graphics = GestaltGraphicsPrecompositedCargo(bulk=True, piece="open")
 
 
 class OpenFeldbahnConsist(OpenHaulerConsistBase, TrackTypeMixinFeldbahn):
@@ -1241,7 +1241,7 @@ class SuppliesHaulerConsistBase(Consist):
         # Graphics configuration
         self.gestalt_graphics = GestaltGraphicsCustom(
             {"ENSP": [0], "FMSP": [0], "VEHI": [0]},
-            "vehicle_with_visible_cargo.pynml",
+            "vehicle_with_precomposited_cargo.pynml",
             generic_rows=[0],
         )
 

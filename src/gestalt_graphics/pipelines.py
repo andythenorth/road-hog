@@ -221,6 +221,11 @@ class CheckBuyMenuOnlyPipeline(Pipeline):
 
 
 class ExtendSpriterowsForCompositedSpritesPipeline(Pipeline):
+    def get_spriterow_types_for_model(self, model_variant):
+        return model_variant.gestalt_graphics.get_spriterow_types_for_units(
+            model_variant.unique_units
+        )
+
     """ "
     Extends a vehicle spritesheet with composited vehicle parts, cargo variations etc.
     In Road Hog, has to handle variations on single-unit trucks, wagon+drags, and trucks where some units don't show cargo (artics).
@@ -515,84 +520,81 @@ class ExtendSpriterowsForCompositedSpritesPipeline(Pipeline):
         # piece_cargo_rows_image.show()
         crop_box_dest = (0, 0, self.sprites_max_x_extent, cargo_group_output_row_height)
 
-        # !! convert to use piece_vehicle_type_to_sprites_maps per Iron Horse ??
-        for (
-            cargo_labels,
-            cargo_filenames,
-        ) in self.consist.gestalt_graphics.piece_cargo_maps:
-            for cargo_filename in cargo_filenames:
-                # get a list, with a two-tuple (cargo_sprite, mask) for each of 4 angles
-                # cargo sprites are assumed to be symmetrical, only 4 angles are needed
-                # cargos with 8 angles (e.g. bulldozers) aren't handled here, assume heavy_items_cargo should handle those (might need extended)
-                # loading states are first 4 sprites, loaded are second 4, all in one list, just pick them out as needed
-                cargo_sprites_input_path = os.path.join(
-                    currentdir,
-                    "src",
-                    "polar_fox",
-                    "graphics",
-                    "piece_cargos",
-                    cargo_filename + ".png",
-                )
-                cargo_sprites_input_image = Image.open(cargo_sprites_input_path)
-                cargo_sprites = self.get_arbitrary_angles(
-                    cargo_sprites_input_image,
-                    cargo_spritesheet_bounding_boxes[self.vehicle_unit.cargo_length],
-                )
+        for cargo_filename in polar_fox.constants.piece_vehicle_type_to_sprites_maps[
+            self.consist.gestalt_graphics.piece_type
+        ]:
+            # get a list, with a two-tuple (cargo_sprite, mask) for each of 4 angles
+            # cargo sprites are assumed to be symmetrical, only 4 angles are needed
+            # cargos with 8 angles (e.g. bulldozers) aren't handled here, assume heavy_items_cargo should handle those (might need extended)
+            # loading states are first 4 sprites, loaded are second 4, all in one list, just pick them out as needed
+            cargo_sprites_input_path = os.path.join(
+                currentdir,
+                "src",
+                "polar_fox",
+                "graphics",
+                "piece_cargos",
+                cargo_filename + ".png",
+            )
+            cargo_sprites_input_image = Image.open(cargo_sprites_input_path)
+            cargo_sprites = self.get_arbitrary_angles(
+                cargo_sprites_input_image,
+                cargo_spritesheet_bounding_boxes[self.vehicle_unit.cargo_length],
+            )
 
-                vehicle_comped_image = piece_cargo_rows_image.copy()
+            vehicle_comped_image = piece_cargo_rows_image.copy()
 
-                for pixel in loc_points:
-                    angle_num = 0
-                    for counter, bbox in enumerate(
-                        self.global_constants.spritesheet_bounding_boxes
-                    ):
-                        if pixel[0] >= bbox[0]:
-                            angle_num = counter
-                    # clamp angle_num to 4, cargo sprites are symmetrical, only 4 angles provided
-                    if angle_num > 3:
-                        angle_num = angle_num % 4
-                    cargo_sprite_num = angle_num
-                    # loaded sprites are the second block of 4 in the cargo sprites list
-                    if pixel[1] >= graphics_constants.spriterow_height:
-                        cargo_sprite_num = cargo_sprite_num + 4
-                    cargo_width = cargo_sprites[cargo_sprite_num][0].size[0]
-                    cargo_height = cargo_sprites[cargo_sprite_num][0].size[1]
-                    # the +1s for height adjust the crop box to include the loc point
-                    # (needed beause loc points are left-bottom not left-top as per co-ordinate system, makes drawing loc points easier)
-                    cargo_bounding_box = (
-                        pixel[0],
-                        pixel[1] - cargo_height + 1,
-                        pixel[0] + cargo_width,
-                        pixel[1] + 1,
-                    )
-                    vehicle_comped_image.paste(
-                        cargo_sprites[cargo_sprite_num][0],
-                        cargo_bounding_box,
-                        cargo_sprites[cargo_sprite_num][1],
-                    )
-                # vehicle overlay with mask - overlays any areas where cargo shouldn't show
-                vehicle_comped_image.paste(
-                    vehicle_base_image, crop_box_comp_dest_1, vehicle_mask
+            for pixel in loc_points:
+                angle_num = 0
+                for counter, bbox in enumerate(
+                    self.global_constants.spritesheet_bounding_boxes
+                ):
+                    if pixel[0] >= bbox[0]:
+                        angle_num = counter
+                # clamp angle_num to 4, cargo sprites are symmetrical, only 4 angles provided
+                if angle_num > 3:
+                    angle_num = angle_num % 4
+                cargo_sprite_num = angle_num
+                # loaded sprites are the second block of 4 in the cargo sprites list
+                if pixel[1] >= graphics_constants.spriterow_height:
+                    cargo_sprite_num = cargo_sprite_num + 4
+                cargo_width = cargo_sprites[cargo_sprite_num][0].size[0]
+                cargo_height = cargo_sprites[cargo_sprite_num][0].size[1]
+                # the +1s for height adjust the crop box to include the loc point
+                # (needed beause loc points are left-bottom not left-top as per co-ordinate system, makes drawing loc points easier)
+                cargo_bounding_box = (
+                    pixel[0],
+                    pixel[1] - cargo_height + 1,
+                    pixel[0] + cargo_width,
+                    pixel[1] + 1,
                 )
                 vehicle_comped_image.paste(
-                    vehicle_base_image, crop_box_comp_dest_2, vehicle_mask
+                    cargo_sprites[cargo_sprite_num][0],
+                    cargo_bounding_box,
+                    cargo_sprites[cargo_sprite_num][1],
                 )
-                # vehicle_comped_image.show()
-                vehicle_comped_image_as_spritesheet = self.make_spritesheet_from_image(
-                    vehicle_comped_image
+            # vehicle overlay with mask - overlays any areas where cargo shouldn't show
+            vehicle_comped_image.paste(
+                vehicle_base_image, crop_box_comp_dest_1, vehicle_mask
+            )
+            vehicle_comped_image.paste(
+                vehicle_base_image, crop_box_comp_dest_2, vehicle_mask
+            )
+            # vehicle_comped_image.show()
+            vehicle_comped_image_as_spritesheet = self.make_spritesheet_from_image(
+                vehicle_comped_image
+            )
+            self.units.append(
+                AppendToSpritesheet(
+                    vehicle_comped_image_as_spritesheet, crop_box_dest
                 )
-                self.units.append(
-                    AppendToSpritesheet(
-                        vehicle_comped_image_as_spritesheet, crop_box_dest
-                    )
+            )
+            self.units.append(
+                AddCargoLabel(
+                    label=cargo_filename,
+                    x_offset=self.sprites_max_x_extent + 5,
+                    y_offset=-1 * cargo_group_output_row_height,
                 )
-                self.units.append(
-                    AddCargoLabel(
-                        label=cargo_filename,
-                        x_offset=self.sprites_max_x_extent + 5,
-                        y_offset=-1 * cargo_group_output_row_height,
-                    )
-                )
+            )
 
     def render(self, consist, global_constants, graphics_output_path):
         self.units = (
@@ -607,13 +609,12 @@ class ExtendSpriterowsForCompositedSpritesPipeline(Pipeline):
         # !! source_spriterow_count looks a bit weird though; I tried moving it to gestalts, but didn't really work
         consist_cumulative_source_spriterow_count = 0
         for vehicle_counter, vehicle_rows in enumerate(
-            consist.get_spriterows_for_consist_or_subpart(consist.unique_units)
+            self.get_spriterow_types_for_model(consist)
         ):
-            # !! ^ this is ugly hax, I didn't want to refactor the iterator above to contain the vehicle, also in Horse
             # 'vehicle_unit' not 'unit' to avoid conflating with graphics processor 'unit'
             self.vehicle_unit = self.consist.unique_units[vehicle_counter]
             vehicle_unit_cumulative_source_spriterow_count = 0
-            vehicle_unit_source_base_yoffs = 10 + (
+            vehicle_unit_source_base_yoffs = graphics_constants.spritesheet_top_margin + (
                 graphics_constants.spriterow_height
                 * consist_cumulative_source_spriterow_count
             )
@@ -635,10 +636,11 @@ class ExtendSpriterowsForCompositedSpritesPipeline(Pipeline):
                     )
                     self.empty_row_input_yoffs = vehicle_unit_source_base_yoffs
 
-                spriterow_type = spriterow_data[0]
-                if (
-                    spriterow_type == "always_use_same_spriterow"
-                    or spriterow_type == "empty"
+                spriterow_type = spriterow_data
+                if spriterow_type in (
+                    "always_use_same_spriterow",
+                    "empty",
+                    "empty_vehicle_body",
                 ):
                     source_spriterow_count = 1
                     self.add_generic_spriterow()
@@ -653,6 +655,8 @@ class ExtendSpriterowsForCompositedSpritesPipeline(Pipeline):
                 elif spriterow_type == "piece_cargo":
                     source_spriterow_count = 2
                     self.add_piece_cargo_spriterows()
+                else:
+                    raise ValueError(f"Unsupported compositor row type: {spriterow_type}")
                 consist_cumulative_source_spriterow_count += source_spriterow_count
                 vehicle_unit_cumulative_source_spriterow_count += source_spriterow_count
 

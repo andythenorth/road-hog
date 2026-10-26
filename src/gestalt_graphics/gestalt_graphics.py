@@ -39,7 +39,29 @@ class GestaltGraphics(object):
         return result
 
 
-class GestaltGraphicsVisibleCargo(GestaltGraphics):
+    def get_spriterow_types_for_units(self, units):
+        # The compositor consumes row types, as in Iron Horse. Retain the
+        # unit-specific fixed-row distinction until its graphics migrate.
+        return [
+            [row_type for row_type, _ in unit_rows]
+            for unit_rows in self.get_legacy_road_hog_output_row_groups(units)
+        ]
+
+    def get_legacy_road_hog_output_row_groups(self, units):
+        # CABBAGE: temporary tuple row descriptors for the Road Hog compositor;
+        # replace with Iron Horse row-type contracts during pipeline cutover.
+        result = []
+        for unit in units:
+            unit_rows = []
+            if unit.always_use_same_spriterow:
+                unit_rows.append(("always_use_same_spriterow", 1))
+            else:
+                unit_rows.extend(self.get_output_row_counts_by_type())
+            result.append(unit_rows)
+        return result
+
+
+class GestaltGraphicsPrecompositedCargo(GestaltGraphics):
     """
     Used for vehicle with visible cargos
     Supports *only* pixa-generated cargos; mixing with custom cargo rows isn't handled, TMWFTLB
@@ -62,6 +84,20 @@ class GestaltGraphicsVisibleCargo(GestaltGraphics):
             self.piece_type = kwargs.get("piece")
         # required if piece is set, cargo sprites are available in multiple lengths, set the most appropriate
         self.cargo_length = kwargs.get("cargo_length", None)
+        # State needed by the copied Iron Horse row-enumeration methods.
+        self.covered_vehicle_body = kwargs.get("covered_vehicle_body", False)
+        self.weathered_states = kwargs.get(
+            "weathered_states", {"unweathered": self.body_recolour_map}
+        )
+        # CABBAGE: the Road Hog compositor does not yet emit covered or multiple weathering rows.
+        if self.covered_vehicle_body:
+            raise NotImplementedError(
+                "Visible-cargo covered_vehicle_body requires compositor migration"
+            )
+        if len(self.weathered_states) != 1:
+            raise NotImplementedError(
+                "Visible-cargo multiple weathered_states require compositor migration"
+            )
 
     @property
     def generic_rows(self):
@@ -78,26 +114,8 @@ class GestaltGraphicsVisibleCargo(GestaltGraphics):
 
     @property
     def nml_template(self):
-        return "vehicle_with_visible_cargo.pynml"
+        return "vehicle_with_precomposited_cargo.pynml"
 
-    @property
-    def piece_cargo_maps(self):
-        # I cleaned up how piece cargo maps are *defined* in March 2018
-        # however the pre-existing pipelines and templates expect a specific data structure
-        # it's more effective right now to simply remap the new data structure onto the old
-        # the templates and pipelines can be refactored later, and this can then be simpler
-        # I cleaned this up in Horse April 2018
-        result = []
-        sprite_names = polar_fox.constants.piece_vehicle_type_to_sprites_maps[
-            self.piece_type
-        ]
-        for sprite_name in sprite_names:
-            cargo_labels = polar_fox.constants.piece_sprites_to_cargo_labels_maps[
-                sprite_name
-            ]
-            map = (cargo_labels, [sprite_name])
-            result.append(map)
-        return result
 
     def get_output_row_counts_by_type(self):
         # private method because I want to reuse it in subclasses which over-ride the public method
@@ -114,7 +132,7 @@ class GestaltGraphicsVisibleCargo(GestaltGraphics):
             result.append(
                 (
                     "piece_cargo",
-                    2 * sum([len(cargo_map[1]) for cargo_map in self.piece_cargo_maps]),
+                    2 * len(polar_fox.constants.piece_vehicle_type_to_sprites_maps[self.piece_type]),
                 )
             )
         return result
@@ -125,17 +143,141 @@ class GestaltGraphicsVisibleCargo(GestaltGraphics):
         counter = 0
         if self.has_bulk:
             for cargo_map in polar_fox.constants.bulk_cargo_recolour_maps:
-                result[cargo_map[0]] = [
-                    counter
-                ]  # list because multiple spriterows can map to a cargo label
+                result[cargo_map[0]] = [counter]
                 counter += 1
         if self.has_piece:
-            for cargo_labels, cargo_filenames in self.piece_cargo_maps:
-                num_variants = len(cargo_filenames)
-                spriterow_nums = [counter + i for i in range(num_variants)]
-                for cargo_label in cargo_labels:
-                    result.setdefault(cargo_label, []).extend(spriterow_nums)
-                counter += num_variants
+            for cargo_filename in polar_fox.constants.piece_vehicle_type_to_sprites_maps[
+                self.piece_type
+            ]:
+                for cargo_label in polar_fox.constants.piece_sprites_to_cargo_labels_maps[
+                    cargo_filename
+                ]:
+                    result.setdefault(cargo_label, []).append(counter)
+                counter += 1
+        return result
+
+
+    def get_spriterow_types_for_units(self, units):
+        result = []
+        for unit in units:
+            if unit.always_use_same_spriterow:
+                # CABBAGE: Road Hog fixed-row articulated units have no equivalent
+                # in the copied Iron Horse precomposited-cargo row-type contract.
+                result.append(["always_use_same_spriterow"])
+            else:
+                result.append(self.get_output_row_types())
+        return result
+
+    def get_output_row_types(self):
+        # note that this is *types* of rows, in order, not counts - counts are delegated elsehwere
+        result = []
+        # for e.g. tarpaulin cars, covered coil cars, insert a specific spriterow to show the cover when 100% loaded or travelling
+        if self.covered_vehicle_body:
+            result.append("covered_vehicle_body")
+        # 1 empty spriterow
+        result.append("empty_vehicle_body")
+        if self.has_bulk:
+            result.append("bulk_cargo")
+        if self.has_piece:
+            result.append("piece_cargo")
+        return result
+
+    def get_output_row_count_for_unit(self, unit):
+        # Count the rows emitted by the current Road Hog compositor, using
+        # the same row types that drive its dispatch.
+        if unit.always_use_same_spriterow:
+            return 1
+        result = 0
+        for row_type in self.get_output_row_types():
+            if row_type == "empty_vehicle_body":
+                result += 1
+            elif row_type == "bulk_cargo":
+                result += 2 * len(polar_fox.constants.bulk_cargo_recolour_maps)
+            elif row_type == "piece_cargo":
+                result += 2 * len(
+                    polar_fox.constants.piece_vehicle_type_to_sprites_maps[
+                        self.piece_type
+                    ]
+                )
+            elif row_type == "covered_vehicle_body":
+                # CABBAGE: Road Hog compositor has no covered-body row handler.
+                # Preserve the current non-emitting behaviour until implemented.
+                continue
+            else:
+                raise ValueError(f"Unknown visible-cargo row type: {row_type}")
+        return result
+
+    def get_unique_spritesets(self, unit):
+        # the template for this gestalt was getting complex with loops and logic where logic shouldn't be
+        # so instead we delegate that logic here and simplify the loop
+        # this builds heavily on the row numbers already in cargo_row_map, reformatting that data to make it easy to render in the template
+        row_nums_seen = []
+        result = []
+        for row_nums in self.cargo_row_map.values():
+            for row_num in row_nums:
+                row_nums_seen.append(row_num)
+        unique_cargo_rows = sorted(set(row_nums_seen))
+
+        row_height = graphics_constants.spriterow_height
+
+        start_y_cumulative = graphics_constants.spritesheet_top_margin
+
+        if self.covered_vehicle_body:
+            # add rows for covered sprite
+            for weathered_state in self.weathered_states.keys():
+                result.append(["has_cover_" + weathered_state, start_y_cumulative])
+                start_y_cumulative += row_height
+
+        # add rows for empty sprite
+        for weathered_state in self.weathered_states.keys():
+            result.append(["empty_" + weathered_state, start_y_cumulative])
+            start_y_cumulative += row_height
+
+        for row_num in unique_cargo_rows:
+            result.append(
+                [
+                    "loading_" + str(row_num),
+                    start_y_cumulative,
+                ]
+            )
+            result.append(
+                [
+                    "loaded_" + str(row_num),
+                    start_y_cumulative + row_height,
+                ]
+            )
+            start_y_cumulative += 2 * row_height
+
+        # vehicles with multiple units might need an offset to their sprites
+        # to handle that we post-process the y-offsets in result
+        # we make an assumption that the spriterows will always be vertically contiguous
+        # so we can take the last value of start_y_cumulative, apply the offset multiplier, then rewrite the y values in result
+        # n.b. by default force_spriterow_group_in_output_spritesheet = 0, so this has no effect unless explicitly set
+        vehicle_y_offset = unit.unit_def.force_spriterow_group_in_output_spritesheet * (
+            start_y_cumulative - graphics_constants.spritesheet_top_margin
+        )
+        preceding_output_rows = 0
+        for preceding_unit in unit.model_variant.units:
+            if preceding_unit is unit:
+                break
+            preceding_output_rows += self.get_output_row_count_for_unit(
+                preceding_unit
+            )
+        else:
+            raise ValueError("Unit not found in model variant: " + unit.id)
+
+        preceding_y_offset = preceding_output_rows * row_height
+        if unit.always_use_same_spriterow:
+            # The compositor emits one row for this unit, but the existing NML
+            # switches still need empty/loading/loaded spriteset names.
+            fixed_y = (
+                graphics_constants.spritesheet_top_margin + preceding_y_offset
+            )
+            for row_map in result:
+                row_map[1] = fixed_y
+        else:
+            for row_map in result:
+                row_map[1] += preceding_y_offset + vehicle_y_offset
         return result
 
 

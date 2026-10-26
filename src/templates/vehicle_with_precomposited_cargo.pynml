@@ -1,9 +1,17 @@
 <tal:include metal:use-macro="load: spriteset_templates.pynml" />
 
+<tal:enumerated_visible_cargo condition="hasattr(model_variant.gestalt_graphics, 'get_unique_spritesets')">
+    <tal:spritesets repeat="spriteset_data model_variant.gestalt_graphics.get_unique_spritesets(unit)">
+        spriteset(${unit.id}_ss_${'empty' if spriteset_data[0] == 'empty_unweathered' else spriteset_data[0]}, "${global_constants.graphics_path}${model_variant.model_def.model_id}.png") {
+            ${unit.get_spriteset_template_name('unreversed', spriteset_data[1])}
+        }
+    </tal:spritesets>
+</tal:enumerated_visible_cargo>
+
+<tal:legacy_custom_cargo condition="not hasattr(model_variant.gestalt_graphics, 'get_unique_spritesets')">
 spriteset(${unit.id}_ss_empty, "${global_constants.graphics_path}${model_variant.model_def.model_id}.png") {
   spriteset_template_${unit.id}(${unit.spriterow_num * 30} + 10)
 }
-
 <tal:cargo_variants repeat="cargo_variant_num python:range(model_variant.gestalt_graphics.num_cargo_sprite_variants)">
     spriteset(${unit.id}_ss_loading_${cargo_variant_num}, "${global_constants.graphics_path}${model_variant.model_def.model_id}.png") {
       spriteset_template_${unit.id}(${unit.spriterow_num * 30} + ${cargo_variant_num * 60} + 40)
@@ -11,38 +19,16 @@ spriteset(${unit.id}_ss_empty, "${global_constants.graphics_path}${model_variant
     spriteset(${unit.id}_ss_loaded_${cargo_variant_num}, "${global_constants.graphics_path}${model_variant.model_def.model_id}.png") {
       spriteset_template_${unit.id}(${unit.spriterow_num * 30} + ${cargo_variant_num * 60} + 70)
     }
+</tal:cargo_variants>
+</tal:legacy_custom_cargo>
 
-    spritegroup ${unit.id}_sg_empty_${cargo_variant_num} {
-        loaded:  [
-            ${unit.id}_ss_empty,
-        ];
-        loading: [
-            ${unit.id}_ss_empty,
-        ];
-    }
-    spritegroup ${unit.id}_sg_loading_${cargo_variant_num} {
-        loaded:  [
-            ${unit.id}_ss_loading_${cargo_variant_num},
-        ];
-        loading: [
-            ${unit.id}_ss_loading_${cargo_variant_num},
-        ];
-    }
-    spritegroup ${unit.id}_sg_loaded_${cargo_variant_num} {
-        loaded:  [
-            ${unit.id}_ss_loaded_${cargo_variant_num},
-        ];
-        loading: [
-            ${unit.id}_ss_loaded_${cargo_variant_num},
-        ];
-    }
-
+<tal:cargo_variants repeat="cargo_variant_num python:range(model_variant.gestalt_graphics.num_cargo_sprite_variants)">
     <!--! March 2018 - experimental change of 'loading' threshold from 1% to 25%, and 'loaded from 99% to 90%, seems to look better
           Might have unwanted side effects, e.g. box cars not opening side doors?  Unverified. -->
     switch (FEAT_ROADVEHS, SELF, ${unit.id}_switch_graphics_percent_loaded_${cargo_variant_num}, cargo_count*100/cargo_capacity) {
-            0..24: return ${unit.id}_sg_empty_${cargo_variant_num};
-            25..90: return ${unit.id}_sg_loading_${cargo_variant_num};
-        return ${unit.id}_sg_loaded_${cargo_variant_num};
+            0..24: return ${unit.id}_ss_empty;
+            25..90: return ${unit.id}_ss_loading_${cargo_variant_num};
+        return ${unit.id}_ss_loaded_${cargo_variant_num};
     }
 </tal:cargo_variants>
 
