@@ -18,6 +18,21 @@ class GestaltGraphics(object):
         # see Horse for how this can be set to other values as needed
         self.processing_priority = 1
 
+    def get_buy_menu_unit_input_row_num(self, pipeline, unit):
+        return unit.spriterow_num
+
+    def buy_menu_row_map(self, pipeline):
+        # Iron Horse row-map contract, adapted to Road Hog's single purchase row.
+        return [
+            {
+                "spriterow_num_dest": 0,
+                "source_vehicles_and_input_spriterow_nums": [
+                    (unit, self.get_buy_menu_unit_input_row_num(pipeline, unit))
+                    for unit in pipeline.consist.units
+                ],
+            }
+        ]
+
     @property
     def nml_template(self):
         # over-ride in sub-classes as needed
@@ -98,6 +113,13 @@ class GestaltGraphicsPrecompositedCargo(GestaltGraphics):
             raise NotImplementedError(
                 "Visible-cargo multiple weathered_states require compositor migration"
             )
+
+    def get_buy_menu_unit_input_row_num(self, pipeline, unit):
+        # Output row ownership is defined by GestaltGraphics, not unit indices.
+        return sum(
+            self.get_output_row_count_for_unit(previous_unit)
+            for previous_unit in pipeline.consist.units[: pipeline.consist.units.index(unit)]
+        )
 
     @property
     def generic_rows(self):

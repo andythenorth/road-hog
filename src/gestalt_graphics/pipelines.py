@@ -88,73 +88,38 @@ class Pipeline(object):
             result.append((sprite, mask))
         return result
 
-    def process_buy_menu_sprite(self, spritesheet):
-        # this function is passed (uncalled) into the pipeline, and then called at render time
-        # this is so that it has the processed spritesheet available, which is essential for creating buy menu sprites
-        # n.b if buy menu sprite processing has conditions by vehicle type, could pass a dedicated function for each type of processing
-        # these 'source' var names for images are misleading
+    def process_buy_menu_sprite_from_row_map(self, spritesheet):
+        # Adapted from Iron Horse's row-map compositor. Road Hog retains its
+        # purchase-sprite destination and semi-tractor geometry.
         buy_menu_image = Image.new(
-            "P",
-            (self.consist.buy_menu_width, self.global_constants.docs_sprite_height),
-            0,
+            "P", (self.consist.buy_menu_width, self.global_constants.docs_sprite_height), 0
         )
-        buy_menu_image.putpalette(Image.open("palette_key.png").palette)
-
-        # hard-coded positions for buy menu sprite (if used - it's optional)
-        x_offset = 0
-        for counter, unit in enumerate(self.consist.units):
-            # !! currently no cap on purchase menu sprite width
-            # !! consist has a buy_menu_width prop which caps to 64 which could be used (+1px overlap)
-
-            # !! handle semitractors, where we need to crop the full vehicle, but the x-offset is the length of the cab
-            if unit.unit_is_semi_tractor:
-                unit_length_in_pixels = 6 * (
-                    unit.vehicle_length + unit.semi_truck_shift_offset_jank
-                )  # !! hax
-                x_offset_increment = 6 * unit.vehicle_length  # !! hax
-            else:
-                unit_length_in_pixels = 4 * unit.vehicle_length
-                x_offset_increment = unit_length_in_pixels
-
-            unit_spriterow_offset = (
-                unit.spriterow_num * graphics_constants.spriterow_height
-            )
-            crop_box_src = (
-                227,
-                10 + unit_spriterow_offset,
-                227
-                + unit_length_in_pixels
-                + 1,  # allow for 1px coupler / corrider overhang
-                26 + unit_spriterow_offset,
-            )
-            crop_box_dest = (
-                x_offset,
-                0,
-                x_offset
-                + unit_length_in_pixels
-                + 1,  # allow for 1px coupler / corrider overhang
-                self.global_constants.docs_sprite_height,
-            )
-            custom_buy_menu_sprite = spritesheet.sprites.copy().crop(crop_box_src)
-            # create a mask so that we paste only the vehicle pixels (no blue pixels)
-            buy_menu_sprite_mask = custom_buy_menu_sprite.copy()
-            buy_menu_sprite_mask = buy_menu_sprite_mask.point(
-                lambda i: 0 if i == 0 else 255
-            ).convert(
-                "1"
-            )  # the inversion here of blue and white looks a bit odd, but potato / potato
-            buy_menu_image.paste(
-                custom_buy_menu_sprite, crop_box_dest, buy_menu_sprite_mask
-            )
-            # increment x offset for pasting in next vehicle
-            x_offset += x_offset_increment
-        crop_box_dest = (
-            self.consist.buy_menu_x_loc,
-            10,
-            self.consist.buy_menu_x_loc + buy_menu_image.size[0],
-            26,
+        buy_menu_image.putpalette(DOS_PALETTE)
+        for row_data in self.consist.gestalt_graphics.buy_menu_row_map(self):
+            if row_data["spriterow_num_dest"] != 0:
+                raise ValueError("Road Hog currently supports one purchase sprite row")
+            x_offset = 0
+            for unit, input_row_num in row_data[
+                "source_vehicles_and_input_spriterow_nums"
+            ]:
+                if unit.unit_is_semi_tractor:
+                    unit_width = 6 * (
+                        unit.vehicle_length + unit.semi_truck_shift_offset_jank
+                    )
+                    increment = 6 * unit.vehicle_length
+                else:
+                    unit_width = 4 * unit.vehicle_length
+                    increment = unit_width
+                row_y = input_row_num * graphics_constants.spriterow_height
+                sprite = spritesheet.sprites.crop(
+                    (227, 10 + row_y, 228 + unit_width, 26 + row_y)
+                )
+                mask = sprite.point(lambda pixel: 0 if pixel == 0 else 255).convert("1")
+                buy_menu_image.paste(sprite, (x_offset, 0), mask)
+                x_offset += increment
+        spritesheet.sprites.paste(
+            buy_menu_image, (self.consist.buy_menu_x_loc, 10)
         )
-        spritesheet.sprites.paste(buy_menu_image, crop_box_dest)
         return spritesheet
 
     def render_common(self, input_image, units):
@@ -213,7 +178,7 @@ class CheckBuyMenuOnlyPipeline(Pipeline):
         if self.consist.buy_menu_x_loc == global_constants.custom_buy_menu_x_loc:
             # !! this currently will cause the vehicle spritesheet buy menu sprites to be copied to the pans spritesheet,
             # !! it needs pixels from the pans spritesheet, but automated buy menu sprites need providing first
-            self.units.append(AddBuyMenuSprite(self.process_buy_menu_sprite))
+            self.units.append(AddBuyMenuSprite(self.process_buy_menu_sprite_from_row_map))
 
         input_image = Image.open(self.vehicle_source_input_path)
         result = self.render_common(input_image, self.units)
@@ -661,7 +626,7 @@ class ExtendSpriterowsForCompositedSpritesPipeline(Pipeline):
                 vehicle_unit_cumulative_source_spriterow_count += source_spriterow_count
 
         if self.consist.buy_menu_x_loc == global_constants.custom_buy_menu_x_loc:
-            self.units.append(AddBuyMenuSprite(self.process_buy_menu_sprite))
+            self.units.append(AddBuyMenuSprite(self.process_buy_menu_sprite_from_row_map))
 
         # for this pipeline, input_image is just blank white 10px high image, to which the vehicle sprites are then appended
         input_image = Image.new("P", (graphics_constants.spritesheet_width, 10), 255)
