@@ -1,7 +1,4 @@
-from road_vehicle import SuppliesCakeConsist, SteamVehicleUnit
-
 from road_vehicle.model_def import ModelDef
-
 
 # 'inspired by' Scammell 100t low loader, but much smaller
 

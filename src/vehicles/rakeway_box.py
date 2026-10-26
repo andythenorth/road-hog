@@ -1,7 +1,4 @@
-from road_vehicle import BoxTramConsist
-
 from road_vehicle.model_def import ModelDef
-
 
 
 def main(roster_id):

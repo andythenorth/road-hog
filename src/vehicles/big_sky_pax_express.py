@@ -1,7 +1,4 @@
-from road_vehicle import PaxExpressCoachConsist, DieselVehicleUnit
-
 from road_vehicle.model_def import ModelDef
-
 
 # !! unused ??
 # for each generation, bus and coach variants have same power and intro date

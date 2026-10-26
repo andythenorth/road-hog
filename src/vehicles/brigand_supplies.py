@@ -1,7 +1,4 @@
-from road_vehicle import SuppliesCakeConsist, DieselVehicleUnit
-
 from road_vehicle.model_def import ModelDef
-
 
 # equiv. Scammell Highwayman or Explorer with dolly low loader trailer - not huge
 
