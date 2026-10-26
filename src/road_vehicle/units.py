@@ -523,3 +523,9 @@ class DieselConventionalCabSemiTractorHaulerGen3A(DieselVehicleUnit):
             effects=['EFFECT_SPRITE_AIRCRAFT_BREAKDOWN_SMOKE, -2, 1, 10', 'EFFECT_SPRITE_AIRCRAFT_BREAKDOWN_SMOKE, -2, -1, 10'],
         )
         super().__init__(model_variant, unit_def, id, numeric_id)
+
+class ElectricTrailerUnit(RoadVehicleUnit):
+    @property
+    def effect_spawn_model(self):
+        return "EFFECT_SPAWN_MODEL_ELECTRIC"
+

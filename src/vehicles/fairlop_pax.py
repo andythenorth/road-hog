@@ -25,7 +25,7 @@ def main(roster_id):
     )
 
     model_def.add_unit_def(
-        unit_cls_name="RoadVehicleUnit",
+        unit_cls_name="ElectricTrailerUnit",
         
         vehicle_length=5,
         repeat=2,
