@@ -2,9 +2,6 @@ from road_vehicle import PaxExpressCoachConsist, DieselVehicleUnit
 
 from road_vehicle.model_def import ModelDef
 
-# CABBAGE DEFERRED: Pass 1 supports only vehicle_default.pynml.
-# CABBAGE FUTURE PASS: restore legacy template choice and cargo-specific
-# spritegroups/liveries where present in this vehicle.
 
 # for each generation, bus and coach variants have same power and intro date
 # coaches faster, lower capacity than equivalent bus

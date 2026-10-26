@@ -2,9 +2,6 @@ from road_vehicle import EdiblesTankerTruckConsist
 
 from road_vehicle.model_def import ModelDef
 
-# CABBAGE DEFERRED: Pass 1 supports only vehicle_default.pynml.
-# CABBAGE FUTURE PASS: restore legacy template choice and cargo-specific
-# spritegroups/liveries where present in this vehicle.
 
 
 def main(roster_id):
