@@ -2,13 +2,21 @@ import argparse
 import os.path
 import global_constants
 from polar_fox import git_info
-from polar_fox.utils import echo_message as echo_message
-from polar_fox.utils import dos_palette_to_rgb as dos_palette_to_rgb
-from polar_fox.utils import unescape_chameleon_output as unescape_chameleon_output
-from polar_fox.utils import split_nml_string_lines as split_nml_string_lines
 from polar_fox.utils import (
-    unwrap_nml_string_declaration as unwrap_nml_string_declaration,
+    echo_message,
+    dos_palette_to_rgb,
+    unescape_chameleon_output,
+    split_nml_string_lines,
+    unwrap_nml_string_declaration,
 )
+# expose properly to prevent pyflakes warnings
+__all__ = [
+    "echo_message",
+    "dos_palette_to_rgb",
+    "unescape_chameleon_output",
+    "split_nml_string_lines",
+    "unwrap_nml_string_declaration",
+]
 
 
 def get_command_line_args():
