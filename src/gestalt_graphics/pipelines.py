@@ -159,6 +159,8 @@ class PassThroughPipeline(Pipeline):
 
 
 class CheckBuyMenuOnlyPipeline(Pipeline):
+    # CABBAGE: Road Hog custom gestalt/pipeline diverges from newer Iron Horse; consider unifying later.
+
     """
     Opens the input image, inserts a custom buy menu if required, then saves with no other changes.
     """

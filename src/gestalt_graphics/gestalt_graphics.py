@@ -47,33 +47,19 @@ class GestaltGraphics(object):
                 unique_row_nums.append(row_nums)
         return sum([len(i) for i in unique_row_nums])
 
-    def get_output_row_counts_by_type(self):
-        # stub, for template compatibility reasons
-        result = []
-        result.append(("single_row", 1))
-        return result
+
+    def get_output_row_types(self):
+        return ["single_row"]
 
 
     def get_spriterow_types_for_units(self, units):
-        # The compositor consumes row types, as in Iron Horse. Retain the
-        # unit-specific fixed-row distinction until its graphics migrate.
         return [
-            [row_type for row_type, _ in unit_rows]
-            for unit_rows in self.get_legacy_road_hog_output_row_groups(units)
+            ["always_use_same_spriterow"]
+            if unit.always_use_same_spriterow
+            else self.get_output_row_types()
+            for unit in units
         ]
 
-    def get_legacy_road_hog_output_row_groups(self, units):
-        # CABBAGE: temporary tuple row descriptors for the Road Hog compositor;
-        # replace with Iron Horse row-type contracts during pipeline cutover.
-        result = []
-        for unit in units:
-            unit_rows = []
-            if unit.always_use_same_spriterow:
-                unit_rows.append(("always_use_same_spriterow", 1))
-            else:
-                unit_rows.extend(self.get_output_row_counts_by_type())
-            result.append(unit_rows)
-        return result
 
 
 class GestaltGraphicsPrecompositedCargo(GestaltGraphics):
@@ -139,25 +125,6 @@ class GestaltGraphicsPrecompositedCargo(GestaltGraphics):
         return "vehicle_with_precomposited_cargo.pynml"
 
 
-    def get_output_row_counts_by_type(self):
-        # private method because I want to reuse it in subclasses which over-ride the public method
-        # provide the number of output rows per cargo group, total row count for the group is calculated later as needed
-        # uses a list of 2-tuples, not a dict as order must be preserved
-        result = []
-        # assume an empty state spriterow - there was an optional bool flag for this per consist but it was unused so I removed it
-        result.append(("empty", 1))
-        if self.has_bulk:
-            result.append(
-                ("bulk_cargo", 2 * len(polar_fox.constants.bulk_cargo_recolour_maps))
-            )
-        if self.has_piece:
-            result.append(
-                (
-                    "piece_cargo",
-                    2 * len(polar_fox.constants.piece_vehicle_type_to_sprites_maps[self.piece_type]),
-                )
-            )
-        return result
 
     @property
     def cargo_row_map(self):
@@ -327,10 +294,9 @@ class GestaltGraphicsLiveryOnly(GestaltGraphics):
     def nml_template(self):
         return "vehicle_with_cargo_specific_liveries.pynml"
 
-    def get_output_row_counts_by_type(self):
-        # the template for visible livery requires the count of _all_ the liveries, *no calculating later*
-        # 3 rows per livery (empty, 50% load, 100% load)
-        return [("livery_only", 3 * self.num_cargo_sprite_variants)]
+
+    def get_output_row_types(self):
+        return ["livery_only"]
 
     @property
     def cargo_row_map(self):
@@ -347,6 +313,7 @@ class GestaltGraphicsLiveryOnly(GestaltGraphics):
 
 
 class GestaltGraphicsCustom(GestaltGraphics):
+    # CABBAGE: Road Hog's custom gestalt/pipeline diverges from the newer Iron Horse implementation; consider unifying later.
     """
     This would be better deprecated, it's not really needed, all worthwhile cases can be met by generation.
     Used to handle (rare) cases with hand-drawn cargo (no pixa-generated cargos).
@@ -355,6 +322,7 @@ class GestaltGraphicsCustom(GestaltGraphics):
     - this could get support for body recolouring if needed
     - this should not get support for compositing custom rows, TMWFTLB, just draw them in the vehicle spritesheet
     """
+    # CABBAGE: Road Hog custom gestalt/pipeline diverges from newer Iron Horse; consider unifying later.
 
     def __init__(self, _cargo_row_map, _nml_template, generic_rows):
         super().__init__()
@@ -374,14 +342,9 @@ class GestaltGraphicsCustom(GestaltGraphics):
     def nml_template(self):
         return self._nml_template
 
-    def get_output_row_counts_by_type(self):
-        # assume we want whatever the base class count of rows is (handles empty state etc)
-        # ^ that might not be viable as it ties 'custom' to same template assumptions as base class - change if needed eh?
-        result = []
-        result.append(("empty", 1))
-        # assume two output rows (loading, loaded) - extend this if it's not viable
-        result.append(("custom_cargo", 2))
-        return result
+
+    def get_output_row_types(self):
+        return ["empty", "custom_cargo"]
 
     @property
     def cargo_row_map(self):

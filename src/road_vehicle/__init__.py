@@ -202,7 +202,19 @@ class Consist(object):
                 unit_rows.append(("always_use_same_spriterow", 1))
             else:
                 # assumes visible_cargo is used to handle any other rows, no other cases at time of writing, could be changed eh?
-                unit_rows.extend(self.gestalt_graphics.get_output_row_counts_by_type())
+                # CABBAGE: inactive legacy RoadVehicle tuple adapter; do not treat row types as counts.
+                for row_type in self.gestalt_graphics.get_output_row_types():
+                    if row_type == "livery_only":
+                        count = 3 * self.gestalt_graphics.num_cargo_sprite_variants
+                    elif row_type == "bulk_cargo":
+                        count = 2 * len(polar_fox.constants.bulk_cargo_recolour_maps)
+                    elif row_type == "piece_cargo":
+                        count = 2 * len(polar_fox.constants.piece_vehicle_type_to_sprites_maps[self.gestalt_graphics.piece_type])
+                    elif row_type == "custom_cargo":
+                        count = 2
+                    else:
+                        count = 1
+                    unit_rows.append((row_type, count))
             result.append(unit_rows)
         return result
 
