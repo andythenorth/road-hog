@@ -4,7 +4,6 @@ The catalogue makes model variants. These classes give them Road Hog behaviour.
 CABBAGE Add more child schemas as the rest of the fleet is converted.
 """
 
-import math
 import global_constants
 import road_hog
 from gestalt_graphics.gestalt_graphics import GestaltGraphics
