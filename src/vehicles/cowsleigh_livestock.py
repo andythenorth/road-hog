@@ -18,7 +18,7 @@ def main(roster_id):
     )  # introduce later than gen epoch by design
 
     model_def.add_unit_def(
-        base_platform=None,  # only one instance of this one currently
+        
         unit_cls_name="SteamVehicleUnit",
         vehicle_length=6,
         effects=["EFFECT_SPRITE_STEAM, -5, 0, 12"],
@@ -26,7 +26,7 @@ def main(roster_id):
     )  # !! because livestock gestalt only has one spriterow - could be done better??
 
     model_def.add_unit_def(
-        unit_cls_name="RoadVehicleUnit", base_platform=None, vehicle_length=4
+        unit_cls_name="RoadVehicleUnit", vehicle_length=4
     )
 
     return [model_def]

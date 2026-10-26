@@ -19,14 +19,13 @@ def main(roster_id):
     )
 
     model_def.add_unit_def(
-        base_platform=None,  # no base platform by design currently
+        
         unit_cls_name="DieselVehicleUnit",
         vehicle_length=7,
     )
 
     model_def.add_unit_def(
         unit_cls_name="RoadVehicleUnit",
-        base_platform=None,
         vehicle_length=6,  # no base platform by design currently
     )
 

@@ -20,7 +20,7 @@ def main(roster_id):
     )
 
     model_def.add_unit_def(
-        base_platform=None,  # no base platform by design currently
+        
         unit_cls_name="SteamVehicleUnit",
         capacity=0,
         vehicle_length=5,
@@ -30,13 +30,13 @@ def main(roster_id):
 
     model_def.add_unit_def(
         unit_cls_name="RoadVehicleUnit",
-        base_platform=None,  # no base platform by design currently
+        
         # capacity=45,
         vehicle_length=7,
     )
 
     model_def.add_unit_def(
-        base_platform=None,  # no base platform by design currently
+        
         unit_cls_name="SteamVehicleUnit",
         capacity=0,
         vehicle_length=5,

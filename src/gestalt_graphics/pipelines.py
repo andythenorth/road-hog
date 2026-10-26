@@ -48,10 +48,8 @@ class Pipeline(object):
             self.consist.id + ".png",
         )
         if hasattr(self, "vehicle_unit"):
-            if self.vehicle_unit.base_platform is not None:
-                spritesheet_name = self.vehicle_unit.base_platform.get_spritesheet_name_body_or_complete_vehicle(
-                    self.consist
-                )
+            spritesheet_name = self.vehicle_unit.get_spritesheet_name_body_or_complete_vehicle()
+            if spritesheet_name is not None:
                 if spritesheet_name is not None:
                     input_path = os.path.join(
                         currentdir,

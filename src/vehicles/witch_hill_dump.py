@@ -21,7 +21,7 @@ def main(roster_id):
     )  # introduce later than gen epoch by design
 
     model_def.add_unit_def(
-        base_platform=None,  # no base platform by design currently
+        
         unit_cls_name="DieselVehicleUnit",
         # capacity=85,  # much bigger is not much better here
         vehicle_length=7,

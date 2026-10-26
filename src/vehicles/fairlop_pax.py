@@ -18,7 +18,7 @@ def main(roster_id):
     )  # introduce later than gen epoch by design
 
     model_def.add_unit_def(
-        base_platform=None,  # pax trams have no base platform by design currently
+        
         unit_cls_name="ElectricVehicleUnit",
         vehicle_length=6,
         effects=["EFFECT_SPRITE_ELECTRIC, 0, 0, 12"],
@@ -26,7 +26,7 @@ def main(roster_id):
 
     model_def.add_unit_def(
         unit_cls_name="RoadVehicleUnit",
-        base_platform=None,  # pax trams have no base platform by design currently
+        
         vehicle_length=5,
         repeat=2,
     )

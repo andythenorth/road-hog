@@ -27,7 +27,7 @@ def main(roster_id):
     )
 
     model_def.add_unit_def(
-        unit_cls_name="RoadVehicleUnit", base_platform=None, vehicle_length=6
+        unit_cls_name="RoadVehicleUnit", vehicle_length=6
     )
 
     return [model_def]

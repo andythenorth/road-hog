@@ -18,7 +18,7 @@ def main(roster_id):
     )
 
     model_def.add_unit_def(
-        base_platform=None,  # mail trams have no base platform by design currently
+        
         unit_cls_name="ElectricVehicleUnit",
         vehicle_length=8,
         effects=["EFFECT_SPRITE_ELECTRIC, 0, 0, 10"],

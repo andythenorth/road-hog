@@ -1,5 +1,4 @@
 from road_vehicle import DumpTramConsist
-from base_platforms.trams import SteamEngineTram2
 
 from road_vehicle.model_def import ModelDef
 
@@ -19,12 +18,12 @@ def main(roster_id):
     )  # introduce later than gen epoch by design
 
     model_def.add_unit_def(
-        unit_cls_name="RoadVehicleUnit", base_platform=SteamEngineTram2
+        unit_cls_name="SteamEngineTram2"
     )
 
     model_def.add_unit_def(
         unit_cls_name="RoadVehicleUnit",
-        base_platform=None,  # no base platform by design currently
+        
         vehicle_length=3,
         repeat=4,
     )

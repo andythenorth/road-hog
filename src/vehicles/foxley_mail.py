@@ -19,7 +19,7 @@ def main(roster_id):
     )  # introduce later than gen epoch by design
 
     model_def.add_unit_def(
-        base_platform=None,  # mail trams have no base platform by design currently
+        
         unit_cls_name="ElectricVehicleUnit",
         vehicle_length=4,
         repeat=2,

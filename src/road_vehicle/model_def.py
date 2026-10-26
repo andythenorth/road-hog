@@ -106,9 +106,6 @@ class UnitDef:
     force_spriterow_group_in_output_spritesheet: Optional[int] = 0
     # optional - we might want to force the sprites to reverse in some contexts, for example rear cabs of multiple-unit articulated railcars
     reverse_sprite_template: bool = False
-    # CABBAGE Road Hog platform classes are still the old source of shared tractor/chassis props.
-    base_platform: Optional[Any] = None
-    # BasePlatform has a few old unit fields that Horse UnitDef did not need.
     always_use_same_spriterow: bool = False
     cargo_length: Optional[int] = None
     semi_truck_shift_offset_jank: Optional[int] = None

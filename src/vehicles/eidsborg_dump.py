@@ -1,5 +1,4 @@
 from road_vehicle import DumpFeldbahnConsist
-from base_platforms.feldbahn import DieselEngineFeldbahnGen3A, WagonFeldbahnA
 
 from road_vehicle.model_def import ModelDef
 
@@ -18,11 +17,11 @@ def main(roster_id):
     )
 
     model_def.add_unit_def(
-        unit_cls_name="RoadVehicleUnit", base_platform=DieselEngineFeldbahnGen3A
+        unit_cls_name="DieselEngineFeldbahnGen3A"
     )
 
     model_def.add_unit_def(
-        unit_cls_name="RoadVehicleUnit", base_platform=WagonFeldbahnA, repeat=5
+        unit_cls_name="WagonFeldbahnA", repeat=5
     )
 
     return [model_def]

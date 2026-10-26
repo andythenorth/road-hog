@@ -1,5 +1,4 @@
 from road_vehicle import FruitVegTramConsist
-from base_platforms.trams import ElectricMotorTram4
 
 from road_vehicle.model_def import ModelDef
 
@@ -18,7 +17,7 @@ def main(roster_id):
     )
 
     model_def.add_unit_def(
-        unit_cls_name="RoadVehicleUnit", base_platform=ElectricMotorTram4, repeat=2
+        unit_cls_name="ElectricMotorTram4", repeat=2
     )
 
     return [model_def]

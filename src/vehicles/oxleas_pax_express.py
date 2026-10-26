@@ -23,7 +23,7 @@ def main(roster_id):
     )  # introduce earlier than gen epoch by design
 
     model_def.add_unit_def(
-        base_platform=None,  # coaches have no base platform by design currently
+        
         unit_cls_name="DieselVehicleUnit",
         vehicle_length=7,
     )

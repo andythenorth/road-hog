@@ -1,5 +1,4 @@
 from road_vehicle import LivestockTramConsist
-from base_platforms.trams import SteamEngineTram1
 
 from road_vehicle.model_def import ModelDef
 
@@ -18,12 +17,12 @@ def main(roster_id):
     )
 
     model_def.add_unit_def(
-        unit_cls_name="RoadVehicleUnit", base_platform=SteamEngineTram1
+        unit_cls_name="SteamEngineTram1"
     )
 
     model_def.add_unit_def(
         unit_cls_name="RoadVehicleUnit",
-        base_platform=None,  # no base platform by design currently
+        
         vehicle_length=4,
         repeat=3,
     )

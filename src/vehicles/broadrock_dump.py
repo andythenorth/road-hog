@@ -1,5 +1,4 @@
 from road_vehicle import DumpHEQSConsist
-from base_platforms.heqs import DieselConventionalCabSemiTractorHaulerGen3A
 
 from road_vehicle.model_def import ModelDef
 
@@ -22,14 +21,12 @@ def main(roster_id):
     )  # introduce earlier than gen epoch by design
 
     model_def.add_unit_def(
-        unit_cls_name="RoadVehicleUnit",
-        base_platform=DieselConventionalCabSemiTractorHaulerGen3A,
+        unit_cls_name="DieselConventionalCabSemiTractorHaulerGen3A",
     )
 
     model_def.add_unit_def(
         unit_cls_name="RoadVehicleUnit",
-        base_platform=None,
-        # capacity=55,  # much bigger is not much better here
+        
         vehicle_length=6,
     )
 

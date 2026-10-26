@@ -1,5 +1,4 @@
 from road_vehicle import BoxTruckConsist
-from base_platforms.trucks import DieselConventionalCabSemiTractorTruckGen4A
 
 from road_vehicle.model_def import ModelDef
 
@@ -18,12 +17,11 @@ def main(roster_id):
     )
 
     model_def.add_unit_def(
-        unit_cls_name="RoadVehicleUnit",
-        base_platform=DieselConventionalCabSemiTractorTruckGen4A,
+        unit_cls_name="DieselConventionalCabSemiTractorTruckGen4A",
     )
 
     model_def.add_unit_def(
-        unit_cls_name="RoadVehicleUnit", base_platform=None, vehicle_length=7
+        unit_cls_name="RoadVehicleUnit", vehicle_length=7
     )
 
     return [model_def]

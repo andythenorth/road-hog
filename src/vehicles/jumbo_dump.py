@@ -1,5 +1,4 @@
 from road_vehicle import DumpFeldbahnConsist
-from base_platforms.feldbahn import SteamEngineFeldbahnGen2B, WagonFeldbahnA
 
 from road_vehicle.model_def import ModelDef
 
@@ -18,11 +17,11 @@ def main(roster_id):
     )
 
     model_def.add_unit_def(
-        unit_cls_name="RoadVehicleUnit", base_platform=SteamEngineFeldbahnGen2B
+        unit_cls_name="SteamEngineFeldbahnGen2B"
     )
 
     model_def.add_unit_def(
-        unit_cls_name="RoadVehicleUnit", base_platform=WagonFeldbahnA, repeat=12
+        unit_cls_name="WagonFeldbahnA", repeat=12
     )  # 12 * 3 = 36, then +4 for engine = 40, 2.5 tiles,  integer tile lengths  are not needed for RVs
 
     return [model_def]

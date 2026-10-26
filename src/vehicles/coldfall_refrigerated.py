@@ -1,5 +1,4 @@
 from road_vehicle import RefrigeratedTruckConsist
-from base_platforms.trucks import DieselCaboverSemiTractorTruckGen5A
 
 from road_vehicle.model_def import ModelDef
 
@@ -19,12 +18,11 @@ def main(roster_id):
     )  # introduce later than gen epoch by design
 
     model_def.add_unit_def(
-        unit_cls_name="RoadVehicleUnit",
-        base_platform=DieselCaboverSemiTractorTruckGen5A,
+        unit_cls_name="DieselCaboverSemiTractorTruckGen5A",
     )
 
     model_def.add_unit_def(
-        unit_cls_name="RoadVehicleUnit", base_platform=None, vehicle_length=8
+        unit_cls_name="RoadVehicleUnit", vehicle_length=8
     )
 
     return [model_def]

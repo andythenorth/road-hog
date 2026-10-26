@@ -17,7 +17,7 @@ def main(roster_id):
     )
 
     model_def.add_unit_def(
-        base_platform=None,  # pax trams have no base platform by design currently
+        
         unit_cls_name="ElectricVehicleUnit",
         vehicle_length=8,
         repeat=2,

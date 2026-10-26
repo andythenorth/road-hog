@@ -68,35 +68,13 @@ class ModelVariantProducer:
         schema_cls = getattr(schemas, self.catalogue.schema_name)
         model_variant = schema_cls(producer=self, catalogue_entry=catalogue_entry)
         for counter, unit_def in enumerate(self.catalogue.model_def.unit_defs):
-            # CABBAGE Keep old platform override order, including the legacy `type` field.
-            # Resolve once per UnitDef; repeated physical units reuse the same object.
-            from dataclasses import replace
-
-            resolved_def = unit_def
-            platform = None
-            if unit_def.base_platform is not None:
-                platform = unit_def.base_platform()
-                configured = platform.configure_unit_args(
-                    **{
-                        key: value
-                        for key, value in vars(unit_def).items()
-                        if key != "base_platform"
-                    }
-                )
-                platform_unit_type = configured.pop("type", None)
-                configured.pop("base_platform", None)
-                if platform_unit_type is not None:
-                    configured["unit_cls_name"] = platform_unit_type.__name__
-                resolved_def = replace(unit_def, **configured)
-            unit_cls = getattr(units, resolved_def.unit_cls_name)
+            unit_cls = getattr(units, unit_def.unit_cls_name)
             unit = unit_cls(
                 model_variant=model_variant,
-                unit_def=resolved_def,
+                unit_def=unit_def,
                 id=catalogue_entry.unit_variant_ids[counter],
                 numeric_id=catalogue_entry.unit_numeric_ids[counter],
             )
-            if platform is not None:
-                unit.base_platform = platform
             for _ in range(unit_def.repeat):
                 model_variant.units.append(unit)
         return model_variant

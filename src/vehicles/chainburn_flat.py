@@ -1,5 +1,4 @@
 from road_vehicle import FlatbedTruckConsist
-from base_platforms.trucks import SteamCaboverRigidTruckGen2A
 
 from road_vehicle.model_def import ModelDef
 
@@ -18,12 +17,11 @@ def main(roster_id):
     )
 
     model_def.add_unit_def(
-        unit_cls_name="RoadVehicleUnit", base_platform=SteamCaboverRigidTruckGen2A
+        unit_cls_name="SteamCaboverRigidTruckGen2A"
     )
 
     model_def.add_unit_def(
         unit_cls_name="RoadVehicleUnit",
-        base_platform=None,
         vehicle_length=4,
         cargo_length=4,
     )
