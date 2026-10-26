@@ -73,12 +73,9 @@ class RoadVehicleBase:
 
     @property
     def power(self):
-        # CABBAGE Migration shim: keep old scalar Road Hog power and costs exact.
+        # Iron Horse style power_by_power_source was not implemented as of Oct 2026
         if self.model_def.power is not None:
             return self.model_def.power
-        powers = self.model_def.power_by_power_source
-        if powers:
-            return sum(powers.values())
         return self.roster.power_bands[self.base_track_type_name][
             self.model_def.gen - 1
         ]

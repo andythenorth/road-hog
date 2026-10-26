@@ -8,7 +8,7 @@ sys.path.append(os.path.join("src"))  # add to the module search path
 
 import copy
 from dataclasses import dataclass, field
-from typing import Any, Dict, List, Optional
+from typing import Any, List, Optional
 
 
 @dataclass
@@ -39,10 +39,7 @@ class ModelDef:
     name: Optional[str] = None
     pax_car_capacity_type: Optional[str] = None
     pantograph_type: Optional[str] = None
-    # CABBAGE Migration shim: legacy Road Hog scalar power remains supported.
-    # Multi-source mapping is storage only until separately implemented.
     power: Optional[int] = None
-    power_by_power_source: Optional[Dict[Any, Any]] = None
     random_reverse: bool = False
     replacement_model_id: Optional[str] = None
     speed: Optional[int] = None
@@ -64,11 +61,6 @@ class ModelDef:
     clones: List[Any] = field(default_factory=list, init=False)
     clone_stats_adjustment_factor: Optional[float] = None
     unit_defs: List[Any] = field(default_factory=list, init=False)
-
-    def __post_init__(self):
-        # CABBAGE Migration shim: two simultaneous power declarations are ambiguous.
-        if self.power is not None and self.power_by_power_source is not None:
-            raise ValueError("Specify power OR power_by_power_source, not both")
 
     def add_unit_def(self, **kwargs):
         self.unit_defs.append(UnitDef(**kwargs))
@@ -178,16 +170,11 @@ class ModelDefCloner:
                 clone_unit_count / source_unit_count
             )
 
-        # recalculate power in a clone
-        result = {}
-        for (
-            power_type,
-            power_value,
-        ) in model_def.power_by_power_source.items():
-            result[power_type] = int(
-                power_value * model_def.clone_stats_adjustment_factor
+        # recalculate explicit power in a clone
+        if model_def.power is not None:
+            model_def.power = int(
+                model_def.power * model_def.clone_stats_adjustment_factor
             )
-        model_def.power_by_power_source = result
 
         # purchase menu variant decor isn't supported if the vehicle is articulated, so just forcibly clear this property
         if model_def.produced_unit_total > 1:

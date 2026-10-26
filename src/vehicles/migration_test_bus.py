@@ -15,7 +15,7 @@ def main(**kwargs):
         gen=2,
         sprites_complete=True,
         speed=40,
-        power_by_power_source={"DIESEL": 100},
+        power=100,
         intro_year_offset=-1,
     )
     model_def.add_unit_def(
