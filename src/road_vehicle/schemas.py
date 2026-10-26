@@ -1,7 +1,6 @@
-"""Road-specific schema classes, initially only the bus route is used.
+"""Road-specific schema classes.
 
 The catalogue makes model variants. These classes give them Road Hog behaviour.
-CABBAGE Add more child schemas as the rest of the fleet is converted.
 """
 
 import global_constants
@@ -32,7 +31,6 @@ class RoadVehicleBase:
         self.class_refit_groups = []
         self.cargo_age_period = global_constants.CARGO_AGE_PERIOD
         self.vehicle_life = 40
-        # CABBAGE MIGRATION SHIM: legacy Consist default; child schemas override as needed.
         self.loading_speed_multiplier = 1
         self.retire_early = -10
         # Road Hog default, not Iron Horse train default (0.3).
@@ -46,8 +44,6 @@ class RoadVehicleBase:
         self.weight_multiplier = 0.17
 
     # Docs use an intro year for the sort and the page date range.
-    # CABBAGE Old Road Hog returned 999 here as a shim. Use the real year now;
-    # check the docs ordering again when we move vehicles with exact intro dates.
     # CABBAGE: Future Iron Horse fixed running-cost API; deliberately unused
     # by the current Road Hog running_cost formula.
     @property
@@ -133,7 +129,6 @@ class RoadVehicleBase:
 
     @property
     def get_expression_for_road_or_tram_type(self):
-        # CABBAGE Legacy Consist distinguishes road and tram NML expressions.
         prefix = "tram_type:" if self.roadveh_flag_tram else "road_type:"
         return prefix + self.track_type + ";"
 
@@ -151,8 +146,6 @@ class RoadVehicleBase:
         length = 4 * sum(unit.vehicle_length for unit in self.units)
         return min(length, global_constants.docs_sprite_max_width)
 
-    # CABBAGE The render entry point is deliberately new-schema only, not a Consist shim.
-    # CABBAGE Multi-unit / articulated output needs its own legacy parity fixture.
     def render(self, templates, graphics_path):
         result = []
         # CABBAGE MIGRATION SHIM: define articulated callback before unit property references.
@@ -210,8 +203,6 @@ class RoadVehicleBase:
 
     @property
     def name(self):
-        # CABBAGE Power suffix must be supplied by unit integration in Stage 007.
-        # CABBAGE Fail explicitly rather than silently inventing Diesel/Steam.
         suffix = getattr(self, "_power_type_suffix", None)
         if suffix is None:
             raise ValueError("Power suffix not resolved for " + self.model_def.model_id)
@@ -226,38 +217,7 @@ class RoadVehicleBase:
         )
 
 
-class PassengerVehicle(RoadVehicleBase):
-    """Passenger defaults for buses, coaches and such when they get moved."""
 
-    def __init__(self, producer, catalogue_entry):
-        super().__init__(producer, catalogue_entry)
-        self.class_refit_groups = ['pax']
-        self.label_refits_allowed = []
-        self.label_refits_disallowed = []
-        self.default_cargos = global_constants.default_cargos["pax"]
-        self.autorefit = True
-        self.loading_speed_multiplier = 3
-
-
-class Bus(PassengerVehicle):
-    """Just bus-specific bits for now. Leyburn is the first one."""
-
-    def __init__(self, producer, catalogue_entry):
-        super().__init__(producer, catalogue_entry)
-        self.vehicle_role = "bus"
-        self._sound_effect = "SOUND_DEPARTURE_OLD_RV_1"
-        # CABBAGE Check sound/name defaults against each old bus when moving fleet.
-
-    @property
-    def name(self):
-        return (
-            "string(STR_NAME_CONSIST, string(STR_NAME_"
-            + self.model_def.model_id.upper()
-            + "), string(STR_NAME_SUFFIX_BUS), string(STR_NAME_SUFFIX_DIESEL))"
-        )
-
-
-# CABBAGE BEGIN GENERATED FLEET SCHEMAS STAGE 005
 import polar_fox
 import gestalt_graphics.graphics_constants as graphics_constants
 from gestalt_graphics.gestalt_graphics import (
@@ -900,6 +860,25 @@ class OpenTruck(OpenHaulerConsistBase):
         self.vehicle_role = TrackTypeMixinTruckBusCoach.vehicle_role
 
 
+class PaxLocalBus(PaxHaulerLocalConsistBase):
+    def __init__(self, producer, catalogue_entry):
+        super().__init__(producer, catalogue_entry)
+        self.base_track_type_name = TrackTypeMixinTruckBusCoach.base_track_type_name
+        self.roadveh_flag_tram = TrackTypeMixinTruckBusCoach.roadveh_flag_tram
+        self.tractive_effort_coefficient = (
+            TrackTypeMixinTruckBusCoach.tractive_effort_coefficient
+        )
+        self.name_suffix_vehicle_type = (
+            TrackTypeMixinTruckBusCoach.name_suffix_vehicle_type
+        )
+        self._sound_effect = "SOUND_DEPARTURE_OLD_RV_1"
+        self.vehicle_role = "bus"
+
+    @property
+    def name_type_suffix(self):
+        return "STR_NAME_SUFFIX_BUS"
+
+
 class PaxLocalTram(PaxHaulerLocalConsistBase):
     def __init__(self, producer, catalogue_entry):
         super().__init__(producer, catalogue_entry)
@@ -1028,9 +1007,4 @@ class MetalHEQSBase(MetalHaulerConsistBase):
         self.vehicle_role = TrackTypeMixinHEQS.vehicle_role
 
 
-# CABBAGE END GENERATED FLEET SCHEMAS STAGE 005
 
-# CABBAGE BEGIN SCHEMA BEHAVIOUR STAGE 006
-# CABBAGE Dynamic method installation is deliberately NOT used: the definitions
-# CABBAGE below are added inside their target class bodies by this installer.
-# CABBAGE END SCHEMA BEHAVIOUR STAGE 006

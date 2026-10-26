@@ -8,7 +8,7 @@ def main(roster_id):
     result = []
 
     model_def = ModelDef(
-        schema_name="Bus",
+        schema_name="PaxLocalBus",
         model_id="highgate_pax",
         base_numeric_id=590,
         name="Highgate",
