@@ -8,6 +8,8 @@ from road_vehicle.model_def import ModelDef
 
 
 def main(roster_id):
+    result = []
+
     model_def = ModelDef(
         schema_name="PaxLocalTram",
         model_id="northbeach_pax",
@@ -18,11 +20,11 @@ def main(roster_id):
     )  # introduce later than gen epoch by design
 
     model_def.add_unit_def(
-        
         unit_cls_name="ElectricVehicleUnit",
         vehicle_length=8,
         effects=["EFFECT_SPRITE_ELECTRIC, 0, 0, 12"],
         repeat=2,
     )
 
-    return [model_def]
+    result.append(model_def)
+    return result

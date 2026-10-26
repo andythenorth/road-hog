@@ -8,6 +8,8 @@ from road_vehicle.model_def import ModelDef
 
 
 def main(roster_id):
+    result = []
+
     model_def = ModelDef(
         schema_name="LogHEQS",
         model_id="buff_log",
@@ -19,7 +21,6 @@ def main(roster_id):
     )
 
     model_def.add_unit_def(
-        
         unit_cls_name="DieselVehicleUnit",
         # capacity=40,
         vehicle_length=7,
@@ -27,9 +28,9 @@ def main(roster_id):
 
     model_def.add_unit_def(
         unit_cls_name="RoadVehicleUnit",
-        
         # capacity=35,
         vehicle_length=8,
     )
 
-    return [model_def]
+    result.append(model_def)
+    return result

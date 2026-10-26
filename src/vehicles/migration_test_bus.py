@@ -7,6 +7,8 @@ from road_vehicle.model_def import ModelDef
 
 
 def main(**kwargs):
+    result = []
+
     model_def = ModelDef(
         schema_name="Bus",
         model_id="leyburn_pax",
@@ -22,4 +24,5 @@ def main(**kwargs):
         unit_cls_name="DieselVehicleUnit",
         vehicle_length=7,
     )
-    return [model_def]
+    result.append(model_def)
+    return result

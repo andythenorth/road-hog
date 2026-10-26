@@ -8,6 +8,8 @@ from road_vehicle.model_def import ModelDef
 
 
 def main(roster_id):
+    result = []
+
     model_def = ModelDef(
         schema_name="FlatbedTruck",
         model_id="big_rigg_flat",
@@ -16,9 +18,7 @@ def main(roster_id):
         gen=5,
     )
 
-    model_def.add_unit_def(
-        unit_cls_name="DieselCaboverRigidTruckGen5A"
-    )
+    model_def.add_unit_def(unit_cls_name="DieselCaboverRigidTruckGen5A")
 
     model_def.add_unit_def(
         unit_cls_name="RoadVehicleUnit",
@@ -26,4 +26,5 @@ def main(roster_id):
         cargo_length=4,
     )
 
-    return [model_def]
+    result.append(model_def)
+    return result

@@ -8,6 +8,8 @@ from road_vehicle.model_def import ModelDef
 
 
 def main(roster_id):
+    result = []
+
     model_def = ModelDef(
         schema_name="DumpHEQS",
         model_id="witch_hill_dump",
@@ -21,7 +23,6 @@ def main(roster_id):
     )  # introduce later than gen epoch by design
 
     model_def.add_unit_def(
-        
         unit_cls_name="DieselVehicleUnit",
         # capacity=85,  # much bigger is not much better here
         vehicle_length=7,
@@ -31,4 +32,5 @@ def main(roster_id):
         ],
     )
 
-    return [model_def]
+    result.append(model_def)
+    return result

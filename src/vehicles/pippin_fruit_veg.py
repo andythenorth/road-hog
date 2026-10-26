@@ -8,6 +8,8 @@ from road_vehicle.model_def import ModelDef
 
 
 def main(roster_id):
+    result = []
+
     model_def = ModelDef(
         schema_name="FruitVegFeldbahn",
         model_id="pippin_fruit_veg",
@@ -16,12 +18,9 @@ def main(roster_id):
         gen=1,
     )
 
-    model_def.add_unit_def(
-        unit_cls_name="SteamEngineFeldbahnGen1A"
-    )
+    model_def.add_unit_def(unit_cls_name="SteamEngineFeldbahnGen1A")
 
-    model_def.add_unit_def(
-        unit_cls_name="WagonFeldbahnA", repeat=5
-    )
+    model_def.add_unit_def(unit_cls_name="WagonFeldbahnA", repeat=5)
 
-    return [model_def]
+    result.append(model_def)
+    return result

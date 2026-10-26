@@ -8,6 +8,8 @@ from road_vehicle.model_def import ModelDef
 
 
 def main(roster_id):
+    result = []
+
     model_def = ModelDef(
         schema_name="CoveredHopperTruck",
         model_id="limebreach_covered_hopper",
@@ -21,8 +23,7 @@ def main(roster_id):
         unit_cls_name="DieselCaboverSemiTractorTruckGen3A",
     )
 
-    model_def.add_unit_def(
-        unit_cls_name="RoadVehicleUnit", vehicle_length=5
-    )
+    model_def.add_unit_def(unit_cls_name="RoadVehicleUnit", vehicle_length=5)
 
-    return [model_def]
+    result.append(model_def)
+    return result

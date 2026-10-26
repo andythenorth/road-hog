@@ -8,6 +8,8 @@ from road_vehicle.model_def import ModelDef
 
 
 def main(roster_id):
+    result = []
+
     model_def = ModelDef(
         schema_name="EdiblesTankerTram",
         model_id="poptop_edibles_tanker",
@@ -17,8 +19,7 @@ def main(roster_id):
         intro_year_offset=6,
     )  # introduce later than gen epoch by design
 
-    model_def.add_unit_def(
-        unit_cls_name="ElectricMotorTram3", repeat=2
-    )
+    model_def.add_unit_def(unit_cls_name="ElectricMotorTram3", repeat=2)
 
-    return [model_def]
+    result.append(model_def)
+    return result

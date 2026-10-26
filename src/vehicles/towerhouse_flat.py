@@ -8,6 +8,8 @@ from road_vehicle.model_def import ModelDef
 
 
 def main(roster_id):
+    result = []
+
     model_def = ModelDef(
         schema_name="FlatbedTruck",
         model_id="towerhouse_flat",
@@ -26,4 +28,5 @@ def main(roster_id):
         cargo_length=4,
     )  # some cargo overlap eh?
 
-    return [model_def]
+    result.append(model_def)
+    return result

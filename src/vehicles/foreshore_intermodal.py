@@ -8,6 +8,8 @@ from road_vehicle.model_def import ModelDef
 
 
 def main(roster_id):
+    result = []
+
     model_def = ModelDef(
         schema_name="IntermodalHauler",
         model_id="foreshore",
@@ -22,4 +24,5 @@ def main(roster_id):
         unit_cls_name="RoadVehicleUnit", vehicle_length=7
     )  # capacity=50,
 
-    return [model_def]
+    result.append(model_def)
+    return result

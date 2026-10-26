@@ -8,6 +8,8 @@ from road_vehicle.model_def import ModelDef
 
 
 def main(roster_id):
+    result = []
+
     model_def = ModelDef(
         schema_name="RefrigeratedTruck",
         model_id="fortiscue_refrigerated",
@@ -22,8 +24,7 @@ def main(roster_id):
         always_use_same_spriterow=True,
     )
 
-    model_def.add_unit_def(
-        unit_cls_name="RoadVehicleUnit", vehicle_length=4
-    )
+    model_def.add_unit_def(unit_cls_name="RoadVehicleUnit", vehicle_length=4)
 
-    return [model_def]
+    result.append(model_def)
+    return result

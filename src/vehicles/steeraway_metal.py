@@ -8,6 +8,8 @@ from road_vehicle.model_def import ModelDef
 
 
 def main(roster_id):
+    result = []
+
     model_def = ModelDef(
         schema_name="MetalHEQSBase",
         model_id="steeraway_metal",
@@ -20,7 +22,6 @@ def main(roster_id):
     )  # introduce later than gen epoch by design
 
     model_def.add_unit_def(
-        
         unit_cls_name="DieselVehicleUnit",
         capacity=0,
         vehicle_length=6,
@@ -28,10 +29,10 @@ def main(roster_id):
 
     model_def.add_unit_def(
         unit_cls_name="RoadVehicleUnit",
-        
         # capacity=50,
         vehicle_length=7,
         repeat=2,
     )
 
-    return [model_def]
+    result.append(model_def)
+    return result

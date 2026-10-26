@@ -8,6 +8,8 @@ from road_vehicle.model_def import ModelDef
 
 
 def main(roster_id):
+    result = []
+
     model_def = ModelDef(
         schema_name="MailTruck",
         model_id="tallyho_mail",
@@ -19,9 +21,9 @@ def main(roster_id):
     )  # introduce earlier than gen epoch by design
 
     model_def.add_unit_def(
-        
         unit_cls_name="DieselVehicleUnit",
         vehicle_length=6,
     )
 
-    return [model_def]
+    result.append(model_def)
+    return result

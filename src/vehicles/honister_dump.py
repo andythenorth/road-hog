@@ -8,6 +8,8 @@ from road_vehicle.model_def import ModelDef
 
 
 def main(roster_id):
+    result = []
+
     model_def = ModelDef(
         schema_name="DumpTruck",
         model_id="honister_dump",
@@ -18,14 +20,12 @@ def main(roster_id):
     )  # introduce later than gen epoch by design
 
     model_def.add_unit_def(
-        
         unit_cls_name="DieselVehicleUnit",
         vehicle_length=5,
         effects=["EFFECT_SPRITE_DIESEL, -2, 1, 10"],
     )
 
-    model_def.add_unit_def(
-        unit_cls_name="RoadVehicleUnit", vehicle_length=4
-    )
+    model_def.add_unit_def(unit_cls_name="RoadVehicleUnit", vehicle_length=4)
 
-    return [model_def]
+    result.append(model_def)
+    return result

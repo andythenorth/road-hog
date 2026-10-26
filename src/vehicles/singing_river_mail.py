@@ -8,6 +8,8 @@ from road_vehicle.model_def import ModelDef
 
 
 def main(roster_id):
+    result = []
+
     model_def = ModelDef(
         schema_name="MailTram",
         model_id="singing_river_mail",
@@ -18,10 +20,10 @@ def main(roster_id):
     )
 
     model_def.add_unit_def(
-        
         unit_cls_name="ElectricVehicleUnit",
         vehicle_length=8,
         effects=["EFFECT_SPRITE_ELECTRIC, 0, 0, 10"],
     )
 
-    return [model_def]
+    result.append(model_def)
+    return result
