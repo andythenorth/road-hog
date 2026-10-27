@@ -33,12 +33,6 @@ class RoadVehicleBase:
         self.vehicle_life = 40
         self.loading_speed_multiplier = 1
         self.retire_early = -10
-        # Road Hog default, not Iron Horse train default (0.3).
-        self.tractive_effort_coefficient = (
-            self.model_def.tractive_effort_coefficient or 0.7
-        )
-        self.roadveh_flag_tram = False
-        self.base_track_type_name = "ROAD"
         self.type_base_buy_cost_points = 0
         self.type_base_running_cost_points = 0
         self.weight_multiplier = 0.17
@@ -65,6 +59,13 @@ class RoadVehicleBase:
         return self.roster.intro_dates[self.base_track_type_name][
             self.model_def.gen - 1
         ] + (self.model_def.intro_year_offset or 0)
+
+    @property
+    def tractive_effort_coefficient(self):
+        if self.model_def.tractive_effort_coefficient is not None:
+            return self.model_def.tractive_effort_coefficient
+
+        return self.default_tractive_effort_coefficient
 
     @property
     def power(self):
@@ -196,14 +197,14 @@ from gestalt_graphics.gestalt_graphics import (
 class TrackTypeMixinBase:
     base_track_type_name = None
     roadveh_flag_tram = False
-    tractive_effort_coefficient = None
+    default_tractive_effort_coefficient = None
     name_suffix_vehicle_type = None
     vehicle_role = None
 
 
 class TrackTypeMixinCake(TrackTypeMixinBase):
     base_track_type_name = "LOLZ"
-    tractive_effort_coefficient = 0.7
+    default_tractive_effort_coefficient = 0.7
     name_suffix_vehicle_type = "_TRUCK"
     vehicle_role = "lolz"
 
@@ -211,14 +212,14 @@ class TrackTypeMixinCake(TrackTypeMixinBase):
 class TrackTypeMixinFeldbahn(TrackTypeMixinBase):
     base_track_type_name = "RAIL"
     roadveh_flag_tram = True
-    tractive_effort_coefficient = 0.3
+    default_tractive_effort_coefficient = 0.3
     name_suffix_vehicle_type = "_TRAM"
     vehicle_role = "feldbahn"
 
 
 class TrackTypeMixinHEQS(TrackTypeMixinBase):
     base_track_type_name = "HEQS"
-    tractive_effort_coefficient = 0.7
+    default_tractive_effort_coefficient = 0.7
     name_suffix_vehicle_type = "_TRUCK"
     vehicle_role = "freight_truck"
 
@@ -226,14 +227,14 @@ class TrackTypeMixinHEQS(TrackTypeMixinBase):
 class TrackTypeMixinTram(TrackTypeMixinBase):
     base_track_type_name = "RAIL"
     roadveh_flag_tram = True
-    tractive_effort_coefficient = 0.4
+    default_tractive_effort_coefficient = 0.4
     name_suffix_vehicle_type = "_TRAM"
     vehicle_role = "freight_tram"
 
 
 class TrackTypeMixinTruckBusCoach(TrackTypeMixinBase):
     base_track_type_name = "ROAD"
-    tractive_effort_coefficient = 0.7
+    default_tractive_effort_coefficient = 0.7
     name_suffix_vehicle_type = "_TRUCK"
     vehicle_role = "freight_truck"
 
@@ -505,209 +506,71 @@ class TankerConsistBase(RoadVehicleBase):
         )
 
 
-class BoxFeldbahn(BoxHaulerConsistBase):
-    def __init__(self, producer, catalogue_entry):
-        super().__init__(producer, catalogue_entry)
-        self.base_track_type_name = TrackTypeMixinFeldbahn.base_track_type_name
-        self.roadveh_flag_tram = TrackTypeMixinFeldbahn.roadveh_flag_tram
-        self.tractive_effort_coefficient = (
-            TrackTypeMixinFeldbahn.tractive_effort_coefficient
-        )
-        self.name_suffix_vehicle_type = TrackTypeMixinFeldbahn.name_suffix_vehicle_type
-        self.vehicle_role = TrackTypeMixinFeldbahn.vehicle_role
+class BoxFeldbahn(TrackTypeMixinFeldbahn, BoxHaulerConsistBase):
+    pass
 
 
-class BoxTram(BoxHaulerConsistBase):
-    def __init__(self, producer, catalogue_entry):
-        super().__init__(producer, catalogue_entry)
-        self.base_track_type_name = TrackTypeMixinTram.base_track_type_name
-        self.roadveh_flag_tram = TrackTypeMixinTram.roadveh_flag_tram
-        self.tractive_effort_coefficient = (
-            TrackTypeMixinTram.tractive_effort_coefficient
-        )
-        self.name_suffix_vehicle_type = TrackTypeMixinTram.name_suffix_vehicle_type
-        self.vehicle_role = TrackTypeMixinTram.vehicle_role
+class BoxTram(TrackTypeMixinTram, BoxHaulerConsistBase):
+    pass
 
 
-class BoxTruck(BoxHaulerConsistBase):
-    def __init__(self, producer, catalogue_entry):
-        super().__init__(producer, catalogue_entry)
-        self.base_track_type_name = TrackTypeMixinTruckBusCoach.base_track_type_name
-        self.roadveh_flag_tram = TrackTypeMixinTruckBusCoach.roadveh_flag_tram
-        self.tractive_effort_coefficient = (
-            TrackTypeMixinTruckBusCoach.tractive_effort_coefficient
-        )
-        self.name_suffix_vehicle_type = (
-            TrackTypeMixinTruckBusCoach.name_suffix_vehicle_type
-        )
-        self.vehicle_role = TrackTypeMixinTruckBusCoach.vehicle_role
+class BoxTruck(TrackTypeMixinTruckBusCoach, BoxHaulerConsistBase):
+    pass
 
 
-class CoveredHopperTram(CoveredHopperHaulerConsistBase):
-    def __init__(self, producer, catalogue_entry):
-        super().__init__(producer, catalogue_entry)
-        self.base_track_type_name = TrackTypeMixinTram.base_track_type_name
-        self.roadveh_flag_tram = TrackTypeMixinTram.roadveh_flag_tram
-        self.tractive_effort_coefficient = (
-            TrackTypeMixinTram.tractive_effort_coefficient
-        )
-        self.name_suffix_vehicle_type = TrackTypeMixinTram.name_suffix_vehicle_type
-        self.vehicle_role = TrackTypeMixinTram.vehicle_role
+class CoveredHopperTram(TrackTypeMixinTram, CoveredHopperHaulerConsistBase):
+    pass
 
 
-class CoveredHopperTruck(CoveredHopperHaulerConsistBase):
-    def __init__(self, producer, catalogue_entry):
-        super().__init__(producer, catalogue_entry)
-        self.base_track_type_name = TrackTypeMixinTruckBusCoach.base_track_type_name
-        self.roadveh_flag_tram = TrackTypeMixinTruckBusCoach.roadveh_flag_tram
-        self.tractive_effort_coefficient = (
-            TrackTypeMixinTruckBusCoach.tractive_effort_coefficient
-        )
-        self.name_suffix_vehicle_type = (
-            TrackTypeMixinTruckBusCoach.name_suffix_vehicle_type
-        )
-        self.vehicle_role = TrackTypeMixinTruckBusCoach.vehicle_role
+class CoveredHopperTruck(TrackTypeMixinTruckBusCoach, CoveredHopperHaulerConsistBase):
+    pass
 
 
-class DumpFeldbahn(DumpHaulerConsistBase):
-    def __init__(self, producer, catalogue_entry):
-        super().__init__(producer, catalogue_entry)
-        self.base_track_type_name = TrackTypeMixinFeldbahn.base_track_type_name
-        self.roadveh_flag_tram = TrackTypeMixinFeldbahn.roadveh_flag_tram
-        self.tractive_effort_coefficient = (
-            TrackTypeMixinFeldbahn.tractive_effort_coefficient
-        )
-        self.name_suffix_vehicle_type = TrackTypeMixinFeldbahn.name_suffix_vehicle_type
-        self.vehicle_role = TrackTypeMixinFeldbahn.vehicle_role
+class DumpFeldbahn(TrackTypeMixinFeldbahn, DumpHaulerConsistBase):
+    pass
 
 
-class DumpHEQS(DumpHaulerConsistBase):
-    def __init__(self, producer, catalogue_entry):
-        super().__init__(producer, catalogue_entry)
-        self.base_track_type_name = TrackTypeMixinHEQS.base_track_type_name
-        self.roadveh_flag_tram = TrackTypeMixinHEQS.roadveh_flag_tram
-        self.tractive_effort_coefficient = (
-            TrackTypeMixinHEQS.tractive_effort_coefficient
-        )
-        self.name_suffix_vehicle_type = TrackTypeMixinHEQS.name_suffix_vehicle_type
-        self.vehicle_role = TrackTypeMixinHEQS.vehicle_role
+class DumpHEQS(TrackTypeMixinHEQS, DumpHaulerConsistBase):
+    pass
 
 
-class DumpTram(DumpHaulerConsistBase):
-    def __init__(self, producer, catalogue_entry):
-        super().__init__(producer, catalogue_entry)
-        self.base_track_type_name = TrackTypeMixinTram.base_track_type_name
-        self.roadveh_flag_tram = TrackTypeMixinTram.roadveh_flag_tram
-        self.tractive_effort_coefficient = (
-            TrackTypeMixinTram.tractive_effort_coefficient
-        )
-        self.name_suffix_vehicle_type = TrackTypeMixinTram.name_suffix_vehicle_type
-        self.vehicle_role = TrackTypeMixinTram.vehicle_role
+class DumpTram(TrackTypeMixinTram, DumpHaulerConsistBase):
+    pass
 
 
-class DumpTruck(DumpHaulerConsistBase):
-    def __init__(self, producer, catalogue_entry):
-        super().__init__(producer, catalogue_entry)
-        self.base_track_type_name = TrackTypeMixinTruckBusCoach.base_track_type_name
-        self.roadveh_flag_tram = TrackTypeMixinTruckBusCoach.roadveh_flag_tram
-        self.tractive_effort_coefficient = (
-            TrackTypeMixinTruckBusCoach.tractive_effort_coefficient
-        )
-        self.name_suffix_vehicle_type = (
-            TrackTypeMixinTruckBusCoach.name_suffix_vehicle_type
-        )
-        self.vehicle_role = TrackTypeMixinTruckBusCoach.vehicle_role
+class DumpTruck(TrackTypeMixinTruckBusCoach, DumpHaulerConsistBase):
+    pass
 
 
-class EdiblesTankerTram(EdiblesTankerConsistBase):
-    def __init__(self, producer, catalogue_entry):
-        super().__init__(producer, catalogue_entry)
-        self.base_track_type_name = TrackTypeMixinTram.base_track_type_name
-        self.roadveh_flag_tram = TrackTypeMixinTram.roadveh_flag_tram
-        self.tractive_effort_coefficient = (
-            TrackTypeMixinTram.tractive_effort_coefficient
-        )
-        self.name_suffix_vehicle_type = TrackTypeMixinTram.name_suffix_vehicle_type
-        self.vehicle_role = TrackTypeMixinTram.vehicle_role
+class EdiblesTankerTram(TrackTypeMixinTram, EdiblesTankerConsistBase):
+    pass
 
 
-class EdiblesTankerTruck(EdiblesTankerConsistBase):
-    def __init__(self, producer, catalogue_entry):
-        super().__init__(producer, catalogue_entry)
-        self.base_track_type_name = TrackTypeMixinTruckBusCoach.base_track_type_name
-        self.roadveh_flag_tram = TrackTypeMixinTruckBusCoach.roadveh_flag_tram
-        self.tractive_effort_coefficient = (
-            TrackTypeMixinTruckBusCoach.tractive_effort_coefficient
-        )
-        self.name_suffix_vehicle_type = (
-            TrackTypeMixinTruckBusCoach.name_suffix_vehicle_type
-        )
-        self.vehicle_role = TrackTypeMixinTruckBusCoach.vehicle_role
+class EdiblesTankerTruck(TrackTypeMixinTruckBusCoach, EdiblesTankerConsistBase):
+    pass
 
 
-class FlatFeldbahn(FlatbedHaulerConsistBase):
-    def __init__(self, producer, catalogue_entry):
-        super().__init__(producer, catalogue_entry)
-        self.base_track_type_name = TrackTypeMixinFeldbahn.base_track_type_name
-        self.roadveh_flag_tram = TrackTypeMixinFeldbahn.roadveh_flag_tram
-        self.tractive_effort_coefficient = (
-            TrackTypeMixinFeldbahn.tractive_effort_coefficient
-        )
-        self.name_suffix_vehicle_type = TrackTypeMixinFeldbahn.name_suffix_vehicle_type
-        self.vehicle_role = TrackTypeMixinFeldbahn.vehicle_role
+class FlatFeldbahn(TrackTypeMixinFeldbahn, FlatbedHaulerConsistBase):
+    pass
 
 
-class FlatbedTram(FlatbedHaulerConsistBase):
-    def __init__(self, producer, catalogue_entry):
-        super().__init__(producer, catalogue_entry)
-        self.base_track_type_name = TrackTypeMixinTram.base_track_type_name
-        self.roadveh_flag_tram = TrackTypeMixinTram.roadveh_flag_tram
-        self.tractive_effort_coefficient = (
-            TrackTypeMixinTram.tractive_effort_coefficient
-        )
-        self.name_suffix_vehicle_type = TrackTypeMixinTram.name_suffix_vehicle_type
-        self.vehicle_role = TrackTypeMixinTram.vehicle_role
+class FlatbedTram(TrackTypeMixinTram, FlatbedHaulerConsistBase):
+    pass
 
 
-class FlatbedTruck(FlatbedHaulerConsistBase):
-    def __init__(self, producer, catalogue_entry):
-        super().__init__(producer, catalogue_entry)
-        self.base_track_type_name = TrackTypeMixinTruckBusCoach.base_track_type_name
-        self.roadveh_flag_tram = TrackTypeMixinTruckBusCoach.roadveh_flag_tram
-        self.tractive_effort_coefficient = (
-            TrackTypeMixinTruckBusCoach.tractive_effort_coefficient
-        )
-        self.name_suffix_vehicle_type = (
-            TrackTypeMixinTruckBusCoach.name_suffix_vehicle_type
-        )
-        self.vehicle_role = TrackTypeMixinTruckBusCoach.vehicle_role
+class FlatbedTruck(TrackTypeMixinTruckBusCoach, FlatbedHaulerConsistBase):
+    pass
 
 
-class FruitVegFeldbahn(FruitVegHaulerConsistBase):
-    def __init__(self, producer, catalogue_entry):
-        super().__init__(producer, catalogue_entry)
-        self.base_track_type_name = TrackTypeMixinFeldbahn.base_track_type_name
-        self.roadveh_flag_tram = TrackTypeMixinFeldbahn.roadveh_flag_tram
-        self.tractive_effort_coefficient = (
-            TrackTypeMixinFeldbahn.tractive_effort_coefficient
-        )
-        self.name_suffix_vehicle_type = TrackTypeMixinFeldbahn.name_suffix_vehicle_type
-        self.vehicle_role = TrackTypeMixinFeldbahn.vehicle_role
+class FruitVegFeldbahn(TrackTypeMixinFeldbahn, FruitVegHaulerConsistBase):
+    pass
 
 
-class FruitVegTram(FruitVegHaulerConsistBase):
-    def __init__(self, producer, catalogue_entry):
-        super().__init__(producer, catalogue_entry)
-        self.base_track_type_name = TrackTypeMixinTram.base_track_type_name
-        self.roadveh_flag_tram = TrackTypeMixinTram.roadveh_flag_tram
-        self.tractive_effort_coefficient = (
-            TrackTypeMixinTram.tractive_effort_coefficient
-        )
-        self.name_suffix_vehicle_type = TrackTypeMixinTram.name_suffix_vehicle_type
-        self.vehicle_role = TrackTypeMixinTram.vehicle_role
+class FruitVegTram(TrackTypeMixinTram, FruitVegHaulerConsistBase):
+    pass
 
 
-class IntermodalHauler(RoadVehicleBase):
+class IntermodalHauler(TrackTypeMixinTruckBusCoach, RoadVehicleBase):
     def __init__(self, producer, catalogue_entry):
         super().__init__(producer, catalogue_entry)
         self.name_suffix_consist_type = "INTERMODAL"
@@ -721,133 +584,49 @@ class IntermodalHauler(RoadVehicleBase):
         self.loading_speed_multiplier = 2
 
 
-class LivestockFeldbahn(LivestockHaulerConsistBase):
+class LivestockFeldbahn(TrackTypeMixinFeldbahn, LivestockHaulerConsistBase):
+    pass
+
+
+class LivestockTram(TrackTypeMixinTram, LivestockHaulerConsistBase):
+    pass
+
+
+class LivestockTruck(TrackTypeMixinTruckBusCoach, LivestockHaulerConsistBase):
+    pass
+
+
+class LogHEQS(TrackTypeMixinHEQS, LogHaulerConsistBase):
+    pass
+
+
+class MailTram(TrackTypeMixinTram, MailHaulerConsistBase):
     def __init__(self, producer, catalogue_entry):
         super().__init__(producer, catalogue_entry)
-        self.base_track_type_name = TrackTypeMixinFeldbahn.base_track_type_name
-        self.roadveh_flag_tram = TrackTypeMixinFeldbahn.roadveh_flag_tram
-        self.tractive_effort_coefficient = (
-            TrackTypeMixinFeldbahn.tractive_effort_coefficient
-        )
-        self.name_suffix_vehicle_type = TrackTypeMixinFeldbahn.name_suffix_vehicle_type
-        self.vehicle_role = TrackTypeMixinFeldbahn.vehicle_role
-
-
-class LivestockTram(LivestockHaulerConsistBase):
-    def __init__(self, producer, catalogue_entry):
-        super().__init__(producer, catalogue_entry)
-        self.base_track_type_name = TrackTypeMixinTram.base_track_type_name
-        self.roadveh_flag_tram = TrackTypeMixinTram.roadveh_flag_tram
-        self.tractive_effort_coefficient = (
-            TrackTypeMixinTram.tractive_effort_coefficient
-        )
-        self.name_suffix_vehicle_type = TrackTypeMixinTram.name_suffix_vehicle_type
-        self.vehicle_role = TrackTypeMixinTram.vehicle_role
-
-
-class LivestockTruck(LivestockHaulerConsistBase):
-    def __init__(self, producer, catalogue_entry):
-        super().__init__(producer, catalogue_entry)
-        self.base_track_type_name = TrackTypeMixinTruckBusCoach.base_track_type_name
-        self.roadveh_flag_tram = TrackTypeMixinTruckBusCoach.roadveh_flag_tram
-        self.tractive_effort_coefficient = (
-            TrackTypeMixinTruckBusCoach.tractive_effort_coefficient
-        )
-        self.name_suffix_vehicle_type = (
-            TrackTypeMixinTruckBusCoach.name_suffix_vehicle_type
-        )
-        self.vehicle_role = TrackTypeMixinTruckBusCoach.vehicle_role
-
-
-class LogHEQS(LogHaulerConsistBase):
-    def __init__(self, producer, catalogue_entry):
-        super().__init__(producer, catalogue_entry)
-        self.base_track_type_name = TrackTypeMixinHEQS.base_track_type_name
-        self.roadveh_flag_tram = TrackTypeMixinHEQS.roadveh_flag_tram
-        self.tractive_effort_coefficient = (
-            TrackTypeMixinHEQS.tractive_effort_coefficient
-        )
-        self.name_suffix_vehicle_type = TrackTypeMixinHEQS.name_suffix_vehicle_type
-        self.vehicle_role = TrackTypeMixinHEQS.vehicle_role
-
-
-class MailTram(MailHaulerConsistBase):
-    def __init__(self, producer, catalogue_entry):
-        super().__init__(producer, catalogue_entry)
-        self.base_track_type_name = TrackTypeMixinTram.base_track_type_name
-        self.roadveh_flag_tram = TrackTypeMixinTram.roadveh_flag_tram
-        self.tractive_effort_coefficient = (
-            TrackTypeMixinTram.tractive_effort_coefficient
-        )
-        self.name_suffix_vehicle_type = TrackTypeMixinTram.name_suffix_vehicle_type
-        self.vehicle_role = TrackTypeMixinTram.vehicle_role
         self.vehicle_role = "mail_tram"
 
 
-class MailTruck(MailHaulerConsistBase):
+class MailTruck(TrackTypeMixinTruckBusCoach, MailHaulerConsistBase):
     def __init__(self, producer, catalogue_entry):
         super().__init__(producer, catalogue_entry)
-        self.base_track_type_name = TrackTypeMixinTruckBusCoach.base_track_type_name
-        self.roadveh_flag_tram = TrackTypeMixinTruckBusCoach.roadveh_flag_tram
-        self.tractive_effort_coefficient = (
-            TrackTypeMixinTruckBusCoach.tractive_effort_coefficient
-        )
-        self.name_suffix_vehicle_type = (
-            TrackTypeMixinTruckBusCoach.name_suffix_vehicle_type
-        )
-        self.vehicle_role = TrackTypeMixinTruckBusCoach.vehicle_role
         self.vehicle_role = "mail_truck"
 
 
-class OpenFeldbahn(OpenHaulerConsistBase):
+class OpenFeldbahn(TrackTypeMixinFeldbahn, OpenHaulerConsistBase):
+    pass
+
+
+class OpenTram(TrackTypeMixinTram, OpenHaulerConsistBase):
+    pass
+
+
+class OpenTruck(TrackTypeMixinTruckBusCoach, OpenHaulerConsistBase):
+    pass
+
+
+class PaxLocalBus(TrackTypeMixinTruckBusCoach, PaxHaulerLocalConsistBase):
     def __init__(self, producer, catalogue_entry):
         super().__init__(producer, catalogue_entry)
-        self.base_track_type_name = TrackTypeMixinFeldbahn.base_track_type_name
-        self.roadveh_flag_tram = TrackTypeMixinFeldbahn.roadveh_flag_tram
-        self.tractive_effort_coefficient = (
-            TrackTypeMixinFeldbahn.tractive_effort_coefficient
-        )
-        self.name_suffix_vehicle_type = TrackTypeMixinFeldbahn.name_suffix_vehicle_type
-        self.vehicle_role = TrackTypeMixinFeldbahn.vehicle_role
-
-
-class OpenTram(OpenHaulerConsistBase):
-    def __init__(self, producer, catalogue_entry):
-        super().__init__(producer, catalogue_entry)
-        self.base_track_type_name = TrackTypeMixinTram.base_track_type_name
-        self.roadveh_flag_tram = TrackTypeMixinTram.roadveh_flag_tram
-        self.tractive_effort_coefficient = (
-            TrackTypeMixinTram.tractive_effort_coefficient
-        )
-        self.name_suffix_vehicle_type = TrackTypeMixinTram.name_suffix_vehicle_type
-        self.vehicle_role = TrackTypeMixinTram.vehicle_role
-
-
-class OpenTruck(OpenHaulerConsistBase):
-    def __init__(self, producer, catalogue_entry):
-        super().__init__(producer, catalogue_entry)
-        self.base_track_type_name = TrackTypeMixinTruckBusCoach.base_track_type_name
-        self.roadveh_flag_tram = TrackTypeMixinTruckBusCoach.roadveh_flag_tram
-        self.tractive_effort_coefficient = (
-            TrackTypeMixinTruckBusCoach.tractive_effort_coefficient
-        )
-        self.name_suffix_vehicle_type = (
-            TrackTypeMixinTruckBusCoach.name_suffix_vehicle_type
-        )
-        self.vehicle_role = TrackTypeMixinTruckBusCoach.vehicle_role
-
-
-class PaxLocalBus(PaxHaulerLocalConsistBase):
-    def __init__(self, producer, catalogue_entry):
-        super().__init__(producer, catalogue_entry)
-        self.base_track_type_name = TrackTypeMixinTruckBusCoach.base_track_type_name
-        self.roadveh_flag_tram = TrackTypeMixinTruckBusCoach.roadveh_flag_tram
-        self.tractive_effort_coefficient = (
-            TrackTypeMixinTruckBusCoach.tractive_effort_coefficient
-        )
-        self.name_suffix_vehicle_type = (
-            TrackTypeMixinTruckBusCoach.name_suffix_vehicle_type
-        )
         self._sound_effect = "SOUND_DEPARTURE_OLD_RV_1"
         self.vehicle_role = "bus"
 
@@ -856,16 +635,9 @@ class PaxLocalBus(PaxHaulerLocalConsistBase):
         return "STR_NAME_SUFFIX_BUS"
 
 
-class PaxLocalTram(PaxHaulerLocalConsistBase):
+class PaxLocalTram(TrackTypeMixinTram, PaxHaulerLocalConsistBase):
     def __init__(self, producer, catalogue_entry):
         super().__init__(producer, catalogue_entry)
-        self.base_track_type_name = TrackTypeMixinTram.base_track_type_name
-        self.roadveh_flag_tram = TrackTypeMixinTram.roadveh_flag_tram
-        self.tractive_effort_coefficient = (
-            TrackTypeMixinTram.tractive_effort_coefficient
-        )
-        self.name_suffix_vehicle_type = TrackTypeMixinTram.name_suffix_vehicle_type
-        self.vehicle_role = TrackTypeMixinTram.vehicle_role
         self._sound_effect = "SOUND_LEVEL_CROSSING"
         self.vehicle_role = "pax_tram"
 
@@ -874,18 +646,9 @@ class PaxLocalTram(PaxHaulerLocalConsistBase):
         return "STR_NAME_SUFFIX_PASSENGER_TRAM"
 
 
-class PaxExpressCoach(PaxHaulerConsistBase):
+class PaxExpressCoach(TrackTypeMixinTruckBusCoach, PaxHaulerConsistBase):
     def __init__(self, producer, catalogue_entry):
         super().__init__(producer, catalogue_entry)
-        self.base_track_type_name = TrackTypeMixinTruckBusCoach.base_track_type_name
-        self.roadveh_flag_tram = TrackTypeMixinTruckBusCoach.roadveh_flag_tram
-        self.tractive_effort_coefficient = (
-            TrackTypeMixinTruckBusCoach.tractive_effort_coefficient
-        )
-        self.name_suffix_vehicle_type = (
-            TrackTypeMixinTruckBusCoach.name_suffix_vehicle_type
-        )
-        self.vehicle_role = TrackTypeMixinTruckBusCoach.vehicle_role
         self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
         self.weight_multiplier = 0.2
         self._sound_effect = "SOUND_DEPARTURE_OLD_BUS"
@@ -896,89 +659,29 @@ class PaxExpressCoach(PaxHaulerConsistBase):
         return "STR_NAME_SUFFIX_COACH"
 
 
-class RefrigeratedTram(RefrigeratedHaulerConsistBase):
-    def __init__(self, producer, catalogue_entry):
-        super().__init__(producer, catalogue_entry)
-        self.base_track_type_name = TrackTypeMixinTram.base_track_type_name
-        self.roadveh_flag_tram = TrackTypeMixinTram.roadveh_flag_tram
-        self.tractive_effort_coefficient = (
-            TrackTypeMixinTram.tractive_effort_coefficient
-        )
-        self.name_suffix_vehicle_type = TrackTypeMixinTram.name_suffix_vehicle_type
-        self.vehicle_role = TrackTypeMixinTram.vehicle_role
+class RefrigeratedTram(TrackTypeMixinTram, RefrigeratedHaulerConsistBase):
+    pass
 
 
-class RefrigeratedTruck(RefrigeratedHaulerConsistBase):
-    def __init__(self, producer, catalogue_entry):
-        super().__init__(producer, catalogue_entry)
-        self.base_track_type_name = TrackTypeMixinTruckBusCoach.base_track_type_name
-        self.roadveh_flag_tram = TrackTypeMixinTruckBusCoach.roadveh_flag_tram
-        self.tractive_effort_coefficient = (
-            TrackTypeMixinTruckBusCoach.tractive_effort_coefficient
-        )
-        self.name_suffix_vehicle_type = (
-            TrackTypeMixinTruckBusCoach.name_suffix_vehicle_type
-        )
-        self.vehicle_role = TrackTypeMixinTruckBusCoach.vehicle_role
+class RefrigeratedTruck(TrackTypeMixinTruckBusCoach, RefrigeratedHaulerConsistBase):
+    pass
 
 
-class SuppliesCake(SuppliesHaulerConsistBase):
-    def __init__(self, producer, catalogue_entry):
-        super().__init__(producer, catalogue_entry)
-        self.base_track_type_name = TrackTypeMixinCake.base_track_type_name
-        self.roadveh_flag_tram = TrackTypeMixinCake.roadveh_flag_tram
-        self.tractive_effort_coefficient = (
-            TrackTypeMixinCake.tractive_effort_coefficient
-        )
-        self.name_suffix_vehicle_type = TrackTypeMixinCake.name_suffix_vehicle_type
-        self.vehicle_role = TrackTypeMixinCake.vehicle_role
+class SuppliesCake(TrackTypeMixinCake, SuppliesHaulerConsistBase):
+    pass
 
 
-class TankerFeldbahn(TankerConsistBase):
-    def __init__(self, producer, catalogue_entry):
-        super().__init__(producer, catalogue_entry)
-        self.base_track_type_name = TrackTypeMixinFeldbahn.base_track_type_name
-        self.roadveh_flag_tram = TrackTypeMixinFeldbahn.roadveh_flag_tram
-        self.tractive_effort_coefficient = (
-            TrackTypeMixinFeldbahn.tractive_effort_coefficient
-        )
-        self.name_suffix_vehicle_type = TrackTypeMixinFeldbahn.name_suffix_vehicle_type
-        self.vehicle_role = TrackTypeMixinFeldbahn.vehicle_role
+class TankerFeldbahn(TrackTypeMixinFeldbahn, TankerConsistBase):
+    pass
 
 
-class TankerTram(TankerConsistBase):
-    def __init__(self, producer, catalogue_entry):
-        super().__init__(producer, catalogue_entry)
-        self.base_track_type_name = TrackTypeMixinTram.base_track_type_name
-        self.roadveh_flag_tram = TrackTypeMixinTram.roadveh_flag_tram
-        self.tractive_effort_coefficient = (
-            TrackTypeMixinTram.tractive_effort_coefficient
-        )
-        self.name_suffix_vehicle_type = TrackTypeMixinTram.name_suffix_vehicle_type
-        self.vehicle_role = TrackTypeMixinTram.vehicle_role
+class TankerTram(TrackTypeMixinTram, TankerConsistBase):
+    pass
 
 
-class TankerTruck(TankerConsistBase):
-    def __init__(self, producer, catalogue_entry):
-        super().__init__(producer, catalogue_entry)
-        self.base_track_type_name = TrackTypeMixinTruckBusCoach.base_track_type_name
-        self.roadveh_flag_tram = TrackTypeMixinTruckBusCoach.roadveh_flag_tram
-        self.tractive_effort_coefficient = (
-            TrackTypeMixinTruckBusCoach.tractive_effort_coefficient
-        )
-        self.name_suffix_vehicle_type = (
-            TrackTypeMixinTruckBusCoach.name_suffix_vehicle_type
-        )
-        self.vehicle_role = TrackTypeMixinTruckBusCoach.vehicle_role
+class TankerTruck(TrackTypeMixinTruckBusCoach, TankerConsistBase):
+    pass
 
 
-class MetalHEQSBase(MetalHaulerConsistBase):
-    def __init__(self, producer, catalogue_entry):
-        super().__init__(producer, catalogue_entry)
-        self.base_track_type_name = TrackTypeMixinHEQS.base_track_type_name
-        self.roadveh_flag_tram = TrackTypeMixinHEQS.roadveh_flag_tram
-        self.tractive_effort_coefficient = (
-            TrackTypeMixinHEQS.tractive_effort_coefficient
-        )
-        self.name_suffix_vehicle_type = TrackTypeMixinHEQS.name_suffix_vehicle_type
-        self.vehicle_role = TrackTypeMixinHEQS.vehicle_role
+class MetalHEQSBase(TrackTypeMixinHEQS, MetalHaulerConsistBase):
+    pass
