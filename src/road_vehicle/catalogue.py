@@ -11,7 +11,7 @@ from functools import cached_property
 from . import schemas
 
 from .model_def import UnitDef
-from .livery import LiveryDef
+from .livery import LiveryDef, livery_supplier
 
 
 @dataclass
@@ -54,15 +54,46 @@ class Catalogue(list):
 
     @property
     def livery_defs(self):
-        # Full Iron Horse supplier and livery-group resolution are deferred.
-        definitions = getattr(self.model_def, "liveries", None)
-        if definitions is None:
-            definitions = getattr(self.schema_cls, "liveries", None)
-        if definitions is None:
-            return [LiveryDef("DEFAULT")]
-        if not definitions or not all(isinstance(item, LiveryDef) for item in definitions):
-            raise ValueError(f"{self.model_id}: expected nonempty LiveryDef list")
-        return definitions
+        # Iron Horse precedence: model group, schema group, model liveries, schema liveries.
+        model_def = self.model_def
+        schema_cls = self.schema_cls
+        roster_module = self.roster_id_providing_module
+
+        if getattr(model_def, "livery_group_name", None) is not None:
+            livery_group_name = model_def.livery_group_name
+        elif hasattr(schema_cls, "livery_group_name"):
+            livery_group_name = schema_cls.livery_group_name
+        else:
+            livery_group_name = None
+
+        if livery_group_name is not None:
+            if roster_module is None:
+                raise ValueError(f"{self.model_id}: livery group requires roster module")
+            result = [
+                livery_supplier.deliver(livery_name, relative_spriterow_num=index)
+                for livery_name, index in roster_module.pax_mail_livery_groups[livery_group_name]
+            ]
+        elif getattr(model_def, "liveries", None) is not None:
+            result = [
+                livery_supplier.deliver(name, relative_spriterow_num=index)
+                for index, name in enumerate(model_def.liveries)
+            ]
+        elif hasattr(schema_cls, "liveries"):
+            result = [
+                livery_supplier.deliver(name, relative_spriterow_num=index)
+                for index, name in enumerate(schema_cls.liveries)
+            ]
+        else:
+            # Road Hog's step 005 compatibility: implicit single default variant.
+            result = [livery_supplier.deliver("DEFAULT", relative_spriterow_num=0)]
+
+        if not result:
+            raise ValueError(f"no liveries found for {self.model_id}")
+        return result
+
+    @property
+    def livery_names_in_catalogue_order(self):
+        return [livery.livery_name for livery in self.livery_defs]
 
     def add_entries(self):
         for variant_counter, livery_def in enumerate(self.livery_defs):
