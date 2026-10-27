@@ -15,16 +15,10 @@ STR_GRF_DOCS_URL                                                :${utils.get_doc
 STR_EMPTY                                                       :
 STR_CABBAGE                                                     :CABBAGE
 
-STR_PARENTHESES                                                 :({STRING})
-STR_NAME_CONTAINER_1                                            :{STRING}
-STR_NAME_CONTAINER_2                                            :{STRING} {STRING}
-STR_NAME_CONTAINER_3                                            :{STRING} {STRING} {STRING}
-STR_NAME_CONTAINER_4                                            :{STRING} {STRING} {STRING} {STRING}
-
-# STR_NAME_CONSIST should be legacy - should use name containers instead
-STR_NAME_CONSIST                                                :{STRING} {STRING} ({STRING})
+STR_NAME_TWO_PARTS                                              :{STRING} {STRING}
 
 # buy menu wrappers
 STR_BUY_MENU_ADDITIONAL_TEXT_WRAPPER_ONE_SUBSTR                 :{STRING}
 STR_BUY_MENU_ADDITIONAL_TEXT_WRAPPER_TWO_SUBSTR                 :{STRING}{}{STRING}
 STR_BUY_MENU_ADDITIONAL_TEXT_WRAPPER_THREE_SUBSTR               :{STRING}{}{STRING}{}{STRING}
+

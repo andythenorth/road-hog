@@ -9,7 +9,7 @@ switch (FEAT_ROADVEHS, SELF, ${unit.id}_create_visual_effect, ${unit.get_effects
 // -- props -- //
 item(FEAT_ROADVEHS, ${unit.id}, ${unit.numeric_id}) {
     property {
-        name:                           ${model_variant.name};
+        name:                           ${model_variant.name_as_nml_prop};
         cargo_capacity:                 ${unit.capacity}; // use CB to set this, avoids limited size of action 0 property
         sprite_id:                      SPRITE_ID_NEW_ROADVEH; //enable new graphics - nml constant
         <!--! insert either road_type or  track_type as appropriate to the unit type -->

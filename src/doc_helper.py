@@ -64,13 +64,12 @@ class DocHelper(object):
         return props_to_print
 
     def unpack_name_string(self, consist):
-        substrings = consist.name.split("string(")
-        name = consist.model_def.name
-        type_suffix = self.lang_strings[substrings[3][:-2]]
+        name_parts = consist.get_name_parts(context="default_name")
+        name_strings = [self.lang_strings[key] for key in name_parts]
         return {
-            "full_name": name + " " + type_suffix,
-            "name": name,
-            "type_suffix": type_suffix,
+            "full_name": " ".join(name_strings),
+            "name": name_strings[0],
+            "type_suffix": " ".join(name_strings[1:]),
         }
 
     def get_base_numeric_id(self, consist):

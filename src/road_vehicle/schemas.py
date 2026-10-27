@@ -3,6 +3,8 @@
 The catalogue makes model variants. These classes give them Road Hog behaviour.
 """
 
+from functools import cached_property
+
 import global_constants
 import road_hog
 from gestalt_graphics.gestalt_graphics import GestaltGraphics
@@ -14,10 +16,7 @@ class RoadVehicleBase:
     def __init__(self, producer, catalogue_entry):
         self.producer = producer
         self.catalogue_entry = catalogue_entry
-        self.model_def = producer.catalogue.model_def
-        self.roster_id = producer.catalogue.roster_id
         self.units = []
-        self.id = catalogue_entry.model_variant_id
         # The normal bus sprite pipeline just reads and writes the sprite sheet.
         # Other graphics types can choose a different GestaltGraphics later.
         self.gestalt_graphics = GestaltGraphics()
@@ -167,22 +166,55 @@ class RoadVehicleBase:
         return self.base_track_type_name
 
     @property
-    def name_type_suffix(self):
-        return (
-            "STR_NAME_SUFFIX_"
-            + self.name_suffix_consist_type
-            + self.name_suffix_vehicle_type
-        )
+    def catalogue(self):
+        return self.catalogue_entry.catalogue
+
+    @property
+    def model_id(self):
+        return self.catalogue.model_id
+
+    @property
+    def model_def(self):
+        return self.catalogue.model_def
+
+    @property
+    def roster_id(self):
+        return self.catalogue.roster_id
+
+    @property
+    def id(self):
+        return self.catalogue_entry.model_variant_id
+
+    @property
+    def base_numeric_id(self):
+        return self.model_def.base_numeric_id
+
+    @property
+    def is_default_model_variant(self):
+        return self.catalogue.is_default_model_variant(self)
 
     @property
     def name(self):
-        return (
-            "string(STR_NAME_CONSIST, string(STR_NAME_"
-            + self.model_def.model_id.upper()
-            + "), string("
-            + self.name_type_suffix
-            + "))"
-        )
+        return self.model_def.name
+
+    @property
+    def str_name_suffix(self):
+        if getattr(self, "_str_name_suffix", None) is not None:
+            return self._str_name_suffix
+        else:
+            return None
+
+    def get_name_parts(self, context):
+        return ["STR_NAME_" + self.model_id.upper()]
+
+    @cached_property
+    def name_as_nml_prop(self):
+        name_parts = self.get_name_parts(context="default_name")
+        if len(name_parts) == 1:
+            result = f"string({name_parts[0]})"
+        else:
+            result = f"string(STR_NAME_TWO_PARTS, string({name_parts[0]}), string({name_parts[1]}))"
+        return result
 
 
 import polar_fox
@@ -198,14 +230,12 @@ class TrackTypeMixinBase:
     base_track_type_name = None
     roadveh_flag_tram = False
     default_tractive_effort_coefficient = None
-    name_suffix_vehicle_type = None
     vehicle_role = None
 
 
 class TrackTypeMixinCake(TrackTypeMixinBase):
     base_track_type_name = "LOLZ"
     default_tractive_effort_coefficient = 0.7
-    name_suffix_vehicle_type = "_TRUCK"
     vehicle_role = "lolz"
 
 
@@ -213,14 +243,12 @@ class TrackTypeMixinFeldbahn(TrackTypeMixinBase):
     base_track_type_name = "RAIL"
     roadveh_flag_tram = True
     default_tractive_effort_coefficient = 0.3
-    name_suffix_vehicle_type = "_TRAM"
     vehicle_role = "feldbahn"
 
 
 class TrackTypeMixinHEQS(TrackTypeMixinBase):
     base_track_type_name = "HEQS"
     default_tractive_effort_coefficient = 0.7
-    name_suffix_vehicle_type = "_TRUCK"
     vehicle_role = "freight_truck"
 
 
@@ -228,14 +256,12 @@ class TrackTypeMixinTram(TrackTypeMixinBase):
     base_track_type_name = "RAIL"
     roadveh_flag_tram = True
     default_tractive_effort_coefficient = 0.4
-    name_suffix_vehicle_type = "_TRAM"
     vehicle_role = "freight_tram"
 
 
 class TrackTypeMixinTruckBusCoach(TrackTypeMixinBase):
     base_track_type_name = "ROAD"
     default_tractive_effort_coefficient = 0.7
-    name_suffix_vehicle_type = "_TRUCK"
     vehicle_role = "freight_truck"
 
 
@@ -630,20 +656,12 @@ class PaxLocalBus(TrackTypeMixinTruckBusCoach, PaxHaulerLocalConsistBase):
         self._sound_effect = "SOUND_DEPARTURE_OLD_RV_1"
         self.vehicle_role = "bus"
 
-    @property
-    def name_type_suffix(self):
-        return "STR_NAME_SUFFIX_BUS"
-
 
 class PaxLocalTram(TrackTypeMixinTram, PaxHaulerLocalConsistBase):
     def __init__(self, producer, catalogue_entry):
         super().__init__(producer, catalogue_entry)
         self._sound_effect = "SOUND_LEVEL_CROSSING"
         self.vehicle_role = "pax_tram"
-
-    @property
-    def name_type_suffix(self):
-        return "STR_NAME_SUFFIX_PASSENGER_TRAM"
 
 
 class PaxExpressCoach(TrackTypeMixinTruckBusCoach, PaxHaulerConsistBase):
@@ -653,10 +671,6 @@ class PaxExpressCoach(TrackTypeMixinTruckBusCoach, PaxHaulerConsistBase):
         self.weight_multiplier = 0.2
         self._sound_effect = "SOUND_DEPARTURE_OLD_BUS"
         self.vehicle_role = "coach"
-
-    @property
-    def name_type_suffix(self):
-        return "STR_NAME_SUFFIX_COACH"
 
 
 class RefrigeratedTram(TrackTypeMixinTram, RefrigeratedHaulerConsistBase):

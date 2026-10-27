@@ -136,6 +136,6 @@ class Roster(object):
         for consist in self.consists_in_buy_menu_order:
             model_def = consist.model_def
             if model_def.name is not None:
-                lang_strings["STR_NAME_" + model_def.model_id.upper()] = model_def.name
+                lang_strings["STR_NAME_" + consist.catalogue.model_id.upper()] = model_def.name
 
         return {"global_pragma": global_pragma, "lang_strings": lang_strings}

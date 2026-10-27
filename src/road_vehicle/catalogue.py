@@ -6,6 +6,9 @@ No livery variants in this stage. ID allocation follows Catalogue.add_entries.
 """
 
 from dataclasses import dataclass, fields, replace
+from functools import cached_property
+
+from . import schemas
 
 from .model_def import UnitDef
 
@@ -32,10 +35,25 @@ class Catalogue(list):
         self.producer = ModelVariantProducer(self)
         self.add_entries()
 
+    @cached_property
+    def model_id(self):
+        return self.model_def.model_id
+
+    @cached_property
+    def schema_cls(self):
+        return getattr(schemas, self.schema_name)
+
+    @property
+    def default_entry(self):
+        return self[0]
+
+    def is_default_model_variant(self, model_variant):
+        return model_variant.catalogue_entry == self.default_entry
+
     def add_entries(self):
         # Iron Horse's original per-variant/per-unit ID rule; a single default variant.
         for variant_counter in range(1):
-            model_variant_id = f"{self.model_def.model_id}_mv_{variant_counter}"
+            model_variant_id = f"{self.model_id}_mv_{variant_counter}"
             unit_variant_ids = [
                 f"{model_variant_id}_unit_{i}"
                 for i, _ in enumerate(self.model_def.unit_defs)
@@ -65,10 +83,9 @@ class ModelVariantProducer:
     def _produce(self, catalogue_entry=None):
         if catalogue_entry is None:
             raise ValueError("catalogue_entry is required")
-        from . import schemas, units
+        from . import units
 
-        schema_cls = getattr(schemas, self.catalogue.schema_name)
-        model_variant = schema_cls(producer=self, catalogue_entry=catalogue_entry)
+        model_variant = self.catalogue.schema_cls(producer=self, catalogue_entry=catalogue_entry)
         for counter, unit_def in enumerate(self.catalogue.model_def.unit_defs):
             unit_cls = getattr(units, unit_def.unit_cls_name)
             # UnitDef properties come from either the Unit class or the model declaration.
