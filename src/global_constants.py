@@ -156,6 +156,19 @@ docs_sprite_max_width = (
 docs_sprite_height = 16
 custom_buy_menu_x_loc = 320
 
+temp_storage_map = dict(
+    wagon_recolour_random_livery_choice_num=24,
+    wagon_recolour_livery_num_0=25,
+    wagon_recolour_livery_num_1=26,
+    wagon_recolour_livery_num_2=27,
+    wagon_recolour_livery_num_3=28,
+    wagon_recolour_livery_num_4=29,
+    wagon_recolour_livery_num_5=30,
+    wagon_recolour_livery_num_6=31,
+    wagon_recolour_livery_num_7=32,
+    flag_context_is_purchase=33,
+)
+
 # CABBAGE352 step 008a: IH runtime colour definitions (ordered)
 custom_wagon_recolour_sprite_maps = {
     "custom_dark_brown": (105, 106, 33, 34, 35, 36, 37, 38),

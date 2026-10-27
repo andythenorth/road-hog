@@ -18,13 +18,13 @@ switch (FEAT_ROADVEHS, SELF, ${unit.id}_switch_graphics, 0) {
 <!--! CABBAGE352 008d: resolve runtime mapping from catalogue livery; IH dictionary order
       must match the serialised lookup table rendered in the NML header. -->
 switch (FEAT_ROADVEHS, SELF, ${unit.id}_runtime_colour_mapping,
-    [STORE_TEMP(random_bits_wagon_random_remap_livery(), 24),
+    [STORE_TEMP(random_bits_wagon_random_remap_livery(), k_addr_wagon_recolour_random_livery_choice_num),
      switch_freight_wagon_livery_serialised_liveries(${list(global_constants.freight_wagon_liveries).index(model_variant.livery_def.livery_name)})]) {
     return;
 }
 
 switch (FEAT_ROADVEHS, SELF, ${unit.id}_purchase_colour_mapping,
-    [STORE_TEMP(0, 24),
+    [STORE_TEMP(0, k_addr_wagon_recolour_random_livery_choice_num),
      switch_freight_wagon_livery_serialised_liveries(${len(global_constants.freight_wagon_liveries) + list(global_constants.freight_wagon_liveries).index(model_variant.livery_def.livery_name)})]) {
     return;
 }

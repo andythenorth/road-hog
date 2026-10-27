@@ -33,3 +33,8 @@ disable_item(FEAT_ROADVEHS, 00, 115);
 // sort order
 sort(FEAT_ROADVEHS, ${[model_variant.model_def.base_numeric_id if hasattr(model_variant, "model_def") else model_variant.base_numeric_id for model_variant in consists]});
 
+// constants for accessing temp storage addresses by token rather than number
+// 'k_' is a convention to indicate constant rather than uppercasing
+<tal:temp_storage_access_constants repeat="item_pair global_constants.temp_storage_map.items()">
+    const k_addr_${item_pair[0]} = ${item_pair[1]};
+</tal:temp_storage_access_constants>
