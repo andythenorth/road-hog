@@ -270,48 +270,6 @@ class GestaltGraphicsPrecompositedCargo(GestaltGraphics):
         return result
 
 
-class GestaltGraphicsLiveryOnly(GestaltGraphics):
-    """
-    Used to handle the specific case of cargos shown only by vehicle livery.
-    This can also be used for recolouring vehicles with just a *single* livery which isn't cargo-specific.
-    """
-
-    def __init__(self, recolour_maps, **kwargs):
-        super().__init__()
-        # as of Jan 2018 only one pipeline is used, but support is in place for alternative pipelines
-        self.pipelines = pipelines.get_pipelines(
-            ["extend_spriterows_for_composited_sprites_pipeline"]
-        )
-        # recolour_maps map cargo labels to liveries, use 'DFLT' as the labe in the case of just one livery
-        self.recolour_maps = recolour_maps
-
-    @property
-    def generic_rows(self):
-        utils.echo_message("generic_rows not implemented in GestaltGraphicsLiveryOnly")
-        return None
-
-    @property
-    def nml_template(self):
-        return "vehicle_with_cargo_specific_liveries.pynml"
-
-
-    def get_output_row_types(self):
-        return ["livery_only"]
-
-    @property
-    def cargo_row_map(self):
-        # !! this works more by accident than design
-        # !! the order of cargo types here must be kept in sync with the order in the cargo graphics processor
-        result = {}
-        counter = 0
-        for cargo_map in self.recolour_maps:
-            result[cargo_map[0]] = [
-                counter
-            ]  # list because multiple spriterows can map to a cargo label
-            counter += 1
-        return result
-
-
 class GestaltGraphicsCustom(GestaltGraphics):
     # CABBAGE: Road Hog's custom gestalt/pipeline diverges from the newer Iron Horse implementation; consider unifying later.
     """
