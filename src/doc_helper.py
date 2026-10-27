@@ -65,18 +65,12 @@ class DocHelper(object):
 
     def unpack_name_string(self, consist):
         substrings = consist.name.split("string(")
-        # CABBAGE New schema has ModelDef; legacy Consist stores the name in _name.
-        # Keep the original translated suffix handling. Do not guess English names.
-        name = (
-            consist.model_def.name if hasattr(consist, "model_def") else consist._name
-        )
-        type_suffix = self.lang_strings[substrings[3][0:-3]]
-        power_suffix = self.lang_strings[substrings[4][0:-2]]
+        name = consist.model_def.name
+        type_suffix = self.lang_strings[substrings[3][:-2]]
         return {
-            "full_name": name + " " + type_suffix + " (" + power_suffix + ")",
+            "full_name": name + " " + type_suffix,
             "name": name,
             "type_suffix": type_suffix,
-            "power_suffix": power_suffix,
         }
 
     def get_base_numeric_id(self, consist):

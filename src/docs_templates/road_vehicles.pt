@@ -38,7 +38,7 @@
                                      "/>
                             </td>
                             <td style="vertical-align:middle;">
-                                <a class="table-link-dark" href="#${consist.id}">${consist_name_dict['name']} (${consist_name_dict['power_suffix']})</a>
+                                <a class="table-link-dark" href="#${consist.id}">${consist_name_dict['name']}</a>
                             </td>
                             <td>${consist_name_dict['type_suffix']}</td>
                             <td style="vertical-align:middle;" class="number">${consist.intro_date}</td>

@@ -183,15 +183,9 @@ class RoadVehicleBase:
     @property
     def track_type(self):
         # CABBAGE Preserve the legacy electricity-supply roadtype translation.
-        if getattr(self, "requires_electricity_supply", False):
+        if getattr(self.units[0], "requires_electricity_supply", False):
             return {"RAIL": "ELRL"}[self.base_track_type_name]
         return self.base_track_type_name
-
-    @property
-    def sound_effect(self):
-        if getattr(self, "_sound_effect", None) is not None:
-            return self._sound_effect
-        return getattr(self, "default_sound_effect", None)
 
     @property
     def name_type_suffix(self):
@@ -203,16 +197,11 @@ class RoadVehicleBase:
 
     @property
     def name(self):
-        suffix = getattr(self, "_power_type_suffix", None)
-        if suffix is None:
-            raise ValueError("Power suffix not resolved for " + self.model_def.model_id)
         return (
             "string(STR_NAME_CONSIST, string(STR_NAME_"
             + self.model_def.model_id.upper()
             + "), string("
             + self.name_type_suffix
-            + "), string(STR_NAME_SUFFIX_"
-            + suffix
             + "))"
         )
 

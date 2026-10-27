@@ -26,7 +26,7 @@ item(FEAT_ROADVEHS, ${unit.id}, ${unit.numeric_id}) {
             vehicle_life:                   ${model_variant.vehicle_life};
             reliability_decay:              20; // default value
             retire_early:                   ${model_variant.retire_early};
-            sound_effect:                   ${model_variant.sound_effect};
+            sound_effect:                   ${getattr(model_variant, "_sound_effect", None) or unit.default_sound_effect};
         </tal:lead_unit_only>
         refit_cost:                     0; // this needs to be 0 if we want autorefit without using cb
         refittable_cargo_classes:       ${unit.get_cargo_classes_as_nml_prop("allowed")};
