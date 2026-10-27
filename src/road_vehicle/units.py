@@ -28,9 +28,9 @@ class RoadVehicleUnit:
     def get_cargo_classes_as_nml_prop(self, allow_disallow_key):
         result = []
         for class_refit_group in self.model_variant.class_refit_groups:
-            for cargo_class in global_constants.base_refits_by_class[
-                class_refit_group
-            ][allow_disallow_key]:
+            for cargo_class in global_constants.base_refits_by_class[class_refit_group][
+                allow_disallow_key
+            ]:
                 result.append(cargo_class)
         return "bitmask(" + ",".join(result) + ")"
 
@@ -118,9 +118,9 @@ class RoadVehicleUnit:
         return "spriteset_template_" + self.id + "(" + str(y) + ")"
 
 
-
 class DieselVehicleUnit(RoadVehicleUnit):
     default_sound_effect = "SOUND_DEPARTURE_OLD_RV_1"
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self._effect_spawn_model = "EFFECT_SPAWN_MODEL_DIESEL"
@@ -129,6 +129,7 @@ class DieselVehicleUnit(RoadVehicleUnit):
 
 class SteamVehicleUnit(RoadVehicleUnit):
     default_sound_effect = "SOUND_FACTORY"
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self._effect_spawn_model = "EFFECT_SPAWN_MODEL_STEAM"
@@ -138,15 +139,12 @@ class SteamVehicleUnit(RoadVehicleUnit):
 class ElectricVehicleUnit(RoadVehicleUnit):
     default_sound_effect = "SOUND_POWER_STATION"
     requires_electricity_supply = True
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self._effect_spawn_model = "EFFECT_SPAWN_MODEL_ELECTRIC"
         self.default_effect_sprite = "EFFECT_SPRITE_ELECTRIC"
 
-
-
-
-# CABBAGE: generated concrete unit subclasses from former BasePlatform data
 
 class SteamCaboverSemiTractorTruckGen2A(SteamVehicleUnit):
     provisions_unit_def = True
@@ -157,7 +155,7 @@ class SteamCaboverSemiTractorTruckGen2A(SteamVehicleUnit):
     _effects = ["EFFECT_SPRITE_STEAM, -3, 0, 12"]
 
     def get_spritesheet_name_body_or_complete_vehicle(self):
-        return 'steam_cabover_semi_tractor_truck_gen_2A'
+        return "steam_cabover_semi_tractor_truck_gen_2A"
 
 
 class DieselCaboverSemiTractorTruckGen3A(DieselVehicleUnit):
@@ -169,7 +167,7 @@ class DieselCaboverSemiTractorTruckGen3A(DieselVehicleUnit):
     _effects = ["EFFECT_SPRITE_DIESEL, -2, 1, 10"]
 
     def get_spritesheet_name_body_or_complete_vehicle(self):
-        return 'diesel_cabover_semi_tractor_truck_gen_3A'
+        return "diesel_cabover_semi_tractor_truck_gen_3A"
 
 
 class DieselCaboverSemiTractorTruckGen4A(DieselVehicleUnit):
@@ -181,7 +179,7 @@ class DieselCaboverSemiTractorTruckGen4A(DieselVehicleUnit):
     _effects = ["EFFECT_SPRITE_DIESEL, -2, 1, 10"]
 
     def get_spritesheet_name_body_or_complete_vehicle(self):
-        return 'diesel_cabover_semi_tractor_truck_gen_4A'
+        return "diesel_cabover_semi_tractor_truck_gen_4A"
 
 
 class DieselCaboverSemiTractorTruckGen5A(DieselVehicleUnit):
@@ -193,7 +191,7 @@ class DieselCaboverSemiTractorTruckGen5A(DieselVehicleUnit):
     _effects = ["EFFECT_SPRITE_DIESEL, -2, 1, 10", "EFFECT_SPRITE_DIESEL, -2, -1, 10"]
 
     def get_spritesheet_name_body_or_complete_vehicle(self):
-        return 'diesel_cabover_semi_tractor_truck_gen_5A'
+        return "diesel_cabover_semi_tractor_truck_gen_5A"
 
 
 class DieselConventionalCabSemiTractorTruckGen3A(DieselVehicleUnit):
@@ -205,7 +203,7 @@ class DieselConventionalCabSemiTractorTruckGen3A(DieselVehicleUnit):
     _effects = ["EFFECT_SPRITE_DIESEL, -2, 1, 10"]
 
     def get_spritesheet_name_body_or_complete_vehicle(self):
-        return 'diesel_conventional_cab_semi_tractor_truck_gen_3A'
+        return "diesel_conventional_cab_semi_tractor_truck_gen_3A"
 
 
 class DieselConventionalCabSemiTractorTruckGen4A(DieselVehicleUnit):
@@ -217,7 +215,7 @@ class DieselConventionalCabSemiTractorTruckGen4A(DieselVehicleUnit):
     _effects = ["EFFECT_SPRITE_DIESEL, -2, 1, 10"]
 
     def get_spritesheet_name_body_or_complete_vehicle(self):
-        return 'diesel_conventional_cab_semi_tractor_truck_gen_4A'
+        return "diesel_conventional_cab_semi_tractor_truck_gen_4A"
 
 
 class SteamCaboverRigidTruckGen2A(SteamVehicleUnit):
@@ -262,7 +260,7 @@ class SteamEngineFeldbahnGen1A(SteamVehicleUnit):
     _vehicle_length = 3
 
     def get_spritesheet_name_body_or_complete_vehicle(self):
-        return 'steam_engine_feldbahn_gen_1A'
+        return "steam_engine_feldbahn_gen_1A"
 
 
 class SteamEngineFeldbahnGen2A(SteamVehicleUnit):
@@ -272,7 +270,7 @@ class SteamEngineFeldbahnGen2A(SteamVehicleUnit):
     _vehicle_length = 3
 
     def get_spritesheet_name_body_or_complete_vehicle(self):
-        return 'steam_engine_feldbahn_gen_2A'
+        return "steam_engine_feldbahn_gen_2A"
 
 
 class SteamEngineFeldbahnGen2B(SteamVehicleUnit):
@@ -282,7 +280,7 @@ class SteamEngineFeldbahnGen2B(SteamVehicleUnit):
     _vehicle_length = 4
 
     def get_spritesheet_name_body_or_complete_vehicle(self):
-        return 'steam_engine_feldbahn_gen_2B'
+        return "steam_engine_feldbahn_gen_2B"
 
 
 class DieselEngineFeldbahnGen3A(DieselVehicleUnit):
@@ -292,7 +290,7 @@ class DieselEngineFeldbahnGen3A(DieselVehicleUnit):
     _vehicle_length = 3
 
     def get_spritesheet_name_body_or_complete_vehicle(self):
-        return 'diesel_engine_feldbahn_gen_3A'
+        return "diesel_engine_feldbahn_gen_3A"
 
 
 class DieselEngineFeldbahnGen3B(DieselVehicleUnit):
@@ -302,7 +300,7 @@ class DieselEngineFeldbahnGen3B(DieselVehicleUnit):
     _vehicle_length = 4
 
     def get_spritesheet_name_body_or_complete_vehicle(self):
-        return 'diesel_engine_feldbahn_gen_3B'
+        return "diesel_engine_feldbahn_gen_3B"
 
 
 class ElectricEngineFeldbahn1(ElectricVehicleUnit):
@@ -311,7 +309,7 @@ class ElectricEngineFeldbahn1(ElectricVehicleUnit):
     _always_use_same_spriterow = True
 
     def get_spritesheet_name_body_or_complete_vehicle(self):
-        return 'electric_engine_feldbah_n1'
+        return "electric_engine_feldbah_n1"
 
 
 class WagonFeldbahnA(RoadVehicleUnit):
@@ -320,7 +318,10 @@ class WagonFeldbahnA(RoadVehicleUnit):
     _cargo_length = 3
 
     def get_spritesheet_name_body_or_complete_vehicle(self):
-        return self.model_variant.name_suffix_consist_type.lower() + "_wagon_feldbahn_gen_1"
+        return (
+            self.model_variant.name_suffix_consist_type.lower()
+            + "_wagon_feldbahn_gen_1"
+        )
 
 
 class SteamEngineTram1(SteamVehicleUnit):
@@ -371,8 +372,8 @@ class DieselConventionalCabSemiTractorHaulerGen3A(DieselVehicleUnit):
         "EFFECT_SPRITE_AIRCRAFT_BREAKDOWN_SMOKE, -2, -1, 10",
     ]
 
+
 class ElectricTrailerUnit(RoadVehicleUnit):
     @property
     def effect_spawn_model(self):
         return "EFFECT_SPAWN_MODEL_ELECTRIC"
-
