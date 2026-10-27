@@ -166,6 +166,10 @@ class RoadVehicleBase:
         return self.base_track_type_name
 
     @property
+    def livery_def(self):
+        return self.catalogue_entry.livery_def
+
+    @property
     def catalogue(self):
         return self.catalogue_entry.catalogue
 

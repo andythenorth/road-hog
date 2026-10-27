@@ -26,6 +26,7 @@ class Roster(object):
         # init of consists has to happen in post_init_actions, otherwise consists can't get the roster
         self.consists_uninitialised = kwargs.get("vehicles")
         self.consists = []
+        self.model_variants_by_catalogue = {}
         self.unit_capacity_per_vehicle_type = kwargs.get(
             "unit_capacity_per_vehicle_type"
         )
@@ -37,7 +38,9 @@ class Roster(object):
         for vehicle in self.consists_uninitialised:
             for model_def in vehicle.main(roster_id=self.id):
                 catalogue = Catalogue(model_def, roster_id=self.id)
-                self.consists.extend(catalogue.produce(entry) for entry in catalogue)
+                model_variants = [catalogue.produce(entry) for entry in catalogue]
+                self.model_variants_by_catalogue[catalogue.model_id] = model_variants
+                self.consists.extend(model_variants)
 
     @property
     def buy_menu_sort_order(self):

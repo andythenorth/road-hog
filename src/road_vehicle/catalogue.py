@@ -11,6 +11,7 @@ from functools import cached_property
 from . import schemas
 
 from .model_def import UnitDef
+from .livery import LiveryDef
 
 
 @dataclass
@@ -19,6 +20,7 @@ class CatalogueEntry:
     model_variant_id: str
     unit_variant_ids: list[str]
     unit_numeric_ids: list[int]
+    livery_def: LiveryDef
 
     @property
     def index(self):
@@ -50,9 +52,20 @@ class Catalogue(list):
     def is_default_model_variant(self, model_variant):
         return model_variant.catalogue_entry == self.default_entry
 
+    @property
+    def livery_defs(self):
+        # Full Iron Horse supplier and livery-group resolution are deferred.
+        definitions = getattr(self.model_def, "liveries", None)
+        if definitions is None:
+            definitions = getattr(self.schema_cls, "liveries", None)
+        if definitions is None:
+            return [LiveryDef("DEFAULT")]
+        if not definitions or not all(isinstance(item, LiveryDef) for item in definitions):
+            raise ValueError(f"{self.model_id}: expected nonempty LiveryDef list")
+        return definitions
+
     def add_entries(self):
-        # Iron Horse's original per-variant/per-unit ID rule; a single default variant.
-        for variant_counter in range(1):
+        for variant_counter, livery_def in enumerate(self.livery_defs):
             model_variant_id = f"{self.model_id}_mv_{variant_counter}"
             unit_variant_ids = [
                 f"{model_variant_id}_unit_{i}"
@@ -66,7 +79,7 @@ class Catalogue(list):
             ]
             self.append(
                 CatalogueEntry(
-                    self, model_variant_id, unit_variant_ids, unit_numeric_ids
+                    self, model_variant_id, unit_variant_ids, unit_numeric_ids, livery_def
                 )
             )
         if not self or not self.model_def.unit_defs:
