@@ -147,30 +147,9 @@ class RoadVehicleBase:
         return min(length, global_constants.docs_sprite_max_width)
 
     def render(self, templates, graphics_path):
-        result = []
-        # CABBAGE MIGRATION SHIM: define articulated callback before unit property references.
-        if len(self.units) > 1:
-            result.append(
-                templates["articulated_parts.pynml"](
-                    model_variant=self, global_constants=global_constants
-                )
-            )
-        seen = set()
-        for unit in self.units:
-            if unit.id in seen:
-                continue
-            seen.add(unit.id)
-            # Vehicle NML template selection belongs to GestaltGraphics.
-            template = templates[self.gestalt_graphics.nml_template]
-            result.append(
-                template(
-                    model_variant=self, unit=unit, global_constants=global_constants
-                )
-            )
-        return "".join(result)
+        template = templates["model_variant_entry_point.pynml"]
+        return template(model_variant=self, global_constants=global_constants)
 
-    # CABBAGE MIGRATION SHIM: graphics pipelines expect legacy Consist.unique_units.
-    # CABBAGE Remove only when graphics consumers use the new model interface.
     @property
     def unique_units(self):
         unique_units = []

@@ -56,9 +56,3 @@ switch (FEAT_ROADVEHS, SELF, ${unit.id}_switch_graphics, cargo_type_in_veh) {
     </tal:cargos>
     return ${unit.id}_switch_graphics_generic_cargos;
 }
-
-<tal:include metal:use-macro="load: graphics_switches.pynml" />
-
-<tal:include metal:use-macro="load: capacity_switches.pynml" />
-
-<tal:include metal:use-macro="load: properties.pynml" />

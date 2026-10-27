@@ -1,0 +1,26 @@
+<tal:units repeat="unit model_variant.unique_units">
+    <!--! Graphics chains - conditional on gestalt graphics -->
+    <tal:block condition="model_variant.gestalt_graphics.nml_template == 'vehicle_default.pynml'">
+        <tal:include metal:use-macro="load: vehicle_default.pynml" />
+    </tal:block>
+
+    <tal:block condition="model_variant.gestalt_graphics.nml_template == 'vehicle_with_precomposited_cargo.pynml'">
+        <tal:include metal:use-macro="load: vehicle_with_precomposited_cargo.pynml" />
+    </tal:block>
+
+    <tal:block condition="model_variant.gestalt_graphics.nml_template == 'vehicle_with_cargo_specific_liveries.pynml'">
+        <tal:include metal:use-macro="load: vehicle_with_cargo_specific_liveries.pynml" />
+    </tal:block>
+
+    <!--! Properties and callback chains -->
+    <tal:include metal:use-macro="load: graphics_switches.pynml" />
+
+    <tal:include metal:use-macro="load: capacity_switches.pynml" />
+
+    <tal:articulated_parts condition="unit.is_lead_unit_of_consist and len(model_variant.units) > 1">
+        <tal:include metal:use-macro="load: articulated_parts.pynml" />
+    </tal:articulated_parts>
+
+    <tal:include metal:use-macro="load: properties.pynml" />
+
+</tal:units>

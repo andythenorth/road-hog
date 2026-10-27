@@ -19,9 +19,3 @@ switch (FEAT_ROADVEHS, SELF, ${unit.id}_switch_graphics, 0) {
     0: return ${unit.id}_sg;
     return ${unit.id}_sg;
 }
-
-<tal:include metal:use-macro="load: graphics_switches.pynml" />
-
-<tal:include metal:use-macro="load: capacity_switches.pynml" />
-
-<tal:include metal:use-macro="load: properties.pynml" />
