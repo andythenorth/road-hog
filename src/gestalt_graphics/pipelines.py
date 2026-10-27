@@ -101,10 +101,10 @@ class Pipeline(object):
                 "source_vehicles_and_input_spriterow_nums"
             ]:
                 if unit.unit_is_semi_tractor:
-                    unit_width = 6 * (
+                    unit_width = 4 * (
                         unit.vehicle_length + unit.semi_truck_shift_offset_jank
                     )
-                    increment = 6 * unit.vehicle_length
+                    increment = 4 * unit.vehicle_length
                 else:
                     unit_width = 4 * unit.vehicle_length
                     increment = unit_width
