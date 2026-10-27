@@ -193,7 +193,6 @@ from gestalt_graphics.gestalt_graphics import (
 )
 
 
-# CABBAGE The original track mixins use class attributes; keep that composition.
 class TrackTypeMixinBase:
     base_track_type_name = None
     roadveh_flag_tram = False
