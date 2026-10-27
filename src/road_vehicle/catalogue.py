@@ -5,7 +5,9 @@ livery_defs, engine/wagon/clone quackers, track and formation methods.
 No livery variants in this stage. ID allocation follows Catalogue.add_entries.
 """
 
-from dataclasses import dataclass
+from dataclasses import dataclass, fields, replace
+
+from .model_def import UnitDef
 
 
 @dataclass
@@ -69,6 +71,18 @@ class ModelVariantProducer:
         model_variant = schema_cls(producer=self, catalogue_entry=catalogue_entry)
         for counter, unit_def in enumerate(self.catalogue.model_def.unit_defs):
             unit_cls = getattr(units, unit_def.unit_cls_name)
+            # UnitDef properties come from either the Unit class or the model declaration.
+            # Class-provided properties take precedence where both specify a value.
+            if unit_cls.provisions_unit_def:
+                unit_def = replace(
+                    unit_def,
+                    **{
+                        field.name: getattr(unit_cls, f"_{field.name}")
+                        for field in fields(UnitDef)
+                        if field.name not in ("unit_cls_name", "repeat")
+                        and hasattr(unit_cls, f"_{field.name}")
+                    },
+                )
             unit = unit_cls(
                 model_variant=model_variant,
                 unit_def=unit_def,

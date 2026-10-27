@@ -8,6 +8,8 @@ import global_constants
 
 
 class RoadVehicleUnit:
+    provisions_unit_def = False
+
     def __init__(self, model_variant, unit_def, id, numeric_id):
         self.model_variant = model_variant
         self.unit_def = unit_def
@@ -147,374 +149,227 @@ class ElectricVehicleUnit(RoadVehicleUnit):
 # CABBAGE: generated concrete unit subclasses from former BasePlatform data
 
 class SteamCaboverSemiTractorTruckGen2A(SteamVehicleUnit):
-    def __init__(self, model_variant, unit_def, id, numeric_id):
-        # Former platform values intentionally override UnitDef declarations.
-        from dataclasses import replace
-        unit_def = replace(
-            unit_def,
-            always_use_same_spriterow=True,
-            unit_is_semi_tractor=True,
-            vehicle_length=2,
-            semi_truck_shift_offset_jank=2,
-            effects=['EFFECT_SPRITE_STEAM, -3, 0, 12'],
-        )
-        super().__init__(model_variant, unit_def, id, numeric_id)
+    provisions_unit_def = True
+    _always_use_same_spriterow = True
+    _unit_is_semi_tractor = True
+    _vehicle_length = 2
+    _semi_truck_shift_offset_jank = 2
+    _effects = ["EFFECT_SPRITE_STEAM, -3, 0, 12"]
 
     def get_spritesheet_name_body_or_complete_vehicle(self):
         return 'steam_cabover_semi_tractor_truck_gen_2A'
 
 
 class DieselCaboverSemiTractorTruckGen3A(DieselVehicleUnit):
-    def __init__(self, model_variant, unit_def, id, numeric_id):
-        # Former platform values intentionally override UnitDef declarations.
-        from dataclasses import replace
-        unit_def = replace(
-            unit_def,
-            always_use_same_spriterow=True,
-            unit_is_semi_tractor=True,
-            vehicle_length=2,
-            semi_truck_shift_offset_jank=2,
-            effects=['EFFECT_SPRITE_DIESEL, -2, 1, 10'],
-        )
-        super().__init__(model_variant, unit_def, id, numeric_id)
+    provisions_unit_def = True
+    _always_use_same_spriterow = True
+    _unit_is_semi_tractor = True
+    _vehicle_length = 2
+    _semi_truck_shift_offset_jank = 2
+    _effects = ["EFFECT_SPRITE_DIESEL, -2, 1, 10"]
 
     def get_spritesheet_name_body_or_complete_vehicle(self):
         return 'diesel_cabover_semi_tractor_truck_gen_3A'
 
 
 class DieselCaboverSemiTractorTruckGen4A(DieselVehicleUnit):
-    def __init__(self, model_variant, unit_def, id, numeric_id):
-        # Former platform values intentionally override UnitDef declarations.
-        from dataclasses import replace
-        unit_def = replace(
-            unit_def,
-            always_use_same_spriterow=True,
-            unit_is_semi_tractor=True,
-            vehicle_length=2,
-            semi_truck_shift_offset_jank=2,
-            effects=['EFFECT_SPRITE_DIESEL, -2, 1, 10'],
-        )
-        super().__init__(model_variant, unit_def, id, numeric_id)
+    provisions_unit_def = True
+    _always_use_same_spriterow = True
+    _unit_is_semi_tractor = True
+    _vehicle_length = 2
+    _semi_truck_shift_offset_jank = 2
+    _effects = ["EFFECT_SPRITE_DIESEL, -2, 1, 10"]
 
     def get_spritesheet_name_body_or_complete_vehicle(self):
         return 'diesel_cabover_semi_tractor_truck_gen_4A'
 
 
 class DieselCaboverSemiTractorTruckGen5A(DieselVehicleUnit):
-    def __init__(self, model_variant, unit_def, id, numeric_id):
-        # Former platform values intentionally override UnitDef declarations.
-        from dataclasses import replace
-        unit_def = replace(
-            unit_def,
-            always_use_same_spriterow=True,
-            unit_is_semi_tractor=True,
-            vehicle_length=2,
-            semi_truck_shift_offset_jank=2,
-            effects=['EFFECT_SPRITE_DIESEL, -2, 1, 10', 'EFFECT_SPRITE_DIESEL, -2, -1, 10'],
-        )
-        super().__init__(model_variant, unit_def, id, numeric_id)
+    provisions_unit_def = True
+    _always_use_same_spriterow = True
+    _unit_is_semi_tractor = True
+    _vehicle_length = 2
+    _semi_truck_shift_offset_jank = 2
+    _effects = ["EFFECT_SPRITE_DIESEL, -2, 1, 10", "EFFECT_SPRITE_DIESEL, -2, -1, 10"]
 
     def get_spritesheet_name_body_or_complete_vehicle(self):
         return 'diesel_cabover_semi_tractor_truck_gen_5A'
 
 
 class DieselConventionalCabSemiTractorTruckGen3A(DieselVehicleUnit):
-    def __init__(self, model_variant, unit_def, id, numeric_id):
-        # Former platform values intentionally override UnitDef declarations.
-        from dataclasses import replace
-        unit_def = replace(
-            unit_def,
-            always_use_same_spriterow=True,
-            unit_is_semi_tractor=True,
-            vehicle_length=2,
-            semi_truck_shift_offset_jank=2,
-            effects=['EFFECT_SPRITE_DIESEL, -2, 1, 10'],
-        )
-        super().__init__(model_variant, unit_def, id, numeric_id)
+    provisions_unit_def = True
+    _always_use_same_spriterow = True
+    _unit_is_semi_tractor = True
+    _vehicle_length = 2
+    _semi_truck_shift_offset_jank = 2
+    _effects = ["EFFECT_SPRITE_DIESEL, -2, 1, 10"]
 
     def get_spritesheet_name_body_or_complete_vehicle(self):
         return 'diesel_conventional_cab_semi_tractor_truck_gen_3A'
 
 
 class DieselConventionalCabSemiTractorTruckGen4A(DieselVehicleUnit):
-    def __init__(self, model_variant, unit_def, id, numeric_id):
-        # Former platform values intentionally override UnitDef declarations.
-        from dataclasses import replace
-        unit_def = replace(
-            unit_def,
-            always_use_same_spriterow=True,
-            unit_is_semi_tractor=True,
-            vehicle_length=2,
-            semi_truck_shift_offset_jank=2,
-            effects=['EFFECT_SPRITE_DIESEL, -2, 1, 10'],
-        )
-        super().__init__(model_variant, unit_def, id, numeric_id)
+    provisions_unit_def = True
+    _always_use_same_spriterow = True
+    _unit_is_semi_tractor = True
+    _vehicle_length = 2
+    _semi_truck_shift_offset_jank = 2
+    _effects = ["EFFECT_SPRITE_DIESEL, -2, 1, 10"]
 
     def get_spritesheet_name_body_or_complete_vehicle(self):
         return 'diesel_conventional_cab_semi_tractor_truck_gen_4A'
 
 
 class SteamCaboverRigidTruckGen2A(SteamVehicleUnit):
-    def __init__(self, model_variant, unit_def, id, numeric_id):
-        # Former platform values intentionally override UnitDef declarations.
-        from dataclasses import replace
-        unit_def = replace(
-            unit_def,
-            vehicle_length=5,
-            cargo_length=3,
-            effects=['EFFECT_SPRITE_STEAM, -3, 0, 12'],
-        )
-        super().__init__(model_variant, unit_def, id, numeric_id)
+    provisions_unit_def = True
+    _vehicle_length = 5
+    _cargo_length = 3
+    _effects = ["EFFECT_SPRITE_STEAM, -3, 0, 12"]
 
 
 class DieselCaboverRigidTruckGen3A(DieselVehicleUnit):
-    def __init__(self, model_variant, unit_def, id, numeric_id):
-        # Former platform values intentionally override UnitDef declarations.
-        from dataclasses import replace
-        unit_def = replace(
-            unit_def,
-            vehicle_length=5,
-            cargo_length=3,
-            effects=['EFFECT_SPRITE_DIESEL, -2, 1, 10'],
-        )
-        super().__init__(model_variant, unit_def, id, numeric_id)
+    provisions_unit_def = True
+    _vehicle_length = 5
+    _cargo_length = 3
+    _effects = ["EFFECT_SPRITE_DIESEL, -2, 1, 10"]
 
 
 class DieselCaboverRigidTruckGen4A(DieselVehicleUnit):
-    def __init__(self, model_variant, unit_def, id, numeric_id):
-        # Former platform values intentionally override UnitDef declarations.
-        from dataclasses import replace
-        unit_def = replace(
-            unit_def,
-            vehicle_length=5,
-            cargo_length=3,
-            effects=['EFFECT_SPRITE_DIESEL, -2, 1, 10'],
-        )
-        super().__init__(model_variant, unit_def, id, numeric_id)
+    provisions_unit_def = True
+    _vehicle_length = 5
+    _cargo_length = 3
+    _effects = ["EFFECT_SPRITE_DIESEL, -2, 1, 10"]
 
 
 class DieselCaboverRigidTruckGen4B(DieselVehicleUnit):
-    def __init__(self, model_variant, unit_def, id, numeric_id):
-        # Former platform values intentionally override UnitDef declarations.
-        from dataclasses import replace
-        unit_def = replace(
-            unit_def,
-            vehicle_length=6,
-            cargo_length=4,
-            effects=['EFFECT_SPRITE_DIESEL, -2, 1, 10'],
-        )
-        super().__init__(model_variant, unit_def, id, numeric_id)
+    provisions_unit_def = True
+    _vehicle_length = 6
+    _cargo_length = 4
+    _effects = ["EFFECT_SPRITE_DIESEL, -2, 1, 10"]
 
 
 class DieselCaboverRigidTruckGen5A(DieselVehicleUnit):
-    def __init__(self, model_variant, unit_def, id, numeric_id):
-        # Former platform values intentionally override UnitDef declarations.
-        from dataclasses import replace
-        unit_def = replace(
-            unit_def,
-            vehicle_length=5,
-            cargo_length=3,
-            effects=['EFFECT_SPRITE_DIESEL, -2, 1, 10', 'EFFECT_SPRITE_DIESEL, -2, -1, 10'],
-        )
-        super().__init__(model_variant, unit_def, id, numeric_id)
+    provisions_unit_def = True
+    _vehicle_length = 5
+    _cargo_length = 3
+    _effects = ["EFFECT_SPRITE_DIESEL, -2, 1, 10", "EFFECT_SPRITE_DIESEL, -2, -1, 10"]
 
 
 class SteamEngineFeldbahnGen1A(SteamVehicleUnit):
-    def __init__(self, model_variant, unit_def, id, numeric_id):
-        # Former platform values intentionally override UnitDef declarations.
-        from dataclasses import replace
-        unit_def = replace(
-            unit_def,
-            capacity=0,
-            always_use_same_spriterow=True,
-            vehicle_length=3,
-        )
-        super().__init__(model_variant, unit_def, id, numeric_id)
+    provisions_unit_def = True
+    _capacity = 0
+    _always_use_same_spriterow = True
+    _vehicle_length = 3
 
     def get_spritesheet_name_body_or_complete_vehicle(self):
         return 'steam_engine_feldbahn_gen_1A'
 
 
 class SteamEngineFeldbahnGen2A(SteamVehicleUnit):
-    def __init__(self, model_variant, unit_def, id, numeric_id):
-        # Former platform values intentionally override UnitDef declarations.
-        from dataclasses import replace
-        unit_def = replace(
-            unit_def,
-            capacity=0,
-            always_use_same_spriterow=True,
-            vehicle_length=3,
-        )
-        super().__init__(model_variant, unit_def, id, numeric_id)
+    provisions_unit_def = True
+    _capacity = 0
+    _always_use_same_spriterow = True
+    _vehicle_length = 3
 
     def get_spritesheet_name_body_or_complete_vehicle(self):
         return 'steam_engine_feldbahn_gen_2A'
 
 
 class SteamEngineFeldbahnGen2B(SteamVehicleUnit):
-    def __init__(self, model_variant, unit_def, id, numeric_id):
-        # Former platform values intentionally override UnitDef declarations.
-        from dataclasses import replace
-        unit_def = replace(
-            unit_def,
-            capacity=0,
-            always_use_same_spriterow=True,
-            vehicle_length=4,
-        )
-        super().__init__(model_variant, unit_def, id, numeric_id)
+    provisions_unit_def = True
+    _capacity = 0
+    _always_use_same_spriterow = True
+    _vehicle_length = 4
 
     def get_spritesheet_name_body_or_complete_vehicle(self):
         return 'steam_engine_feldbahn_gen_2B'
 
 
 class DieselEngineFeldbahnGen3A(DieselVehicleUnit):
-    def __init__(self, model_variant, unit_def, id, numeric_id):
-        # Former platform values intentionally override UnitDef declarations.
-        from dataclasses import replace
-        unit_def = replace(
-            unit_def,
-            capacity=0,
-            always_use_same_spriterow=True,
-            vehicle_length=3,
-        )
-        super().__init__(model_variant, unit_def, id, numeric_id)
+    provisions_unit_def = True
+    _capacity = 0
+    _always_use_same_spriterow = True
+    _vehicle_length = 3
 
     def get_spritesheet_name_body_or_complete_vehicle(self):
         return 'diesel_engine_feldbahn_gen_3A'
 
 
 class DieselEngineFeldbahnGen3B(DieselVehicleUnit):
-    def __init__(self, model_variant, unit_def, id, numeric_id):
-        # Former platform values intentionally override UnitDef declarations.
-        from dataclasses import replace
-        unit_def = replace(
-            unit_def,
-            capacity=0,
-            always_use_same_spriterow=True,
-            vehicle_length=4,
-        )
-        super().__init__(model_variant, unit_def, id, numeric_id)
+    provisions_unit_def = True
+    _capacity = 0
+    _always_use_same_spriterow = True
+    _vehicle_length = 4
 
     def get_spritesheet_name_body_or_complete_vehicle(self):
         return 'diesel_engine_feldbahn_gen_3B'
 
 
 class ElectricEngineFeldbahn1(ElectricVehicleUnit):
-    def __init__(self, model_variant, unit_def, id, numeric_id):
-        # Former platform values intentionally override UnitDef declarations.
-        from dataclasses import replace
-        unit_def = replace(
-            unit_def,
-            capacity=0,
-            always_use_same_spriterow=True,
-        )
-        super().__init__(model_variant, unit_def, id, numeric_id)
+    provisions_unit_def = True
+    _capacity = 0
+    _always_use_same_spriterow = True
 
     def get_spritesheet_name_body_or_complete_vehicle(self):
         return 'electric_engine_feldbah_n1'
 
 
 class WagonFeldbahnA(RoadVehicleUnit):
-    def __init__(self, model_variant, unit_def, id, numeric_id):
-        # Former platform values intentionally override UnitDef declarations.
-        from dataclasses import replace
-        unit_def = replace(
-            unit_def,
-            vehicle_length=3,
-            cargo_length=3,
-        )
-        super().__init__(model_variant, unit_def, id, numeric_id)
+    provisions_unit_def = True
+    _vehicle_length = 3
+    _cargo_length = 3
 
     def get_spritesheet_name_body_or_complete_vehicle(self):
         return self.model_variant.name_suffix_consist_type.lower() + "_wagon_feldbahn_gen_1"
 
 
 class SteamEngineTram1(SteamVehicleUnit):
-    def __init__(self, model_variant, unit_def, id, numeric_id):
-        # Former platform values intentionally override UnitDef declarations.
-        from dataclasses import replace
-        unit_def = replace(
-            unit_def,
-            capacity=0,
-            always_use_same_spriterow=True,
-            vehicle_length=4,
-        )
-        super().__init__(model_variant, unit_def, id, numeric_id)
+    provisions_unit_def = True
+    _capacity = 0
+    _always_use_same_spriterow = True
+    _vehicle_length = 4
 
 
 class SteamEngineTram2(SteamVehicleUnit):
-    def __init__(self, model_variant, unit_def, id, numeric_id):
-        # Former platform values intentionally override UnitDef declarations.
-        from dataclasses import replace
-        unit_def = replace(
-            unit_def,
-            capacity=0,
-            always_use_same_spriterow=True,
-            vehicle_length=4,
-        )
-        super().__init__(model_variant, unit_def, id, numeric_id)
+    provisions_unit_def = True
+    _capacity = 0
+    _always_use_same_spriterow = True
+    _vehicle_length = 4
 
 
 class ElectricMotorTram1(ElectricVehicleUnit):
-    def __init__(self, model_variant, unit_def, id, numeric_id):
-        # Former platform values intentionally override UnitDef declarations.
-        from dataclasses import replace
-        unit_def = replace(
-            unit_def,
-            vehicle_length=8,
-        )
-        super().__init__(model_variant, unit_def, id, numeric_id)
+    provisions_unit_def = True
+    _vehicle_length = 8
 
 
 class ElectricMotorTram2(ElectricVehicleUnit):
-    def __init__(self, model_variant, unit_def, id, numeric_id):
-        # Former platform values intentionally override UnitDef declarations.
-        from dataclasses import replace
-        unit_def = replace(
-            unit_def,
-            vehicle_length=8,
-            cargo_length=3,
-        )
-        super().__init__(model_variant, unit_def, id, numeric_id)
+    provisions_unit_def = True
+    _vehicle_length = 8
+    _cargo_length = 3
 
 
 class ElectricMotorTram3(ElectricVehicleUnit):
-    def __init__(self, model_variant, unit_def, id, numeric_id):
-        # Former platform values intentionally override UnitDef declarations.
-        from dataclasses import replace
-        unit_def = replace(
-            unit_def,
-            vehicle_length=8,
-            cargo_length=3,
-        )
-        super().__init__(model_variant, unit_def, id, numeric_id)
+    provisions_unit_def = True
+    _vehicle_length = 8
+    _cargo_length = 3
 
 
 class ElectricMotorTram4(ElectricVehicleUnit):
-    def __init__(self, model_variant, unit_def, id, numeric_id):
-        # Former platform values intentionally override UnitDef declarations.
-        from dataclasses import replace
-        unit_def = replace(
-            unit_def,
-            vehicle_length=8,
-            cargo_length=3,
-        )
-        super().__init__(model_variant, unit_def, id, numeric_id)
+    provisions_unit_def = True
+    _vehicle_length = 8
+    _cargo_length = 3
 
 
 class DieselConventionalCabSemiTractorHaulerGen3A(DieselVehicleUnit):
-    def __init__(self, model_variant, unit_def, id, numeric_id):
-        # Former platform values intentionally override UnitDef declarations.
-        from dataclasses import replace
-        unit_def = replace(
-            unit_def,
-            always_use_same_spriterow=True,
-            unit_is_semi_tractor=True,
-            vehicle_length=2,
-            semi_truck_shift_offset_jank=3,
-            effects=['EFFECT_SPRITE_AIRCRAFT_BREAKDOWN_SMOKE, -2, 1, 10', 'EFFECT_SPRITE_AIRCRAFT_BREAKDOWN_SMOKE, -2, -1, 10'],
-        )
-        super().__init__(model_variant, unit_def, id, numeric_id)
+    provisions_unit_def = True
+    _always_use_same_spriterow = True
+    _unit_is_semi_tractor = True
+    _vehicle_length = 2
+    _semi_truck_shift_offset_jank = 3
+    _effects = [
+        "EFFECT_SPRITE_AIRCRAFT_BREAKDOWN_SMOKE, -2, 1, 10",
+        "EFFECT_SPRITE_AIRCRAFT_BREAKDOWN_SMOKE, -2, -1, 10",
+    ]
 
 class ElectricTrailerUnit(RoadVehicleUnit):
     @property
