@@ -1,0 +1,172 @@
+[STR_PARAM_WAGON_COLOUR_RANDOMISATION]
+base = "Wagon colour fading"
+[STR_PARAM_WAGON_COLOUR_RANDOMISATION_STRATEGY_DESC]
+base = "Faded freight wagon colours add variety to trains (random chance each wagon is faded)."
+[STR_BADGE_LIVERY]
+base = "Livery"
+
+# freight wagon liveries
+[STR_BADGE_LIVERY_COMPANY_COLOUR]
+base = "Company Colour"
+[STR_BADGE_LIVERY_COMPLEMENT_COMPANY_COLOUR]
+base = "Company Colour Adjacent"
+[STR_BADGE_LIVERY_RANDOM_LIVERIES_COMPLEMENT_COMPANY_COLOUR]
+base = "Company Colour Mix"
+[STR_BADGE_LIVERY_RANDOM_LIVERIES_VARIETY_GEMSTONE]
+base = "Gemstone"
+[STR_BADGE_LIVERY_RANDOM_LIVERIES_VARIETY_LIMEWASH]
+base = "Limewash"
+[STR_BADGE_LIVERY_RANDOM_LIVERIES_VARIETY_FERROUS]
+base = "Ferrous"
+[STR_BADGE_LIVERY_RANDOM_LIVERIES_BUMBLEBEE]
+base = "Bumblebee"
+[STR_BADGE_LIVERY_RANDOM_LIVERIES_GREY_RUST_NIGHTSHADE]
+base = "Rustbelt"
+[STR_BADGE_LIVERY_RANDOM_LIVERIES_VIOLET_TEAL_OCEAN_TEAL]
+base = "Soap Bubbles"
+[STR_BADGE_LIVERY_RANDOM_LIVERIES_SILVER_PEWTER]
+base = "Platinum"
+[STR_BADGE_LIVERY_RANDOM_LIVERIES_CLOVER_OCHRE_SILVER]
+base = "Clover Fields"
+[STR_BADGE_LIVERY_RANDOM_LIVERIES_CLOVER_OCHRE_SAND]
+base = "Marsh Grass"
+[STR_BADGE_LIVERY_RANDOM_LIVERIES_CLOVER_OCHRE_SULPHUR]
+base = "Pineapple"
+[STR_BADGE_LIVERY_RANDOM_LIVERIES_SULPHUR_OCHRE]
+base = "Sulphur Mix"
+[STR_BADGE_LIVERY_RANDOM_LIVERIES_OIL_BLACK_OBSIDIAN_NIGHTSHADE]
+base = "Night Black"
+[STR_BADGE_LIVERY_RANDOM_LIVERIES_OCHRE_SAND]
+base = "Desert Sand"
+[STR_BADGE_LIVERY_RANDOM_LIVERIES_TEAL_PEWTER_SILVER]
+base = "Ocean Silver"
+[STR_BADGE_LIVERY_RANDOM_LIVERIES_TEAL_OCEAN_TEAL]
+base = "Ocean Teal"
+[STR_BADGE_LIVERY_RANDOM_LIVERIES_SILVER_GREY_PEWTER]
+base = "Silver Smoke"
+[STR_BADGE_LIVERY_RANDOM_LIVERIES_OXIDE_RUST]
+base = "Oxide"
+[STR_BADGE_LIVERY_FREIGHT_KALE]
+base = "Kale"
+[STR_BADGE_LIVERY_FREIGHT_RED]
+base = "Flame Red"
+
+# other liveries
+# _might_ need to use roster-specific strings, but we'll see
+[STR_BADGE_LIVERY_BANGER_BLUE]
+base = "Basic Banger"
+[STR_BADGE_LIVERY_CLASSIC_LINES]
+base = "Classic Lines"
+[STR_BADGE_LIVERY_CONVENTIONAL_WISDOM]
+base = "Conventional Wisdom"
+[STR_BADGE_LIVERY_FREIGHT_BLACK]
+base = "Dark Horse"
+[STR_BADGE_LIVERY_FRUIT_RIPPLE]
+base = "Fruit Ripple"
+[STR_BADGE_LIVERY_GREY_HORSE]
+base = "Grey Horse"
+[STR_BADGE_LIVERY_HORNET]
+base = "Hornet"
+[STR_BADGE_LIVERY_INDUSTRIAL_YELLOW]
+base = "Hazard Yellow"
+[STR_BADGE_LIVERY_INVERSIONS]
+base = "Inversions"
+[STR_BADGE_LIVERY_LOWER_LINES]
+base = "Lower Lines"
+[STR_BADGE_LIVERY_MAIL_BY_RAIL]
+base = "Mail by Rail"
+[STR_BADGE_LIVERY_MARGINAL_GAINS]
+base = "Marginal Gains"
+[STR_BADGE_LIVERY_METROLAND]
+base = "Metroland"
+[STR_BADGE_LIVERY_RAIN_OR_SHINE]
+base = "Rain or Shine"
+[STR_BADGE_LIVERY_RIDEWELL]
+base = "Ridewell"
+[STR_BADGE_LIVERY_SHOW_PONY]
+base = "Specials"
+[STR_BADGE_LIVERY_STOCK_STANDARD]
+base = "Stock Standard"
+[STR_BADGE_LIVERY_SUPERGRAPHIC]
+base = "Supergraphic"
+[STR_BADGE_LIVERY_SURE_PACE]
+base = "Sure Pace"
+[STR_BADGE_LIVERY_VANILLA]
+base = "VANILLA"
+[STR_BADGE_LIVERY_VAPID_VOYAGER]
+base = "Vapid Voyager"
+[STR_BADGE_LIVERY_VINYL_VECTOR]
+base = "Vinyl Vector"
+[STR_BADGE_LIVERY_WORKHORSE]
+base = "Work Horse"
+
+# behaviour badges (behaviour and role are different)
+[STR_EXTRA_TEXT_LIVERY_BANGER_BLUE]
+base = "A very simple livery featuring mostly the first company colour, with small markings in the second company colour."
+docs_only = true
+[STR_EXTRA_TEXT_LIVERY_CLASSIC_LINES]
+base = "A livery featuring mostly the first company colour, with one or more horizontal stripes in the second company colour."
+docs_only = true
+[STR_EXTRA_TEXT_LIVERY_CONVENTIONAL_WISDOM]
+base = "A livery with alternating large blocks of both company colours, with minimalist markings (or none)."
+docs_only = true
+[STR_EXTRA_TEXT_LIVERY_FREIGHT_BLACK]
+base = "A livery for freight trains, mostly dark, grimy colours, with logos or markings in one or both company colours."
+docs_only = true
+[STR_EXTRA_TEXT_LIVERY_FRUIT_RIPPLE]
+base = "A livery for passenger and mail trains, inspired by British Rail InterCity 'Swallow' and 'Executive' liveries."
+docs_only = true
+[STR_EXTRA_TEXT_LIVERY_GREY_HORSE]
+base = "A livery for freight trains, featuring grey, with contrasting panels in yellow or other colours. Inspired by British Rail Railfreight 'Red Stripe' and Railfreight 'Triple Grey Sector' liveries."
+docs_only = true
+[STR_EXTRA_TEXT_LIVERY_INDUSTRIAL_YELLOW]
+base = "A livery for trains used in industrial settings such as steel mills and foundries."
+docs_only = true
+[STR_EXTRA_TEXT_LIVERY_INVERSIONS]
+base = "Varied liveries that primarily use the second company colour, with logos or markings in the first company colour."
+docs_only = true
+[STR_EXTRA_TEXT_LIVERY_LOWER_LINES]
+base = "A livery featuring mostly the first company colour, with a lower body or footplate stripe in the second company colour."
+docs_only = true
+[STR_EXTRA_TEXT_LIVERY_MAIL_BY_RAIL]
+base = "Varied liveries for mail trains, inspired by Royal Mail, Rail Express Systems, TGV La Poste, and other liveries. Always uses red as main colour."
+docs_only = true
+[STR_EXTRA_TEXT_LIVERY_MARGINAL_GAINS]
+base = "A generic livery for passenger and mail trains, inspired by British Rail 1970s suburban white/blue livery."
+docs_only = true
+[STR_EXTRA_TEXT_LIVERY_METROLAND]
+base = "Varied liveries for metro trains, inspired by London Underground and other liveries."
+docs_only = true
+[STR_EXTRA_TEXT_LIVERY_RAIN_OR_SHINE]
+base = "A generic livery for passenger and mail trains, inspired by conventional two-tone liveries."
+docs_only = true
+[STR_EXTRA_TEXT_LIVERY_RIDEWELL]
+base = "A generic livery for passenger and mail trains. Style changes between certain vehicle generations."
+docs_only = true
+[STR_EXTRA_TEXT_LIVERY_SHOW_PONY]
+base = "Liveries that are unique to one vehicle, or don't fit any other category."
+docs_only = true
+[STR_EXTRA_TEXT_LIVERY_STOCK_STANDARD]
+base = "A simple livery featuring mostly the first company colour, with company logos or markings in the second company colour."
+docs_only = true
+[STR_EXTRA_TEXT_LIVERY_SUPERGRAPHIC]
+base = "A bold livery featuring blocks of yellow and the first company colour, sometimes with logos or markings in the second company colour."
+docs_only = true
+[STR_EXTRA_TEXT_LIVERY_SURE_PACE]
+base = "A generic livery for passenger and mail trains. Style changes between certain vehicle generations."
+docs_only = true
+[STR_EXTRA_TEXT_LIVERY_VANILLA]
+base = "VANILLA"
+docs_only = true
+[STR_EXTRA_TEXT_LIVERY_VAPID_VOYAGER]
+base = "A livery for passenger and mail trains, inspired by Virgin Trains, Greater Anglia, and similar liveries."
+docs_only = true
+[STR_EXTRA_TEXT_LIVERY_VINYL_VECTOR]
+base = "A generic livery for passenger and mail trains, inspired by swoosh-like liveries from the late 1990s-2020s."
+docs_only = true
+[STR_EXTRA_TEXT_LIVERY_HORNET]
+base = "A livery for trains used in industrial settings such as steel mills, foundries, mines etc."
+docs_only = true
+[STR_EXTRA_TEXT_LIVERY_WORKHORSE]
+base = "A livery for freight trains, featuring a mix of solid black and both company colours."
+docs_only = true

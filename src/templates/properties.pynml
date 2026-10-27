@@ -48,6 +48,12 @@ item(FEAT_ROADVEHS, ${unit.id}, ${unit.numeric_id}) {
         default:                        ${unit.id}_switch_graphics;
         purchase:                       ${unit.id}_sg_purchase;
         create_effect:                  ${unit.id}_create_visual_effect;
+        <!--! CABBAGE352: colour callbacks are placeholders until wagon recolour procedures are adapted to RH. -->
+        <tal:runtime_colours condition="model_variant.gestalt_graphics.nml_template == 'vehicle_with_simple_body_colour_remaps_road.pynml'">
+            colour_mapping:                 ${unit.id}_runtime_colour_mapping;
+            purchase_colour_mapping:        ${unit.id}_purchase_colour_mapping;
+        </tal:runtime_colours>
+
         <!--! no buy menu extra text in this grf by design; extra text is associated with BAD FEATURES -->
         <tal:lead_unit_only condition="unit.is_lead_unit_of_consist">
             <tal:articulated condition="len(model_variant.units) > 1">

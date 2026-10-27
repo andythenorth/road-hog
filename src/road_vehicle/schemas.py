@@ -6,8 +6,15 @@ The catalogue makes model variants. These classes give them Road Hog behaviour.
 from functools import cached_property
 
 import global_constants
+import polar_fox
+from gestalt_graphics import graphics_constants
+from gestalt_graphics.gestalt_graphics import (
+    GestaltGraphics,
+    GestaltGraphicsCustom,
+    GestaltGraphicsPrecompositedCargo,
+    GestaltGraphicsSimpleBodyColourRemaps,
+)
 import road_hog
-from gestalt_graphics.gestalt_graphics import GestaltGraphics
 
 
 class RoadVehicleBase:
@@ -221,13 +228,6 @@ class RoadVehicleBase:
         return result
 
 
-import polar_fox
-import gestalt_graphics.graphics_constants as graphics_constants
-from gestalt_graphics.gestalt_graphics import (
-    GestaltGraphicsPrecompositedCargo,
-    GestaltGraphicsLiveryOnly,
-    GestaltGraphicsCustom,
-)
 
 
 class TrackTypeMixinBase:
@@ -270,6 +270,12 @@ class TrackTypeMixinTruckBusCoach(TrackTypeMixinBase):
 
 
 class BoxHaulerConsistBase(RoadVehicleBase):
+    liveries = [
+        "RANDOM_LIVERIES_COMPLEMENT_COMPANY_COLOUR",
+        "RANDOM_LIVERIES_CLOVER_OCHRE_SULPHUR",
+        "RANDOM_LIVERIES_TEAL_PEWTER_SILVER",
+    ]
+
     def __init__(self, producer, catalogue_entry):
         super().__init__(producer, catalogue_entry)
         self.name_suffix_consist_type = "BOX"
@@ -283,12 +289,20 @@ class BoxHaulerConsistBase(RoadVehicleBase):
         ]
         self.default_cargos = global_constants.default_cargos["box"]
         self.weight_multiplier = 0.45
-        self.gestalt_graphics = GestaltGraphicsLiveryOnly(
-            recolour_maps=polar_fox.constants.tanker_livery_recolour_maps
+        self.gestalt_graphics = GestaltGraphicsSimpleBodyColourRemaps(
+            recolour_map=graphics_constants.body_recolour_CC1,
+            weathered_states={"unweathered": graphics_constants.body_recolour_CC1},
+            catalogue_entry=self.catalogue_entry,
         )
 
 
 class CoveredHopperHaulerConsistBase(RoadVehicleBase):
+    liveries = [
+        "RANDOM_LIVERIES_COMPLEMENT_COMPANY_COLOUR",
+        "RANDOM_LIVERIES_CLOVER_OCHRE_SULPHUR",
+        "RANDOM_LIVERIES_TEAL_PEWTER_SILVER",
+    ]
+
     def __init__(self, producer, catalogue_entry):
         super().__init__(producer, catalogue_entry)
         self.name_suffix_consist_type = "COVERED_HOPPER"
@@ -317,8 +331,10 @@ class CoveredHopperHaulerConsistBase(RoadVehicleBase):
         self.default_cargos = global_constants.default_cargos["covered_mineral"]
         self.loading_speed_multiplier = 2
         self.weight_multiplier = 0.45
-        self.gestalt_graphics = GestaltGraphicsLiveryOnly(
-            recolour_maps=graphics_constants.livestock_livery_recolour_maps
+        self.gestalt_graphics = GestaltGraphicsSimpleBodyColourRemaps(
+            recolour_map=graphics_constants.body_recolour_CC1,
+            weathered_states={"unweathered": graphics_constants.body_recolour_CC1},
+            catalogue_entry=self.catalogue_entry,
         )
 
 
@@ -371,6 +387,12 @@ class FlatbedHaulerConsistBase(RoadVehicleBase):
 
 
 class FruitVegHaulerConsistBase(RoadVehicleBase):
+    liveries = [
+        "RANDOM_LIVERIES_COMPLEMENT_COMPANY_COLOUR",
+        "RANDOM_LIVERIES_CLOVER_OCHRE_SULPHUR",
+        "RANDOM_LIVERIES_TEAL_PEWTER_SILVER",
+    ]
+
     def __init__(self, producer, catalogue_entry):
         super().__init__(producer, catalogue_entry)
         self.name_suffix_consist_type = "FRUIT_VEG"
@@ -385,12 +407,20 @@ class FruitVegHaulerConsistBase(RoadVehicleBase):
         self.default_cargos = global_constants.default_cargos["farm_products_box"]
         self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
         self.weight_multiplier = 0.45
-        self.gestalt_graphics = GestaltGraphicsLiveryOnly(
-            recolour_maps=graphics_constants.livestock_livery_recolour_maps
+        self.gestalt_graphics = GestaltGraphicsSimpleBodyColourRemaps(
+            recolour_map=graphics_constants.body_recolour_CC1,
+            weathered_states={"unweathered": graphics_constants.body_recolour_CC1},
+            catalogue_entry=self.catalogue_entry,
         )
 
 
 class LivestockHaulerConsistBase(RoadVehicleBase):
+    liveries = [
+        "RANDOM_LIVERIES_COMPLEMENT_COMPANY_COLOUR",
+        "RANDOM_LIVERIES_CLOVER_OCHRE_SULPHUR",
+        "RANDOM_LIVERIES_TEAL_PEWTER_SILVER",
+    ]
+
     def __init__(self, producer, catalogue_entry):
         super().__init__(producer, catalogue_entry)
         self.name_suffix_consist_type = "LIVESTOCK"
@@ -401,8 +431,10 @@ class LivestockHaulerConsistBase(RoadVehicleBase):
         self.default_cargos = ["LVST"]
         self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
         self.weight_multiplier = 0.45
-        self.gestalt_graphics = GestaltGraphicsLiveryOnly(
-            recolour_maps=graphics_constants.livestock_livery_recolour_maps
+        self.gestalt_graphics = GestaltGraphicsSimpleBodyColourRemaps(
+            recolour_map=graphics_constants.body_recolour_CC1,
+            weathered_states={"unweathered": graphics_constants.body_recolour_CC1},
+            catalogue_entry=self.catalogue_entry,
         )
 
 
@@ -465,8 +497,18 @@ class OpenHaulerConsistBase(RoadVehicleBase):
 
 
 class PaxHaulerConsistBase(RoadVehicleBase):
+    liveries = [
+        "RANDOM_LIVERIES_COMPLEMENT_COMPANY_COLOUR",
+        "RANDOM_LIVERIES_CLOVER_OCHRE_SULPHUR",
+        "RANDOM_LIVERIES_TEAL_PEWTER_SILVER",
+    ]
+
     def __init__(self, producer, catalogue_entry):
         super().__init__(producer, catalogue_entry)
+        self.gestalt_graphics = GestaltGraphicsSimpleBodyColourRemaps(
+            weathered_states={"unweathered": None},
+            catalogue_entry=self.catalogue_entry,
+        )
         self.autorefit = True
         self.class_refit_groups = ["pax"]
         self.label_refits_allowed = []
@@ -482,6 +524,12 @@ class PaxHaulerLocalConsistBase(PaxHaulerConsistBase):
 
 
 class RefrigeratedHaulerConsistBase(RoadVehicleBase):
+    liveries = [
+        "RANDOM_LIVERIES_COMPLEMENT_COMPANY_COLOUR",
+        "RANDOM_LIVERIES_CLOVER_OCHRE_SULPHUR",
+        "RANDOM_LIVERIES_TEAL_PEWTER_SILVER",
+    ]
+
     def __init__(self, producer, catalogue_entry):
         super().__init__(producer, catalogue_entry)
         self.name_suffix_consist_type = "REEFER"
@@ -492,8 +540,10 @@ class RefrigeratedHaulerConsistBase(RoadVehicleBase):
         self.default_cargos = global_constants.default_cargos["reefer"]
         self.cargo_age_period = 2 * global_constants.CARGO_AGE_PERIOD
         self.weight_multiplier = 0.5
-        self.gestalt_graphics = GestaltGraphicsLiveryOnly(
-            recolour_maps=graphics_constants.livestock_livery_recolour_maps
+        self.gestalt_graphics = GestaltGraphicsSimpleBodyColourRemaps(
+            recolour_map=graphics_constants.body_recolour_CC1,
+            weathered_states={"unweathered": graphics_constants.body_recolour_CC1},
+            catalogue_entry=self.catalogue_entry,
         )
 
 
@@ -517,6 +567,12 @@ class SuppliesHaulerConsistBase(RoadVehicleBase):
 
 
 class TankerConsistBase(RoadVehicleBase):
+    liveries = [
+        "RANDOM_LIVERIES_COMPLEMENT_COMPANY_COLOUR",
+        "RANDOM_LIVERIES_CLOVER_OCHRE_SULPHUR",
+        "RANDOM_LIVERIES_TEAL_PEWTER_SILVER",
+    ]
+
     def __init__(self, producer, catalogue_entry):
         super().__init__(producer, catalogue_entry)
         self.name_suffix_consist_type = "TANKER"
@@ -531,8 +587,10 @@ class TankerConsistBase(RoadVehicleBase):
         self.default_cargos = global_constants.default_cargos["tank"]
         self.loading_speed_multiplier = 2
         self.weight_multiplier = 0.45
-        self.gestalt_graphics = GestaltGraphicsLiveryOnly(
-            recolour_maps=polar_fox.constants.tanker_livery_recolour_maps
+        self.gestalt_graphics = GestaltGraphicsSimpleBodyColourRemaps(
+            recolour_map=graphics_constants.body_recolour_CC1,
+            weathered_states={"unweathered": graphics_constants.body_recolour_CC1},
+            catalogue_entry=self.catalogue_entry,
         )
 
 
@@ -703,3 +761,4 @@ class TankerTruck(TrackTypeMixinTruckBusCoach, TankerConsistBase):
 
 class MetalHEQSBase(TrackTypeMixinHEQS, MetalHaulerConsistBase):
     pass
+

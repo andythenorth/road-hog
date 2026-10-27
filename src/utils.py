@@ -79,3 +79,26 @@ def parse_base_lang():
         if ":" in line
     )
     return strings
+
+# CABBAGE352 step 008a: IH unpack_colour
+def unpack_colour(colour_name, cc_to_remap):
+    # seems utils is the best place to keep this, but eh
+    if "COLOUR_" in colour_name:
+        # assume it's a default CC name constant
+        if cc_to_remap == 1:
+            return "palette_2cc(" + colour_name + ", company_colour2)"
+        if cc_to_remap == 2:
+            return "palette_2cc(company_colour1, " + colour_name + ")"
+    else:
+        # assume custom colour
+        colour_name_offset = 2 * list(
+            global_constants.custom_wagon_recolour_sprite_maps.keys()
+        ).index(colour_name)
+        remap_index = colour_name_offset + cc_to_remap - 1
+        # return an nml fragment: custom_ship_recolour_sprites + index into recolour sprite + [company_colour1 or company_colour2]
+        return (
+            "custom_wagon_recolour_sprites + "
+            + str(16 * remap_index)
+            + " + company_colour"
+            + str(1 if cc_to_remap == 2 else 2)
+        )

@@ -1,0 +1,30 @@
+<!--! CABBAGE352: dedicated single-sprite body colour remap graphics path.
+     Cargo-specific sprite selection intentionally omitted. -->
+<tal:include metal:use-macro="load: spriteset_templates.pynml" />
+
+spriteset(${unit.id}_ss, "${global_constants.graphics_path}${model_variant.model_def.model_id}.png") {
+  spriteset_template_${unit.id}(10 + ${unit.spriterow_num * 30})
+}
+
+spritegroup ${unit.id}_sg {
+    loaded: [${unit.id}_ss];
+    loading: [${unit.id}_ss];
+}
+
+switch (FEAT_ROADVEHS, SELF, ${unit.id}_switch_graphics, 0) {
+    return ${unit.id}_sg;
+}
+
+<!--! CABBAGE352 008d: resolve runtime mapping from catalogue livery; IH dictionary order
+      must match the serialised lookup table rendered in the NML header. -->
+switch (FEAT_ROADVEHS, SELF, ${unit.id}_runtime_colour_mapping,
+    [STORE_TEMP(random_bits_wagon_random_remap_livery(), 24),
+     switch_freight_wagon_livery_serialised_liveries(${list(global_constants.freight_wagon_liveries).index(model_variant.livery_def.livery_name)})]) {
+    return;
+}
+
+switch (FEAT_ROADVEHS, SELF, ${unit.id}_purchase_colour_mapping,
+    [STORE_TEMP(0, 24),
+     switch_freight_wagon_livery_serialised_liveries(${len(global_constants.freight_wagon_liveries) + list(global_constants.freight_wagon_liveries).index(model_variant.livery_def.livery_name)})]) {
+    return;
+}

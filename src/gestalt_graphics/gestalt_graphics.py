@@ -349,3 +349,32 @@ class GestaltGraphicsCustom(GestaltGraphics):
     @property
     def cargo_row_map(self):
         return self._cargo_row_map
+
+class GestaltGraphicsSimpleBodyColourRemaps(GestaltGraphics):
+    # IH constructor interface; RH uses an existing compositor for the
+    # single unweathered freight CC1 row. CC-ready passenger sprites need none.
+    def __init__(self, recolour_map=None, weathered_states=None, catalogue_entry=None, **kwargs):
+        super().__init__()
+        self.catalogue_entry = catalogue_entry
+        self.recolour_map = recolour_map
+        self.weathered_states = weathered_states if weathered_states is not None else {"unweathered": recolour_map}
+        if set(self.weathered_states) != {"unweathered"}:
+            raise NotImplementedError("Road Hog only supports unweathered body recolouring")
+        unweathered_map = self.weathered_states["unweathered"]
+        if recolour_map is not None and unweathered_map != recolour_map:
+            raise ValueError("recolour_map differs from unweathered weathered_states")
+        if unweathered_map is not None:
+            self.pipelines = pipelines.get_pipelines(
+                ["extend_spriterows_for_composited_sprites_pipeline"]
+            )
+            # CABBAGE352: compositor calls this legacy output type livery_only.
+            self.recolour_maps = [("DFLT", unweathered_map)]
+
+    def get_output_row_types(self):
+        if self.weathered_states["unweathered"] is not None:
+            return ["livery_only"]
+        return super().get_output_row_types()
+
+    @property
+    def nml_template(self):
+        return "vehicle_with_simple_body_colour_remaps_road.pynml"

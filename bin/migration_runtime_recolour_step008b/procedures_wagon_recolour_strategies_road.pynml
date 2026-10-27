@@ -1,0 +1,103 @@
+<!--! CABBAGE352: road adaptation of IH procedures_wagon_recolour_strategies; no callers yet. -->
+<!--! ** Various strategies for random recolouring of vehicles / intermodal containers ** -->
+
+<!--! partial 2cc support was removed here Sept 2024, as not used -->
+<tal:colour_sets repeat="colour_set global_constants.colour_sets.items()">
+    <!--! note that random bits need to be unique within the switch chain to prevent dependent results -->
+    <!--! uses 1 random bit from self, just 2 colour choices, more is overkill and often looks bad -->
+    switch (FEAT_ROADVEHS, SELF, switch_colour_set_${colour_set[0]}_1cc,
+                <!--! check if randomisation is enabled (player parameter) -->
+                <!--! note that this relies on purchase context having no random bits, to avoid applying weathering to purchase sprite...probably fine? -->
+                1
+                ? random_bits_colour_set()
+                : 0) {
+        1: return ${utils.unpack_colour(colour_set[1][1], 1)};
+        return ${utils.unpack_colour(colour_set[1][0], 1)};
+    }
+</tal:colour_sets>
+
+switch(FEAT_ROADVEHS, SELF, switch_get_complement_to_company_colour, company_colour1) {
+    <tal:complements_to_company_colours repeat="complement_pair global_constants.complements_to_company_colours.items()">
+        ${complement_pair[0]}: return ${complement_pair[1]};
+    </tal:complements_to_company_colours>
+}
+
+<!--! * Strategies for random recolouring of freight wagons * -->
+
+<!--! CABBAGE352: RH has no IH livery badges.  For now this is an uncalled
+      procedural interface, with the livery index explicitly set to 0.
+      Replace when catalogue livery selection is wired. -->
+switch(FEAT_ROADVEHS, SELF, switch_freight_wagon_get_livery_num_from_badge, 0) {
+    return 0;
+}
+
+<!--! up to 8 random liveries (all 8 must be passed as params when initing the wagon chain -->
+switch(FEAT_ROADVEHS, SELF, switch_freight_wagon_get_random_livery_from_candidates, [
+        LOAD_TEMP(24)
+    ]) {
+     <tal:available_liveries repeat="livery_num range(8)">
+         ${livery_num}: return LOAD_TEMP(k_addr_wagon_recolour_livery_num_${livery_num});
+     </tal:available_liveries>
+}
+
+<!--! convenience switch to define how to pick a colour -->
+switch(FEAT_ROADVEHS, SELF, switch_freight_wagon_livery_get_colour_set_index, switch_freight_wagon_get_random_livery_from_candidates()) {
+    <!--! special cases for liveries using company colour,
+          we'll need to remap the randomly selected livery index to an index based on current company colour in game -->
+    100: return company_colour1;
+    101: return switch_get_complement_to_company_colour();
+    return; <!--! by default just return the randomly selected livery index -->
+}
+
+<!--! * Strategies for random recolouring of wagons *
+    1. strategies branch (on livery badge) to one or more colour sets determined by the livery
+    2. colour set is chosen at random (if there is more than one colour set in the list, otherwise single colour set is returned)
+    3. colour sets apply a random choice from 2 shades of the chosen colour
+-->
+
+switch (FEAT_ROADVEHS, SELF, switch_freight_wagon_livery_select_colour_set,
+                    switch_freight_wagon_livery_get_colour_set_index()
+                ) {
+    <tal:colour_sets repeat="colour_set global_constants.colour_sets.items()">
+        <!--! this relies on order matching the order of company colours per nml / openttd constants;
+              e.g. COLOUR_DARK_BLUE = 0, COLOUR_WHITE= 15
+              we then extend our own custom colour sets after the default colours -->
+        <!--! // debug: ${colour_set[1][0]}, ${colour_set[1][1]} -->
+        ${repeat.colour_set.index}: switch_colour_set_${colour_set[0]}_1cc;
+    </tal:colour_sets>
+}
+
+switch (FEAT_ROADVEHS, SELF, switch_freight_wagon_livery_set_params,
+        flag_context_is_purchase,
+        <tal:available_liveries repeat="livery_num range(8)">
+            wagon_recolour_livery_num_${livery_num},
+        </tal:available_liveries>
+                [
+                 STORE_TEMP(flag_context_is_purchase, 33),
+                 <tal:available_liveries repeat="livery_num range(8)">
+                     STORE_TEMP(wagon_recolour_livery_num_${livery_num}, k_addr_wagon_recolour_livery_num_${livery_num}),
+                 </tal:available_liveries>
+                ]) {
+    switch_freight_wagon_livery_select_colour_set;
+}
+
+<!--! switch as lookup table for combinations of colour set params, this is the most effective way I found to extract the livery params for use in switches -->
+switch(FEAT_ROADVEHS, SELF, switch_freight_wagon_livery_serialised_liveries, livery_num_offset, livery_num_offset + switch_freight_wagon_get_livery_num_from_badge()) {
+    <tal:wagon_recolour_set repeat="livery_serialized livery_supplier.freight_wagon_livery_serialized_params">
+        ${livery_serialized.livery_index}: return switch_freight_wagon_livery_set_params(${livery_serialized.serialized_params}); // ${livery_serialized.livery_name}
+    </tal:wagon_recolour_set>
+}
+
+switch(FEAT_ROADVEHS, SELF, switch_freight_wagon_livery_entry_point, wagon_recolour_random_livery_choice_num, [
+        STORE_TEMP(wagon_recolour_random_livery_choice_num, 24),
+        <!--! the 0 here is an offset which can be used to access purchase liveries, but in this non-purchase case offset is 0 -->
+        switch_freight_wagon_livery_serialised_liveries(0)
+    ]) {
+    return;
+}
+switch(FEAT_ROADVEHS, SELF, switch_freight_wagon_livery_entry_point_purchase,
+        <!--! for purchase we offset into a second block of serialised liveries which will have different flags set -->
+        switch_freight_wagon_livery_serialised_liveries(${len(livery_supplier.freight_wagon_liveries)})
+    ) {
+    return;
+}

@@ -255,3 +255,14 @@ class LiverySupplier(dict):
 # Road Hog default, retained for existing vehicle declarations.
 livery_supplier = LiverySupplier()
 livery_supplier.add_livery("DEFAULT")
+# CABBAGE352 008d: register the three runtime-remap catalogue liveries.
+for _name in (
+    "RANDOM_LIVERIES_COMPLEMENT_COMPANY_COLOUR",
+    "RANDOM_LIVERIES_CLOVER_OCHRE_SULPHUR",
+    "RANDOM_LIVERIES_TEAL_PEWTER_SILVER",
+):
+    livery_supplier.add_livery(
+        _name,
+        is_freight_wagon_livery=True,
+        **global_constants.freight_wagon_liveries[_name],
+    )

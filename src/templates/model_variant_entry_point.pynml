@@ -12,6 +12,10 @@
         <tal:include metal:use-macro="load: vehicle_with_cargo_specific_liveries.pynml" />
     </tal:block>
 
+    <tal:block condition="model_variant.gestalt_graphics.nml_template == 'vehicle_with_simple_body_colour_remaps_road.pynml'">
+        <tal:include metal:use-macro="load: vehicle_with_simple_body_colour_remaps_road.pynml" />
+    </tal:block>
+
     <!--! Properties and callback chains -->
     <tal:include metal:use-macro="load: graphics_switches.pynml" />
 

@@ -27,6 +27,16 @@ os.environ["CHAMELEON_CACHE"] = chameleon_cache_path
 generated_files_path = road_hog.generated_files_path
 
 
+def runtime_recolour_livery_supplier():
+    # CABBAGE352: keep IH livery ordering/serialization for uncalled switches.
+    from road_vehicle.livery import LiverySupplier
+
+    supplier = LiverySupplier()
+    for name, spec in global_constants.freight_wagon_liveries.items():
+        supplier.add_livery(name, is_freight_wagon_livery=True, **spec)
+    return supplier
+
+
 def render_header_item_nml(header_item, roster, consists, graphics_path):
     template = templates[header_item + ".pynml"]
     return utils.unescape_chameleon_output(
@@ -40,6 +50,8 @@ def render_header_item_nml(header_item, roster, consists, graphics_path):
             # roster_manager=road_hog.roster_manager,# !! shimmed out
             graphics_path=graphics_path,
             git_info=git_info,
+            # CABBAGE352: procedure rendering data, with no vehicle callers yet.
+            livery_supplier=runtime_recolour_livery_supplier(),
         )
     )
 
@@ -83,7 +95,10 @@ def main():
     """
     consists = roster.consists_in_buy_menu_order
 
-    header_items = ["header", "cargo_table", "roadtypes_tramtypes"]
+    # CABBAGE352: IH recolour sprite table, before road-vehicle items.
+    # Complete wagon strategy template is staged, but its IH badge/parameter
+    # dependencies must be adapted before it can be included in generated NML.
+    header_items = ["header", "cargo_table", "roadtypes_tramtypes", "recolour_sprites", "alt_vars_random_bits_road", "procedures_wagon_recolour_strategies_road"]
     for header_item in header_items:
         grf_nml.write(
             render_header_item_nml(header_item, roster, consists, graphics_path)
