@@ -102,3 +102,27 @@ def unpack_colour(colour_name, cc_to_remap):
             + " + company_colour"
             + str(1 if cc_to_remap == 2 else 2)
         )
+
+def string_format_compile_time_deltas(time_start, time_later):
+    return format((time_later - time_start), ".2f") + " s"
+
+
+# move timing decorator to Polar Fox?
+import time
+import functools
+
+
+def timing(func):
+    """Decorator that reports the execution time of the wrapped function."""
+
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        start = time.perf_counter()
+        result = func(*args, **kwargs)
+        end = time.perf_counter()
+        print(f"{func.__name__} took {end - start:.4f} seconds")
+        return result
+
+    return wrapper
+
+

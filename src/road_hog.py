@@ -15,6 +15,8 @@ generated_files_path = os.path.join(currentdir, global_constants.generated_files
 # exist_ok=True is used for case with parallel make (`make -j 2` or similar), don't fail with error if dir already exists
 os.makedirs(generated_files_path, exist_ok=True)
 
+from badges.badge import BadgeManager
+
 # import rosters
 from rosters import landrace
 from rosters import heqs
@@ -73,9 +75,15 @@ roster_manager = RosterManager()
 
 
 def main():
+
+    # globals *within* this module so they can be accessed externally by other modules using iron_horse.foo
+    globals()["badge_manager"] = BadgeManager()
+
     # rosters
     # in the rare case that an unfinished roster won't init cleanly, comment it out here and possibly also in the import
     # built-in support for disabled rosters was removed during the conversion to multi-grf, it was an unnecessary abstraction when only one roster is used per grf
+
+
     roster_manager.add_roster(landrace)
     roster_manager.add_roster(heqs)
 
