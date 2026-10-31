@@ -1,3 +1,4 @@
+import importlib
 import os.path
 
 currentdir = os.curdir
@@ -6,20 +7,22 @@ import sys
 
 sys.path.append(os.path.join("src"))  # add to the module search path
 
+from functools import cached_property
+
 import global_constants
 import utils
+from utils import timing
 
 command_line_args = utils.get_command_line_args()
 
 generated_files_path = os.path.join(currentdir, global_constants.generated_files_dir)
-# exist_ok=True is used for case with parallel make (`make -j 2` or similar), don't fail with error if dir already exists
-os.makedirs(generated_files_path, exist_ok=True)
 
 from badges.badge import BadgeManager
 
-# import rosters
-from rosters import landrace
-from rosters import heqs
+roster_module_names = [
+    "landrace",
+    "heqs",
+]
 
 class RosterManager(list):
     """
@@ -28,11 +31,17 @@ class RosterManager(list):
     Extends default python list, as we also use it when we want a list of active rosters (the instantiated class instance behaves like a list object).
     """
 
-    def add_roster(self, roster_module):
-        roster = roster_module.main()
-        self.append(roster)
-        # some actions have to be run after the register is added to RosterManager
-        roster.post_init_actions()
+    def add_rosters(self, roster_module_names):
+        for roster_module_name in roster_module_names:
+            roster_module = importlib.import_module(
+                "." + roster_module_name, package="rosters"
+            )
+            roster = roster_module.main()
+            self.append(roster)
+
+        # run after all rosters have been registered
+        for roster in self:
+            roster.post_init_actions()
 
     def validate_vehicles(self):
         # has to be explicitly called after all rosters are active, and all vehicles and vehicle units are registered to each roster
@@ -50,7 +59,7 @@ class RosterManager(list):
             roster.add_buyable_variant_groups()
     """
 
-    @property
+    @cached_property
     def active_roster(self):
         # special case if we only want the id report, which does not require an active roster
         if command_line_args.grf_name == "id-report-only":
@@ -69,22 +78,17 @@ class RosterManager(list):
         else:
             raise Exception("RosterManager: no roster found for ", roster_id)
 
-
-# declared outside of main, got bored trying to figure out how to otherwise put it in the module scope
-roster_manager = RosterManager()
-
-
+# @timing
 def main():
+    # exist_ok=True is used for case with parallel make (`make -j 2` or similar), don't fail with error if dir already exists
+    os.makedirs(generated_files_path, exist_ok=True)
 
-    # globals *within* this module so they can be accessed externally by other modules using iron_horse.foo
+    # globals within this module, accessible externally as road_hog.foo
     globals()["badge_manager"] = BadgeManager()
+    globals()["roster_manager"] = RosterManager()
 
-    # rosters
-    # in the rare case that an unfinished roster won't init cleanly, comment it out here and possibly also in the import
-    # built-in support for disabled rosters was removed during the conversion to multi-grf, it was an unnecessary abstraction when only one roster is used per grf
-
-
-    roster_manager.add_roster(landrace)
-    roster_manager.add_roster(heqs)
-
+    roster_manager.add_rosters(roster_module_names)
     roster_manager.validate_vehicles()
+
+    # BadgeManager.produce_badges() must be made a no-op separately.
+    #badge_manager.produce_badges(roster_manager=roster_manager)
