@@ -7,7 +7,7 @@ def main(roster_id):
     model_def = ModelDef(
         schema_name="MailTram",
         model_id="strongbox_mail",
-        base_numeric_id=830,
+        base_numeric_id=16520,
         name="Strongbox",
         power=480,  # custom power
         gen=4,

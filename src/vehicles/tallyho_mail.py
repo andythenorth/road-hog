@@ -7,7 +7,7 @@ def main(roster_id):
     model_def = ModelDef(
         schema_name="MailTruck",
         model_id="tallyho_mail",
-        base_numeric_id=450,
+        base_numeric_id=16460,
         name="Tallyho",
         power=90,
         gen=2,

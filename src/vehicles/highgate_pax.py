@@ -10,7 +10,7 @@ def main(roster_id):
     model_def = ModelDef(
         schema_name="PaxLocalBus",
         model_id="highgate_pax",
-        base_numeric_id=590,
+        base_numeric_id=16490,
         name="Highgate",
         power=240,
         speed=50,

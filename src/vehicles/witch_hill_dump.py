@@ -7,7 +7,7 @@ def main(roster_id):
     model_def = ModelDef(
         schema_name="DumpHEQS",
         model_id="witch_hill_dump",
-        base_numeric_id=500,
+        base_numeric_id=16470,
         name="Witch Hill",
         power=900,
         speed=50,  # dibbled up above RL for game balance

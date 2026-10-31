@@ -10,7 +10,7 @@ def main(roster_id):
     model_def = ModelDef(
         schema_name="PaxLocalBus",
         model_id="topley_pax",
-        base_numeric_id=60,
+        base_numeric_id=16430,
         name="Topley",
         power=360,
         speed=55,

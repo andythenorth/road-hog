@@ -10,7 +10,7 @@ def main(roster_id):
     model_def = ModelDef(
         schema_name="PaxLocalBus",
         model_id="leyburn_pax",
-        base_numeric_id=20,
+        base_numeric_id=16400,
         name="Leyburn",
         power=100,  # custom power
         speed=40,

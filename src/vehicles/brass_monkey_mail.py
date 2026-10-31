@@ -7,7 +7,7 @@ def main(roster_id):
     model_def = ModelDef(
         schema_name="MailTruck",
         model_id="brass_monkey_mail",
-        base_numeric_id=570,
+        base_numeric_id=16480,
         name="Brass Monkey",
         power=140,
         speed=55,

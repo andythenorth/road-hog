@@ -7,7 +7,7 @@ def main(roster_id):
     model_def = ModelDef(
         schema_name="MailTram",
         model_id="singing_river_mail",
-        base_numeric_id=850,
+        base_numeric_id=16530,
         name="Singing River",
         power=600,
         gen=5,

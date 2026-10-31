@@ -10,7 +10,7 @@ def main(roster_id):
     model_def = ModelDef(
         schema_name="PaxExpressCoach",
         model_id="glenmore_pax_express",
-        base_numeric_id=50,
+        base_numeric_id=16420,
         name="Glenmore",
         power=160,
         speed=55,

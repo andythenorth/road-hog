@@ -11,7 +11,8 @@ from functools import cached_property
 from . import schemas
 
 from .model_def import UnitDef
-from .livery import LiveryDef, livery_supplier
+from .livery import LiveryDef
+import road_hog
 
 
 @dataclass
@@ -70,22 +71,22 @@ class Catalogue(list):
             if roster_module is None:
                 raise ValueError(f"{self.model_id}: livery group requires roster module")
             result = [
-                livery_supplier.deliver(livery_name, relative_spriterow_num=index)
+                road_hog.livery_supplier.deliver(livery_name, relative_spriterow_num=index)
                 for livery_name, index in roster_module.pax_mail_livery_groups[livery_group_name]
             ]
         elif getattr(model_def, "liveries", None) is not None:
             result = [
-                livery_supplier.deliver(name, relative_spriterow_num=index)
+                road_hog.livery_supplier.deliver(name, relative_spriterow_num=index)
                 for index, name in enumerate(model_def.liveries)
             ]
         elif hasattr(schema_cls, "liveries"):
             result = [
-                livery_supplier.deliver(name, relative_spriterow_num=index)
+                road_hog.livery_supplier.deliver(name, relative_spriterow_num=index)
                 for index, name in enumerate(schema_cls.liveries)
             ]
         else:
             # Road Hog's step 005 compatibility: implicit single default variant.
-            result = [livery_supplier.deliver("DEFAULT", relative_spriterow_num=0)]
+            result = [road_hog.livery_supplier.deliver("DEFAULT", relative_spriterow_num=0)]
 
         if not result:
             raise ValueError(f"no liveries found for {self.model_id}")

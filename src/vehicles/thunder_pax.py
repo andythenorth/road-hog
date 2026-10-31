@@ -10,7 +10,7 @@ def main(roster_id):
     model_def = ModelDef(
         schema_name="PaxLocalBus",
         model_id="thunder_pax",
-        base_numeric_id=40,
+        base_numeric_id=16410,
         name="Thunder",
         power=160,
         speed=45,

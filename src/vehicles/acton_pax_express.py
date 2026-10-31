@@ -10,7 +10,7 @@ def main(roster_id):
     model_def = ModelDef(
         schema_name="PaxExpressCoach",
         model_id="acton_pax_express",
-        base_numeric_id=600,
+        base_numeric_id=16500,
         name="Acton",
         power=360,
         speed=90,
