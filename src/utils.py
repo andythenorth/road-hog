@@ -1,5 +1,6 @@
 import argparse
 import os.path
+from functools import lru_cache
 import global_constants
 from polar_fox import git_info
 from polar_fox.utils import (
@@ -55,16 +56,24 @@ def get_command_line_args():
     return argparser.parse_args()
 
 
-def get_docs_url():
+@lru_cache(maxsize=None)
+def get_git_tag_or_version():
+    # expensive if repeated due to git lookup, pre-compute and cache it
+    return git_info.get_monorepo_tag_parts()[1]
+
+@lru_cache(maxsize=None)
+def get_docs_base_url():
     # not convinced this belongs in utils, but I can't find anywhere better to put it
     # could be in polar fox - method will be common to all grfs? - pass the project name as a var?
     # not convinced it's big enough to bother centralising TBH, too much close coupling has costs
     result = [global_constants.metadata["docs_url"]]
     if git_info.get_tag_exact_match() != "undefined":
-        result.append(git_info.get_monorepo_tag_parts()[1])
-    result.append("index.html")
+        result.append(get_git_tag_or_version())
     return "/".join(result)
 
+@lru_cache(maxsize=None)
+def get_docs_url():
+    return get_docs_base_url() + "/index.html"
 
 def parse_base_lang():
     # expose base lang strings to python - for reuse in docs
@@ -103,9 +112,42 @@ def unpack_colour(colour_name, cc_to_remap):
             + str(1 if cc_to_remap == 2 else 2)
         )
 
+def load_av41(field_name):
+    # just why?
+    # because reasons...
+    # - alt_var_41 is only safe to call once due to massive loop-unroll; results are stored in temp registers
+    # - alt_var_41 registers can't be safely read via neat little procedures because 15-bit callback returns can silently drop negatives
+    # this wrapper avoids LOAD_TEMP(${temp_storage_map.long_map_lookup}) boilerplate and prevents future refactor traps
+    # load_av41 is for template brevity, much as I am against `i = foo` type naming
+    temp_storage_number = global_constants.temp_storage_map[field_name]
+    return f"LOAD_TEMP({temp_storage_number})"
+
+def convert_flat_list_to_pairs_of_tuples(flat_list):
+    # used to create a list suitable for iterating over and pushing values to the text stack
+    # parse a flat list [a, b, c] into a list of 2 tuples [(a, b), (c, 0)] as we need to push 2 WORD values into each DWORD text stack register
+    pairs = [
+        (
+            flat_list[i],
+            flat_list[i + 1] if i + 1 < len(flat_list) else "0",
+        )
+        for i in range(0, len(flat_list), 2)
+    ]
+    return pairs
+
 def string_format_compile_time_deltas(time_start, time_later):
     return format((time_later - time_start), ".2f") + " s"
 
+
+def nml_safe_id(s: str) -> str:
+    NML_SAFE_REPLACEMENTS = {
+        "/": "_",
+        "-": "_minus_",
+        "!": "_shebang_",
+        # add more here as needed
+    }
+    for bad_char, replacement in NML_SAFE_REPLACEMENTS.items():
+        s = s.replace(bad_char, replacement)
+    return s
 
 def grfid_to_dword(grfid: str) -> str:
     """
@@ -137,6 +179,99 @@ def grfid_to_dword(grfid: str) -> str:
     return f"{dword:08X}"
 
 
+# move logger to Polar Fox?
+import logging
+import os
+import sys
+import re
+
+# ANSI escape codes
+COLOR_CODES = {
+    "reset": "\033[0m",
+    "cyan": "\033[96m",
+    "red": "\033[91m",
+    "green": "\033[92m",
+    "yellow": "\033[93m",
+    "aquamarine": "\033[38;5;122m",
+    # Add more as needed
+}
+
+ANSI_ESCAPE_RE = re.compile(r"\x1b\[[0-9;]*m")
+
+
+class ColoredLogger(logging.Logger):
+    def __init__(self, name):
+        super().__init__(name)
+        self._current_colour = None
+
+    def set_colour(self, colour_name):
+        if colour_name in COLOR_CODES:
+            self._current_colour = COLOR_CODES[colour_name]
+        else:
+            raise ValueError(f"Unknown colour: {colour_name}")
+
+    def reset_colour(self):
+        self._current_colour = None
+
+    def get_colour(self):
+        return self._current_colour
+
+
+class ColorizingFormatter(logging.Formatter):
+    """Applies colour only in console formatter, not in log files."""
+
+    def __init__(self, get_colour_fn, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._get_colour = get_colour_fn
+
+    def format(self, record):
+        msg = super().format(record)
+        colour = self._get_colour()
+        if colour:
+            return f"{colour}{msg}{COLOR_CODES['reset']}"
+        return msg
+
+
+class StrippingFormatter(logging.Formatter):
+    """Strips ANSI codes from log file output."""
+
+    def format(self, record):
+        msg = super().format(record)
+        return ANSI_ESCAPE_RE.sub("", msg)
+
+
+def get_logger(module_name):
+    logging.setLoggerClass(ColoredLogger)
+    logger = logging.getLogger(module_name)
+
+    if not logger.handlers:
+        logger.setLevel(logging.DEBUG)
+
+        # Ensure log dir exists
+        os.makedirs("build_logs", exist_ok=True)
+        log_filename = os.path.join(
+            "build_logs", os.path.basename(module_name) + ".log"
+        )
+
+        # File handler — strip ANSI
+        file_handler = logging.FileHandler(log_filename, mode="a", encoding="utf-8")
+        file_handler.setLevel(logging.DEBUG)
+        file_formatter = StrippingFormatter(
+            "%(asctime)s [%(levelname)s] %(message)s", datefmt="%Y-%m-%d %H:%M:%S"
+        )
+        file_handler.setFormatter(file_formatter)
+        logger.addHandler(file_handler)
+
+        # Console handler — apply ANSI
+        console_handler = logging.StreamHandler(sys.stdout)
+        console_handler.setLevel(logging.INFO)
+        console_formatter = ColorizingFormatter(logger.get_colour, "%(message)s")
+        console_handler.setFormatter(console_formatter)
+        logger.addHandler(console_handler)
+
+    return logger
+
+
 # move timing decorator to Polar Fox?
 import time
 import functools
@@ -155,4 +290,32 @@ def timing(func):
 
     return wrapper
 
+
+
+class DwordGrfID(object):
+    """
+    grfids in game and bananas are presented as dwords, so it would be more convenient all round to use the dword
+    however nml wants grfids as literals, so this class stores a dword, and converts it to an *nml* literal on demand
+    """
+
+    def __init__(self, grfid):
+        self.grfid_as_dword = grfid  # keep the grfid around in case it's wanted for docs etc (as yet unknown)
+        # split to bytes
+        split = [
+            self.grfid_as_dword[i : i + 2]
+            for i in range(0, len(self.grfid_as_dword), 2)
+        ]
+        self.grfid = "\\" + "\\".join(
+            split
+        )  # note the leading '\' that nml requires (escaped as double \\ for python)
+
+class LiteralGrfID(object):
+    """
+    store a literal grfid directly, which is convenient for nml
+    but most grfids are found in the wild as dwords, in which case it's simpler to use the class for dword grfids instead ;)
+    """
+
+    def __init__(self, grfid):
+        # grfid should be passed using r"literal", to avoid python interpreting \ chars as escapes
+        self.grfid = grfid
 

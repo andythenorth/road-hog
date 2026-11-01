@@ -16,7 +16,9 @@ command_line_args = utils.get_command_line_args()
 from chameleon import PageTemplateLoader
 
 # setup the places we look for templates
-templates = PageTemplateLoader(os.path.join(currentdir, "src", "templates"))
+templates = PageTemplateLoader(
+    os.path.join(currentdir, "src", "templates"), format="text"
+)
 
 # setting up a cache for compiled chameleon templates can significantly speed up template rendering
 chameleon_cache_path = os.path.join(currentdir, global_constants.chameleon_cache_dir)
@@ -29,7 +31,7 @@ generated_files_path = road_hog.generated_files_path
 
 def render_header_item_nml(header_item, roster, consists, graphics_path):
     template = templates[header_item + ".pynml"]
-    return utils.unescape_chameleon_output(
+    result = utils.unescape_chameleon_output(
         template(
             roster=roster,
             consists=consists,
@@ -37,32 +39,44 @@ def render_header_item_nml(header_item, roster, consists, graphics_path):
             # temp_storage_ids=global_constants.temp_storage_ids,  # convenience measure # !! shimmed out
             utils=utils,
             # railtype_manager=road_hog.railtype_manager,# !! shimmed out
-            # roster_manager=road_hog.roster_manager,# !! shimmed out
+            roster_manager=road_hog.roster_manager,
+            badge_manager=road_hog.badge_manager,
             graphics_path=graphics_path,
             git_info=git_info,
             # CABBAGE352: procedure rendering data, with no vehicle callers yet.
             livery_supplier=road_hog.livery_supplier,
         )
     )
+    # write the nml per header item to disk, it aids debugging
+    with open(
+        os.path.join(generated_files_path, "nml", header_item + ".nml"),
+        "w",
+        encoding="utf-8",
+        newline="",
+    ) as header_item_nml:
+        header_item_nml.write(result)
+
+    return result
 
 
 def render_item_nml(item, graphics_path):
     result = utils.unescape_chameleon_output(item.render(templates, graphics_path))
     # write the nml per item to disk, it aids debugging
-
-    item_nml = open(
+    with open(
         os.path.join(generated_files_path, "nml", item.id + ".nml"),
         "w",
         encoding="utf-8",
-    )
-    item_nml.write(result)
-    item_nml.close()
+        newline="",
+    ) as item_nml:
+        item_nml.write(result)
+
     # also return the nml directly for writing to the concatenated nml, don't faff around opening the generated nml files from disk
     return result
 
 
 def main():
-    print("[RENDER NML]", " ".join(sys.argv))
+    globals()["logger"] = utils.get_logger(__file__)
+    logger.info(f"[RENDER NML] {' '.join(sys.argv)}")
     start = time()
     road_hog.main()
 
@@ -78,6 +92,7 @@ def main():
         os.path.join(generated_files_path, command_line_args.grf_name + ".nml"),
         "w",
         encoding="utf-8",
+        newline="",
     )
 
     """
@@ -89,10 +104,16 @@ def main():
     # Complete wagon strategy template is staged, but its IH badge/parameter
     # dependencies must be adapted before it can be included in generated NML.
     header_items = ["header", "cargo_table", "roadtypes_tramtypes", "recolour_sprites", "alt_vars_random_bits_road", "procedures_wagon_recolour_strategies_road"]
+    render_header_item_nml_start = time()
     for header_item in header_items:
         grf_nml.write(
             render_header_item_nml(header_item, roster, consists, graphics_path)
         )
+
+    logger.info(
+        f"render_header_item_nml "
+        f"{utils.string_format_compile_time_deltas(render_header_item_nml_start, time())}"
+    )
 
     # multiprocessing was tried here and removed as it was empirically slower in testing (due to overhead of starting extra pythons probably)
     """
@@ -102,17 +123,23 @@ def main():
 
     # note to future self - if we introduce randomised vehicle selections, we might run out of action 2 IDs
     # - see Horse consists_in_order_optimised_for_action_2_ids if that happens, but as of September 2023 it's not a concern
+    render_item_nml_start = time()
     for consist in consists:
         grf_nml.write(render_item_nml(consist, graphics_path))
 
+    logger.info(
+        f"render_item_nml "
+        f"{utils.string_format_compile_time_deltas(render_item_nml_start, time())}"
+    )
+
     grf_nml.close()
 
-    print(
-        "[RENDER NML]",
-        command_line_args.grf_name,
-        "- complete",
-        format((time() - start), ".2f") + "s",
+    logger.set_colour("cyan")
+    logger.info(
+        f"[RENDER NML] {command_line_args.grf_name} - complete "
+        f"{utils.string_format_compile_time_deltas(start, time())}"
     )
+    logger.set_colour("reset")
 
 
 if __name__ == "__main__":
