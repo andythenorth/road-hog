@@ -103,7 +103,7 @@ def main():
     # CABBAGE352: IH recolour sprite table, before road-vehicle items.
     # Complete wagon strategy template is staged, but its IH badge/parameter
     # dependencies must be adapted before it can be included in generated NML.
-    header_items = ["header", "cargo_table", "roadtypes_tramtypes", "recolour_sprites", "alt_vars_random_bits_road", "procedures_wagon_recolour_strategies_road"]
+    header_items = ["header", "cargo_table", "roadtypes_tramtypes", "badges", "recolour_sprites", "alt_vars_random_bits_road", "procedures_wagon_recolour_strategies_road"]
     render_header_item_nml_start = time()
     for header_item in header_items:
         grf_nml.write(

@@ -63,21 +63,13 @@ class BadgeManager(list):
         badge_graphics_generator.render_predrawn_livery_badges()
         badge_graphics_generator.render_generated_livery_badges()
 
+    # CABBAGE488
     def produce_badges(self, **kwargs):
-        # explicit, not on __init__, more controllable
-        self.produce_badges_from_static_config(**kwargs)
-        self.produce_grf_metadata_badges(**kwargs)
-        self.produce_railtype_badges(**kwargs)
-        self.produce_power_source_badges(**kwargs)
-        self.produce_distributed_power_badges(**kwargs)
-        self.produce_livery_badges(**kwargs)
-        self.produce_vehicle_family_badges(**kwargs)
-        self.produce_formation_ruleset_badges(**kwargs)
-        self.produce_general_metadata_badges(**kwargs)
-        self.produce_randomised_wagon_candidate_badges(**kwargs)
-        self.produce_tech_tree_badges(**kwargs)
-        self.produce_pantograph_display_badges(**kwargs)
+        # Road Hog has the Iron Horse badge lifecycle, but defines no badges yet.
+        self.add_badge(label="cabbage/foo")
 
+
+    # CABBAGE488
     def produce_badges_from_static_config(self, **kwargs):
         # purely static badges
         for (
@@ -98,6 +90,7 @@ class BadgeManager(list):
                     name=sublabel_properties.get("name", None),
                 )
 
+    # CABBAGE488
     def produce_grf_metadata_badges(self, **kwargs):
         roster_manager = kwargs["roster_manager"]
         if roster_manager.active_roster is not None:
@@ -105,6 +98,7 @@ class BadgeManager(list):
                 f"newgrf/{utils.grfid_to_dword(roster_manager.active_roster.grfid)}"
             )
 
+    # CABBAGE488
     def produce_railtype_badges(self, **kwargs):
         # these are really just an experiment to see if they aid debug, they don't do anything else as of April 2025, and `dumpinfo railtypes` gets the same result
         railtype_manager = kwargs["railtype_manager"]
@@ -119,6 +113,7 @@ class BadgeManager(list):
                 ],  # !! doesn't appear to be copying to vehicle as of April 2025
             )
 
+    # CABBAGE488
     def produce_vehicle_family_badges(self, **kwargs):
         roster_manager = kwargs["roster_manager"]
         if roster_manager.active_roster is not None:
@@ -128,6 +123,7 @@ class BadgeManager(list):
                     label=catalogue.vehicle_family_badge,
                 )
 
+    # CABBAGE488
     def produce_randomised_wagon_candidate_badges(self, **kwargs):
         # this is for debug use
         roster_manager = kwargs["roster_manager"]
@@ -141,12 +137,14 @@ class BadgeManager(list):
                             label=f"{badge}",
                         )
 
+    # CABBAGE488
     def produce_power_source_badges(self, **kwargs):
         for power_source in global_constants.power_sources.keys():
             self.add_badge(
                 label=f"power/{power_source.lower()}",
             )
 
+    # CABBAGE488
     def produce_pantograph_display_badges(self, **kwargs):
         roster_manager = kwargs["roster_manager"]
         if roster_manager.active_roster is not None:
@@ -156,6 +154,7 @@ class BadgeManager(list):
                         label=f"{badge}",
                     )
 
+    # CABBAGE488
     def produce_distributed_power_badges(self, **kwargs):
         roster_manager = kwargs["roster_manager"]
         if roster_manager.active_roster is not None:
@@ -165,6 +164,7 @@ class BadgeManager(list):
                         label=f"{badge}",
                     )
 
+    # CABBAGE488
     def produce_livery_badges(self, **kwargs):
         # this includes some badges which could strictly be static, but we group all livery concerns together in this method
         livery_supplier = kwargs["livery_supplier"]
@@ -205,6 +205,7 @@ class BadgeManager(list):
                 label=f"_ih_livery_def/colour_set_names/{colour_set_name}",
             )
 
+    # CABBAGE488
     def produce_formation_ruleset_badges(self, **kwargs):
         roster_manager = kwargs["roster_manager"]
         if roster_manager.active_roster is not None:
@@ -212,6 +213,7 @@ class BadgeManager(list):
                 for badge in catalogue.example_model_variant.formation_ruleset_badges:
                     self.add_badge(f"{badge}")
 
+    # CABBAGE488
     def produce_general_metadata_badges(self, **kwargs):
         # model variants not catalogues here, metadata can vary per model variant
         roster_manager = kwargs["roster_manager"]
@@ -220,6 +222,7 @@ class BadgeManager(list):
                 for badge in model_variant.general_metadata_badges:
                     self.add_badge(f"{badge}")
 
+    # CABBAGE488
     def produce_tech_tree_badges(self, **kwargs):
         # this is for debug use
         # gen is NOT part of the tech tree as of April 2025, decided it's a standalone item

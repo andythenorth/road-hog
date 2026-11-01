@@ -99,5 +99,8 @@ def main(validate_vehicle_ids=False, run_post_validation_steps=False):
         roster_module_names, validate_vehicle_ids, run_post_validation_steps
     )
 
-    # BadgeManager.produce_badges() must be made a no-op separately.
-    #badge_manager.produce_badges(roster_manager=roster_manager)
+    # badges, after roster production as in Iron Horse
+    badge_manager.produce_badges(
+        roster_manager=roster_manager,
+        livery_supplier=livery_supplier,
+    )
