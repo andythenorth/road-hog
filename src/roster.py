@@ -47,6 +47,24 @@ class Roster(object):
                 self.model_variants.extend(model_variants)
 
     @property
+    def model_variants_in_buy_menu_order(self):
+        """
+        Returns a flat list of VariantGroup instances, depth-first ordered from the nested parent/child structure.
+        """
+        result = []
+
+        def walk(group: VariantGroup):
+            result.extend(group)
+            for child in group.child_groups:
+                walk(child)
+
+        for group in self.variant_groups.values():
+            if group.parent_group is None:
+                walk(group)
+
+        return result
+
+    @property
     def buy_menu_sort_order(self):
         return [consist.id for consist in self.model_variants]
 
@@ -192,6 +210,9 @@ class Roster(object):
             )
             variant_group.append(model_variant)
 
+        # CABBAGE488: Iron Horse nests primary/secondary wagon-livery groups here.
+        # Road Hog currently groups by catalogue model_id, so these suffixes never
+        # occur. Retain the relationship handling for parity if grouping evolves.
         # handle nesting of wagon groups by primary and secondary livery options
         for variant_group_id, variant_group in self.variant_groups.items():
             if variant_group_id.endswith("_primary"):
