@@ -47,6 +47,8 @@ class RosterManager(list):
 
         # run after all rosters have been registered
         for roster in self:
+            for livery_name, livery_def in roster.vehicle_liveries.items():
+                livery_supplier.add_livery(livery_name, **livery_def)
             roster.produce_vehicles()
 
         if validate_vehicle_ids:

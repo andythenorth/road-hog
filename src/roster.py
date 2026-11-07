@@ -24,6 +24,7 @@ class Roster(object):
         self.intro_dates = kwargs.get("intro_dates")
         self.speeds = kwargs.get("speeds")
         self.power_bands = kwargs.get("power_bands")
+        self.vehicle_liveries = kwargs.get("vehicle_liveries", {})
         # consists_uninitialised only used once at __init__ time, it's a list of modules, not the actual consists
         # init of consists has to happen in produce_vehicles, otherwise consists can't get the roster
         self.consists_uninitialised = kwargs.get("vehicles")
