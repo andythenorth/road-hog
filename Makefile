@@ -102,7 +102,7 @@ $(HTML_DOCS): $(GRAPHICS_TARGETS) $(shell $(FIND_FILES) --ext=.py --ext=.pynml -
 	$(_V) $(PYTHON3) src/render_docs.py $(PY_GLOBAL_ARGS) --grf-name=$(subst /index.html,,$(subst docs/,,$@))
 
 html_docs: $(HTML_DOCS)
-#	$(_V) $(PYTHON3) src/id_report.py -gn=id-report-only
+	$(_V) $(PYTHON3) src/id_report.py -gn=id-report-only
 
 $(NML_FILES): $(shell $(FIND_FILES) --ext=.py --ext=.pynml src)
 	$(_V) $(PYTHON3) src/render_nml.py $(PY_GLOBAL_ARGS) --grf-name=$(subst .nml,,$(subst generated/,,$@))

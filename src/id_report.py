@@ -1,5 +1,12 @@
+import sys
+from time import time
+
 import global_constants
 import road_hog
+import utils
+
+# get args passed by makefile
+command_line_args = utils.get_command_line_args()
 
 
 def find_vacant_id_runs(numeric_id_defender, lower_bound, upper_bound):
@@ -36,6 +43,12 @@ def find_vacant_id_runs(numeric_id_defender, lower_bound, upper_bound):
 
 
 def main():
+    globals()["logger"] = utils.get_logger(__file__)
+    AQUA = "\033[38;5;122m"
+    JUNIPER = "\033[38;5;66m"
+    RESET = "\033[0m"
+    logger.info("[ID REPORT] " + " ".join(sys.argv))
+    start = time()
     road_hog.main(validate_vehicle_ids=True)
     # when adding vehicles it's useful to know what the next free numeric ID is
     # tidy-mind problem, but do we have any vacant numeric ID slots in the currently used range?
@@ -51,7 +64,6 @@ def main():
         # yolo 65k why not
         65000,
     )
-    report_content = ""
     for label, id_runs in {
         "Articulated IDs": id_gaps_articulated,
         "Non-Articulated IDs": id_gaps_non_articulated,
@@ -60,13 +72,22 @@ def main():
         for id_run in id_runs:
             if id_run[0] == id_run[1]:
                 # single id
-                id_gaps.append(str(id_run[0]))
+                id_gaps.append(f"{AQUA}{str(id_run[0])}")
             else:
                 # range of ids
-                id_gaps.append(" to ".join([str(id) for id in id_run]))
-        report_content += "Vacant " + label + ":\n" + ", ".join(id_gaps) + "\n"
-    # 'print' eh? - but it's fine echo_message isn't intended for this kind of info, don't bother changing
-    print(report_content)
+                id_gaps.append(f"{JUNIPER}[{' to '.join([str(id) for id in id_run])}]")
+        logger.info(f"\n" f"Vacant {label}:\n" f"{', '.join(id_gaps)}{RESET}")
+
+    # we want to be told about and clear out unused liveries, doesn't really belong anywhere, so here will do
+    road_hog.livery_supplier.report_unused_liveries()
+
+    logger.set_colour("cyan")
+    logger.info(
+        f"[ID REPORT] "
+        f"{command_line_args.grf_name} - complete "
+        f"{utils.string_format_compile_time_deltas(start, time())}"
+    )
+    logger.set_colour("reset")
 
 
 if __name__ == "__main__":
