@@ -121,7 +121,7 @@ class RoadVehicleBase:
         return "VEHICLE_NEVER_EXPIRES"
 
     def get_label_refits_allowed(self):
-        return ",".join(self.label_refits_allowed)
+        return ",".join(sorted(self.label_refits_allowed))
 
     def get_label_refits_disallowed(self):
         return ",".join(self.label_refits_disallowed)
