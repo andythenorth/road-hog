@@ -25,7 +25,7 @@ class Roster(object):
         self.speeds = kwargs.get("speeds")
         self.power_bands = kwargs.get("power_bands")
         # consists_uninitialised only used once at __init__ time, it's a list of modules, not the actual consists
-        # init of consists has to happen in post_init_actions, otherwise consists can't get the roster
+        # init of consists has to happen in produce_vehicles, otherwise consists can't get the roster
         self.consists_uninitialised = kwargs.get("vehicles")
         self.model_variants = []
         self.model_variants_by_catalogue = {}
@@ -34,7 +34,7 @@ class Roster(object):
             "unit_capacity_per_vehicle_type"
         )
 
-    def post_init_actions(self):
+    def produce_vehicles(self):
         # init of consists has to happen after the roster is registered with RosterManager, otherwise consists can't get the roster
         from road_vehicle.catalogue import Catalogue
 

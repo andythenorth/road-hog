@@ -47,7 +47,7 @@ class RosterManager(list):
 
         # run after all rosters have been registered
         for roster in self:
-            roster.post_init_actions()
+            roster.produce_vehicles()
 
         if validate_vehicle_ids:
             # validation is delegated to each roster
