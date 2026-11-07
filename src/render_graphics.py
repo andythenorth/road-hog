@@ -4,45 +4,21 @@ import os
 
 currentdir = os.curdir
 from multiprocessing import Pool
-import multiprocessing
-
-logger = multiprocessing.log_to_stderr()
-logger.setLevel(25)
 from time import time
 from itertools import repeat
 
 import road_hog
 import utils
 import global_constants
-from road_vehicle.schemas import RoadVehicleBase
 
 
-class _GraphicsFileView:
-    """A file name view for the old pipeline. This is not a Consist."""
-
-    def __init__(self, vehicle):
-        self.vehicle = vehicle
-        # CABBAGE The pipeline uses .id for input and output PNG file names.
-        # NML uses model variant / unit variant ids. Keep these separate.
-        self.id = vehicle.graphics_file_id
-
-    def __getattr__(self, name):
-        return getattr(object.__getattribute__(self, "vehicle"), name)
-
-
-def _graphics_input(vehicle):
-    if isinstance(vehicle, RoadVehicleBase):
-        return _GraphicsFileView(vehicle)
-    return vehicle
-
-
-def run_consist_pipelines(consist, graphics_output_path):
-    if len(consist.gestalt_graphics.pipelines) == 0:
+def run_vehicle_pipelines(target_config, graphics_output_path):
+    catalogue = target_config["catalogue"]
+    pipelines = catalogue.example_model_variant.gestalt_graphics.pipelines
+    if not pipelines:
         raise Exception("no pipelines")
-    else:
-        # run pipelines, obvs
-        for pipeline in consist.gestalt_graphics.pipelines:
-            pipeline.render(consist, global_constants, graphics_output_path)
+    for pipeline in pipelines:
+        pipeline.render(target_config, global_constants, graphics_output_path)
 
 
 def run_spritelayer_cargo_set_pipelines(
@@ -56,45 +32,35 @@ def run_spritelayer_cargo_set_pipelines(
         )
 
 
-def report_sprites_complete(consists):
-    # project management eh :P
-    complete = len(
-        [consist.sprites_complete for consist in consists if consist.sprites_complete]
+def report_sprites_complete(target_configs):
+    total = len(target_configs)
+    complete_count = sum(
+        1 for target in target_configs
+        if target["catalogue"].model_def.sprites_complete
     )
-    print(
-        "Sprites complete for",
-        complete,
-        "consists; incomplete for",
-        len(consists) - complete,
-        "consists;",
-        str(int(100 * (complete / len(consists)))) + "%",
+    percent_complete = int(100 * complete_count / total) if total else 100
+
+    logger.set_colour("aquamarine")
+    logger.info(
+        f"Sprites complete for {complete_count} vehicles; "
+        f"incomplete for {total - complete_count} vehicles; {percent_complete}%"
     )
+    logger.set_colour("reset")
+
     incomplete_by_track_type = {}
-    for consist in consists:
-        if not consist.sprites_complete:
-            incomplete_by_track_type.setdefault(
-                consist.base_track_type_name, []
-            ).append(consist)
-    for track_type, incomplete_consists in incomplete_by_track_type.items():
-        print("  *", track_type, len(incomplete_consists))
-    # also track vehicles where additional liveries are intended, but not defined and drawn
-    sprites_additional_liveries_potential_total = len(
-        [
-            consist.sprites_additional_liveries_potential
-            for consist in consists
-            if consist.sprites_additional_liveries_potential
-        ]
-    )
-    print(
-        "Additional livery ideas exist for",
-        sprites_additional_liveries_potential_total,
-        "consists",
-    )
+    for target in target_configs:
+        if not target["catalogue"].model_def.sprites_complete:
+            track_type = target["catalogue"].example_model_variant.base_track_type_name
+            incomplete_by_track_type.setdefault(track_type, []).append(target["catalogue"])
+
+    for track_type, group in incomplete_by_track_type.items():
+        logger.info(f"  * {track_type} {len(group)}")
 
 
 # wrapped in a main() function so this can be called explicitly, because unexpected multiprocessing fork bombs are bad
 def main():
-    print("[RENDER GRAPHICS]", " ".join(sys.argv))
+    globals()["logger"] = utils.get_logger(__file__)
+    logger.info(f"[RENDER GRAPHICS] {' '.join(sys.argv)}")
     start = time()
     road_hog.main()
     # get args passed by makefile
@@ -103,12 +69,10 @@ def main():
     num_pool_workers = command_line_args.num_pool_workers
     if num_pool_workers == 0:
         use_multiprocessing = False
-        # just print, no need for a coloured echo_message
-        print("Multiprocessing disabled: (PW=0)")
+        logger.info("Multiprocessing disabled: (PW=0)")
     else:
         use_multiprocessing = True
-        # just print, no need for a coloured echo_message
-        print("Multiprocessing enabled: (PW=" + str(num_pool_workers) + ")")
+        logger.info(f"Multiprocessing enabled: (PW={num_pool_workers})")
 
     roster = road_hog.roster_manager.active_roster
 
@@ -139,81 +103,41 @@ def main():
     )
     hint_file.close()
 
-    # The graphics pipelines are unchanged. Only their file-name input differs
-    # between old Consists and catalogue-produced model variants.
-    consists = [
-        _graphics_input(vehicle) for vehicle in roster.consists_in_buy_menu_order
-    ]
-
-    for consist in consists:
-        # Legacy Consists freeze roster lookups before multiprocessing.
-        # New schema vehicles use roster_id and model definitions, and do not
-        # have the old cross-roster freeze step.
-        if not isinstance(consist, _GraphicsFileView):
-            consist.freeze_cross_roster_lookups()
-
-    """
-    !! copied from Horse, will be needed, but not as of September 2023
-    # get a list of 2-tuple pairs for spritelayer cargos + cargo sets
-    # a list format is wanted for convenience with graphics multiprocessing pool
-    # the parent spritelayer_cargo object must be passed with the cargo set as cargo sets have render-time properties which change according to context
-    # but cargo_sets are global and reused across spritelayer_cargos, so they can't just store a single reference to their spritelayer_cargo parent
-    spritelayer_cargo_set_pairs = []
-    for spritelayer_cargo in road_hog.registered_spritelayer_cargos:
-        for cargo_set in spritelayer_cargo.cargo_sets:
-            spritelayer_cargo_set_pairs.append((spritelayer_cargo, cargo_set))
-    """
-
-    # sort the consists in priority processing order, priority 1 is first
-    # this enables some consists to depend on generated sprites from other consists
-    consists_in_priority_groups = {1: [], 2: []}
-    for consist in consists:
-        consists_in_priority_groups[
-            consist.gestalt_graphics.processing_priority
-        ].append(consist)
-
-    if use_multiprocessing == False:
-        """
-        !! copied from Horse, will be needed, but not as of September 2023
-        for spritelayer_cargo_set_pair in spritelayer_cargo_set_pairs:
-            run_spritelayer_cargo_set_pipelines(
-                spritelayer_cargo_set_pair, graphics_output_path
-            )
-        """
-        for processing_priority in [1, 2]:
-            for consist in consists_in_priority_groups[processing_priority]:
-                run_consist_pipelines(consist, graphics_output_path)
-    else:
-        # Would this go faster if the pipelines from each consist were placed in MP pool, not just the consist?
-        # probably potato / potato tbh
-        """
-        !! copied from Horse, will be needed, but not as of September 2023
-        pool = Pool(processes=num_pool_workers)
-        pool.starmap(
-            run_spritelayer_cargo_set_pipelines,
-            zip(
-                spritelayer_cargo_set_pairs,
-                repeat(graphics_output_path),
-            ),
+    targets = []
+    render_pass_targets = {1: [], 2: []}
+    output_names = set()
+    for model_variants in roster.model_variants_by_catalogue.values():
+        if not model_variants:
+            raise ValueError("Catalogue has no model variants")
+        catalogue = model_variants[0].catalogue
+        model_variant = catalogue.example_model_variant
+        output_name = model_variant.graphics_file_id
+        if output_name in output_names:
+            raise ValueError(f"Duplicate graphics output: {output_name}")
+        if any(variant.graphics_file_id != output_name for variant in model_variants):
+            raise ValueError(f"Catalogue {catalogue.model_id} has multiple graphics filenames")
+        output_names.add(output_name)
+        target_config = {"catalogue": catalogue}
+        targets.append(target_config)
+        render_pass_targets[model_variant.gestalt_graphics.processing_priority].append(
+            target_config
         )
-        pool.close()
-        pool.join()
-        """
-        # wait for first pool job to finish before starting further pool jobs
-        # vehicle pool jobs are repeated so that some vehicles can depend on generated sprites from others
-        for processing_priority in [1, 2]:
-            pool = Pool(processes=num_pool_workers)
-            pool.starmap(
-                run_consist_pipelines,
-                zip(
-                    consists_in_priority_groups[processing_priority],
-                    repeat(graphics_output_path),
-                ),
-            )
-            pool.close()
-            pool.join()
 
-    report_sprites_complete(consists)
+    if not use_multiprocessing:
+        for render_pass_num in [1, 2]:
+            for target_config in render_pass_targets[render_pass_num]:
+                run_vehicle_pipelines(target_config, graphics_output_path)
+    else:
+        # CABBAGE488: spawned workers need road_hog.main() to populate module-level managers.
+        # Iron Horse does not initialise workers explicitly.
+        with Pool(processes=num_pool_workers, initializer=road_hog.main) as pool:
+            for render_pass_num in [1, 2]:
+                pool.starmap(
+                    run_vehicle_pipelines,
+                    zip(render_pass_targets[render_pass_num], repeat(graphics_output_path)),
+                )
+
+    report_sprites_complete(targets)
 
     for dir_name in ["roadtypes"]:
         target_path = os.path.join(graphics_input_path, dir_name)
@@ -222,12 +146,12 @@ def main():
             shutil.rmtree(dest_path)
         shutil.copytree(target_path, dest_path)
 
-    print(
-        "[RENDER GRAPHICS]",
-        command_line_args.grf_name,
-        "- complete",
-        format((time() - start), ".2f") + "s",
+    logger.set_colour("cyan")
+    logger.info(
+        f"[RENDER GRAPHICS] {command_line_args.grf_name} - complete "
+        f"{utils.string_format_compile_time_deltas(start, time())}"
     )
+    logger.set_colour("reset")
 
 
 if __name__ == "__main__":

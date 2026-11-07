@@ -48,6 +48,11 @@ class Catalogue(list):
         return getattr(schemas, self.schema_name)
 
     @property
+    def example_model_variant(self):
+        roster = road_hog.roster_manager.get_roster_by_id(self.roster_id)
+        return roster.model_variants_by_catalogue[self.model_id][0]
+
+    @property
     def default_entry(self):
         return self[0]
 
@@ -56,7 +61,6 @@ class Catalogue(list):
 
     @property
     def livery_defs(self):
-        # Iron Horse precedence: model group, schema group, model liveries, schema liveries.
         model_def = self.model_def
         schema_cls = self.schema_cls
         roster_module = self.roster_id_providing_module
@@ -86,7 +90,6 @@ class Catalogue(list):
                 for index, name in enumerate(schema_cls.liveries)
             ]
         else:
-            # Road Hog's step 005 compatibility: implicit single default variant.
             result = [road_hog.livery_supplier.deliver("DEFAULT", relative_spriterow_num=0)]
 
         if not result:

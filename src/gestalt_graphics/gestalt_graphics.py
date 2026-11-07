@@ -22,13 +22,12 @@ class GestaltGraphics(object):
         return unit.spriterow_num
 
     def buy_menu_row_map(self, pipeline):
-        # Iron Horse row-map contract, adapted to Road Hog's single purchase row.
         return [
             {
                 "spriterow_num_dest": 0,
                 "source_vehicles_and_input_spriterow_nums": [
                     (unit, self.get_buy_menu_unit_input_row_num(pipeline, unit))
-                    for unit in pipeline.consist.units
+                    for unit in pipeline.example_model_variant.units
                 ],
             }
         ]
@@ -85,7 +84,6 @@ class GestaltGraphicsPrecompositedCargo(GestaltGraphics):
             self.piece_type = kwargs.get("piece")
         # required if piece is set, cargo sprites are available in multiple lengths, set the most appropriate
         self.cargo_length = kwargs.get("cargo_length", None)
-        # State needed by the copied Iron Horse row-enumeration methods.
         self.covered_vehicle_body = kwargs.get("covered_vehicle_body", False)
         self.weathered_states = kwargs.get(
             "weathered_states", {"unweathered": self.body_recolour_map}
@@ -101,10 +99,9 @@ class GestaltGraphicsPrecompositedCargo(GestaltGraphics):
             )
 
     def get_buy_menu_unit_input_row_num(self, pipeline, unit):
-        # Output row ownership is defined by GestaltGraphics, not unit indices.
         return sum(
             self.get_output_row_count_for_unit(previous_unit)
-            for previous_unit in pipeline.consist.units[: pipeline.consist.units.index(unit)]
+            for previous_unit in pipeline.example_model_variant.units[: pipeline.example_model_variant.units.index(unit)]
         )
 
     @property
@@ -172,8 +169,6 @@ class GestaltGraphicsPrecompositedCargo(GestaltGraphics):
         return result
 
     def get_output_row_count_for_unit(self, unit):
-        # Count the rows emitted by the current Road Hog compositor, using
-        # the same row types that drive its dispatch.
         if unit.always_use_same_spriterow:
             return 1
         result = 0
@@ -309,8 +304,6 @@ class GestaltGraphicsCustom(GestaltGraphics):
         return self._cargo_row_map
 
 class GestaltGraphicsSimpleBodyColourRemaps(GestaltGraphics):
-    # IH constructor interface; RH uses an existing compositor for the
-    # single unweathered freight CC1 row. CC-ready passenger sprites need none.
     def __init__(self, recolour_map=None, weathered_states=None, catalogue_entry=None, **kwargs):
         super().__init__()
         self.catalogue_entry = catalogue_entry

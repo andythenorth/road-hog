@@ -46,8 +46,8 @@ class Pipeline(object):
             currentdir,
             "src",
             "graphics",
-            self.consist.roster_id,
-            self.consist.id + ".png",
+            self.example_model_variant.roster_id,
+            self.catalogue.model_id + ".png",
         )
         if hasattr(self, "vehicle_unit"):
             spritesheet_name = self.vehicle_unit.get_spritesheet_name_body_or_complete_vehicle()
@@ -89,13 +89,11 @@ class Pipeline(object):
         return result
 
     def process_buy_menu_sprite_from_row_map(self, spritesheet):
-        # Adapted from Iron Horse's row-map compositor. Road Hog retains its
-        # purchase-sprite destination and semi-tractor geometry.
         buy_menu_image = Image.new(
-            "P", (self.consist.buy_menu_width, self.global_constants.docs_sprite_height), 0
+            "P", (self.example_model_variant.buy_menu_width, self.global_constants.docs_sprite_height), 0
         )
         buy_menu_image.putpalette(DOS_PALETTE)
-        for row_data in self.consist.gestalt_graphics.buy_menu_row_map(self):
+        for row_data in self.example_model_variant.gestalt_graphics.buy_menu_row_map(self):
             if row_data["spriterow_num_dest"] != 0:
                 raise ValueError("Road Hog currently supports one purchase sprite row")
             x_offset = 0
@@ -118,24 +116,20 @@ class Pipeline(object):
                 buy_menu_image.paste(sprite, (x_offset, 0), mask)
                 x_offset += increment
         spritesheet.sprites.paste(
-            buy_menu_image, (self.consist.buy_menu_x_loc, 10)
+            buy_menu_image, (self.example_model_variant.buy_menu_x_loc, 10)
         )
         return spritesheet
 
     def render_common(self, input_image, units):
-        # Render to the configured roster graphics directory, matching NML paths.
-        # Save via a temporary file and only replace an existing PNG when changed,
-        # so unchanged graphics do not invalidate the NML sprite cache.
-        output_path = os.path.join(self.graphics_output_path, self.consist.id + ".png")
+        # Preserve existing PNG timestamps when sprite content is unchanged.
+        output_path = os.path.join(self.graphics_output_path, self.catalogue.model_id + ".png")
         spritesheet = self.make_spritesheet_from_image(input_image)
 
         for unit in units:
             spritesheet = unit.render(spritesheet)
 
-        # CABBAGE488: Road Hog still schedules livery variants individually, so
-        # multiple jobs can target one output. Unlike Iron Horse's catalogue-based
-        # renderer, a fixed per-pipeline tmp name would collide between workers.
-        # Use a unique tmp name until caller scheduling is migrated.
+        # CABBAGE488: unique temp filenames differ from Iron Horse; retained for
+        # concurrent graphics builds that might target the same output directory.
         tmp_dir = os.path.join(self.graphics_output_path, "tmp")
         os.makedirs(tmp_dir, exist_ok=True)
         with tempfile.NamedTemporaryFile(
@@ -153,7 +147,7 @@ class Pipeline(object):
             if os.path.exists(output_path_tmp):
                 os.unlink(output_path_tmp)
 
-    def render(self, consist):
+    def render(self, target_config, global_constants, graphics_output_path):
         raise NotImplementedError("Implement me in %s" % repr(self))
 
 
@@ -166,9 +160,10 @@ class PassThroughPipeline(Pipeline):
         # this should be sparse, don't store any consist info in Pipelines, pass at render time
         super().__init__()
 
-    def render(self, consist, global_constants, graphics_output_path):
+    def render(self, target_config, global_constants, graphics_output_path):
         self.units = []
-        self.consist = consist
+        self.catalogue = target_config["catalogue"]
+        self.example_model_variant = self.catalogue.example_model_variant
         self.graphics_output_path = graphics_output_path
         input_image = Image.open(self.vehicle_source_input_path)
         result = self.render_common(input_image, self.units)
@@ -186,13 +181,14 @@ class CheckBuyMenuOnlyPipeline(Pipeline):
         # this should be sparse, don't store any consist info in Pipelines, pass at render time
         super().__init__()
 
-    def render(self, consist, global_constants, graphics_output_path):
+    def render(self, target_config, global_constants, graphics_output_path):
         self.units = []
-        self.consist = consist
+        self.catalogue = target_config["catalogue"]
+        self.example_model_variant = self.catalogue.example_model_variant
         self.global_constants = global_constants
         self.graphics_output_path = graphics_output_path
 
-        if self.consist.buy_menu_x_loc == global_constants.custom_buy_menu_x_loc:
+        if self.example_model_variant.buy_menu_x_loc == global_constants.custom_buy_menu_x_loc:
             # !! this currently will cause the vehicle spritesheet buy menu sprites to be copied to the pans spritesheet,
             # !! it needs pixels from the pans spritesheet, but automated buy menu sprites need providing first
             self.units.append(AddBuyMenuSprite(self.process_buy_menu_sprite_from_row_map))
@@ -309,7 +305,7 @@ class ExtendSpriterowsForCompositedSpritesPipeline(Pipeline):
             self.make_spritesheet_from_image(vehicle_livery_only_spriterow_input_image)
         )
 
-        for label, recolour_map in self.consist.gestalt_graphics.recolour_maps:
+        for label, recolour_map in self.example_model_variant.gestalt_graphics.recolour_maps:
             crop_box_dest = (
                 0,
                 0,
@@ -503,7 +499,7 @@ class ExtendSpriterowsForCompositedSpritesPipeline(Pipeline):
         crop_box_dest = (0, 0, self.sprites_max_x_extent, cargo_group_output_row_height)
 
         for cargo_filename in polar_fox.constants.piece_vehicle_type_to_sprites_maps[
-            self.consist.gestalt_graphics.piece_type
+            self.example_model_variant.gestalt_graphics.piece_type
         ]:
             # get a list, with a two-tuple (cargo_sprite, mask) for each of 4 angles
             # cargo sprites are assumed to be symmetrical, only 4 angles are needed
@@ -578,11 +574,12 @@ class ExtendSpriterowsForCompositedSpritesPipeline(Pipeline):
                 )
             )
 
-    def render(self, consist, global_constants, graphics_output_path):
+    def render(self, target_config, global_constants, graphics_output_path):
         self.units = (
             []
         )  # graphics units not same as consist units ! confusing overlap of terminology :(
-        self.consist = consist
+        self.catalogue = target_config["catalogue"]
+        self.example_model_variant = self.catalogue.example_model_variant
         self.global_constants = global_constants
         self.graphics_output_path = graphics_output_path
         self.sprites_max_x_extent = self.global_constants.sprites_max_x_extent
@@ -591,10 +588,10 @@ class ExtendSpriterowsForCompositedSpritesPipeline(Pipeline):
         # !! source_spriterow_count looks a bit weird though; I tried moving it to gestalts, but didn't really work
         consist_cumulative_source_spriterow_count = 0
         for vehicle_counter, vehicle_rows in enumerate(
-            self.get_spriterow_types_for_model(consist)
+            self.get_spriterow_types_for_model(self.example_model_variant)
         ):
             # 'vehicle_unit' not 'unit' to avoid conflating with graphics processor 'unit'
-            self.vehicle_unit = self.consist.unique_units[vehicle_counter]
+            self.vehicle_unit = self.example_model_variant.unique_units[vehicle_counter]
             vehicle_unit_cumulative_source_spriterow_count = 0
             vehicle_unit_source_base_yoffs = graphics_constants.spritesheet_top_margin + (
                 graphics_constants.spriterow_height
@@ -629,7 +626,7 @@ class ExtendSpriterowsForCompositedSpritesPipeline(Pipeline):
                 elif spriterow_type == "livery_only":
                     source_spriterow_count = 1
                     self.add_livery_only_spriterows(
-                        consist.gestalt_graphics.recolour_maps
+                        self.example_model_variant.gestalt_graphics.recolour_maps
                     )
                 elif spriterow_type == "bulk_cargo":
                     source_spriterow_count = 2
@@ -642,7 +639,7 @@ class ExtendSpriterowsForCompositedSpritesPipeline(Pipeline):
                 consist_cumulative_source_spriterow_count += source_spriterow_count
                 vehicle_unit_cumulative_source_spriterow_count += source_spriterow_count
 
-        if self.consist.buy_menu_x_loc == global_constants.custom_buy_menu_x_loc:
+        if self.example_model_variant.buy_menu_x_loc == global_constants.custom_buy_menu_x_loc:
             self.units.append(AddBuyMenuSprite(self.process_buy_menu_sprite_from_row_map))
 
         # for this pipeline, input_image is just blank white 10px high image, to which the vehicle sprites are then appended
