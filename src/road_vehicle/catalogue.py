@@ -22,6 +22,7 @@ class CatalogueEntry:
     unit_variant_ids: list[str]
     unit_numeric_ids: list[int]
     livery_def: LiveryDef
+    variant_group_id: str
 
     @property
     def index(self):
@@ -111,7 +112,8 @@ class Catalogue(list):
             ]
             self.append(
                 CatalogueEntry(
-                    self, model_variant_id, unit_variant_ids, unit_numeric_ids, livery_def
+                    self, model_variant_id, unit_variant_ids, unit_numeric_ids, livery_def,
+                    self.producer.get_variant_group_id(livery_def),
                 )
             )
         if not self or not self.model_def.unit_defs:
@@ -122,6 +124,11 @@ class Catalogue(list):
 
 
 class ModelVariantProducer:
+    def get_variant_group_id(self, livery_def):
+        # Road Hog has no cab/trailer family relationship or wagon-specific group hierarchy.
+        # Group the variants of a catalogue under their common model ID.
+        return self.catalogue.model_id
+
     def __init__(self, catalogue):
         self.catalogue = catalogue
 

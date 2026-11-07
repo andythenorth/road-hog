@@ -200,6 +200,26 @@ class RoadVehicleBase:
     def base_numeric_id(self):
         return self.model_def.base_numeric_id
 
+    @cached_property
+    def variant_group(self):
+        self.assert_variant_groups()
+        variant_group = self.roster.variant_groups[
+            self.catalogue_entry.variant_group_id
+        ]
+        return variant_group
+
+    @cached_property
+    def variant_group_as_nml_prop(self):
+        return self.variant_group.get_variant_group_prop_for_model_variant(self)
+
+    def assert_variant_groups(self):
+        if self.roster.variant_groups is None:
+            raise BaseException(
+                "variant_groups undefined for roster "
+                + self.roster.id
+                + " - probably buyable_variant.buyable_variant called before variant groups inited"
+            )
+
     @property
     def is_default_model_variant(self):
         return self.catalogue.is_default_model_variant(self)

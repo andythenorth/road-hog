@@ -1,4 +1,5 @@
 from collections import Counter
+from functools import cached_property
 import os
 import pickle
 import tomllib
@@ -28,6 +29,7 @@ class Roster(object):
         self.consists_uninitialised = kwargs.get("vehicles")
         self.model_variants = []
         self.model_variants_by_catalogue = {}
+        self.variant_groups = None
         self.unit_capacity_per_vehicle_type = kwargs.get(
             "unit_capacity_per_vehicle_type"
         )
@@ -165,6 +167,44 @@ class Roster(object):
         # no return value needed
 
 
+    def add_variant_groups(self):
+        # creating groups has to happen after *all* model variants are inited
+
+        # create the structure to hold the groups, this is set to None when the roster is inited, and should be None when this method is called
+        if self.variant_groups is not None:
+            raise BaseException(
+                "add_variant_groups() called more than once for roster " + self.id
+            )
+
+        self.variant_groups = {}
+
+        # for every buyable variant for every model_variant
+        # - add a group if it doesn't already exist
+        # - add the buyable variant as a member of the group
+
+        for model_variant in self.model_variants:
+            variant_group_id = model_variant.catalogue_entry.variant_group_id
+            if variant_group_id is None:
+                raise ValueError(model_variant.id)
+            variant_group = self.variant_groups.setdefault(
+                variant_group_id, VariantGroup(id=variant_group_id)
+            )
+            variant_group.append(model_variant)
+
+        # handle nesting of wagon groups by primary and secondary livery options
+        for variant_group_id, variant_group in self.variant_groups.items():
+            if variant_group_id.endswith("_primary"):
+                continue
+
+            # derive the base ID stem (everything before `_static`)
+            group_id_stem = variant_group_id.rsplit("_secondary", 1)[0]
+            primary_group_id = f"{group_id_stem}_primary"
+            primary_group = self.variant_groups.get(primary_group_id, None)
+            if (primary_group is not None) and (len(variant_group) > 0):
+                variant_group.parent_group = primary_group
+                primary_group.child_groups.append(variant_group)
+
+
     def get_lang_data(self, lang):
         # strings optionally vary per roster, so we have a method to fetch all lang data via the roster
         global_pragma = {}
@@ -194,3 +234,38 @@ class Roster(object):
                 lang_strings["STR_NAME_" + consist.catalogue.model_id.upper()] = model_def.name
 
         return {"global_pragma": global_pragma, "lang_strings": lang_strings}
+
+class VariantGroup(list):
+    """
+    Simple class to manage providing the variant_group nml property.
+    List members are model_variant instances.
+    Extends default python list, as it's a convenient behaviour (the instantiated class instance behaves like a list object).
+    """
+
+    def __init__(self, id):
+        self.id = id
+        self.parent_group = None
+        self.child_groups = []
+
+    def get_variant_group_prop_for_model_variant(self, model_variant):
+        # faff to find the group leader (typically the first variant)
+        leader = self[0]
+        if self.parent_group is not None:
+            if model_variant == self[0]:
+                leader = self.parent_group[0]
+
+        # guard - don't assign a group reference to the leader itself
+        if leader == model_variant:
+            return None
+
+        # for nml, we want the id of the first unit
+        return leader.units[0].id
+
+    @cached_property
+    def group_level(self):
+        level = 0
+        context = self
+        while context.parent_group is not None:
+            level += 1
+            context = context.parent_group
+        return level

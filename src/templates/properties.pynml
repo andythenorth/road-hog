@@ -26,6 +26,9 @@ item(FEAT_ROADVEHS, ${unit.id}, ${unit.numeric_id}) {
             vehicle_life:                   ${model_variant.vehicle_life};
             reliability_decay:              20; // default value
             retire_early:                   ${model_variant.retire_early};
+            <tal:variant_group condition="model_variant.variant_group_as_nml_prop is not None">
+                variant_group:                  ${model_variant.variant_group_as_nml_prop};
+            </tal:variant_group>
             sound_effect:                   ${getattr(model_variant, "_sound_effect", None) or unit.default_sound_effect};
         </tal:lead_unit_only>
         refit_cost:                     0; // this needs to be 0 if we want autorefit without using cb
