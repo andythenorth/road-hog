@@ -381,7 +381,7 @@ def main():
     print("[RENDER DOCS]", " ".join(sys.argv))
     start = time()
     # don't init road_hog on import of this module, do it explicitly inside main()
-    road_hog.main()
+    road_hog.main(run_post_validation_steps=True)
 
     roster = road_hog.roster_manager.active_roster
     # expect Exception failures if there is no active roster, don't bother explicitly handling that case
@@ -428,7 +428,7 @@ def main():
     static_dir_dst = os.path.join(html_docs_output_path, "static")
     shutil.copytree(static_dir_src, static_dir_dst)
 
-    consists = roster.consists_in_buy_menu_order
+    consists = roster.model_variants_in_buy_menu_order
     # default sort for docs is by intro year
     consists = sorted(consists, key=lambda consist: consist.intro_year)
     dates = sorted([i.intro_year for i in consists])

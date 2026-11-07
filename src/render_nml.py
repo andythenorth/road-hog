@@ -91,7 +91,7 @@ def main():
         newline="",
     )
 
-    consists = roster.consists_in_buy_menu_order
+    consists = roster.model_variants_in_buy_menu_order
     git_revision = git_info.get_revision()
 
     # CABBAGE352: IH recolour sprite table, before road-vehicle items.

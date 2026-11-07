@@ -1,13 +1,11 @@
 from collections import Counter
 from functools import cached_property
 import os
-import pickle
 import tomllib
 
 currentdir = os.curdir
 
 import global_constants
-import utils
 
 
 class Roster(object):
@@ -63,24 +61,6 @@ class Roster(object):
                 walk(group)
 
         return result
-
-    @property
-    def buy_menu_sort_order(self):
-        return [consist.id for consist in self.model_variants]
-
-    @property
-    def consists_in_buy_menu_order(self):
-        result = []
-        result.extend(self.model_variants)
-        for consist in result:
-            # if consist won't pickle, then multiprocessing blows up, catching it here is faster and easier
-            try:
-                pickle.dumps(consist)
-            except:
-                utils.echo_message("Pickling failed for consist: " + consist.id)
-                raise
-        return result
-
 
     def validate_vehicle_ids(self, numeric_id_defender):
         # has to be explicitly called after all model variants and units are registered to the roster
