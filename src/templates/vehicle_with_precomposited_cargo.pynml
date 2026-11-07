@@ -2,21 +2,21 @@
 
 <tal:enumerated_visible_cargo condition="hasattr(model_variant.gestalt_graphics, 'get_unique_spritesets')">
     <tal:spritesets repeat="spriteset_data model_variant.gestalt_graphics.get_unique_spritesets(unit)">
-        spriteset(${unit.id}_ss_${'empty' if spriteset_data[0] == 'empty_unweathered' else spriteset_data[0]}, "${global_constants.graphics_path}${model_variant.model_def.model_id}.png") {
+        spriteset(${unit.id}_ss_${'empty' if spriteset_data[0] == 'empty_unweathered' else spriteset_data[0]}, "${graphics_path}${model_variant.model_def.model_id}.png") {
             ${unit.get_spriteset_template_name('unreversed', spriteset_data[1])}
         }
     </tal:spritesets>
 </tal:enumerated_visible_cargo>
 
 <tal:legacy_custom_cargo condition="not hasattr(model_variant.gestalt_graphics, 'get_unique_spritesets')">
-spriteset(${unit.id}_ss_empty, "${global_constants.graphics_path}${model_variant.model_def.model_id}.png") {
+spriteset(${unit.id}_ss_empty, "${graphics_path}${model_variant.model_def.model_id}.png") {
   spriteset_template_${unit.id}(${unit.spriterow_num * 30} + 10)
 }
 <tal:cargo_variants repeat="cargo_variant_num python:range(model_variant.gestalt_graphics.num_cargo_sprite_variants)">
-    spriteset(${unit.id}_ss_loading_${cargo_variant_num}, "${global_constants.graphics_path}${model_variant.model_def.model_id}.png") {
+    spriteset(${unit.id}_ss_loading_${cargo_variant_num}, "${graphics_path}${model_variant.model_def.model_id}.png") {
       spriteset_template_${unit.id}(${unit.spriterow_num * 30} + ${cargo_variant_num * 60} + 40)
     }
-    spriteset(${unit.id}_ss_loaded_${cargo_variant_num}, "${global_constants.graphics_path}${model_variant.model_def.model_id}.png") {
+    spriteset(${unit.id}_ss_loaded_${cargo_variant_num}, "${graphics_path}${model_variant.model_def.model_id}.png") {
       spriteset_template_${unit.id}(${unit.spriterow_num * 30} + ${cargo_variant_num * 60} + 70)
     }
 </tal:cargo_variants>

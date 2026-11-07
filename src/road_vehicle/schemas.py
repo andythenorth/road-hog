@@ -155,7 +155,11 @@ class RoadVehicleBase:
 
     def render(self, templates, graphics_path):
         template = templates["model_variant_entry_point.pynml"]
-        return template(model_variant=self, global_constants=global_constants)
+        return template(
+            model_variant=self,
+            global_constants=global_constants,
+            graphics_path=graphics_path,
+        )
 
     @property
     def unique_units(self):

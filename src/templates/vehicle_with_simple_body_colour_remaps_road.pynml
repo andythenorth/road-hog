@@ -2,7 +2,7 @@
      Cargo-specific sprite selection intentionally omitted. -->
 <tal:include metal:use-macro="load: spriteset_templates.pynml" />
 
-spriteset(${unit.id}_ss, "${global_constants.graphics_path}${model_variant.model_def.model_id}.png") {
+spriteset(${unit.id}_ss, "${graphics_path}${model_variant.model_def.model_id}.png") {
   spriteset_template_${unit.id}(10 + ${unit.spriterow_num * 30})
 }
 

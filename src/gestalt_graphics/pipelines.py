@@ -1,4 +1,6 @@
+import filecmp
 import os.path
+import tempfile
 
 currentdir = os.curdir
 
@@ -121,20 +123,35 @@ class Pipeline(object):
         return spritesheet
 
     def render_common(self, input_image, units):
-        # expects to be passed a PIL Image object
-        # units is a list of objects, with their config data already baked in (don't have to pass anything to units except the spritesheet)
-        # each unit is then called in order, passing in and returning a pixa SpriteSheet
-        # finally the spritesheet is saved
-        output_path = os.path.join(
-            currentdir, "generated", "graphics", self.consist.id + ".png"
-        )
+        # Render to the configured roster graphics directory, matching NML paths.
+        # Save via a temporary file and only replace an existing PNG when changed,
+        # so unchanged graphics do not invalidate the NML sprite cache.
+        output_path = os.path.join(self.graphics_output_path, self.consist.id + ".png")
         spritesheet = self.make_spritesheet_from_image(input_image)
 
         for unit in units:
             spritesheet = unit.render(spritesheet)
-        # I don't normally leave commented-out code behind, but I'm bored of looking in the PIL docs for how to show the image during compile
-        # spritesheet.sprites.show()
-        spritesheet.save(output_path)
+
+        # CABBAGE488: Road Hog still schedules livery variants individually, so
+        # multiple jobs can target one output. Unlike Iron Horse's catalogue-based
+        # renderer, a fixed per-pipeline tmp name would collide between workers.
+        # Use a unique tmp name until caller scheduling is migrated.
+        tmp_dir = os.path.join(self.graphics_output_path, "tmp")
+        os.makedirs(tmp_dir, exist_ok=True)
+        with tempfile.NamedTemporaryFile(
+            dir=tmp_dir, suffix=".png", delete=False
+        ) as tmp_file:
+            output_path_tmp = tmp_file.name
+
+        try:
+            spritesheet.save(output_path_tmp)
+            if not os.path.exists(output_path) or not filecmp.cmp(
+                output_path, output_path_tmp, shallow=False
+            ):
+                os.replace(output_path_tmp, output_path)
+        finally:
+            if os.path.exists(output_path_tmp):
+                os.unlink(output_path_tmp)
 
     def render(self, consist):
         raise NotImplementedError("Implement me in %s" % repr(self))
