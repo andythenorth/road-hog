@@ -94,7 +94,7 @@ def main():
     os.makedirs(graphics_output_path_tmp)
 
     hint_file = open(
-        os.path.join(graphics_output_path, "_lang_files_here_are_generated.txt"),
+        os.path.join(graphics_output_path, "_graphics_files_here_are_generated.txt"),
         "w",
         encoding="utf-8",
     )
