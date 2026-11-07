@@ -1,0 +1,4 @@
+# Suppress selected strings for specific rosters when generating GRF language files.
+# Example:
+# [STR_SOME_STRING]
+# suppressed_rosters = ["landrace", "heqs"]

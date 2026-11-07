@@ -227,14 +227,29 @@ class Roster(object):
                 primary_group.child_groups.append(variant_group)
 
 
-    def get_lang_data(self, lang):
+    def get_lang_data(self, lang, context):
         # strings optionally vary per roster, so we have a method to fetch all lang data via the roster
         global_pragma = {}
         lang_strings = {}
+        docs_only_strings = {}
+        # we have the option to suppress selected strings in specific contexts, using a dedicated suppression file
+        suppressed_strings = tomllib.load(
+            open(
+                os.path.join(currentdir, "src", "lang", "suppressed_strings.toml"), "rb"
+            )
+        )
+
         with open(os.path.join(currentdir, "src", "lang", lang + ".toml"), "rb") as fp:
             lang_source = tomllib.load(fp)
 
         for node_name, node_value in lang_source.items():
+            # first check if the string is suppressed in this roster, when building grf only (not docs)
+            if context == "grf" and node_name in suppressed_strings:
+                if self.id in suppressed_strings[node_name].get(
+                    "suppressed_rosters", []
+                ):
+                    continue
+
             if node_name == "GLOBAL_PRAGMA":
                 # explicit handling of global pragma items
                 global_pragma["grflangid"] = node_value["grflangid"]
@@ -244,18 +259,30 @@ class Roster(object):
                 if node_value.get("case", False):
                     global_pragma["case"] = node_value["case"]
             else:
-                # all lang strings should provide a default base value, which can optionally be over-ridden per roster
-                if self.id in node_value.keys():
-                    lang_strings[node_name] = node_value[self.id]
+                # ach conditional jank for docs only strings, but JFDI
+                if node_value.get("docs_only", False) == True:
+                    docs_only_strings[node_name] = node_value["base"]
                 else:
-                    lang_strings[node_name] = node_value["base"]
+                    # all lang strings should provide a default base value, which can optionally be over-ridden per roster
+                    if self.id in node_value.keys():
+                        lang_strings[node_name] = node_value[self.id]
+                    else:
+                        lang_strings[node_name] = node_value["base"]
 
-        for consist in self.consists_in_buy_menu_order:
-            model_def = consist.model_def
-            if model_def.name is not None:
-                lang_strings["STR_NAME_" + consist.catalogue.model_id.upper()] = model_def.name
+        for model_variants in self.model_variants_by_catalogue.values():
+            example_model_variant = model_variants[0]
+            if example_model_variant.model_def.name is not None:
+                lang_strings["STR_NAME_" + example_model_variant.catalogue.model_id.upper()] = (
+                    example_model_variant.model_def.name
+                )
 
-        return {"global_pragma": global_pragma, "lang_strings": lang_strings}
+        return {
+            "global_pragma": global_pragma,
+            "lang_strings": lang_strings,
+            "docs_only_strings": docs_only_strings,
+        }
+
+
 
 class VariantGroup(list):
     """

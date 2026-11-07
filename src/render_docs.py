@@ -387,7 +387,7 @@ def main():
     # expect Exception failures if there is no active roster, don't bother explicitly handling that case
 
     # can't pass roster in to DocHelper at init, multiprocessing fails as it can't pickle the roster object
-    doc_helper = DocHelper(lang_strings=roster.get_lang_data("english")["lang_strings"])
+    doc_helper = DocHelper(lang_data=roster.get_lang_data("english", context="docs"))
 
     # default to no mp, makes debugging easier (mp fails to pickle errors correctly)
     num_pool_workers = command_line_args.num_pool_workers

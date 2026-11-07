@@ -14,8 +14,9 @@ class DocHelper(object):
     )
     docs_sprite_height = 16
 
-    def __init__(self, lang_strings):
-        self.lang_strings = lang_strings
+    def __init__(self, lang_data):
+        self.lang_strings = lang_data["lang_strings"]
+        self.docs_only_strings = lang_data["docs_only_strings"]
 
     def docs_sprite_width(self, consist):
         # !! might want to add 1 here if trams get extra 1px for couplings, but eh, we'll see
