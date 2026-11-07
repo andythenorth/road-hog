@@ -1,6 +1,6 @@
 import global_constants
 import utils
-from utils import timing
+#from utils import timing
 from badges import _static_badges
 from badges.graphics_generator import BadgeGraphicsGenerator
 
@@ -103,7 +103,7 @@ class BadgeManager(list):
         # these are really just an experiment to see if they aid debug, they don't do anything else as of April 2025, and `dumpinfo railtypes` gets the same result
         railtype_manager = kwargs["railtype_manager"]
         self.add_badge(
-            label=f"ih_railtype",
+            label="ih_railtype",
         )
         for railtype in railtype_manager:
             self.add_badge(
@@ -172,7 +172,7 @@ class BadgeManager(list):
         # we split the display/filter badge from the behaviour badges
         # as we want to consolidate some badges for display, but leave them split for behaviour (for example, random vs. non-random freight wagons of same hue)
         self.add_badge(
-            label=f"livery",
+            label="livery",
             name="STR_BADGE_LIVERY",
         )
         for livery in livery_supplier.consolidated_liveries_for_badge_display:
@@ -188,10 +188,10 @@ class BadgeManager(list):
 
         # copy elements of the livery_def into badges, for both behaviour and debugging
         self.add_badge(
-            label=f"_ih_livery_def/use_weathering/False",
+            label="_ih_livery_def/use_weathering/False",
         )
         self.add_badge(
-            label=f"_ih_livery_def/use_weathering/True",
+            label="_ih_livery_def/use_weathering/True",
         )
 
         # internal names, no consolidation across liveries

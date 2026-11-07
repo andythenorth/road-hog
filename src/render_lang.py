@@ -11,7 +11,7 @@ sys.path.append(os.path.join("src"))  # add to the module search path
 import road_hog
 import global_constants
 import utils
-from utils import timing
+# from utils import timing
 
 # setting up a cache for compiled chameleon templates can significantly speed up template rendering
 chameleon_cache_path = os.path.join(currentdir, global_constants.chameleon_cache_dir)
@@ -72,7 +72,8 @@ def render_lang(roster, lang_name, lang_dst, git_tag_or_version):
 
 
 def main():
-    globals()["logger"] = utils.get_logger(__file__)
+    global logger
+    logger = utils.get_logger(__file__)
     logger.info(f"[RENDER LANG] {' '.join(sys.argv)}")
     start = time()
     road_hog.main()

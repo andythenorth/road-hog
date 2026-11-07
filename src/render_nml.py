@@ -71,7 +71,8 @@ def render_item_nml(item, graphics_path):
 
 
 def main():
-    globals()["logger"] = utils.get_logger(__file__)
+    global logger
+    logger = utils.get_logger(__file__)
     logger.info(f"[RENDER NML] {' '.join(sys.argv)}")
     start = time()
     road_hog.main(run_post_validation_steps=True)

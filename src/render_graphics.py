@@ -59,7 +59,8 @@ def report_sprites_complete(target_configs):
 
 # wrapped in a main() function so this can be called explicitly, because unexpected multiprocessing fork bombs are bad
 def main():
-    globals()["logger"] = utils.get_logger(__file__)
+    global logger
+    logger = utils.get_logger(__file__)
     logger.info(f"[RENDER GRAPHICS] {' '.join(sys.argv)}")
     start = time()
     road_hog.main()

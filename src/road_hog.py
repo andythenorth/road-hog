@@ -11,7 +11,7 @@ from functools import cached_property
 
 import global_constants
 import utils
-from utils import timing
+#from utils import timing
 
 command_line_args = utils.get_command_line_args()
 
@@ -85,9 +85,10 @@ def main(validate_vehicle_ids=False, run_post_validation_steps=False):
     os.makedirs(generated_files_path, exist_ok=True)
 
     # globals within this module, accessible externally as road_hog.foo
-    globals()["livery_supplier"] = LiverySupplier()
-    globals()["badge_manager"] = BadgeManager()
-    globals()["roster_manager"] = RosterManager()
+    global roster_manager, badge_manager, livery_supplier
+    livery_supplier = LiverySupplier()
+    badge_manager = BadgeManager()
+    roster_manager = RosterManager()
 
     # liveries
     livery_supplier.add_livery("DEFAULT")

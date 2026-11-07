@@ -43,7 +43,8 @@ def find_vacant_id_runs(numeric_id_defender, lower_bound, upper_bound):
 
 
 def main():
-    globals()["logger"] = utils.get_logger(__file__)
+    global logger
+    logger = utils.get_logger(__file__)
     AQUA = "\033[38;5;122m"
     JUNIPER = "\033[38;5;66m"
     RESET = "\033[0m"

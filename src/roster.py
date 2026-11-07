@@ -158,9 +158,9 @@ class Roster(object):
                 )
                 error_msg.append(f"    {err['model_variant']}: {err['this_blocks']}")
                 error_msg.append(f"    {err['collides_with']}: {err['other_blocks']}")
-                error_msg.append(f"")  # just a spacer
+                error_msg.append("")  # just a spacer
             error_msg.append(
-                f"Unused numeric IDs might be found in build_logs/id_report.py.log"
+                "Unused numeric IDs might be found in build_logs/id_report.py.log"
             )
             raise ValueError("\n".join(error_msg))
         # no return value needed
