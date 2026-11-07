@@ -11,6 +11,7 @@ sys.path.append(os.path.join("src"))  # add to the module search path
 import road_hog
 import global_constants
 import utils
+
 # from utils import timing
 
 # setting up a cache for compiled chameleon templates can significantly speed up template rendering

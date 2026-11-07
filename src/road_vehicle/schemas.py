@@ -252,8 +252,6 @@ class RoadVehicleBase:
         return result
 
 
-
-
 class TrackTypeMixinBase:
     base_track_type_name = None
     roadveh_flag_tram = False
@@ -785,4 +783,3 @@ class TankerTruck(TrackTypeMixinTruckBusCoach, TankerConsistBase):
 
 class MetalHEQSBase(TrackTypeMixinHEQS, MetalHaulerConsistBase):
     pass
-

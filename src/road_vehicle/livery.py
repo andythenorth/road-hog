@@ -251,4 +251,3 @@ class LiverySupplier(dict):
         for livery in self.keys():
             if livery not in self.delivered_liveries:
                 print("Unused", livery)
-

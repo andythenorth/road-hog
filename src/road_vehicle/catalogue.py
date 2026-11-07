@@ -74,10 +74,16 @@ class Catalogue(list):
 
         if livery_group_name is not None:
             if roster_module is None:
-                raise ValueError(f"{self.model_id}: livery group requires roster module")
+                raise ValueError(
+                    f"{self.model_id}: livery group requires roster module"
+                )
             result = [
-                road_hog.livery_supplier.deliver(livery_name, relative_spriterow_num=index)
-                for livery_name, index in roster_module.pax_mail_livery_groups[livery_group_name]
+                road_hog.livery_supplier.deliver(
+                    livery_name, relative_spriterow_num=index
+                )
+                for livery_name, index in roster_module.pax_mail_livery_groups[
+                    livery_group_name
+                ]
             ]
         elif getattr(model_def, "liveries", None) is not None:
             result = [
@@ -90,7 +96,9 @@ class Catalogue(list):
                 for index, name in enumerate(schema_cls.liveries)
             ]
         else:
-            result = [road_hog.livery_supplier.deliver("DEFAULT", relative_spriterow_num=0)]
+            result = [
+                road_hog.livery_supplier.deliver("DEFAULT", relative_spriterow_num=0)
+            ]
 
         if not result:
             raise ValueError(f"no liveries found for {self.model_id}")
@@ -115,7 +123,11 @@ class Catalogue(list):
             ]
             self.append(
                 CatalogueEntry(
-                    self, model_variant_id, unit_variant_ids, unit_numeric_ids, livery_def,
+                    self,
+                    model_variant_id,
+                    unit_variant_ids,
+                    unit_numeric_ids,
+                    livery_def,
                     self.producer.get_variant_group_id(livery_def),
                 )
             )
@@ -140,7 +152,9 @@ class ModelVariantProducer:
             raise ValueError("catalogue_entry is required")
         from . import units
 
-        model_variant = self.catalogue.schema_cls(producer=self, catalogue_entry=catalogue_entry)
+        model_variant = self.catalogue.schema_cls(
+            producer=self, catalogue_entry=catalogue_entry
+        )
         for counter, unit_def in enumerate(self.catalogue.model_def.unit_defs):
             unit_cls = getattr(units, unit_def.unit_cls_name)
             # UnitDef properties come from either the Unit class or the model declaration.

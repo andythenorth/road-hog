@@ -46,19 +46,18 @@ class GestaltGraphics(object):
                 unique_row_nums.append(row_nums)
         return sum([len(i) for i in unique_row_nums])
 
-
     def get_output_row_types(self):
         return ["single_row"]
 
-
     def get_spriterow_types_for_units(self, units):
         return [
-            ["always_use_same_spriterow"]
-            if unit.always_use_same_spriterow
-            else self.get_output_row_types()
+            (
+                ["always_use_same_spriterow"]
+                if unit.always_use_same_spriterow
+                else self.get_output_row_types()
+            )
             for unit in units
         ]
-
 
 
 class GestaltGraphicsPrecompositedCargo(GestaltGraphics):
@@ -101,7 +100,9 @@ class GestaltGraphicsPrecompositedCargo(GestaltGraphics):
     def get_buy_menu_unit_input_row_num(self, pipeline, unit):
         return sum(
             self.get_output_row_count_for_unit(previous_unit)
-            for previous_unit in pipeline.example_model_variant.units[: pipeline.example_model_variant.units.index(unit)]
+            for previous_unit in pipeline.example_model_variant.units[
+                : pipeline.example_model_variant.units.index(unit)
+            ]
         )
 
     @property
@@ -121,8 +122,6 @@ class GestaltGraphicsPrecompositedCargo(GestaltGraphics):
     def nml_template(self):
         return "vehicle_with_precomposited_cargo.pynml"
 
-
-
     @property
     def cargo_row_map(self):
         result = {}
@@ -132,16 +131,19 @@ class GestaltGraphicsPrecompositedCargo(GestaltGraphics):
                 result[cargo_map[0]] = [counter]
                 counter += 1
         if self.has_piece:
-            for cargo_filename in polar_fox.constants.piece_vehicle_type_to_sprites_maps[
+            for (
+                cargo_filename
+            ) in polar_fox.constants.piece_vehicle_type_to_sprites_maps[
                 self.piece_type
             ]:
-                for cargo_label in polar_fox.constants.piece_sprites_to_cargo_labels_maps[
+                for (
+                    cargo_label
+                ) in polar_fox.constants.piece_sprites_to_cargo_labels_maps[
                     cargo_filename
                 ]:
                     result.setdefault(cargo_label, []).append(counter)
                 counter += 1
         return result
-
 
     def get_spriterow_types_for_units(self, units):
         result = []
@@ -244,9 +246,7 @@ class GestaltGraphicsPrecompositedCargo(GestaltGraphics):
         for preceding_unit in unit.model_variant.units:
             if preceding_unit is unit:
                 break
-            preceding_output_rows += self.get_output_row_count_for_unit(
-                preceding_unit
-            )
+            preceding_output_rows += self.get_output_row_count_for_unit(preceding_unit)
         else:
             raise ValueError("Unit not found in model variant: " + unit.id)
 
@@ -254,9 +254,7 @@ class GestaltGraphicsPrecompositedCargo(GestaltGraphics):
         if unit.always_use_same_spriterow:
             # The compositor emits one row for this unit, but the existing NML
             # switches still need empty/loading/loaded spriteset names.
-            fixed_y = (
-                graphics_constants.spritesheet_top_margin + preceding_y_offset
-            )
+            fixed_y = graphics_constants.spritesheet_top_margin + preceding_y_offset
             for row_map in result:
                 row_map[1] = fixed_y
         else:
@@ -295,7 +293,6 @@ class GestaltGraphicsCustom(GestaltGraphics):
     def nml_template(self):
         return self._nml_template
 
-
     def get_output_row_types(self):
         return ["empty", "custom_cargo"]
 
@@ -303,14 +300,23 @@ class GestaltGraphicsCustom(GestaltGraphics):
     def cargo_row_map(self):
         return self._cargo_row_map
 
+
 class GestaltGraphicsSimpleBodyColourRemaps(GestaltGraphics):
-    def __init__(self, recolour_map=None, weathered_states=None, catalogue_entry=None, **kwargs):
+    def __init__(
+        self, recolour_map=None, weathered_states=None, catalogue_entry=None, **kwargs
+    ):
         super().__init__()
         self.catalogue_entry = catalogue_entry
         self.recolour_map = recolour_map
-        self.weathered_states = weathered_states if weathered_states is not None else {"unweathered": recolour_map}
+        self.weathered_states = (
+            weathered_states
+            if weathered_states is not None
+            else {"unweathered": recolour_map}
+        )
         if set(self.weathered_states) != {"unweathered"}:
-            raise NotImplementedError("Road Hog only supports unweathered body recolouring")
+            raise NotImplementedError(
+                "Road Hog only supports unweathered body recolouring"
+            )
         unweathered_map = self.weathered_states["unweathered"]
         if recolour_map is not None and unweathered_map != recolour_map:
             raise ValueError("recolour_map differs from unweathered weathered_states")

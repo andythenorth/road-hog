@@ -50,7 +50,9 @@ class Pipeline(object):
             self.catalogue.model_id + ".png",
         )
         if hasattr(self, "vehicle_unit"):
-            spritesheet_name = self.vehicle_unit.get_spritesheet_name_body_or_complete_vehicle()
+            spritesheet_name = (
+                self.vehicle_unit.get_spritesheet_name_body_or_complete_vehicle()
+            )
             if spritesheet_name is not None:
                 if spritesheet_name is not None:
                     input_path = os.path.join(
@@ -90,10 +92,17 @@ class Pipeline(object):
 
     def process_buy_menu_sprite_from_row_map(self, spritesheet):
         buy_menu_image = Image.new(
-            "P", (self.example_model_variant.buy_menu_width, self.global_constants.docs_sprite_height), 0
+            "P",
+            (
+                self.example_model_variant.buy_menu_width,
+                self.global_constants.docs_sprite_height,
+            ),
+            0,
         )
         buy_menu_image.putpalette(DOS_PALETTE)
-        for row_data in self.example_model_variant.gestalt_graphics.buy_menu_row_map(self):
+        for row_data in self.example_model_variant.gestalt_graphics.buy_menu_row_map(
+            self
+        ):
             if row_data["spriterow_num_dest"] != 0:
                 raise ValueError("Road Hog currently supports one purchase sprite row")
             x_offset = 0
@@ -122,7 +131,9 @@ class Pipeline(object):
 
     def render_common(self, input_image, units):
         # Preserve existing PNG timestamps when sprite content is unchanged.
-        output_path = os.path.join(self.graphics_output_path, self.catalogue.model_id + ".png")
+        output_path = os.path.join(
+            self.graphics_output_path, self.catalogue.model_id + ".png"
+        )
         spritesheet = self.make_spritesheet_from_image(input_image)
 
         for unit in units:
@@ -188,10 +199,15 @@ class CheckBuyMenuOnlyPipeline(Pipeline):
         self.global_constants = global_constants
         self.graphics_output_path = graphics_output_path
 
-        if self.example_model_variant.buy_menu_x_loc == global_constants.custom_buy_menu_x_loc:
+        if (
+            self.example_model_variant.buy_menu_x_loc
+            == global_constants.custom_buy_menu_x_loc
+        ):
             # !! this currently will cause the vehicle spritesheet buy menu sprites to be copied to the pans spritesheet,
             # !! it needs pixels from the pans spritesheet, but automated buy menu sprites need providing first
-            self.units.append(AddBuyMenuSprite(self.process_buy_menu_sprite_from_row_map))
+            self.units.append(
+                AddBuyMenuSprite(self.process_buy_menu_sprite_from_row_map)
+            )
 
         input_image = Image.open(self.vehicle_source_input_path)
         result = self.render_common(input_image, self.units)
@@ -305,7 +321,10 @@ class ExtendSpriterowsForCompositedSpritesPipeline(Pipeline):
             self.make_spritesheet_from_image(vehicle_livery_only_spriterow_input_image)
         )
 
-        for label, recolour_map in self.example_model_variant.gestalt_graphics.recolour_maps:
+        for (
+            label,
+            recolour_map,
+        ) in self.example_model_variant.gestalt_graphics.recolour_maps:
             crop_box_dest = (
                 0,
                 0,
@@ -562,9 +581,7 @@ class ExtendSpriterowsForCompositedSpritesPipeline(Pipeline):
                 vehicle_comped_image
             )
             self.units.append(
-                AppendToSpritesheet(
-                    vehicle_comped_image_as_spritesheet, crop_box_dest
-                )
+                AppendToSpritesheet(vehicle_comped_image_as_spritesheet, crop_box_dest)
             )
             self.units.append(
                 AddCargoLabel(
@@ -593,9 +610,12 @@ class ExtendSpriterowsForCompositedSpritesPipeline(Pipeline):
             # 'vehicle_unit' not 'unit' to avoid conflating with graphics processor 'unit'
             self.vehicle_unit = self.example_model_variant.unique_units[vehicle_counter]
             vehicle_unit_cumulative_source_spriterow_count = 0
-            vehicle_unit_source_base_yoffs = graphics_constants.spritesheet_top_margin + (
-                graphics_constants.spriterow_height
-                * consist_cumulative_source_spriterow_count
+            vehicle_unit_source_base_yoffs = (
+                graphics_constants.spritesheet_top_margin
+                + (
+                    graphics_constants.spriterow_height
+                    * consist_cumulative_source_spriterow_count
+                )
             )
             # it's ok to open spritesheets multiple times, the IO is not too bad in my tests
             self.vehicle_unit_source_image = Image.open(self.vehicle_source_input_path)
@@ -635,12 +655,19 @@ class ExtendSpriterowsForCompositedSpritesPipeline(Pipeline):
                     source_spriterow_count = 2
                     self.add_piece_cargo_spriterows()
                 else:
-                    raise ValueError(f"Unsupported compositor row type: {spriterow_type}")
+                    raise ValueError(
+                        f"Unsupported compositor row type: {spriterow_type}"
+                    )
                 consist_cumulative_source_spriterow_count += source_spriterow_count
                 vehicle_unit_cumulative_source_spriterow_count += source_spriterow_count
 
-        if self.example_model_variant.buy_menu_x_loc == global_constants.custom_buy_menu_x_loc:
-            self.units.append(AddBuyMenuSprite(self.process_buy_menu_sprite_from_row_map))
+        if (
+            self.example_model_variant.buy_menu_x_loc
+            == global_constants.custom_buy_menu_x_loc
+        ):
+            self.units.append(
+                AddBuyMenuSprite(self.process_buy_menu_sprite_from_row_map)
+            )
 
         # for this pipeline, input_image is just blank white 10px high image, to which the vehicle sprites are then appended
         input_image = Image.new("P", (graphics_constants.spritesheet_width, 10), 255)

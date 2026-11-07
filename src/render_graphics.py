@@ -35,8 +35,7 @@ def run_spritelayer_cargo_set_pipelines(
 def report_sprites_complete(target_configs):
     total = len(target_configs)
     complete_count = sum(
-        1 for target in target_configs
-        if target["catalogue"].model_def.sprites_complete
+        1 for target in target_configs if target["catalogue"].model_def.sprites_complete
     )
     percent_complete = int(100 * complete_count / total) if total else 100
 
@@ -51,7 +50,9 @@ def report_sprites_complete(target_configs):
     for target in target_configs:
         if not target["catalogue"].model_def.sprites_complete:
             track_type = target["catalogue"].example_model_variant.base_track_type_name
-            incomplete_by_track_type.setdefault(track_type, []).append(target["catalogue"])
+            incomplete_by_track_type.setdefault(track_type, []).append(
+                target["catalogue"]
+            )
 
     for track_type, group in incomplete_by_track_type.items():
         logger.info(f"  * {track_type} {len(group)}")
@@ -116,7 +117,9 @@ def main():
         if output_name in output_names:
             raise ValueError(f"Duplicate graphics output: {output_name}")
         if any(variant.graphics_file_id != output_name for variant in model_variants):
-            raise ValueError(f"Catalogue {catalogue.model_id} has multiple graphics filenames")
+            raise ValueError(
+                f"Catalogue {catalogue.model_id} has multiple graphics filenames"
+            )
         output_names.add(output_name)
         target_config = {"catalogue": catalogue}
         targets.append(target_config)
@@ -135,7 +138,10 @@ def main():
             for render_pass_num in [1, 2]:
                 pool.starmap(
                     run_vehicle_pipelines,
-                    zip(render_pass_targets[render_pass_num], repeat(graphics_output_path)),
+                    zip(
+                        render_pass_targets[render_pass_num],
+                        repeat(graphics_output_path),
+                    ),
                 )
 
     report_sprites_complete(targets)

@@ -165,7 +165,6 @@ class Roster(object):
             raise ValueError("\n".join(error_msg))
         # no return value needed
 
-
     def add_variant_groups(self):
         # creating groups has to happen after *all* model variants are inited
 
@@ -205,7 +204,6 @@ class Roster(object):
             if (primary_group is not None) and (len(variant_group) > 0):
                 variant_group.parent_group = primary_group
                 primary_group.child_groups.append(variant_group)
-
 
     def get_lang_data(self, lang, context):
         # strings optionally vary per roster, so we have a method to fetch all lang data via the roster
@@ -252,16 +250,15 @@ class Roster(object):
         for model_variants in self.model_variants_by_catalogue.values():
             example_model_variant = model_variants[0]
             if example_model_variant.model_def.name is not None:
-                lang_strings["STR_NAME_" + example_model_variant.catalogue.model_id.upper()] = (
-                    example_model_variant.model_def.name
-                )
+                lang_strings[
+                    "STR_NAME_" + example_model_variant.catalogue.model_id.upper()
+                ] = example_model_variant.model_def.name
 
         return {
             "global_pragma": global_pragma,
             "lang_strings": lang_strings,
             "docs_only_strings": docs_only_strings,
         }
-
 
 
 class VariantGroup(list):
