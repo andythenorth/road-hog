@@ -139,9 +139,6 @@ class RoadVehicleBase:
         prefix = "tram_type:" if self.roadveh_flag_tram else "road_type:"
         return prefix + self.track_type + ";"
 
-    def get_expression_for_roster(self):
-        return "param[1]==" + str(self.roster.numeric_id - 1)
-
     @property
     def buy_menu_x_loc(self):
         if len(self.units) > 1:
@@ -273,7 +270,8 @@ class TrackTypeMixinFeldbahn(TrackTypeMixinBase):
 
 
 class TrackTypeMixinHEQS(TrackTypeMixinBase):
-    base_track_type_name = "HEQS"
+    base_track_type_name = "ROAD"
+    #base_track_type_name = "HEQS"
     default_tractive_effort_coefficient = 0.7
     vehicle_role = "freight_truck"
 
@@ -361,6 +359,12 @@ class CoveredHopperHaulerConsistBase(RoadVehicleBase):
 
 
 class DumpHaulerConsistBase(RoadVehicleBase):
+    liveries = [
+        "RANDOM_LIVERIES_COMPLEMENT_COMPANY_COLOUR",
+        "RANDOM_LIVERIES_CLOVER_OCHRE_SULPHUR",
+        "RANDOM_LIVERIES_TEAL_PEWTER_SILVER",
+    ]
+
     def __init__(self, producer, catalogue_entry):
         super().__init__(producer, catalogue_entry)
         self.name_suffix_consist_type = "DUMP"
@@ -641,7 +645,9 @@ class DumpFeldbahn(TrackTypeMixinFeldbahn, DumpHaulerConsistBase):
 
 
 class DumpHEQS(TrackTypeMixinHEQS, DumpHaulerConsistBase):
-    pass
+
+    def __init__(self, producer, catalogue_entry):
+        super().__init__(producer, catalogue_entry)
 
 
 class DumpTram(TrackTypeMixinTram, DumpHaulerConsistBase):

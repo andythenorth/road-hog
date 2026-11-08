@@ -10,6 +10,8 @@ switch (FEAT_ROADVEHS, SELF, ${unit.id}_create_visual_effect, ${unit.get_effects
 item(FEAT_ROADVEHS, ${unit.id}, ${unit.numeric_id}) {
     property {
         name:                           ${model_variant.name_as_nml_prop};
+        <!--! hide trailing parts from buy menu -->
+        climates_available:             ${"NO_CLIMATE" if unit.is_trailing_part else "ALL_CLIMATES"};
         cargo_capacity:                 ${unit.capacity}; // use CB to set this, avoids limited size of action 0 property
         sprite_id:                      SPRITE_ID_NEW_ROADVEH; //enable new graphics - nml constant
         <!--! insert either road_type or  track_type as appropriate to the unit type -->
@@ -51,11 +53,16 @@ item(FEAT_ROADVEHS, ${unit.id}, ${unit.numeric_id}) {
         default:                        ${unit.id}_switch_graphics;
         purchase:                       ${unit.id}_sg_purchase;
         create_effect:                  ${unit.id}_create_visual_effect;
-        <!--! CABBAGE352: colour callbacks are placeholders until wagon recolour procedures are adapted to RH. -->
-        <tal:runtime_colours condition="model_variant.gestalt_graphics.nml_template == 'vehicle_with_simple_body_colour_remaps_road.pynml'">
-            colour_mapping:                 ${unit.id}_runtime_colour_mapping;
-            purchase_colour_mapping:        ${unit.id}_purchase_colour_mapping;
-        </tal:runtime_colours>
+        <tal:colour_mapping_cb switch="unit.requires_colour_mapping_cb">
+            <tal:use_colour_randomisation_strategies case="'use_colour_randomisation_strategies'">
+                colour_mapping:                 switch_freight_wagon_livery_entry_point(random_bits_wagon_random_remap_livery());
+                purchase_colour_mapping:        switch_freight_wagon_livery_entry_point_purchase();
+            </tal:use_colour_randomisation_strategies>
+            <tal:colour_mapping_switch_with_purchase case="'colour_mapping_switch_with_purchase'">
+                colour_mapping:                 ${unit.id + model_variant.gestalt_graphics.colour_mapping_switch};
+                purchase_colour_mapping:        ${unit.id + model_variant.gestalt_graphics.colour_mapping_switch_purchase};
+            </tal:colour_mapping_switch_with_purchase>
+        </tal:colour_mapping_cb>
 
         <!--! no buy menu extra text in this grf by design; extra text is associated with BAD FEATURES -->
         <tal:lead_unit_only condition="unit.is_lead_unit_of_consist">
@@ -68,10 +75,3 @@ item(FEAT_ROADVEHS, ${unit.id}, ${unit.numeric_id}) {
     }
 }
 
-if (${model_variant.get_expression_for_roster()}) {
-    item(FEAT_ROADVEHS, ${unit.id}, ${unit.numeric_id}) {
-        property {
-            climates_available:             ${unit.availability};
-        }
-    }
-}

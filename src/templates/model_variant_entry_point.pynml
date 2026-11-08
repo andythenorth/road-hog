@@ -12,6 +12,11 @@
         <tal:include metal:use-macro="load: vehicle_with_simple_body_colour_remaps_road.pynml" />
     </tal:block>
 
+    <!--! Recolour callbacks are independent of the graphics gestalt. -->
+    <tal:recolour_switches condition="unit.requires_colour_mapping_cb == 'colour_mapping_switch_with_purchase'">
+        <tal:include metal:use-macro="load: colour_mapping_switches_road.pynml" />
+    </tal:recolour_switches>
+
     <!--! Properties and callback chains -->
     <tal:include metal:use-macro="load: graphics_switches.pynml" />
 

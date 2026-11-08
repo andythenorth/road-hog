@@ -1,0 +1,13 @@
+<!--! Per-variant freight livery mapping; shared by every Road Hog graphics gestalt.
+      The catalogue chooses the livery, not the graphics template. -->
+switch (FEAT_ROADVEHS, SELF, ${unit.id + model_variant.gestalt_graphics.colour_mapping_switch},
+    [STORE_TEMP(random_bits_wagon_random_remap_livery(), k_addr_wagon_recolour_random_livery_choice_num),
+     switch_freight_wagon_livery_serialised_liveries(${list(global_constants.freight_wagon_liveries).index(model_variant.livery_def.livery_name)})]) {
+    return;
+}
+
+switch (FEAT_ROADVEHS, SELF, ${unit.id + model_variant.gestalt_graphics.colour_mapping_switch_purchase},
+    [STORE_TEMP(0, k_addr_wagon_recolour_random_livery_choice_num),
+     switch_freight_wagon_livery_serialised_liveries(${len(global_constants.freight_wagon_liveries) + list(global_constants.freight_wagon_liveries).index(model_variant.livery_def.livery_name)})]) {
+    return;
+}

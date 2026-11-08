@@ -17,6 +17,9 @@ class GestaltGraphics(object):
         # sometimes processing may depend on another generated vehicle spritesheet, so there are multiple processing priorities, 1 = highest
         # see Horse for how this can be set to other values as needed
         self.processing_priority = 1
+        self.colour_mapping_switch = "_runtime_colour_mapping"
+        self.colour_mapping_switch_purchase = "_purchase_colour_mapping"
+        self.colour_mapping_with_purchase = True
 
     def get_buy_menu_unit_input_row_num(self, pipeline, unit):
         return unit.spriterow_num

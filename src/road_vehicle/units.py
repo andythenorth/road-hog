@@ -1,11 +1,7 @@
-"""Road Hog unit calculations adapted from src/road_vehicle.py.
-
-UnitDef, not a Consist, provides declared vehicle_length/capacity/chassis.
-"""
-
 import math
-import global_constants
+from functools import cached_property
 
+import global_constants
 
 class RoadVehicleUnit:
     provisions_unit_def = False
@@ -24,6 +20,13 @@ class RoadVehicleUnit:
         self.default_effect_sprite = None
         self._effect_spawn_model = None
         self.unit_num_providing_spriterow_num = None
+
+    @cached_property
+    def is_trailing_part(self):
+        if self.model_variant.units.index(self) == 0:
+            return False
+        else:
+            return True
 
     def get_cargo_classes_as_nml_prop(self, allow_disallow_key):
         result = []
@@ -77,6 +80,8 @@ class RoadVehicleUnit:
     def effect_spawn_model(self):
         return self._effect_spawn_model or "EFFECT_SPAWN_MODEL_DIESEL"
 
+
+
     @property
     def special_flags(self):
         flags = ["ROADVEH_FLAG_2CC"]
@@ -107,6 +112,25 @@ class RoadVehicleUnit:
                 + ", -2, 0, 10), 0x100)"
             )
         return ["[" + ",".join(effects) + "]", len(effects)] if effects else [0, 0]
+
+    @cached_property
+    def requires_colour_mapping_cb(self):
+        if getattr(self.model_variant, "use_colour_randomisation_strategies", False):
+            return "use_colour_randomisation_strategies"
+
+        # CABBAGE 265 - working, but possibly partial migration from Iron Horse
+        # Only freight liveries are represented in the shared serialised
+        # recolour table.  Other liveries retain their existing sprite colours.
+        if not self.model_variant.livery_def.is_freight_wagon_livery:
+            return None
+
+        graphics = self.model_variant.gestalt_graphics
+        if (
+            getattr(graphics, "colour_mapping_switch", None) is not None
+            and getattr(graphics, "colour_mapping_with_purchase", False)
+        ):
+            return "colour_mapping_switch_with_purchase"
+        return None
 
     def get_spritesheet_name_body_or_complete_vehicle(self):
         return None
